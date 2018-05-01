@@ -3,6 +3,6 @@
 
 @section('content')
 
-	<h1>BOLETO VENDIDO EXITOSAMENTE</h1>
+	<h1>OPERACIÓN EXITOSA</h1>
 
 @endsection
