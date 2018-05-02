@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\rrhh;
 
-use App\Models\rrhh\CargaFamiliar;
-use App\Models\rrhh\Cargo;
-use App\Models\rrhh\Empleado;
-use App\Models\rrhh\Nomina;
-use App\Models\rrhh\TabuladorSalarial;
-use App\Models\rrhh\Voucher;
 use Carbon\Carbon;
+use App\Models\rrhh\Cargo;
+use App\Models\rrhh\Nomina;
+use App\Models\rrhh\Voucher;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Models\rrhh\Empleado;
+use App\Models\rrhh\Asistencia;
+use App\Models\rrhh\CargaFamiliar;
 use Illuminate\Support\Collection;
+use App\Http\Controllers\Controller;
+use App\Models\rrhh\TabuladorSalarial;
 
 class NominaController extends Controller
 {
@@ -43,8 +44,9 @@ class NominaController extends Controller
 
         foreach ($empleados as $empleado) {
             $sueldo_basico = $this->calculoSueldoBase($empleado);
-
             $num_hijos = $this->calculoNumHijos($empleado);
+            $anios_servicio = $this->calcularAniosServicio($empleado);
+            $prima_antiguedad = $this->calcularAntiguedad($sueldo_basico, $anios_servicio);
 
             foreach ($empleado->conceptos as $concepto_empleado) {
                 foreach ($nomina->conceptos as $concepto_nomina) {
@@ -55,10 +57,8 @@ class NominaController extends Controller
                                 $monto = $sueldo_basico;
                                 $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
                                 break;
-                            case 103:
-                                $antiguedad = $this->calcularAntiguedad($empleado->fecha_ingreso);
-                                $prima_antiguedad = $sueldo_basico * $antiguedad * ($concepto_nomina->porcentaje/100);
-                                $monto = $prima_antiguedad;
+                            case 103:                                
+                                $monto = $prima_antiguedad;                             
                                 $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
                                 break;
                             case 105:
@@ -156,6 +156,74 @@ class NominaController extends Controller
                                 $monto = $descuento_hora_ausencia;
                                 $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
                                 break;
+                            case 520:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_extra_diurna = $hora_diurna * 1.5;
+                                $calculo_horas = $this->calculoHoras($empleado);                                 
+                                $monto = $calculo_horas['horas_extras_diurnas'] * $hora_extra_diurna;
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+                            case 521:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;                                  
+                                $calculo_horas = $this->calculoHoras($empleado);                                
+                                $monto = $calculo_horas['horas_faltantes_diurnas'] * $hora_diurna;                                
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+                            case 522:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_nocturna = $hora_diurna * 1.3;
+                                $hora_extra_nocturna = $hora_nocturna * 1.5;                                
+                                $calculo_horas = $this->calculoHoras($empleado);
+                                $monto = $calculo_horas['horas_extras_nocturnas'] * $hora_extra_nocturna;      
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+                            case 523:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_nocturna = $hora_diurna * 1.3; 
+                                $calculo_horas = $this->calculoHoras($empleado);
+                                $monto = $calculo_horas['horas_faltantes_nocturnas'] * $hora_nocturna;   
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+                            case 524:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_diurna_feriado = $hora_diurna * 1.5;
+                                $hora_extra_diurna_feriado = $hora_diurna_feriado * 1.5;                                
+                                $calculo_horas = $this->calculoHoras($empleado);
+                                $monto = $calculo_horas['horas_extras_diurnas_feriado'] * $hora_extra_diurna_feriado;    
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+                            case 525:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_diurna_feriado = $hora_diurna * 1.5;     
+                                $calculo_horas = $this->calculoHoras($empleado);
+                                $monto = $calculo_horas['horas_faltantes_diurnas_feriado'] * $hora_diurna_feriado;                 
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+                            case 526:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_diurna_feriado = $hora_diurna * 1.5;
+                                $hora_nocturna_feriado = $hora_diurna_feriado * 1.3;
+                                $hora_extra_nocturna_feriado = $hora_nocturna_feriado * 1.5;
+                                $calculo_horas = $this->calculoHoras($empleado);
+                                $monto = $calculo_horas['horas_extras_nocturnas_feriado'] * $hora_extra_nocturna_feriado;  
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+                            case 527:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_diurna_feriado = $hora_diurna * 1.5;
+                                $hora_nocturna_feriado = $hora_diurna_feriado * 1.3;
+                                $calculo_horas = $this->calculoHoras($empleado);
+                                $monto = $calculo_horas['horas_faltantes_nocturnas_feriado'] * $hora_nocturna_feriado;          
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
                         }
                     }
                 }
@@ -176,6 +244,48 @@ class NominaController extends Controller
         return $tabulador_salarial->sueldo_base;
     }
 
+    public function calculoSueldoNormal($sueldo_basico, $prima_antiguedad)
+    {
+        return $sueldo_basico + $prima_antiguedad;
+    }
+
+    public function calculoHoras($empleado)
+    {
+        $asistencias = Asistencia::where('empleado_id', $empleado->empleado_id)->get();
+        $horas_extras_diurnas = 0;
+        $horas_faltantes_diurnas = 0;
+        $horas_extras_nocturnas = 0;
+        $horas_faltantes_nocturnas = 0;
+        $horas_extras_diurnas_feriado = 0;
+        $horas_faltantes_diurnas_feriado = 0;
+        $horas_extras_nocturnas_feriado = 0;
+        $horas_faltantes_nocturnas_feriado = 0;
+
+        foreach ($asistencias as $asistencia)
+        {
+            if (Carbon::now()->month == Carbon::createFromFormat('Y-m-d', $asistencia->fecha)->month) {
+                $horas_extras_diurnas += $asistencia->h_extras_diurnas;
+                $horas_faltantes_diurnas += $asistencia->h_faltantes_diurnas;
+                $horas_extras_nocturnas += $asistencia->h_extras_nocturnas;
+                $horas_faltantes_nocturnas += $asistencia->h_faltantes_nocturnas;
+                $horas_extras_diurnas_feriado += $asistencia->h_extras_diurnas_feriado;
+                $horas_faltantes_diurnas_feriado += $asistencia->h_faltantes_diurnas_feriado;
+                $horas_extras_nocturnas_feriado += $asistencia->h_extras_nocturnas_feriado;
+                $horas_faltantes_nocturnas_feriado += $asistencia->h_faltantes_nocturnas_feriado;                
+            }
+        }
+        return [
+            'horas_extras_diurnas' => $horas_extras_diurnas, 
+            'horas_faltantes_diurnas' => $horas_faltantes_diurnas, 
+            'horas_extras_nocturnas' => $horas_extras_nocturnas, 
+            'horas_faltantes_nocturnas' => $horas_faltantes_nocturnas, 
+            'horas_extras_diurnas_feriado' => $horas_extras_diurnas_feriado, 
+            'horas_faltantes_diurnas_feriado' => $horas_faltantes_diurnas_feriado, 
+            'horas_extras_nocturnas_feriado' => $horas_extras_nocturnas_feriado, 
+            'horas_faltantes_nocturnas_feriado' => $horas_faltantes_nocturnas_feriado
+        ];        
+    }
+
     //  Calculo de numero de hijos
     public function calculoNumHijos($empleado)
     {
@@ -185,10 +295,14 @@ class NominaController extends Controller
         return $num_hijos;
     }
 
-    public function calcularAntiguedad($fecha_ingreso)
+    public function calcularAniosServicio($empleado)
     {
-        $antiguedad = Carbon::createFromFormat('Y-m-d', $fecha_ingreso)->age;
-        return $antiguedad;
+        return Carbon::createFromFormat('Y-m-d', $empleado->fecha_ingreso)->age;
+    }
+
+    public function calcularAntiguedad($sueldo_basico, $anios_servicio)
+    {                        
+        return $sueldo_basico * $anios_servicio * (2/100);        
     }
 
     public function registrarVoucher($empleado, $concepto_nomina, $nomina, $monto)
