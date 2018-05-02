@@ -1,0 +1,17 @@
+.center {
+    text-align: center;   
+   }
+   
+   .merge-bottom-input {
+     width: 67px;
+     border-bottom-left-radius: 0;
+     border-bottom-right-radius: 0;
+   }
+   
+   .merge-top-left-button {
+     border-top-left-radius: 0;
+   }
+   
+   .merge-top-right-button {
+     border-top-right-radius: 0;
+   }

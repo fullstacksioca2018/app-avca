@@ -16,4 +16,4 @@ Route::get('/', function () {
 });
 
 //Modulo 
-require 'Operativo/Operativo.php';
+require 'Operativo/operativo.php';
