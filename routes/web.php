@@ -47,3 +47,17 @@ Route::group(['prefix' => 'cliente'], function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'usuario'], function () {
+  Route::get('/login', 'UsuarioAuth\LoginController@showLoginForm')->name('login');
+  Route::post('/login', 'UsuarioAuth\LoginController@login');
+  Route::post('/logout', 'UsuarioAuth\LoginController@logout')->name('logout');
+
+  Route::get('/register', 'UsuarioAuth\RegisterController@showRegistrationForm')->name('register');
+  Route::post('/register', 'UsuarioAuth\RegisterController@register');
+
+  Route::post('/password/email', 'UsuarioAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+  Route::post('/password/reset', 'UsuarioAuth\ResetPasswordController@reset')->name('password.email');
+  Route::get('/password/reset', 'UsuarioAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+  Route::get('/password/reset/{token}', 'UsuarioAuth\ResetPasswordController@showResetForm');
+});
