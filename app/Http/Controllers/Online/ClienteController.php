@@ -21,6 +21,8 @@ class ClienteController extends Controller
 {
     public function index1()
     {
+        // if(Auth::guard('online')->user())
+        //         return redirect()->route('cliente.index1');
         $sucursales = Sucursal::orderBy('ciudad','ASC')->get();
     	return view('online.componentes.inicio', compact('sucursales'));
     

@@ -84,7 +84,7 @@
          @if((!isset($retorno))&&(!isset($objMultidestinos)))
      <div class="col-sm-2">
        
-          <a class="btn btn-primary" href="{{ URL::to('/cliente/CompraBoleto/'.$obj->cantidad.'/'.$obj->ninosbrazos.'/'.$obj->ruta->tarifa_vuelo.'/') }}" onclick="FunctionVuelo('{{ $obj->vuelo->id }}')">Seleccionar</a>
+          <a class="btn btn-primary" href="{{ URL::to('/online/cliente/CompraBoleto/'.$obj->cantidad.'/'.$obj->ninosbrazos.'/'.$obj->ruta->tarifa_vuelo.'/') }}" onclick="FunctionVuelo('{{ $obj->vuelo->id }}')">Seleccionar</a>
         </div>
       </div> <!--fin col-md-4-->
   @else

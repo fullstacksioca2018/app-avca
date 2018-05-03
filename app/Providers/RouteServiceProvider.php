@@ -39,7 +39,28 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapOnlineRoutes();
+
         //
+    }
+
+    /**
+     * Define the "online" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapOnlineRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'online', 'auth:online'],
+            'prefix' => 'online',
+            'as' => 'online.',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/online.php');
+        });
     }
 
     /**

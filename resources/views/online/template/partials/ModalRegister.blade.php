@@ -19,7 +19,7 @@
                   <div class="container p-3">
 
     
-                     <form class="form-horizontal ml-4" method="POST" action="{{ route('register') }}">
+                     <form class="form-horizontal ml-4" method="POST" action="{{ url('/online/register') }}">
                         {{ csrf_field() }}
 
 

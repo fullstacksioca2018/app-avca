@@ -104,8 +104,8 @@
 
 <body id="body">
   
-  {{-- @include('online.template.partials.ModalLogin')  --}}
-  {{-- @include('online.template.partials.ModalRegister') --}}
+  @include('online.template.partials.ModalLogin') 
+  @include('online.template.partials.ModalRegister')
   {{-- @include('cliente.template.partials.topbar') --}}
   @include('online.template.partials.header')
   @include('online.template.partials.erros')

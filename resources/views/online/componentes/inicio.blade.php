@@ -28,8 +28,11 @@
   <!-- ======================
     INICIO DEL HASTA
   ======================= -->
-   {!! Form::open(['route' => ['cliente.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
-      
+  @if (Auth::guest())
+    {!! Form::open(['route' => ['cliente.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
+  @else
+    <form method="get" onsubmit="myFunction()" action="{{ URL::to('/online/cliente/DetalleVuelo') }}">
+    @endif
       <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0"> 
       
     <div class="form-row">

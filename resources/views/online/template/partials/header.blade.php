@@ -20,7 +20,7 @@
             
             </ul>
           </li>
-          @guest
+          @if (Auth::guest())
            <li><i class="ion-person"></i><a href="#" data-toggle="modal" data-target="#Login"> Iniciar sesión</a></li>
           <li><i class="ion-person-add"></i><a href="#" data-toggle="modal" data-target="#Register"> Registrarse</a></li>
           @else
@@ -30,7 +30,7 @@
             </a>
             <ul class="dropdown-menu">
               <li class="nav-item">
-                <a class="dropdown-item mr-2" href="{{ route('logout') }}"
+                <a class="dropdown-item mr-2" href="{{ url('/online/logout') }}"
                   onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
                   Salir
@@ -42,7 +42,7 @@
               <li class="nav-item"><a class="dropdown-item" href="#">Mi cuenta</a></li>
             </ul>
           </li>
-          @endguest
+          @endif
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>

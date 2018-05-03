@@ -131,7 +131,7 @@
      </div><!--col-sm-10-->
         <div class="col-sm-2">
       
-          <a class="btn btn-primary" href="{{ URL::to('/cliente/CompraBoleto/'.$obj->cantidad.'/'.$obj->ninosbrazos.'/'.$obj->ruta->tarifa_vuelo.'/'.$ida->vuelo->id.'/') }}" onclick="FunctionVuelo('{{ $obj->vuelo->id }}')">Seleccionar</a>
+          <a class="btn btn-primary" href="{{ URL::to('/online/cliente/CompraBoleto/'.$obj->cantidad.'/'.$obj->ninosbrazos.'/'.$obj->ruta->tarifa_vuelo.'/'.$ida->vuelo->id.'/') }}" onclick="FunctionVuelo('{{ $obj->vuelo->id }}')">Seleccionar</a>
         
       </div> <!--fin col-md-4-->
         </div><!--row sm-4-->

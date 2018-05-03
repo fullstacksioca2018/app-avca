@@ -31,9 +31,9 @@ Route::group(['prefix' => 'cliente'], function() {
 
     Route::get('/documentacion', 'Online\ClienteController@documentacion')->name('cliente.documentacion');
 
-    Route::get('CompraBoleto/{cantidad}/{ninosbrazos}/{tarifa_vuelo}', 'Online\ClienteController@CompraBoleto')->name('cliente.CompraBoleto');
+    // Route::get('CompraBoleto/{cantidad}/{ninosbrazos}/{tarifa_vuelo}', 'Online\ClienteController@CompraBoleto')->name('cliente.CompraBoleto');
 
-    Route::get('CompraBoleto/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}', 'Online\ClienteController@CompraBoleto2')->name('cliente.CompraBoleto2');
+    // Route::get('CompraBoleto/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}', 'Online\ClienteController@CompraBoleto2')->name('cliente.CompraBoleto2');
 
     Route::get('DetalleRetorno/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}/{retorno}', 'Online\ClienteController@DetalleRetorno2')->name('cliente.DetalleRetorno2');
 
@@ -46,3 +46,17 @@ Route::group(['prefix' => 'cliente'], function() {
     Route::post('/DetalleMultidestino', 'Online\ClienteController@DetalleMultidestino2')->name('cliente.DetalleMultidestino2');
 });
 
+
+Route::group(['prefix' => 'online'], function () {
+  Route::get('/login', 'OnlineAuth\LoginController@showLoginForm')->name('login');
+  Route::post('/login', 'OnlineAuth\LoginController@login');
+  Route::post('/logout', 'OnlineAuth\LoginController@logout')->name('logout');
+
+  Route::get('/register', 'OnlineAuth\RegisterController@showRegistrationForm')->name('register');
+  Route::post('/register', 'OnlineAuth\RegisterController@register');
+
+  Route::post('/password/email', 'OnlineAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+  Route::post('/password/reset', 'OnlineAuth\ResetPasswordController@reset')->name('password.email');
+  Route::get('/password/reset', 'OnlineAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+  Route::get('/password/reset/{token}', 'OnlineAuth\ResetPasswordController@showResetForm');
+});
