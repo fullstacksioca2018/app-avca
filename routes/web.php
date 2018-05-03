@@ -17,3 +17,8 @@ Route::get('/', function () {
 
 //Modulo 
 require 'Operativo/operativo.php';
+require 'Operativo/rutas.php';
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

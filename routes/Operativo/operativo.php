@@ -1,5 +1,5 @@
 <?php
-	Route::group(['prefix'=>'taquilla',],function(){
+	Route::group(['prefix'=>'taquilla','middleware' => 'auth'],function(){
 		Route::get('/','operativo\TaquillaController@taquilla')->name('soloida');
 		Route::get('/idayvuelta','TaquillaController@taquilla')->name('idayvuelta');
 		Route::get('/multidestino','TaquillaController@taquilla')->name('multidestino');

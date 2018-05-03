@@ -53,10 +53,10 @@
 
   <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 
-    @include('layouts.header')
+    @include('operativo.layouts.header')
 
     <div class="app-body">
-      @include('layouts.menu')
+      @include('operativo.layouts.menu')
       <main class="main">
         
         <!-- Breadcrumb-->
