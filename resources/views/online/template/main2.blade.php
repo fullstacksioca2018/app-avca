@@ -46,9 +46,10 @@
 
   <!-- Main Stylesheet File -->
   <link href="{{ asset('online/css/style.css') }}" rel="stylesheet">
-  
+  <link href="{{ asset('online/css/login.css') }}" rel="stylesheet">
   <link href="{{ asset('online/css/destinos.css') }}" rel="stylesheet">
   <link href="{{ asset('online/css/estilocompras.css') }}" rel="stylesheet">
+
 
 
   <!-- Main Stylesheet File -->
