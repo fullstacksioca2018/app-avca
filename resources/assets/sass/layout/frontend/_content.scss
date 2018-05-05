@@ -1,0 +1,12 @@
+.app-body {
+  flex-grow: 1;
+}
+.content {
+  background: #E4E5E6;
+  margin-left: 250px;
+  .breadcrumb {
+    background-color: #fff;
+    border-top: 1px solid #a4b7c1;
+    border-bottom: 1px solid #a4b7c1;
+  }
+}

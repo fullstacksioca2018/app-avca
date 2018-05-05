@@ -1,0 +1,32 @@
+.login {
+  margin-top: 150px;
+  position: relative;
+  .loginbox {
+    /*position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);*/
+    width: 100%;
+  }
+  font-size: 0.8rem !important;
+  .bg-primary {
+    background-color: #20a8d8 !important;
+  }
+  .btn-primary {
+    background-color: #20a8d8;
+    border-color: #20a8d8;
+  }
+  .btn-link {
+    font-size: 14px;
+    font-weight: 400;
+    color: #20a8d8;
+    background-color: transparent;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .input-group .form-control, .input-group-text {
+    border-radius: 0;
+    background-color: transparent;
+  }
+}

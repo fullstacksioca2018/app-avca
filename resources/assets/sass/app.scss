@@ -1,0 +1,32 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+// Vendor
+@import "vendor/fonts";
+
+// Core
+@import "core/base";
+
+// Layout
+@import "layout/frontend/header";
+@import "layout/frontend/content";
+
+// Compónentes
+@import "components/card";
+@import "components/modal";
+
+// Paginas
+@import "pages/landing/rrhh";
+@import "pages/landing/job";
+@import "pages/login";

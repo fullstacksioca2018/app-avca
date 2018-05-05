@@ -1,0 +1,175 @@
+const app = new Vue({
+    el: '#app',
+    data: {
+        bancos: [
+            {
+                "banco":"100% BANCO",
+                "codigo": "0156"
+            },
+            {
+                "banco":"ABN AMRO BANK",
+                "codigo": "0196"
+            },
+            {
+                "banco":"BANCAMIGA BANCO MICROFINANCIERO, C.A.",
+                "codigo": "0172"
+            },
+            {
+                "banco":"BANCO ACTIVO BANCO COMERCIAL, C.A.",
+                "codigo": "0171"
+            },
+            {
+                "banco":"BANCO AGRICOLA",
+                "codigo": "0166"
+            },
+            {
+                "banco": 'BANESCO',
+                "codigo": "0134"
+            },
+            {
+                "banco":"BANCO BICENTENARIO",
+                "codigo": "0175"
+            },
+            {
+                "banco":"BANCO CARONI, C.A. BANCO UNIVERSAL",
+                "codigo": "0128"
+            },
+            {
+                "banco":"BANCO DE DESARROLLO DEL MICROEMPRESARIO",
+                "codigo": "0164"
+            },
+            {
+                "banco":"BANCO DE VENEZUELA S.A.I.C.A.",
+                "codigo": "0102"
+            },
+            {
+                "banco":"BANCO DEL CARIBE, C.A.",
+                "codigo": "0114"
+            },
+            {
+                "banco":"BANCO DEL PUEBLO SOBERANO, C.A.",
+                "codigo": "0149"
+            },
+            {
+                "banco":"BANCO DEL TESORO",
+                "codigo": "0163"
+            },
+            {
+                "banco":"BANCO ESPIRITO SANTO, S.A.",
+                "codigo": "0176"
+            },
+            {
+                "banco":"BANCO EXTERIOR, C.A.",
+                "codigo": "0115"
+            },
+            {
+                "banco":"BANCO INDUSTRIAL DE VENEZUELA.",
+                "codigo": "0003"
+            },
+            {
+                "banco":"BANCO INTERNACIONAL DE DESARROLLO, C.A.",
+                "codigo": "0173"
+            },
+            {
+                "banco":"BANCO MERCANTIL, C.A.",
+                "codigo": "0105"
+            },
+            {
+                "banco":"BANCO NACIONAL DE CREDITO",
+                "codigo": "0191"
+            },
+            {
+                "banco":"BANCO OCCIDENTAL DE DESCUENTO.",
+                "codigo": "0116"
+            },
+            {
+                "banco":"BANCO PLAZA",
+                "codigo": "0138"
+            },
+            {
+                "banco":"BANCO PROVINCIAL BBVA",
+                "codigo": "0108"
+            },
+            {
+                "banco":"BANCO VENEZOLANO DE CREDITO, S.A.",
+                "codigo": "0104"
+            },
+            {
+                "banco":"BANCRECER S.A. BANCO DE DESARROLLO",
+                "codigo": "0168"
+            },
+            {
+                "banco":"BANFANB",
+                "codigo": "0177"
+            },
+            {
+                "banco":"BANGENTE",
+                "codigo": "0146"
+            },
+            {
+                "banco":"BANPLUS BANCO COMERCIAL, C.A",
+                "codigo": "0174"
+            },
+            {
+                "banco":"CITIBANK",
+                "codigo": "0190"
+            },
+            {
+                "banco":"CORP BANCA.",
+                "codigo": "0121"
+            },
+            {
+                "banco":"DELSUR BANCO UNIVERSAL",
+                "codigo": "0157"
+            },
+            {
+                "banco":"FONDO COMÚN",
+                "codigo": "0151"
+            },
+            {
+                "banco":"INSTITUTO MUNICIPAL DE CRÉDITO POPULAR",
+                "codigo": "0601"
+            },
+            {
+                "banco":"MIBANCO BANCO DE DESARROLLO, C.A.",
+                "codigo": "0169"
+            },
+            {
+                "banco":"SOFITASA",
+                "codigo": "0137"
+            }
+        ],
+        bancoSelected: 'Seleccione',
+        codigo_cuenta: null,
+        nivel_academico: null,
+        profesiones: []
+    },
+    mounted: function () {
+        //console.log(this.bancos);
+    },
+    methods: {
+        checkBanco: function () {
+            var that = this;
+            var banco = this.bancoSelected;
+            this.bancos.forEach(function (element) {
+                if (banco === element.banco) {
+                    that.codigo_cuenta = element.codigo;
+                }
+            })
+        },
+        obtenerProfesiones: function () {
+            axios.get('obtener-profesiones', {
+                params: {
+                    nivel_academico: this.nivel_academico
+                }
+            })
+            .then(function (resultado) {
+                this.profesiones = resultado.data;
+                console.log(this.profesiones);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
