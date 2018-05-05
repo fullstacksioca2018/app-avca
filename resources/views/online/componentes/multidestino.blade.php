@@ -33,7 +33,11 @@
   {!! Form::open(['route' => ['cliente.DetalleMultidestino'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
 
   <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
-    <div class="form-row p-3">
+  <input type="hidden" name="cantidadV" id="
+  " value="2">
+  <button type="button" class="btn btn btn-sm btn-secundary" id="masV" onclick="masvuelos()">+</button>
+<button type="button" class="btn btn btn-sm btn-secundary" id="menosV" onclick="menosvuelos()">-</button>
+    <div class="form-row p-3" id="vuelo1">
        <div class="col col-md-4  col-lg-3">
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
@@ -80,7 +84,7 @@
   ======================= -->
 
   
-  <div class="form-row p-3">
+  <div class="form-row p-3" id="vuelo2">
 
 
        <div class="col col-md-4  col-lg-3">
@@ -126,7 +130,7 @@
     Inicio del tercer vuelo
   ======================= -->
 
-  <div class="form-row p-3">
+  <div class="form-row p-3" id="vuelo3">
 
 
        <div class="col col-md-4  col-lg-3">
@@ -168,7 +172,52 @@
 
     </div> <!-- fin de form-row -->
 
+    <!-- ======================
+    Inicio cuarto vuelo
+  ======================= -->
 
+  
+  <div class="form-row p-3" id="vuelo4">
+
+
+       <div class="col col-md-4  col-lg-3">
+        <label for="exampleFormControlSelect1" class="h">Desde:</label>
+        <div class="form-group">         
+      
+            <select data-placeholder="Ciudad-Aeropuerto" name="origen_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2">
+              <option value="#">Cuidad o aeropuerto</option>
+              @foreach ($sucursales as $sucursal)
+                    <option value="{{ $sucursal->id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+              @endforeach
+            </select>
+             <i class="fa fa-map-marker prefix icociudad2"></i>
+          </div>  
+        </div>  
+  
+
+<!-- JOooodeeerrr segundo select -->
+
+  <div class="col col-md-4  col-lg-3">
+        <label for="exampleFormControlSelect1"  class="h">Hasta:</label>
+        <div class="form-group">         
+      
+            <select data-placeholder="Ciudad-Aeropuerto" name="destino_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
+             <option value="#">Cuidad o aeropuerto</option> 
+              @foreach ($sucursales as $sucursal)
+                    <option value="{{ $sucursal->id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+              @endforeach
+            </select>
+             <i class="fa fa-map-marker prefix icociudad2"></i>
+          </div>  
+        </div>
+<div class="col-md-2 ">            
+            <label for="coñooo" class="h">Fecha ida:</label>
+            <input type="date" name="fecha_salida[]" class="form-control impout3">       
+          <i class="fa fa-calendar prefix icocalendario"></i>
+                 
+        </div>
+
+    </div> <!-- fin de form-row -->
 <!-- ======================
     FIN DEL DESDE
   ======================= -->
@@ -434,5 +483,11 @@
 
   </main>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#vuelo3').hide();
+    $('#vuelo4').hide();
+});
 
+</script>
 @endsection

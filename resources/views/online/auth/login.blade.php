@@ -97,3 +97,6 @@ name="password_confirmation" required="required" type="password" placeholder="eg
    AKI EL FIN DEL INICIO DEL LOGEOOOOOOO
   ============================-->
 @endsection
+@section('style')
+  <link href="{{ asset('online/css/login.css') }}" rel="stylesheet">
+@endsection

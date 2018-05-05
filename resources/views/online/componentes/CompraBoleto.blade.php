@@ -32,10 +32,11 @@
   @if(!isset($vuelo))
 
      @if(isset($objMultidestinos))
+     {{-- {{ dd($objMultidestinos) }} --}}
           @php
               $costoP=0;
-             for($i=0;$i<(count($objMultidestinos->destinos));$i++){
-                $costoP=$costoP+$objMultidestinos->seleccionados[$i]->ruta->tarifa_vuelo;
+             for($i=0;$i<(count($objMultidestinos));$i++){
+                $costoP=$costoP+$objMultidestinos[$i]->ruta->tarifa_vuelo;
              }
           @endphp 
     
@@ -44,7 +45,7 @@
           <div class="container kieto">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Precio: </span>
-            <span class="badge badge-primary badge-pill">{{ $cantidad*(count($objMultidestinos->destinos)) }} Boletos</span>
+            <span class="badge badge-primary badge-pill">{{ $cantidad*(count($objMultidestinos)) }} Boletos</span>
           </h4>
 
           <ul class="list-group mb-3">
@@ -458,7 +459,6 @@
       {{-- @endguest --}}
 
     </div>
-
             
 <!-- ===================== -->
 <!-- Modal -->
