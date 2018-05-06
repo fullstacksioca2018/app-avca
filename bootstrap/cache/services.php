@@ -34,9 +34,6 @@
     30 => 'App\\Providers\\AuthServiceProvider',
     31 => 'App\\Providers\\EventServiceProvider',
     32 => 'App\\Providers\\RouteServiceProvider',
-    33 => 'Collective\\Html\\HtmlServiceProvider',
-    34 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
-    35 => 'Laracasts\\Flash\\FlashServiceProvider',
   ),
   'eager' => 
   array (
@@ -59,8 +56,6 @@
     16 => 'App\\Providers\\AuthServiceProvider',
     17 => 'App\\Providers\\EventServiceProvider',
     18 => 'App\\Providers\\RouteServiceProvider',
-    19 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
-    20 => 'Laracasts\\Flash\\FlashServiceProvider',
   ),
   'deferred' => 
   array (

@@ -23,6 +23,12 @@ class DatabaseSeeder extends Seeder
         $this->call(AspirantesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
 
+        /*SEDEER ONLINE*/
+        $this->call(VueloSeeder::class);
+        $this->call(AeronaveSeeder::class);
+        $this->call(RutaSeeder::class);
+        $this->call(SegmentoSeeder::class);
+
         //disable foreign key check for this connection before running seeders
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
