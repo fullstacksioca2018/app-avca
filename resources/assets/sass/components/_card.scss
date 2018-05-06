@@ -1,0 +1,15 @@
+.card-header {
+  .form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+  }
+}
+.card-block {
+  padding: 1rem;
+  legend {
+    border-top: 1px solid rgba(0,0,0,0.15);
+    //border-bottom: 1px solid rgba(0,0,0,0.15);
+  }
+}

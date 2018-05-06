@@ -1,0 +1,167 @@
+.hero {
+  background: #000 url("/../img/rrhh/bg-rrhh.jpeg") no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .7);
+    z-index: 1;
+  }
+  font-family: $ubuntu-font;
+  //position: absolute;
+  padding-top: 90px;
+  width: 100%;
+  //height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 150px;
+    transform: translateY(-50%);
+    text-align: left;
+    z-index: 2;
+    h1 {
+      color: #fff;
+      font-size: 3rem;
+      line-height: 1.2;
+      span.blue {
+        color: #00b2f3;
+      }
+      span.green {
+        color: #acce92;
+      }
+    }
+  }
+  &__arrow {
+    z-index: 2;
+    a {
+      color: white;
+      font-size: 2rem;
+      span:first-child {
+        font-size: 1.5rem;
+        //text-transform: capitalize;
+      }
+      span:last-child {
+        margin-top: -4rem;
+        padding-bottom: 1rem;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// Seccion acerca de nosotros
+.about {
+  background-color: #303031;
+  color: white;
+  .media img {
+    width: 128px;
+  }
+  .media-body {
+    h5 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
+  &__item {
+    margin-bottom: 2rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__img {
+    border: 4px solid rgb(233, 219, 219);
+    border-radius: 5px;
+    padding: 2px;
+  }
+  &__objetives {
+    li {
+      list-style: none;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
+}
+
+// Seccion de informacion
+.recruitment, .contact {
+  &__text {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+  }
+  &__link {
+    font-size: 1.8rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    &:hover {
+      color: rgb(29, 172, 207);
+      text-decoration: none;
+    }
+  }
+  .card-title {
+    font-size: 1.5rem;
+  }
+  .card-text {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
+.recruitment .card-body {
+  padding: 1.25rem 0.75rem !important;
+}
+
+// Seccion de aplicaciones
+.applications {
+  padding: 66px 0;
+  background-color: white !important;
+  .card {
+    .card-header {
+      background: rgba(0, 0, 0, 0.5) !important;
+      color: #fff;
+      font-size: 1.2rem !important;
+      text-align: center;
+      text-transform: uppercase;      
+    }
+    .card-text {
+      font-size: 1rem;
+    }
+  }  
+}
+
+// Seccion de contacto
+.contact {
+  &__subscription {
+    font-size: 1.5rem;
+  }
+}
+
+// Estilos globales
+.rrhh__title {
+  background: rgb(48, 48, 49);
+  color: white;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  &--about {
+    background-color: #818080 !important;
+  }
+}

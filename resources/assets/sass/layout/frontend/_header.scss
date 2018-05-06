@@ -1,0 +1,18 @@
+.header {
+  &__navbar {
+    background: rgba(0, 0, 0, .7);
+    border-bottom: 1px solid rgb(73, 73, 73);
+    .navbar-brand, .nav-link {
+      color: white;
+    }
+    .navbar-brand {
+      font-size: 24px;
+    }
+    .nav-link {
+      font-size: 18px;
+      &:hover {
+        color: rgb(219, 216, 216);
+      }
+    }
+  }
+}
