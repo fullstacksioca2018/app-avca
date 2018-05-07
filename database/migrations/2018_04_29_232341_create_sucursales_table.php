@@ -14,7 +14,7 @@ class CreateSucursalesTable extends Migration
     public function up()
     {
         Schema::create('sucursales', function (Blueprint $table) {
-            $table->increments('sucursal_id');
+            $table->increments('id');
             $table->enum('tipo_sucursal', ['administrativa', 'operativa']);
             $table->string('nombre', 255)->nullable();
             $table->enum('estatus', ['activa', 'inactiva']);

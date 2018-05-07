@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model\operativo;
+namespace App\Models\operativo;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +16,9 @@ class Sucursal extends Model
 		'aeropuerto',
 		'estado',
 		'pais',
-
+        'tipo_sucursal',
+        'estatus',
+        'ciudad'
     ];
 
     public function rutas()

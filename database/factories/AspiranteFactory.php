@@ -11,7 +11,7 @@ $factory->define(Aspirante::class, function (Faker $faker) {
         'sexo' => $faker->randomElement(array('f', 'm')),
         'apellido' => $faker->lastName,
         'nombre' => $faker->name,
-        'email' => $faker->safeEmail,
+        'email' => $faker->randomElement(array('v', 'e','a','s','d','f','g')).$faker->safeEmail,
         'telefono_movil' => $faker->phoneNumber,
         'telefono_fijo' => $faker->phoneNumber,
         'curriculum' => 'avca-rrhh-mer.pdf',

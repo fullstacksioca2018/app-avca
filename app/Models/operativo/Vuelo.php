@@ -1,7 +1,6 @@
 <?php
 
-namespace App;
-
+namespace App\Models\operativo;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -50,5 +49,4 @@ class Vuelo extends Model
             $vuelo->save();
         }
     }
-
 }
