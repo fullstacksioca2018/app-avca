@@ -11,21 +11,65 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Authentication Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login.Interno');
 Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
-// Registration Routes...
-//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-//Route::post('register', 'Auth\RegisterController@register');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout.Interno');
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+
+/* LANDING ONLIEN*/
+Route::get('/', 'Online\ClienteController@index1')->name('cliente.index1');
+Route::get('/index2', 'Online\ClienteController@index2')->name('cliente.index2');
+Route::get('/index3', 'Online\ClienteController@index3')->name('cliente.index3');
+     /* RUTAS PUBLICAS CLIENTE */
+/*=================================*/
+  		 // Rutas Clientes
+/*=================================*/
+
+Route::group(['prefix' => 'cliente'], function() {
+    Route::get('/DetalleVuelo', 'Online\ClienteController@DetalleVuelo')->name('cliente.DetalleVuelo');
+
+    Route::get('/DetalleRetorno', 'Online\ClienteController@DetalleRetorno')->name('cliente.DetalleRetorno');
+
+    Route::get('/equipaje', 'Online\ClienteController@equipaje')->name('cliente.equipaje');
+
+    Route::get('/documentacion', 'Online\ClienteController@documentacion')->name('cliente.documentacion');
+
+    Route::get('DetalleRetorno/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}/{retorno}', 'Online\ClienteController@DetalleRetorno2')->name('cliente.DetalleRetorno2');
+
+    Route::post('BoletoVendido', 'Online\ClienteController@BoletoVendido')->name('cliente.BoletoVendido');
+
+    Route::post('BoletoVendidoRetorno', 'Online\ClienteController@BoletoVendido2')->name('cliente.BoletoVendidoRetorno');
+
+    Route::get('/DetalleMultidestino', 'Online\ClienteController@DetalleMultidestino')->name('cliente.DetalleMultidestino');
+
+});
+
+/* AUTH ONLINE*/
+Route::group(['prefix' => 'online'], function () {
+  Route::get('/login', 'OnlineAuth\LoginController@showLoginForm')->name('login');
+  Route::post('/login', 'OnlineAuth\LoginController@login');
+  Route::post('/logout', 'OnlineAuth\LoginController@logout')->name('logout');
+
+  Route::get('/register', 'OnlineAuth\RegisterController@showRegistrationForm')->name('register');
+  Route::post('/register', 'OnlineAuth\RegisterController@register');
+
+  Route::post('/password/email', 'OnlineAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+  Route::post('/password/reset', 'OnlineAuth\ResetPasswordController@reset')->name('password.email');
+  Route::get('/password/reset', 'OnlineAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+  Route::get('/password/reset/{token}', 'OnlineAuth\ResetPasswordController@showResetForm');
+});
+
+Route::get('/reportes', function () {
+    return view('reportes.consultas');
+});

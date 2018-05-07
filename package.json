@@ -26,6 +26,7 @@
     "dependencies": {
         "chart.js": "^2.7.2",
         "vue-chartjs": "^3.2.1",
-        "vue-multiselect": "^2.1.0"
+        "vue-multiselect": "^2.1.0",
+        "vue-spinner": "^1.0.3"
     }
 }

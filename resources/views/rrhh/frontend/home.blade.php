@@ -12,7 +12,7 @@
   @include('rrhh.frontend.partials.hero')
 
   {{-- Seccion de postulaciones --}}
-  @include('rrhh.frontend.partials.applications')
+  <!-- @include('rrhh.frontend.partials.applications') -->
 
   {{-- About --}}
   @include('rrhh.frontend.partials.about')
@@ -91,5 +91,5 @@
     });
   </script>
   <!-- Include this after the sweet alert js file -->
-  @include('sweet::alert')
+  <!-- @ include('sweet::alert') -->
 @endsection

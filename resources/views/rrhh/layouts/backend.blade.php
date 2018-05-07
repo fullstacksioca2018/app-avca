@@ -36,7 +36,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
     .user-menu>.dropdown-menu>.user-body a {
       color: #444;
     }
+    #logoDashBor{
+        background-size: 100% 100%;
+        /* width: 50%; */
+        height: auto;
+        max-width: 100%;
+        height: 30px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin: auto;
+    }
+    #logofavi{
+        background-size: 100% 100%;
+        /* width: 50%; */
+        max-width: 100%;
+        height: 30px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin: auto;
+    }
+    #logoletra{
+        background-size: 100% 100%;
+        width: 50%;
+        max-width: 100%;
+        height: 30px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin: auto;
+    }
   </style>
+@stack('styles')
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -189,14 +219,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <img src="{{ asset('img/favicon.png') }}" alt="AVCA Icono" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
-    </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+          <img id="logofavi" src="{{ asset('img/favicon.png') }}" alt="AVCA Icono">
+        <div class="info">
+          <img id="logoletra" src="{{ asset('img/letras.png') }}" alt="AVCA Icono">
+        </div>
+      </div>
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
         <div class="image text-white">

@@ -1,0 +1,50 @@
+
+#grad1 {
+    height: 250px;
+    width: 100%;
+/*    background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%); */
+/*  background: linear-gradient(-40deg,#45cafc,#303f9f 75%)!important; */
+ background: linear-gradient(99deg, #1fc8db -50%,#2cb5e8, #303f9f, #1fc8db,#0fb8ad 150%); 
+    color: white;
+    opacity: 0.95;
+}
+
+#joder{
+    text-align: center;
+    margin: auto;
+    color: #f3f3f3;
+    font-size: 30px;
+    font-weight: 550;
+    padding-top: 105px;
+}
+
+.pasajero {  
+  padding: 10px;
+  margin-bottom: 30px;
+  box-shadow: 10px 10px 15px rgba(73, 78, 92, 0.1);
+  background: #fff;
+  transition: 0.4s;
+}
+
+.kieto  {  
+ position: sticky; 
+ top: 100px;
+}
+
+.der{
+  padding-left: 70px;
+
+}
+.der1{
+  padding-left: 40px;
+ 
+}
+.icocalendario3{
+  position: absolute;
+  left: 0;
+  top: 10px;
+  padding-top: 28px;
+  padding-left: 20px;
+ font-size: 24px;
+color: rgba(0, 0, 0, 0.8) ;
+}

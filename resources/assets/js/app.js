@@ -21,6 +21,9 @@ Vue.component('vacante-filter', require('./components/backend/vacante/VacanteFil
 Vue.component('aspirante-table', require('./components/backend/aspirante/AspiranteTable'));
 Vue.component('aspirante-status', require('./components/backend/aspirante/AspiranteStatus'));
 
+
+Vue.component('panel', require('./components/reportes/panel.vue'));
+
 const app = new Vue({
-    el: '#rrhh'
+    el: '#app'
 });

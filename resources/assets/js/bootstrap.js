@@ -38,6 +38,13 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+//LEO
+window.Vue = require('vue');
+import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.js';
+import VueChartjs from 'vue-chartjs/dist/vue-chartjs.js';
+
+Vue.use(BootstrapVue);
+Vue.use(VueChartjs);
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

@@ -9,7 +9,7 @@ class RouteServiceProvider extends ServiceProvider
 {
     /**
      * This namespace is applied to your controller routes.
-     *
+     * 
      * In addition, it is set as the URL generator's root namespace.
      *
      * @var string
@@ -40,8 +40,22 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
 
         $this->mapRRHHRoutes();
+
+        $this->mapOnlineRoutes();
+
     }
 
+    protected function mapOnlineRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'online', 'auth:online'],
+            'prefix' => 'online',
+            'as' => 'online.',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/online.php');
+        });
+    }
     /**
      * Define the "web" routes for the application.
      *
