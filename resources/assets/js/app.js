@@ -25,5 +25,5 @@ Vue.component('aspirante-status', require('./components/backend/aspirante/Aspira
 Vue.component('panel', require('./components/reportes/panel.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#rrhh'
 });

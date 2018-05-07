@@ -1,5 +1,5 @@
 <template>
-	<div class="card">
+	<div class="card col-12">
 	    <div class="card-header">
 	      <h2 class="form-title">Reportes y Estadisticas</h2>
 	    </div>

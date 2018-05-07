@@ -71,5 +71,5 @@ Route::group(['prefix' => 'online'], function () {
 });
 
 Route::get('/reportes', function () {
-    return view('reportes.consultas');
+    return view('reportes.PanelConsulta');
 });
