@@ -19,10 +19,14 @@ use Auth;
 
 class ClienteController extends Controller
 {
+    public function indexHome(){
+        $sucursales = Sucursal::orderBy('ciudad','ASC')->get();
+        return view('online.componentes.inicio', compact('sucursales'));
+    }
     public function index1()
     {
-        // if(Auth::guard('online')->user())
-        //         return redirect()->route('cliente.index1');
+        if(Auth::guard('online')->user())
+                return redirect('online/home');
         $sucursales = Sucursal::orderBy('ciudad','ASC')->get();
     	return view('online.componentes.inicio', compact('sucursales'));
     
@@ -124,7 +128,6 @@ class ClienteController extends Controller
     {
 
          // SAVE DATOS DE TARJETA
-
          $tarjeta = new Tarjeta($request->all());
          $tarjeta->titular = $request->usernam;
          $tarjeta->numero_tarjeta = $request->numero_tarjeta;
@@ -145,37 +148,76 @@ class ClienteController extends Controller
          $factura->save();
          // SAVE DATOS DE BOLETOS
          // dd(count($request->primerNombre));
-        $user = Auth::user();
+        $user = Auth::guard('online')->user();
         $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
        // dd($request->all());
-        for($key = 0; $key < count($request->primerNombre); $key++){
-            $Nboleto = new Boleto();
-            $Nboleto->boleto_estado="Pagado";
-            $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
-            if($request->tipo_boleto[$key]=="adulto")
-                $Nboleto->asiento=$request->asiento[$key];
-            else{
-                $Nboleto->asiento="null";
-            }
-            $Nboleto->primerNombre=$request->primerNombre[$key];
-            $Nboleto->segundoNombre = $request->segundoNombre[$key];
-            $Nboleto->tipo_documento=$request->tipo_documento[$key];
-            $Nboleto->documento=$request->documento[$key];
-            $Nboleto->genero=$request->genero[$key]; 
-            $Nboleto->apellido=$request->apellido[$key]; 
-            $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
-            $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
-            if($request->tipo_boleto[$key]=="bebe en brazos")
-                $Nboleto->detalles_salud="null";
-            else{
-                $Nboleto->detalles_salud=$request->detalles_salud[$key];
-            }
+        $auxl=str_random(2).'-'.str_random(2).'-'.str_random(10);
 
-            $Nboleto->user_id=$user->id;
-            $Nboleto->factura_id=$factura->id;
-            $Nboleto->vuelo_id=$request->vuelo;
-            $Nboleto->save();
+        if(isset($request->vuelos)){ //multidestino
+            for($i = 0; $i < count($request->vuelos); $i++){
+                for($key = 0; $key < count($request->primerNombre); $key++){
+                    $Nboleto = new Boleto();
+                    $Nboleto->boleto_estado="Pagado";
+                    $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
+                    if($request->tipo_boleto[$key]=="adulto")
+                        $Nboleto->asiento=$request->asiento[$key];
+                    else{
+                        $Nboleto->asiento="null";
+                    }
+                    $Nboleto->primerNombre=$request->primerNombre[$key];
+                    $Nboleto->segundoNombre = $request->segundoNombre[$key];
+                    $Nboleto->tipo_documento=$request->tipo_documento[$key];
+                    $Nboleto->documento=$request->documento[$key];
+                    $Nboleto->genero=$request->genero[$key]; 
+                    $Nboleto->apellido=$request->apellido[$key]; 
+                    $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
+                    $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
+                    if($request->tipo_boleto[$key]=="bebe en brazos")
+                        $Nboleto->detalles_salud="null";
+                    else{
+                        $Nboleto->detalles_salud=$request->detalles_salud[$key];
+                    }
 
+                    $Nboleto->user_id=$user->id;
+                    $Nboleto->factura_id=$factura->id;
+                    $Nboleto->vuelo_id=$request->vuelos[$i];
+                    $Nboleto->localizador = $auxl;
+                    $Nboleto->save();
+
+                }
+            }
+        }
+        else{ //un solo destino
+            for($key = 0; $key < count($request->primerNombre); $key++){
+                $Nboleto = new Boleto();
+                $Nboleto->boleto_estado="Pagado";
+                $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
+                if($request->tipo_boleto[$key]=="adulto")
+                    $Nboleto->asiento=$request->asiento[$key];
+                else{
+                    $Nboleto->asiento="null";
+                }
+                $Nboleto->primerNombre=$request->primerNombre[$key];
+                $Nboleto->segundoNombre = $request->segundoNombre[$key];
+                $Nboleto->tipo_documento=$request->tipo_documento[$key];
+                $Nboleto->documento=$request->documento[$key];
+                $Nboleto->genero=$request->genero[$key]; 
+                $Nboleto->apellido=$request->apellido[$key]; 
+                $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
+                $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
+                if($request->tipo_boleto[$key]=="bebe en brazos")
+                    $Nboleto->detalles_salud="null";
+                else{
+                    $Nboleto->detalles_salud=$request->detalles_salud[$key];
+                }
+
+                $Nboleto->user_id=$user->id;
+                $Nboleto->factura_id=$factura->id;
+                $Nboleto->vuelo_id=$request->vuelo;
+                $Nboleto->localizador = $auxl;
+                $Nboleto->save();
+
+            }
         }    
         return view('online.componentes.BoletoVendido');  
 
@@ -209,9 +251,11 @@ class ClienteController extends Controller
              $factura->save();
              // SAVE DATOS DE BOLETOS
              // dd(count($request->primerNombre));
-            $user = Auth::user();
+            $user = Auth::guard('online')->user();
+           // $user = Auth::user();
             $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
            // dd($request->all());
+        $auxl=str_random(2).'-'.str_random(2).'-'.str_random(10);
                 for($key = 0; $key < count($request->primerNombre); $key++){
                     $Nboleto = new Boleto();
                     $Nboleto->boleto_estado="Pagado";
@@ -233,10 +277,10 @@ class ClienteController extends Controller
                     else{
                         $Nboleto->detalles_salud=$request->detalles_salud[$key];
                     }
-
                     $Nboleto->user_id=$user->id;
                     $Nboleto->factura_id=$factura->id;
                     $Nboleto->vuelo_id=$request->vuelo;
+                    $Nboleto->localizador = $auxl;
                     $Nboleto->save();
 
                 }    
@@ -260,7 +304,8 @@ class ClienteController extends Controller
              array_push($vuelos, $request->vuelo);
              array_push($vuelos, $request->vuelta);
              
-             $user = Auth::user();
+            $user = Auth::guard('online')->user();
+            // $user = Auth::user();
              $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
 
              foreach ($vuelos as $idvuelo) {
@@ -401,9 +446,9 @@ class ClienteController extends Controller
 
     public function DetalleMultidestino(Request $request)
     {
-
         // dd($request->all());
-
+        
+        $vuelosMultiDestino=array();
         $objMultidestinos= new stdClass();
         $objMultidestinos->origenes=$request->origen_id;
         $objMultidestinos->destinos=$request->destino_id;
@@ -411,174 +456,21 @@ class ClienteController extends Controller
         $objMultidestinos->ninos=$request->ninos;
         $objMultidestinos->adultos=$request->adultos;
         $objMultidestinos->ninosbrazos=$request->ninosbrazos;
+        for($i=0;$i<$request->cantidadV;$i++){
+            $date = new DateTime($objMultidestinos->fechas[$i]);
+            $rutas = Ruta::Rutas($objMultidestinos->origenes[$i],$objMultidestinos->destinos[$i],$date);
 
-        $date = new DateTime($objMultidestinos->fechas[0]);
-        $rutas = Ruta::Rutas($objMultidestinos->origenes[0],$objMultidestinos->destinos[0],$date);
+            $c1= $objMultidestinos->ninos;
+            $c2= $objMultidestinos->adultos;
+            $c3= $objMultidestinos->ninosbrazos;
 
-        $c1= $objMultidestinos->ninos;
-        $c2= $objMultidestinos->adultos;
-        $c3= $objMultidestinos->ninosbrazos;
-
-        $vuelos= array();
-        $vueloAux;
-        $segmentos;
-        $origen;
-        $destino;
-        $cantidad_personas= $c1 + $c2;
-        foreach ($rutas as $vueloID) {
-            $vueloAux=Vuelo::find($vueloID->id);
-            $segmentos=$vueloAux->segmentos;
-            if(count($segmentos)==1){
-                $ruta=$segmentos[0]->ruta;
-                $origen=$segmentos[0]->ruta->origen;
-                $destino=$segmentos[0]->ruta->destino;
-            }else{
-                foreach ($segmentos as $segmento) {
-                   dd("varios segmentos");
-                }
-            }
-            $objAUX= new stdClass();
-            $objAUX->vuelo=$vueloAux;
-            $objAUX->ruta=$ruta;
-            $objAUX->origen=$origen;
-            $objAUX->destino=$destino;
-            $objAUX->cantidad=$cantidad_personas;
-            $objAUX->ninosbrazos=$c3;
-            array_push($vuelos, $objAUX);
-        }
-
-        if(count($vuelos)){
-                return view('online.componentes.DetalleVuelo')->with('vuelos',$vuelos)->with('objMultidestinos',$objMultidestinos);
-        }else{
-
-                return redirect()->route('cliente.index1');
-        }
-
-        // dd($request->all());
-
-    }
-
-    public function DetalleMultidestino2(Request $request){
-        $objMultidestinos= new stdClass();
-        $objMultidestinos->origenes=$request->origenes;
-        $objMultidestinos->destinos=$request->destinos;
-        $objMultidestinos->fechas=$request->fechas;
-        $objMultidestinos->ninos=$request->ninos;
-        $objMultidestinos->adultos=$request->adultos;
-        $objMultidestinos->ninosbrazos=$request->ninosbrazos;
-        $objMultidestinos->cantidad=$request->cantidad;
-        $cantidad=$request->cantidad;
-        $ninosbrazos=$request->ninosbrazos;
-        $objMultidestinos->seleccionados= array();
-        if(isset($request->seleccionados)){
-            //agg todos los vuelos antes seleccionado
-            for($i=0;$i<(count($request->seleccionados));$i++){
-                $vuelo=Vuelo::find($request->seleccionados[$i]);
-                $segmentos=$vuelo->segmentos;
-                if(count($segmentos)==1){
-                    $ruta=$segmentos[0]->ruta;
-                    $origen=$segmentos[0]->ruta->origen;
-                    $destino=$segmentos[0]->ruta->destino;
-                }else{
-                    foreach ($segmentos as $segmento) {
-                       dd("varios segmentos");
-                    }
-                }
-
-                $seleccion= new stdClass();
-                $seleccion->vuelo=$vuelo;
-                $seleccion->ruta=$ruta;
-                $seleccion->origen=$origen;
-                $seleccion->destino=$destino;
-
-                array_push($objMultidestinos->seleccionados, $seleccion);
-            }
-            //agg el nuevo vuelo seleccionado
-            $vuelo=Vuelo::find($request->vuelo);
-            $segmentos=$vuelo->segmentos;
-            if(count($segmentos)==1){
-                $ruta=$segmentos[0]->ruta;
-                $origen=$segmentos[0]->ruta->origen;
-                $destino=$segmentos[0]->ruta->destino;
-            }else{
-                foreach ($segmentos as $segmento) {
-                   dd("varios segmentos");
-                }
-            }
-
-            $anterior= new stdClass();
-            $anterior->vuelo=$vuelo;
-            $anterior->ruta=$ruta;
-            $anterior->origen=$origen;
-            $anterior->destino=$destino;
-
-            array_push($objMultidestinos->seleccionados, $anterior);
-
-
-            if((count($objMultidestinos->seleccionados))==(count($objMultidestinos->origenes))){
-                    return view('online.componentes.CompraBoleto',compact('cantidad','ninosbrazos','tarifa_vuelo','objMultidestinos'));
-            }
-            else{
-                //busco los vuelos para la siguinte selección
-                $date = new DateTime($objMultidestinos->fechas[(count($request->seleccionados)+1)]);
-                $rutas = Ruta::Rutas($objMultidestinos->origenes[(count($request->seleccionados)+1)],$objMultidestinos->destinos[(count($request->seleccionados)+1)],$date);
-                $vuelos= array();
-                 foreach ($rutas as $vueloID) {
-                    $vueloAux=Vuelo::find($vueloID->id);
-                    $segmentos=$vueloAux->segmentos;
-                    if(count($segmentos)==1){
-                        $ruta=$segmentos[0]->ruta;
-                        $origen=$segmentos[0]->ruta->origen;
-                        $destino=$segmentos[0]->ruta->destino;
-                    }else{
-                        foreach ($segmentos as $segmento) {
-                           dd("varios segmentos");
-                        }
-                    }
-                    $objAUX= new stdClass();
-                    $objAUX->vuelo=$vueloAux;
-                    $objAUX->ruta=$ruta;
-                    $objAUX->origen=$origen;
-                    $objAUX->destino=$destino;
-                    $objAUX->cantidad=$objMultidestinos->cantidad;
-                    $objAUX->ninosbrazos=$objMultidestinos->ninosbrazos;
-                    array_push($vuelos, $objAUX);
-                }
-                if(count($vuelos)){
-                        return view('online.componentes.DetalleMultidestino')->with('vuelos',$vuelos)->with('objMultidestinos',$objMultidestinos);
-                }else{
-
-                        return redirect()->route('cliente.index1');
-                } 
-            }
-
-        }
-        else{
-            $vuelo=Vuelo::find($request->vuelo);
-            $segmentos=$vuelo->segmentos;
-            if(count($segmentos)==1){
-                $ruta=$segmentos[0]->ruta;
-                $origen=$segmentos[0]->ruta->origen;
-                $destino=$segmentos[0]->ruta->destino;
-            }else{
-                foreach ($segmentos as $segmento) {
-                   dd("varios segmentos");
-                }
-            }
-
-            $anterior= new stdClass();
-            $anterior->vuelo=$vuelo;
-            $anterior->ruta=$ruta;
-            $anterior->origen=$origen;
-            $anterior->destino=$destino;
-
-            $objMultidestinos->seleccionados= array();
-            array_push($objMultidestinos->seleccionados, $anterior);
-
-            $date = new DateTime($objMultidestinos->fechas[1]);
-            $rutas = Ruta::Rutas($objMultidestinos->origenes[1],$objMultidestinos->destinos[1],$date);
             $vuelos= array();
-             foreach ($rutas as $vueloID) {
+            $vueloAux;
+            $segmentos;
+            $origen;
+            $destino;
+            $cantidad_personas= $c1 + $c2;
+            foreach ($rutas as $vueloID) {
                 $vueloAux=Vuelo::find($vueloID->id);
                 $segmentos=$vueloAux->segmentos;
                 if(count($segmentos)==1){
@@ -595,21 +487,248 @@ class ClienteController extends Controller
                 $objAUX->ruta=$ruta;
                 $objAUX->origen=$origen;
                 $objAUX->destino=$destino;
-                $objAUX->cantidad=$objMultidestinos->cantidad;
-                $objAUX->ninosbrazos=$objMultidestinos->ninosbrazos;
+                $objAUX->cantidad=$cantidad_personas;
+                $objAUX->ninosbrazos=$c3;
+                $objAUX->ninos=$request->ninos;
+                $objAUX->adultos=$request->adultos;
                 array_push($vuelos, $objAUX);
             }
-            // dd($vuelos);
-
-            if(count($vuelos)){
-                    return view('online.componentes.DetalleMultidestino')->with('vuelos',$vuelos)->with('objMultidestinos',$objMultidestinos);
-            }else{
-
-                    return redirect()->route('cliente.index1');
+            array_push($vuelosMultiDestino, $vuelos);
+        }
+        // dd($vuelosMultiDestino);
+        $paquetes=array();
+        for($j=0;$j<count($vuelosMultiDestino[0]);$j++){
+            for($k=0;$k<count($vuelosMultiDestino[1]);$k++){
+                if($request->cantidadV>2){
+                    for($w=0;$w<count($vuelosMultiDestino[2]);$w++){
+                        if($request->cantidadV>3){
+                            for($z=0;$z<count($vuelosMultiDestino[3]);$z++){
+                                //push paquetes 4 vueles
+                                $objAUX= array();
+                                array_push($objAUX, $vuelosMultiDestino[0][$j]);
+                                array_push($objAUX, $vuelosMultiDestino[1][$k]);
+                                array_push($objAUX, $vuelosMultiDestino[2][$w]);
+                                array_push($objAUX, $vuelosMultiDestino[3][$z]);
+                                array_push($paquetes, $objAUX);
+                            }
+                        }
+                        else{
+                            //push paquetes 3 vuelos
+                            $objAUX= array();
+                            array_push($objAUX, $vuelosMultiDestino[0][$j]);
+                            array_push($objAUX, $vuelosMultiDestino[1][$k]);
+                            array_push($objAUX, $vuelosMultiDestino[2][$w]);
+                            array_push($paquetes, $objAUX);
+                        }
+                    }
+                }
+                else{
+                    //push paquetes 2 vuelos
+                    $objAUX= array();
+                    array_push($objAUX, $vuelosMultiDestino[0][$j]);
+                    array_push($objAUX, $vuelosMultiDestino[1][$k]);
+                    array_push($paquetes, $objAUX);
+                }
             }
+        }
+
+
+        if(count($paquetes)){
+                return view('online.componentes.DetallePaquete')->with('paquetes',$paquetes);
+        }else{
+
+                return redirect()->route('cliente.index1');
+        // dd($request->all());
+        }
+
+
+    }
+
+    public function DetalleMultidestino2(Request $request){
+         // dd($request->all()); 
+
+             $vuelos= array();
+            $vueloAux;
+            $segmentos;
+            $origen;
+            $destino;
+            foreach ($request->vuelo as $vueloID) {
+                $vueloAux=Vuelo::find($vueloID);
+                $segmentos=$vueloAux->segmentos;
+                if(count($segmentos)==1){
+                    $ruta=$segmentos[0]->ruta;
+                    $origen=$segmentos[0]->ruta->origen;
+                    $destino=$segmentos[0]->ruta->destino;
+                }else{
+                    foreach ($segmentos as $segmento) {
+                       dd("varios segmentos");
+                    }
+                }
+                $objAUX= new stdClass();
+                $objAUX->vuelo=$vueloAux;
+                $objAUX->ruta=$ruta;
+                $objAUX->origen=$origen;
+                $objAUX->destino=$destino;
+                array_push($vuelos, $objAUX);
+            }
+            
+// return view('online.componentes.CompraBoleto',compact('cantidad','ninosbrazos','tarifa_vuelo','objMultidestinos'));
+        return view('online.componentes.CompraBoleto')->with('objMultidestinos',$vuelos)->with('cantidad',$request->cantidad)->with('ninosbrazos',$request->ninosbrazos)->with('adultos',$request->adultos);
+
+        // $objMultidestinos= new stdClass();
+        // $objMultidestinos->origenes=$request->origenes;
+        // $objMultidestinos->destinos=$request->destinos;
+        // $objMultidestinos->fechas=$request->fechas;
+        // $objMultidestinos->ninos=$request->ninos;
+        // $objMultidestinos->adultos=$request->adultos;
+        // $objMultidestinos->ninosbrazos=$request->ninosbrazos;
+        // $objMultidestinos->cantidad=$request->cantidad;
+        // $cantidad=$request->cantidad;
+        // $ninosbrazos=$request->ninosbrazos;
+        // $objMultidestinos->seleccionados= array();
+        // if(isset($request->seleccionados)){
+        //     //agg todos los vuelos antes seleccionado
+        //     for($i=0;$i<(count($request->seleccionados));$i++){
+        //         $vuelo=Vuelo::find($request->seleccionados[$i]);
+        //         $segmentos=$vuelo->segmentos;
+        //         if(count($segmentos)==1){
+        //             $ruta=$segmentos[0]->ruta;
+        //             $origen=$segmentos[0]->ruta->origen;
+        //             $destino=$segmentos[0]->ruta->destino;
+        //         }else{
+        //             foreach ($segmentos as $segmento) {
+        //                dd("varios segmentos");
+        //             }
+        //         }
+
+        //         $seleccion= new stdClass();
+        //         $seleccion->vuelo=$vuelo;
+        //         $seleccion->ruta=$ruta;
+        //         $seleccion->origen=$origen;
+        //         $seleccion->destino=$destino;
+
+        //         array_push($objMultidestinos->seleccionados, $seleccion);
+        //     }
+        //     //agg el nuevo vuelo seleccionado
+        //     $vuelo=Vuelo::find($request->vuelo);
+        //     $segmentos=$vuelo->segmentos;
+        //     if(count($segmentos)==1){
+        //         $ruta=$segmentos[0]->ruta;
+        //         $origen=$segmentos[0]->ruta->origen;
+        //         $destino=$segmentos[0]->ruta->destino;
+        //     }else{
+        //         foreach ($segmentos as $segmento) {
+        //            dd("varios segmentos");
+        //         }
+        //     }
+
+        //     $anterior= new stdClass();
+        //     $anterior->vuelo=$vuelo;
+        //     $anterior->ruta=$ruta;
+        //     $anterior->origen=$origen;
+        //     $anterior->destino=$destino;
+
+        //     array_push($objMultidestinos->seleccionados, $anterior);
+
+
+        //     if((count($objMultidestinos->seleccionados))==(count($objMultidestinos->origenes))){
+        //             return view('online.componentes.CompraBoleto',compact('cantidad','ninosbrazos','tarifa_vuelo','objMultidestinos'));
+        //     }
+        //     else{
+        //         //busco los vuelos para la siguinte selección
+        //         $date = new DateTime($objMultidestinos->fechas[(count($request->seleccionados)+1)]);
+        //         $rutas = Ruta::Rutas($objMultidestinos->origenes[(count($request->seleccionados)+1)],$objMultidestinos->destinos[(count($request->seleccionados)+1)],$date);
+        //         $vuelos= array();
+        //          foreach ($rutas as $vueloID) {
+        //             $vueloAux=Vuelo::find($vueloID->id);
+        //             $segmentos=$vueloAux->segmentos;
+        //             if(count($segmentos)==1){
+        //                 $ruta=$segmentos[0]->ruta;
+        //                 $origen=$segmentos[0]->ruta->origen;
+        //                 $destino=$segmentos[0]->ruta->destino;
+        //             }else{
+        //                 foreach ($segmentos as $segmento) {
+        //                    dd("varios segmentos");
+        //                 }
+        //             }
+        //             $objAUX= new stdClass();
+        //             $objAUX->vuelo=$vueloAux;
+        //             $objAUX->ruta=$ruta;
+        //             $objAUX->origen=$origen;
+        //             $objAUX->destino=$destino;
+        //             $objAUX->cantidad=$objMultidestinos->cantidad;
+        //             $objAUX->ninosbrazos=$objMultidestinos->ninosbrazos;
+        //             $objAUX->ninos=$request->ninos;
+        //             $objAUX->adultos=$request->adultos;
+        //             array_push($vuelos, $objAUX);
+        //         }
+        //         dd($vuelos);
+        //         if(count($vuelos)){
+        //                 return view('online.componentes.DetalleMultidestino')->with('vuelos',$vuelos)->with('objMultidestinos',$objMultidestinos);
+        //         }else{
+
+        //                 return redirect()->route('cliente.index1');
+        //         } 
+        //     }
+
+        // }
+        // else{
+        //     $vuelo=Vuelo::find($request->vuelo);
+        //     $segmentos=$vuelo->segmentos;
+        //     if(count($segmentos)==1){
+        //         $ruta=$segmentos[0]->ruta;
+        //         $origen=$segmentos[0]->ruta->origen;
+        //         $destino=$segmentos[0]->ruta->destino;
+        //     }else{
+        //         foreach ($segmentos as $segmento) {
+        //            dd("varios segmentos");
+        //         }
+        //     }
+
+        //     $anterior= new stdClass();
+        //     $anterior->vuelo=$vuelo;
+        //     $anterior->ruta=$ruta;
+        //     $anterior->origen=$origen;
+        //     $anterior->destino=$destino;
+
+        //     $objMultidestinos->seleccionados= array();
+        //     array_push($objMultidestinos->seleccionados, $anterior);
+
+        //     $date = new DateTime($objMultidestinos->fechas[1]);
+        //     $rutas = Ruta::Rutas($objMultidestinos->origenes[1],$objMultidestinos->destinos[1],$date);
+        //     $vuelos= array();
+        //      foreach ($rutas as $vueloID) {
+        //         $vueloAux=Vuelo::find($vueloID->id);
+        //         $segmentos=$vueloAux->segmentos;
+        //         if(count($segmentos)==1){
+        //             $ruta=$segmentos[0]->ruta;
+        //             $origen=$segmentos[0]->ruta->origen;
+        //             $destino=$segmentos[0]->ruta->destino;
+        //         }else{
+        //             foreach ($segmentos as $segmento) {
+        //                dd("varios segmentos");
+        //             }
+        //         }
+        //         $objAUX= new stdClass();
+        //         $objAUX->vuelo=$vueloAux;
+        //         $objAUX->ruta=$ruta;
+        //         $objAUX->origen=$origen;
+        //         $objAUX->destino=$destino;
+        //         $objAUX->cantidad=$objMultidestinos->cantidad;
+        //         $objAUX->ninosbrazos=$objMultidestinos->ninosbrazos;
+        //         array_push($vuelos, $objAUX);
+        //     }
+        //     // dd($vuelos);
+
+        //     if(count($vuelos)){
+        //             return view('online.componentes.DetalleMultidestino')->with('vuelos',$vuelos)->with('objMultidestinos',$objMultidestinos);
+        //     }else{
+
+        //             return redirect()->route('cliente.index1');
+        //     }
            
             
-        }
+        // }
         // dd($request->all());
 
     }

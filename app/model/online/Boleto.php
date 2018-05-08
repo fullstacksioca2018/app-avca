@@ -24,22 +24,23 @@ class Boleto extends Model
 		'user_id',
 		'factura_id',
 		'vuelo_id',
+        'localizador',
 
     ];
 
     public function user()
     {
-    	return belongsTo('App\Model\Online\Cliente');
+    	return $this->belongsTo('App\Online');
     }
 
     public function factura()
     {
-    	return belongsTo('App\Model\Online\Factura');
+    	return $this->belongsTo('App\Model\Online\Factura');
     }
 
     public function vuelo()
     {
-    	return belongsTo('App\Model\Online\Factura');
+    	return $this->belongsTo('App\Model\Online\Factura');
     }
 
 }

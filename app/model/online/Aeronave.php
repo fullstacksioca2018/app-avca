@@ -25,7 +25,7 @@ class Aeronave extends Model
 
     public function segmentos()
     {
-    	return hasMany('App\Model\Online\Segmento');
+    	return $this->hasMany('App\Model\Online\Segmento');
     }
 
 }

@@ -17,7 +17,7 @@ class Pais extends Model
     public function clientes()
     {
 
-    	return hasMany('App\Model\Online\Cliente');
+    	return $this->hasMany('App\Model\Online\Cliente');
     	
     }
 }

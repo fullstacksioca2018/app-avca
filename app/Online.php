@@ -38,4 +38,18 @@ class Online extends Authenticatable
     {
         $this->notify(new OnlineResetPassword($token));
     }
+
+    public function cliente()
+    {
+
+        return hasOne('App\Model\Online\Cliente');
+        
+    }
+
+    public function boletos()
+    {
+        
+        return $this->hasMany('App\Model\Online\Boletos');
+
+    }
 }

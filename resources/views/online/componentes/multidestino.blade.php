@@ -33,7 +33,9 @@
   {!! Form::open(['route' => ['cliente.DetalleMultidestino'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
 
   <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
-    <div class="form-row p-3">
+  <input type="hidden" name="cantidadV" id="cantidadV" value="2">
+  
+    <div class="form-row p-1" id="vuelo1">
        <div class="col col-md-4  col-lg-3">
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
@@ -80,7 +82,7 @@
   ======================= -->
 
   
-  <div class="form-row p-3">
+  <div class="form-row p-1" id="vuelo2">
 
 
        <div class="col col-md-4  col-lg-3">
@@ -126,7 +128,7 @@
     Inicio del tercer vuelo
   ======================= -->
 
-  <div class="form-row p-3">
+  <div class="form-row p-1" id="vuelo3">
 
 
        <div class="col col-md-4  col-lg-3">
@@ -168,16 +170,68 @@
 
     </div> <!-- fin de form-row -->
 
+    <!-- ======================
+    Inicio cuarto vuelo
+  ======================= -->
 
+  
+  <div class="form-row p-1" id="vuelo4">
+
+
+       <div class="col col-md-4  col-lg-3">
+        <label for="exampleFormControlSelect1" class="h">Desde:</label>
+        <div class="form-group">         
+      
+            <select data-placeholder="Ciudad-Aeropuerto" name="origen_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2">
+              <option value="#">Cuidad o aeropuerto</option>
+              @foreach ($sucursales as $sucursal)
+                    <option value="{{ $sucursal->id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+              @endforeach
+            </select>
+             <i class="fa fa-map-marker prefix icociudad2"></i>
+          </div>  
+        </div>  
+  
+
+<!-- JOooodeeerrr segundo select -->
+
+  <div class="col col-md-4  col-lg-3">
+        <label for="exampleFormControlSelect1"  class="h">Hasta:</label>
+        <div class="form-group">         
+      
+            <select data-placeholder="Ciudad-Aeropuerto" name="destino_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
+             <option value="#">Cuidad o aeropuerto</option> 
+              @foreach ($sucursales as $sucursal)
+                    <option value="{{ $sucursal->id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+              @endforeach
+            </select>
+             <i class="fa fa-map-marker prefix icociudad2"></i>
+          </div>  
+        </div>
+<div class="col-md-2 ">            
+            <label for="coñooo" class="h">Fecha ida:</label>
+            <input type="date" name="fecha_salida[]" class="form-control impout3">       
+          <i class="fa fa-calendar prefix icocalendario"></i>
+                 
+        </div>
+
+    </div> <!-- fin de form-row -->
 <!-- ======================
     FIN DEL DESDE
   ======================= -->
 
 <!-- ======================
+   Botones Sumar y Restar vuelos
+  ======================= -->
+
+<button type="button" class="btn btn btn-sm btn-primary" id="masV" onclick="masvuelos()">+</button>
+<button type="button" class="btn btn btn-sm btn-danger" id="menosV" onclick="menosvuelos()">-</button>
+
+<!-- ======================
     INICIO DEL Calendario
   ======================= -->
 
- <div class="form-row">
+ <div class="form-row pt-3">
 
 
 
@@ -257,41 +311,41 @@
     <section id="services">
       <div class="container">
         <div class="section-header">
-          <h2>Services</h2>
-          <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet veniam enim export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum velit export irure minim illum fore</p>
+          <h2><i class="ion-android-contact"></i> Servicios</h2>
+          <p>El 29 de mayo del 2018, AVCA firmó el Documento de Compromiso de Servicio con los Clientes. Dicho documento ha sido desarrollado en el Plan de Calidad adjunto, cuya finalidad es proporcionar a los clientes información detallada sobre las condiciones básicas de la oferta de servicio, para que puedan tener una base sólida en la que soportar sus decisiones de compra.</p>
         </div>
 
         <div class="row">
 
           <div class="col-lg-6">
             <div class="box wow fadeInLeft">
-              <div class="icon"><i class="fa fa-bar-chart"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident etiro rabeta lingo.</p>
+              <div class="icon"><i class="ion-ios-people"></i></div>
+              <h4 class="title"><a href="">Atención al pasajeros.</a></h4>
+              <p class="description">Nuestro objetivo es establecer con usted y con todos nuestros clientes una relación perdurable, profesional y satisfactoria. Cualquier comentario sobre nuestros servicios lo interpretamos como una prueba de su confianza; dandonos una oportunidad de hacer mejoras.</p>
             </div>
           </div>
 
           <div class="col-lg-6">
             <div class="box wow fadeInRight">
-              <div class="icon"><i class="fa fa-picture-o"></i></div>
-              <h4 class="title"><a href="">Dolor Sitema</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata nodera clas.</p>
+              <div class="icon"><i class="ion-android-walk"></i></div>
+              <h4 class="title"><a href="">Condiciones de discapacidad</a></h4>
+              <p class="description">Te ofrecemos un servicio acorde a tus condiciones especiales que facilitará tu desplazamiento durante las etapas de tu vuelo. Debes informarnos de todos tus requerimientos, cuanta más información puedas brindarnos ​mejor será el servicio que podremos ofrecerte.</p>
             </div>
           </div>
 
           <div class="col-lg-6">
             <div class="box wow fadeInLeft" data-wow-delay="0.2s">
-              <div class="icon"><i class="fa fa-shopping-bag"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur trinige zareta lobur trade.</p>
+              <div class="icon"><i class="ion-briefcase"></i></div>
+              <h4 class="title"><a href="">Respecto a su equipaje.</a></h4>
+              <p class="description">Nuestra organización en los aeropuertos tiene entre sus principales objetivos garantizar el cuidado de su equipaje durante el vuelo y de su entrega en el menor tiempo posible al llegar a su destino, de tal manera que tras su desembarque no incurra en esperas adicionales innecesarias. </p>
             </div>
           </div>
 
           <div class="col-lg-6">
             <div class="box wow fadeInRight" data-wow-delay="0.2s">
-              <div class="icon"><i class="fa fa-map"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum rideta zanox satirente madera</p>
+              <div class="icon"><i class="ion-ios-body-outline"></i></div>
+              <h4 class="title"><a href="">Menores sin acompañantes</a></h4>
+              <p class="description">Te ofrecemos asistencia y acompañamiento antes, durante y después del vuelo para niños desde los 5 hasta los 17 años. La asistencia al menor sin acompañar comienza en el momento en que es recibido en el aeropuerto y finaliza cuando es entregado a la persona designada como responsable en su destino final.</p>
             </div>
           </div>
 
@@ -300,7 +354,8 @@
       </div>
     </section><!-- #services -->
 
-     <!--==========================
+
+    <!--==========================
       Destinos Section
     ============================-->
     <section id="portfolio"  class="section-bg" >
@@ -316,8 +371,8 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
             <div class="portfolio-wrap">
               <figure>
-                <img src="img/portfolio/barcelona.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/barcelona.jpg" data-lightbox="portfolio" data-title="La Casa Fuerte, Barcelona - Estado Anzoategui" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                <img src="{{ asset('online/img/portfolio/barcelona.jpg') }}" class="img-fluid" alt="">
+                <a href="{{ asset('online/img/portfolio/barcelona.jpg') }}" data-lightbox="portfolio" data-title="La Casa Fuerte, Barcelona - Estado Anzoategui" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
                 <a href="barcelona.html" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
@@ -331,8 +386,8 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
               <figure>
-                <img src="img/portfolio/web3.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/web3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
+                <img src="{{ asset('online/img/portfolio/web3.jpg') }}" class="img-fluid" alt="">
+                <a href="{{ asset('online/img/portfolio/web3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
@@ -346,8 +401,8 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
             <div class="portfolio-wrap">
               <figure>
-                <img src="img/portfolio/cumana.png" class="img-fluid" alt="">
-                <a href="img/portfolio/cumana.png" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
+                <img src="{{ asset('online/img/portfolio/cumana.png') }}" class="img-fluid" alt="">
+                <a href="{{ asset('online/img/portfolio/cumana.png') }}" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
@@ -361,8 +416,8 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
             <div class="portfolio-wrap">
               <figure>
-                <img src="img/portfolio/card2.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/card2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
+                <img src="{{ asset('online/img/portfolio/card2.jpg') }}" class="img-fluid" alt="">
+                <a href="{{ asset('online/img/portfolio/card2.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
@@ -377,8 +432,8 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
               <figure>
-                <img src="img/portfolio/web2.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/web2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
+                <img src="{{ asset('online/img/portfolio/web2.jpg') }}" class="img-fluid" alt="">
+                <a href="{{ asset('online/img/portfolio/web2.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
@@ -392,8 +447,8 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
             <div class="portfolio-wrap">
               <figure>
-                <img src="img/portfolio/app3.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/app3.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
+                <img src="{{ asset('online/img/portfolio/app3.jpg') }}" class="img-fluid" alt="">
+                <a href="{{ asset('online/img/portfolio/app3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
@@ -431,8 +486,15 @@
     <!--==========================
       Contact Section
     ============================-->
+  
 
   </main>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#vuelo3').hide();
+    $('#vuelo4').hide();
+});
 
+</script>
 @endsection

@@ -36,7 +36,7 @@ class CreateClientesTable extends Migration
             */
 
             $table->foreign('pais_id')->references('id')->on('paises')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('onlines')->onDelete('cascade');
 
         });
     }

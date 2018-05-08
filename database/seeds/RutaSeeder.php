@@ -13,7 +13,7 @@ class RutaSeeder extends Seeder
     {
         factory(App\model\online\Ruta::class,20)->create([
 
-        	 'tarifa_vuelo' => '4500',
+             'tarifa_vuelo' => '4500',
              'duracion'    =>  '00:40:00'
 
         ]);

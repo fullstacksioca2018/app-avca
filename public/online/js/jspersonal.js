@@ -33,3 +33,24 @@ function brazosOpc(ind){
 	 $(id).html('');
 	}
 }
+
+
+    var cont=2;
+    function masvuelos(){
+      alert("entro");
+      if(cont<4){
+        cont++;
+        $("#cantidadV").val(cont);
+        var idV="#vuelo"+cont;
+        $(idV).show().css('display', 'flex');
+      }
+    }
+
+    function menosvuelos(){
+      if(cont>2){
+        $("#cantidadV").val(cont);
+        var idV="#vuelo"+cont;
+        $(idV).hide();
+        cont--;
+      }
+    }

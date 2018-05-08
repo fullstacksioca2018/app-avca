@@ -1,68 +1,102 @@
-@extends('online.layout.auth')
+@extends('online.template.main2')
+@section('title','Detalle Vuelo')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/online/login') }}">
-                        {{ csrf_field() }}
+<!--==========================
+   AKI EL INICIO DEL LOGEOOOOOOO
+  ============================-->
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+ <div class="container">
+           
+            <header>
+                <h1>Formulario de registro y registro</h1>
+        
+            </header>
+            <section>       
+                <div id="container_demo" >
+                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/online/login') }}">
+                        {{ csrf_field() }} 
+                                <h1>Iniciar sesión</h1> 
+                                <p> 
+                                    <label for="username" class="uname" > Tu correo electrónico o nombre de usuario </label>
+                                    <input id="username" name="email" value="{{ old('email') }}" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+                                </p>
+                                <p> 
+                                    <label for="password" class="youpasswd"> Tu contraseña </label>
+                                    <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+                                </p>
+                                <p class="keeplogin"> 
+                  <input type="checkbox" name="remember">   
+                  <label for="loginkeeping">Recuérdame</label>
+                </p>
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-
-                                <a class="btn btn-link" href="{{ url('/online/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
+                </p>
+                                <p class="change_link">
+                  No eres miembro todavía ?
+                  <a href="#toregister" class="to_register">únete a nosotros</a>
+                </p>
+                            </form>
                         </div>
-                    </form>
-                </div>
-            </div>
+
+                        <div id="register" class="animate form">
+                             <form class="form-horizontal" role="form" method="POST" action="{{ url('/online/register') }}">
+                                                                {{ csrf_field() }} 
+
+                                <h1> Registrase </h1> 
+                                <p> 
+                                    <label for="name" class="uname" >Su nombre de usuario</label>
+                                    <input id="name" name="name" value="{{ old('name') }}" required="" type="text" placeholder="mysuperusername690" />
+                                </p>
+                                <p> 
+                                    <label for="email" class="youmail"  > Tu correo electrónico</label>
+                                    <input id="email"
+                                          name="email" value="{{ old('email') }}" required="" type="email" placeholder="mysupermail@mail.com"/> 
+                                </p>
+                                <p> 
+                                    <label for="password"  class="youpasswd" >Tu contraseña </label>
+                                    <input id="password"
+                                           name="password" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                                </p>
+                                <p> 
+                                    <label for="password-confirm" class="youpasswd" >Por favor, confirme su contraseña </label>
+                                    <input id="password-confirm" 
+name="password_confirmation" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                                </p>
+                                <p class="signin button"> 
+                   <button type="submit" class="btn btn-primary">
+                                    Registrar
+                                </button>
+                </p>
+                                <p class="change_link">  
+                  Ya eres usuario ?
+                  <a href="#tologin" class="to_register"> Ir e iniciar sesión </a>
+                </p>
+                            </form>
+                        </div>
+            
+                    </div>
+                </div>  
+            </section>
         </div>
-    </div>
-</div>
+
+
+
+
+   
+
+
+  <!--==========================
+   AKI EL FIN DEL INICIO DEL LOGEOOOOOOO
+  ============================-->
+@endsection
+@section('style')
+  <link href="{{ asset('online/css/login.css') }}" rel="stylesheet">
 @endsection
