@@ -446,8 +446,6 @@ class ClienteController extends Controller
 
     public function DetalleMultidestino(Request $request)
     {
-        // dd($request->all());
-        
         $vuelosMultiDestino=array();
         $objMultidestinos= new stdClass();
         $objMultidestinos->origenes=$request->origen_id;
@@ -531,8 +529,6 @@ class ClienteController extends Controller
                 }
             }
         }
-
-
         if(count($paquetes)){
                 return view('online.componentes.DetallePaquete')->with('paquetes',$paquetes);
         }else{

@@ -32,6 +32,7 @@
   @if(!isset($vuelo))
 
      @if(isset($objMultidestinos))
+     {{-- {{ dd($objMultidestinos) }} --}}
           @php
               $costoP=0;
              for($i=0;$i<(count($objMultidestinos));$i++){

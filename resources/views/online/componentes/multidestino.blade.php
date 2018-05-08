@@ -36,6 +36,7 @@
   <input type="hidden" name="cantidadV" id="cantidadV" value="2">
   
     <div class="form-row p-1" id="vuelo1">
+
        <div class="col col-md-4  col-lg-3">
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
@@ -83,6 +84,7 @@
 
   
   <div class="form-row p-1" id="vuelo2">
+
 
 
        <div class="col col-md-4  col-lg-3">
