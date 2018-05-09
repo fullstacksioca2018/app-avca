@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\online;
 
 use App\Notifications\UsuarioResetPassword;
 use Illuminate\Notifications\Notifiable;

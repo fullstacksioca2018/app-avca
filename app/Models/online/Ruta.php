@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\online;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,21 +21,21 @@ class Ruta extends Model
 
     public function segmentos()
     {
-    	return $this->belongsTo('App\Segmento');
+    	return $this->belongsTo('App\Models\online\Segmento');
     }
 
     public function sucursal()
     {
-    	return $this->belongsTo('App\Sucursal');
+    	return $this->belongsTo('App\Models\online\Sucursal');
     }
 
     public function origen()
     {
-      return $this->belongsTo('App\Sucursal','origen_id','id');
+      return $this->belongsTo('App\Models\online\Sucursal','origen_id','id');
     }
     public function destino()
     {
-      return $this->belongsTo('App\Sucursal','destino_id','id');
+      return $this->belongsTo('App\Models\online\Sucursal','destino_id','id');
     }
 
     public function scopeRutas($query, $origen_id, $destino_id,$date)

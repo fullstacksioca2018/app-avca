@@ -30,7 +30,7 @@
         <div class="card-body login-card-body">
             <p class="login-box-msg">Ingrese sus credenciales de acceso</p>
 
-            <form method="POST" action="{{ route('login.Interno') }}">
+            <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }} 
                 <div class="input-group row mb-3 has-feedback">
                     <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Correo electrónico" name="email" value="{{ old('email') }}" required autofocus>

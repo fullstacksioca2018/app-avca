@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\online;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,17 +18,17 @@ class Segmento extends Model
 
 	public function aeronave()
 	{
-		return $this->belongsTo('App\Aeranave');
+		return $this->belongsTo('App\Models\online\Aeranave');
 	}
 
 	public function ruta()
 	{
-		return $this->belongsTo('App\Ruta');
+		return $this->belongsTo('App\Models\online\Ruta');
 	}
 
 	public function vuelo()
 	{
-		return $this->belongsTo('App\Vuelo');
+		return $this->belongsTo('App\Models\online\Vuelo');
 	}
 
 	

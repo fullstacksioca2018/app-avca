@@ -15,7 +15,7 @@ class RedirectIfOnline
 	 * @param  string|null  $guard
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next, $guard = 'online')
+	public function handle($request, Closure $next,  $guard = 'online')
 	{
 	    if (Auth::guard($guard)->check()) {
 	        return redirect('online/home');

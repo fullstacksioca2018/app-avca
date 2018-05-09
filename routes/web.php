@@ -16,9 +16,9 @@
 // });
 
 // Authentication Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login.Interno');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout.Interno');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -57,9 +57,9 @@ Route::group(['prefix' => 'cliente'], function() {
 
 /* AUTH ONLINE*/
 Route::group(['prefix' => 'online'], function () {
-  Route::get('/login', 'OnlineAuth\LoginController@showLoginForm')->name('login');
+  Route::get('/login', 'OnlineAuth\LoginController@showLoginForm')->name('online.login');
   Route::post('/login', 'OnlineAuth\LoginController@login');
-  Route::post('/logout', 'OnlineAuth\LoginController@logout')->name('logout');
+  Route::post('/logout', 'OnlineAuth\LoginController@logout')->name('online.logout');
 
   Route::get('/register', 'OnlineAuth\RegisterController@showRegistrationForm')->name('register');
   Route::post('/register', 'OnlineAuth\RegisterController@register');
@@ -73,3 +73,4 @@ Route::group(['prefix' => 'online'], function () {
 Route::get('/reportes', function () {
     return view('reportes.PanelConsulta');
 });
+

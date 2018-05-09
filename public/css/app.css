@@ -10165,7 +10165,9 @@ body {
 }
 
 .header__navbar {
-  background: rgba(0, 0, 0, 0.7);
+  /* background: rgba(0, 0, 0, 0.7); */
+  /* background: rgba(8, 30, 91, 1) !important; */
+  background: rgba(8, 30, 91, 0.6) !important;
   border-bottom: 1px solid #494949;
 }
 

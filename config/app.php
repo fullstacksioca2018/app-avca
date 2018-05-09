@@ -150,7 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        'Collective\Html\HtmlServiceProvider',
         /*
          * Application Service Providers...
          */
@@ -159,6 +159,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        //LEO
+        Caffeinated\Shinobi\ShinobiServiceProvider::class,
 
     ],
 
@@ -210,6 +213,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Carbon' => 'Carbon\Carbon',
 
+        //LEO
+        'Shinobi' => Caffeinated\Shinobi\Facades\Shinobi::class,
+        'Form' => 'Collective\Html\FormFacade',
+        'Html' => 'Collective\Html\HtmlFacade',
     ],
 
 ];

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models\operativo;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,9 +1,13 @@
 <?php return array (
-  'cviebrock/eloquent-sluggable' => 
+  'caffeinated/shinobi' => 
   array (
     'providers' => 
     array (
-      0 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
+      0 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Shinobi' => 'Caffeinated\\Shinobi\\Facades\\Shinobi',
     ),
   ),
   'fideloper/proxy' => 
@@ -18,17 +22,6 @@
     'providers' => 
     array (
       0 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
-    ),
-  ),
-  'laracasts/flash' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laracasts\\Flash\\FlashServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Flash' => 'Laracasts\\Flash\\Flash',
     ),
   ),
   'laravel/tinker' => 
@@ -50,11 +43,22 @@
       'Html' => 'Collective\\Html\\HtmlFacade',
     ),
   ),
-  'laraveles/spanish' => 
+  'nunomaduro/collision' => 
   array (
     'providers' => 
     array (
-      0 => 'Laraveles\\Spanish\\SpanishServiceProvider',
+      0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'uxweb/sweet-alert' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'UxWeb\\SweetAlert\\SweetAlertServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Alert' => 'UxWeb\\SweetAlert\\SweetAlert',
     ),
   ),
 );

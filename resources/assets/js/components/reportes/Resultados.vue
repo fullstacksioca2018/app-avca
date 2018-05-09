@@ -22,6 +22,7 @@
 			</div>
 		</b-tabs> -->
 		<!-- <pre>{{ graficas[0].datos}}</pre> -->
+		<div class="list-container">
 			<div v-for="(item, key) in graficas">
 				<template slot="title">
 		          <strong >{{ item.titulo }}</strong>
@@ -51,27 +52,39 @@
 				    </div>
 				</div>
 			</div>
+			<div id="spinner-list" style="position:absolute">
+			</div>
+		</div>
+		<modalDiagnoticar :datos="diagnostico"></modalDiagnoticar>
+		<button class="btn btn-primary" @click="cargar()">Diagnosticar</button>
 	</div>
 </template>
 <script type="text/javascript">
-  import LineExample from './LineExample'
-  import PieExample from './PieExample'
-  import BarExample from './BarExample'
-  import BargoupExample from './BargoupExample'
+	import LineExample from './LineExample'
+	import PieExample from './PieExample'
+	import BarExample from './BarExample'
+	import modalDiagnoticar from './modalDiagnoticar'
+	import BargoupExample from './BargoupExample'
+	import { EventBus } from '../event-bus.js'
 	export default {
 		props:['graficas'],
 		components: {
 			LineExample,
 			PieExample,
 			BarExample,
-			BargoupExample
+			BargoupExample,
+			modalDiagnoticar
 		},
 		data() {
 	        return {
-	            tag:1
+	            tag:1,
+				diagnostico:null
 	        }
 	    },
 	    methods: {
+	    	cargar(){
+	      		EventBus.$emit('modalDiagnoticar', true)
+	    	},
 	        linkClass (idx) {
 	            if (this.tabIndex === idx) {
 	                return ['active']
@@ -83,3 +96,4 @@
 
 	}
 </script>
+

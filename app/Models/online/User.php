@@ -40,4 +40,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Boletos');
 
     }
+    public function roles()
+    {
+        return belongsToMany('Caffeinated\Shinobi\Models\Role');
+    }
 }

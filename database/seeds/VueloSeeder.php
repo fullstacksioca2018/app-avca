@@ -15,13 +15,13 @@ class VueloSeeder extends Seeder
 
         DB::table('vuelos')->insert([
 			'estado' => 'abierto',
-			'fecha_salida' => '2018-04-29 1:10:34',
+			'fecha_salida' => '2018-05-12 1:10:34',
 	        'n_vuelo' => 'VH-2131',
         ]);
 
         DB::table('vuelos')->insert([
 			'estado' => 'abierto',
-			'fecha_salida' => '2018-05-12 20:38:34',
+			'fecha_salida' => '2018-05-15 20:38:34',
 	        'n_vuelo' => 'VH-2231',
         ]);
 

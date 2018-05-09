@@ -9,6 +9,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $guard = 'user';
     /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +19,11 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+
+    public function roles()
+    {
+        return belongsToMany('\Caffeinated\Shinobi\Models\Role');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -27,6 +27,7 @@ class LoginController extends Controller
      */
     //protected $redirectTo = '/home';
     protected $redirectTo = '/rrhh/backend/admin';
+    // protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -37,4 +38,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function showLoginForm()
+    {
+        // return view('auth.login');
+        return view('auth.login');
+    }
+
 }

@@ -50,7 +50,6 @@ class ClienteController extends Controller
 
     public function DetalleVuelo(Request $request)
     {
-       // dd($request->all());
         $date = new DateTime($request->get('fecha_salida'));
         $rutas = Ruta::Rutas($request->get('origen_id'),$request->get('destino_id'),$date);
 
@@ -85,7 +84,7 @@ class ClienteController extends Controller
             $objAUX->ninosbrazos=$c3;
             array_push($vuelos, $objAUX);
         }
-
+// dd($vuelos);
         if(count($vuelos)){
                 return view('online.componentes.DetalleVuelo')->with('vuelos',$vuelos);
         }else{
@@ -149,7 +148,7 @@ class ClienteController extends Controller
          $factura->save();
          // SAVE DATOS DE BOLETOS
          // dd(count($request->primerNombre));
-        $user = Auth::user();
+        $user =Auth::guard('online')->user();
         $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
        // dd($request->all());
         for($key = 0; $key < count($request->primerNombre); $key++){
@@ -213,7 +212,7 @@ class ClienteController extends Controller
              $factura->save();
              // SAVE DATOS DE BOLETOS
              // dd(count($request->primerNombre));
-            $user = Auth::user();
+            $user =Auth::guard('online')->user();
             $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
            // dd($request->all());
                 for($key = 0; $key < count($request->primerNombre); $key++){
@@ -264,7 +263,7 @@ class ClienteController extends Controller
              array_push($vuelos, $request->vuelo);
              array_push($vuelos, $request->vuelta);
              
-             $user = Auth::user();
+            $user =Auth::guard('online')->user();
              $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
 
              foreach ($vuelos as $idvuelo) {

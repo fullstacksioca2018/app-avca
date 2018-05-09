@@ -11,7 +11,7 @@
       <nav id="nav-menu-container" class="navbar navbar-trans navbar-expand-lg justify-content-end">
         <ul class="nav-menu">
           <li class="nav-item"><i class="fa fa-home"></i><a href="{{ route('cliente.index1') }}">Inicio</a></li>
-          <li><i class="fa fa-group"></i><a href="#about">Nosotros</a></li>
+          <li><i class="fa fa-group"></i><a href="{{ URL::to('rrhh/frontend') }}">Nosotros</a></li>
           <li><i class="fa fa-globe"></i><a href="#portfolio">Destinos</a></li>
           <li class="menu-has-children"><i class="fa fa-briefcase"></i></i><a href="">Guía al Pasajero</a>
             <ul>
@@ -35,7 +35,7 @@
                   document.getElementById('logout-form').submit();">
                   Salir
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route('online.logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
                 </form>
               </li>

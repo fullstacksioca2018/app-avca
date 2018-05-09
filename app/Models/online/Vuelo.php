@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\online;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -20,12 +20,12 @@ class Vuelo extends Model
 
     public function boletos()
     {
-    	return $this->hasMany('App\Boleto');
+    	return $this->hasMany('App\Models\online\Boleto');
     }
 
     public function segmentos()
     {
-    	return $this->hasMany('App\Segmento','vuelo_id','id');
+    	return $this->hasMany('App\Models\online\Segmento','vuelo_id','id');
     }
 
 }
