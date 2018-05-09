@@ -43,6 +43,8 @@ Route::group(['prefix' => 'cliente'], function() {
 
     Route::get('/DetalleMultidestino', 'Online\ClienteController@DetalleMultidestino')->name('cliente.DetalleMultidestino');
 
+    Route::post('/checkin', 'Online\ClienteController@Checkin')->name('cliente.Checkin'); 
+
 });
 
 

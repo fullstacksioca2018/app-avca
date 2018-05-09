@@ -245,26 +245,30 @@
 
  Descomenta --}}
 
-  {!! Form::open(['route' => ['cliente.BoletoVendido'], 'method' => 'POST', 'onsubmit' => 'ComBoleto()']) !!}
-      
-            <input type="hidden" name="nino" id="nino">
-            <input type="hidden" name="adulto" id="adulto">
-            <input type="hidden" name="brazo" id="brazo">
             @if(isset($objMultidestinos))
-                @php
+                {!! Form::open(['route' => ['cliente.BoletoVendido'], 'method' => 'POST', 'onsubmit' => 'ComBoleto()']) !!}
+                 @php
                   for($i=0;$i<(count($objMultidestinos));$i++){
                 @endphp
                   <input type="hidden" name="vuelos[]" value="{{ $objMultidestinos[$i]->vuelo->id }}">
                  @php
                    }
                  @endphp
-
             @else
-              <input type="hidden" name="vuelo" id="vuelo_id">
+              @if(isset($vuelo))
+                {!! Form::open(['route' => ['cliente.BoletoVendidoRetorno'], 'method' => 'POST', 'onsubmit' => 'ComBoleto()']) !!}
+                  <input type="hidden" name="vuelo" id="vuelo_id">
+                  <input type="hidden" name="vuelta" id="vuelo_id2" value="{{ $vuelo }}">
+              @else
+                {!! Form::open(['route' => ['cliente.BoletoVendido'], 'method' => 'POST', 'onsubmit' => 'ComBoleto()']) !!}
+                  <input type="hidden" name="vuelo" id="vuelo_id">
+              @endif
             @endif
-            @if(isset($vuelo))
-              <input type="hidden" name="vuelta" id="vuelo_id2" value="{{ $vuelo }}">
-          @endif
+
+      
+            <input type="hidden" name="nino" id="nino">
+            <input type="hidden" name="adulto" id="adulto">
+            <input type="hidden" name="brazo" id="brazo">
            @for ($i = 0; $i < ($cantidad-$ninosbrazos); $i++)   
 
             <input type="hidden" name="tipo_boleto[]" id="tipo_boleto" value="{{ "adulto" }}">
@@ -348,6 +352,7 @@
               <div class="col-md-5 mb-3">
                 <label for="Enfermedad">Enfermedad</label>
                 <select class="custom-select d-block w-100" name="detalles_salud[]" id="Enfermedad[]" required="">
+                  <option value="Ninguna"> Ninguna</option>
                   <option value="Discapacidad motriz"> Discapacidad motriz</option>
                   <option value="Discapacidad visual"> Discapacidad visual</option>
                   <option value="Disminución visual y esquema corporal"> Disminución visual y esquema corporal</option>

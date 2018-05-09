@@ -151,7 +151,7 @@ class ClienteController extends Controller
         $user = Auth::guard('online')->user();
         $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
        // dd($request->all());
-        $auxl=str_random(2).'-'.str_random(2).'-'.str_random(10);
+        
 
         if(isset($request->vuelos)){ //multidestino
             for($i = 0; $i < count($request->vuelos); $i++){
@@ -166,7 +166,7 @@ class ClienteController extends Controller
                     }
                     $Nboleto->primerNombre=$request->primerNombre[$key];
                     $Nboleto->segundoNombre = $request->segundoNombre[$key];
-                    $Nboleto->tipo_documento=$request->tipo_documento[$key];
+                    $Nboleto->tipo_documento = $request->tipo_documento[$key];
                     $Nboleto->documento=$request->documento[$key];
                     $Nboleto->genero=$request->genero[$key]; 
                     $Nboleto->apellido=$request->apellido[$key]; 
@@ -181,7 +181,7 @@ class ClienteController extends Controller
                     $Nboleto->user_id=$user->id;
                     $Nboleto->factura_id=$factura->id;
                     $Nboleto->vuelo_id=$request->vuelos[$i];
-                    $Nboleto->localizador = $auxl;
+                    $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
                     $Nboleto->save();
 
                 }
@@ -214,7 +214,7 @@ class ClienteController extends Controller
                 $Nboleto->user_id=$user->id;
                 $Nboleto->factura_id=$factura->id;
                 $Nboleto->vuelo_id=$request->vuelo;
-                $Nboleto->localizador = $auxl;
+                $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
                 $Nboleto->save();
 
             }
@@ -255,7 +255,7 @@ class ClienteController extends Controller
            // $user = Auth::user();
             $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
            // dd($request->all());
-        $auxl=str_random(2).'-'.str_random(2).'-'.str_random(10);
+        
                 for($key = 0; $key < count($request->primerNombre); $key++){
                     $Nboleto = new Boleto();
                     $Nboleto->boleto_estado="Pagado";
@@ -267,6 +267,7 @@ class ClienteController extends Controller
                     }
                     $Nboleto->primerNombre=$request->primerNombre[$key];
                     $Nboleto->segundoNombre = $request->segundoNombre[$key];
+                    $Nboleto->tipo_documento = $request->tipo_documento[$key];
                     $Nboleto->documento=$request->documento[$key];
                     $Nboleto->genero=$request->genero[$key]; 
                     $Nboleto->apellido=$request->apellido[$key]; 
@@ -280,11 +281,15 @@ class ClienteController extends Controller
                     $Nboleto->user_id=$user->id;
                     $Nboleto->factura_id=$factura->id;
                     $Nboleto->vuelo_id=$request->vuelo;
-                    $Nboleto->localizador = $auxl;
+                    $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
+
+
+
                     $Nboleto->save();
 
                 }    
-        
+                
+
         }
         
         else{
@@ -307,7 +312,7 @@ class ClienteController extends Controller
             $user = Auth::guard('online')->user();
             // $user = Auth::user();
              $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
-
+//dd($vuelos);
              foreach ($vuelos as $idvuelo) {
                  
                 for($key = 0; $key < count($request->primerNombre); $key++){
@@ -335,6 +340,7 @@ class ClienteController extends Controller
                     $Nboleto->user_id=$user->id;
                     $Nboleto->factura_id=$factura->id;
                     $Nboleto->vuelo_id=$idvuelo;
+                    $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
                     $Nboleto->save();
 
                 }
@@ -729,5 +735,18 @@ class ClienteController extends Controller
 
     }
 
+    public function Checkin(Request $request)
+    {
+
+        //dd($request->all());
+
+        $id = Boleto::Checkin($request->localizador)->first();
+        $boleto = Boleto::find($id->id);
+        $boleto->boleto_estado = "Chequeado";
+        $boleto->save();
+
+        return redirect()->route('cliente.index1');
+        
+    }
 
 }

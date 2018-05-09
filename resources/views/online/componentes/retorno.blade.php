@@ -16,9 +16,15 @@
 <div class="card transparente " >
 
 <div class="btn-group align-items-center" role="group" aria-label="Basic example">
-  <a href="{{ route('cliente.index1') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">solo ida</a>
-  <a href="{{ route('cliente.index2') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ida y vuelta</a>
-  <a href="{{ route('cliente.index3') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">Multi-destino</a>
+  @if(Auth::guest())
+    <a href="{{ route('cliente.index1') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">solo ida</a>
+    <a href="{{ route('cliente.index2') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ida y vuelta</a>
+    <a href="{{ route('cliente.index3') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">multi-destino</a>
+  @else
+    <a href="{{ URL::to('/online/inicio') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">solo ida</a>
+    <a href="{{ URL::to('/online/inicio2') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ida y vuelta</a>
+    <a href="{{ URL::to('/online/inicio3') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">multi-destino</a>
+  @endif
   
   
 </div>
