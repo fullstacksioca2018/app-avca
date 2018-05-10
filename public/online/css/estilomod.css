@@ -1,0 +1,259 @@
+/* Detalles Section
+--------------------------------*/
+
+ .container-detalles {
+    margin: 1rem;
+    background: white;
+
+  }
+
+  .card-detalles{
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
+  .container-detalles #accordion {
+    margin: 50px 30px;
+    
+  }
+
+  .accordion p{
+    font-size: 14px;
+  }
+  .table-detalles{ 
+    background: rgba(0, 55, 158, 1); /*8, 30, 91*/
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    padding: 0px;
+  }
+
+  .table-costo{ 
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    background: rgba(0, 55, 158, 1); /*8, 30, 91*/
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .titulo_detalles{
+    margin-top: 1rem;
+    text-align: center;
+    color: rgba(0, 55, 158, 1);
+    font-size: 16px;
+  }
+
+  .titulo-detalles p{
+    color: #081e5b;
+    font-weight: bold;
+  }
+
+  .pdetalles{
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .card-salida{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 2rem;
+    background: #ccc;
+    border-radius: 2px;
+  }
+
+  .psalida{
+    text-align: left;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 2.75rem;
+    font-size: 12px;
+    font-weight: bold;
+    background: white;
+    padding-left: 1rem;
+    padding-right: 0px;
+  }
+
+  .fsalida{
+    text-align: left;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 12px;
+    font-weight: bold;
+    /*color: rgba(7, 109, 243, 1);*/
+
+  }
+.button-cambiar{
+  margin-left: 4rem;
+}
+.card-cambiar{
+  font-size: 12px;
+  background: white;
+  margin-left: 0px;
+  margin-right: 1rem;
+  border-radius: 4px;
+}
+
+.card-costo{
+    /*background: rgba(7, 109, 243, 1);*/
+
+    font-size: 12px;
+ 
+  margin-left: 0px;
+  margin-right: 1rem;
+  border-radius: 4px;
+  }
+
+  .card-costo p{
+    margin-top: -60px;
+    margin-left: 23px;
+    
+  }
+
+.card-header-costo {
+  
+  margin-bottom: 0;
+  background: rgba(0, 55, 158, 1); 
+}
+
+.card-header-resumen{
+  background: rgba(0, 55, 158, 1);
+  padding: 0.90rem 1.25rem;
+}
+
+.text-header-costo{
+  background: rgba(0, 55, 158, 1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  color: white;
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.ulcosto{
+  font-size: 13px;
+  font-weight: bold;
+  margin-right: 2px;
+  padding: 2px;
+}
+
+.ulinf{
+  font-size: 10px;
+  margin-right: 2px;
+}
+
+.btncosto{
+  margin-left: 0px;
+}
+
+.text-body-costo{
+  color: #076df3;
+  text-align: right;
+}
+
+.text-body-costo ul{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.pthsalida{
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px;
+  font-weight: bold;
+}
+
+.pthsiglas{
+  font-size: 18px;
+  padding: 0px;
+  margin: 0px;
+  font-weight: bold;
+}
+
+.pthhrs{
+  font-size: 16px;
+  padding: 0px;
+  margin: 0px;
+  font-weight: bold;
+}
+    .table-detalles2{ 
+    background: rgba(7, 109, 243, 1);
+    color: white;
+    font-size: 20px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  } 
+
+    .table-detalles3{
+      background: white;
+      color: rgba(7, 109, 243, 1);
+    }
+    .vermas a{
+      font-size: 12px;
+      color: blue;
+    }
+
+    .thresumen{
+      font-size: 16px;
+      color: (0, 55, 158, 1);
+      font-weight: bold;
+    }
+
+    .thresumen2{
+      font-size: 12px;
+      color: (0, 55, 158, 1);
+      
+    }
+   .thresumen3{
+      font-size: 16px;
+      color: (0, 55, 158, 1);
+      font-weight: bold;
+    }
+
+    .card-resumen{
+      background: #eee;
+    }
+
+    .card-resumen p{
+      margin-left: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .card-text li{
+      margin-left: 1.25rem;
+    }
+
+    .aresumen{
+      font-size: 12px;
+      color: blue;
+    }
+
+
+/*
+
+.accordion p{
+  font-size: 14px;
+}
+  .hora{
+    padding-right: 4rem;
+  }
+
+  .costo{
+    padding-left: 10rem;
+    padding-right: 6rem;
+  }
+
+  .tipo-vuelo{
+    padding-left: 34rem;
+    padding-right: 6rem;
+  }
+
+  .economica{
+      padding-left: 34rem;
+      padding-right: 6rem;
+    }*/

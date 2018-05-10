@@ -232,8 +232,8 @@
    Botones Sumar y Restar vuelos
   ======================= -->
 
-<button type="button" class="btn btn btn-sm btn-primary" id="masV" onclick="masvuelos()">+</button>
-<button type="button" class="btn btn btn-sm btn-danger" id="menosV" onclick="menosvuelos()">-</button>
+<button type="button" class="btn btn btn-sm btn-primary ion-plus" id="masV" onclick="masvuelos()"></button>
+<button type="button" class="btn btn btn-sm btn-danger ion-minus-round" id="menosV" onclick="menosvuelos()"></button>
 
 <!-- ======================
     INICIO DEL Calendario
@@ -370,7 +370,7 @@
       <div class="container">
 
        <div class="section-header">
-          <h2><i class="icon ion-plane"></i> destinos que puedes acudir con AVCA </h2>
+          <h2><i class="icon ion-plane"></i> destinos que puedes visitar con AVCA </h2>
           <p>No pierda la oportunidad de visitar los destinos a los cuales le podemos hacer llegar de manera rapida y reconfortante</p>
         </div>
 
@@ -379,10 +379,18 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
             <div class="portfolio-wrap">
               <figure>
-                <img src="{{ asset('online/img/portfolio/barcelona.jpg') }}" class="img-fluid" alt="">
-                <a href="{{ asset('online/img/portfolio/barcelona.jpg') }}" data-lightbox="portfolio" data-title="La Casa Fuerte, Barcelona - Estado Anzoategui" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                <img src="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" class="img-fluid" alt="">
+
+                <a href="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" data-lightbox="portfolio" data-title="La Casa Fuerte, Barcelona - Estado Anzoategui" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/barcelona/barcelona2.jpg') }}" data-lightbox="portfolio" data-title="Iglesia Católica - Espíritu Santo - Tronconal III (Barcelona, Edo. Anzoátegui) Venezuela" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/barcelona/barcelona3.jpg') }}" data-lightbox="portfolio" data-title="Centro Comercial Puente Real - Nva. Barcelona" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+
                 <a href="barcelona.html" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
+
+
 
               <div class="portfolio-info">
                 <h4><a href="#">Barcelona</a></h4>
@@ -394,8 +402,14 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
               <figure>
-                <img src="{{ asset('online/img/portfolio/web3.jpg') }}" class="img-fluid" alt="">
-                <a href="{{ asset('online/img/portfolio/web3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
+                <img src="{{ asset('online/img/portfolio/barquisimeto/barquisimeto1.jpg') }}" class="img-fluid" alt="">
+
+                <a href="{{ asset('online/img/portfolio/barquisimeto/barquisimeto1.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/barquisimeto/barquisimeto2.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/barquisimeto/barquisimeto3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
+
                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
@@ -409,8 +423,14 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
             <div class="portfolio-wrap">
               <figure>
-                <img src="{{ asset('online/img/portfolio/cumana.png') }}" class="img-fluid" alt="">
-                <a href="{{ asset('online/img/portfolio/cumana.png') }}" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
+                <img src="{{ asset('online/img/portfolio/cumana/cumana1.png') }}" class="img-fluid" alt="">
+
+                <a href="{{ asset('online/img/portfolio/cumana/cumana1.png') }}" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/cumana/cumana2.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/cumana/cumana3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
+
                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
@@ -424,8 +444,14 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
             <div class="portfolio-wrap">
               <figure>
-                <img src="{{ asset('online/img/portfolio/card2.jpg') }}" class="img-fluid" alt="">
-                <a href="{{ asset('online/img/portfolio/card2.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
+                <img src="{{ asset('online/img/portfolio/caracas/caracas1.jpg') }}" class="img-fluid" alt="">
+
+                <a href="{{ asset('online/img/portfolio/caracas/caracas1.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/caracas/caracas2.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/caracas/caracas3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
+
                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
@@ -440,8 +466,15 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
               <figure>
-                <img src="{{ asset('online/img/portfolio/web2.jpg') }}" class="img-fluid" alt="">
-                <a href="{{ asset('online/img/portfolio/web2.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <img src="{{ asset('online/img/portfolio/coro/coro1.jpg') }}" class="img-fluid" alt="">
+
+                <a href="{{ asset('online/img/portfolio/coro/coro1.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/coro/coro2.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/coro/coro3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
+
                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
@@ -455,8 +488,15 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
             <div class="portfolio-wrap">
               <figure>
-                <img src="{{ asset('online/img/portfolio/app3.jpg') }}" class="img-fluid" alt="">
-                <a href="{{ asset('online/img/portfolio/app3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <img src="{{ asset('online/img/portfolio/porlamar/porlamar1.jpg') }}" class="img-fluid" alt="">
+
+                <a href="{{ asset('online/img/portfolio/porlamar/porlamar1.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/porlamar/porlamar2.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
+
+                <a href="{{ asset('online/img/portfolio/porlamar/porlamar3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
+
                 <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 

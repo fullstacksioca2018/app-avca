@@ -126,6 +126,11 @@ class ClienteController extends Controller
 
     public function BoletoVendido(Request $request)
     {
+         //para resumen
+         $boletos = array();
+         $datos_vuelos = array();   
+         $rutas = array();
+         $facturas = array();   
 
          // SAVE DATOS DE TARJETA
          $tarjeta = new Tarjeta($request->all());
@@ -146,6 +151,7 @@ class ClienteController extends Controller
          $factura->NinosBrazos_cant = $request->brazo;
          $factura->tarjeta_id = $tarjeta->id;
          $factura->save();
+         array_push($facturas, $factura);
          // SAVE DATOS DE BOLETOS
          // dd(count($request->primerNombre));
         $user = Auth::guard('online')->user();
@@ -183,8 +189,27 @@ class ClienteController extends Controller
                     $Nboleto->vuelo_id=$request->vuelos[$i];
                     $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
                     $Nboleto->save();
+                    
+                    array_push($boletos, $Nboleto);    
 
                 }
+                $vueloAux = Vuelo::find($request->vuelos[$i]);
+                $segmentos=$vueloAux->segmentos;
+                if(count($segmentos)==1){
+                    $ruta=$segmentos[0]->ruta;
+                    $origen=$segmentos[0]->ruta->origen;
+                    $destino=$segmentos[0]->ruta->destino;
+                }else{
+                    foreach ($segmentos as $segmento) {
+                       dd("varios segmentos");
+                    }
+                }
+                $objAUX= new stdClass();
+                $objAUX->vuelo=$vueloAux;
+                $objAUX->ruta=$ruta;
+                $objAUX->origen=$origen;
+                $objAUX->destino=$destino;
+                array_push($datos_vuelos, $objAUX);
             }
         }
         else{ //un solo destino
@@ -216,10 +241,29 @@ class ClienteController extends Controller
                 $Nboleto->vuelo_id=$request->vuelo;
                 $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
                 $Nboleto->save();
+                array_push($boletos, $Nboleto);    
+                
 
             }
+            $AuxVuelo = Vuelo::find($request->vuelo);
+            $segmentos=$AuxVuelo->segmentos;
+            if(count($segmentos)==1){
+                $ruta=$segmentos[0]->ruta;
+                $origen=$segmentos[0]->ruta->origen;
+                $destino=$segmentos[0]->ruta->destino;
+            }else{
+                foreach ($segmentos as $segmento) {
+                   dd("varios segmentos");
+                }
+            }
+            $objAUX= new stdClass();
+            $objAUX->vuelo=$AuxVuelo;
+            $objAUX->ruta=$ruta;
+            $objAUX->origen=$origen;
+            $objAUX->destino=$destino;
+            array_push($datos_vuelos, $objAUX);
         }    
-        return view('online.componentes.BoletoVendido');  
+        return view('online.componentes.BoletoVendido')->with('datos_vuelos',$datos_vuelos)->with('boletos',$boletos)->with('facturas', $facturas)->with('rutas',$rutas);  
 
     }
 
@@ -228,6 +272,11 @@ class ClienteController extends Controller
     {
 
         //dd($request->all());
+
+        $boletos = array();
+        $datos_vuelos = array();
+        $rutas = array();
+        $facturas = array();
 
          // SAVE DATOS DE TARJETA
 
@@ -249,6 +298,7 @@ class ClienteController extends Controller
              $factura->NinosBrazos_cant = $request->brazo;
              $factura->tarjeta_id = $tarjeta->id;
              $factura->save();
+             array_push($facturas, $factura);
              // SAVE DATOS DE BOLETOS
              // dd(count($request->primerNombre));
             $user = Auth::guard('online')->user();
@@ -286,9 +336,25 @@ class ClienteController extends Controller
 
 
                     $Nboleto->save();
-
+                    array_push($boletos, $Nboleto);            
                 }    
-                
+                $AuxVuelo = Vuelo::find($request->vuelos[$i]);
+                $segmentos=$vueloAux->segmentos;
+                if(count($segmentos)==1){
+                    $ruta=$segmentos[0]->ruta;
+                    $origen=$segmentos[0]->ruta->origen;
+                    $destino=$segmentos[0]->ruta->destino;
+                }else{
+                    foreach ($segmentos as $segmento) {
+                       dd("varios segmentos");
+                    }
+                }
+                $objAUX= new stdClass();
+                $objAUX->vuelo=$AuxVuelo;
+                $objAUX->ruta=$ruta;
+                $objAUX->origen=$origen;
+                $objAUX->destino=$destino;
+                array_push($datos_vuelos, $objAUX);
 
         }
         
@@ -308,6 +374,7 @@ class ClienteController extends Controller
 
              array_push($vuelos, $request->vuelo);
              array_push($vuelos, $request->vuelta);
+
              
             $user = Auth::guard('online')->user();
             // $user = Auth::user();
@@ -342,13 +409,15 @@ class ClienteController extends Controller
                     $Nboleto->vuelo_id=$idvuelo;
                     $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
                     $Nboleto->save();
-
+                    array_push($boletos, $Nboleto);    
                 }
+                $AuxVuelo = Vuelo::find($request->$idvuelo);
+                array_push($datos_vuelos, $AuxVuelo);
              }
            // dd($request->all());
 
         }
-        return view('online.componentes.BoletoVendidoRetorno');  
+        return view('online.componentes.BoletoVendido')->with('datos_vuelos',$datos_vuelos)->with('boletos',$boletos)->with('facturas', $factura)->with('rutas',$rutas);  
 
     }
 
