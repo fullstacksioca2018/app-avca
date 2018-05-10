@@ -14,7 +14,8 @@ class RutaSeeder extends Seeder
         factory(App\Models\operativo\Ruta::class,20)->create([
 
         	 'tarifa_vuelo' => '4500',
-             'duracion'    =>  '00:40:00'
+             'duracion'    =>  '00:40:00',
+             'estado'    =>  'activa'
 
         ]);
 

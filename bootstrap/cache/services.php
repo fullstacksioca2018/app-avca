@@ -23,7 +23,7 @@
     19 => 'Illuminate\\Translation\\TranslationServiceProvider',
     20 => 'Illuminate\\Validation\\ValidationServiceProvider',
     21 => 'Illuminate\\View\\ViewServiceProvider',
-    22 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
+    22 => 'Barryvdh\\DomPDF\\ServiceProvider',
     23 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     24 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
     25 => 'Laravel\\Tinker\\TinkerServiceProvider',
@@ -35,7 +35,6 @@
     31 => 'App\\Providers\\AuthServiceProvider',
     32 => 'App\\Providers\\EventServiceProvider',
     33 => 'App\\Providers\\RouteServiceProvider',
-    34 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
   ),
   'eager' => 
   array (
@@ -49,7 +48,7 @@
     7 => 'Illuminate\\Pagination\\PaginationServiceProvider',
     8 => 'Illuminate\\Session\\SessionServiceProvider',
     9 => 'Illuminate\\View\\ViewServiceProvider',
-    10 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
+    10 => 'Barryvdh\\DomPDF\\ServiceProvider',
     11 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     12 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
     13 => 'UxWeb\\SweetAlert\\SweetAlertServiceProvider',
@@ -57,7 +56,6 @@
     15 => 'App\\Providers\\AuthServiceProvider',
     16 => 'App\\Providers\\EventServiceProvider',
     17 => 'App\\Providers\\RouteServiceProvider',
-    18 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
   ),
   'deferred' => 
   array (

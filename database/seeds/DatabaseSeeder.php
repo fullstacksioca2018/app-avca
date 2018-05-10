@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(VacantesTableSeeder::class);
         $this->call(AspirantesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(ProfesionesTableSeeder::class);
 
         /*SEDEER ONLINE*/
         $this->call(VueloSeeder::class);

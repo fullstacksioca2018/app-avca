@@ -21,6 +21,7 @@ class CreateRutasTable extends Migration
             $table->float('tarifa_vuelo');
             $table->integer('origen_id')->unsigned();
             $table->integer('destino_id')->unsigned();
+            $table->enum('estado',['activa','inactiva'])->nullable();
             $table->timestamps();
 
             /*

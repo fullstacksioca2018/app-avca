@@ -1,13 +1,13 @@
 <?php return array (
-  'caffeinated/shinobi' => 
+  'barryvdh/laravel-dompdf' => 
   array (
     'providers' => 
     array (
-      0 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
+      0 => 'Barryvdh\\DomPDF\\ServiceProvider',
     ),
     'aliases' => 
     array (
-      'Shinobi' => 'Caffeinated\\Shinobi\\Facades\\Shinobi',
+      'PDF' => 'Barryvdh\\DomPDF\\Facade',
     ),
   ),
   'fideloper/proxy' => 

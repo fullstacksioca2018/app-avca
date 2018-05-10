@@ -161,7 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         //LEO
-        Caffeinated\Shinobi\ShinobiServiceProvider::class,
+        // Caffeinated\Shinobi\ShinobiServiceProvider::class,
 
     ],
 
@@ -214,7 +214,7 @@ return [
         'Carbon' => 'Carbon\Carbon',
 
         //LEO
-        'Shinobi' => Caffeinated\Shinobi\Facades\Shinobi::class,
+        // 'Shinobi' => Caffeinated\Shinobi\Facades\Shinobi::class,
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
     ],
