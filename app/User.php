@@ -16,14 +16,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role',
     ];
 
 
-    public function roles()
-    {
-        return belongsToMany('\Caffeinated\Shinobi\Models\Role');
-    }
     /**
      * The attributes that should be hidden for arrays.
      *

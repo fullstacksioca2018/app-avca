@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -42,6 +43,32 @@ class LoginController extends Controller
     {
         // return view('auth.login');
         return view('auth.login');
+    }
+
+    public function redirectPath()
+    {
+        $auxURL;
+        switch (Auth::user()->role) {
+            case 'Gerente General':
+                $auxURL='/reportes';
+                break;
+            case 'Gerente RRHH':
+                $auxURL='/rrhh/backend/admin';
+                break;
+            case 'Gerente Sucursales':
+                $auxURL='/rrhh/backend/admin';
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+        if (method_exists($this, 'redirectTo')) {
+            return $this->redirectTo();
+        }
+        return property_exists($this, 'redirectTo') ?  $auxURL : $this->redirectTo;
+
     }
 
 }
