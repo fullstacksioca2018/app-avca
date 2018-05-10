@@ -23,17 +23,17 @@ class Sucursal extends Model
 
     public function rutas()
     {
-    	return $this->hasMany('App\Ruta');
+    	return $this->hasMany('App\Models\operativo\Ruta');
     }
 
     public function origenes()
     {
-    	return $this->hasMany('App\Ruta','destino_id','id');
+    	return $this->hasMany('App\Models\operativo\Ruta','destino_id','id');
     }
 
     public function destinos()
     {
-    	return $this->hasMany('App\Ruta','origen_id','id');
+    	return $this->hasMany('App\Models\operativo\Ruta','origen_id','id');
     }
 
 }

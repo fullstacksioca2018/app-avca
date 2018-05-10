@@ -14,6 +14,7 @@ class Boleto extends Model
 		'asiento',
 		'primerNombre',
         'segundoNombre',
+        'tipo_documento',
         'documento',
         'genero',
 		'apellido',
@@ -22,23 +23,30 @@ class Boleto extends Model
 		'detalles_salud',
 		'user_id',
 		'factura_id',
-		'vuelo_id',
+		'vuelo_id',,
+        'localizador',
 
     ];
 
     public function user()
     {
-    	return belongsTo('App\Cliente');
+    	return $this->belongsTo('App\Models\operativo\Cliente');
     }
 
     public function factura()
     {
-    	return belongsTo('App\Factura');
+    	return $this->belongsTo('App\Models\operativo\Factura');
     }
 
     public function vuelo()
     {
-    	return belongsTo('App\Factura');
+    	return $this->belongsTo('App\Models\operativo\Factura');
+    }
+    public function scopeCheckin($query, $localizador)
+    {
+
+        return DB::table('boletos')->select('id')->where('localizador',$localizador);
+
     }
 
 }

@@ -18,17 +18,17 @@ class Segmento extends Model
 
 	public function aeronave()
 	{
-		return $this->belongsTo('App\Aeranave');
+		return $this->belongsTo('App\Models\operativo\Aeranave');
 	}
 
 	public function ruta()
 	{
-		return $this->belongsTo('App\Ruta');
+		return $this->belongsTo('App\Models\operativo\Ruta');
 	}
 
 	public function vuelo()
 	{
-		return $this->belongsTo('App\Vuelo');
+		return $this->belongsTo('App\Models\operativo\Vuelo');
 	}
 
 	

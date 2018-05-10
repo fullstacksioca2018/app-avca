@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\rrhh;
 
+use App\Mail\rrhh\ConvocatoriaEnviada;
 use App\Models\rrhh\Aspirante;
+use App\Models\rrhh\Entrevista;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Validator;
 
 class SeleccionController extends Controller
 {
@@ -69,7 +73,61 @@ class SeleccionController extends Controller
             case 'seleccionados':
                 $aspirantes = $this->obtenerAspirantesEstatus('entrevistados');
                 break;
+            case 'por contratar':
+                $aspirantes = $this->obtenerAspirantesEstatus('seleccionados');
+                break;
         }
         return $aspirantes;
+    }
+
+    public function enviarConvocatoria(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'lugar' => 'required',
+            'fecha' => 'required|date',
+            'hora' => 'required',
+            'recaudos' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['isValid' => false, 'errors' => $validator->messages()]);
+        }
+
+        $data = $request->all();
+
+        Mail::to($request->email)->send(new ConvocatoriaEnviada($data));
+
+        $aspirante = Aspirante::findOrFail($request->aspirante_id);
+        $aspirante->estatus = 'convocados';
+        $aspirante->save();
+
+        $aspirantes = $this->obtenerAspirantesEstatus('verificados');
+
+        return $aspirantes;
+    }
+
+    public function guardarEntrevista(request $request)
+    {
+        $entrevista = new Entrevista($request->all());
+
+        if ($entrevista->save()) {
+            $aspirante = Aspirante::findOrFail($request->aspirante_id);
+            $aspirante->estatus = 'entrevistados';
+            $aspirante->save();
+
+            $aspirantes = $this->obtenerAspirantesEstatus('convocados');
+
+            return $aspirantes;
+        } else {
+            return response()->json(['isValid' => false], 500);
+        }
+
+    }
+
+    public function obtenerDatosEntrevista($aspirante_id)
+    {
+        //return $aspirante_id;
+        $entrevista  = Entrevista::where('aspirante_id', '=', $aspirante_id)->first();
+
+        return $entrevista;
     }
 }

@@ -21,21 +21,21 @@ class Ruta extends Model
 
     public function segmentos()
     {
-    	return $this->belongsTo('App\Segmento');
+    	return $this->belongsTo('App\Models\operativo\Segmento');
     }
 
     public function sucursal()
     {
-    	return $this->belongsTo('App\Sucursal');
+    	return $this->belongsTo('App\Models\operativo\Sucursal');
     }
 
     public function origen()
     {
-      return $this->belongsTo('App\model\operativo\Sucursal','origen_id','id');
+      return $this->belongsTo('App\Models\operativo\Sucursal','origen_id','id');
     }
     public function destino()
     {
-      return $this->belongsTo('App\model\operativo\Sucursal','destino_id','id');
+      return $this->belongsTo('App\Models\operativo\Sucursal','destino_id','id');
     }
 
     public function scopeRutas($query, $origen_id, $destino_id,$date)
@@ -78,5 +78,15 @@ class Ruta extends Model
 
 
     }
+     public function scopeBuscador($query, $origen,$destino){
+      return $query->where('destino_id',$destino)
+                  ->where('origen_id',$origen)
+                  ->where('estado',"activo");
+  }
+  public function scopeRutaInactiva($query, $origen,$destino){
+      return $query->where('destino_id',$destino)
+                  ->where('origen_id',$origen)
+                  ->where('estado',"inactiva");
+  }
 
 }

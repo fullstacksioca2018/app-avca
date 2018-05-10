@@ -28,7 +28,7 @@ class CargoController extends Controller
             ->join('areas', 'cargos.area_id', '=', 'areas.area_id')
             ->select('tabuladores_salariales.sueldo_base', 'areas.nombre', 'cargos.*')
             ->where('cargo_id', $id)
-            ->get();
+            ->first();
 
         return view('rrhh.backend.cargos.edit', compact('cargo'));
     }
@@ -36,6 +36,7 @@ class CargoController extends Controller
     {
         $cargo = Cargo::findOrFail($id);
         $cargo->perfil = $request->perfil;
+        $cargo->funciones = $request->funciones;
         $cargo->save();
 
         return redirect()->route('cargo.list');

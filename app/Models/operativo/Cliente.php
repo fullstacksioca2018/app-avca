@@ -28,14 +28,14 @@ class Cliente extends Model
     public function user()
     {
     	
-    	return belongsTo('App\User');
+    	return $this->belongsTo('App\Models\operativo\User');
 
     }
 
     public function pais()
     {
     	
-    	return belongsTo('App\Pais');
+    	return $this->belongsTo('App\Models\operativo\Pais');
 
     }
 

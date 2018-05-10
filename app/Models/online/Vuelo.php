@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Models\online;
-
-
 use Illuminate\Database\Eloquent\Model;
 
 class Vuelo extends Model
