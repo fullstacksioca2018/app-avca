@@ -9,7 +9,7 @@
               <span class="input-group-text">Sucursal</span>
             </div>
             <select name="sucursal" id="sucursal" class="form-control" v-model="sucursal">
-              <option :value="sucursal.sucursal_id" v-for="sucursal in sucursales">{{ sucursal.nombre | capitalize }}</option>
+              <option :value="sucursal.id" v-for="sucursal in sucursales">{{ sucursal.nombre | capitalize }}</option>
             </select>
           </div>
         </div>
@@ -64,6 +64,7 @@
     },
     created() {
       this.obtenerSucursales();
+      console.log(this.sucursales)
       this.obtenerAreas();
       EventBus.$on('estatus', (estatus) => {
         if (estatus != '') {
@@ -76,6 +77,7 @@
         axios.get('/rrhh/backend/obtener-sucursales')
           .then(response => {
             this.sucursales = response.data;
+            console.log(this.sucursales);
           })
           .catch(error => {
             console.log(error);

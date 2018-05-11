@@ -15,11 +15,11 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Enlaces</h4>
             <ul>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Inicio</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Comprar</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Servicios</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Iniciar Sesión</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Registrarse</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('cliente.index1') }}">Inicio</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Nosotros</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Destinos</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('cliente.equipaje') }}">Equipaje</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="{{ route('cliente.documentacion') }}">Documentación</a></li>
             </ul>
           </div>
 

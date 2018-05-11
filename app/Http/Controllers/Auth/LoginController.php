@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Auth;
 
 class LoginController extends Controller
@@ -19,7 +20,10 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        logout as performLogout;
+    }
+
 
     /**
      * Where to redirect users after login.
@@ -56,11 +60,10 @@ class LoginController extends Controller
                 $auxURL='/rrhh/backend/admin';
                 break;
             case 'Gerente Sucursales':
-                $auxURL='/rrhh/backend/admin';
+                $auxURL='/rutas';
                 break;
-            
             default:
-                # code...
+                $auxURL='/rrhh/frontend';
                 break;
         }
 
@@ -69,6 +72,12 @@ class LoginController extends Controller
         }
         return property_exists($this, 'redirectTo') ?  $auxURL : $this->redirectTo;
 
+    }
+
+    public function logout(Request $request)
+    {
+        $this->performLogout($request);
+        return redirect('/rrhh/frontend');
     }
 
 }

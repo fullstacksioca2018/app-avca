@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name') }} | @yield('title')</title>
+  <title>{{ config('app.name') }}</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/adminlte/plugins/font-awesome/css/font-awesome.min.css">
@@ -18,6 +18,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Sweetalert -->
+  <link rel="stylesheet" href="{{ asset('css/sweetalert.min.css') }}">
   <style>
     .user-menu>.dropdown-menu>.user-header {
       height: 175px;
@@ -65,8 +67,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         margin: auto;
     }
   </style>
-@stack('styles')
-
+  @stack('styles')
+  <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -195,16 +201,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <div class="user-body">
             <div class="dropdown-item">
-              <a href="#">Acción 1</a>
+              <a href="#">Perfil</a>
             </div>
             <div class="dropdown-item">
-              <a href="#">Acción 2</a>
+              <a href="{{ url('/logout') }}"
+                  onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                  Salir
+              </a>
+              <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+              </form>
             </div>
-          </div>
-          <div class="dropdown-divider"></div>
-          <div class="dropdown-item user-footer">
-            <a href="#" class="btn btn-default">Perfil</a>
-            <a href="#" class="btn btn-default">Salir</a>
           </div>
         </div>
       </li>
@@ -218,7 +226,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -246,7 +253,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" id="rrhh">
+  <div class="content-wrapper" id="app">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -310,6 +317,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="/adminlte/js/adminlte.min.js"></script>
 <!-- Vue App -->
 <script src="{{ asset('js/app.js') }}"></script>
+<!--Sweetalert-->
+
+<!-- build -->
+<script src="/js/app.js"></script>
+
+<script src="{{ asset('js/sweetalert.min.js') }}"></script>
 @stack('scripts')
 </body>
 </html>

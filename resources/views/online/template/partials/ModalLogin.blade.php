@@ -11,7 +11,7 @@
 
                   <div class="d-flex justify-content-center">
                       
-                      <img src="{{ asset('img/login/login.jpeg') }}" alt="" class="img-fluid img-thumbnail mb-4 mt-4">
+                      <img src="{{ asset('/online/img/login/login.jpeg') }}" alt="" class="img-fluid img-thumbnail mb-4 mt-4">
 
                   </div>  
                 

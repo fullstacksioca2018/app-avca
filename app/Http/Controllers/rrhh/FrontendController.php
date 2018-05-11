@@ -28,7 +28,7 @@ class FrontendController extends Controller
         $vacantes = DB::table("cargos")
             ->join("areas", "areas.area_id", "=", "cargos.area_id")
             ->join("vacantes", "vacantes.cargo_id", "=", "cargos.cargo_id")
-            ->join('sucursales', "sucursales.sucursal_id", "=", "vacantes.sucursal_id")
+            ->join('sucursales', "sucursales.id", "=", "vacantes.sucursal_id")
             ->where([
                 ["areas.slug", "=", $slug],
                 ["vacantes.estatus", "=", "activa"]

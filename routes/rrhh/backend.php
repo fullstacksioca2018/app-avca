@@ -23,6 +23,21 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
         Route::get('seleccion', 'rrhh\SeleccionController@index')->name('seleccion.list');
     });
 
+    // Contratacion
+    Route::group(['prefix' => 'contratacion'], function () {
+        Route::get('contratacion', 'rrhh\ContratacionController@formContratacion')->name('contratacion.form');
+        Route::post('contratacion', 'rrhh\ContratacionController@procesarContratacion')->name('contratacion.form');
+        Route::get('obtener-aspirante-info/{id}', 'rrhh\ContratacionController@obtenerAspiranteInfo');
+        Route::get('obtener-estados', 'rrhh\ContratacionController@obtenerEstados');
+        Route::get('obtener-profesiones', 'rrhh\ContratacionController@obtenerProfesiones');
+        Route::get('obtener-departamentos', 'rrhh\ContratacionController@obtenerDepartamentos');
+        Route::get('obtener-profesiones/{nivel_academico}', 'rrhh\ContratacionController@obtenerProfesiones');
+        Route::get('obtener-sucursales', 'rrhh\ContratacionController@obtenerSucursales');
+        Route::get('obtener-cargos', 'rrhh\ContratacionController@obtenerCargos');
+        Route::get('obtener-tabulador', 'rrhh\ContratacionController@obtenerTabuladorSalarial');
+        Route::get('obtener-bancos', 'rrhh\ContratacionController@obtenerBancos');
+    });
+
     // Consultas AJAX
     Route::get('obtener-sucursales', 'rrhh\EmpleadoController@obtenerSucursales');
     Route::get('obtener-areas', 'rrhh\EmpleadoController@obtenerAreas');
@@ -30,4 +45,9 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
     Route::get('obtener-aspirantes', 'rrhh\SeleccionController@obtenerAspirantes');
     Route::get('obtener-aspirantes-estatus/{estatus}', 'rrhh\SeleccionController@obtenerAspirantesEstatus');
     Route::get('cambiar-estatus', 'rrhh\SeleccionController@cambiarEstatus');
+    Route::post('enviar-convocatoria', 'rrhh\SeleccionController@enviarConvocatoria');
+    Route::post('guardar-entrevista', 'rrhh\SeleccionController@guardarEntrevista');
+    Route::get('obtener-datos-entrevista/{aspirante}', 'rrhh\SeleccionController@obtenerDatosEntrevista');
+
+    Route::get('obtener-aspirantes/{cedula}', 'rrhh\BusquedaController@obtenerAspirantesPorCedula');
 });

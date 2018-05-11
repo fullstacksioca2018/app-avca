@@ -7,7 +7,7 @@
     </div>
     <div class="card">
       <div class="card-header bg-info-gradient">
-        <h3 class="card-title">Registrar una vacante</h3>
+        <h3 class="card-title">Registrar una vacante2</h3>
       </div>
       <div class="card-body">
         <form @submit.prevent="publicarVacante" id="vacanteForm" class="form-horizontal">
@@ -17,7 +17,7 @@
                 <label for="sucursal">Sucursal</label>
                 <select name="sucursal" id="sucursal" class="form-control">
                   <option value="" selected="selected">Seleccione</option>
-                  <option :value="sucursal.sucursal_id" v-for="sucursal in sucursales">{{ sucursal.nombre | capitalize }}</option>
+                  <option :value="sucursal.id" v-for="sucursal in sucursales">{{ sucursal.nombre | capitalize }}</option>
                 </select>
               </div>
             </div>
@@ -58,7 +58,8 @@
         sucursales: [],
         cargos: [],
         areas: [],
-        response: ''
+        response: '',
+        render:false
       }
     },
     created() {
@@ -98,6 +99,7 @@
         let formData = new FormData(form);
         axios.post('/rrhh/backend/vacante/publicar-vacante', formData)
           .then(response => {
+            console.log(response.data);
             this.response = response.data;
           });
       }

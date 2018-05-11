@@ -4,7 +4,7 @@
 <header id="header">
     <div class="container-fluid">
 
-   <div id="logo" class="pull-left"><img src="{{ asset('online/img/logo.png') }}" height="50" class="d-inline-block align-top" alt="AVCA">
+   <div id="logo" class="pull-left"><a href="{{ route('cliente.index1') }}" title="inicio"><img src="{{ asset('online/img/logo.png') }}" height="50" class="d-inline-block align-top" alt="AVCA"></a>
        
       </div>
 
@@ -20,10 +20,13 @@
             
             </ul>
           </li>
+          
           @if (Auth::guest())
            <li><i class="ion-person"></i><a href="#" data-toggle="modal" data-target="#Login"> Iniciar sesión</a></li>
           <li><i class="ion-person-add"></i><a href="#" data-toggle="modal" data-target="#Register"> Registrarse</a></li>
           @else
+
+          <li><i></i><a href="#" data-toggle="modal" data-target="#Checkin"> Check-in</a></li>
           <li class="dropdown" class="nav-item">
             <a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
               {{ Auth::user()->name }} <span class="caret"></span>
@@ -35,8 +38,7 @@
                   document.getElementById('logout-form').submit();">
                   Salir
                 </a>
-                <form id="logout-form" action="{{ route('online.logout') }}" method="POST" style="display: none;">
-                <!-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> -->
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
                 </form>
               </li>

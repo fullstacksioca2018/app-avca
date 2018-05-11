@@ -45,6 +45,7 @@
   <link rel="stylesheet" href="{{ asset('plugins/lib/wowalerta/css/wow-alert.css') }}">
 
   <!-- Main Stylesheet File -->
+  <link href="{{ asset('online/css/estilomod.css') }}" rel="stylesheet">
   <link href="{{ asset('online/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('online/css/destinos.css') }}" rel="stylesheet">
   <link href="{{ asset('online/css/estilocompras.css') }}" rel="stylesheet">
@@ -106,7 +107,7 @@
   
   @include('online.template.partials.ModalLogin') 
   @include('online.template.partials.ModalRegister')
-  {{-- @include('cliente.template.partials.topbar') --}}
+  @include('online.template.partials.ModalCheckin')
   @include('online.template.partials.header')
   @include('online.template.partials.erros')
   @yield('content')

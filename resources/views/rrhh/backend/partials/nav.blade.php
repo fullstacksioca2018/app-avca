@@ -44,7 +44,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('contratacion.form') }}" class="nav-link">
                 <i class="fa fa-circle-o nav-icon"></i>
                 <p>Contratación</p>
               </a>

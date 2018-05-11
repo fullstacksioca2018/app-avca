@@ -6,13 +6,10 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>AVCA RRHH</title>
+  <title>AVCA RRHH | @yield('title')</title>
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link rel="stylesheet" href="{{ asset('css/fa-svg-with-js.css') }}">
   {{--<link rel="stylesheet" href="{{ asset('css/rrhh.css') }}">--}}
-  <link href="{{ asset('img/favicon.png') }}" rel="icon">
-
-  @yield('styles')
   <style type="text/css">
     ul.navbar-nav.ml-auto.mt-2.mt-lg-0.smooth-scroll{
       vertical-align: bottom;
@@ -45,6 +42,7 @@
       border: 0px;
     }
   </style>
+  @yield('styles')
 </head>
 <body>
   <header class="header">
@@ -60,14 +58,12 @@
             <li class="nav-item active">
               <a class="nav-link" href="#application">
                 <i class="fas fa-briefcase"></i>
-                Oportunidades <span class="sr-only">(Oportunidades)</span>
-              </a>
+                Oportunidades <span class="sr-only">(Oportunidades)</span></a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="#about">
                 <i class="fas fa-child"></i>
-                Nosotros <span class="sr-only">(¿Quienes sómos?)</span>
-              </a>
+                Nosotros <span class="sr-only">(¿Quienes sómos?)</span></a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="#selection">
@@ -91,7 +87,7 @@
     </nav>
   </header>
 
-  <main id="rrhh">
+  <main id="app">
     @yield('content')
   </main>
 

@@ -245,15 +245,30 @@
 
  Descomenta --}}
 
-  {!! Form::open(['route' => ['cliente.BoletoVendido'], 'method' => 'POST', 'onsubmit' => 'ComBoleto()']) !!}
+            @if(isset($objMultidestinos))
+                {!! Form::open(['route' => ['cliente.BoletoVendido'], 'method' => 'POST', 'onsubmit' => 'ComBoleto()']) !!}
+                 @php
+                  for($i=0;$i<(count($objMultidestinos));$i++){
+                @endphp
+                  <input type="hidden" name="vuelos[]" value="{{ $objMultidestinos[$i]->vuelo->id }}">
+                 @php
+                   }
+                 @endphp
+            @else
+              @if(isset($vuelo))
+                {!! Form::open(['route' => ['cliente.BoletoVendidoRetorno'], 'method' => 'POST', 'onsubmit' => 'ComBoleto()']) !!}
+                  <input type="hidden" name="vuelo" id="vuelo_id">
+                  <input type="hidden" name="vuelta" id="vuelo_id2" value="{{ $vuelo }}">
+              @else
+                {!! Form::open(['route' => ['cliente.BoletoVendido'], 'method' => 'POST', 'onsubmit' => 'ComBoleto()']) !!}
+                  <input type="hidden" name="vuelo" id="vuelo_id">
+              @endif
+            @endif
+
       
             <input type="hidden" name="nino" id="nino">
             <input type="hidden" name="adulto" id="adulto">
             <input type="hidden" name="brazo" id="brazo">
-            <input type="hidden" name="vuelo" id="vuelo_id">
-            @if(isset($vuelo))
-              <input type="hidden" name="vuelta" id="vuelo_id2" value="{{ $vuelo }}">
-          @endif
            @for ($i = 0; $i < ($cantidad-$ninosbrazos); $i++)   
 
             <input type="hidden" name="tipo_boleto[]" id="tipo_boleto" value="{{ "adulto" }}">
@@ -304,7 +319,7 @@
           <div class="form-group">
             <label for="documento[]"><span class="hidden-xs">Documentacion:</span> </label>
           <div class="form-inline">
-            <select class="form-control" style="width:25%">
+            <select class="form-control" name="tipo_documento[]" style="width:25%">
           <option value="Venezolano/a">V</option>
           <option value="Extranjero">P</option>
           </select>
@@ -337,14 +352,15 @@
               <div class="col-md-5 mb-3">
                 <label for="Enfermedad">Enfermedad</label>
                 <select class="custom-select d-block w-100" name="detalles_salud[]" id="Enfermedad[]" required="">
-                  <option value="Ninguna"> Discapacidad motriz</option>
-                  <option value="Ninguna"> Discapacidad visual</option>
-                  <option value="Ninguna"> Disminución visual y esquema corporal</option>
-                  <option value="Ninguna">Discapacidad visual</option>
-                  <option value="Ninguna"> Disminuidos visuales</option>
-                  <option value="Ninguna"> Discapacidad auditiva</option>
-                  <option value="Ninguna"> Discapacidad mental</option>
-                  <option value="Ninguna">Parálisis cerebral</option>
+                  <option value="Ninguna"> Ninguna</option>
+                  <option value="Discapacidad motriz"> Discapacidad motriz</option>
+                  <option value="Discapacidad visual"> Discapacidad visual</option>
+                  <option value="Disminución visual y esquema corporal"> Disminución visual y esquema corporal</option>
+                  <option value="Discapacidad visual">Discapacidad visual</option>
+                  <option value="Disminuidos visuales"> Disminuidos visuales</option>
+                  <option value="Discapacidad auditiva"> Discapacidad auditiva</option>
+                  <option value="Discapacidad mental"> Discapacidad mental</option>
+                  <option value="Parálisis cerebral">Parálisis cerebral</option>
                 </select>
                 <div class="invalid-feedback">
                   por favor valide su seleccion.

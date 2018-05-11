@@ -11,7 +11,11 @@
               <th>Fecha</th>
               <th>Nombre y Apellido</th>
               <th v-if="estatusAnterior === 'registrados'">Curriculum</th>
-              <th>{{ verEstatusSiguiente }}</th>
+              <th v-if="estatusAnterior === 'verificados'">Requisitos</th>
+              <th v-if="estatusAnterior === 'convocados'">Entrevista</th>
+              <th v-if="estatusAnterior === 'seleccionados'">Teléfono de contacto</th>
+              <th v-if="estatusAnterior === 'seleccionados'">Seleccionado</th>
+              <th v-if="estatusAnterior === 'registrados'">{{ verEstatusSiguiente }}</th>
             </tr>
           </thead>
           <tbody>
@@ -23,7 +27,32 @@
                   <i class="fa fa-file-pdf-o"></i> Ver curriculum
                 </a>
               </td>
-              <td>
+              <td v-if="estatusAnterior === 'verificados'">
+                <button class="btn btn-outline-info" data-toggle="modal" data-target="#aspiranteVerificadoModal" @click.prevent="obtenerAspirante(aspirante)">
+                  <i class="fa fa-envelope-o" aria-hidden="true"></i> Enviar requisitos
+                </button>
+              </td>
+              <td v-if="estatusAnterior === 'convocados'">
+                <button class="btn btn-outline-info" data-toggle="modal" data-target="#aspiranteConvocadoModal" @click.prevent="obtenerAspirante(aspirante)">
+                  <i class="fa fa-sticky-note" aria-hidden="true"></i>
+                </button>
+              </td>
+              <td v-if="estatusAnterior === 'entrevistados'">
+                <!--Aspirante entrevista modal-->
+                <aspirante-entrevistado-modal :aspirante="aspirante" />
+              </td>
+              <td v-if="estatusAnterior === 'seleccionados'">
+                <span>
+                  <i class="fa fa-phone-square text-success"></i>
+                  <b>{{ aspirante.telefono_movil }}</b>
+                </span>
+              </td>
+              <td v-if="estatusAnterior === 'seleccionados'">
+                <a href="#" class="text-info" @click.prevent="cambiarEstatus(aspirante.aspirante_id)">
+                  <i class="fa fa-check-square-o fa-2x"></i>
+                </a>
+              </td>
+              <td v-if="estatusAnterior === 'registrados'">
                 <a href="#" class="btn btn-sm btn-outline-success" @click.prevent="cambiarEstatus(aspirante.aspirante_id)">
                   <i class="fa fa-check"></i>
                 </a>
@@ -33,19 +62,32 @@
         </table>
       </div>
     </div>
+
+    <!--Aspirante verificado modal-->
+    <aspirante-verificado-modal></aspirante-verificado-modal>
+
+    <!--Aspirante convocado modal-->
+    <aspirante-convocado-modal></aspirante-convocado-modal>
+
+    <!--Aspirante entrevista modal-->
+    <!--<aspirante-entrevistado-modal></aspirante-entrevistado-modal>-->
   </div>
 </template>
 
 <script>
   import {EventBus} from "../event-bus";
+  import AspiranteVerificadoModal from "./AspiranteVerificadoModal";
+  import AspiranteConvocadoModal from "./AspiranteConvocadoModal";
+  import AspiranteEntrevistadoModal from "./AspiranteEntrevistadoModal";
 
   export default {
     name: "AspiranteTable",
+    components: {AspiranteEntrevistadoModal, AspiranteConvocadoModal, AspiranteVerificadoModal},
     data() {
       return {
         aspirantes: [],
         estatus: 'registrados',
-        estatusAnterior: 'registrados'
+        estatusAnterior: 'registrados',
       }
     },
     computed: {
@@ -84,8 +126,12 @@
           else if (estatus === 'entrevistados') {
             this.estatus = 'seleccionados';
             this.estatusAnterior = 'entrevistados';
-          } else if (estatus === 'seleccionados') {
+          }
+          else if (estatus === 'seleccionados') {
+            this.estatus = 'por contratar';
             this.estatusAnterior = 'seleccionados';
+          }else if (estatus === 'por contratar') {
+            this.estatusAnterior = 'por contratar';
           }
         } else {
           this.estatusAnterior = 'registrados';
@@ -108,6 +154,10 @@
           .catch(error => {
             console.log(error)
           })
+      },
+      obtenerAspirante(aspirante) {
+        EventBus.$emit('email-verificado', aspirante);
+        EventBus.$emit('aspirante-seleccionado', aspirante);
       }
     },
   }

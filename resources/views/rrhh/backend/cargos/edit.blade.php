@@ -5,32 +5,38 @@
     <div class="card">
       <div class="card-header text-white bg-info-gradient">Ingrese perfil del cargo</div>
       <div class="card-body">
-        <form action="{{ route('cargo.update', $cargo[0]->cargo_id) }}" method="post">
+        <form action="{{ route('cargo.update', $cargo->cargo_id) }}" method="post">
           @csrf
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label for="titulo">Título</label>
-                <input type="text" name="titulo" id="titulo" class="form-control" value="{{ $cargo[0]->titulo }}" readonly>
+                <input type="text" name="titulo" id="titulo" class="form-control" value="{{ $cargo->titulo }}" readonly>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
                 <label for="area">Área</label>
-                <input type="text" name="area" id="area" class="form-control" value="{{ $cargo[0]->nombre }}" readonly>
+                <input type="text" name="area" id="area" class="form-control" value="{{ $cargo->nombre }}" readonly>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
                 <label for="area">Tabulador Salarial</label>
-                <input type="text" name="area" id="area" class="form-control" value="{{ $cargo[0]->sueldo_base }}" readonly>
+                <input type="text" name="area" id="area" class="form-control" value="{{ $cargo->sueldo_base }}" readonly>
               </div>
             </div>
           </div>
           <div class="form-group">
             <label for="perfil">Perfil</label>
             <textarea name="perfil" id="perfil" cols="30" rows="30" class="form-control">
-                {{ $cargo[0]->perfil }}
+                {{ $cargo->perfil }}
+              </textarea>
+          </div>
+          <div class="form-group">
+            <label for="funciones">Funciones</label>
+            <textarea name="funciones" id="funciones" cols="30" rows="30" class="form-control">
+                {{ $cargo->funciones }}
               </textarea>
           </div>
 
@@ -56,6 +62,15 @@
       })
       .catch(function (error) {
         console.error(error)
+      });
+
+    ClassicEditor
+      .create(document.querySelector('#funciones'))
+      .then(function (editor) {
+        // The editor instance
       })
+      .catch(function (error) {
+        console.error(error)
+      });
   </script>
 @endpush
