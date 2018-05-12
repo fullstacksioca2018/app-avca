@@ -50,7 +50,7 @@ class ClienteController extends Controller
 
     public function DetalleVuelo(Request $request)
     {
-       // dd($request->all());
+        dd($request->all());
         $date = new DateTime($request->get('fecha_salida'));
         $rutas = Ruta::Rutas($request->get('origen_id'),$request->get('destino_id'),$date);
 
@@ -85,7 +85,6 @@ class ClienteController extends Controller
             $objAUX->ninosbrazos=$c3;
             array_push($vuelos, $objAUX);
         }
-
         if(count($vuelos)){
                 return view('online.componentes.DetalleVuelo')->with('vuelos',$vuelos);
         }else{
