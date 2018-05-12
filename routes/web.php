@@ -62,7 +62,7 @@ Route::group(['prefix' => 'cliente'], function() {
 Route::group(['prefix' => 'online'], function () {
   Route::get('/login', 'OnlineAuth\LoginController@showLoginForm')->name('online.login');
   Route::post('/login', 'OnlineAuth\LoginController@login');
-  Route::post('/logout', 'OnlineAuth\LoginController@logout')->name('online.logout');
+  // Route::post('/logout', 'OnlineAuth\LoginController@cerrarOnline')->name('online.logout');
 
   Route::get('/register', 'OnlineAuth\RegisterController@showRegistrationForm')->name('register');
   Route::post('/register', 'OnlineAuth\RegisterController@register');

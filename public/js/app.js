@@ -103482,7 +103482,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.flex-column[data-v-6d5df522] {\n  background-color: #fff;\n  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n          box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\n  position: absolute;\n  width: 90%;\n  z-index: 9;\n}\n", ""]);
+exports.push([module.i, "\n.flex-column[data-v-6d5df522] {\r\n  background-color: #fff;\r\n  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\r\n          box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);\r\n  position: absolute;\r\n  width: 90%;\r\n  z-index: 9;\n}\r\n", ""]);
 
 // exports
 
@@ -104206,8 +104206,8 @@ var render = function() {
                                 return _c(
                                   "option",
                                   {
-                                    key: sucursal.id,
-                                    domProps: { value: sucursal.id }
+                                    key: sucursal.sucursal_id,
+                                    domProps: { value: sucursal.sucursal_id }
                                   },
                                   [_vm._v(_vm._s(sucursal.nombre))]
                                 )
@@ -105549,15 +105549,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log(data);
             for (var i = 0; i < data.data.length; i++) {
                 this.origenes.push({
-                    id: data.data[i].id,
+                    id: data.data[i].sucursal_id,
                     nombre: data.data[i].nombre
                 });
                 this.destinos.push({
-                    id: data.data[i].id,
+                    id: data.data[i].sucursal_id,
                     nombre: data.data[i].nombre
                 });
                 this.sucursales.push({
-                    id: data.data[i].id,
+                    id: data.data[i].sucursal_id,
                     nombre: data.data[i].nombre
                 });
             }

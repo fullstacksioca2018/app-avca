@@ -30,8 +30,8 @@ class CreateRutasTable extends Migration
             |=================
             */
 
-            $table->foreign('origen_id')->references('id')->on('sucursales')->onDelete('cascade');
-            $table->foreign('destino_id')->references('id')->on('sucursales')->onDelete('cascade');
+            $table->foreign('origen_id')->references('sucursal_id')->on('sucursales')->onDelete('cascade');
+            $table->foreign('destino_id')->references('sucursal_id')->on('sucursales')->onDelete('cascade');
 
         });
     }

@@ -310,14 +310,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 
-<!-- jQuery -->
-<script src="/adminlte/plugins/jquery/jquery.min.js"></script>
+
+<script src="{{ asset('js/app.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/adminlte/js/adminlte.min.js"></script>
 <!-- Vue App -->
-<script src="{{ asset('js/app.js') }}"></script>
 <!--Sweetalert-->
 
 

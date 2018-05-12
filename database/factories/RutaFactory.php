@@ -12,15 +12,15 @@ $factory->define(App\Models\operativo\Ruta::class, function (Faker $faker) {
     // $random_origen = array_random($origen);
     // $random_destino = array_random($destino);
     // $random_aeronave = array_random($aeronave);
-    $Sorigen=App\Models\operativo\Sucursal::find($random_origen);
-    $Sdestino=App\Models\operativo\Sucursal::find($random_destino);
-    $siglaAux=$Sorigen->sigla.'-'.$Sdestino->sigla;
+    $Sorigen=App\Models\operativo\Sucursal::where('sucursal_id','=',$random_origen)->get();
+    $Sdestino=App\Models\operativo\Sucursal::where('sucursal_id','=',$random_destino)->get();
+    $siglaAux=$Sorigen[0]->sigla.'-'.$Sdestino[0]->sigla;
     if($random_origen != $random_destino){
         return [
             'distancia' => $faker->longitude($min = 200, $max = 800),
             'sigla'  => $siglaAux,
-            'origen_id' => $Sorigen->id,
-            'destino_id' => $Sdestino->id,  
+            'origen_id' => $random_origen,
+            'destino_id' => $random_destino,  
             'estado'    =>  'activo'
         ];
     }

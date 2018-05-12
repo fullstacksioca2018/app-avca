@@ -9,9 +9,7 @@
                 </div>
                 <div class="card-body">
                     <!-- Metodo VUEJS/ assets/Operativo/AdministracionRuta-->
-                    <div id="app">
                         <Rutas> </Rutas>
-                    </div>
                 </div>
             </div>
         </div>

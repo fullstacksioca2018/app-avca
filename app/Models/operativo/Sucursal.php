@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Sucursal extends Model
 {
     protected $table = "sucursales";
+    protected $primaryKey = 'sucursal_id';
     protected $fillable = [
 
-		'id',
+		'sucursal_id',
 		'nombre',
 		'direccion',
 		'sigla',
@@ -28,12 +29,12 @@ class Sucursal extends Model
 
     public function origenes()
     {
-    	return $this->hasMany('App\Models\operativo\Ruta','destino_id','id');
+    	return $this->hasMany('App\Models\operativo\Ruta','destino_id','sucursal_id');
     }
 
     public function destinos()
     {
-    	return $this->hasMany('App\Models\operativo\Ruta','origen_id','id');
+    	return $this->hasMany('App\Models\operativo\Ruta','origen_id','sucursal_id');
     }
 
 }

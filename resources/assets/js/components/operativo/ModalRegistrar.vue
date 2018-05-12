@@ -173,15 +173,15 @@
                   console.log(data);
                 for (var i= 0; i < data.data.length; i++){
                     this.origenes.push({
-                        id: data.data[i].id,
+                        id: data.data[i].sucursal_id,
                         nombre: data.data[i].nombre
                     });
                     this.destinos.push({
-                        id: data.data[i].id,
+                        id: data.data[i].sucursal_id,
                         nombre: data.data[i].nombre
                     });
                     this.sucursales.push({
-                        id: data.data[i].id,
+                        id: data.data[i].sucursal_id,
                         nombre: data.data[i].nombre
                     });
                 }

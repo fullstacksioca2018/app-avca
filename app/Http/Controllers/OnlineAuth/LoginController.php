@@ -46,6 +46,11 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function cerrarOnline(Request $request)
+    {
+        // $this->performLogout($request);
+        return redirect('/');
+    }
     public function showLoginForm()
     {
         // return view('auth.login');
@@ -61,4 +66,5 @@ class LoginController extends Controller
     {
         return Auth::guard('online');
     }
+
 }

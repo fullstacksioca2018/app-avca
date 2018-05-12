@@ -20,7 +20,7 @@ class CreateVacantesTable extends Migration
             $table->integer('area_id')->unsigned();
             $table->integer('cargo_id')->unsigned();
             $table->enum('estatus', ['activa', 'inactiva'])->default('activa');
-            $table->foreign('sucursal_id')->references('id')->on('sucursales');
+            $table->foreign('sucursal_id')->references('sucursal_id')->on('sucursales');
             $table->foreign('area_id')->references('area_id')->on('areas');
             $table->foreign('cargo_id')->references('cargo_id')->on('cargos');
             $table->timestamps();
