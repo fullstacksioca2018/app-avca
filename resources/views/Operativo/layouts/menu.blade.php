@@ -23,7 +23,7 @@
              
             </li>
            
-            <li class="nav-title">Administracion de Vuelo</li>
+            <li class="nav-title">Administracion de Vuelos</li>
             <li class="nav-item nav-dropdown">
               <a class="nav-link" href="{!! url('/vuelos'); !!}">
                 <i class="nav-icon fa fa-location-arrow"></i> Planificar Vuelos</a>

@@ -22,6 +22,7 @@
 @endsection
 
 @push('scripts')
+
   <script>
     // Tooltip
     $(function () {

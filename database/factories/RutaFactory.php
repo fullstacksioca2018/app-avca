@@ -20,8 +20,20 @@ $factory->define(App\Models\operativo\Ruta::class, function (Faker $faker) {
             'distancia' => $faker->longitude($min = 200, $max = 800),
             'sigla'  => $siglaAux,
             'origen_id' => $Sorigen->id,
-            'destino_id' => $Sdestino->id   
+            'destino_id' => $Sdestino->id,  
+            'estado'    =>  'activo'
         ];
+    }
+    else{
+        $random_destino++;
+        return [
+            'distancia' => $faker->longitude($min = 200, $max = 800),
+            'sigla'  => $siglaAux,
+            'origen_id' => $Sorigen->id,
+            'destino_id' => $Sdestino->id,  
+            'estado'    =>  'activo'
+        ];
+
     }
 
 });

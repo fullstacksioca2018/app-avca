@@ -16,7 +16,7 @@ class Ruta extends Model
         'tarifa_vuelo',
         'origen_id',
         'destino_id',
-
+        'estado'
     ];
 
     public function segmentos()
@@ -86,7 +86,7 @@ class Ruta extends Model
   public function scopeRutaInactiva($query, $origen,$destino){
       return $query->where('destino_id',$destino)
                   ->where('origen_id',$origen)
-                  ->where('estado',"inactiva");
+                  ->where('estado',"inactivo");
   }
 
 }

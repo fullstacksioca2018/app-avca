@@ -20,6 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Sweetalert -->
   <link rel="stylesheet" href="{{ asset('css/sweetalert.min.css') }}">
+  <link href="{{ asset('img/favicon.png') }}" rel="icon">
   <style>
     .user-menu>.dropdown-menu>.user-header {
       height: 175px;
@@ -319,8 +320,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('js/app.js') }}"></script>
 <!--Sweetalert-->
 
-<!-- build -->
-<script src="/js/app.js"></script>
+
+<!-- <script src="{{ asset('js/app.js') }}"></script> -->
+
 
 <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 @stack('scripts')

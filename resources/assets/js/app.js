@@ -20,6 +20,7 @@ Vue.component('aspirante-form', require('./components/frontend/AspiranteForm'));
 Vue.component('vacante-filter', require('./components/backend/vacante/VacanteFilter'));
 Vue.component('aspirante-table', require('./components/backend/aspirante/AspiranteTable'));
 Vue.component('aspirante-status', require('./components/backend/aspirante/AspiranteStatus'));
+Vue.component('contratacion', require('./components/backend/rrhh/contratacion/Contratacion'));
 Vue.component('Rutas', require('./components/operativo/AdministracionRutas.vue'));
 
 

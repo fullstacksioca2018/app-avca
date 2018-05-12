@@ -14,8 +14,7 @@ class RutaSeeder extends Seeder
         factory(App\Models\operativo\Ruta::class,20)->create([
 
         	 'tarifa_vuelo' => '4500',
-             'duracion'    =>  '00:40:00',
-             'estado'    =>  'activa'
+             'duracion'    =>  '00:40:00'
 
         ]);
 
@@ -26,6 +25,7 @@ class RutaSeeder extends Seeder
             'tarifa_vuelo' => '4500',
             'origen_id' => '1',
             'destino_id' => '2',
+            'estado'    =>  'activo'
         ]);
 
          DB::table('rutas')->insert([
@@ -35,6 +35,7 @@ class RutaSeeder extends Seeder
             'tarifa_vuelo' => '4500',
             'origen_id' => '2',
             'destino_id' => '1',
+            'estado'    =>  'activo'
         ]);
 
          DB::table('rutas')->insert([
@@ -44,6 +45,7 @@ class RutaSeeder extends Seeder
             'tarifa_vuelo' => '4500',
             'origen_id' => '1',
             'destino_id' => '3',
+            'estado'    =>  'activo'
         ]);
     }
 }

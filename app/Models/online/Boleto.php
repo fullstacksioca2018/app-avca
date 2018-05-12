@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Models\online;
-
+namespace App\Models\Online;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Boleto extends Model
@@ -9,39 +9,40 @@ class Boleto extends Model
     protected $table = "boletos";
     protected $fillable = [
 
-		'boleto_estado',
-		'fecha_expiracion',
-		'asiento',
-		'primerNombre',
+        'boleto_estado',
+        'fecha_expiracion',
+        'asiento',
+        'primerNombre',
         'segundoNombre',
         'tipo_documento',
         'documento',
         'genero',
-		'apellido',
-		'tipo_boleto',
+        'apellido',
+        'tipo_boleto',
         'fecha_nacimiento',
-		'detalles_salud',
-		'user_id',
-		'factura_id',
-		'vuelo_id',,
+        'detalles_salud',
+        'user_id',
+        'factura_id',
+        'vuelo_id',
         'localizador',
 
     ];
 
     public function user()
     {
-    	return $this->belongsTo('App\Models\Online\Cliente');
+        return $this->belongsTo('App\Models\Online');
     }
 
     public function factura()
     {
-    	return $this->belongsTo('App\Models\Online\Factura');
+        return $this->belongsTo('App\Models\Online\Factura');
     }
 
     public function vuelo()
     {
-    	return $this->belongsTo('App\Models\Online\Factura');
+        return $this->belongsTo('App\Models\operativo\Vuelo');
     }
+
     public function scopeCheckin($query, $localizador)
     {
 

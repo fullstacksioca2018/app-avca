@@ -16,12 +16,12 @@ class CreateRutasTable extends Migration
         Schema::create('rutas', function (Blueprint $table) {
             $table->increments('id');
             $table->float('distancia');
-            $table->string('sigla',20);
+            $table->string('sigla',20)->nullable();
             $table->time('duracion');
             $table->float('tarifa_vuelo');
             $table->integer('origen_id')->unsigned();
             $table->integer('destino_id')->unsigned();
-            $table->enum('estado',['activa','inactiva'])->nullable();
+            $table->enum('estado',['activo','inactivo'])->nullable();
             $table->timestamps();
 
             /*

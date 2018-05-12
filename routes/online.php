@@ -15,4 +15,13 @@ Route::group(['prefix' => 'cliente'], function() {
     Route::get('CompraBoleto/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}', 'Online\ClienteController@CompraBoleto2')->name('cliente.CompraBoleto2');
 
     Route::get('/DetalleMultidestino', 'Online\ClienteController@DetalleMultidestino2')->name('cliente.DetalleMultidestino2');
+
+    Route::post('BoletoVendido', 'Online\ClienteController@BoletoVendido')->name('cliente.BoletoVendido');
+
+    Route::get('/DetalleRetorno', 'Online\ClienteController@DetalleRetorno')->name('cliente.DetalleRetorno');
+
+    Route::get('DetalleRetorno/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}/{retorno}', 'Online\ClienteController@DetalleRetorno2')->name('cliente.DetalleRetorno2');
+
+    Route::post('BoletoVendidoRetorno', 'Online\ClienteController@BoletoVendido2')->name('cliente.BoletoVendidoRetorno');
+
 });

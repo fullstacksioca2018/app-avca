@@ -34,7 +34,8 @@
   <!-- ======================
     INICIO DEL HASTA
   ======================= -->
-      {!! Form::open(['route' => 'cliente.DetalleRetorno', 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
+      <form method="get" action="{{ URL::to('/online/cliente/DetalleRetorno') }}" onsubmit="myFunction()">
+        
           <div class="form-row">
   
         <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0"> 
@@ -171,8 +172,8 @@
 <!-- ======================
     FIN DEL Calendario
   ======================= -->
-
-{!! Form::close() !!} <!-- ======================
+</form>
+<!-- ======================
     FIN DEL Form
   ======================= -->
 

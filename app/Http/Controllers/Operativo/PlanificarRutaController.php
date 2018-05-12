@@ -53,6 +53,7 @@ class PlanificarRutaController extends Controller
     $ruta =Ruta::find($datos['id']);
     $ruta->estado="inactivo";
     $ruta->save();
+    return response()->json(['message' => 'Vacante publicada exitosamente!']);
     return "La Ruta ha sido deshabilitada";
   }
 
@@ -69,24 +70,25 @@ class PlanificarRutaController extends Controller
   }
 
   public function crearuta(Request $datos){
-    //  return $datos;
+     // return $datos;
     $ruta = new Ruta();
-    //return count($ruta->Buscador($datos->origen['id'],$datos->destino['id'])->get());
+    // return count($ruta->Buscador($datos->origen['id'],$datos->destino['id'])->get());
     if(count($ruta->Buscador($datos->origen['id'],$datos->destino['id'])->get())){
       return 'La Ruta '.$datos->origen['nombre']." ---> ".$datos->destino['nombre']." Ya Existe";
     }
     else{
       $ruta->origen_id=$datos->origen['id'];
       $ruta->destino_id=$datos->destino['id'];
-      $ruta->distancia=$datos->distancia;
+      $ruta->distancia=(float)$datos->distancia;
       $ruta->duracion=$datos->duracion['HH'].":".$datos->duracion['mm'].":".$datos->duracion['ss'];
-      $ruta->tarifa_vuelo=$datos->tarifa;    
+      $ruta->tarifa_vuelo=(float)$datos->tarifa;    
       $ruta->estado="activo";
-     
+      $ruta->sigla="-";
+      // return $ruta;
       $ruta->save();
       return 'La Ruta '.$datos->origen['nombre']." ---> ".$datos->destino['nombre']." Se ha Generado Exitosamente";
     }
-    return "ok2";
+    return "Error inesperado";
    
   }
 

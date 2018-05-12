@@ -70,7 +70,7 @@
      
     </div>
       <div class="text-center">
-        <b-button type="submit" variant="primary" >Actualizar</b-button>
+        <b-button type="submit" variant="primary" >Guardar</b-button>
       </div>
       
       
@@ -135,13 +135,14 @@
                 data: this.form
                 
                }).then((response)=>{
-                   
+                   console.log(response.data);
                 Vue.toasted.show(response.data, {
                     theme: "primary", 
 	                position: "bottom-right",
 	                duration : 2000
                 });
                 EventBus.$emit('actualizartabla',true);
+                  this.$root.$emit('bv::hide::modal', 'agregar', '#app');
                }).catch((err) =>{
 
                });
@@ -185,7 +186,6 @@
                     });
                 }
                
-                console.log(this.options);
             }
            
         }

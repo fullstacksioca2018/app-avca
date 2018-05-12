@@ -161,7 +161,6 @@ export default {
   },
   created: function(){
     EventBus.$on('actualizartabla',(event) =>{
-      alert("prueba pipe");
       this.Cargadatos(this);
     });
     this.Cargadatos(this)
@@ -229,7 +228,7 @@ export default {
     },
     Cargadatos(ctx){
       axios.get("/rutas/rutas").then(function(response){
-        console.log(response.data);
+        // console.log(response.data);
         ctx.data = response.data;
         ctx.formatodatos();
         ctx.totalRows=ctx.items.length;
@@ -300,6 +299,7 @@ export default {
           id: row.item.id,               
         }
       }).then((response)=>{
+        console.log(response.data)
        Vue.toasted.show("Ruta Deshabilitada", {
           theme: "primary", 
 	      position: "bottom-right",

@@ -246,7 +246,10 @@
  Descomenta --}}
 
             @if(isset($objMultidestinos))
-                {!! Form::open(['route' => ['cliente.BoletoVendido'], 'method' => 'POST', 'onsubmit' => 'ComBoleto()']) !!}
+            <form method="post" action="{{ URL::to('/online/cliente/BoletoVendido') }}" onsubmit="ComBoleto()">
+
+                        {{ csrf_field() }} 
+
                  @php
                   for($i=0;$i<(count($objMultidestinos));$i++){
                 @endphp
@@ -256,11 +259,16 @@
                  @endphp
             @else
               @if(isset($vuelo))
-                {!! Form::open(['route' => ['cliente.BoletoVendidoRetorno'], 'method' => 'POST', 'onsubmit' => 'ComBoleto()']) !!}
+              <form method="post" action="{{ URL::to('/online/cliente/BoletoVendidoRetorno') }}" onsubmit="ComBoleto()">
+              
+                        {{ csrf_field() }} 
                   <input type="hidden" name="vuelo" id="vuelo_id">
                   <input type="hidden" name="vuelta" id="vuelo_id2" value="{{ $vuelo }}">
               @else
-                {!! Form::open(['route' => ['cliente.BoletoVendido'], 'method' => 'POST', 'onsubmit' => 'ComBoleto()']) !!}
+              <form method="post" action="{{ URL::to('/online/cliente/BoletoVendido') }}" onsubmit="ComBoleto()">
+                        {{ csrf_field() }} 
+
+              
                   <input type="hidden" name="vuelo" id="vuelo_id">
               @endif
             @endif
@@ -580,6 +588,5 @@
   </div>
 </div>
 </div>
-    
-{!! Form::close() !!}            
+    </form>
 @endsection

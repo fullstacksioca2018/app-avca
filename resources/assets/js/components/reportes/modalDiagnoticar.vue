@@ -8,48 +8,42 @@
       		Hay datos
       	</div>
       	<div v-else>
-      		<h3 class="text-center">Estado de Asistencia</h3>
-			<div role="tablist">
-			    <b-card no-body class="mb-1">
-			      <b-card-header header-tag="header" class="p-1" role="tab">
-			        <b-btn block href="#" v-b-toggle.accordion1 variant="primary">Asistencia Mayor a 80%</b-btn>
-			      </b-card-header>
-			      <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel" class="alert alert-primary">
-			      		<b-card no-body>
-						    <b-list-group flush>
-						      <ItemGroup :datos="DatosItem" ind="95%" titulo="Sucursal 1" color="alert-primary"></ItemGroup>
-						      <ItemGroup :datos="DatosItem" ind="89%" titulo="Sucursal 2"></ItemGroup>
-						      <ItemGroup :datos="DatosItem" ind="82%" titulo="Sucursal 3"></ItemGroup>
-						    </b-list-group>
-						    <b-card-body class="alert-primary">
-						      Buen Rendimiento
-						    </b-card-body>
-						  </b-card>
-			      </b-collapse>
-			    </b-card>
-			    <b-card no-body class="mb-1">
-			      <b-card-header header-tag="header" class="p-1" role="tab">
-			        <b-btn block href="#" v-b-toggle.accordion2 variant="info" >Asistencia Sobre la Media</b-btn>
-			      </b-card-header>
-			      <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel" class="alert alert-info">
-			      	<b-card no-body>
+			<b-tabs>
+			 	<b-tab active>
+				   <template slot="title">
+				     Asistencia <strong>Mayor a 80%</strong>
+				   </template>
+		      		<b-card no-body>
 					    <b-list-group flush>
-					      <ItemGroup :datos="DatosItem" ind="75%" titulo="Sucursal 4" color="alert-info"></ItemGroup>
-					      <ItemGroup :datos="DatosItem" ind="64%" titulo="Sucursal 5"></ItemGroup>
-					      <ItemGroup :datos="DatosItem" ind="52%" titulo="Sucursal 6"></ItemGroup>
+					      <ItemGroup :datos="DatosItem" ind="95%" titulo="Sucursal 1" color="alert-info"></ItemGroup>
+					      <ItemGroup :datos="DatosItem" ind="89%" titulo="Sucursal 2"></ItemGroup>
+					      <ItemGroup :datos="DatosItem" ind="82%" titulo="Sucursal 3"></ItemGroup>
 					    </b-list-group>
 					    <b-card-body class="alert-info">
 					      Buen Rendimiento
 					    </b-card-body>
+				  </b-card>
+			    </b-tab>
+			    <b-tab >
+				   <template slot="title">
+				     Asistencia <strong>Sobre la Media</strong>
+				   </template>
+			      		<b-card no-body>
+						    <b-list-group flush>
+						      <ItemGroup :datos="DatosItem" ind="75%" titulo="Sucursal 4" color="alert-primary"></ItemGroup>
+						      <ItemGroup :datos="DatosItem" ind="64%" titulo="Sucursal 5"></ItemGroup>
+						      <ItemGroup :datos="DatosItem" ind="52%" titulo="Sucursal 6"></ItemGroup>
+						    </b-list-group>
+						    <b-card-body class="alert-primary">
+						      Buen Rendimiento
+						    </b-card-body>
 					  </b-card>
-			      </b-collapse>
-			    </b-card>
-			    <b-card no-body class="mb-1">
-			      <b-card-header header-tag="header" class="p-1" role="tab">
-			        <b-btn block href="#" v-b-toggle.accordion3 variant="secondary">Asistencia Bajo</b-btn>
-			      </b-card-header>
-			      <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel" class="alert alert-secondary">
-			         	<b-card no-body>
+			    </b-tab>
+			    <b-tab >
+				   <template slot="title">
+				     Asistencia <strong>Bajo</strong>
+				   </template>
+				   <b-card no-body>
 					    <b-list-group flush>
 					      <ItemGroup :datos="DatosItem" ind="42%" titulo="Sucursal 7"></ItemGroup>
 					      <ItemGroup :datos="DatosItem" ind="29%" titulo="Sucursal 8"></ItemGroup>
@@ -58,10 +52,9 @@
 					    <b-card-body class="alert-secondary">
 					      Mal Rendimiento, <strong>MEDIDAS</strong>
 					    </b-card-body>
-					  </b-card>
-			      </b-collapse>
-			    </b-card>
-			  </div>
+					</b-card>
+			    </b-tab>
+			</b-tabs>
       	</div>
       </div>
       <b-btn size="md" class="float-right" variant="outline-info" @click="hideModal">

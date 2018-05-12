@@ -21,7 +21,6 @@
     
    
    @foreach ($datos_vuelos as $dato_vuelo)
-
       @php
         $salida = Carbon::parse($dato_vuelo->vuelo->fecha_salida);
         $fecha = Carbon::parse($dato_vuelo->vuelo->fecha_salida);

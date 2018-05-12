@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link rel="stylesheet" href="{{ asset('css/fa-svg-with-js.css') }}">
   {{--<link rel="stylesheet" href="{{ asset('css/rrhh.css') }}">--}}
+  <link href="{{ asset('img/favicon.png') }}" rel="icon">
   <style type="text/css">
     ul.navbar-nav.ml-auto.mt-2.mt-lg-0.smooth-scroll{
       vertical-align: bottom;

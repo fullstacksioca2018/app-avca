@@ -39,7 +39,7 @@ Route::get('/index3', 'Online\ClienteController@index3')->name('cliente.index3')
 Route::group(['prefix' => 'cliente'], function() {
     Route::get('/DetalleVuelo', 'Online\ClienteController@DetalleVuelo')->name('cliente.DetalleVuelo');
 
-    Route::get('/DetalleRetorno', 'Online\ClienteController@DetalleRetorno')->name('cliente.DetalleRetorno');
+    // Route::get('/DetalleRetorno', 'Online\ClienteController@DetalleRetorno')->name('cliente.DetalleRetorno');
 
     Route::get('/equipaje', 'Online\ClienteController@equipaje')->name('cliente.equipaje');
 
@@ -49,11 +49,8 @@ Route::group(['prefix' => 'cliente'], function() {
 
     // Route::get('CompraBoleto/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}', 'Online\ClienteController@CompraBoleto2')->name('cliente.CompraBoleto2');
 
-    Route::get('DetalleRetorno/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}/{retorno}', 'Online\ClienteController@DetalleRetorno2')->name('cliente.DetalleRetorno2');
+    // Route::get('DetalleRetorno/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}/{retorno}', 'Online\ClienteController@DetalleRetorno2')->name('cliente.DetalleRetorno2');
 
-    Route::post('BoletoVendido', 'Online\ClienteController@BoletoVendido')->name('cliente.BoletoVendido');
-
-    Route::post('BoletoVendidoRetorno', 'Online\ClienteController@BoletoVendido2')->name('cliente.BoletoVendidoRetorno');
 
     Route::get('/DetalleMultidestino', 'Online\ClienteController@DetalleMultidestino')->name('cliente.DetalleMultidestino');
 
@@ -85,3 +82,4 @@ Route::get('/reportes', function () {
     return view('reportes.PanelConsulta');
 });
 
+Route::get('listar-cargos', 'Reportes\ApiControllerDW@listCargos')->name('cargo.list.DW');

@@ -42,7 +42,10 @@ if (token) {
 window.Vue = require('vue');
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.js';
 import VueChartjs from 'vue-chartjs/dist/vue-chartjs.js';
+import Toasted from 'vue-toasted';
 
+
+Vue.use(Toasted);
 Vue.use(BootstrapVue);
 Vue.use(VueChartjs);
 /**

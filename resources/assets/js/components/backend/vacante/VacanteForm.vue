@@ -7,7 +7,7 @@
     </div>
     <div class="card">
       <div class="card-header bg-info-gradient">
-        <h3 class="card-title">Registrar una vacante2</h3>
+        <h3 class="card-title">Registrar una vacante</h3>
       </div>
       <div class="card-body">
         <form @submit.prevent="publicarVacante" id="vacanteForm" class="form-horizontal">

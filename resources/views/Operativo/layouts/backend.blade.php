@@ -20,6 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Sweetalert -->
   <link rel="stylesheet" href="{{ asset('css/sweetalert.min.css') }}">
+  <link href="{{ asset('img/favicon.png') }}" rel="icon">
   <style>
     .user-menu>.dropdown-menu>.user-header {
       height: 175px;
@@ -245,7 +246,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
 
       <!-- Sidebar Menu -->
-      @include('rrhh.backend.partials.nav')
+      @include('Operativo.partials.nav')
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -319,7 +320,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!--Sweetalert-->
 
 <!-- build -->
-<script src="/js/app.js"></script>
+<!-- <script src="/js/app.js"></script> -->
 
 <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 @stack('scripts')

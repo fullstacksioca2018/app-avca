@@ -92,7 +92,7 @@
     @if(isset($retorno))
       <div class="col-sm-2">
           
-          <a class="btn btn-primary" href="{{ URL::to('/cliente/DetalleRetorno/'.$obj->cantidad.'/'.$obj->ninosbrazos.'/'.$obj->ruta->tarifa_vuelo.'/'.$obj->vuelo->id.'/'.$retorno) }}" onclick="FunctionVuelo('{{ $obj->vuelo->id }}')">Seleccionar</a>
+          <a class="btn btn-primary" href="{{ URL::to('/online/cliente/DetalleRetorno/'.$obj->cantidad.'/'.$obj->ninosbrazos.'/'.$obj->ruta->tarifa_vuelo.'/'.$obj->vuelo->id.'/'.$retorno) }}" onclick="FunctionVuelo('{{ $obj->vuelo->id }}')">Seleccionar</a>
         </div> 
     @else
       <div class="col-sm-2">

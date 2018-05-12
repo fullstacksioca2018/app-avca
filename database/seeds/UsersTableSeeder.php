@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Pablito Garcia',
             'email' => 'sucursales@gmail.com',
             'password' => bcrypt('gerente'),
-            'role' => 'Gerente de Sucursales'
+            'role' => 'Gerente Sucursales'
         ]);
 
         DB::table('users')->insert([
