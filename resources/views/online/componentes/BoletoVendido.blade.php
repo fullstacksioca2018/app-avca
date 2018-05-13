@@ -19,7 +19,6 @@
             
           </thead>
     
-   
    @foreach ($datos_vuelos as $dato_vuelo)
       @php
         $salida = Carbon::parse($dato_vuelo->vuelo->fecha_salida);
@@ -38,10 +37,8 @@
     </tr>
     @endforeach
     <tr class="table-detalles">
-    @foreach($facturas as $fac)  
-      <th class="thresumen">Cantidad pasajeros: {{ $fac->ninos_cant + $fac->adultos_cant }}</th>
-      <th class="thresumen">Costo Total: {{ $fac->importe_facturado }}</th>
-    @endforeach
+      <th class="thresumen">Cantidad pasajeros: {{ $factura->ninos_cant + $factura->adultos_cant }}</th>
+      <th class="thresumen">Costo Total: {{ $factura->importe_facturado }}</th>
       <th class="thresumen2"></th>
       <th class="thresumen2"></th>
       <th></th>
