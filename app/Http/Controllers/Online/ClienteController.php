@@ -1,21 +1,23 @@
 <?php
 
 namespace App\Http\Controllers\Online;
-use App\Http\Controllers\Controller;
+use DB;
 
-use Illuminate\Http\Request;
-use App\Models\operativo\Sucursal;
-use App\Models\online\Vuelo;
+use Auth;
+use DateTime;
+use stdClass;
+use Carbon\Carbon;
 use App\Models\online\Ruta;
+use App\Models\online\User;
+use App\Models\online\Vuelo;
+use Illuminate\Http\Request;
 use App\Models\online\Boleto;
 use App\Models\online\Factura;
 use App\Models\online\Tarjeta;
-use App\Models\online\User;
-use DB;
-use Carbon\Carbon;
-use DateTime;
-use stdClass;
-use Auth;
+use App\Mail\online\CompraBoleto;
+use App\Models\operativo\Sucursal;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class ClienteController extends Controller
 {
@@ -259,7 +261,12 @@ class ClienteController extends Controller
             $objAUX->origen=$origen;
             $objAUX->destino=$destino;
             array_push($datos_vuelos, $objAUX);
-        }    
+        }
+
+        // ENVIO DE EMAIL
+        Mail::to(Auth::guard('online')->user()->email)->send(new CompraBoleto());
+
+
         return view('online.componentes.BoletoVendido')->with('datos_vuelos',$datos_vuelos)->with('boletos',$boletos)->with('factura', $factura)->with('rutas',$rutas);  
 
     }
