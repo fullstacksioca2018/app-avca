@@ -43,6 +43,13 @@
       'Html' => 'Collective\\Html\\HtmlFacade',
     ),
   ),
+  'nunomaduro/collision' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
   'uxweb/sweet-alert' => 
   array (
     'providers' => 
@@ -52,13 +59,6 @@
     'aliases' => 
     array (
       'Alert' => 'UxWeb\\SweetAlert\\SweetAlert',
-    ),
-  ),
-  'nunomaduro/collision' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
 );
