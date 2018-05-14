@@ -121,12 +121,12 @@
               {{-- ====================================== 
                               Contador de personas
                   ====================================== --}}              
-              <div id="contenedorPersonas" style="margin-top:-15px">
+              <div id="contenedorPersonas" 
               </div>              
 
               {{--  Boton de envio  --}}
               <div class="form-row">
-                <input type="submit" value="BUSCAR" class="btn btn-success">
+                <input type="submit" value="BUSCAR" class="btn btn-primary">
               </div>        
 
             {!! Form::close() !!} 
@@ -136,6 +136,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
     <!-- fin del Card body -->
 

@@ -10,15 +10,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class CompraBoleto extends Mailable
 {
     use Queueable, SerializesModels;
+    private $boletos, $usuarios;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($boletos, $usuarios, $datos_vuelos, $factura)
     {
         //
+        $this->boletos = $boletos;
+        $this->datos_vuelos = $datos_vuelos;
+        $this->factura = $factura;
+        $this->usuarios = $usuarios;
     }
 
     /**
@@ -31,8 +36,9 @@ class CompraBoleto extends Mailable
         return $this->from('avca2018@gmail.com', 'AVCA')
             ->subject('COMPRA DE BOLETO ONLINE')
             ->view('online.emails.comprar_boleto')
-            ->with([
-                
-            ]);        
+            ->with('boletos',$this->boletos)
+            ->with('usuarios',$this->usuarios)
+            ->with('factura',$this->factura)
+            ->with('datos_vuelos',$this->datos_vuelos);        
     }
 }

@@ -25,7 +25,7 @@
                               <div class="text-center">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                   <button type="submit" class="btn" style="background: rgba(8, 30, 91, 1)">
-                                      Checkin
+                                      Check-in
                                   </button>
                 
                               </div>
