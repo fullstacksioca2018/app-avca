@@ -74,7 +74,7 @@ class PlanificarVueloController extends Controller
     public function pilotos(){
         $obj = array();
          
-        $tripulantes = Tripulante::select('')->orderBy('id')->get();
+        $tripulantes = Tripulante::orderBy('id')->get();
         foreach($tripulantes as $tripulante){
             $objAux = new stdClass(); 
             $tripulante->empleado;
