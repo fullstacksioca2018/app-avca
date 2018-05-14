@@ -23,6 +23,8 @@ Vue.component('aspirante-status', require('./components/backend/aspirante/Aspira
 Vue.component('contratacion', require('./components/backend/rrhh/contratacion/Contratacion'));
 Vue.component('Rutas', require('./components/operativo/AdministracionRutas.vue'));
 
+// Empleado
+Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
 
 Vue.component('panel', require('./components/reportes/panel.vue'));
 
