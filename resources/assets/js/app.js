@@ -25,6 +25,7 @@ Vue.component('Rutas', require('./components/operativo/AdministracionRutas.vue')
 
 
 Vue.component('panel', require('./components/reportes/panel.vue'));
+Vue.component('dashboard', require('./components/reportes/Dashboard.vue'));
 
 const app = new Vue({
     el: '#app'

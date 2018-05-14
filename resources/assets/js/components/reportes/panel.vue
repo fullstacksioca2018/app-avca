@@ -6,7 +6,7 @@
 				<div id="panel">
 				    <div class="container" style="width: 95%;">
 						<!-- Tipo de Consulta -->
-						<b-form-group label="Consultas">
+						<b-form-group>
 					      <b-form-radio-group id="btnradios1"
 					                          buttons
 					                          v-model="form.consulta"

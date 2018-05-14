@@ -78,7 +78,12 @@ Route::group(['prefix' => 'online'], function () {
 require 'Operativo\PlanificarRuta.php';
 require 'Operativo\PlanificarTaquilla.php';
 require 'Operativo\PlanificarVuelo.php';
+
 Route::get('/reportes', function () {
+    return view('reportes.Dashboard');
+});
+
+Route::get('/reportes/panel', function () {
     return view('reportes.PanelConsulta');
 });
 
