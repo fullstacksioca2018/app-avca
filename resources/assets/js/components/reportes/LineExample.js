@@ -20,13 +20,29 @@ export default {
         datasets: [
           {
             label: this.chartData.label[0],
-            backgroundColor: '#007bff',
+            backgroundColor: '#1C5281',
             data: this.chartData.data[0]
           }
         ]
       }, {responsive: true, maintainAspectRatio: false,
         tooltips: {
             bodyFontSize: 18
+          },
+          options: {
+            low: 0,
+            high: 800,
+            showArea: false,
+            height: '245px',
+            axisX: {
+              showGrid: false
+            },
+            lineSmooth: true,
+            showLine: true,
+            showPoint: true,
+            fullWidth: true,
+            chartPadding: {
+              right: 50
+            }
           }
         })
     }
@@ -51,6 +67,22 @@ export default {
       }, {responsive: true, maintainAspectRatio: false,
         tooltips: {
             bodyFontSize: 18
+          },
+          options: {
+            low: 0,
+            high: 800,
+            showArea: false,
+            height: '245px',
+            axisX: {
+              showGrid: false
+            },
+            lineSmooth: true,
+            showLine: true,
+            showPoint: true,
+            fullWidth: true,
+            chartPadding: {
+              right: 50
+            }
           }
         })
     }
