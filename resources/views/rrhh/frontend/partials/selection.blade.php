@@ -19,8 +19,8 @@
       <div class="card">
         <img class="card-img-top" src="{{ asset('img/rrhh/capacitacion.jpg') }}" alt="Capacitación">
         <div class="card-body">
-          <h4 class="card-title text-center">Capacitación</h4>
-          <p class="card-text">Adiestramiento u orientación de las normativas establecidas en la empresa relacionadas al cargo que va a desempeñar.</p>
+          <h4 class="card-title text-center">Contratación</h4>
+          <p class="card-text">Una vez seleccionado el candidato idóneo para cubrir el cargo vacante existente dentro de la empresa, se procede a realizar la contratación del mismo.</p>
         </div>
       </div>
     </div>

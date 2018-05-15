@@ -1,21 +1,23 @@
 <?php
 
 namespace App\Http\Controllers\Online;
-use App\Http\Controllers\Controller;
+use DB;
 
-use Illuminate\Http\Request;
-use App\Models\operativo\Sucursal;
-use App\Models\online\Vuelo;
+use Auth;
+use DateTime;
+use stdClass;
+use Carbon\Carbon;
 use App\Models\online\Ruta;
+use App\Models\online\User;
+use App\Models\online\Vuelo;
+use Illuminate\Http\Request;
 use App\Models\online\Boleto;
 use App\Models\online\Factura;
 use App\Models\online\Tarjeta;
-use App\Models\online\User;
-use DB;
-use Carbon\Carbon;
-use DateTime;
-use stdClass;
-use Auth;
+use App\Mail\online\CompraBoleto;
+use App\Models\operativo\Sucursal;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class ClienteController extends Controller
 {
@@ -50,7 +52,6 @@ class ClienteController extends Controller
 
     public function DetalleVuelo(Request $request)
     {
-       // dd($request->all());
         $date = new DateTime($request->get('fecha_salida'));
         $rutas = Ruta::Rutas($request->get('origen_id'),$request->get('destino_id'),$date);
 
@@ -85,7 +86,6 @@ class ClienteController extends Controller
             $objAUX->ninosbrazos=$c3;
             array_push($vuelos, $objAUX);
         }
-
         if(count($vuelos)){
                 return view('online.componentes.DetalleVuelo')->with('vuelos',$vuelos);
         }else{
@@ -130,7 +130,6 @@ class ClienteController extends Controller
          $boletos = array();
          $datos_vuelos = array();   
          $rutas = array();
-         $facturas = array();   
 
          // SAVE DATOS DE TARJETA
          $tarjeta = new Tarjeta($request->all());
@@ -141,7 +140,7 @@ class ClienteController extends Controller
 
          // // SAVE DATOS DE FACTURAS
 
-         $factura = new Factura($request->all());
+         $factura = new Factura();
          $factura->numero_factura = 'FA-'.random_int(10000, 99999);
          $factura->fecha = Carbon::now();
          $factura->importe_facturado = $request->importe_facturado;
@@ -151,7 +150,7 @@ class ClienteController extends Controller
          $factura->NinosBrazos_cant = $request->brazo;
          $factura->tarjeta_id = $tarjeta->id;
          $factura->save();
-         array_push($facturas, $factura);
+         
          // SAVE DATOS DE BOLETOS
          // dd(count($request->primerNombre));
         $user = Auth::guard('online')->user();
@@ -262,8 +261,13 @@ class ClienteController extends Controller
             $objAUX->origen=$origen;
             $objAUX->destino=$destino;
             array_push($datos_vuelos, $objAUX);
-        }    
-        return view('online.componentes.BoletoVendido')->with('datos_vuelos',$datos_vuelos)->with('boletos',$boletos)->with('facturas', $facturas)->with('rutas',$rutas);  
+        }
+
+        // ENVIO DE EMAIL
+        Mail::to(Auth::guard('online')->user()->email)->send(new CompraBoleto($boletos, Auth::guard('online')->user(), $datos_vuelos, $factura));
+
+
+        return view('online.componentes.BoletoVendido')->with('datos_vuelos',$datos_vuelos)->with('boletos',$boletos)->with('factura', $factura)->with('rutas',$rutas);  
 
     }
 
@@ -276,7 +280,6 @@ class ClienteController extends Controller
         $boletos = array();
         $datos_vuelos = array();
         $rutas = array();
-        $facturas = array();
 
          // SAVE DATOS DE TARJETA
 
@@ -288,7 +291,7 @@ class ClienteController extends Controller
 
          // // SAVE DATOS DE FACTURAS
         if(!isset($request->vuelta)){
-             $factura = new Factura($request->all());
+             $factura = new Factura();
              $factura->numero_factura = 'FA-'.random_int(10000, 99999);
              $factura->fecha = Carbon::now();
              $factura->importe_facturado = $request->importe_facturado;
@@ -298,7 +301,7 @@ class ClienteController extends Controller
              $factura->NinosBrazos_cant = $request->brazo;
              $factura->tarjeta_id = $tarjeta->id;
              $factura->save();
-             array_push($facturas, $factura);
+             
              // SAVE DATOS DE BOLETOS
              // dd(count($request->primerNombre));
             $user = Auth::guard('online')->user();
@@ -379,7 +382,6 @@ class ClienteController extends Controller
             $user = Auth::guard('online')->user();
             // $user = Auth::user();
              $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
-//dd($vuelos);
              foreach ($vuelos as $idvuelo) {
                  
                 for($key = 0; $key < count($request->primerNombre); $key++){
@@ -411,18 +413,38 @@ class ClienteController extends Controller
                     $Nboleto->save();
                     array_push($boletos, $Nboleto);    
                 }
-                $AuxVuelo = Vuelo::find($request->$idvuelo);
-                array_push($datos_vuelos, $AuxVuelo);
+                $AuxVuelo = Vuelo::find($idvuelo);
+                $segmentos=$AuxVuelo->segmentos;
+                if(count($segmentos)==1){
+                    $ruta=$segmentos[0]->ruta;
+                    $origen=$segmentos[0]->ruta->origen;
+                    $destino=$segmentos[0]->ruta->destino;
+                }else{
+                    foreach ($segmentos as $segmento) {
+                       dd("varios segmentos");
+                    }
+                }
+                $objAUX= new stdClass();
+                $objAUX->vuelo=$AuxVuelo;
+                $objAUX->ruta=$ruta;
+                $objAUX->origen=$origen;
+                $objAUX->destino=$destino;
+                array_push($datos_vuelos, $objAUX);
              }
            // dd($request->all());
 
         }
-        return view('online.componentes.BoletoVendido')->with('datos_vuelos',$datos_vuelos)->with('boletos',$boletos)->with('facturas', $factura)->with('rutas',$rutas);  
+
+        Mail::to(Auth::guard('online')->user()->email)->send(new CompraBoleto($boletos, Auth::guard('online')->user(), $datos_vuelos, $factura));
+
+
+        return view('online.componentes.BoletoVendido')->with('datos_vuelos',$datos_vuelos)->with('boletos',$boletos)->with('factura', $factura)->with('rutas',$rutas);  
 
     }
 
     public function DetalleRetorno2($cantidad,$ninosbrazos,$tarifa_vuelo,$vuelo,$retorno){
         $vuelo=Vuelo::find($vuelo);
+
         $segmentos=$vuelo->segmentos;
         if(count($segmentos)==1){
             $ruta=$segmentos[0]->ruta;
@@ -441,7 +463,7 @@ class ClienteController extends Controller
         $anterior->destino=$destino;
 
         $date = new DateTime($retorno);
-        $rutas = Ruta::Rutas($destino->id,$origen->id,$date);
+        $rutas = Ruta::Rutas($destino->sucursal_id,$origen->sucursal_id,$date);
         $vuelos= array();
          foreach ($rutas as $vueloID) {
             $vueloAux=Vuelo::find($vueloID->id);

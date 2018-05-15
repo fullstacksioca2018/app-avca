@@ -19,7 +19,6 @@
             
           </thead>
     
-   
    @foreach ($datos_vuelos as $dato_vuelo)
       @php
         $salida = Carbon::parse($dato_vuelo->vuelo->fecha_salida);
@@ -36,12 +35,22 @@
       <th class="thresumen">{{ $fecha->format('d/m/Y') }}</th>
       <th class="thresumen">Costo: {{ $dato_vuelo->ruta->tarifa_vuelo }}</th>
     </tr>
+
+      @foreach ($boletos as $boleto)
+        <tr>
+
+          <th class="thresumen">Pasajero: {{ $boleto->primerNombre }} {{ $boleto->apellido }}</th>
+
+          <th class="thresumen">Localizador: {{ $boleto->localizador }} </th>
+
+        </tr>
+      @endforeach
+    
+
     @endforeach
     <tr class="table-detalles">
-    @foreach($facturas as $fac)  
-      <th class="thresumen">Cantidad pasajeros: {{ $fac->ninos_cant + $fac->adultos_cant }}</th>
-      <th class="thresumen">Costo Total: {{ $fac->importe_facturado }}</th>
-    @endforeach
+      <th class="thresumen">Cantidad pasajeros: {{ $factura->ninos_cant + $factura->adultos_cant }}</th>
+      <th class="thresumen">Costo Total: {{ $factura->importe_facturado }}</th>
       <th class="thresumen2"></th>
       <th class="thresumen2"></th>
       <th></th>
@@ -114,7 +123,7 @@
         <li class="thresumen2">Los boletos no son reembolsables ni transferibles.</li>
         <li class="thresumen2">Si se imposibilita para viajar, los boletos tienen una duración de 1 año desde su compra</li>
         <li class="thresumen2">Las tarifas de AVCA permiten viajar de un destino a otro con un artículo de mano, de llevar otro se cobrará sobrecargo; de igual manera se aplicará sobrecargo a maletas con más de 23kgs</li>
-        
+        <li class="thresumen2">Utilice el localizador al momento de realizar su check-in</li>
       </div>
 
      </div>

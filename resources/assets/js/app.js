@@ -38,6 +38,8 @@ Vue.component('CargarJefeCabina', require('./components/operativo/CargarJefeCabi
 Vue.component('CargarSobrecargo', require('./components/operativo/CargarSobrecargo.vue'));
 Vue.component('CargarAeronave', require('./components/operativo/CargarAeronave.vue'));
 
+// Empleado
+Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
 
 Vue.component('panel', require('./components/reportes/panel.vue'));
 
