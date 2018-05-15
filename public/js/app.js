@@ -113459,6 +113459,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
+  computed: {
+    url: function url() {
+      return "http://" + window.location.host + '/reportes/panel';
+    }
+  },
   methods: {
     vuelos: function vuelos(estado) {
       // url='/api/reporte/vuelos/'+estado;
@@ -113934,8 +113939,17 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-                  _c("i", { staticClass: "fa fa-plus-square" }),
-                  _vm._v(" Ver más\n          ")
+                  _c(
+                    "a",
+                    {
+                      staticClass: "badge badge-light",
+                      attrs: { href: _vm.url }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-plus-square" }),
+                      _vm._v(" Ver más")
+                    ]
+                  )
                 ])
               ]
             )
@@ -113970,8 +113984,17 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-                  _c("i", { staticClass: "fa fa-plus-square" }),
-                  _vm._v(" Ver más\n          ")
+                  _c(
+                    "a",
+                    {
+                      staticClass: "badge badge-light",
+                      attrs: { href: _vm.url }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-plus-square" }),
+                      _vm._v(" Ver más")
+                    ]
+                  )
                 ])
               ]
             )
@@ -114006,8 +114029,17 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-                  _c("i", { staticClass: "fa fa-plus-square" }),
-                  _vm._v(" Ver más\n          ")
+                  _c(
+                    "a",
+                    {
+                      staticClass: "badge badge-light",
+                      attrs: { href: _vm.url }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-plus-square" }),
+                      _vm._v(" Ver más")
+                    ]
+                  )
                 ])
               ]
             )
@@ -114044,8 +114076,17 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
-                  _c("i", { staticClass: "fa fa-plus-square" }),
-                  _vm._v(" Ver más\n          ")
+                  _c(
+                    "a",
+                    {
+                      staticClass: "badge badge-light",
+                      attrs: { href: _vm.url }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-plus-square" }),
+                      _vm._v(" Ver más")
+                    ]
+                  )
                 ])
               ]
             )
@@ -114078,8 +114119,17 @@ var render = function() {
                     "div",
                     { staticClass: "stats", staticStyle: { padding: "5px" } },
                     [
-                      _c("i", { staticClass: "fa fa-history" }),
-                      _vm._v(" Refrescar\n              ")
+                      _c(
+                        "a",
+                        {
+                          staticClass: "badge badge-secondary",
+                          attrs: { href: "#" }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-history" }),
+                          _vm._v(" Refrescar")
+                        ]
+                      )
                     ]
                   ),
                   _vm._v(" "),
@@ -114087,8 +114137,17 @@ var render = function() {
                     "div",
                     { staticClass: "stats", staticStyle: { padding: "5px" } },
                     [
-                      _c("i", { staticClass: "fa fa-plus-square" }),
-                      _vm._v(" Ver más\n              ")
+                      _c(
+                        "a",
+                        {
+                          staticClass: "badge badge-light",
+                          attrs: { href: _vm.url }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-plus-square" }),
+                          _vm._v(" Ver más")
+                        ]
+                      )
                     ]
                   )
                 ])
@@ -114124,8 +114183,17 @@ var render = function() {
                     "div",
                     { staticClass: "stats", staticStyle: { padding: "5px" } },
                     [
-                      _c("i", { staticClass: "fa fa-history" }),
-                      _vm._v(" Refrescar\n              ")
+                      _c(
+                        "a",
+                        {
+                          staticClass: "badge badge-secondary",
+                          attrs: { href: "#" }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-history" }),
+                          _vm._v(" Refrescar")
+                        ]
+                      )
                     ]
                   ),
                   _vm._v(" "),
@@ -114133,8 +114201,17 @@ var render = function() {
                     "div",
                     { staticClass: "stats", staticStyle: { padding: "5px" } },
                     [
-                      _c("i", { staticClass: "fa fa-plus-square" }),
-                      _vm._v(" Ver más\n              ")
+                      _c(
+                        "a",
+                        {
+                          staticClass: "badge badge-light",
+                          attrs: { href: _vm.url }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-plus-square" }),
+                          _vm._v(" Ver más")
+                        ]
+                      )
                     ]
                   )
                 ])

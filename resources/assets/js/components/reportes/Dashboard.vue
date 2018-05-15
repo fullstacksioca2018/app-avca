@@ -17,7 +17,7 @@
               <h4 class="card-title">12</h4>
             </div>
             <div slot="footer">
-              <i class="fa fa-plus-square"></i> Ver más
+              <a v-bind:href="url" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
             </div>
           </stats-card>
         </div>
@@ -32,7 +32,7 @@
               <h4 class="card-title">120</h4>
             </div>
             <div slot="footer">
-              <i class="fa fa-plus-square"></i> Ver más
+              <a v-bind:href="url" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
             </div>
           </stats-card>
         </div>
@@ -47,7 +47,7 @@
               <h4 class="card-title">3</h4>
             </div>
             <div slot="footer">
-              <i class="fa fa-plus-square"></i> Ver más
+              <a v-bind:href="url" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
             </div>
           </stats-card>
         </div>
@@ -62,7 +62,7 @@
               <h4 class="card-title">0</h4>
             </div>
             <div slot="footer">
-              <i class="fa fa-plus-square"></i> Ver más
+              <a v-bind:href="url" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
             </div>
           </stats-card>
         </div>
@@ -79,10 +79,10 @@
             <template slot="footer">
               <div class="row">
                 <div class="stats" style="padding:5px">
-                  <i class="fa fa-history"></i> Refrescar
+                  <a href="#" class="badge badge-secondary"><i class="fa fa-history"></i> Refrescar</a>
                 </div>
                 <div class="stats" style="padding:5px">
-                  <i class="fa fa-plus-square"></i> Ver más
+                  <a v-bind:href="url" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
                 </div>
               </div>
             </template>
@@ -98,10 +98,10 @@
             <template slot="footer">
               <div class="row">
                 <div class="stats" style="padding:5px">
-                  <i class="fa fa-history"></i> Refrescar
+                  <a href="#" class="badge badge-secondary"><i class="fa fa-history"></i> Refrescar</a>
                 </div>
                 <div class="stats" style="padding:5px">
-                  <i class="fa fa-plus-square"></i> Ver más
+                  <a v-bind:href="url" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
                 </div>
               </div>
             </template>
@@ -135,6 +135,11 @@
         abiertos:null,
         demorados:null,
         cancelados:null
+      }
+    },
+    computed:{
+    url: function() {
+        return "http://"+window.location.host+'/reportes/panel';
       }
     },
       methods:{
