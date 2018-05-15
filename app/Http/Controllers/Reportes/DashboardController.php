@@ -13,7 +13,7 @@ class DashboardController extends Controller
     	return json_decode(DW_Vuelo::VuelosEstado($estado));
     }
 
-    public function vuelosEstado($estado,$fecha){
+    public function vuelosEstadofecha($estado,$fecha){
     	$actual2=Carbon::now();
 		$mes2=DATE("m",strtotime($salidaCarbon->toDateTimeString()));
 		$year2=DATE("Y",strtotime($salidaCarbon->toDateTimeString()));

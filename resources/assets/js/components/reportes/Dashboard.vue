@@ -130,31 +130,31 @@
           data:[[35200,43800,32200,35000]],
           label:["AVCA"],
           labels:["10 Mayo","11 Mayo","12 Mayo","13 Mayo"]
-        }
+        },
         ejecutados:null,
         abiertos:null,
         demorados:null,
         cancelados:null
-      },
-      methods:{
-        vuelos(estado){
-          url='/api/reporte/vuelos/'+estado;
-          axios({
-                method: 'get',
-                url: url       
-            }).then((response) =>{
-                this.ejecutados=response.data;
-            }).catch((err)=>{
-                Vue.toasted.show('Ha ocurrido un error', {
-                    theme: "primary", 
-                  position: "bottom-right",  
-                  duration : 2000
-                });
-                console.log(err);
-            });
-        }
       }
     },
+      methods:{
+        vuelos(estado){
+          // url='/api/reporte/vuelos/'+estado;
+          // axios({
+          //       method: 'get',
+          //       url: url       
+          //   }).then((response) =>{
+          //       this.ejecutados=response.data;
+          //   }).catch((err)=>{
+          //       Vue.toasted.show('Ha ocurrido un error', {
+          //           theme: "primary", 
+          //         position: "bottom-right",  
+          //         duration : 2000
+          //       });
+          //       console.log(err);
+          //   });
+        }
+      },
     created: function(){
       this.vuelos("abierto")
       this.vuelos("ejecutado")
