@@ -14,5 +14,9 @@ class DW_Demorado extends Model
     ];
     
 
-
+    public function VuelosDemoradosFecha($query, $estado,$inicio,$final){
+    	return $query->whereDate('salida','>=',$inicio)
+    				->whereDate('salida','<=',$final)
+    				->count();
+    	}
 }

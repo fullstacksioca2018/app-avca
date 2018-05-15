@@ -14,6 +14,7 @@ class DW_Vuelo extends Model
 			,'aerolinea'
 			,'fecha_creacion'
 			,'fecha_cambio_estado'
+			,'salida'
     ];
 
 	public function ruta()
@@ -24,10 +25,10 @@ class DW_Vuelo extends Model
     	return $query->where('estado', '=', $estado)->count();
     }
 
-    public function scopeVuelosEstado($query, $estado,$fecha){
+    public function scopeVuelosEstadoFecha($query, $estado,$inicio,$final){
     	return $query->where('estado', '=', $estado)
-    				->whereDate('fecha_creacion','>=',$fecha)
-    				->whereDate('fecha_cambio_estado','<=',$fecha)
+    				->whereDate('salida','>=',$inicio)
+    				->whereDate('salida','<=',$final)
     				->count();
     }
 }
