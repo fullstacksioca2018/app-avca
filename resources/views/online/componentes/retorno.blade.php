@@ -332,7 +332,7 @@
 
                 <a href="{{ asset('online/img/portfolio/cumana/cumana3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
 
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                <a href="{{ route('destino.cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">

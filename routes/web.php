@@ -56,7 +56,17 @@ Route::group(['prefix' => 'cliente'], function() {
 
     Route::post('/checkin', 'Online\ClienteController@Checkin')->name('cliente.Checkin'); 
 
+    
+
 });
+
+/*Rutas destinos*/
+Route::group(['prefix' => 'destino'], function() {
+    
+     Route::get('/cumana', 'Online\DestinoController@cumana')->name('destino.cumana'); 
+
+});
+
 
 /* AUTH ONLINE*/
 Route::group(['prefix' => 'online'], function () {
