@@ -21,21 +21,13 @@ Vue.component('vacante-filter', require('./components/backend/vacante/VacanteFil
 Vue.component('aspirante-table', require('./components/backend/aspirante/AspiranteTable'));
 Vue.component('aspirante-status', require('./components/backend/aspirante/AspiranteStatus'));
 Vue.component('contratacion', require('./components/backend/rrhh/contratacion/Contratacion'));
-//RUTAS
 Vue.component('Rutas', require('./components/operativo/AdministracionRutas.vue'));
-//VUELOS
 Vue.component('Vuelos', require('./components/operativo/PlanificarVuelos.vue'));
 Vue.component('VuelosAbiertos', require('./components/operativo/VuelosAbiertos.vue'));
-Vue.component('VuelosCerrados', require('./components/operativo/VuelosCerrados.vue'));
-Vue.component('VuelosRetrasados', require('./components/operativo/VuelosRetrasados.vue'));
-Vue.component('VuelosEjecutados', require('./components/operativo/VuelosEjecutados.vue'));
-Vue.component('VuelosCancelados', require('./components/operativo/VuelosCancelados.vue'));
-//TRIPULACION
-Vue.component('CargarPilotos', require('./components/operativo/CargarPilotos.vue'));
-Vue.component('CargarCopilotos', require('./components/operativo/CargarCopilotos.vue'));
-Vue.component('CargarJefeCabina', require('./components/operativo/CargarJefeCabina.vue'));
-Vue.component('CargarSobrecargo', require('./components/operativo/CargarSobrecargo.vue'));
-Vue.component('CargarAeronave', require('./components/operativo/CargarAeronave.vue'));
+Vue.component('Taquilla', require('./components/operativo/AdministracionTaquilla.vue'));
+Vue.component('SoloIda', require('./components/operativo/taquilla/SoloIda.vue'));
+Vue.component('IdayVuelta', require('./components/operativo/taquilla/IdayVuelta.vue'));
+Vue.component('Multidestino', require('./components/operativo/taquilla/Multidestino.vue'));
 
 // Empleado
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));

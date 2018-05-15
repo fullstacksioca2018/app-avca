@@ -27,8 +27,15 @@ class Vuelo extends Model
        
     }
 
+<<<<<<< HEAD
     public function tripulantes(){
     	return $this->belongsToMany('App\Models\operativo\Tripulante');
+=======
+    public function tripulantes()
+    {
+        return $this->hasMany('App\Models\operativo\Tripulante','vuelo_id','id');
+       
+>>>>>>> parent of 845d807... integracion con machado
     }
 
 }

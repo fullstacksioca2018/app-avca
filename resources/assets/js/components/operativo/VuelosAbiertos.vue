@@ -82,49 +82,21 @@
 
     
     <!-- Modal Actualizar -->
-    <b-modal  ref="myModalRef" size="lg" id="VuelosAbiertos" @hide="resetModal" :title="modalInfo.title"  hide-footer>
+    <b-modal  ref="myModalRef" size="lg" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>
     <div v-if="modalInfo.content != ''">
     <b-form @submit.prevent="ver()">
       
-     <!-- <h3 align="center">{{modalInfo.title}} </h3> <br> -->
-     <div class="card-header">
-      
-         <h5 align="center">
-         <label class="infoTitulo" for="inputPuesto">Fecha: {{modalInfo.content.Fecha}}</label>
-         <label class="infoTitulo" for="inputPuesto">Hora: {{modalInfo.content.Hora}}</label>
-        </h5>
-       
-     </div>
-     
-      
-      
-     <table class="table table-hover table-striped"> 
-       <thead>
-         <th> # </th>
-         <th> Nombre </th>
-         <th> Experiencia  </th>
-         <th> Licencia </th>
-       </thead>
-       <tbody>
-         <tr v-for="tripulante in modalInfo.content.tripulantes"> 
-           <td> {{tripulante.rango}} </td>
-           <td> {{tripulante.empleado.nombre + " " + tripulante.empleado.apellido}} </td>
-           <td> {{sumar(tripulante.empleado.experiencia)}} </td>
-           <td> {{tripulante.licencia}} </td>
-         </tr>
-         <br />
+        <b-tabs pills card>
+    <b-tab title="Vuelo" active>
+      Vuelo
+    </b-tab>
+    <b-tab title="Tripulante">
+     Tripulantes
+    </b-tab>
+   
+  </b-tabs>
 
-       </tbody>
-     </table>
-      <div slot="modal-footer" class="w-100">
-            <div v-for="segmento in modalInfo.content.segmentos">
-              <div class="row">
-              <div class="form-gruop">&nbsp;&nbsp;<strong>Ruta:</strong> {{segmento.ruta.sigla}} <strong>||</strong> Modelo de Aeronave: {{segmento.aeronave.modelo}} <strong>||</strong> Matricula: {{segmento.aeronave.matricula}} <strong>||</strong> Ultimo Mantenimiento: {{segmento.aeronave.ultimo_mantenimiento}} <hr size="5" style="color: #0056b2;" />
-              </div>
-
-          </div>                      
-         </div>
-      </div>
+      
     </b-form>
     </div>
      
@@ -160,7 +132,7 @@ export default {
       data: null,
       fields: [      
         { key: 'N_Vuelo',    label: 'Numero de Vuelo',  sortable: true },
-        { key: 'Ruta',   label: 'Segmentos', sortable: true },
+        { key: 'Ruta',   label: 'Siglas', sortable: true },
         { key: 'Fecha', label: 'Fecha ', sortable: true },
         { key: 'Hora',  label: 'Hora ',  sortable: true },
         { key: 'Estado',    label: 'Estado ', sortable: true },
@@ -173,18 +145,7 @@ export default {
       sortBy: null,
       sortDesc: false,
       filter: null,
-      modalInfo: { title: '', content: '' },
-      tripulantes: [
-        {
-          piloto: [],
-          copiloto: [],
-          jefe_cabina: [],
-          sobrecargo1: [], 
-          sobrecargo2: [], 
-          sobrecargo3: [], 
-        }
-      ]
-
+      modalInfo: { title: '', content: '' }
       
     }
   },
@@ -200,10 +161,7 @@ export default {
     info (item, index, button) {
       this.modalInfo.content = item;
       this.modalInfo.title = "Datos del Vuelo: " + item.N_Vuelo;
-  
-            console.log(this.tripulantes);
-       
-             this.$root.$emit('bv::show::modal', 'VuelosAbiertos', button)
+      this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
    
     resetModal () {
@@ -230,7 +188,7 @@ export default {
       this.items = [];
       for (var i= 0; i < this.data.length; i++){
          //var elementos=this.data[i].fecha_salida.split(' ')
-         console.log('valor de iten en '+i+' es '+JSON.stringify(this.data[i]))
+         console.log('valor de iten en'+i+'es '+JSON.stringify(this.data[i]))
   
         if(this.data[i].vuelo.segmentos.length == 0){
          /*  this.items.push({
@@ -254,12 +212,8 @@ export default {
               Ruta: rutas,
               Fecha: fecha,
               Hora: hora,
-              Estado: this.data[i].vuelo.estado,
-              tripulantes: this.data[i].vuelo.tripulantes,
-              segmentos: this.data[i].vuelo.segmentos   
+              Estado: this.data[i].vuelo.estado     
             });
-            console.log('item['+i+'].segmentos'+JSON.stringify(this.data[i].vuelo.segmentos))
-           
           }
         }
         
@@ -272,7 +226,7 @@ export default {
         method: 'post',
         url: '/rutas/rutas',
         data: {
-         N_Vuelos: this.modalInfo.content.N_Vuelos,
+          N_Vuelos: this.modalInfo.content.N_Vuelos,
          Ruta: this.modalInfo.content.segmentos.ruta.sigla,
          Fecha: this.modalInfo.content.fecha_salida,
          Hora: this.modalInfo.content.fecha_salida,
@@ -338,25 +292,6 @@ export default {
 	        duration : 2000
        });
        });
-    },
-    sumar(experiencias){
-      var horas= 0;
-      var minutos = 0;
-      var segundos = 0;
-      for(var i = 0; i < experiencias.length; i++){
-        horas += parseInt(experiencias[i].horas.split(':')[0]);
-        minutos += parseInt(experiencias[i].horas.split(':')[1]);
-        segundos += parseInt(experiencias[i].horas.split(':')[2]);        
-      }
-      if(segundos % 60){
-        minutos += parseInt(segundos / 60); 
-        segundos = segundos % 60;       
-      }
-      if(minutos % 60){
-        horas += parseInt(minutos / 60);
-        minutos = minutos % 60;
-      }
-      return horas + ":" + minutos + ":" + segundos;
     }
   }
 }
