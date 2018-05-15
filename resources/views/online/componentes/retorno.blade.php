@@ -34,20 +34,24 @@
   <!-- ======================
     INICIO DEL HASTA
   ======================= -->
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+
+
       <form method="get" action="{{ URL::to('/online/cliente/DetalleRetorno') }}" onsubmit="myFunction()">
         
           <div class="form-row">
   
         <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0"> 
 
-       <div class="col col-md-4  col-lg-3">
+       <div class="col-md-6">
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
       
             <select data-placeholder="Ciudad-Aeropuerto" name="origen_id" class="chosen-select impout3" class="form-control impout3" tabindex="2">
             <option value="#">Cuidad o aeropuerto</option>  
               @foreach ($sucursales as $sucursal)
-                    <option value="{{ $sucursal->id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+                    <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
               @endforeach
             </select>
              <i class="fa fa-map-marker prefix icociudad2"></i>
@@ -57,14 +61,14 @@
 
 <!-- JOooodeeerrr segundo select -->
 
-  <div class="col col-md-4  col-lg-3">
+  <div class="col-md-6">
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
       
             <select data-placeholder="Ciudad-Aeropuerto" name="destino_id" class="chosen-select impout3" class="form-control impout3" tabindex="2">
             <option value="#">Cuidad o aeropuerto</option>              
               @foreach ($sucursales as $sucursal)
-                    <option value="{{ $sucursal->id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+                    <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
               @endforeach
             </select>
              <i class="fa fa-map-marker prefix icociudad2"></i>
@@ -87,14 +91,14 @@
 
 
 
-<div class="col-md-2 ">            
+<div class="col-md-4">            
             <label for="from" class="h">Fecha de ida:</label>           
             <input type="date" class="form-control impout3" name="fecha_salida">       
              <i class="fa fa-calendar prefix icocalendario"></i>
                  
         </div>
 
-<div class="col-md-2 ">            
+<div class="col-md-4">            
             <label for="to" class="h">De regreso:</label>           
             <input type="date" class="form-control impout3" name="fecha_retorno">       
              <i class="fa fa-calendar prefix icocalendario"></i>                 
@@ -164,7 +168,7 @@
 
 
   <div class="form-row">
-    <input type="submit" value="BUSCAR" class="btn btn-success">
+    <input type="submit" value="BUSCAR" class="btn btn-primary">
   </div>
 
 
@@ -180,6 +184,8 @@
       </div>
     <!-- fin del Card body -->
 
+</div>
+</div>
 </div>
 
  <!-- ============================

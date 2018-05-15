@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sucursal extends Model
 {
     protected $table = "sucursales";
+    protected $primaryKey = "sucrusal_id";
     protected $fillable = [
 
 		'sucrusal_id',
