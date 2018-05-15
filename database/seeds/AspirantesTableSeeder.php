@@ -11,6 +11,6 @@ class AspirantesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\rrhh\Aspirante::class, 500)->create();
+        factory(\App\Models\rrhh\Aspirante::class, 250)->create();
     }
 }

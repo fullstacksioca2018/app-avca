@@ -192,7 +192,7 @@
                   <label for="sucursal">Sucursal</label>
                   <select name="sucursal" id="sucursal" class="form-control">
                     <option value="" selected="selected">Seleccione</option>
-                    <option :value="sucursal.sucursal_id" v-for="sucursal in sucursales" :key="sucursal.sucursal_id">{{ sucursal.nombre }}</option>
+                    <option :value="sucursal.sucursal_id" v-for="sucursal in sucursales" :key="sucursal.id">{{ sucursal.nombre }}</option>
                   </select>
                 </div>
               </div>
@@ -469,8 +469,7 @@
       obtenerTabulador(tabulador) {
         console.log(tabulador);
       },
-      obtenerTabuladorSalarial() {
-        console.log(this.$refs);
+      obtenerTabuladorSalarial() {        
         /*axios.get('/rrhh/backend/contratacion/obtener-tabulador', {
           params: {
             tabulador_salarial_id: this.cargo.tabulador_salarial
