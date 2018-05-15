@@ -3,6 +3,7 @@
 
         Route::get('/','Operativo\PlanificarRutaController@ruta');
         Route::get('/rutas','Operativo\PlanificarRutaController@rutas');
+        Route::get('/rutas/all','Operativo\PlanificarRutaController@rutasTodas');
         Route::post('/rutas','Operativo\PlanificarRutaController@ModificarRuta');
         Route::post('/rutas/deshabilitar','Operativo\PlanificarRutaController@EliminarRuta');
         Route::post('/rutas/habilitar','Operativo\PlanificarRutaController@HabilitarRuta');

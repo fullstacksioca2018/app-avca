@@ -23,7 +23,14 @@ class Vuelo extends Model
 
     public function segmentos()
     {
-    	return $this->hasMany('App\Models\operativo\Segmento','vuelo_id','id');
+        return $this->hasMany('App\Models\operativo\Segmento','vuelo_id','id');
+       
+    }
+
+    public function tripulantes()
+    {
+        return $this->hasMany('App\Models\operativo\Tripulante','vuelo_id','id');
+       
     }
 
 }

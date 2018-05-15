@@ -22,6 +22,12 @@ Vue.component('aspirante-table', require('./components/backend/aspirante/Aspiran
 Vue.component('aspirante-status', require('./components/backend/aspirante/AspiranteStatus'));
 Vue.component('contratacion', require('./components/backend/rrhh/contratacion/Contratacion'));
 Vue.component('Rutas', require('./components/operativo/AdministracionRutas.vue'));
+Vue.component('Vuelos', require('./components/operativo/PlanificarVuelos.vue'));
+Vue.component('VuelosAbiertos', require('./components/operativo/VuelosAbiertos.vue'));
+Vue.component('Taquilla', require('./components/operativo/AdministracionTaquilla.vue'));
+Vue.component('SoloIda', require('./components/operativo/taquilla/SoloIda.vue'));
+Vue.component('IdayVuelta', require('./components/operativo/taquilla/IdayVuelta.vue'));
+Vue.component('Multidestino', require('./components/operativo/taquilla/Multidestino.vue'));
 
 
 Vue.component('panel', require('./components/reportes/panel.vue'));
