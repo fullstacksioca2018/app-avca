@@ -36,6 +36,9 @@
   <!-- ======================
     INICIO DEL HASTA
   ======================= -->
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+
   {!! Form::open(['route' => ['cliente.DetalleMultidestino'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
 
   <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
@@ -43,7 +46,7 @@
   
     <div class="form-row p-1" id="vuelo1">
 
-       <div class="col col-md-4  col-lg-3">
+       <div class="col col-md-4">
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
       
@@ -60,7 +63,7 @@
 
 <!-- JOooodeeerrr segundo select -->
 
-  <div class="col col-md-4  col-lg-3">
+  <div class="col col-md-4">
         <label for="exampleFormControlSelect1" class="h">Hasta:</label>
         <div class="form-group">         
       
@@ -74,7 +77,7 @@
           </div>  
         </div>
 
-      <div class="col-md-2">
+      <div class="col-md-4">
         <label for="coñooo" class="h">Fecha ida:</label>
         <input type="date" name="fecha_salida[]" class="form-control impout3">
         <i class="fa fa-calendar prefix icocalendario"></i>
@@ -93,7 +96,7 @@
 
 
 
-       <div class="col col-md-4  col-lg-3">
+       <div class="col col-md-4">
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
       
@@ -110,7 +113,7 @@
 
 <!-- JOooodeeerrr segundo select -->
 
-  <div class="col col-md-4  col-lg-3">
+  <div class="col col-md-4">
         <label for="exampleFormControlSelect1"  class="h">Hasta:</label>
         <div class="form-group">         
       
@@ -123,7 +126,7 @@
              <i class="fa fa-map-marker prefix icociudad2"></i>
           </div>  
         </div>
-<div class="col-md-2 ">            
+<div class="col-md-4">            
             <label for="coñooo" class="h">Fecha ida:</label>
             <input type="date" name="fecha_salida[]" class="form-control impout3">       
           <i class="fa fa-calendar prefix icocalendario"></i>
@@ -139,7 +142,7 @@
   <div class="form-row p-1" id="vuelo3">
 
 
-       <div class="col col-md-4  col-lg-3">
+       <div class="col col-md-4">
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
       
@@ -156,7 +159,7 @@
 
 <!-- JOooodeeerrr segundo select -->
 
-  <div class="col col-md-4  col-lg-3">
+  <div class="col col-md-4">
         <label for="exampleFormControlSelect1" class="h">Hasta:</label>
         <div class="form-group">         
       
@@ -169,7 +172,7 @@
              <i class="fa fa-map-marker prefix icociudad2"></i>
           </div>  
         </div>
-<div class="col-md-2 ">            
+<div class="col-md-4 ">            
             <label for="coñooo" class="h">Fecha ida:</label>
             <input type="date" name="fecha_salida[]" class="form-control impout3">       
           <i class="fa fa-calendar prefix icocalendario"></i>
@@ -186,7 +189,7 @@
   <div class="form-row p-1" id="vuelo4">
 
 
-       <div class="col col-md-4  col-lg-3">
+       <div class="col col-md-4">
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
       
@@ -203,7 +206,7 @@
 
 <!-- JOooodeeerrr segundo select -->
 
-  <div class="col col-md-4  col-lg-3">
+  <div class="col col-md-4">
         <label for="exampleFormControlSelect1"  class="h">Hasta:</label>
         <div class="form-group">         
       
@@ -216,7 +219,7 @@
              <i class="fa fa-map-marker prefix icociudad2"></i>
           </div>  
         </div>
-<div class="col-md-2 ">            
+<div class="col-md-4">            
             <label for="coñooo" class="h">Fecha ida:</label>
             <input type="date" name="fecha_salida[]" class="form-control impout3">       
           <i class="fa fa-calendar prefix icocalendario"></i>
@@ -231,9 +234,13 @@
 <!-- ======================
    Botones Sumar y Restar vuelos
   ======================= -->
+<div class="mr-5">
+  
 
 <button type="button" class="btn btn btn-sm btn-primary ion-plus" id="masV" onclick="masvuelos()"></button>
 <button type="button" class="btn btn btn-sm btn-danger ion-minus-round" id="menosV" onclick="menosvuelos()"></button>
+
+</div>
 
 <!-- ======================
     INICIO DEL Calendario
@@ -268,7 +275,7 @@
 </div>
 
   <div class="form-row">
-    <input type="submit" value="BUSCAR" class="btn btn-success">
+    <input type="submit" value="BUSCAR" class="btn btn-primary">
   </div>
 
 
@@ -278,21 +285,17 @@
     FIN DEL Calendario
   ======================= -->
 
-{!! Form::close() !!} <!-- ======================
-    FIN DEL Form
-  ======================= -->
-
-      </div>
-    <!-- fin del Card body -->
-
-</div>
-
+{!! Form::close() !!} 
  <!-- ============================
     FIN DEL FORMULARIO DE COMPRAS
   ==============================-->
 
-
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
 
     <div id="intro-carousel" class="owl-carousel" >
       <div class="item" style="background-image: url('{{ asset('online/img/intro-carousel/1.jpg') }} ');"></div>
@@ -508,7 +511,6 @@
           </div>
 
         </div>
-          <h6 class="float-md-right"><a href="#"><b>+DESTINOS</b></a></h6>
       </div>
 
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

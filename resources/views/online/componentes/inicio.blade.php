@@ -35,118 +35,113 @@
   <!-- ======================
     INICIO DEL HASTA
   ======================= -->
-  @if (Auth::guest())
-    {!! Form::open(['route' => ['cliente.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
-  @else
-    <form method="get" onsubmit="myFunction()" action="{{ URL::to('/online/cliente/DetalleVuelo') }}">
-    @endif
-      <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0"> 
-      
-    <div class="form-row">
-      
-
-       <div class="col col-md-4  col-lg-3">
-        <label for="exampleFormControlSelect1" class="h">Desde:</label>
-        <div class="form-group">         
-      
-            <select data-placeholder="Ciudad-Aeropuerto" name="origen_id" class="chosen-select impout3" class="form-control impout3" tabindex="2">
-              <option value="#">Cuidad o aeropuerto</option>
-              @foreach ($sucursales as $sucursal)
-                    <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
-              @endforeach
-            </select>
-             <i class="fa fa-map-marker prefix icociudad2"></i>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+        
+          @if (Auth::guest())
+            {!! Form::open(['route' => ['cliente.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
+          @else
+            <form method="get" onsubmit="myFunction()" action="{{ URL::to('/online/cliente/DetalleVuelo') }}">
+            @endif
+              <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0"> 
+              
+              <div class="form-row">
+                {{--  SELECT DESDE  --}}
+                <div class="col col-md-6">
+                  <label for="exampleFormControlSelect1" class="h">Desde:</label>
+                  <div class="form-group">         
+                
+                    <select data-placeholder="Ciudad-Aeropuerto" name="origen_id" class="chosen-select impout3" class="form-control impout3" tabindex="2">
+                      <option value="#">Cuidad o aeropuerto</option>
+                      @foreach ($sucursales as $sucursal)
+                            <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+                      @endforeach
+                    </select>
+                    <i class="fa fa-map-marker prefix icociudad2"></i>
+                    
+                  </div>  
+                </div>  
             
-          </div>  
-        </div>  
-  
 
-<!-- JOooodeeerrr segundo select -->
+                {{--  SELECT HASTA  --}}
+                <div class="col-md-6">
+                  <label for="exampleFormControlSelect1" class="h">Hasta:</label>
+                  <div class="form-group">         
+                
+                    <select data-placeholder="Ciudad-Aeropuerto"  name="destino_id" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
+                      <option value="#">Cuidad o aeropuerto</option>
+                      @foreach ($sucursales as $sucursal)
+                            <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+                      @endforeach
+                    </select>
+                    <i class="fa fa-map-marker prefix icociudad2"></i>
+                  </div>  
+                </div>
 
-  <div class="col col-md-4  col-lg-3">
-        <label for="exampleFormControlSelect1" class="h">Hasta:</label>
-        <div class="form-group">         
-      
-            <select data-placeholder="Ciudad-Aeropuerto"  name="destino_id" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
-              <option value="#">Cuidad o aeropuerto</option>
-              @foreach ($sucursales as $sucursal)
-                    <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
-              @endforeach
-            </select>
-             <i class="fa fa-map-marker prefix icociudad2"></i>
-          </div>  
+              </div> <!-- fin de form-row -->
+
+              <!-- Grd row -->
+
+              <!-- ======================
+                  FIN DESDE / HASTA
+                ======================= -->
+
+              <!-- ======================
+                  INICIO DEL Calendario
+                ======================= -->
+
+              <div class="form-row">
+
+                  <div class="col-md-4">
+                    <label for="coñooo" class="h">Fecha ida:</label>
+                    <input type="date" name="fecha_salida" class="form-control impout3" placeholder="DD/MM/YYY">
+                    <i class="fa fa-calendar prefix icocalendario"></i>
+                  </div>
+
+                  <div class="col col-md-1 col-lg-1">
+                    <label for="exampleFormControlSelect1" class="h">Adultos:</label>
+                    <div class="form-group">
+                      <input type="number" id="inputadultos" min="1" max="5" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')">
+                    </div>
+                  </div>
+
+                  <div class="col col-md-1 col-lg-1">
+                    <label for="exampleFormControlSelect1" class="h">Niños:</label>
+                    <div class="form-group">
+                      <input type="number" id="inputninos" min="0" max="5" class="form-control" value="0" name="ninos" onchange="validarN('inputninos')">
+                    </div>
+                  </div>
+
+              </div>
+
+              <!-- ======================
+                FIN DEL Calendario
+              ======================= -->
+
+              {{-- ====================================== 
+                              Contador de personas
+                  ====================================== --}}              
+              <div id="contenedorPersonas"> 
+              </div>              
+
+              {{--  Boton de envio  --}}
+              <div class="form-row">
+                  <input type="submit" value="BUSCAR" class="btn btn-primary">
+              </div>
+            {!! Form::close() !!} 
+            <!-- ======================
+            FIN DEL Form
+            ======================= -->
+          </div>
         </div>
-
-
-    
-    </div> <!-- fin de form-row -->
-
-    <!-- Grd row -->
-
-<!-- ======================
-    FIN DEL DESDE
-  ======================= -->
-
-<!-- ======================
-    INICIO DEL Calendario
-  ======================= -->
-
- <div class="form-row">
-
-
-    <div class="col-md-2 ">
-      <label for="coñooo" class="h">Fecha ida:</label>
-      <input type="date" name="fecha_salida" class="form-control impout3" placeholder="DD/MM/YYY">
-      <i class="fa fa-calendar prefix icocalendario"></i>
-    </div>
-
-    <div class="col col-md-1 col-lg-1">
-      <label for="exampleFormControlSelect1" class="h">Adultos:</label>
-      <div class="form-group">
-        <input type="number" id="inputadultos" min="1" max="5" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')">
       </div>
     </div>
-
-    <div class="col col-md-1 col-lg-1">
-      <label for="exampleFormControlSelect1" class="h">Niños:</label>
-      <div class="form-group">
-        <input type="number" id="inputninos" min="0" max="5" class="form-control" value="0" name="ninos" onchange="validarN('inputninos')">
-      </div>
     </div>
-
-
-
- </div>
-
-{{-- ====================================== 
-                Contador de personas
-     ====================================== --}}
-<div id="contenedorPersonas">
-</div>
-
-  <div class="form-row">
-    <input type="submit" value="BUSCAR" class="btn btn-success">
-  </div>
-
-
-  
-
-<!-- ======================
-    FIN DEL Calendario
-  ======================= -->
-
-{!! Form::close() !!} <!-- ======================
-    FIN DEL Form
-  ======================= -->
-
-      </div>
     <!-- fin del Card body -->
 
-</div>
-
- <!-- ============================
-    FIN DEL FORMULARIO DE COMPRAS
-  ==============================-->
+    <!-- ============================
+        FIN DEL FORMULARIO DE COMPRAS
+      ==============================-->
 
 
     </div>
@@ -365,7 +360,6 @@
           </div>
 
         </div>
-          <h6 class="float-md-right"><a href="#"><b>+DESTINOS</b></a></h6>
       </div>
 
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
