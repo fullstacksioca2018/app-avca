@@ -23,7 +23,7 @@
                       </div>
                     </div>
                      <div class="col-md-6 col-form-label">
-                      <label id="fecha_salida_label" for="destino_id">Fecha de Salida</label>
+                      <label id="fecha_salida_label" for="destino_id">Fecha de Salidaaaaaa</label>
                       <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">
