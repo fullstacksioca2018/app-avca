@@ -4,8 +4,7 @@
 {{-- {{ dd($paquetes) }} --}}
 
  <div class="container-detalles">
-          <div class="titulo_detalles"><b>Has seleccionado un viaje multidestino con salida desde (insertar origen) para el día (fecha ejemplo lun, 02/05)</b></div>
-          <p class="pdetalles"><b>Precio de vuelo (tipo de vuelo) para (cantidad) pasajeros</b></p>
+          <h2 class="pdetalles"><b>Los precios son por persona, por viaje e incluyen todos los impuestos y cargos; sin embargo, no incluyen los cargos de equipaje</b></h2>
 @php
 	$contadorP=1;
 @endphp

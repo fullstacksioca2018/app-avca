@@ -23,7 +23,7 @@
  <script src="{{ asset('online/plugins/lib/datepicker/jquery-ui-1.12.1.custom/datepicker-es.js') }}"></script>
   <script src="{{ asset('online/plugins/lib/datepicker/jquery-ui-1.12.1.custom/maindatepicker.js') }}"></script>
 
-<link rel="stylesheet" href="{{ asset('online/plugins/lib/font-awesome/css/font-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ asset('online/plugins/lib/font-awesome/css/font-awesome.css') }}">
 <!-- Bootstrap CSS File -->
   <link href="{{ asset('online/plugins/lib/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 
@@ -35,7 +35,7 @@
   <script src="{{ asset('online/plugins/lib/MDB/js/popper.min.js') }}"></script>
 
 <!-- Libraries CSS Files -->
-  <link href="{{ asset('online/plugins/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('online/plugins/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
   <link href="{{ asset('online/plugins/lib/animate/animate.min.css') }}" rel="stylesheet">
   <link href="{{ asset('online/plugins/lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
   <link href="{{ asset('online/plugins/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
@@ -49,6 +49,7 @@
   <link href="{{ asset('online/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('online/css/destinos.css') }}" rel="stylesheet">
   <link href="{{ asset('online/css/estilocompras.css') }}" rel="stylesheet">
+   <link href="{{ asset('online/css/estilomodallogin.css') }}" rel="stylesheet">
 @yield('style')
 
 
