@@ -111,7 +111,7 @@ class TaquillaController extends Controller
          $factura->fecha = Carbon::now();
          $factura->importe_facturado = $request->importe_facturado;
          $factura->numero_control = 'N°'.'00-'.random_int(100000, 999999);
-         dd($request->adulto,$request->nino,$request->brazo);
+        // dd($request->adulto,$request->nino,$request->brazo);
          $factura->adultos_cant = $request->adulto;
          $factura->ninos_cant = $request->nino;
          $factura->NinosBrazos_cant = $request->brazo;

@@ -140,7 +140,7 @@ export default {
         }              
     },   
     created: function(){
-       
+       this.cargarRutas()
     },
     methods: {
         Buscar(){
@@ -185,15 +185,41 @@ export default {
         }, 
         formatodatos(){
             this.items = [];
-      for (var i= 0; i < this.data.length; i++){
-        //console.log(this.data[i].tripulante   );
-        if(this.data[i].tripulante.rango === 'piloto')
-        this.items.push(
-          this.data[i].tripulante
-        
-          
-        );
-      }
+            for (var i= 0; i < this.data.length; i++){
+                //console.log(this.data[i].tripulante   );
+                if(this.data[i].tripulante.rango === 'piloto')
+                this.items.push(
+                this.data[i].tripulante
+                
+                
+                );
+            }
+        },
+        cargarRutas(){
+            axios({
+                method: 'get',
+                url: '/vuelos/rutas'       
+            }).then((response) =>{
+                this.formatorutas(response);
+            }).catch((err)=>{
+                Vue.toasted.show('Ha ocurrido un error', {
+                    theme: "primary", 
+                    position: "bottomright",  
+                    duration : 2000
+                });
+                console.log(err);
+            });
+        },
+        formatorutas(data){
+            console.log(data);
+            for(var i=0; i < data.data.length; i++){
+                this.rutas.push({
+                    id: data.data[i].ruta.id,
+                    nombre: data.data[i].ruta.origen.nombre + " (" + data.data[i].ruta.origen.aeropuerto + ") -->" + data.data[i].ruta.destino.nombre + " (" + data.data[i].ruta.destino.aeropuerto
+                });
+            }
+
+
         },
         
         sumar(experiencias){
