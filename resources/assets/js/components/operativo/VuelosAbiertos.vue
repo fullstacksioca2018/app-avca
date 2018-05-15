@@ -26,7 +26,7 @@
         </b-form-group>
       </b-col>
       <b-col md="6" class="my-1">
-         <b-btn v-b-modal.agregar variant="primary">Agregar Nuevo Vuelo</b-btn>
+       
       </b-col>
       <b-col md="6" class="my-1">
         <b-form-group horizontal label="Per page" class="mb-0">
@@ -130,8 +130,7 @@
      
     </b-modal>
 
-    <!-- AGREGAR -->
-              <RegistrarVuelos> </RegistrarVuelos>
+    
     
   </b-container>
 </template>
@@ -139,14 +138,12 @@
 <script>
 
 import axios  from 'axios';
-import RegistrarVuelos from './ModalRegistrarVuelos';
+
 import {EventBus} from './event-bus.js'
 
 
 export default {
-  components: {
-    RegistrarVuelos
-  },
+  
   created: function(){
     EventBus.$on('actualizartabla',(event) =>{
       this.Cargadatos(this);
@@ -201,7 +198,7 @@ export default {
       this.modalInfo.content = item;
       this.modalInfo.title = "Datos del Vuelo: " + item.N_Vuelo;
   
-            console.log(this.tripulantes);
+           
        
              this.$root.$emit('bv::show::modal', 'VuelosAbiertos', button)
     },
@@ -217,7 +214,7 @@ export default {
     },
     Cargadatos(ctx){
       axios.get("/vuelos/vuelos").then(function(response){
-        console.log(response.data);
+       
         ctx.data = response.data;
         ctx.formatodatos();
         ctx.totalRows=ctx.items.length;
@@ -230,7 +227,7 @@ export default {
       this.items = [];
       for (var i= 0; i < this.data.length; i++){
          //var elementos=this.data[i].fecha_salida.split(' ')
-         console.log('valor de iten en '+i+' es '+JSON.stringify(this.data[i]))
+      
   
         if(this.data[i].vuelo.segmentos.length == 0){
          /*  this.items.push({
@@ -258,7 +255,7 @@ export default {
               tripulantes: this.data[i].vuelo.tripulantes,
               segmentos: this.data[i].vuelo.segmentos   
             });
-            console.log('item['+i+'].segmentos'+JSON.stringify(this.data[i].vuelo.segmentos))
+           
            
           }
         }
@@ -323,7 +320,7 @@ export default {
           id: row.item.id,               
         }
       }).then((response)=>{
-        console.log(response);
+       
       Vue.toasted.show("Vuelo Habilitado", {
          theme: "primary", 
 	       position: "bottom-right",

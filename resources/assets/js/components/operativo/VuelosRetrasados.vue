@@ -26,7 +26,7 @@
         </b-form-group>
       </b-col>
       <b-col md="6" class="my-1">
-         <b-btn v-b-modal.agregar variant="primary">Agregar Nuevo Vuelo</b-btn>
+         
       </b-col>
       <b-col md="6" class="my-1">
         <b-form-group horizontal label="Per page" class="mb-0">
@@ -130,8 +130,7 @@
      
     </b-modal>
 
-    <!-- AGREGAR -->
-              <RegistrarVuelos> </RegistrarVuelos>
+   
     
   </b-container>
 </template>
@@ -139,14 +138,12 @@
 <script>
 
 import axios  from 'axios';
-import RegistrarVuelos from './ModalRegistrarVuelos';
+
 import {EventBus} from './event-bus.js'
 
 
 export default {
-  components: {
-    RegistrarVuelos
-  },
+ 
   created: function(){
     EventBus.$on('actualizartabla',(event) =>{
       this.Cargadatos(this);
@@ -230,7 +227,7 @@ export default {
       this.items = [];
       for (var i= 0; i < this.data.length; i++){
          //var elementos=this.data[i].fecha_salida.split(' ')
-         console.log('valor de iten en '+i+' es '+JSON.stringify(this.data[i]))
+      
   
         if(this.data[i].vuelo.segmentos.length == 0){
          /*  this.items.push({
