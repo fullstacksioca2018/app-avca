@@ -121,14 +121,13 @@
               {{-- ====================================== 
                               Contador de personas
                   ====================================== --}}              
-              <div id="contenedorPersonas" 
+              <div id="contenedorPersonas"> 
               </div>              
 
               {{--  Boton de envio  --}}
               <div class="form-row">
-                <input type="submit" value="BUSCAR" class="btn btn-primary">
-              </div>        
-
+                  <input type="submit" value="BUSCAR" class="btn btn-primary">
+              </div>
             {!! Form::close() !!} 
             <!-- ======================
             FIN DEL Form
@@ -361,7 +360,6 @@
           </div>
 
         </div>
-          <h6 class="float-md-right"><a href="#"><b>+DESTINOS</b></a></h6>
       </div>
 
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
