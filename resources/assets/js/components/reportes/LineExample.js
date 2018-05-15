@@ -20,14 +20,24 @@ export default {
         datasets: [
           {
             label: this.chartData.label[0],
-            backgroundColor: '#007bff',
+            pointHoverBorderColor:"#000",
+            pointBackgroundColor: "#008cff",
+            pointBorderColor: "#eee",
+            backgroundColor:"#fff",
+            borderColor:"#345345",
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            lineSmooth: true,
+            showLine: true,
+            showPoint: true,
+            fullWidth: true,
             data: this.chartData.data[0]
           }
         ]
       }, {responsive: true, maintainAspectRatio: false,
         tooltips: {
             bodyFontSize: 18
-          }
+          },
         })
     }
     else{
@@ -51,6 +61,22 @@ export default {
       }, {responsive: true, maintainAspectRatio: false,
         tooltips: {
             bodyFontSize: 18
+          },
+          options: {
+            low: 0,
+            high: 800,
+            showArea: false,
+            height: '245px',
+            axisX: {
+              showGrid: false
+            },
+            lineSmooth: true,
+            showLine: true,
+            showPoint: true,
+            fullWidth: true,
+            chartPadding: {
+              right: 50
+            }
           }
         })
     }

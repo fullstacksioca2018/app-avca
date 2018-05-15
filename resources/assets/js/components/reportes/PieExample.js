@@ -7,7 +7,7 @@ export default {
   data () {
       return {
           datasets: [],
-          background:['#41B883',
+          background:['#1C5281',
                       '#E46651',
                       '#00D8FF',
                       '#DD1B16',
@@ -52,6 +52,7 @@ export default {
         });
       },
     renderN(){
+        console.log(this.datosN);
           this.construir();
           this.renderChart({
               labels: this.datosN.labels,

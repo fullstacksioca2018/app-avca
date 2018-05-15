@@ -1,0 +1,95 @@
+
+
+.icoconooo{
+  position: absolute;
+  left: 18px;
+  top: 156px;
+  padding-top: 10px;
+  padding-left: 20px;
+ font-size: 30px;
+color: rgba(0, 0, 0, 0.8) ;
+}
+
+.icoconooo1{
+  position: absolute;
+  left: 18px;
+  top: 206px;
+  padding-top: 10px;
+  padding-left: 20px;
+ font-size: 30px;
+color: rgba(0, 0, 0, 0.8) ;
+}
+
+
+.icomail2{
+  position: absolute;
+  left: 42px;
+  top: 143px;
+  padding-top: 10px;
+  padding-left: 20px;
+ font-size: 38px;
+color: rgba(0, 0, 0, 0.8) ;
+}
+.impoutlgm1{
+padding-left: 40px;
+}
+
+.icouseres{
+  position: absolute;
+  left: 42px;
+  top: 132px;
+  padding-top: 10px;
+  padding-left: 20px;
+ font-size: 34px;
+color: rgba(0, 0, 0, 0.8) ;
+}
+
+.impoutlgm2{
+padding-left: 40px;
+}
+
+.icomail3{
+  position: absolute;
+  left: 42px;
+  top: 218px;
+  padding-top: 10px;
+  padding-left: 20px;
+ font-size: 38px;
+color: rgba(0, 0, 0, 0.8) ;
+}
+
+
+.icocontra3{
+  position: absolute;
+  left: 42px;
+  top: 232px;
+  padding-top: 10px;
+  padding-left: 20px;
+ font-size: 31px;
+color: rgba(0, 0, 0, 0.8) ;
+}
+
+.impoutlgm{
+padding-left: 30px;
+}
+
+.icocontra4{
+  position: absolute;
+  left: 42px;
+  top: 308px;
+  padding-top: 10px;
+  padding-left: 20px;
+ font-size: 31px;
+color: rgba(0, 0, 0, 0.8) ;
+}
+
+.icocontra5{
+  position: absolute;
+  left: 42px;
+  top: 392px;
+  padding-top: 10px;
+  padding-left: 20px;
+ font-size: 31px;
+color: rgba(0, 0, 0, 0.8) ;
+}
+

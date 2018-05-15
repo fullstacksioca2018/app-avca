@@ -26,6 +26,14 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
 
         //disable foreign key check for this connection before running seeders
+        
+
+
+        //SEEDER MODULO OPERATIVO
+        $this->call(DwSucursales::class);
+        $this->call(DwRutas::class);
+        $this->call(DwVuelos::class);
+        
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
