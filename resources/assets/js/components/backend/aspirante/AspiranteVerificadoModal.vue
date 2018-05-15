@@ -108,7 +108,7 @@
               this.$swal({
                 //position: 'top-end',
                 type: 'success',
-                title: 'Los recaudos fueron enviados',
+                title: 'Convocatoria enviada exitosamente.',
                 showConfirmButton: false,
                 timer: 2000
               });

@@ -1,5 +1,3 @@
-
-
 function validarN(event,tipo){
 	//alert("entro al validar n con "+event+tipo);
 	var adultos=parseInt(document.getElementById('inputadultos'+tipo).value);

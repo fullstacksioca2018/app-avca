@@ -25,11 +25,11 @@ class SeleccionController extends Controller
         $cargo_id = $request->cargo_id;
 
         $aspirantes = DB::table('sucursales')
-            ->join('vacantes', 'sucursales.id', '=', 'vacantes.sucursal_id')
+            ->join('vacantes', 'sucursales.sucursal_id', '=', 'vacantes.sucursal_id')
             //->join('areas', 'vacantes.area_id', '=', 'areas.area_id')
             ->join('aspirantes', 'vacantes.vacante_id', '=', 'aspirantes.vacante_id')
             ->where([
-                ['sucursales.id', $sucursal_id],
+                ['sucursales.sucursal_id', $sucursal_id],
                 ['vacantes.area_id', $area_id],
                 ['vacantes.cargo_id', $cargo_id],
                 ['aspirantes.estatus', $request->estatus]
@@ -94,7 +94,7 @@ class SeleccionController extends Controller
 
         $data = $request->all();
 
-        //Mail::to($request->email)->send(new ConvocatoriaEnviada($data));
+        Mail::to($request->email)->send(new ConvocatoriaEnviada($data));
 
         $aspirante = Aspirante::findOrFail($request->aspirante_id);
         $aspirante->estatus = 'convocados';

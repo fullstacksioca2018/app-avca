@@ -44418,22 +44418,26 @@ Vue.component('vacante-filter', __webpack_require__(251));
 Vue.component('aspirante-table', __webpack_require__(256));
 Vue.component('aspirante-status', __webpack_require__(276));
 Vue.component('contratacion', __webpack_require__(281));
+//RUTAS
 Vue.component('Rutas', __webpack_require__(296));
+//VUELOS
 Vue.component('Vuelos', __webpack_require__(304));
 Vue.component('VuelosAbiertos', __webpack_require__(312));
-Vue.component('Taquilla', __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/operativo/AdministracionTaquilla.vue\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
-Vue.component('SoloIda', __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/operativo/taquilla/SoloIda.vue\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
-Vue.component('IdayVuelta', __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/operativo/taquilla/IdayVuelta.vue\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
-Vue.component('Multidestino', __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/operativo/taquilla/Multidestino.vue\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
+Vue.component('VuelosCerrados', __webpack_require__(315));
+Vue.component('VuelosRetrasados', __webpack_require__(318));
+Vue.component('VuelosEjecutados', __webpack_require__(321));
+Vue.component('VuelosCancelados', __webpack_require__(324));
+//TRIPULACION
+Vue.component('CargarPilotos', __webpack_require__(327));
+Vue.component('CargarCopilotos', __webpack_require__(330));
+Vue.component('CargarJefeCabina', __webpack_require__(331));
+Vue.component('CargarSobrecargo', __webpack_require__(332));
+Vue.component('CargarAeronave', __webpack_require__(333));
 
-<<<<<<< HEAD
 // Empleado
 Vue.component('ficha-empleado', __webpack_require__(334));
 
 Vue.component('panel', __webpack_require__(369));
-=======
-Vue.component('panel', __webpack_require__(333));
->>>>>>> parent of 2885a1b... cambios RRHH
 
 var app = new Vue({
   el: '#app'
@@ -96254,7 +96258,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -96298,10 +96302,7 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_sweetalert2__ = __webpack_require__(10);
-=======
->>>>>>> parent of 2885a1b... cambios RRHH
 //
 //
 //
@@ -96354,6 +96355,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_sweetalert2__["a" /* default */]);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "VacanteForm",
   data: function data() {
@@ -96362,8 +96366,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       sucursales: [],
       cargos: [],
       areas: [],
-      response: '',
-      render: false
+      response: ''
     };
   },
   created: function created() {
@@ -96405,8 +96408,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var form = document.getElementById('vacanteForm');
       var formData = new FormData(form);
       axios.post('/rrhh/backend/vacante/publicar-vacante', formData).then(function (response) {
-        console.log(response.data);
         _this4.response = response.data;
+        _this4.$swal({
+          //position: 'top-end',
+          type: 'success',
+          title: 'La vacante ha sido publicada.',
+          showConfirmButton: true
+          //timer: 2000
+        });
       });
     }
   },
@@ -96423,7 +96432,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 /*!
  * sweetalert2 v7.3.5
  * Released under the MIT License.
@@ -96433,198 +96441,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	typeof define === 'function' && define.amd ? define(factory) :
 	(global.Sweetalert2 = factory());
 }(this, (function () { 'use strict';
-=======
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-12" }, [
-    _vm.response
-      ? _c("div", [
-          _c("div", { staticClass: "alert alert-success" }, [
-            _vm._v("\n      " + _vm._s(_vm.response.message) + "\n    ")
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c(
-          "form",
-          {
-            staticClass: "form-horizontal",
-            attrs: { id: "vacanteForm" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.publicarVacante($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "sucursal" } }, [
-                    _vm._v("Sucursal")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      staticClass: "form-control",
-                      attrs: { name: "sucursal", id: "sucursal" }
-                    },
-                    [
-                      _c(
-                        "option",
-                        { attrs: { value: "", selected: "selected" } },
-                        [_vm._v("Seleccione")]
-                      ),
-                      _vm._v(" "),
-                      _vm._l(_vm.sucursales, function(sucursal) {
-                        return _c(
-                          "option",
-                          { domProps: { value: sucursal.id } },
-                          [
-                            _vm._v(
-                              _vm._s(_vm._f("capitalize")(sucursal.nombre))
-                            )
-                          ]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "area" } }, [_vm._v("Áreas")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.area,
-                          expression: "area"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { name: "area", id: "area" },
-                      on: {
-                        change: [
-                          function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.area = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          },
-                          _vm.obtenerCargos
-                        ]
-                      }
-                    },
-                    [
-                      _c(
-                        "option",
-                        { attrs: { value: "", selected: "selected" } },
-                        [_vm._v("Seleccione")]
-                      ),
-                      _vm._v(" "),
-                      _vm._l(_vm.areas, function(area) {
-                        return _c(
-                          "option",
-                          { domProps: { value: area.area_id } },
-                          [_vm._v(_vm._s(_vm._f("capitalize")(area.nombre)))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "cargo" } }, [_vm._v("Cargo")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      staticClass: "form-control",
-                      attrs: { name: "cargo", id: "cargo" }
-                    },
-                    [
-                      _c(
-                        "option",
-                        { attrs: { value: "", selected: "selected" } },
-                        [_vm._v("Seleccione")]
-                      ),
-                      _vm._v(" "),
-                      _vm._l(_vm.cargos, function(cargo) {
-                        return _c(
-                          "option",
-                          { domProps: { value: cargo.cargo_id } },
-                          [_vm._v(_vm._s(_vm._f("capitalize")(cargo.titulo)))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._m(1)
-          ]
-        )
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header bg-info-gradient" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Registrar una vacante")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("input", {
-        staticClass: "btn btn-info",
-        attrs: { type: "submit", value: "Publicar" }
-      })
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-66abe505", module.exports)
-  }
-}
->>>>>>> parent of 2885a1b... cambios RRHH
 
 var styles = "html.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown),\nbody.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {\n  overflow-y: hidden; }\n\nbody.swal2-toast-shown.swal2-has-input > .swal2-container > .swal2-toast {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column; }\n  body.swal2-toast-shown.swal2-has-input > .swal2-container > .swal2-toast .swal2-icon {\n    margin: 0 0 15px; }\n  body.swal2-toast-shown.swal2-has-input > .swal2-container > .swal2-toast .swal2-buttonswrapper {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    -ms-flex-item-align: stretch;\n        align-self: stretch;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end; }\n  body.swal2-toast-shown.swal2-has-input > .swal2-container > .swal2-toast .swal2-loading {\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center; }\n  body.swal2-toast-shown.swal2-has-input > .swal2-container > .swal2-toast .swal2-input {\n    height: 32px;\n    font-size: 14px;\n    margin: 5px auto; }\n\nbody.swal2-toast-shown > .swal2-container {\n  position: fixed;\n  background-color: transparent; }\n  body.swal2-toast-shown > .swal2-container.swal2-shown {\n    background-color: transparent; }\n  body.swal2-toast-shown > .swal2-container.swal2-top {\n    top: 0;\n    left: 50%;\n    bottom: auto;\n    right: auto;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%); }\n  body.swal2-toast-shown > .swal2-container.swal2-top-end, body.swal2-toast-shown > .swal2-container.swal2-top-right {\n    top: 0;\n    left: auto;\n    bottom: auto;\n    right: 0; }\n  body.swal2-toast-shown > .swal2-container.swal2-top-start, body.swal2-toast-shown > .swal2-container.swal2-top-left {\n    top: 0;\n    left: 0;\n    bottom: auto;\n    right: auto; }\n  body.swal2-toast-shown > .swal2-container.swal2-center-start, body.swal2-toast-shown > .swal2-container.swal2-center-left {\n    top: 50%;\n    left: 0;\n    bottom: auto;\n    right: auto;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%); }\n  body.swal2-toast-shown > .swal2-container.swal2-center {\n    top: 50%;\n    left: 50%;\n    bottom: auto;\n    right: auto;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%); }\n  body.swal2-toast-shown > .swal2-container.swal2-center-end, body.swal2-toast-shown > .swal2-container.swal2-center-right {\n    top: 50%;\n    left: auto;\n    bottom: auto;\n    right: 0;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%); }\n  body.swal2-toast-shown > .swal2-container.swal2-bottom-start, body.swal2-toast-shown > .swal2-container.swal2-bottom-left {\n    top: auto;\n    left: 0;\n    bottom: 0;\n    right: auto; }\n  body.swal2-toast-shown > .swal2-container.swal2-bottom {\n    top: auto;\n    left: 50%;\n    bottom: 0;\n    right: auto;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%); }\n  body.swal2-toast-shown > .swal2-container.swal2-bottom-end, body.swal2-toast-shown > .swal2-container.swal2-bottom-right {\n    top: auto;\n    left: auto;\n    bottom: 0;\n    right: 0; }\n\nbody.swal2-iosfix {\n  position: fixed;\n  left: 0;\n  right: 0; }\n\nbody.swal2-no-backdrop > .swal2-shown {\n  top: auto;\n  bottom: auto;\n  left: auto;\n  right: auto;\n  background-color: transparent; }\n  body.swal2-no-backdrop > .swal2-shown > .swal2-modal {\n    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }\n  body.swal2-no-backdrop > .swal2-shown.swal2-top {\n    top: 0;\n    left: 50%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%); }\n  body.swal2-no-backdrop > .swal2-shown.swal2-top-start, body.swal2-no-backdrop > .swal2-shown.swal2-top-left {\n    top: 0;\n    left: 0; }\n  body.swal2-no-backdrop > .swal2-shown.swal2-top-end, body.swal2-no-backdrop > .swal2-shown.swal2-top-right {\n    top: 0;\n    right: 0; }\n  body.swal2-no-backdrop > .swal2-shown.swal2-center {\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%); }\n  body.swal2-no-backdrop > .swal2-shown.swal2-center-start, body.swal2-no-backdrop > .swal2-shown.swal2-center-left {\n    top: 50%;\n    left: 0;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%); }\n  body.swal2-no-backdrop > .swal2-shown.swal2-center-end, body.swal2-no-backdrop > .swal2-shown.swal2-center-right {\n    top: 50%;\n    right: 0;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%); }\n  body.swal2-no-backdrop > .swal2-shown.swal2-bottom {\n    bottom: 0;\n    left: 50%;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%); }\n  body.swal2-no-backdrop > .swal2-shown.swal2-bottom-start, body.swal2-no-backdrop > .swal2-shown.swal2-bottom-left {\n    bottom: 0;\n    left: 0; }\n  body.swal2-no-backdrop > .swal2-shown.swal2-bottom-end, body.swal2-no-backdrop > .swal2-shown.swal2-bottom-right {\n    bottom: 0;\n    right: 0; }\n\n.swal2-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: fixed;\n  padding: 10px;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: transparent;\n  z-index: 1060; }\n  .swal2-container.swal2-top {\n    -webkit-box-align: start;\n        -ms-flex-align: start;\n            align-items: flex-start; }\n  .swal2-container.swal2-top-start, .swal2-container.swal2-top-left {\n    -webkit-box-align: start;\n        -ms-flex-align: start;\n            align-items: flex-start;\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start; }\n  .swal2-container.swal2-top-end, .swal2-container.swal2-top-right {\n    -webkit-box-align: start;\n        -ms-flex-align: start;\n            align-items: flex-start;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end; }\n  .swal2-container.swal2-center {\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n  .swal2-container.swal2-center-start, .swal2-container.swal2-center-left {\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start; }\n  .swal2-container.swal2-center-end, .swal2-container.swal2-center-right {\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end; }\n  .swal2-container.swal2-bottom {\n    -webkit-box-align: end;\n        -ms-flex-align: end;\n            align-items: flex-end; }\n  .swal2-container.swal2-bottom-start, .swal2-container.swal2-bottom-left {\n    -webkit-box-align: end;\n        -ms-flex-align: end;\n            align-items: flex-end;\n    -webkit-box-pack: start;\n        -ms-flex-pack: start;\n            justify-content: flex-start; }\n  .swal2-container.swal2-bottom-end, .swal2-container.swal2-bottom-right {\n    -webkit-box-align: end;\n        -ms-flex-align: end;\n            align-items: flex-end;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end; }\n  .swal2-container.swal2-grow-fullscreen > .swal2-modal {\n    display: -webkit-box !important;\n    display: -ms-flexbox !important;\n    display: flex !important;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    -ms-flex-item-align: stretch;\n        align-self: stretch;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center; }\n  .swal2-container.swal2-grow-row > .swal2-modal {\n    display: -webkit-box !important;\n    display: -ms-flexbox !important;\n    display: flex !important;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    -ms-flex-line-pack: center;\n        align-content: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center; }\n  .swal2-container.swal2-grow-column {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column; }\n    .swal2-container.swal2-grow-column.swal2-top, .swal2-container.swal2-grow-column.swal2-center, .swal2-container.swal2-grow-column.swal2-bottom {\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center; }\n    .swal2-container.swal2-grow-column.swal2-top-start, .swal2-container.swal2-grow-column.swal2-center-start, .swal2-container.swal2-grow-column.swal2-bottom-start, .swal2-container.swal2-grow-column.swal2-top-left, .swal2-container.swal2-grow-column.swal2-center-left, .swal2-container.swal2-grow-column.swal2-bottom-left {\n      -webkit-box-align: start;\n          -ms-flex-align: start;\n              align-items: flex-start; }\n    .swal2-container.swal2-grow-column.swal2-top-end, .swal2-container.swal2-grow-column.swal2-center-end, .swal2-container.swal2-grow-column.swal2-bottom-end, .swal2-container.swal2-grow-column.swal2-top-right, .swal2-container.swal2-grow-column.swal2-center-right, .swal2-container.swal2-grow-column.swal2-bottom-right {\n      -webkit-box-align: end;\n          -ms-flex-align: end;\n              align-items: flex-end; }\n    .swal2-container.swal2-grow-column > .swal2-modal {\n      display: -webkit-box !important;\n      display: -ms-flexbox !important;\n      display: flex !important;\n      -webkit-box-flex: 1;\n          -ms-flex: 1;\n              flex: 1;\n      -ms-flex-line-pack: center;\n          align-content: center;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center; }\n  .swal2-container:not(.swal2-top):not(.swal2-top-start):not(.swal2-top-end):not(.swal2-top-left):not(.swal2-top-right):not(.swal2-center-start):not(.swal2-center-end):not(.swal2-center-left):not(.swal2-center-right):not(.swal2-bottom):not(.swal2-bottom-start):not(.swal2-bottom-end):not(.swal2-bottom-left):not(.swal2-bottom-right) > .swal2-modal {\n    margin: auto; }\n  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {\n    .swal2-container .swal2-modal {\n      margin: 0 !important; } }\n  .swal2-container.swal2-fade {\n    -webkit-transition: background-color .1s;\n    transition: background-color .1s; }\n  .swal2-container.swal2-shown {\n    background-color: rgba(0, 0, 0, 0.4); }\n\n.swal2-popup {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  background-color: #fff;\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  border-radius: 5px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  text-align: center;\n  overflow-x: hidden;\n  overflow-y: auto;\n  display: none;\n  position: relative;\n  max-width: 100%; }\n  .swal2-popup.swal2-toast {\n    width: 300px;\n    padding: 0 15px;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    overflow-y: hidden;\n    -webkit-box-shadow: 0 0 10px #d9d9d9;\n            box-shadow: 0 0 10px #d9d9d9; }\n    .swal2-popup.swal2-toast .swal2-title {\n      max-width: 300px;\n      font-size: 16px;\n      text-align: left; }\n    .swal2-popup.swal2-toast .swal2-content {\n      font-size: 14px;\n      text-align: left; }\n    .swal2-popup.swal2-toast .swal2-icon {\n      width: 32px;\n      min-width: 32px;\n      height: 32px;\n      margin: 0 15px 0 0; }\n      .swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring {\n        width: 32px;\n        height: 32px; }\n      .swal2-popup.swal2-toast .swal2-icon.swal2-info, .swal2-popup.swal2-toast .swal2-icon.swal2-warning, .swal2-popup.swal2-toast .swal2-icon.swal2-question {\n        font-size: 26px;\n        line-height: 32px; }\n      .swal2-popup.swal2-toast .swal2-icon.swal2-error [class^='swal2-x-mark-line'] {\n        top: 14px;\n        width: 22px; }\n        .swal2-popup.swal2-toast .swal2-icon.swal2-error [class^='swal2-x-mark-line'][class$='left'] {\n          left: 5px; }\n        .swal2-popup.swal2-toast .swal2-icon.swal2-error [class^='swal2-x-mark-line'][class$='right'] {\n          right: 5px; }\n    .swal2-popup.swal2-toast .swal2-buttonswrapper {\n      margin: 0 0 0 5px; }\n    .swal2-popup.swal2-toast .swal2-styled {\n      margin: 0 0 0 5px;\n      padding: 5px 10px; }\n      .swal2-popup.swal2-toast .swal2-styled:focus {\n        -webkit-box-shadow: 0 0 0 1px #fff, 0 0 0 2px rgba(50, 100, 150, 0.4);\n                box-shadow: 0 0 0 1px #fff, 0 0 0 2px rgba(50, 100, 150, 0.4); }\n    .swal2-popup.swal2-toast .swal2-validationerror {\n      width: 100%;\n      margin: 5px -20px; }\n    .swal2-popup.swal2-toast .swal2-success {\n      border-color: #a5dc86; }\n      .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-circular-line'] {\n        border-radius: 50%;\n        position: absolute;\n        width: 32px;\n        height: 64px;\n        -webkit-transform: rotate(45deg);\n                transform: rotate(45deg); }\n        .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-circular-line'][class$='left'] {\n          border-radius: 64px 0 0 64px;\n          top: -4px;\n          left: -15px;\n          -webkit-transform: rotate(-45deg);\n                  transform: rotate(-45deg);\n          -webkit-transform-origin: 32px 32px;\n                  transform-origin: 32px 32px; }\n        .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-circular-line'][class$='right'] {\n          border-radius: 0 64px 64px 0;\n          top: -5px;\n          left: 14px;\n          -webkit-transform-origin: 0 32px;\n                  transform-origin: 0 32px; }\n      .swal2-popup.swal2-toast .swal2-success .swal2-success-ring {\n        width: 32px;\n        height: 32px; }\n      .swal2-popup.swal2-toast .swal2-success .swal2-success-fix {\n        width: 7px;\n        height: 90px;\n        left: 28px;\n        top: 8px; }\n      .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-line'] {\n        height: 5px; }\n        .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-line'][class$='tip'] {\n          width: 12px;\n          left: 3px;\n          top: 18px; }\n        .swal2-popup.swal2-toast .swal2-success [class^='swal2-success-line'][class$='long'] {\n          width: 22px;\n          right: 3px;\n          top: 15px; }\n    .swal2-popup.swal2-toast .swal2-animate-success-line-tip {\n      -webkit-animation: animate-toast-success-tip .75s;\n              animation: animate-toast-success-tip .75s; }\n    .swal2-popup.swal2-toast .swal2-animate-success-line-long {\n      -webkit-animation: animate-toast-success-long .75s;\n              animation: animate-toast-success-long .75s; }\n  .swal2-popup:focus {\n    outline: none; }\n  .swal2-popup.swal2-loading {\n    overflow-y: hidden; }\n  .swal2-popup .swal2-title {\n    color: #595959;\n    font-size: 30px;\n    text-align: center;\n    font-weight: 600;\n    text-transform: none;\n    position: relative;\n    margin: 0 0 .4em;\n    padding: 0;\n    display: block;\n    word-wrap: break-word; }\n  .swal2-popup .swal2-buttonswrapper {\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    margin-top: 15px; }\n    .swal2-popup .swal2-buttonswrapper:not(.swal2-loading) .swal2-styled[disabled] {\n      opacity: .4;\n      cursor: no-drop; }\n    .swal2-popup .swal2-buttonswrapper.swal2-loading .swal2-styled.swal2-confirm {\n      -webkit-box-sizing: border-box;\n              box-sizing: border-box;\n      border: 4px solid transparent;\n      border-color: transparent;\n      width: 40px;\n      height: 40px;\n      padding: 0;\n      margin: 7.5px;\n      vertical-align: top;\n      background-color: transparent !important;\n      color: transparent;\n      cursor: default;\n      border-radius: 100%;\n      -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;\n              animation: rotate-loading 1.5s linear 0s infinite normal;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n    .swal2-popup .swal2-buttonswrapper.swal2-loading .swal2-styled.swal2-cancel {\n      margin-left: 30px;\n      margin-right: 30px; }\n    .swal2-popup .swal2-buttonswrapper.swal2-loading :not(.swal2-styled).swal2-confirm::after {\n      display: inline-block;\n      content: '';\n      margin-left: 5px;\n      vertical-align: -1px;\n      height: 15px;\n      width: 15px;\n      border: 3px solid #999999;\n      -webkit-box-shadow: 1px 1px 1px #fff;\n              box-shadow: 1px 1px 1px #fff;\n      border-right-color: transparent;\n      border-radius: 50%;\n      -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;\n              animation: rotate-loading 1.5s linear 0s infinite normal; }\n  .swal2-popup .swal2-styled {\n    border: 0;\n    border-radius: 3px;\n    -webkit-box-shadow: none;\n            box-shadow: none;\n    color: #fff;\n    cursor: pointer;\n    font-size: 17px;\n    font-weight: 500;\n    margin: 15px 5px 0;\n    padding: 10px 32px; }\n    .swal2-popup .swal2-styled:focus {\n      outline: none;\n      -webkit-box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(50, 100, 150, 0.4);\n              box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(50, 100, 150, 0.4); }\n  .swal2-popup .swal2-image {\n    margin: 20px auto;\n    max-width: 100%; }\n  .swal2-popup .swal2-close {\n    background: transparent;\n    border: 0;\n    margin: 0;\n    padding: 0;\n    width: 38px;\n    height: 40px;\n    font-size: 36px;\n    line-height: 40px;\n    font-family: serif;\n    position: absolute;\n    top: 5px;\n    right: 8px;\n    cursor: pointer;\n    color: #cccccc;\n    -webkit-transition: color .1s ease;\n    transition: color .1s ease; }\n    .swal2-popup .swal2-close:hover {\n      color: #d55; }\n  .swal2-popup > .swal2-input,\n  .swal2-popup > .swal2-file,\n  .swal2-popup > .swal2-textarea,\n  .swal2-popup > .swal2-select,\n  .swal2-popup > .swal2-radio,\n  .swal2-popup > .swal2-checkbox {\n    display: none; }\n  .swal2-popup .swal2-content {\n    font-size: 18px;\n    text-align: center;\n    font-weight: 300;\n    position: relative;\n    float: none;\n    margin: 0;\n    padding: 0;\n    line-height: normal;\n    color: #545454;\n    word-wrap: break-word; }\n  .swal2-popup .swal2-input,\n  .swal2-popup .swal2-file,\n  .swal2-popup .swal2-textarea,\n  .swal2-popup .swal2-select,\n  .swal2-popup .swal2-radio,\n  .swal2-popup .swal2-checkbox {\n    margin: 20px auto; }\n  .swal2-popup .swal2-input,\n  .swal2-popup .swal2-file,\n  .swal2-popup .swal2-textarea {\n    width: 100%;\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    font-size: 18px;\n    border-radius: 3px;\n    border: 1px solid #d9d9d9;\n    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06);\n            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06);\n    -webkit-transition: border-color .3s, -webkit-box-shadow .3s;\n    transition: border-color .3s, -webkit-box-shadow .3s;\n    transition: border-color .3s, box-shadow .3s;\n    transition: border-color .3s, box-shadow .3s, -webkit-box-shadow .3s; }\n    .swal2-popup .swal2-input.swal2-inputerror,\n    .swal2-popup .swal2-file.swal2-inputerror,\n    .swal2-popup .swal2-textarea.swal2-inputerror {\n      border-color: #f27474 !important;\n      -webkit-box-shadow: 0 0 2px #f27474 !important;\n              box-shadow: 0 0 2px #f27474 !important; }\n    .swal2-popup .swal2-input:focus,\n    .swal2-popup .swal2-file:focus,\n    .swal2-popup .swal2-textarea:focus {\n      outline: none;\n      border: 1px solid #b4dbed;\n      -webkit-box-shadow: 0 0 3px #c4e6f5;\n              box-shadow: 0 0 3px #c4e6f5; }\n    .swal2-popup .swal2-input::-webkit-input-placeholder,\n    .swal2-popup .swal2-file::-webkit-input-placeholder,\n    .swal2-popup .swal2-textarea::-webkit-input-placeholder {\n      color: #cccccc; }\n    .swal2-popup .swal2-input:-ms-input-placeholder,\n    .swal2-popup .swal2-file:-ms-input-placeholder,\n    .swal2-popup .swal2-textarea:-ms-input-placeholder {\n      color: #cccccc; }\n    .swal2-popup .swal2-input::-ms-input-placeholder,\n    .swal2-popup .swal2-file::-ms-input-placeholder,\n    .swal2-popup .swal2-textarea::-ms-input-placeholder {\n      color: #cccccc; }\n    .swal2-popup .swal2-input::placeholder,\n    .swal2-popup .swal2-file::placeholder,\n    .swal2-popup .swal2-textarea::placeholder {\n      color: #cccccc; }\n  .swal2-popup .swal2-range input {\n    float: left;\n    width: 80%; }\n  .swal2-popup .swal2-range output {\n    float: right;\n    width: 20%;\n    font-size: 20px;\n    font-weight: 600;\n    text-align: center; }\n  .swal2-popup .swal2-range input,\n  .swal2-popup .swal2-range output {\n    height: 43px;\n    line-height: 43px;\n    vertical-align: middle;\n    margin: 20px auto;\n    padding: 0; }\n  .swal2-popup .swal2-input {\n    height: 43px;\n    padding: 0 12px; }\n    .swal2-popup .swal2-input[type='number'] {\n      max-width: 150px; }\n  .swal2-popup .swal2-file {\n    font-size: 20px; }\n  .swal2-popup .swal2-textarea {\n    height: 108px;\n    padding: 12px; }\n  .swal2-popup .swal2-select {\n    color: #545454;\n    font-size: inherit;\n    padding: 5px 10px;\n    min-width: 40%;\n    max-width: 100%; }\n  .swal2-popup .swal2-radio {\n    border: 0; }\n    .swal2-popup .swal2-radio label:not(:first-child) {\n      margin-left: 20px; }\n    .swal2-popup .swal2-radio input,\n    .swal2-popup .swal2-radio span {\n      vertical-align: middle; }\n    .swal2-popup .swal2-radio input {\n      margin: 0 3px 0 0; }\n  .swal2-popup .swal2-checkbox {\n    color: #545454; }\n    .swal2-popup .swal2-checkbox input,\n    .swal2-popup .swal2-checkbox span {\n      vertical-align: middle; }\n  .swal2-popup .swal2-validationerror {\n    background-color: #f0f0f0;\n    margin: 0 -20px;\n    overflow: hidden;\n    padding: 10px;\n    color: gray;\n    font-size: 16px;\n    font-weight: 300;\n    display: none; }\n    .swal2-popup .swal2-validationerror::before {\n      content: '!';\n      display: inline-block;\n      width: 24px;\n      height: 24px;\n      border-radius: 50%;\n      background-color: #ea7d7d;\n      color: #fff;\n      line-height: 24px;\n      text-align: center;\n      margin-right: 10px; }\n\n@supports (-ms-accelerator: true) {\n  .swal2-range input {\n    width: 100% !important; }\n  .swal2-range output {\n    display: none; } }\n\n@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {\n  .swal2-range input {\n    width: 100% !important; }\n  .swal2-range output {\n    display: none; } }\n\n.swal2-icon {\n  width: 80px;\n  height: 80px;\n  border: 4px solid transparent;\n  border-radius: 50%;\n  margin: 20px auto 30px;\n  padding: 0;\n  position: relative;\n  -webkit-box-sizing: content-box;\n          box-sizing: content-box;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n  .swal2-icon.swal2-error {\n    border-color: #f27474; }\n    .swal2-icon.swal2-error .swal2-x-mark {\n      position: relative;\n      display: block; }\n    .swal2-icon.swal2-error [class^='swal2-x-mark-line'] {\n      position: absolute;\n      height: 5px;\n      width: 47px;\n      background-color: #f27474;\n      display: block;\n      top: 37px;\n      border-radius: 2px; }\n      .swal2-icon.swal2-error [class^='swal2-x-mark-line'][class$='left'] {\n        -webkit-transform: rotate(45deg);\n                transform: rotate(45deg);\n        left: 17px; }\n      .swal2-icon.swal2-error [class^='swal2-x-mark-line'][class$='right'] {\n        -webkit-transform: rotate(-45deg);\n                transform: rotate(-45deg);\n        right: 16px; }\n  .swal2-icon.swal2-warning {\n    font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n    color: #f8bb86;\n    border-color: #facea8;\n    font-size: 60px;\n    line-height: 80px;\n    text-align: center; }\n  .swal2-icon.swal2-info {\n    font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n    color: #3fc3ee;\n    border-color: #9de0f6;\n    font-size: 60px;\n    line-height: 80px;\n    text-align: center; }\n  .swal2-icon.swal2-question {\n    font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n    color: #87adbd;\n    border-color: #c9dae1;\n    font-size: 60px;\n    line-height: 80px;\n    text-align: center; }\n  .swal2-icon.swal2-success {\n    border-color: #a5dc86; }\n    .swal2-icon.swal2-success [class^='swal2-success-circular-line'] {\n      border-radius: 50%;\n      position: absolute;\n      width: 60px;\n      height: 120px;\n      -webkit-transform: rotate(45deg);\n              transform: rotate(45deg); }\n      .swal2-icon.swal2-success [class^='swal2-success-circular-line'][class$='left'] {\n        border-radius: 120px 0 0 120px;\n        top: -7px;\n        left: -33px;\n        -webkit-transform: rotate(-45deg);\n                transform: rotate(-45deg);\n        -webkit-transform-origin: 60px 60px;\n                transform-origin: 60px 60px; }\n      .swal2-icon.swal2-success [class^='swal2-success-circular-line'][class$='right'] {\n        border-radius: 0 120px 120px 0;\n        top: -11px;\n        left: 30px;\n        -webkit-transform: rotate(-45deg);\n                transform: rotate(-45deg);\n        -webkit-transform-origin: 0 60px;\n                transform-origin: 0 60px; }\n    .swal2-icon.swal2-success .swal2-success-ring {\n      width: 80px;\n      height: 80px;\n      border: 4px solid rgba(165, 220, 134, 0.2);\n      border-radius: 50%;\n      -webkit-box-sizing: content-box;\n              box-sizing: content-box;\n      position: absolute;\n      left: -4px;\n      top: -4px;\n      z-index: 2; }\n    .swal2-icon.swal2-success .swal2-success-fix {\n      width: 7px;\n      height: 90px;\n      position: absolute;\n      left: 28px;\n      top: 8px;\n      z-index: 1;\n      -webkit-transform: rotate(-45deg);\n              transform: rotate(-45deg); }\n    .swal2-icon.swal2-success [class^='swal2-success-line'] {\n      height: 5px;\n      background-color: #a5dc86;\n      display: block;\n      border-radius: 2px;\n      position: absolute;\n      z-index: 2; }\n      .swal2-icon.swal2-success [class^='swal2-success-line'][class$='tip'] {\n        width: 25px;\n        left: 14px;\n        top: 46px;\n        -webkit-transform: rotate(45deg);\n                transform: rotate(45deg); }\n      .swal2-icon.swal2-success [class^='swal2-success-line'][class$='long'] {\n        width: 47px;\n        right: 8px;\n        top: 38px;\n        -webkit-transform: rotate(-45deg);\n                transform: rotate(-45deg); }\n\n.swal2-progresssteps {\n  font-weight: 600;\n  margin: 0 0 20px;\n  padding: 0; }\n  .swal2-progresssteps li {\n    display: inline-block;\n    position: relative; }\n  .swal2-progresssteps .swal2-progresscircle {\n    background: #3085d6;\n    border-radius: 2em;\n    color: #fff;\n    height: 2em;\n    line-height: 2em;\n    text-align: center;\n    width: 2em;\n    z-index: 20; }\n    .swal2-progresssteps .swal2-progresscircle:first-child {\n      margin-left: 0; }\n    .swal2-progresssteps .swal2-progresscircle:last-child {\n      margin-right: 0; }\n    .swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep {\n      background: #3085d6; }\n      .swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep ~ .swal2-progresscircle {\n        background: #add8e6; }\n      .swal2-progresssteps .swal2-progresscircle.swal2-activeprogressstep ~ .swal2-progressline {\n        background: #add8e6; }\n  .swal2-progresssteps .swal2-progressline {\n    background: #3085d6;\n    height: .4em;\n    margin: 0 -1px;\n    z-index: 10; }\n\n[class^='swal2'] {\n  -webkit-tap-highlight-color: transparent; }\n\n@-webkit-keyframes showSweetToast {\n  0% {\n    -webkit-transform: translateY(-10px) rotateZ(2deg);\n            transform: translateY(-10px) rotateZ(2deg);\n    opacity: 0; }\n  33% {\n    -webkit-transform: translateY(0) rotateZ(-2deg);\n            transform: translateY(0) rotateZ(-2deg);\n    opacity: .5; }\n  66% {\n    -webkit-transform: translateY(5px) rotateZ(2deg);\n            transform: translateY(5px) rotateZ(2deg);\n    opacity: .7; }\n  100% {\n    -webkit-transform: translateY(0) rotateZ(0);\n            transform: translateY(0) rotateZ(0);\n    opacity: 1; } }\n\n@keyframes showSweetToast {\n  0% {\n    -webkit-transform: translateY(-10px) rotateZ(2deg);\n            transform: translateY(-10px) rotateZ(2deg);\n    opacity: 0; }\n  33% {\n    -webkit-transform: translateY(0) rotateZ(-2deg);\n            transform: translateY(0) rotateZ(-2deg);\n    opacity: .5; }\n  66% {\n    -webkit-transform: translateY(5px) rotateZ(2deg);\n            transform: translateY(5px) rotateZ(2deg);\n    opacity: .7; }\n  100% {\n    -webkit-transform: translateY(0) rotateZ(0);\n            transform: translateY(0) rotateZ(0);\n    opacity: 1; } }\n\n@-webkit-keyframes hideSweetToast {\n  0% {\n    opacity: 1; }\n  33% {\n    opacity: .5; }\n  100% {\n    -webkit-transform: rotateZ(1deg);\n            transform: rotateZ(1deg);\n    opacity: 0; } }\n\n@keyframes hideSweetToast {\n  0% {\n    opacity: 1; }\n  33% {\n    opacity: .5; }\n  100% {\n    -webkit-transform: rotateZ(1deg);\n            transform: rotateZ(1deg);\n    opacity: 0; } }\n\n@-webkit-keyframes showSweetAlert {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7); }\n  45% {\n    -webkit-transform: scale(1.05);\n            transform: scale(1.05); }\n  80% {\n    -webkit-transform: scale(0.95);\n            transform: scale(0.95); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@keyframes showSweetAlert {\n  0% {\n    -webkit-transform: scale(0.7);\n            transform: scale(0.7); }\n  45% {\n    -webkit-transform: scale(1.05);\n            transform: scale(1.05); }\n  80% {\n    -webkit-transform: scale(0.95);\n            transform: scale(0.95); }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1); } }\n\n@-webkit-keyframes hideSweetAlert {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1; }\n  100% {\n    -webkit-transform: scale(0.5);\n            transform: scale(0.5);\n    opacity: 0; } }\n\n@keyframes hideSweetAlert {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    opacity: 1; }\n  100% {\n    -webkit-transform: scale(0.5);\n            transform: scale(0.5);\n    opacity: 0; } }\n\n.swal2-show {\n  -webkit-animation: showSweetAlert .3s;\n          animation: showSweetAlert .3s; }\n  .swal2-show.swal2-toast {\n    -webkit-animation: showSweetToast .5s;\n            animation: showSweetToast .5s; }\n  .swal2-show.swal2-noanimation {\n    -webkit-animation: none;\n            animation: none; }\n\n.swal2-hide {\n  -webkit-animation: hideSweetAlert .15s forwards;\n          animation: hideSweetAlert .15s forwards; }\n  .swal2-hide.swal2-toast {\n    -webkit-animation: hideSweetToast .2s forwards;\n            animation: hideSweetToast .2s forwards; }\n  .swal2-hide.swal2-noanimation {\n    -webkit-animation: none;\n            animation: none; }\n\n[dir='rtl'] .swal2-close {\n  left: 8px;\n  right: auto; }\n\n@-webkit-keyframes animate-success-tip {\n  0% {\n    width: 0;\n    left: 1px;\n    top: 19px; }\n  54% {\n    width: 0;\n    left: 1px;\n    top: 19px; }\n  70% {\n    width: 50px;\n    left: -8px;\n    top: 37px; }\n  84% {\n    width: 17px;\n    left: 21px;\n    top: 48px; }\n  100% {\n    width: 25px;\n    left: 14px;\n    top: 45px; } }\n\n@keyframes animate-success-tip {\n  0% {\n    width: 0;\n    left: 1px;\n    top: 19px; }\n  54% {\n    width: 0;\n    left: 1px;\n    top: 19px; }\n  70% {\n    width: 50px;\n    left: -8px;\n    top: 37px; }\n  84% {\n    width: 17px;\n    left: 21px;\n    top: 48px; }\n  100% {\n    width: 25px;\n    left: 14px;\n    top: 45px; } }\n\n@-webkit-keyframes animate-success-long {\n  0% {\n    width: 0;\n    right: 46px;\n    top: 54px; }\n  65% {\n    width: 0;\n    right: 46px;\n    top: 54px; }\n  84% {\n    width: 55px;\n    right: 0;\n    top: 35px; }\n  100% {\n    width: 47px;\n    right: 8px;\n    top: 38px; } }\n\n@keyframes animate-success-long {\n  0% {\n    width: 0;\n    right: 46px;\n    top: 54px; }\n  65% {\n    width: 0;\n    right: 46px;\n    top: 54px; }\n  84% {\n    width: 55px;\n    right: 0;\n    top: 35px; }\n  100% {\n    width: 47px;\n    right: 8px;\n    top: 38px; } }\n\n@-webkit-keyframes animate-toast-success-tip {\n  0% {\n    width: 0;\n    left: 1px;\n    top: 9px; }\n  54% {\n    width: 0;\n    left: 1px;\n    top: 9px; }\n  70% {\n    width: 24px;\n    left: -4px;\n    top: 17px; }\n  84% {\n    width: 8px;\n    left: 10px;\n    top: 20px; }\n  100% {\n    width: 12px;\n    left: 3px;\n    top: 18px; } }\n\n@keyframes animate-toast-success-tip {\n  0% {\n    width: 0;\n    left: 1px;\n    top: 9px; }\n  54% {\n    width: 0;\n    left: 1px;\n    top: 9px; }\n  70% {\n    width: 24px;\n    left: -4px;\n    top: 17px; }\n  84% {\n    width: 8px;\n    left: 10px;\n    top: 20px; }\n  100% {\n    width: 12px;\n    left: 3px;\n    top: 18px; } }\n\n@-webkit-keyframes animate-toast-success-long {\n  0% {\n    width: 0;\n    right: 22px;\n    top: 26px; }\n  65% {\n    width: 0;\n    right: 22px;\n    top: 26px; }\n  84% {\n    width: 26px;\n    right: 0;\n    top: 15px; }\n  100% {\n    width: 22px;\n    right: 3px;\n    top: 15px; } }\n\n@keyframes animate-toast-success-long {\n  0% {\n    width: 0;\n    right: 22px;\n    top: 26px; }\n  65% {\n    width: 0;\n    right: 22px;\n    top: 26px; }\n  84% {\n    width: 26px;\n    right: 0;\n    top: 15px; }\n  100% {\n    width: 22px;\n    right: 3px;\n    top: 15px; } }\n\n@-webkit-keyframes rotatePlaceholder {\n  0% {\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); }\n  5% {\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); }\n  12% {\n    -webkit-transform: rotate(-405deg);\n            transform: rotate(-405deg); }\n  100% {\n    -webkit-transform: rotate(-405deg);\n            transform: rotate(-405deg); } }\n\n@keyframes rotatePlaceholder {\n  0% {\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); }\n  5% {\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg); }\n  12% {\n    -webkit-transform: rotate(-405deg);\n            transform: rotate(-405deg); }\n  100% {\n    -webkit-transform: rotate(-405deg);\n            transform: rotate(-405deg); } }\n\n.swal2-animate-success-line-tip {\n  -webkit-animation: animate-success-tip .75s;\n          animation: animate-success-tip .75s; }\n\n.swal2-animate-success-line-long {\n  -webkit-animation: animate-success-long .75s;\n          animation: animate-success-long .75s; }\n\n.swal2-success.swal2-animate-success-icon .swal2-success-circular-line-right {\n  -webkit-animation: rotatePlaceholder 4.25s ease-in;\n          animation: rotatePlaceholder 4.25s ease-in; }\n\n@-webkit-keyframes animate-error-icon {\n  0% {\n    -webkit-transform: rotateX(100deg);\n            transform: rotateX(100deg);\n    opacity: 0; }\n  100% {\n    -webkit-transform: rotateX(0deg);\n            transform: rotateX(0deg);\n    opacity: 1; } }\n\n@keyframes animate-error-icon {\n  0% {\n    -webkit-transform: rotateX(100deg);\n            transform: rotateX(100deg);\n    opacity: 0; }\n  100% {\n    -webkit-transform: rotateX(0deg);\n            transform: rotateX(0deg);\n    opacity: 1; } }\n\n.swal2-animate-error-icon {\n  -webkit-animation: animate-error-icon .5s;\n          animation: animate-error-icon .5s; }\n\n@-webkit-keyframes animate-x-mark {\n  0% {\n    -webkit-transform: scale(0.4);\n            transform: scale(0.4);\n    margin-top: 26px;\n    opacity: 0; }\n  50% {\n    -webkit-transform: scale(0.4);\n            transform: scale(0.4);\n    margin-top: 26px;\n    opacity: 0; }\n  80% {\n    -webkit-transform: scale(1.15);\n            transform: scale(1.15);\n    margin-top: -6px; }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    margin-top: 0;\n    opacity: 1; } }\n\n@keyframes animate-x-mark {\n  0% {\n    -webkit-transform: scale(0.4);\n            transform: scale(0.4);\n    margin-top: 26px;\n    opacity: 0; }\n  50% {\n    -webkit-transform: scale(0.4);\n            transform: scale(0.4);\n    margin-top: 26px;\n    opacity: 0; }\n  80% {\n    -webkit-transform: scale(1.15);\n            transform: scale(1.15);\n    margin-top: -6px; }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n    margin-top: 0;\n    opacity: 1; } }\n\n.swal2-animate-x-mark {\n  -webkit-animation: animate-x-mark .5s;\n          animation: animate-x-mark .5s; }\n\n@-webkit-keyframes rotate-loading {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes rotate-loading {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n";
 
@@ -96890,17 +96706,12 @@ var setParameters = function setParameters(params) {
   var cancelButton = getCancelButton();
   var closeButton = getCloseButton();
 
-<<<<<<< HEAD
   // Title
   if (params.titleText) {
     title.innerText = params.titleText;
   } else {
     title.innerHTML = params.title.split('\n').join('<br />');
   }
-=======
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
->>>>>>> parent of 2885a1b... cambios RRHH
 
   if (!params.backdrop) {
     addClass([document.documentElement, document.body], swalClasses['no-backdrop']);
@@ -96962,7 +96773,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
     addClass(popup, params.customClass);
   }
 
-<<<<<<< HEAD
   // Progress steps
   var progressStepsContainer = getProgressSteps();
   var currentProgressStep = parseInt(params.currentProgressStep === null ? sweetAlert$1.getQueueStep() : params.currentProgressStep, 10);
@@ -96985,14 +96795,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
         addClass(line, swalClasses.progressline);
         line.style.width = params.progressStepsDistance;
         progressStepsContainer.appendChild(line);
-=======
-    this.obtenerSucursales();
-    console.log(this.sucursales);
-    this.obtenerAreas();
-    __WEBPACK_IMPORTED_MODULE_0__event_bus__["a" /* EventBus */].$on('estatus', function (estatus) {
-      if (estatus != '') {
-        _this.estatus = estatus;
->>>>>>> parent of 2885a1b... cambios RRHH
       }
     });
   } else {
@@ -97019,7 +96821,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
     var icon = popup.querySelector('.' + swalClasses.icon + '.' + iconTypes[params.type]);
     show(icon);
 
-<<<<<<< HEAD
     // Animate icon
     if (params.animation) {
       switch (params.type) {
@@ -97037,17 +96838,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
       }
     }
   }
-=======
-      axios.get('/rrhh/backend/obtener-sucursales').then(function (response) {
-        _this2.sucursales = response.data;
-        console.log(_this2.sucursales);
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    obtenerAreas: function obtenerAreas() {
-      var _this3 = this;
->>>>>>> parent of 2885a1b... cambios RRHH
 
   // Custom image
   var image = getImage();
@@ -97083,225 +96873,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
     hide(cancelButton);
   }
 
-<<<<<<< HEAD
   // Confirm button
   if (params.showConfirmButton) {
     removeStyleProperty(confirmButton, 'display');
   } else {
     hide(confirmButton);
-=======
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "vacante" }, [
-    _c("div", { staticClass: "vacante__search" }, [
-      _c("h4", { staticClass: "vacante__title" }, [
-        _vm._v("Vacante a consultar")
-      ]),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          staticClass: "form-row",
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.obtenerAspirantes($event)
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("div", { staticClass: "input-group row" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.sucursal,
-                      expression: "sucursal"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { name: "sucursal", id: "sucursal" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.sucursal = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                _vm._l(_vm.sucursales, function(sucursal) {
-                  return _c("option", { domProps: { value: sucursal.id } }, [
-                    _vm._v(_vm._s(_vm._f("capitalize")(sucursal.nombre)))
-                  ])
-                })
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
-            _c("div", { staticClass: "input-group row" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.area,
-                      expression: "area"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { name: "area", id: "area" },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.area = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      _vm.obtenerCargos
-                    ]
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "", selected: "selected" } }, [
-                    _vm._v("Buscar en área")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.areas, function(area) {
-                    return _c("option", { domProps: { value: area.area_id } }, [
-                      _vm._v(_vm._s(_vm._f("capitalize")(area.nombre)))
-                    ])
-                  })
-                ],
-                2
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("div", { staticClass: "input-group row" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.cargo,
-                      expression: "cargo"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { name: "cargo", id: "cargo" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.cargo = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "", selected: "selected" } }, [
-                    _vm._v("Buscar en cargo")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.cargos, function(cargo) {
-                    return _c(
-                      "option",
-                      { domProps: { value: cargo.cargo_id } },
-                      [_vm._v(_vm._s(_vm._f("capitalize")(cargo.titulo)))]
-                    )
-                  })
-                ],
-                2
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(3)
-        ]
-      )
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Sucursal")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Área")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Cargo")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-1" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-sm btn-info", attrs: { type: "submit" } },
-          [_c("i", { staticClass: "fa fa-search" })]
-        )
-      ])
-    ])
->>>>>>> parent of 2885a1b... cambios RRHH
   }
 
   // Buttons wrapper
@@ -97378,7 +96954,6 @@ var openPopup = function openPopup(animation, onBeforeOpen, onComplete) {
   }
   show(popup);
 
-<<<<<<< HEAD
   // scrolling is 'hidden' until animation is done, after that 'auto'
   container.style.overflowY = 'hidden';
   if (animationEndEvent && !hasClass(popup, swalClasses.noanimation)) {
@@ -97389,10 +96964,6 @@ var openPopup = function openPopup(animation, onBeforeOpen, onComplete) {
   } else {
     container.style.overflowY = 'auto';
   }
-=======
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
->>>>>>> parent of 2885a1b... cambios RRHH
 
   addClass([document.documentElement, document.body, container], swalClasses.shown);
   if (isModal()) {
@@ -97594,7 +97165,6 @@ var sweetAlert$1 = function sweetAlert() {
         if (input) {
           focusInput(input);
         }
-<<<<<<< HEAD
       }, 0);
     }
 
@@ -97731,18 +97301,6 @@ var sweetAlert$1 = function sweetAlert() {
       buttons[i].onmouseover = onButtonEvent;
       buttons[i].onmouseout = onButtonEvent;
       buttons[i].onmousedown = onButtonEvent;
-=======
-      }).then(function (response) {
-        console.log(response.data);
-        _this2.aspirantes = response.data;
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    obtenerAspirante: function obtenerAspirante(aspirante) {
-      __WEBPACK_IMPORTED_MODULE_0__event_bus__["a" /* EventBus */].$emit('email-verificado', aspirante);
-      __WEBPACK_IMPORTED_MODULE_0__event_bus__["a" /* EventBus */].$emit('aspirante-seleccionado', aspirante);
->>>>>>> parent of 2885a1b... cambios RRHH
     }
 
     // Closing popup by close button
@@ -97876,28 +97434,8 @@ var sweetAlert$1 = function sweetAlert() {
           // Cycle to the next button
           setFocus(btnIndex, 1);
         } else {
-<<<<<<< HEAD
           // Cycle to the prev button
           setFocus(btnIndex, -1);
-=======
-          $('#lugar').val('');
-          $('#fecha').val('');
-          $('#hora').val('');
-          $(':checkbox, :radio').prop('checked', false);
-
-          _this2.$swal({
-            //position: 'top-end',
-            type: 'success',
-            title: 'Los recaudos fueron enviados',
-            showConfirmButton: false,
-            timer: 2000
-          });
-
-          console.log(response.data);
-          _this2.aspirantes = response.data;
-
-          __WEBPACK_IMPORTED_MODULE_0__event_bus__["a" /* EventBus */].$emit('aspirantes', _this2.aspirantes);
->>>>>>> parent of 2885a1b... cambios RRHH
         }
         e.stopPropagation();
         e.preventDefault();
@@ -103190,7 +102728,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -103684,7 +103222,6 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_sweetalert2__["a" /* default */]);
       console.log(tabulador);
     },
     obtenerTabuladorSalarial: function obtenerTabuladorSalarial() {
-      console.log(this.$refs);
       /*axios.get('/rrhh/backend/contratacion/obtener-tabulador', {
         params: {
           tabulador_salarial_id: this.cargo.tabulador_salarial
@@ -104718,7 +104255,7 @@ var render = function() {
                                 return _c(
                                   "option",
                                   {
-                                    key: sucursal.sucursal_id,
+                                    key: sucursal.id,
                                     domProps: { value: sucursal.sucursal_id }
                                   },
                                   [_vm._v(_vm._s(sucursal.nombre))]
@@ -105710,8 +105247,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           Estado: this.data[i].ruta.estado
         });
       }
-      console.log('entre');
-      console.log(this.items);
     },
     actualizar: function actualizar() {
       var _this2 = this;
@@ -105756,7 +105291,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           id: row.item.id
         }
       }).then(function (response) {
-        console.log(response.data);
+
         Vue.toasted.show("Ruta Deshabilitada", {
           theme: "primary",
           position: "bottom-right",
@@ -105777,7 +105312,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           id: row.item.id
         }
       }).then(function (response) {
-        console.log(response);
+
         Vue.toasted.show("Ruta Habilitada", {
           theme: "primary",
           position: "bottom-right",
@@ -106027,7 +105562,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 data: this.form
 
             }).then(function (response) {
-                console.log(response.data);
+
                 Vue.toasted.show(response.data, {
                     theme: "primary",
                     position: "bottom-right",
@@ -106057,8 +105592,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         resetModal: function resetModal() {},
         onSubmit: function onSubmit() {},
         formatosucursal: function formatosucursal(data) {
-            //Anadir datos
-            console.log(data);
+
             for (var i = 0; i < data.data.length; i++) {
                 this.origenes.push({
                     id: data.data[i].sucursal_id,
@@ -106448,7 +105982,7 @@ var render = function() {
                 "b-form-group",
                 {
                   staticClass: "mb-0",
-                  attrs: { horizontal: "", label: "Sort" }
+                  attrs: { horizontal: "", label: "Ordenar" }
                 },
                 [
                   _c(
@@ -106542,7 +106076,7 @@ var render = function() {
                 "b-form-group",
                 {
                   staticClass: "mb-0",
-                  attrs: { horizontal: "", label: "Per page" }
+                  attrs: { horizontal: "", label: "Por Página" }
                 },
                 [
                   _c("b-form-select", {
@@ -107012,6 +106546,14 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegistrarVuelos__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegistrarVuelos___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegistrarVuelos__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -107035,14 +106577,652 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    RegistrarVuelos: __WEBPACK_IMPORTED_MODULE_0__RegistrarVuelos___default.a
+  }
+});
 
 /***/ }),
-/* 306 */,
-/* 307 */,
-/* 308 */,
-/* 309 */,
-/* 310 */,
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(307)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(309)
+/* template */
+var __vue_template__ = __webpack_require__(310)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\operativo\\RegistrarVuelos.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-72fc6255", Component.options)
+  } else {
+    hotAPI.reload("data-v-72fc6255", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 307 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(308);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("22b4cc54", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-72fc6255\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css", function() {
+     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-72fc6255\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nfieldset[disabled] .multiselect{pointer-events:none\n}\n.multiselect__spinner{position:absolute;right:1px;top:1px;width:48px;height:35px;background:#fff;display:block\n}\n.multiselect__spinner:after,.multiselect__spinner:before{position:absolute;content:\"\";top:50%;left:50%;margin:-8px 0 0 -8px;width:16px;height:16px;border-radius:100%;border-color:#41b883 transparent transparent;border-style:solid;border-width:2px;-webkit-box-shadow:0 0 0 1px transparent;box-shadow:0 0 0 1px transparent\n}\n.multiselect__spinner:before{-webkit-animation:a 2.4s cubic-bezier(.41,.26,.2,.62);animation:a 2.4s cubic-bezier(.41,.26,.2,.62);-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite\n}\n.multiselect__spinner:after{-webkit-animation:a 2.4s cubic-bezier(.51,.09,.21,.8);animation:a 2.4s cubic-bezier(.51,.09,.21,.8);-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite\n}\n.multiselect__loading-enter-active,.multiselect__loading-leave-active{-webkit-transition:opacity .4s ease-in-out;transition:opacity .4s ease-in-out;opacity:1\n}\n.multiselect__loading-enter,.multiselect__loading-leave-active{opacity:0\n}\n.multiselect,.multiselect__input,.multiselect__single{font-family:inherit;font-size:16px;-ms-touch-action:manipulation;touch-action:manipulation\n}\n.multiselect{-webkit-box-sizing:content-box;box-sizing:content-box;display:block;position:relative;width:100%;min-height:40px;text-align:left;color:#35495e\n}\n.multiselect *{-webkit-box-sizing:border-box;box-sizing:border-box\n}\n.multiselect:focus{outline:none\n}\n.multiselect--disabled{opacity:.6\n}\n.multiselect--active{z-index:1\n}\n.multiselect--active:not(.multiselect--above) .multiselect__current,.multiselect--active:not(.multiselect--above) .multiselect__input,.multiselect--active:not(.multiselect--above) .multiselect__tags{border-bottom-left-radius:0;border-bottom-right-radius:0\n}\n.multiselect--active .multiselect__select{-webkit-transform:rotate(180deg);transform:rotate(180deg)\n}\n.multiselect--above.multiselect--active .multiselect__current,.multiselect--above.multiselect--active .multiselect__input,.multiselect--above.multiselect--active .multiselect__tags{border-top-left-radius:0;border-top-right-radius:0\n}\n.multiselect__input,.multiselect__single{position:relative;display:inline-block;min-height:20px;line-height:20px;border:none;border-radius:5px;background:#fff;padding:0 0 0 5px;width:100%;-webkit-transition:border .1s ease;transition:border .1s ease;-webkit-box-sizing:border-box;box-sizing:border-box;margin-bottom:8px;vertical-align:top\n}\n.multiselect__input::-webkit-input-placeholder{color:#35495e\n}\n.multiselect__input:-ms-input-placeholder{color:#35495e\n}\n.multiselect__input::-ms-input-placeholder{color:#35495e\n}\n.multiselect__input::placeholder{color:#35495e\n}\n.multiselect__tag~.multiselect__input,.multiselect__tag~.multiselect__single{width:auto\n}\n.multiselect__input:hover,.multiselect__single:hover{border-color:#cfcfcf\n}\n.multiselect__input:focus,.multiselect__single:focus{border-color:#a8a8a8;outline:none\n}\n.multiselect__single{padding-left:5px;margin-bottom:8px\n}\n.multiselect__tags-wrap{display:inline\n}\n.multiselect__tags{min-height:40px;display:block;padding:8px 40px 0 8px;border-radius:5px;border:1px solid #e8e8e8;background:#fff;font-size:14px\n}\n.multiselect__tag{position:relative;display:inline-block;padding:4px 26px 4px 10px;border-radius:5px;margin-right:10px;color:#fff;line-height:1;background:#41b883;margin-bottom:5px;white-space:nowrap;overflow:hidden;max-width:100%;text-overflow:ellipsis\n}\n.multiselect__tag-icon{cursor:pointer;margin-left:7px;position:absolute;right:0;top:0;bottom:0;font-weight:700;font-style:normal;width:22px;text-align:center;line-height:22px;-webkit-transition:all .2s ease;transition:all .2s ease;border-radius:5px\n}\n.multiselect__tag-icon:after{content:\"\\D7\";color:#266d4d;font-size:14px\n}\n.multiselect__tag-icon:focus,.multiselect__tag-icon:hover{background:#369a6e\n}\n.multiselect__tag-icon:focus:after,.multiselect__tag-icon:hover:after{color:#fff\n}\n.multiselect__current{min-height:40px;overflow:hidden;padding:8px 12px 0;padding-right:30px;white-space:nowrap;border-radius:5px;border:1px solid #e8e8e8\n}\n.multiselect__current,.multiselect__select{line-height:16px;-webkit-box-sizing:border-box;box-sizing:border-box;display:block;margin:0;text-decoration:none;cursor:pointer\n}\n.multiselect__select{position:absolute;width:40px;height:38px;right:1px;top:1px;padding:4px 8px;text-align:center;-webkit-transition:-webkit-transform .2s ease;transition:-webkit-transform .2s ease;transition:transform .2s ease;transition:transform .2s ease, -webkit-transform .2s ease\n}\n.multiselect__select:before{position:relative;right:0;top:65%;color:#999;margin-top:4px;border-style:solid;border-width:5px 5px 0;border-color:#999 transparent transparent;content:\"\"\n}\n.multiselect__placeholder{color:#adadad;display:inline-block;margin-bottom:10px;padding-top:2px\n}\n.multiselect--active .multiselect__placeholder{display:none\n}\n.multiselect__content-wrapper{position:absolute;display:block;background:#fff;width:100%;max-height:240px;overflow:auto;border:1px solid #e8e8e8;border-top:none;border-bottom-left-radius:5px;border-bottom-right-radius:5px;z-index:1;-webkit-overflow-scrolling:touch\n}\n.multiselect__content{list-style:none;display:inline-block;padding:0;margin:0;min-width:100%;vertical-align:top\n}\n.multiselect--above .multiselect__content-wrapper{bottom:100%;border-bottom-left-radius:0;border-bottom-right-radius:0;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom:none;border-top:1px solid #e8e8e8\n}\n.multiselect__content::webkit-scrollbar{display:none\n}\n.multiselect__element{display:block\n}\n.multiselect__option{display:block;padding:12px;min-height:40px;line-height:16px;text-decoration:none;text-transform:none;vertical-align:middle;position:relative;cursor:pointer;white-space:nowrap\n}\n.multiselect__option:after{top:0;right:0;position:absolute;line-height:40px;padding-right:12px;padding-left:20px;font-size:13px\n}\n.multiselect__option--highlight{background:#41b883;outline:none;color:#fff\n}\n.multiselect__option--highlight:after{content:attr(data-select);background:#41b883;color:#fff\n}\n.multiselect__option--selected{background:#f3f3f3;color:#35495e;font-weight:700\n}\n.multiselect__option--selected:after{content:attr(data-selected);color:silver\n}\n.multiselect__option--selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect--disabled{background:#ededed;pointer-events:none\n}\n.multiselect--disabled .multiselect__current,.multiselect--disabled .multiselect__select,.multiselect__option--disabled{background:#ededed;color:#a6a6a6\n}\n.multiselect__option--disabled{cursor:text;pointer-events:none\n}\n.multiselect__option--group{background:#ededed;color:#35495e\n}\n.multiselect__option--group.multiselect__option--highlight{background:#35495e;color:#fff\n}\n.multiselect__option--group.multiselect__option--highlight:after{background:#35495e\n}\n.multiselect__option--disabled.multiselect__option--highlight{background:#dedede\n}\n.multiselect__option--group-selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--group-selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect-enter-active,.multiselect-leave-active{-webkit-transition:all .15s ease;transition:all .15s ease\n}\n.multiselect-enter,.multiselect-leave-active{opacity:0\n}\n.multiselect__strong{margin-bottom:8px;line-height:20px;display:inline-block;vertical-align:top\n}\n[dir=rtl] .multiselect{text-align:right\n}\n[dir=rtl] .multiselect__select{right:auto;left:1px\n}\n[dir=rtl] .multiselect__tags{padding:8px 8px 0 40px\n}\n[dir=rtl] .multiselect__content{text-align:right\n}\n[dir=rtl] .multiselect__option:after{right:auto;left:0\n}\n[dir=rtl] .multiselect__clear{right:auto;left:12px\n}\n[dir=rtl] .multiselect__spinner{right:auto;left:1px\n}\n@-webkit-keyframes a{\n0%{-webkit-transform:rotate(0);transform:rotate(0)\n}\nto{-webkit-transform:rotate(2turn);transform:rotate(2turn)\n}\n}\n@keyframes a{\n0%{-webkit-transform:rotate(0);transform:rotate(0)\n}\nto{-webkit-transform:rotate(2turn);transform:rotate(2turn)\n}\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 309 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_multiselect__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_multiselect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_multiselect__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    components: {
+        multiselect: __WEBPACK_IMPORTED_MODULE_0_vue_multiselect___default.a
+    },
+    data: function data() {
+        return {
+            ruta: null,
+            fecha: null,
+            hora: null,
+            minutos: null,
+            segundos: null,
+            horavuelo: null,
+            itemspilotos: null,
+            rutas: [],
+            oculto: false,
+            items: null,
+            data: null
+        };
+    },
+
+    created: function created() {
+        this.cargarRutas();
+    },
+    methods: {
+        Buscar: function Buscar() {
+            this.enviarFechas();
+            this.Cargadatos(this);
+            this.oculto = true;
+        },
+        enviarFechas: function enviarFechas() {
+            axios({
+                method: 'post',
+                url: '/vuelos/tripulantes',
+                data: {
+                    fecha: this.fecha + " " + this.hora + ":" + this.minutos + ":" + this.segundos
+                }
+            }).then(function (response) {
+                Vue.toasted.show(response.data, {
+                    theme: "primary",
+                    position: "bottom-right",
+                    duration: 2000
+                });
+                //this.$refs.myModalRef.hide();
+            }).catch(function (err) {
+                Vue.toasted.show('Ha ocurrido un error', {
+                    theme: "primary",
+                    position: "bottom-right",
+                    duration: 2000
+                });
+                console.log(err);
+            });
+        },
+        Cargadatos: function Cargadatos(ctx) {
+            axios.get("/vuelos/pilotos").then(function (response) {
+                console.log(response.data);
+                ctx.data = response.data;
+                ctx.formatodatos();
+                ctx.totalRows = ctx.items.length;
+            }).catch(function (err) {
+                console.log("err");
+                console.log(err);
+            });
+        },
+        formatodatos: function formatodatos() {
+            this.items = [];
+            for (var i = 0; i < this.data.length; i++) {
+                //console.log(this.data[i].tripulante   );
+                if (this.data[i].tripulante.rango === 'piloto') this.items.push(this.data[i].tripulante);
+            }
+        },
+        cargarRutas: function cargarRutas() {
+            var _this = this;
+
+            axios({
+                method: 'get',
+                url: '/vuelos/rutas'
+            }).then(function (response) {
+                _this.formatorutas(response);
+            }).catch(function (err) {
+                Vue.toasted.show('Ha ocurrido un error', {
+                    theme: "primary",
+                    position: "bottomright",
+                    duration: 2000
+                });
+                console.log(err);
+            });
+        },
+        formatorutas: function formatorutas(data) {
+            console.log(data);
+            for (var i = 0; i < data.data.length; i++) {
+                this.rutas.push({
+                    id: data.data[i].ruta.id,
+                    nombre: data.data[i].ruta.origen.nombre + " (" + data.data[i].ruta.origen.aeropuerto + ") -->" + data.data[i].ruta.destino.nombre + " (" + data.data[i].ruta.destino.aeropuerto
+                });
+            }
+        },
+        sumar: function sumar(experiencias) {
+            var horas = 0;
+            var minutos = 0;
+            var segundos = 0;
+            for (var i = 0; i < experiencias.length; i++) {
+                horas += parseInt(experiencias[i].horas.split(':')[0]);
+                minutos += parseInt(experiencias[i].horas.split(':')[1]);
+                segundos += parseInt(experiencias[i].horas.split(':')[2]);
+            }
+            if (segundos % 60) {
+                minutos += parseInt(segundos / 60);
+                segundos = segundos % 60;
+            }
+            if (minutos % 60) {
+                horas += parseInt(minutos / 60);
+                minutos = minutos % 60;
+            }
+            return horas + ":" + minutos + ":" + segundos;
+        }
+    }
+});
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("multiselect", {
+        attrs: {
+          options: _vm.rutas,
+          selectLabel: "Seleccionar",
+          deselectLabel: "Eliminar",
+          selectedLabel: "Seleccionado",
+          placeholder: "Seleccione el Origen",
+          label: "nombre",
+          "track-by": "nombre"
+        },
+        model: {
+          value: _vm.ruta,
+          callback: function($$v) {
+            _vm.ruta = $$v
+          },
+          expression: "ruta"
+        }
+      }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-5 text-center" }, [
+          _c(
+            "div",
+            {},
+            [
+              _c("div", { staticClass: "col-md-3" }),
+              _vm._v(" "),
+              _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    align: "center",
+                    id: "fecha_salida",
+                    label: "Fecha Salida",
+                    "label-for": "fecha_salida"
+                  }
+                },
+                [
+                  _c("b-form-input", {
+                    staticClass: "col-md-6",
+                    attrs: { id: "fecha_salida", type: "date", required: "" },
+                    model: {
+                      value: _vm.fecha,
+                      callback: function($$v) {
+                        _vm.fecha = $$v
+                      },
+                      expression: "fecha"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4 text-center" }, [
+          _c("div", {}, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "row", attrs: { id: "duracion" } }, [
+              _c(
+                "div",
+                { staticClass: "col-sm-4 " },
+                [
+                  _c("b-form-input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "number",
+                      min: "0",
+                      max: "24",
+                      id: "ccyear",
+                      placeholder: "hora"
+                    },
+                    model: {
+                      value: _vm.hora,
+                      callback: function($$v) {
+                        _vm.hora = $$v
+                      },
+                      expression: "hora"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-sm-4 " },
+                [
+                  _c("b-form-input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "number",
+                      min: "0",
+                      max: "60",
+                      id: "ccyear",
+                      placeholder: "minutos"
+                    },
+                    model: {
+                      value: _vm.minutos,
+                      callback: function($$v) {
+                        _vm.minutos = $$v
+                      },
+                      expression: "minutos"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-sm-4 " },
+                [
+                  _c("b-form-input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "number",
+                      min: "0",
+                      max: "60",
+                      id: "ccyear",
+                      placeholder: "segundos"
+                    },
+                    model: {
+                      value: _vm.segundos,
+                      callback: function($$v) {
+                        _vm.segundos = $$v
+                      },
+                      expression: "segundos"
+                    }
+                  })
+                ],
+                1
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3 text-center" }, [
+          _c("div", {}, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: " col-sm-12 " },
+              [
+                _c(
+                  "b-button",
+                  {
+                    attrs: { size: "sm", variant: "primary" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.Buscar()
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-search" }, [_vm._v("Buscar")])]
+                )
+              ],
+              1
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _vm.oculto
+            ? _c(
+                "div",
+                { staticClass: "form-group text-center" },
+                [
+                  _c(
+                    "b-tabs",
+                    { attrs: { pills: "", card: "" } },
+                    [
+                      _c("b-tab", { attrs: { title: " Piloto", active: "" } }, [
+                        _c(
+                          "table",
+                          { staticClass: "table table-hover table-striped" },
+                          [
+                            _c("thead", [
+                              _c("th", [_vm._v(" # ")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v(" Nombre ")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v(" Horas de Experiencia")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v(" Vuelos de Quicena ")]),
+                              _vm._v(" "),
+                              _c("th", [_vm._v(" Asignar ")])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              [
+                                _vm._l(this.items, function(tripulante) {
+                                  return _c("tr", [
+                                    _c("td", [
+                                      _vm._v(
+                                        " " + _vm._s(tripulante.licencia) + " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(tripulante.empleado.nombre) +
+                                          " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.sumar(
+                                              tripulante.empleado.experiencia
+                                            )
+                                          ) +
+                                          " "
+                                      )
+                                    ])
+                                  ])
+                                }),
+                                _vm._v(" "),
+                                _c("br")
+                              ],
+                              2
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("b-tab", { attrs: { title: "Copiloto" } }),
+                      _vm._v(" "),
+                      _c("b-tab", { attrs: { title: "Jefe de Cabina" } }),
+                      _vm._v(" "),
+                      _c("b-tab", { attrs: { title: "Sobrecargo" } }),
+                      _vm._v(" "),
+                      _c("b-tab", { attrs: { title: "Aeronave" } })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            : _vm._e()
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "text-center", attrs: { for: "duracion" } },
+      [_c("b", [_vm._v(" Hora del Vuelo: ")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "text-center", attrs: { for: "duracion" } },
+      [_c("b", { staticStyle: { color: "white" } }, [_vm._v(" - ")])]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-72fc6255", module.exports)
+  }
+}
+
+/***/ }),
 /* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -107059,22 +107239,45 @@ var render = function() {
         [
           _c(
             "b-tab",
+            { attrs: { title: "Nuevo Vuelo" } },
+            [_c("RegistrarVuelos")],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-tab",
             { attrs: { title: "Vuelos Abiertos", active: "" } },
             [_c("VuelosAbiertos")],
             1
           ),
           _vm._v(" "),
-          _c("b-tab", { attrs: { title: "Vuelos Retrasados" } }, [
-            _vm._v("\n    Retrasados\n  ")
-          ]),
+          _c(
+            "b-tab",
+            { attrs: { title: "Vuelos Cancelados" } },
+            [_c("VuelosCancelados")],
+            1
+          ),
           _vm._v(" "),
-          _c("b-tab", { attrs: { title: "Vuelos Cancelados" } }, [
-            _vm._v("\n    Retrasados\n  ")
-          ]),
+          _c(
+            "b-tab",
+            { attrs: { title: "Vuelos Ejecutados" } },
+            [_c("VuelosEjecutados")],
+            1
+          ),
           _vm._v(" "),
-          _c("b-tab", { attrs: { title: "Vuelos Ejecutados" } }, [
-            _vm._v("\n    Retrasados\n  ")
-          ])
+          _c(
+            "b-tab",
+            { attrs: { title: "Vuelos Retrasados" } },
+            [_c("VuelosRetrasados")],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-tab",
+            { attrs: { title: "Vuelos Cerrados" } },
+            [_c("VuelosCerrados")],
+            1
+          )
         ],
         1
       )
@@ -107147,9 +107350,34 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ModalRegistrarVuelos__ = __webpack_require__(396);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ModalRegistrarVuelos___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ModalRegistrarVuelos__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__event_bus_js__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__event_bus_js__ = __webpack_require__(11);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -107267,13 +107495,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    RegistrarVuelos: __WEBPACK_IMPORTED_MODULE_1__ModalRegistrarVuelos___default.a
-  },
+
   created: function created() {
     var _this = this;
 
-    __WEBPACK_IMPORTED_MODULE_2__event_bus_js__["a" /* EventBus */].$on('actualizartabla', function (event) {
+    __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('actualizartabla', function (event) {
       _this.Cargadatos(_this);
     });
     this.Cargadatos(this);
@@ -107282,7 +107508,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Siglas', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -107290,7 +107516,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       sortBy: null,
       sortDesc: false,
       filter: null,
-      modalInfo: { title: '', content: '' }
+      modalInfo: { title: '', content: '' },
+      tripulantes: [{
+        piloto: [],
+        copiloto: [],
+        jefe_cabina: [],
+        sobrecargo1: [],
+        sobrecargo2: [],
+        sobrecargo3: []
+      }]
 
     };
   },
@@ -107309,7 +107543,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     info: function info(item, index, button) {
       this.modalInfo.content = item;
       this.modalInfo.title = "Datos del Vuelo: " + item.N_Vuelo;
-      this.$root.$emit('bv::show::modal', 'modalInfo', button);
+
+      this.$root.$emit('bv::show::modal', 'VuelosAbiertos', button);
     },
     resetModal: function resetModal() {
       this.modalInfo.title = '';
@@ -107322,7 +107557,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     Cargadatos: function Cargadatos(ctx) {
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/vuelos/vuelos").then(function (response) {
-        console.log(response.data);
+
         ctx.data = response.data;
         ctx.formatodatos();
         ctx.totalRows = ctx.items.length;
@@ -107335,7 +107570,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.items = [];
       for (var i = 0; i < this.data.length; i++) {
         //var elementos=this.data[i].fecha_salida.split(' ')
-        console.log('valor de iten en' + i + 'es ' + JSON.stringify(this.data[i]));
+
 
         if (this.data[i].vuelo.segmentos.length == 0) {
           /*  this.items.push({
@@ -107358,7 +107593,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
               Ruta: rutas,
               Fecha: fecha,
               Hora: hora,
-              Estado: this.data[i].vuelo.estado
+              Estado: this.data[i].vuelo.estado,
+              tripulantes: this.data[i].vuelo.tripulantes,
+              segmentos: this.data[i].vuelo.segmentos
             });
           }
         }
@@ -107424,7 +107661,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           id: row.item.id
         }
       }).then(function (response) {
-        console.log(response);
+
         Vue.toasted.show("Vuelo Habilitado", {
           theme: "primary",
           position: "bottom-right",
@@ -107438,12 +107675,936 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           duration: 2000
         });
       });
+    },
+    sumar: function sumar(experiencias) {
+      var horas = 0;
+      var minutos = 0;
+      var segundos = 0;
+      for (var i = 0; i < experiencias.length; i++) {
+        horas += parseInt(experiencias[i].horas.split(':')[0]);
+        minutos += parseInt(experiencias[i].horas.split(':')[1]);
+        segundos += parseInt(experiencias[i].horas.split(':')[2]);
+      }
+      if (segundos % 60) {
+        minutos += parseInt(segundos / 60);
+        segundos = segundos % 60;
+      }
+      if (minutos % 60) {
+        horas += parseInt(minutos / 60);
+        minutos = minutos % 60;
+      }
+      return horas + ":" + minutos + ":" + segundos;
     }
   }
 });
 
 /***/ }),
 /* 314 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Filtro" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Escriba para buscar" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-input-group-append",
+                        [
+                          _c(
+                            "b-btn",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Limpiar")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Sort" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { options: _vm.sortOptions },
+                          model: {
+                            value: _vm.sortBy,
+                            callback: function($$v) {
+                              _vm.sortBy = $$v
+                            },
+                            expression: "sortBy"
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { slot: "first" },
+                              domProps: { value: null },
+                              slot: "first"
+                            },
+                            [_vm._v("-- ninguno --")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append", disabled: !_vm.sortBy },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDesc,
+                            callback: function($$v) {
+                              _vm.sortDesc = $$v
+                            },
+                            expression: "sortDesc"
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: false } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: true } }, [
+                            _vm._v("Desc")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("b-col", { staticClass: "my-1", attrs: { md: "6" } }),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Per page" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.pageOptions },
+                    model: {
+                      value: _vm.perPage,
+                      callback: function($$v) {
+                        _vm.perPage = $$v
+                      },
+                      expression: "perPage"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          "show-empty": "",
+          stacked: "md",
+          items: _vm.items,
+          fields: _vm.fields,
+          "current-page": _vm.currentPage,
+          "per-page": _vm.perPage,
+          filter: _vm.filter,
+          "sort-by": _vm.sortBy,
+          "sort-desc": _vm.sortDesc
+        },
+        on: {
+          "update:sortBy": function($event) {
+            _vm.sortBy = $event
+          },
+          "update:sortDesc": function($event) {
+            _vm.sortDesc = $event
+          },
+          filtered: _vm.onFiltered
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "actions",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-input-group",
+                  [
+                    _c(
+                      "b-button",
+                      {
+                        staticClass: "mr-1",
+                        attrs: { size: "sm", variant: "primary" },
+                        on: {
+                          click: function($event) {
+                            $event.stopPropagation()
+                            _vm.info(row.item, row.index, $event.target)
+                          }
+                        }
+                      },
+                      [_vm._v("\n        Ver\n      ")]
+                    ),
+                    _vm._v(" "),
+                    row.item.Estado == "abierto"
+                      ? _c(
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { size: "sm" },
+                                on: {
+                                  click: function($event) {
+                                    $event.stopPropagation()
+                                    _vm.Deshabilitar(row)
+                                  }
+                                }
+                              },
+                              [_vm._v("\n          Cancelar\n        ")]
+                            )
+                          ],
+                          1
+                        )
+                      : _c(
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { size: "sm", variant: "success" },
+                                on: {
+                                  click: function($event) {
+                                    $event.stopPropagation()
+                                    _vm.Habilitar(row)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n          \n          Habilitar\n        "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                  ],
+                  1
+                )
+              ]
+            }
+          },
+          {
+            key: "row-details",
+            fn: function(row) {
+              return [
+                _c("b-card", [
+                  _c(
+                    "ul",
+                    _vm._l(row.item, function(value, key) {
+                      return _c("li", { key: key }, [
+                        _vm._v(_vm._s(key) + ": " + _vm._s(value))
+                      ])
+                    })
+                  )
+                ])
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "b-col",
+        { staticClass: "col-md-12 " },
+        [
+          _c("b-pagination", {
+            staticClass: "my-0",
+            attrs: {
+              align: "center",
+              "total-rows": _vm.totalRows,
+              "per-page": _vm.perPage
+            },
+            model: {
+              value: _vm.currentPage,
+              callback: function($$v) {
+                _vm.currentPage = $$v
+              },
+              expression: "currentPage"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            size: "lg",
+            id: "VuelosAbiertos",
+            title: _vm.modalInfo.title,
+            "hide-footer": ""
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _vm.modalInfo.content != ""
+            ? _c(
+                "div",
+                [
+                  _c(
+                    "b-form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.ver()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "card-header" }, [
+                        _c("h5", { attrs: { align: "center" } }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "infoTitulo",
+                              attrs: { for: "inputPuesto" }
+                            },
+                            [
+                              _vm._v(
+                                "Fecha: " + _vm._s(_vm.modalInfo.content.Fecha)
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "infoTitulo",
+                              attrs: { for: "inputPuesto" }
+                            },
+                            [
+                              _vm._v(
+                                "Hora: " + _vm._s(_vm.modalInfo.content.Hora)
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "table",
+                        { staticClass: "table table-hover table-striped" },
+                        [
+                          _c("thead", [
+                            _c("th", [_vm._v(" # ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Nombre ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Experiencia  ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Licencia ")])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            [
+                              _vm._l(
+                                _vm.modalInfo.content.tripulantes,
+                                function(tripulante) {
+                                  return _c("tr", [
+                                    _c("td", [
+                                      _vm._v(
+                                        " " + _vm._s(tripulante.rango) + " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            tripulante.empleado.nombre +
+                                              " " +
+                                              tripulante.empleado.apellido
+                                          ) +
+                                          " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.sumar(
+                                              tripulante.empleado.experiencia
+                                            )
+                                          ) +
+                                          " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " + _vm._s(tripulante.licencia) + " "
+                                      )
+                                    ])
+                                  ])
+                                }
+                              ),
+                              _vm._v(" "),
+                              _c("br")
+                            ],
+                            2
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "w-100",
+                          attrs: { slot: "modal-footer" },
+                          slot: "modal-footer"
+                        },
+                        _vm._l(_vm.modalInfo.content.segmentos, function(
+                          segmento
+                        ) {
+                          return _c("div", [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "form-gruop" }, [
+                                _vm._v("  "),
+                                _c("strong", [_vm._v("Ruta:")]),
+                                _vm._v(" " + _vm._s(segmento.ruta.sigla) + " "),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Modelo de Aeronave: " +
+                                    _vm._s(segmento.aeronave.modelo) +
+                                    " "
+                                ),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Matricula: " +
+                                    _vm._s(segmento.aeronave.matricula) +
+                                    " "
+                                ),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Ultimo Mantenimiento: " +
+                                    _vm._s(
+                                      segmento.aeronave.ultimo_mantenimiento
+                                    ) +
+                                    " "
+                                ),
+                                _c("hr", {
+                                  staticStyle: { color: "#0056b2" },
+                                  attrs: { size: "5" }
+                                })
+                              ])
+                            ])
+                          ])
+                        })
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-19b57bbf", module.exports)
+  }
+}
+
+/***/ }),
+/* 315 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(316)
+/* template */
+var __vue_template__ = __webpack_require__(317)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\operativo\\VuelosCerrados.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5d0465f6", Component.options)
+  } else {
+    hotAPI.reload("data-v-5d0465f6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 316 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__event_bus_js__ = __webpack_require__(11);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  created: function created() {
+    var _this = this;
+
+    __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('actualizartabla', function (event) {
+      _this.Cargadatos(_this);
+    });
+    this.Cargadatos(this);
+  },
+  data: function data() {
+    return {
+      items: null,
+      data: null,
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      currentPage: 1,
+      perPage: 5,
+      totalRows: 0,
+      pageOptions: [5, 10, 15],
+      sortBy: null,
+      sortDesc: false,
+      filter: null,
+      modalInfo: { title: '', content: '' },
+      tripulantes: [{
+        piloto: [],
+        copiloto: [],
+        jefe_cabina: [],
+        sobrecargo1: [],
+        sobrecargo2: [],
+        sobrecargo3: []
+      }]
+
+    };
+  },
+
+  computed: {
+    sortOptions: function sortOptions() {
+      // Create an options list from our fields
+      return this.fields.filter(function (f) {
+        return f.sortable;
+      }).map(function (f) {
+        return { text: f.label, value: f.key };
+      });
+    }
+  },
+  methods: {
+    info: function info(item, index, button) {
+      this.modalInfo.content = item;
+      this.modalInfo.title = "Datos del Vuelo: " + item.N_Vuelo;
+
+      this.$root.$emit('bv::show::modal', 'VuelosCerrados', button);
+    },
+    resetModal: function resetModal() {
+      this.modalInfo.title = '';
+      this.modalInfo.content = '';
+    },
+    onFiltered: function onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    Cargadatos: function Cargadatos(ctx) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/vuelos/vuelos").then(function (response) {
+
+        ctx.data = response.data;
+        ctx.formatodatos();
+        ctx.totalRows = ctx.items.length;
+      }).catch(function (err) {
+        console.log("err");
+        console.log(err);
+      });
+    },
+    formatodatos: function formatodatos() {
+      this.items = [];
+      for (var i = 0; i < this.data.length; i++) {
+        //var elementos=this.data[i].fecha_salida.split(' ')
+
+
+        if (this.data[i].vuelo.segmentos.length == 0) {
+          /*  this.items.push({
+             N_Vuelo: this.data[i].vuelo.n_vuelo,
+             Ruta: "Ruta no Definida",
+             Fecha: this.data[i].vuelo.fecha_salida,
+             Hora: this.data[i].vuelo.fecha_salida,
+             Estado: this.data[i].vuelo.estado     
+           }); */
+        } else {
+          if (this.data[i].vuelo.estado == "cerrado") {
+            var rutas = "";
+            for (var j = 0; j < this.data[i].vuelo.segmentos.length; j++) {
+              rutas += "[" + this.data[i].vuelo.segmentos[j].ruta.sigla + "] ";
+            }
+            var fecha = this.data[i].vuelo.fecha_salida.split(" ")[0];
+            var hora = this.data[i].vuelo.fecha_salida.split(" ")[1];
+            this.items.push({
+              N_Vuelo: this.data[i].vuelo.n_vuelo,
+              Ruta: rutas,
+              Fecha: fecha,
+              Hora: hora,
+              Estado: this.data[i].vuelo.estado,
+              tripulantes: this.data[i].vuelo.tripulantes,
+              segmentos: this.data[i].vuelo.segmentos
+            });
+          }
+        }
+      }
+    },
+    actualizar: function actualizar() {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/rutas/rutas',
+        data: {
+          N_Vuelos: this.modalInfo.content.N_Vuelos,
+          Ruta: this.modalInfo.content.segmentos.ruta.sigla,
+          Fecha: this.modalInfo.content.fecha_salida,
+          Hora: this.modalInfo.content.fecha_salida,
+          Estado: this.modalInfo.content.estado
+        }
+      }).then(function (response) {
+        Vue.toasted.show('Se ha guardado existosamente la informacion', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        //this.$refs.myModalRef.hide();
+        _this2.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+      }).catch(function (err) {
+        Vue.toasted.show('Ha ocurrido un error', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        console.log(err);
+      });
+    },
+    Deshabilitar: function Deshabilitar(row) {
+      var _this3 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/vuelos/vuelos/deshabilitar',
+        data: {
+          id: row.item.id
+        }
+      }).then(function (response) {
+        Vue.toasted.show("Vuelo Deshabilitado", {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        _this3.Cargadatos(_this3);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    Habilitar: function Habilitar(row) {
+      var _this4 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/vuelos/vuelos/habilitar',
+        data: {
+          id: row.item.id
+        }
+      }).then(function (response) {
+
+        Vue.toasted.show("Vuelo Habilitado", {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        _this4.Cargadatos(_this4);
+      }).catch(function (err) {
+        Vue.toasted.show(err, {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+      });
+    },
+    sumar: function sumar(experiencias) {
+      var horas = 0;
+      var minutos = 0;
+      var segundos = 0;
+      for (var i = 0; i < experiencias.length; i++) {
+        horas += parseInt(experiencias[i].horas.split(':')[0]);
+        minutos += parseInt(experiencias[i].horas.split(':')[1]);
+        segundos += parseInt(experiencias[i].horas.split(':')[2]);
+      }
+      if (segundos % 60) {
+        minutos += parseInt(segundos / 60);
+        segundos = segundos % 60;
+      }
+      if (minutos % 60) {
+        horas += parseInt(minutos / 60);
+        minutos = minutos % 60;
+      }
+      return horas + ":" + minutos + ":" + segundos;
+    }
+  }
+});
+
+/***/ }),
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -107777,7 +108938,7 @@ var render = function() {
           ref: "myModalRef",
           attrs: {
             size: "lg",
-            id: "modalInfo",
+            id: "VuelosCerrados",
             title: _vm.modalInfo.title,
             "hide-footer": ""
           },
@@ -107799,33 +108960,156 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "b-tabs",
-                        { attrs: { pills: "", card: "" } },
-                        [
+                      _c("div", { staticClass: "card-header" }, [
+                        _c("h5", { attrs: { align: "center" } }, [
                           _c(
-                            "b-tab",
-                            { attrs: { title: "Vuelo", active: "" } },
-                            [_vm._v("\n    Vuelo\n  ")]
+                            "label",
+                            {
+                              staticClass: "infoTitulo",
+                              attrs: { for: "inputPuesto" }
+                            },
+                            [
+                              _vm._v(
+                                "Fecha: " + _vm._s(_vm.modalInfo.content.Fecha)
+                              )
+                            ]
                           ),
                           _vm._v(" "),
-                          _c("b-tab", { attrs: { title: "Tripulante" } }, [
-                            _vm._v("\n   Tripulantes\n  ")
+                          _c(
+                            "label",
+                            {
+                              staticClass: "infoTitulo",
+                              attrs: { for: "inputPuesto" }
+                            },
+                            [
+                              _vm._v(
+                                "Hora: " + _vm._s(_vm.modalInfo.content.Hora)
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "table",
+                        { staticClass: "table table-hover table-striped" },
+                        [
+                          _c("thead", [
+                            _c("th", [_vm._v(" # ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Nombre ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Experiencia  ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Licencia ")])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            [
+                              _vm._l(
+                                _vm.modalInfo.content.tripulantes,
+                                function(tripulante) {
+                                  return _c("tr", [
+                                    _c("td", [
+                                      _vm._v(
+                                        " " + _vm._s(tripulante.rango) + " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            tripulante.empleado.nombre +
+                                              " " +
+                                              tripulante.empleado.apellido
+                                          ) +
+                                          " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.sumar(
+                                              tripulante.empleado.experiencia
+                                            )
+                                          ) +
+                                          " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " + _vm._s(tripulante.licencia) + " "
+                                      )
+                                    ])
+                                  ])
+                                }
+                              ),
+                              _vm._v(" "),
+                              _c("br")
+                            ],
+                            2
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "w-100",
+                          attrs: { slot: "modal-footer" },
+                          slot: "modal-footer"
+                        },
+                        _vm._l(_vm.modalInfo.content.segmentos, function(
+                          segmento
+                        ) {
+                          return _c("div", [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "form-gruop" }, [
+                                _vm._v("  "),
+                                _c("strong", [_vm._v("Ruta:")]),
+                                _vm._v(" " + _vm._s(segmento.ruta.sigla) + " "),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Modelo de Aeronave: " +
+                                    _vm._s(segmento.aeronave.modelo) +
+                                    " "
+                                ),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Matricula: " +
+                                    _vm._s(segmento.aeronave.matricula) +
+                                    " "
+                                ),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Ultimo Mantenimiento: " +
+                                    _vm._s(
+                                      segmento.aeronave.ultimo_mantenimiento
+                                    ) +
+                                    " "
+                                ),
+                                _c("hr", {
+                                  staticStyle: { color: "#0056b2" },
+                                  attrs: { size: "5" }
+                                })
+                              ])
+                            ])
                           ])
-                        ],
-                        1
+                        })
                       )
-                    ],
-                    1
+                    ]
                   )
                 ],
                 1
               )
             : _vm._e()
         ]
-      ),
-      _vm._v(" "),
-      _c("RegistrarVuelos")
+      )
     ],
     1
   )
@@ -107836,30 +109120,3078 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-19b57bbf", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5d0465f6", module.exports)
   }
 }
 
 /***/ }),
-/* 315 */,
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */,
-/* 331 */,
-/* 332 */,
-/* 333 */,
+/* 318 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(319)
+/* template */
+var __vue_template__ = __webpack_require__(320)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\operativo\\VuelosRetrasados.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0b7610c6", Component.options)
+  } else {
+    hotAPI.reload("data-v-0b7610c6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 319 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__event_bus_js__ = __webpack_require__(11);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  created: function created() {
+    var _this = this;
+
+    __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('actualizartabla', function (event) {
+      _this.Cargadatos(_this);
+    });
+    this.Cargadatos(this);
+  },
+  data: function data() {
+    return {
+      items: null,
+      data: null,
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      currentPage: 1,
+      perPage: 5,
+      totalRows: 0,
+      pageOptions: [5, 10, 15],
+      sortBy: null,
+      sortDesc: false,
+      filter: null,
+      modalInfo: { title: '', content: '' },
+      tripulantes: [{
+        piloto: [],
+        copiloto: [],
+        jefe_cabina: [],
+        sobrecargo1: [],
+        sobrecargo2: [],
+        sobrecargo3: []
+      }]
+
+    };
+  },
+
+  computed: {
+    sortOptions: function sortOptions() {
+      // Create an options list from our fields
+      return this.fields.filter(function (f) {
+        return f.sortable;
+      }).map(function (f) {
+        return { text: f.label, value: f.key };
+      });
+    }
+  },
+  methods: {
+    info: function info(item, index, button) {
+      this.modalInfo.content = item;
+      this.modalInfo.title = "Datos del Vuelo: " + item.N_Vuelo;
+
+      console.log(this.tripulantes);
+
+      this.$root.$emit('bv::show::modal', 'VuelosRetrasados', button);
+    },
+    resetModal: function resetModal() {
+      this.modalInfo.title = '';
+      this.modalInfo.content = '';
+    },
+    onFiltered: function onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    Cargadatos: function Cargadatos(ctx) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/vuelos/vuelos").then(function (response) {
+        console.log(response.data);
+        ctx.data = response.data;
+        ctx.formatodatos();
+        ctx.totalRows = ctx.items.length;
+      }).catch(function (err) {
+        console.log("err");
+        console.log(err);
+      });
+    },
+    formatodatos: function formatodatos() {
+      this.items = [];
+      for (var i = 0; i < this.data.length; i++) {
+        //var elementos=this.data[i].fecha_salida.split(' ')
+
+
+        if (this.data[i].vuelo.segmentos.length == 0) {
+          /*  this.items.push({
+             N_Vuelo: this.data[i].vuelo.n_vuelo,
+             Ruta: "Ruta no Definida",
+             Fecha: this.data[i].vuelo.fecha_salida,
+             Hora: this.data[i].vuelo.fecha_salida,
+             Estado: this.data[i].vuelo.estado     
+           }); */
+        } else {
+          if (this.data[i].vuelo.estado == "retrasado") {
+            var rutas = "";
+            for (var j = 0; j < this.data[i].vuelo.segmentos.length; j++) {
+              rutas += "[" + this.data[i].vuelo.segmentos[j].ruta.sigla + "] ";
+            }
+            var fecha = this.data[i].vuelo.fecha_salida.split(" ")[0];
+            var hora = this.data[i].vuelo.fecha_salida.split(" ")[1];
+            this.items.push({
+              N_Vuelo: this.data[i].vuelo.n_vuelo,
+              Ruta: rutas,
+              Fecha: fecha,
+              Hora: hora,
+              Estado: this.data[i].vuelo.estado,
+              tripulantes: this.data[i].vuelo.tripulantes,
+              segmentos: this.data[i].vuelo.segmentos
+            });
+            console.log('item[' + i + '].segmentos' + JSON.stringify(this.data[i].vuelo.segmentos));
+          }
+        }
+      }
+    },
+    actualizar: function actualizar() {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/rutas/rutas',
+        data: {
+          N_Vuelos: this.modalInfo.content.N_Vuelos,
+          Ruta: this.modalInfo.content.segmentos.ruta.sigla,
+          Fecha: this.modalInfo.content.fecha_salida,
+          Hora: this.modalInfo.content.fecha_salida,
+          Estado: this.modalInfo.content.estado
+        }
+      }).then(function (response) {
+        Vue.toasted.show('Se ha guardado existosamente la informacion', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        //this.$refs.myModalRef.hide();
+        _this2.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+      }).catch(function (err) {
+        Vue.toasted.show('Ha ocurrido un error', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        console.log(err);
+      });
+    },
+    Deshabilitar: function Deshabilitar(row) {
+      var _this3 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/vuelos/vuelos/deshabilitar',
+        data: {
+          id: row.item.id
+        }
+      }).then(function (response) {
+        Vue.toasted.show("Vuelo Deshabilitado", {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        _this3.Cargadatos(_this3);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    Habilitar: function Habilitar(row) {
+      var _this4 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/vuelos/vuelos/habilitar',
+        data: {
+          id: row.item.id
+        }
+      }).then(function (response) {
+        console.log(response);
+        Vue.toasted.show("Vuelo Habilitado", {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        _this4.Cargadatos(_this4);
+      }).catch(function (err) {
+        Vue.toasted.show(err, {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+      });
+    },
+    sumar: function sumar(experiencias) {
+      var horas = 0;
+      var minutos = 0;
+      var segundos = 0;
+      for (var i = 0; i < experiencias.length; i++) {
+        horas += parseInt(experiencias[i].horas.split(':')[0]);
+        minutos += parseInt(experiencias[i].horas.split(':')[1]);
+        segundos += parseInt(experiencias[i].horas.split(':')[2]);
+      }
+      if (segundos % 60) {
+        minutos += parseInt(segundos / 60);
+        segundos = segundos % 60;
+      }
+      if (minutos % 60) {
+        horas += parseInt(minutos / 60);
+        minutos = minutos % 60;
+      }
+      return horas + ":" + minutos + ":" + segundos;
+    }
+  }
+});
+
+/***/ }),
+/* 320 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Filtro" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Escriba para buscar" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-input-group-append",
+                        [
+                          _c(
+                            "b-btn",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Limpiar")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Sort" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { options: _vm.sortOptions },
+                          model: {
+                            value: _vm.sortBy,
+                            callback: function($$v) {
+                              _vm.sortBy = $$v
+                            },
+                            expression: "sortBy"
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { slot: "first" },
+                              domProps: { value: null },
+                              slot: "first"
+                            },
+                            [_vm._v("-- ninguno --")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append", disabled: !_vm.sortBy },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDesc,
+                            callback: function($$v) {
+                              _vm.sortDesc = $$v
+                            },
+                            expression: "sortDesc"
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: false } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: true } }, [
+                            _vm._v("Desc")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("b-col", { staticClass: "my-1", attrs: { md: "6" } }),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Per page" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.pageOptions },
+                    model: {
+                      value: _vm.perPage,
+                      callback: function($$v) {
+                        _vm.perPage = $$v
+                      },
+                      expression: "perPage"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          "show-empty": "",
+          stacked: "md",
+          items: _vm.items,
+          fields: _vm.fields,
+          "current-page": _vm.currentPage,
+          "per-page": _vm.perPage,
+          filter: _vm.filter,
+          "sort-by": _vm.sortBy,
+          "sort-desc": _vm.sortDesc
+        },
+        on: {
+          "update:sortBy": function($event) {
+            _vm.sortBy = $event
+          },
+          "update:sortDesc": function($event) {
+            _vm.sortDesc = $event
+          },
+          filtered: _vm.onFiltered
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "actions",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-input-group",
+                  [
+                    _c(
+                      "b-button",
+                      {
+                        staticClass: "mr-1",
+                        attrs: { size: "sm", variant: "primary" },
+                        on: {
+                          click: function($event) {
+                            $event.stopPropagation()
+                            _vm.info(row.item, row.index, $event.target)
+                          }
+                        }
+                      },
+                      [_vm._v("\n        Ver\n      ")]
+                    ),
+                    _vm._v(" "),
+                    row.item.Estado == "abierto"
+                      ? _c(
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { size: "sm" },
+                                on: {
+                                  click: function($event) {
+                                    $event.stopPropagation()
+                                    _vm.Deshabilitar(row)
+                                  }
+                                }
+                              },
+                              [_vm._v("\n          Cancelar\n        ")]
+                            )
+                          ],
+                          1
+                        )
+                      : _c(
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { size: "sm", variant: "success" },
+                                on: {
+                                  click: function($event) {
+                                    $event.stopPropagation()
+                                    _vm.Habilitar(row)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n          \n          Habilitar\n        "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                  ],
+                  1
+                )
+              ]
+            }
+          },
+          {
+            key: "row-details",
+            fn: function(row) {
+              return [
+                _c("b-card", [
+                  _c(
+                    "ul",
+                    _vm._l(row.item, function(value, key) {
+                      return _c("li", { key: key }, [
+                        _vm._v(_vm._s(key) + ": " + _vm._s(value))
+                      ])
+                    })
+                  )
+                ])
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "b-col",
+        { staticClass: "col-md-12 " },
+        [
+          _c("b-pagination", {
+            staticClass: "my-0",
+            attrs: {
+              align: "center",
+              "total-rows": _vm.totalRows,
+              "per-page": _vm.perPage
+            },
+            model: {
+              value: _vm.currentPage,
+              callback: function($$v) {
+                _vm.currentPage = $$v
+              },
+              expression: "currentPage"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            size: "lg",
+            id: "VuelosRetrasados",
+            title: _vm.modalInfo.title,
+            "hide-footer": ""
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _vm.modalInfo.content != ""
+            ? _c(
+                "div",
+                [
+                  _c(
+                    "b-form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.ver()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "card-header" }, [
+                        _c("h5", { attrs: { align: "center" } }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "infoTitulo",
+                              attrs: { for: "inputPuesto" }
+                            },
+                            [
+                              _vm._v(
+                                "Fecha: " + _vm._s(_vm.modalInfo.content.Fecha)
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "infoTitulo",
+                              attrs: { for: "inputPuesto" }
+                            },
+                            [
+                              _vm._v(
+                                "Hora: " + _vm._s(_vm.modalInfo.content.Hora)
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "table",
+                        { staticClass: "table table-hover table-striped" },
+                        [
+                          _c("thead", [
+                            _c("th", [_vm._v(" # ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Nombre ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Experiencia  ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Licencia ")])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            [
+                              _vm._l(
+                                _vm.modalInfo.content.tripulantes,
+                                function(tripulante) {
+                                  return _c("tr", [
+                                    _c("td", [
+                                      _vm._v(
+                                        " " + _vm._s(tripulante.rango) + " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            tripulante.empleado.nombre +
+                                              " " +
+                                              tripulante.empleado.apellido
+                                          ) +
+                                          " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.sumar(
+                                              tripulante.empleado.experiencia
+                                            )
+                                          ) +
+                                          " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " + _vm._s(tripulante.licencia) + " "
+                                      )
+                                    ])
+                                  ])
+                                }
+                              ),
+                              _vm._v(" "),
+                              _c("br")
+                            ],
+                            2
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "w-100",
+                          attrs: { slot: "modal-footer" },
+                          slot: "modal-footer"
+                        },
+                        _vm._l(_vm.modalInfo.content.segmentos, function(
+                          segmento
+                        ) {
+                          return _c("div", [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "form-gruop" }, [
+                                _vm._v("  "),
+                                _c("strong", [_vm._v("Segmento:")]),
+                                _vm._v(
+                                  " (" + _vm._s(segmento.ruta.sigla) + ") "
+                                ),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Modelo de Aeronave: " +
+                                    _vm._s(segmento.aeronave.modelo) +
+                                    " "
+                                ),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Matricula: " +
+                                    _vm._s(segmento.aeronave.matricula) +
+                                    " "
+                                ),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Ultimo Mantenimiento: " +
+                                    _vm._s(
+                                      segmento.aeronave.ultimo_mantenimiento
+                                    ) +
+                                    " "
+                                ),
+                                _c("hr", {
+                                  staticStyle: { color: "#0056b2" },
+                                  attrs: { size: "5" }
+                                })
+                              ])
+                            ])
+                          ])
+                        })
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0b7610c6", module.exports)
+  }
+}
+
+/***/ }),
+/* 321 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(322)
+/* template */
+var __vue_template__ = __webpack_require__(323)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\operativo\\VuelosEjecutados.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8e17e076", Component.options)
+  } else {
+    hotAPI.reload("data-v-8e17e076", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 322 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__event_bus_js__ = __webpack_require__(11);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  created: function created() {
+    var _this = this;
+
+    __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('actualizartabla', function (event) {
+      _this.Cargadatos(_this);
+    });
+    this.Cargadatos(this);
+  },
+  data: function data() {
+    return {
+      items: null,
+      data: null,
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      currentPage: 1,
+      perPage: 5,
+      totalRows: 0,
+      pageOptions: [5, 10, 15],
+      sortBy: null,
+      sortDesc: false,
+      filter: null,
+      modalInfo: { title: '', content: '' },
+      tripulantes: [{
+        piloto: [],
+        copiloto: [],
+        jefe_cabina: [],
+        sobrecargo1: [],
+        sobrecargo2: [],
+        sobrecargo3: []
+      }]
+
+    };
+  },
+
+  computed: {
+    sortOptions: function sortOptions() {
+      // Create an options list from our fields
+      return this.fields.filter(function (f) {
+        return f.sortable;
+      }).map(function (f) {
+        return { text: f.label, value: f.key };
+      });
+    }
+  },
+  methods: {
+    info: function info(item, index, button) {
+      this.modalInfo.content = item;
+      this.modalInfo.title = "Datos del Vuelo: " + item.N_Vuelo;
+
+      console.log(this.tripulantes);
+
+      this.$root.$emit('bv::show::modal', 'VuelosEjecutados', button);
+    },
+    resetModal: function resetModal() {
+      this.modalInfo.title = '';
+      this.modalInfo.content = '';
+    },
+    onFiltered: function onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    Cargadatos: function Cargadatos(ctx) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/vuelos/vuelos").then(function (response) {
+        console.log(response.data);
+        ctx.data = response.data;
+        ctx.formatodatos();
+        ctx.totalRows = ctx.items.length;
+      }).catch(function (err) {
+        console.log("err");
+        console.log(err);
+      });
+    },
+    formatodatos: function formatodatos() {
+      this.items = [];
+      for (var i = 0; i < this.data.length; i++) {
+
+        if (this.data[i].vuelo.segmentos.length == 0) {
+          /*  this.items.push({
+             N_Vuelo: this.data[i].vuelo.n_vuelo,
+             Ruta: "Ruta no Definida",
+             Fecha: this.data[i].vuelo.fecha_salida,
+             Hora: this.data[i].vuelo.fecha_salida,
+             Estado: this.data[i].vuelo.estado     
+           }); */
+        } else {
+          if (this.data[i].vuelo.estado == "ejecutado") {
+            var rutas = "";
+            for (var j = 0; j < this.data[i].vuelo.segmentos.length; j++) {
+              rutas += "[" + this.data[i].vuelo.segmentos[j].ruta.sigla + "] ";
+            }
+            var fecha = this.data[i].vuelo.fecha_salida.split(" ")[0];
+            var hora = this.data[i].vuelo.fecha_salida.split(" ")[1];
+            this.items.push({
+              N_Vuelo: this.data[i].vuelo.n_vuelo,
+              Ruta: rutas,
+              Fecha: fecha,
+              Hora: hora,
+              Estado: this.data[i].vuelo.estado,
+              tripulantes: this.data[i].vuelo.tripulantes,
+              segmentos: this.data[i].vuelo.segmentos
+            });
+            console.log('item[' + i + '].segmentos' + JSON.stringify(this.data[i].vuelo.segmentos));
+          }
+        }
+      }
+    },
+    actualizar: function actualizar() {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/rutas/rutas',
+        data: {
+          N_Vuelos: this.modalInfo.content.N_Vuelos,
+          Ruta: this.modalInfo.content.segmentos.ruta.sigla,
+          Fecha: this.modalInfo.content.fecha_salida,
+          Hora: this.modalInfo.content.fecha_salida,
+          Estado: this.modalInfo.content.estado
+        }
+      }).then(function (response) {
+        Vue.toasted.show('Se ha guardado existosamente la informacion', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        //this.$refs.myModalRef.hide();
+        _this2.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+      }).catch(function (err) {
+        Vue.toasted.show('Ha ocurrido un error', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        console.log(err);
+      });
+    },
+    Deshabilitar: function Deshabilitar(row) {
+      var _this3 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/vuelos/vuelos/deshabilitar',
+        data: {
+          id: row.item.id
+        }
+      }).then(function (response) {
+        Vue.toasted.show("Vuelo Deshabilitado", {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        _this3.Cargadatos(_this3);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    Habilitar: function Habilitar(row) {
+      var _this4 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/vuelos/vuelos/habilitar',
+        data: {
+          id: row.item.id
+        }
+      }).then(function (response) {
+        console.log(response);
+        Vue.toasted.show("Vuelo Habilitado", {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        _this4.Cargadatos(_this4);
+      }).catch(function (err) {
+        Vue.toasted.show(err, {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+      });
+    },
+    sumar: function sumar(experiencias) {
+      var horas = 0;
+      var minutos = 0;
+      var segundos = 0;
+      for (var i = 0; i < experiencias.length; i++) {
+        horas += parseInt(experiencias[i].horas.split(':')[0]);
+        minutos += parseInt(experiencias[i].horas.split(':')[1]);
+        segundos += parseInt(experiencias[i].horas.split(':')[2]);
+      }
+      if (segundos % 60) {
+        minutos += parseInt(segundos / 60);
+        segundos = segundos % 60;
+      }
+      if (minutos % 60) {
+        horas += parseInt(minutos / 60);
+        minutos = minutos % 60;
+      }
+      return horas + ":" + minutos + ":" + segundos;
+    }
+  }
+});
+
+/***/ }),
+/* 323 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Filtro" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Escriba para buscar" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-input-group-append",
+                        [
+                          _c(
+                            "b-btn",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Limpiar")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Sort" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { options: _vm.sortOptions },
+                          model: {
+                            value: _vm.sortBy,
+                            callback: function($$v) {
+                              _vm.sortBy = $$v
+                            },
+                            expression: "sortBy"
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { slot: "first" },
+                              domProps: { value: null },
+                              slot: "first"
+                            },
+                            [_vm._v("-- ninguno --")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append", disabled: !_vm.sortBy },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDesc,
+                            callback: function($$v) {
+                              _vm.sortDesc = $$v
+                            },
+                            expression: "sortDesc"
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: false } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: true } }, [
+                            _vm._v("Desc")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("b-col", { staticClass: "my-1", attrs: { md: "6" } }),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Per page" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.pageOptions },
+                    model: {
+                      value: _vm.perPage,
+                      callback: function($$v) {
+                        _vm.perPage = $$v
+                      },
+                      expression: "perPage"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          "show-empty": "",
+          stacked: "md",
+          items: _vm.items,
+          fields: _vm.fields,
+          "current-page": _vm.currentPage,
+          "per-page": _vm.perPage,
+          filter: _vm.filter,
+          "sort-by": _vm.sortBy,
+          "sort-desc": _vm.sortDesc
+        },
+        on: {
+          "update:sortBy": function($event) {
+            _vm.sortBy = $event
+          },
+          "update:sortDesc": function($event) {
+            _vm.sortDesc = $event
+          },
+          filtered: _vm.onFiltered
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "actions",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-input-group",
+                  [
+                    _c(
+                      "b-button",
+                      {
+                        staticClass: "mr-1",
+                        attrs: { size: "sm", variant: "primary" },
+                        on: {
+                          click: function($event) {
+                            $event.stopPropagation()
+                            _vm.info(row.item, row.index, $event.target)
+                          }
+                        }
+                      },
+                      [_vm._v("\n        Ver\n      ")]
+                    ),
+                    _vm._v(" "),
+                    row.item.Estado == "abierto"
+                      ? _c(
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { size: "sm" },
+                                on: {
+                                  click: function($event) {
+                                    $event.stopPropagation()
+                                    _vm.Deshabilitar(row)
+                                  }
+                                }
+                              },
+                              [_vm._v("\n          Cancelar\n        ")]
+                            )
+                          ],
+                          1
+                        )
+                      : _c(
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { size: "sm", variant: "success" },
+                                on: {
+                                  click: function($event) {
+                                    $event.stopPropagation()
+                                    _vm.Habilitar(row)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n          \n          Habilitar\n        "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                  ],
+                  1
+                )
+              ]
+            }
+          },
+          {
+            key: "row-details",
+            fn: function(row) {
+              return [
+                _c("b-card", [
+                  _c(
+                    "ul",
+                    _vm._l(row.item, function(value, key) {
+                      return _c("li", { key: key }, [
+                        _vm._v(_vm._s(key) + ": " + _vm._s(value))
+                      ])
+                    })
+                  )
+                ])
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "b-col",
+        { staticClass: "col-md-12 " },
+        [
+          _c("b-pagination", {
+            staticClass: "my-0",
+            attrs: {
+              align: "center",
+              "total-rows": _vm.totalRows,
+              "per-page": _vm.perPage
+            },
+            model: {
+              value: _vm.currentPage,
+              callback: function($$v) {
+                _vm.currentPage = $$v
+              },
+              expression: "currentPage"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            size: "lg",
+            id: "VuelosEjecutados",
+            title: _vm.modalInfo.title,
+            "hide-footer": ""
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _vm.modalInfo.content != ""
+            ? _c(
+                "div",
+                [
+                  _c(
+                    "b-form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.ver()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "card-header" }, [
+                        _c("h5", { attrs: { align: "center" } }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "infoTitulo",
+                              attrs: { for: "inputPuesto" }
+                            },
+                            [
+                              _vm._v(
+                                "Fecha: " + _vm._s(_vm.modalInfo.content.Fecha)
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "infoTitulo",
+                              attrs: { for: "inputPuesto" }
+                            },
+                            [
+                              _vm._v(
+                                "Hora: " + _vm._s(_vm.modalInfo.content.Hora)
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "table",
+                        { staticClass: "table table-hover table-striped" },
+                        [
+                          _c("thead", [
+                            _c("th", [_vm._v(" # ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Nombre ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Experiencia  ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Licencia ")])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            [
+                              _vm._l(
+                                _vm.modalInfo.content.tripulantes,
+                                function(tripulante) {
+                                  return _c("tr", [
+                                    _c("td", [
+                                      _vm._v(
+                                        " " + _vm._s(tripulante.rango) + " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            tripulante.empleado.nombre +
+                                              " " +
+                                              tripulante.empleado.apellido
+                                          ) +
+                                          " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.sumar(
+                                              tripulante.empleado.experiencia
+                                            )
+                                          ) +
+                                          " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " + _vm._s(tripulante.licencia) + " "
+                                      )
+                                    ])
+                                  ])
+                                }
+                              ),
+                              _vm._v(" "),
+                              _c("br")
+                            ],
+                            2
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "w-100",
+                          attrs: { slot: "modal-footer" },
+                          slot: "modal-footer"
+                        },
+                        _vm._l(_vm.modalInfo.content.segmentos, function(
+                          segmento
+                        ) {
+                          return _c("div", [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "form-gruop" }, [
+                                _vm._v("  "),
+                                _c("strong", [_vm._v("Ruta:")]),
+                                _vm._v(" " + _vm._s(segmento.ruta.sigla) + " "),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Modelo de Aeronave: " +
+                                    _vm._s(segmento.aeronave.modelo) +
+                                    " "
+                                ),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Matricula: " +
+                                    _vm._s(segmento.aeronave.matricula) +
+                                    " "
+                                ),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Ultimo Mantenimiento: " +
+                                    _vm._s(
+                                      segmento.aeronave.ultimo_mantenimiento
+                                    ) +
+                                    " "
+                                ),
+                                _c("hr", {
+                                  staticStyle: { color: "#0056b2" },
+                                  attrs: { size: "5" }
+                                })
+                              ])
+                            ])
+                          ])
+                        })
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-8e17e076", module.exports)
+  }
+}
+
+/***/ }),
+/* 324 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(325)
+/* template */
+var __vue_template__ = __webpack_require__(326)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\operativo\\VuelosCancelados.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1dbcef46", Component.options)
+  } else {
+    hotAPI.reload("data-v-1dbcef46", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 325 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__event_bus_js__ = __webpack_require__(11);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  created: function created() {
+    var _this = this;
+
+    __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('actualizartabla', function (event) {
+      _this.Cargadatos(_this);
+    });
+    this.Cargadatos(this);
+  },
+  data: function data() {
+    return {
+      items: null,
+      data: null,
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      currentPage: 1,
+      perPage: 5,
+      totalRows: 0,
+      pageOptions: [5, 10, 15],
+      sortBy: null,
+      sortDesc: false,
+      filter: null,
+      modalInfo: { title: '', content: '' },
+      tripulantes: [{
+        piloto: [],
+        copiloto: [],
+        jefe_cabina: [],
+        sobrecargo1: [],
+        sobrecargo2: [],
+        sobrecargo3: []
+      }]
+
+    };
+  },
+
+  computed: {
+    sortOptions: function sortOptions() {
+      // Create an options list from our fields
+      return this.fields.filter(function (f) {
+        return f.sortable;
+      }).map(function (f) {
+        return { text: f.label, value: f.key };
+      });
+    }
+  },
+  methods: {
+    info: function info(item, index, button) {
+      this.modalInfo.content = item;
+      this.modalInfo.title = "Datos del Vuelo: " + item.N_Vuelo;
+
+      this.$root.$emit('bv::show::modal', 'modalInfo', button);
+    },
+    resetModal: function resetModal() {
+      this.modalInfo.title = '';
+      this.modalInfo.content = '';
+    },
+    onFiltered: function onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    Cargadatos: function Cargadatos(ctx) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/vuelos/vuelos").then(function (response) {
+
+        ctx.data = response.data;
+        ctx.formatodatos();
+        ctx.totalRows = ctx.items.length;
+      }).catch(function (err) {
+        console.log("err");
+        console.log(err);
+      });
+    },
+    formatodatos: function formatodatos() {
+      this.items = [];
+      for (var i = 0; i < this.data.length; i++) {
+        //var elementos=this.data[i].fecha_salida.split(' ')
+
+
+        if (this.data[i].vuelo.segmentos.length == 0) {
+          /*  this.items.push({
+             N_Vuelo: this.data[i].vuelo.n_vuelo,
+             Ruta: "Ruta no Definida",
+             Fecha: this.data[i].vuelo.fecha_salida,
+             Hora: this.data[i].vuelo.fecha_salida,
+             Estado: this.data[i].vuelo.estado     
+           }); */
+        } else {
+          if (this.data[i].vuelo.estado == "cancelado") {
+            var rutas = "";
+            for (var j = 0; j < this.data[i].vuelo.segmentos.length; j++) {
+              rutas += "[" + this.data[i].vuelo.segmentos[j].ruta.sigla + "] ";
+            }
+            var fecha = this.data[i].vuelo.fecha_salida.split(" ")[0];
+            var hora = this.data[i].vuelo.fecha_salida.split(" ")[1];
+            this.items.push({
+              N_Vuelo: this.data[i].vuelo.n_vuelo,
+              Ruta: rutas,
+              Fecha: fecha,
+              Hora: hora,
+              Estado: this.data[i].vuelo.estado,
+              tripulantes: this.data[i].vuelo.tripulantes,
+              segmentos: this.data[i].vuelo.segmentos
+            });
+          }
+        }
+      }
+    },
+    actualizar: function actualizar() {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/rutas/rutas',
+        data: {
+          N_Vuelos: this.modalInfo.content.N_Vuelos,
+          Ruta: this.modalInfo.content.segmentos.ruta.sigla,
+          Fecha: this.modalInfo.content.fecha_salida,
+          Hora: this.modalInfo.content.fecha_salida,
+          Estado: this.modalInfo.content.estado
+        }
+      }).then(function (response) {
+        Vue.toasted.show('Se ha guardado existosamente la informacion', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        //this.$refs.myModalRef.hide();
+        _this2.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+      }).catch(function (err) {
+        Vue.toasted.show('Ha ocurrido un error', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        console.log(err);
+      });
+    },
+    Deshabilitar: function Deshabilitar(row) {
+      var _this3 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/vuelos/vuelos/deshabilitar',
+        data: {
+          id: row.item.id
+        }
+      }).then(function (response) {
+        Vue.toasted.show("Vuelo Deshabilitado", {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        _this3.Cargadatos(_this3);
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    Habilitar: function Habilitar(row) {
+      var _this4 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/vuelos/vuelos/habilitar',
+        data: {
+          id: row.item.id
+        }
+      }).then(function (response) {
+
+        Vue.toasted.show("Vuelo Habilitado", {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        _this4.Cargadatos(_this4);
+      }).catch(function (err) {
+        Vue.toasted.show(err, {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+      });
+    },
+    sumar: function sumar(experiencias) {
+      var horas = 0;
+      var minutos = 0;
+      var segundos = 0;
+      for (var i = 0; i < experiencias.length; i++) {
+        horas += parseInt(experiencias[i].horas.split(':')[0]);
+        minutos += parseInt(experiencias[i].horas.split(':')[1]);
+        segundos += parseInt(experiencias[i].horas.split(':')[2]);
+      }
+      if (segundos % 60) {
+        minutos += parseInt(segundos / 60);
+        segundos = segundos % 60;
+      }
+      if (minutos % 60) {
+        horas += parseInt(minutos / 60);
+        minutos = minutos % 60;
+      }
+      return horas + ":" + minutos + ":" + segundos;
+    }
+  }
+});
+
+/***/ }),
+/* 326 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Filtro" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Escriba para buscar" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-input-group-append",
+                        [
+                          _c(
+                            "b-btn",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Limpiar")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Sort" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { options: _vm.sortOptions },
+                          model: {
+                            value: _vm.sortBy,
+                            callback: function($$v) {
+                              _vm.sortBy = $$v
+                            },
+                            expression: "sortBy"
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { slot: "first" },
+                              domProps: { value: null },
+                              slot: "first"
+                            },
+                            [_vm._v("-- ninguno --")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { slot: "append", disabled: !_vm.sortBy },
+                          slot: "append",
+                          model: {
+                            value: _vm.sortDesc,
+                            callback: function($$v) {
+                              _vm.sortDesc = $$v
+                            },
+                            expression: "sortDesc"
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: false } }, [
+                            _vm._v("Asc")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { domProps: { value: true } }, [
+                            _vm._v("Desc")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("b-col", { staticClass: "my-1", attrs: { md: "6" } }),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Per page" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.pageOptions },
+                    model: {
+                      value: _vm.perPage,
+                      callback: function($$v) {
+                        _vm.perPage = $$v
+                      },
+                      expression: "perPage"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          "show-empty": "",
+          stacked: "md",
+          items: _vm.items,
+          fields: _vm.fields,
+          "current-page": _vm.currentPage,
+          "per-page": _vm.perPage,
+          filter: _vm.filter,
+          "sort-by": _vm.sortBy,
+          "sort-desc": _vm.sortDesc
+        },
+        on: {
+          "update:sortBy": function($event) {
+            _vm.sortBy = $event
+          },
+          "update:sortDesc": function($event) {
+            _vm.sortDesc = $event
+          },
+          filtered: _vm.onFiltered
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "actions",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-input-group",
+                  [
+                    _c(
+                      "b-button",
+                      {
+                        staticClass: "mr-1",
+                        attrs: { size: "sm", variant: "primary" },
+                        on: {
+                          click: function($event) {
+                            $event.stopPropagation()
+                            _vm.info(row.item, row.index, $event.target)
+                          }
+                        }
+                      },
+                      [_vm._v("\n        Ver\n      ")]
+                    ),
+                    _vm._v(" "),
+                    row.item.Estado == "abierto"
+                      ? _c(
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { size: "sm" },
+                                on: {
+                                  click: function($event) {
+                                    $event.stopPropagation()
+                                    _vm.Deshabilitar(row)
+                                  }
+                                }
+                              },
+                              [_vm._v("\n          Cancelar\n        ")]
+                            )
+                          ],
+                          1
+                        )
+                      : _c(
+                          "div",
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { size: "sm", variant: "success" },
+                                on: {
+                                  click: function($event) {
+                                    $event.stopPropagation()
+                                    _vm.Habilitar(row)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n          \n          Habilitar\n        "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                  ],
+                  1
+                )
+              ]
+            }
+          },
+          {
+            key: "row-details",
+            fn: function(row) {
+              return [
+                _c("b-card", [
+                  _c(
+                    "ul",
+                    _vm._l(row.item, function(value, key) {
+                      return _c("li", { key: key }, [
+                        _vm._v(_vm._s(key) + ": " + _vm._s(value))
+                      ])
+                    })
+                  )
+                ])
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "b-col",
+        { staticClass: "col-md-12 " },
+        [
+          _c("b-pagination", {
+            staticClass: "my-0",
+            attrs: {
+              align: "center",
+              "total-rows": _vm.totalRows,
+              "per-page": _vm.perPage
+            },
+            model: {
+              value: _vm.currentPage,
+              callback: function($$v) {
+                _vm.currentPage = $$v
+              },
+              expression: "currentPage"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            size: "lg",
+            id: "VuelosCancelados",
+            title: _vm.modalInfo.title,
+            "hide-footer": ""
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _vm.modalInfo.content != ""
+            ? _c(
+                "div",
+                [
+                  _c(
+                    "b-form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.ver()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "card-header" }, [
+                        _c("h5", { attrs: { align: "center" } }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "infoTitulo",
+                              attrs: { for: "inputPuesto" }
+                            },
+                            [
+                              _vm._v(
+                                "Fecha: " + _vm._s(_vm.modalInfo.content.Fecha)
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "infoTitulo",
+                              attrs: { for: "inputPuesto" }
+                            },
+                            [
+                              _vm._v(
+                                "Hora: " + _vm._s(_vm.modalInfo.content.Hora)
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "table",
+                        { staticClass: "table table-hover table-striped" },
+                        [
+                          _c("thead", [
+                            _c("th", [_vm._v(" # ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Nombre ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Experiencia  ")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Licencia ")])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            [
+                              _vm._l(
+                                _vm.modalInfo.content.tripulantes,
+                                function(tripulante) {
+                                  return _c("tr", [
+                                    _c("td", [
+                                      _vm._v(
+                                        " " + _vm._s(tripulante.rango) + " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            tripulante.empleado.nombre +
+                                              " " +
+                                              tripulante.empleado.apellido
+                                          ) +
+                                          " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.sumar(
+                                              tripulante.empleado.experiencia
+                                            )
+                                          ) +
+                                          " "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        " " + _vm._s(tripulante.licencia) + " "
+                                      )
+                                    ])
+                                  ])
+                                }
+                              ),
+                              _vm._v(" "),
+                              _c("br")
+                            ],
+                            2
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "w-100",
+                          attrs: { slot: "modal-footer" },
+                          slot: "modal-footer"
+                        },
+                        _vm._l(_vm.modalInfo.content.segmentos, function(
+                          segmento
+                        ) {
+                          return _c("div", [
+                            _c("div", { staticClass: "row" }, [
+                              _c("div", { staticClass: "form-gruop" }, [
+                                _vm._v("  "),
+                                _c("strong", [_vm._v("Ruta:")]),
+                                _vm._v(" " + _vm._s(segmento.ruta.sigla) + " "),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Modelo de Aeronave: " +
+                                    _vm._s(segmento.aeronave.modelo) +
+                                    " "
+                                ),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Matricula: " +
+                                    _vm._s(segmento.aeronave.matricula) +
+                                    " "
+                                ),
+                                _c("strong", [_vm._v("||")]),
+                                _vm._v(
+                                  " Ultimo Mantenimiento: " +
+                                    _vm._s(
+                                      segmento.aeronave.ultimo_mantenimiento
+                                    ) +
+                                    " "
+                                ),
+                                _c("hr", {
+                                  staticStyle: { color: "#0056b2" },
+                                  attrs: { size: "5" }
+                                })
+                              ])
+                            ])
+                          ])
+                        })
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1dbcef46", module.exports)
+  }
+}
+
+/***/ }),
+/* 327 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(328)
+/* template */
+var __vue_template__ = __webpack_require__(329)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\operativo\\CargarPilotos.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3eb33f76", Component.options)
+  } else {
+    hotAPI.reload("data-v-3eb33f76", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 328 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  props: ['fecha', 'hora', 'minuto', 'segundo'],
+  created: function created() {
+
+    this.Cargadatos(this);
+  },
+
+  watch: {
+    'fecha': function fecha() {
+      this.validar();
+    }
+  },
+
+  data: function data() {
+    return {
+      items: null,
+      data: null
+    };
+  },
+
+  computed: {},
+  methods: {
+    validar: function validar() {
+      if (this.isValidDate(this.fecha)) {
+        console.log("La fecha es correcta: " + this.fecha);
+      }
+    },
+    isValidDate: function isValidDate(dateString) {
+      var regEx = /^\d{4}-\d{2}-\d{2}$/;
+      if (!dateString.match(regEx)) return false; // Invalid format
+      var d = new Date(dateString);
+      if (!d.getTime() && d.getTime() !== 0) return false; // Invalid date
+      return d.toISOString().slice(0, 10) === dateString;
+    },
+    Cargadatos: function Cargadatos(ctx) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/vuelos/pilotos").then(function (response) {
+
+        ctx.data = response.data;
+        ctx.formatodatos();
+        ctx.totalRows = ctx.items.length;
+      }).catch(function (err) {
+        console.log("err");
+        console.log(err);
+      });
+    },
+    formatodatos: function formatodatos() {
+      this.items = [];
+      for (var i = 0; i < this.data.length; i++) {
+        //console.log(this.data[i].tripulante   );
+        if (this.data[i].tripulante.rango === 'piloto') this.items.push(this.data[i].tripulante);
+      }
+    },
+    sumar: function sumar(experiencias) {
+      var horas = 0;
+      var minutos = 0;
+      var segundos = 0;
+      for (var i = 0; i < experiencias.length; i++) {
+        horas += parseInt(experiencias[i].horas.split(':')[0]);
+        minutos += parseInt(experiencias[i].horas.split(':')[1]);
+        segundos += parseInt(experiencias[i].horas.split(':')[2]);
+      }
+      if (segundos % 60) {
+        minutos += parseInt(segundos / 60);
+        segundos = segundos % 60;
+      }
+      if (minutos % 60) {
+        horas += parseInt(minutos / 60);
+        minutos = minutos % 60;
+      }
+      return horas + ":" + minutos + ":" + segundos;
+    }
+  }
+});
+
+/***/ }),
+/* 329 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("table", { staticClass: "table table-hover table-striped" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          [
+            _vm._l(this.items, function(tripulante) {
+              return _c("tr", [
+                _c("td", [_vm._v(" " + _vm._s(tripulante.licencia) + " ")]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(" " + _vm._s(tripulante.empleado.nombre) + " ")
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.sumar(tripulante.empleado.experiencia)) +
+                      " "
+                  )
+                ])
+              ])
+            }),
+            _vm._v(" "),
+            _c("br")
+          ],
+          2
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v(" # ")]),
+      _vm._v(" "),
+      _c("th", [_vm._v(" Nombre ")]),
+      _vm._v(" "),
+      _c("th", [_vm._v(" Horas de Experiencia")]),
+      _vm._v(" "),
+      _c("th", [_vm._v(" Vuelos de Quicena ")]),
+      _vm._v(" "),
+      _c("th", [_vm._v(" Asignar ")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3eb33f76", module.exports)
+  }
+}
+
+/***/ }),
+/* 330 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\operativo\\CargarCopilotos.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 331 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\operativo\\CargarJefeCabina.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 332 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\operativo\\CargarSobrecargo.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 333 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\operativo\\CargarAeronave.vue"
+
+module.exports = Component.exports
+
+
+/***/ }),
 /* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -114520,565 +118852,10 @@ if (false) {
 }
 
 /***/ }),
-<<<<<<< HEAD
 /* 394 */
-=======
-/* 358 */
->>>>>>> parent of 2885a1b... cambios RRHH
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-<<<<<<< HEAD
-/***/ }),
-/* 395 */,
-/* 396 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(397)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(399)
-/* template */
-var __vue_template__ = __webpack_require__(400)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\operativo\\ModalRegistrarVuelos.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-718d3348", Component.options)
-  } else {
-    hotAPI.reload("data-v-718d3348", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 397 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(398);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(5)("cbf6bd44", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-718d3348\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css", function() {
-     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-718d3348\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 398 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nfieldset[disabled] .multiselect{pointer-events:none\n}\n.multiselect__spinner{position:absolute;right:1px;top:1px;width:48px;height:35px;background:#fff;display:block\n}\n.multiselect__spinner:after,.multiselect__spinner:before{position:absolute;content:\"\";top:50%;left:50%;margin:-8px 0 0 -8px;width:16px;height:16px;border-radius:100%;border-color:#41b883 transparent transparent;border-style:solid;border-width:2px;-webkit-box-shadow:0 0 0 1px transparent;box-shadow:0 0 0 1px transparent\n}\n.multiselect__spinner:before{-webkit-animation:a 2.4s cubic-bezier(.41,.26,.2,.62);animation:a 2.4s cubic-bezier(.41,.26,.2,.62);-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite\n}\n.multiselect__spinner:after{-webkit-animation:a 2.4s cubic-bezier(.51,.09,.21,.8);animation:a 2.4s cubic-bezier(.51,.09,.21,.8);-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite\n}\n.multiselect__loading-enter-active,.multiselect__loading-leave-active{-webkit-transition:opacity .4s ease-in-out;transition:opacity .4s ease-in-out;opacity:1\n}\n.multiselect__loading-enter,.multiselect__loading-leave-active{opacity:0\n}\n.multiselect,.multiselect__input,.multiselect__single{font-family:inherit;font-size:16px;-ms-touch-action:manipulation;touch-action:manipulation\n}\n.multiselect{-webkit-box-sizing:content-box;box-sizing:content-box;display:block;position:relative;width:100%;min-height:40px;text-align:left;color:#35495e\n}\n.multiselect *{-webkit-box-sizing:border-box;box-sizing:border-box\n}\n.multiselect:focus{outline:none\n}\n.multiselect--disabled{opacity:.6\n}\n.multiselect--active{z-index:1\n}\n.multiselect--active:not(.multiselect--above) .multiselect__current,.multiselect--active:not(.multiselect--above) .multiselect__input,.multiselect--active:not(.multiselect--above) .multiselect__tags{border-bottom-left-radius:0;border-bottom-right-radius:0\n}\n.multiselect--active .multiselect__select{-webkit-transform:rotate(180deg);transform:rotate(180deg)\n}\n.multiselect--above.multiselect--active .multiselect__current,.multiselect--above.multiselect--active .multiselect__input,.multiselect--above.multiselect--active .multiselect__tags{border-top-left-radius:0;border-top-right-radius:0\n}\n.multiselect__input,.multiselect__single{position:relative;display:inline-block;min-height:20px;line-height:20px;border:none;border-radius:5px;background:#fff;padding:0 0 0 5px;width:100%;-webkit-transition:border .1s ease;transition:border .1s ease;-webkit-box-sizing:border-box;box-sizing:border-box;margin-bottom:8px;vertical-align:top\n}\n.multiselect__input::-webkit-input-placeholder{color:#35495e\n}\n.multiselect__input:-ms-input-placeholder{color:#35495e\n}\n.multiselect__input::-ms-input-placeholder{color:#35495e\n}\n.multiselect__input::placeholder{color:#35495e\n}\n.multiselect__tag~.multiselect__input,.multiselect__tag~.multiselect__single{width:auto\n}\n.multiselect__input:hover,.multiselect__single:hover{border-color:#cfcfcf\n}\n.multiselect__input:focus,.multiselect__single:focus{border-color:#a8a8a8;outline:none\n}\n.multiselect__single{padding-left:5px;margin-bottom:8px\n}\n.multiselect__tags-wrap{display:inline\n}\n.multiselect__tags{min-height:40px;display:block;padding:8px 40px 0 8px;border-radius:5px;border:1px solid #e8e8e8;background:#fff;font-size:14px\n}\n.multiselect__tag{position:relative;display:inline-block;padding:4px 26px 4px 10px;border-radius:5px;margin-right:10px;color:#fff;line-height:1;background:#41b883;margin-bottom:5px;white-space:nowrap;overflow:hidden;max-width:100%;text-overflow:ellipsis\n}\n.multiselect__tag-icon{cursor:pointer;margin-left:7px;position:absolute;right:0;top:0;bottom:0;font-weight:700;font-style:normal;width:22px;text-align:center;line-height:22px;-webkit-transition:all .2s ease;transition:all .2s ease;border-radius:5px\n}\n.multiselect__tag-icon:after{content:\"\\D7\";color:#266d4d;font-size:14px\n}\n.multiselect__tag-icon:focus,.multiselect__tag-icon:hover{background:#369a6e\n}\n.multiselect__tag-icon:focus:after,.multiselect__tag-icon:hover:after{color:#fff\n}\n.multiselect__current{min-height:40px;overflow:hidden;padding:8px 12px 0;padding-right:30px;white-space:nowrap;border-radius:5px;border:1px solid #e8e8e8\n}\n.multiselect__current,.multiselect__select{line-height:16px;-webkit-box-sizing:border-box;box-sizing:border-box;display:block;margin:0;text-decoration:none;cursor:pointer\n}\n.multiselect__select{position:absolute;width:40px;height:38px;right:1px;top:1px;padding:4px 8px;text-align:center;-webkit-transition:-webkit-transform .2s ease;transition:-webkit-transform .2s ease;transition:transform .2s ease;transition:transform .2s ease, -webkit-transform .2s ease\n}\n.multiselect__select:before{position:relative;right:0;top:65%;color:#999;margin-top:4px;border-style:solid;border-width:5px 5px 0;border-color:#999 transparent transparent;content:\"\"\n}\n.multiselect__placeholder{color:#adadad;display:inline-block;margin-bottom:10px;padding-top:2px\n}\n.multiselect--active .multiselect__placeholder{display:none\n}\n.multiselect__content-wrapper{position:absolute;display:block;background:#fff;width:100%;max-height:240px;overflow:auto;border:1px solid #e8e8e8;border-top:none;border-bottom-left-radius:5px;border-bottom-right-radius:5px;z-index:1;-webkit-overflow-scrolling:touch\n}\n.multiselect__content{list-style:none;display:inline-block;padding:0;margin:0;min-width:100%;vertical-align:top\n}\n.multiselect--above .multiselect__content-wrapper{bottom:100%;border-bottom-left-radius:0;border-bottom-right-radius:0;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom:none;border-top:1px solid #e8e8e8\n}\n.multiselect__content::webkit-scrollbar{display:none\n}\n.multiselect__element{display:block\n}\n.multiselect__option{display:block;padding:12px;min-height:40px;line-height:16px;text-decoration:none;text-transform:none;vertical-align:middle;position:relative;cursor:pointer;white-space:nowrap\n}\n.multiselect__option:after{top:0;right:0;position:absolute;line-height:40px;padding-right:12px;padding-left:20px;font-size:13px\n}\n.multiselect__option--highlight{background:#41b883;outline:none;color:#fff\n}\n.multiselect__option--highlight:after{content:attr(data-select);background:#41b883;color:#fff\n}\n.multiselect__option--selected{background:#f3f3f3;color:#35495e;font-weight:700\n}\n.multiselect__option--selected:after{content:attr(data-selected);color:silver\n}\n.multiselect__option--selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect--disabled{background:#ededed;pointer-events:none\n}\n.multiselect--disabled .multiselect__current,.multiselect--disabled .multiselect__select,.multiselect__option--disabled{background:#ededed;color:#a6a6a6\n}\n.multiselect__option--disabled{cursor:text;pointer-events:none\n}\n.multiselect__option--group{background:#ededed;color:#35495e\n}\n.multiselect__option--group.multiselect__option--highlight{background:#35495e;color:#fff\n}\n.multiselect__option--group.multiselect__option--highlight:after{background:#35495e\n}\n.multiselect__option--disabled.multiselect__option--highlight{background:#dedede\n}\n.multiselect__option--group-selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--group-selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect-enter-active,.multiselect-leave-active{-webkit-transition:all .15s ease;transition:all .15s ease\n}\n.multiselect-enter,.multiselect-leave-active{opacity:0\n}\n.multiselect__strong{margin-bottom:8px;line-height:20px;display:inline-block;vertical-align:top\n}\n[dir=rtl] .multiselect{text-align:right\n}\n[dir=rtl] .multiselect__select{right:auto;left:1px\n}\n[dir=rtl] .multiselect__tags{padding:8px 8px 0 40px\n}\n[dir=rtl] .multiselect__content{text-align:right\n}\n[dir=rtl] .multiselect__option:after{right:auto;left:0\n}\n[dir=rtl] .multiselect__clear{right:auto;left:12px\n}\n[dir=rtl] .multiselect__spinner{right:auto;left:1px\n}\n@-webkit-keyframes a{\n0%{-webkit-transform:rotate(0);transform:rotate(0)\n}\nto{-webkit-transform:rotate(2turn);transform:rotate(2turn)\n}\n}\n@keyframes a{\n0%{-webkit-transform:rotate(0);transform:rotate(0)\n}\nto{-webkit-transform:rotate(2turn);transform:rotate(2turn)\n}\n}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 399 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_multiselect__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_multiselect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_multiselect__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__event_bus_js__ = __webpack_require__(11);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    watch: {},
-
-    components: {
-        multiselect: __WEBPACK_IMPORTED_MODULE_0_vue_multiselect___default.a
-    },
-
-    data: function data() {
-        return {
-            form: {
-                origen: {
-                    id: null,
-                    nombre: null
-                },
-                destino: {
-                    id: null,
-                    nombre: null
-                },
-                distancia: null,
-                duracion: {
-                    HH: null,
-                    mm: null,
-                    ss: null
-                },
-                tarifa: null
-            },
-            sucursales: [],
-
-            origenes: [],
-            destinos: []
-
-        };
-    },
-
-    created: function created() {
-        this.CargarSucursales();
-    },
-    methods: {
-        guardar: function guardar() {
-            var _this = this;
-
-            axios({
-                method: 'post',
-                url: '/sucursales',
-                data: this.form
-
-            }).then(function (response) {
-                console.log(response.data);
-                Vue.toasted.show(response.data, {
-                    theme: "primary",
-                    position: "bottom-right",
-                    duration: 2000
-                });
-                __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$emit('actualizartabla', true);
-                _this.$root.$emit('bv::hide::modal', 'agregar', '#app');
-            }).catch(function (err) {});
-        },
-        CargarSucursales: function CargarSucursales() {
-            var _this2 = this;
-
-            axios({
-                method: 'get',
-                url: '/sucursales/all'
-            }).then(function (response) {
-                _this2.formatosucursal(response);
-            }).catch(function (err) {
-                Vue.toasted.show('Ha ocurrido un error', {
-                    theme: "primary",
-                    position: "bottom-right",
-                    duration: 2000
-                });
-                console.log(err);
-            });
-        },
-        resetModal: function resetModal() {},
-        onSubmit: function onSubmit() {},
-        formatosucursal: function formatosucursal(data) {
-            //Anadir datos
-            console.log(data);
-            for (var i = 0; i < data.data.length; i++) {
-                this.origenes.push({
-                    id: data.data[i].sucursal_id,
-                    nombre: data.data[i].nombre
-                });
-                this.destinos.push({
-                    id: data.data[i].sucursal_id,
-                    nombre: data.data[i].nombre
-                });
-                this.sucursales.push({
-                    id: data.data[i].sucursal_id,
-                    nombre: data.data[i].nombre
-                });
-            }
-        }
-    }
-});
-
-/***/ }),
-/* 400 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "b-modal",
-        {
-          ref: "modal",
-          attrs: { id: "agregar", title: "Registrar Vuelo" },
-          on: { hiden: _vm.resetModal }
-        },
-        [
-          _c(
-            "b-form",
-            {
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  _vm.guardar()
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "form-group col-sm-1 " }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-sm-12" },
-                  [
-                    _c("label", { attrs: { for: "distancia" } }, [
-                      _c("b", [_vm._v(" Ruta: ")])
-                    ]),
-                    _vm._v(" "),
-                    _c("multiselect", {
-                      attrs: {
-                        options: _vm.origenes,
-                        selectLabel: "Seleccionar",
-                        deselectLabel: "Eliminar",
-                        selectedLabel: "Seleccionado",
-                        placeholder: "Seleccione el Origen",
-                        label: "nombre",
-                        "track-by": "nombre"
-                      },
-                      model: {
-                        value: _vm.form.origen,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "origen", $$v)
-                        },
-                        expression: "form.origen"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-sm-1 " }),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-sm-1 " })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [_c("p")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "form-group col-sm-1 " }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-sm-5" },
-                  [
-                    _c("label", { attrs: { for: "distancia" } }, [
-                      _c("b", [_vm._v(" Inserte Nueva Distancia: ")])
-                    ]),
-                    _vm._v(" "),
-                    _c("b-form-input", {
-                      attrs: {
-                        id: "distancia",
-                        type: "text",
-                        required: "",
-                        placeholder: "Inserte Nueva Distancia"
-                      },
-                      model: {
-                        value: _vm.form.distancia,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "distancia", $$v)
-                        },
-                        expression: "form.distancia"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-sm-5" },
-                  [
-                    _c("label", { attrs: { for: "distancia" } }, [
-                      _c("b", [_vm._v(" Inserte Nueva Tarifa: ")])
-                    ]),
-                    _vm._v(" "),
-                    _c("b-form-input", {
-                      attrs: {
-                        id: "tarifa",
-                        type: "text",
-                        required: "",
-                        placeholder: "Inserte Nueva Tarifa"
-                      },
-                      model: {
-                        value: _vm.form.tarifa,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "tarifa", $$v)
-                        },
-                        expression: "form.tarifa"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-sm-1 " })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [_c("p")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row text-center" }, [
-                _c("div", { staticClass: "col-sm-12 " }, [
-                  _c(
-                    "label",
-                    { staticClass: "text-center", attrs: { for: "duracion" } },
-                    [_c("b", [_vm._v(" Tiempo de Vuelo: ")])]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "row col-sm-12 ", attrs: { id: "duracion" } },
-                [
-                  _c("div", { staticClass: "form-group col-sm-2 " }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-3 " },
-                    [
-                      _c("span", { staticClass: "help-block" }, [
-                        _vm._v(" Horas ")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-form-input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "number",
-                          min: "0",
-                          max: "24",
-                          id: "ccyear"
-                        },
-                        model: {
-                          value: _vm.form.duracion.HH,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form.duracion, "HH", $$v)
-                          },
-                          expression: "form.duracion.HH"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "form-group col-sm-3 " },
-                    [
-                      _c("span", { staticClass: "help-block" }, [
-                        _vm._v(" Minutos ")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-form-input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "number",
-                          min: "0",
-                          max: "60",
-                          id: "ccyear"
-                        },
-                        model: {
-                          value: _vm.form.duracion.mm,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form.duracion, "mm", $$v)
-                          },
-                          expression: "form.duracion.mm"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "form-group col-sm-3 " },
-                    [
-                      _c("span", { staticClass: "help-block" }, [
-                        _vm._v(" Segundos ")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-form-input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "number",
-                          min: "0",
-                          max: "60",
-                          id: "ccyear"
-                        },
-                        model: {
-                          value: _vm.form.duracion.ss,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form.duracion, "ss", $$v)
-                          },
-                          expression: "form.duracion.ss"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "text-center" },
-                [
-                  _c(
-                    "b-button",
-                    { attrs: { type: "submit", variant: "primary" } },
-                    [_vm._v("Guardar")]
-                  )
-                ],
-                1
-              )
-            ]
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-718d3348", module.exports)
-  }
-}
-
-=======
->>>>>>> parent of 2885a1b... cambios RRHH
 /***/ })
 /******/ ]);

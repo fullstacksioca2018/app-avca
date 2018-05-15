@@ -2,7 +2,7 @@
 
 @section('content')
 
-   {!! Form::open(['route' => ['taquilla.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
+   
     <div class="container-fluid">
       <div class="animated fadeIn">
         <div class="row">
@@ -24,15 +24,48 @@
                 </div>
 
                <div id="soloida">
+               {!! Form::open(['route' => ['taquilla.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
+               <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
                  @include('operativo.taquilla.ida')
+                 <div class="card-footer text-center">
+                <button type="submit" class="btn  btn-primary">
+                  <i class="fa fa-dot-circle-o"> Aceptar</i>
+                </button>
+                <button type="reset " class="btn  btn-danger">
+                  <i class="fa fa-ban"> Cancelar</i>
+                </button>
+                {!! Form::close() !!}
+              </div>
 
                </div>
                <div id="idayvuelta">
+               {!! Form::open(['route' => ['taquilla.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
+               <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
                    @include('operativo.taquilla.idayvuelta')
+                   <div class="card-footer text-center">
+                <button type="submit" class="btn  btn-primary">
+                  <i class="fa fa-dot-circle-o"> Aceptar</i>
+                </button>
+                <button type="reset " class="btn  btn-danger">
+                  <i class="fa fa-ban"> Cancelar</i>
+                </button>
+                {!! Form::close() !!}
+              </div>
 
                </div>
                <div id="multidestino">
+               {!! Form::open(['route' => ['taquilla.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
+               <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
                    @include('operativo.taquilla.multidestino')
+                   <div class="card-footer text-center">
+                <button type="submit" class="btn  btn-primary">
+                  <i class="fa fa-dot-circle-o"> Aceptar</i>
+                </button>
+                <button type="reset " class="btn  btn-danger">
+                  <i class="fa fa-ban"> Cancelar</i>
+                </button>
+                {!! Form::close() !!}
+              </div>
 
                </div>
                    
@@ -42,15 +75,7 @@
              
                 
      
-              <div class="card-footer text-center">
-                <button type="submit" class="btn  btn-primary">
-                  <i class="fa fa-dot-circle-o"> Aceptar</i>
-                </button>
-                <button type="reset " class="btn  btn-danger">
-                  <i class="fa fa-ban"> Cancelar</i>
-                </button>
-                {!! Form::close() !!}
-              </div>
+              
             </div>
           </div>
         </div>

@@ -23,7 +23,6 @@ class VacanteController extends Controller
         $vacante->cargo_id = $request->cargo;
 
         $vacante->save();
-    
 
         return response()->json(['message' => 'Vacante publicada exitosamente!']);
     }

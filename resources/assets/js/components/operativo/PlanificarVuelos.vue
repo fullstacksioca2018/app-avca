@@ -1,18 +1,24 @@
 <template>
   <div> 
-  
+    
   <b-tabs pills card>
+    <b-tab title="Nuevo Vuelo">
+       <RegistrarVuelos></RegistrarVuelos>
+    </b-tab>
     <b-tab title="Vuelos Abiertos" active>
      <VuelosAbiertos> </VuelosAbiertos>
     </b-tab>
-    <b-tab title="Vuelos Retrasados">
-      Retrasados
-    </b-tab>
-    <b-tab title="Vuelos Cancelados">
-      Retrasados
+     <b-tab title="Vuelos Cancelados">
+      <VuelosCancelados> </VuelosCancelados>
     </b-tab>
     <b-tab title="Vuelos Ejecutados">
-      Retrasados
+      <VuelosEjecutados> </VuelosEjecutados>
+    </b-tab>
+    <b-tab title="Vuelos Retrasados">
+      <VuelosRetrasados> </VuelosRetrasados>
+    </b-tab>   
+    <b-tab title="Vuelos Cerrados">
+      <VuelosCerrados> </VuelosCerrados>
     </b-tab>
   </b-tabs>
 
@@ -21,7 +27,10 @@
 
 </template>
 <script>
+  import RegistrarVuelos from './RegistrarVuelos';
   export default {
-    
+    components:{
+      RegistrarVuelos
+    }
   }
 </script>
