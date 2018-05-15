@@ -13,7 +13,7 @@
         </b-form-group>
       </b-col>
       <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Ordenar" class="mb-0">
+        <b-form-group horizontal label="Sort" class="mb-0">
           <b-input-group>
             <b-form-select v-model="sortBy" :options="sortOptions">
               <option slot="first" :value="null">-- ninguno --</option>
@@ -29,7 +29,7 @@
          <b-btn v-b-modal.agregar variant="primary">Agregar Nueva Ruta</b-btn>
       </b-col>
       <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Por Página" class="mb-0">
+        <b-form-group horizontal label="Per page" class="mb-0">
           <b-form-select :options="pageOptions" v-model="perPage" />
         </b-form-group>
       </b-col>
@@ -256,7 +256,8 @@ export default {
           Estado:this.data[i].ruta.estado,
         });
       }
-     
+      console.log('entre');
+      console.log(this.items);
     },
     actualizar(){
       this.modalInfo.content.Duracion=this.duracionModel.HH+':'+ this.duracionModel.mm+':'+ this.duracionModel.ss;
@@ -298,7 +299,7 @@ export default {
           id: row.item.id,               
         }
       }).then((response)=>{
-       
+        console.log(response.data)
        Vue.toasted.show("Ruta Deshabilitada", {
           theme: "primary", 
 	      position: "bottom-right",
@@ -318,7 +319,7 @@ export default {
           id: row.item.id,               
         }
       }).then((response)=>{
-      
+        console.log(response);
       Vue.toasted.show("Ruta Habilitada", {
          theme: "primary", 
 	       position: "bottom-right",

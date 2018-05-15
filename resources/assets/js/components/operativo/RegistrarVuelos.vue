@@ -215,7 +215,35 @@ export default {
             }
             return horas + ":" + minutos + ":" + segundos;
         }
-    }
+    },
+    cargarRutas: function(){
+            axios({
+                method: 'get',
+                url: '/vuelos/rutas'       
+            }).then((response) =>{
+                console.log(response.data);
+                this.formatorutas(response);
+            }).catch((err)=>{
+                Vue.toasted.show('Ha ocurrido un error', {
+                    theme: "primary", 
+                    position: "bottom-right",  
+                    duration : 2000
+                });
+                console.log(err);
+            });
+        },
+        formatorutas: function(data){
+            console.log(data);
+            for(var i=0; i < data.data.length; i++){
+                this.rutas.push({
+                    id: data.data[i].ruta.id,
+                    nombre: data.data[i].ruta.origen.nombre + " (" + data.data[i].ruta.origen.aeropuerto + ") -->" + data.data[i].ruta.destino.nombre + " (" + data.data[i].ruta.destino.aeropuerto
+                });
+            }
+
+
+        }
+    
 }
 </script>
 

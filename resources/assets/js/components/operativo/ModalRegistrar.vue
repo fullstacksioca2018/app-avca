@@ -135,7 +135,7 @@
                 data: this.form
                 
                }).then((response)=>{
-                
+                   console.log(response.data);
                 Vue.toasted.show(response.data, {
                     theme: "primary", 
 	                position: "bottom-right",
@@ -169,7 +169,8 @@
 
             },
             formatosucursal(data){
-               
+                //Anadir datos
+                  console.log(data);
                 for (var i= 0; i < data.data.length; i++){
                     this.origenes.push({
                         id: data.data[i].sucursal_id,

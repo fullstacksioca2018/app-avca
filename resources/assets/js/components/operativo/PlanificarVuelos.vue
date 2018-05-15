@@ -1,10 +1,7 @@
 <template>
   <div> 
-    
+  
   <b-tabs pills card>
-    <b-tab title="Nuevo Vuelo">
-       <RegistrarVuelos></RegistrarVuelos>
-    </b-tab>
     <b-tab title="Vuelos Abiertos" active>
      <VuelosAbiertos> </VuelosAbiertos>
     </b-tab>
@@ -27,10 +24,7 @@
 
 </template>
 <script>
-  import RegistrarVuelos from './RegistrarVuelos';
   export default {
-    components:{
-      RegistrarVuelos
-    }
+    
   }
 </script>

@@ -1,4 +1,4 @@
-@extends('operativo.layouts.backend')
+@extends('operativo.layouts.app')
     @section('content')
 
     <div class="container-fluid">
@@ -9,14 +9,14 @@
                 </div>
                 <div class="card-body">
                     <!-- Metodo VUEJS/ assets/Operativo/AdministracionRuta-->
-                  
+                    <div id="app">
                         <vuelos></vuelos>
-                   
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-
+<script src="/js/app.js"></script>
                      
 @endsection
