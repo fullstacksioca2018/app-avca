@@ -1,10 +1,10 @@
 <template>
   <div class="col-12">
-    <!--<div v-if="response">
+    <div v-if="response">
       <div class="alert alert-success">
         {{ response.message }}
       </div>
-    </div>-->
+    </div>
     <div class="card">
       <div class="card-header bg-info-gradient">
         <h3 class="card-title">Registrar una vacante</h3>
@@ -17,7 +17,7 @@
                 <label for="sucursal">Sucursal</label>
                 <select name="sucursal" id="sucursal" class="form-control">
                   <option value="" selected="selected">Seleccione</option>
-                  <option :value="sucursal.sucursal_id" v-for="sucursal in sucursales">{{ sucursal.nombre | capitalize }}</option>
+                  <option :value="sucursal.id" v-for="sucursal in sucursales">{{ sucursal.nombre | capitalize }}</option>
                 </select>
               </div>
             </div>
@@ -50,9 +50,6 @@
 </template>
 
 <script>
-  import VueSweetalert2 from 'vue-sweetalert2';
-  Vue.use(VueSweetalert2);
-
   export default {
     name: "VacanteForm",
     data() {
@@ -61,7 +58,8 @@
         sucursales: [],
         cargos: [],
         areas: [],
-        response: ''
+        response: '',
+        render:false
       }
     },
     created() {
@@ -101,14 +99,8 @@
         let formData = new FormData(form);
         axios.post('/rrhh/backend/vacante/publicar-vacante', formData)
           .then(response => {
+            console.log(response.data);
             this.response = response.data;
-            this.$swal({
-              //position: 'top-end',
-              type: 'success',
-              title: 'La vacante ha sido publicada.',
-              showConfirmButton: true,
-              //timer: 2000
-            });
           });
       }
     },

@@ -148,26 +148,8 @@
           }
         })
           .then(response => {
-            //console.log(response.data);
+            console.log(response.data);
             this.aspirantes = response.data;
-            if (this.estatusAnterior === 'registrados') {
-              this.$swal({
-                //position: 'top-end',
-                type: 'success',
-                title: 'Aspirante verificado exitosamente.',
-                showConfirmButton: false,
-                timer: 2000
-              });
-            }
-            if (this.estatus === 'por contratar') {
-              this.$swal({
-                //position: 'top-end',
-                type: 'success',
-                title: 'Aspirante por contratar.',
-                showConfirmButton: false,
-                timer: 2000
-              });
-            }
           })
           .catch(error => {
             console.log(error)

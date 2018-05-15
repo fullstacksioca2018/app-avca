@@ -25,12 +25,12 @@ class ContratacionController extends Controller
     public function procesarContratacion(Request $request)
     {
         $empleado = new Empleado($request->all());
-        $empleado->foto = $request->file('foto')->hashName();
+        $empleado->foto = $request->file('foto')->getClientOriginalName();
 
         if ($empleado->save()) {
             // Guardando el archivo de la foto
             if ($request->hasFile('foto')) {
-                Storage::disk('public')->put('empleados/' . $request->cedula . '/foto/', $request->file('foto'));
+                Storage::disk('local')->put('empleados', $request->file('foto'));
             }
 
             // Elimino el aspirante de la tabla aspirantes
@@ -64,11 +64,8 @@ class ContratacionController extends Controller
 
     public function obtenerProfesiones(Request $request)
     {
-        //return $request->nivel_academico;
-        $profesiones = Profesion::where('nivel_academico', '=', 'especialista 1')->get();
-        //return $profesiones;
+        $profesiones = Profesion::where('nivel_academico', $request->nivel_academico)->get();
         return response()->json($profesiones);
-        //return "Hola";
     }
 
     /**

@@ -15,7 +15,7 @@ class AddEstatusToAspirantesTable extends Migration
     {
         Schema::table('aspirantes', function (Blueprint $table) {
             $table->enum('estatus', [
-                'registrados', 'verificados', 'convocados', 'entrevistados', 'seleccionados', 'por contratar'
+                'registrados', 'verificados', 'convocados', 'entrevistados', 'seleccionados','por contratar'
             ])->after('curriculum')->default('registrados');
         });
     }

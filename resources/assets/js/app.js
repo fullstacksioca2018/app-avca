@@ -29,8 +29,6 @@ Vue.component('SoloIda', require('./components/operativo/taquilla/SoloIda.vue'))
 Vue.component('IdayVuelta', require('./components/operativo/taquilla/IdayVuelta.vue'));
 Vue.component('Multidestino', require('./components/operativo/taquilla/Multidestino.vue'));
 
-// Empleado
-Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
 
 Vue.component('panel', require('./components/reportes/panel.vue'));
 
