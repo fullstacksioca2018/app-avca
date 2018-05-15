@@ -82,7 +82,7 @@
 
     
     <!-- Modal Actualizar -->
-    <b-modal  ref="myModalRef" size="lg" id="VuelosAbiertos" @hide="resetModal" :title="modalInfo.title"  hide-footer>
+    <b-modal  ref="myModalRef" size="lg" id="VuelosRetrasados" @hide="resetModal" :title="modalInfo.title"  hide-footer>
     <div v-if="modalInfo.content != ''">
     <b-form @submit.prevent="ver()">
       
@@ -119,7 +119,7 @@
       <div slot="modal-footer" class="w-100">
             <div v-for="segmento in modalInfo.content.segmentos">
               <div class="row">
-              <div class="form-gruop">&nbsp;&nbsp;<strong>Ruta:</strong> {{segmento.ruta.sigla}} <strong>||</strong> Modelo de Aeronave: {{segmento.aeronave.modelo}} <strong>||</strong> Matricula: {{segmento.aeronave.matricula}} <strong>||</strong> Ultimo Mantenimiento: {{segmento.aeronave.ultimo_mantenimiento}} <hr size="5" style="color: #0056b2;" />
+              <div class="form-gruop">&nbsp;&nbsp;<strong>Segmento:</strong> ({{segmento.ruta.sigla}}) <strong>||</strong> Modelo de Aeronave: {{segmento.aeronave.modelo}} <strong>||</strong> Matricula: {{segmento.aeronave.matricula}} <strong>||</strong> Ultimo Mantenimiento: {{segmento.aeronave.ultimo_mantenimiento}} <hr size="5" style="color: #0056b2;" />
               </div>
 
           </div>                      
@@ -203,7 +203,7 @@ export default {
   
             console.log(this.tripulantes);
        
-             this.$root.$emit('bv::show::modal', 'VuelosAbiertos', button)
+             this.$root.$emit('bv::show::modal', 'VuelosRetrasados', button)
     },
    
     resetModal () {
@@ -242,7 +242,7 @@ export default {
           }); */
         }
         else{
-          if( this.data[i].vuelo.estado == "abierto"){    
+          if( this.data[i].vuelo.estado == "retrasado"){    
             var rutas = "";
             for(var j = 0; j < this.data[i].vuelo.segmentos.length; j++){
               rutas += "[" + this.data[i].vuelo.segmentos[j].ruta.sigla + "] ";

@@ -82,7 +82,7 @@
 
     
     <!-- Modal Actualizar -->
-    <b-modal  ref="myModalRef" size="lg" id="VuelosAbiertos" @hide="resetModal" :title="modalInfo.title"  hide-footer>
+    <b-modal  ref="myModalRef" size="lg" id="VuelosEjecutados" @hide="resetModal" :title="modalInfo.title"  hide-footer>
     <div v-if="modalInfo.content != ''">
     <b-form @submit.prevent="ver()">
       
@@ -203,7 +203,7 @@ export default {
   
             console.log(this.tripulantes);
        
-             this.$root.$emit('bv::show::modal', 'VuelosAbiertos', button)
+             this.$root.$emit('bv::show::modal', 'VuelosEjecutados', button)
     },
    
     resetModal () {
@@ -242,7 +242,7 @@ export default {
           }); */
         }
         else{
-          if( this.data[i].vuelo.estado == "abierto"){    
+          if( this.data[i].vuelo.estado == "ejecutado"){    
             var rutas = "";
             for(var j = 0; j < this.data[i].vuelo.segmentos.length; j++){
               rutas += "[" + this.data[i].vuelo.segmentos[j].ruta.sigla + "] ";
