@@ -18,6 +18,12 @@ class CreateSucursalesTable extends Migration
             $table->enum('tipo_sucursal', ['administrativa', 'operativa']);
             $table->string('nombre', 255);
             $table->enum('estatus', ['activa', 'inactiva']);
+            $table->string('sigla',20)->nullable();
+            $table->string('aeropuerto',100)->nullable();
+            $table->string('direccion',100)->nullable();
+            $table->string('estado',100)->nullable();
+            $table->string('ciudad',100)->nullable();
+            $table->string('pais',100)->nullable();
             $table->string('ciudad', 255);
             $table->timestamps();
         });

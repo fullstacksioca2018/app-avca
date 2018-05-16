@@ -497,7 +497,7 @@ class SucursalesTableSeeder extends Seeder
             //     'ciudad'       => 'Cumana',                
             //  ]
 
-        ]);  
+      //  ]);  
         
     }
 }
