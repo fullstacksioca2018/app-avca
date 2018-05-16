@@ -13,7 +13,7 @@
         </b-form-group>
       </b-col>
       <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Ordenar" class="mb-0">
+        <b-form-group horizontal label="Sort" class="mb-0">
           <b-input-group>
             <b-form-select v-model="sortBy" :options="sortOptions">
               <option slot="first" :value="null">-- ninguno --</option>
@@ -26,10 +26,10 @@
         </b-form-group>
       </b-col>
       <b-col md="6" class="my-1">
-         <b-btn v-b-modal.agregar variant="primary">Agregar Nueva Ruta</b-btn>
+         
       </b-col>
       <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Por Página" class="mb-0">
+        <b-form-group horizontal label="Per page" class="mb-0">
           <b-form-select :options="pageOptions" v-model="perPage" />
         </b-form-group>
       </b-col>
@@ -47,20 +47,16 @@
              :sort-desc.sync="sortDesc"
              @filtered="onFiltered"
     >
-     
-      <template slot="Origen" slot-scope="row">{{row.value.nombre}}</template>
-      <template slot="Destino" slot-scope="row">{{row.value.nombre}}</template>
    
       <template slot="actions" slot-scope="row">
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
         <b-input-group>
-        <b-button size="sm" @click.stop="info(row.item,row.item, row.index, $event.target)" class="mr-1" variant="primary">
-          Modificar
+        <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1" variant="primary">
+          Ver
         </b-button>
-        <div v-if="row.item.Estado == 'activo'">
+        <div v-if="row.item.Estado == 'abierto'">
           <b-button size="sm" @click.stop="Deshabilitar(row)">
-            
-            Desabilitar
+            Cancelar
           </b-button>
         </div>
         <div v-else>
@@ -73,8 +69,9 @@
       </template>
       <template slot="row-details" slot-scope="row">
         <b-card>
-          <ul>
-            <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value}}</li>
+          <ul >
+            <li  v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value}}</li>
+           
           </ul>
         </b-card>
       </template>
@@ -85,80 +82,69 @@
 
     
     <!-- Modal Actualizar -->
-    <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>
+    <b-modal  ref="myModalRef" size="lg" id="VuelosCancelados" @hide="resetModal" :title="modalInfo.title"  hide-footer>
     <div v-if="modalInfo.content != ''">
-    <b-form @submit.prevent="actualizar()">
-       <!--    <pre>{{modalInfo.content}}</pre>-->
-       <div class="row">
-          <div class="form-group col-sm-1 "></div>
-          <div class="col-sm-5">
-            <label for="distancia"> <b> Inserte Nueva Distancia: </b></label>
-            <b-form-input id="distancia"
-                      type="text"
-                      required
-                      v-model="modalInfo.content.Distancia"
-                      placeholder="Inserte Nueva Distancia">
-            </b-form-input>
-          </div>
-          
-         <div class="col-sm-5">
-           <label for="distancia"> <b> Inserte Nueva Tarifa: </b></label>
-            <b-form-input id="tarifa"
-                          type="text"
-                          required
-                          v-model="modalInfo.content.Tarifa"
-                          placeholder="Inserte Nueva Tarifa">
-            </b-form-input>
-          </div>
-           <div class="form-group col-sm-1 "></div>
-        </div>
-      <div class="row"><p></p></div>
-      <div class="row text-center"><div class="col-sm-12 " ><label for="duracion" class="text-center"> <b> Tiempo de Vuelo: </b> </label></div></div>   
-      <div class="row col-sm-12 " id="duracion">
-      <div class="form-group col-sm-2 "></div>
-      <div class="col-sm-3 ">
-      <span class="help-block"> Horas </span>
-      <b-form-input type="number" min="0" max="24" class="form-control" id="ccyear" v-model="duracionModel.HH"></b-form-input> 
+    <b-form @submit.prevent="ver()">
       
-      </div>
-     
-      <div class="form-group col-sm-3 ">
-        <span class="help-block"> Minutos </span>
-        <b-form-input type="number" min="0" max="60" class="form-control" id="ccyear" v-model="duracionModel.mm"></b-form-input>
-      </div>
+     <!-- <h3 align="center">{{modalInfo.title}} </h3> <br> -->
+     <div class="card-header">
+      
+         <h5 align="center">
+         <label class="infoTitulo" for="inputPuesto">Fecha: {{modalInfo.content.Fecha}}</label>
+         <label class="infoTitulo" for="inputPuesto">Hora: {{modalInfo.content.Hora}}</label>
+        </h5>
        
-      <div class="form-group col-sm-3 ">
-        <span class="help-block"> Segundos </span>
-        <b-form-input type="number" min="0" max="60" class="form-control" id="ccyear" v-model="duracionModel.ss"></b-form-input>
-      </div>
+     </div>
      
-    </div>
-      <div class="text-center">
-        <b-button type="submit" variant="primary" >Actualizar</b-button>
-      </div>
       
+      
+     <table class="table table-hover table-striped"> 
+       <thead>
+         <th> # </th>
+         <th> Nombre </th>
+         <th> Experiencia  </th>
+         <th> Licencia </th>
+       </thead>
+       <tbody>
+         <tr v-for="tripulante in modalInfo.content.tripulantes"> 
+           <td> {{tripulante.rango}} </td>
+           <td> {{tripulante.empleado.nombre + " " + tripulante.empleado.apellido}} </td>
+           <td> {{sumar(tripulante.empleado.experiencia)}} </td>
+           <td> {{tripulante.licencia}} </td>
+         </tr>
+         <br />
+
+       </tbody>
+     </table>
+      <div slot="modal-footer" class="w-100">
+            <div v-for="segmento in modalInfo.content.segmentos">
+              <div class="row">
+              <div class="form-gruop">&nbsp;&nbsp;<strong>Ruta:</strong> {{segmento.ruta.sigla}} <strong>||</strong> Modelo de Aeronave: {{segmento.aeronave.modelo}} <strong>||</strong> Matricula: {{segmento.aeronave.matricula}} <strong>||</strong> Ultimo Mantenimiento: {{segmento.aeronave.ultimo_mantenimiento}} <hr size="5" style="color: #0056b2;" />
+              </div>
+
+          </div>                      
+         </div>
+      </div>
     </b-form>
     </div>
      
     </b-modal>
+    
 
-    <!-- AGREGAR -->
-     <RegistrarRutas> </RegistrarRutas>
-
+  
+    
   </b-container>
 </template>
 
 <script>
 
 import axios  from 'axios';
-import RegistrarRutas from './ModalRegistrar';
+
 import {EventBus} from './event-bus.js'
 
 
 export default {
-  components: {
-    RegistrarRutas
-  },
+ 
   created: function(){
     EventBus.$on('actualizartabla',(event) =>{
       this.Cargadatos(this);
@@ -170,21 +156,14 @@ export default {
     return {
       items: null,
       data: null,
-      fields: [
-      
-        { key: 'Origen',    label: 'Sucursal de Origen',  sortable: true },
-        { key: 'Destino',   label: 'Sucursal de Destino', sortable: true },
-        { key: 'Distancia', label: 'Distancias ', sortable: true },
-        { key: 'Duracion',  label: 'Duracion ',  sortable: true },
-        { key: 'Tarifa',    label: 'Tarifa ', sortable: true },
-        { key: 'Estado',    label: 'Estado', sortable: true},
+      fields: [      
+        { key: 'N_Vuelo',    label: 'Numero de Vuelo',  sortable: true },
+        { key: 'Ruta',   label: 'Segmentos', sortable: true },
+        { key: 'Fecha', label: 'Fecha ', sortable: true },
+        { key: 'Hora',  label: 'Hora ',  sortable: true },
+        { key: 'Estado',    label: 'Estado ', sortable: true },
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
-      ],
-      duracionModel: {
-        HH : '',
-        mm : '',
-        ss : ''
-      },
+      ],      
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -193,7 +172,18 @@ export default {
       sortDesc: false,
       filter: null,
       modalInfo: { title: '', content: '' },
-      estados:['activo','inactivo']
+      tripulantes: [
+        {
+          piloto: [],
+          copiloto: [],
+          jefe_cabina: [],
+          sobrecargo1: [], 
+          sobrecargo2: [], 
+          sobrecargo3: [], 
+        }
+      ]
+
+      
     }
   },
   computed: {
@@ -207,14 +197,11 @@ export default {
   methods: {
     info (item, index, button) {
       this.modalInfo.content = item;
-      this.modalInfo.title = item.Origen.nombre + " - " + item.Destino.nombre;
-      var elementos = item.Duracion.split(':')
-     
-      this.duracionModel.HH = elementos[0]
-      this.duracionModel.mm = elementos[1]
-      this.duracionModel.ss = elementos[2]
-      
-      this.$root.$emit('bv::show::modal', 'modalInfo', button)
+      this.modalInfo.title = "Datos del Vuelo: " + item.N_Vuelo;
+  
+         
+       
+             this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
    
     resetModal () {
@@ -227,8 +214,8 @@ export default {
       this.currentPage = 1
     },
     Cargadatos(ctx){
-      axios.get("/rutas/rutas").then(function(response){
-        // console.log(response.data);
+      axios.get("/vuelos/vuelos").then(function(response){
+       
         ctx.data = response.data;
         ctx.formatodatos();
         ctx.totalRows=ctx.items.length;
@@ -240,37 +227,54 @@ export default {
     formatodatos(){
       this.items = [];
       for (var i= 0; i < this.data.length; i++){
-        this.items.push({
-          id: this.data[i].ruta.id,
-          Origen: {
-            id: this.data[i].ruta.origen.id,
-            nombre: this.data[i].ruta.origen.nombre
-          },
-          Destino: {
-            id: this.data[i].ruta.destino.id,
-            nombre: this.data[i].ruta.destino.nombre
-          },
-          Distancia:this.data[i].ruta.distancia,
-			  	Duracion:this.data[i].ruta.duracion,
-          Tarifa:this.data[i].ruta.tarifa_vuelo,
-          Estado:this.data[i].ruta.estado,
-        });
-      }
+         //var elementos=this.data[i].fecha_salida.split(' ')
      
+  
+        if(this.data[i].vuelo.segmentos.length == 0){
+         /*  this.items.push({
+            N_Vuelo: this.data[i].vuelo.n_vuelo,
+            Ruta: "Ruta no Definida",
+            Fecha: this.data[i].vuelo.fecha_salida,
+            Hora: this.data[i].vuelo.fecha_salida,
+            Estado: this.data[i].vuelo.estado     
+          }); */
+        }
+        else{
+          if( this.data[i].vuelo.estado == "cancelado"){    
+            var rutas = "";
+            for(var j = 0; j < this.data[i].vuelo.segmentos.length; j++){
+              rutas += "[" + this.data[i].vuelo.segmentos[j].ruta.sigla + "] ";
+            }
+            var fecha = this.data[i].vuelo.fecha_salida.split(" ")[0];
+            var hora = this.data[i].vuelo.fecha_salida.split(" ")[1];
+            this.items.push({
+              N_Vuelo: this.data[i].vuelo.n_vuelo,
+              Ruta: rutas,
+              Fecha: fecha,
+              Hora: hora,
+              Estado: this.data[i].vuelo.estado,
+              tripulantes: this.data[i].vuelo.tripulantes,
+              segmentos: this.data[i].vuelo.segmentos   
+            });
+           
+           
+          }
+        }
+        
+         
+         
+      }
     },
     actualizar(){
-      this.modalInfo.content.Duracion=this.duracionModel.HH+':'+ this.duracionModel.mm+':'+ this.duracionModel.ss;
       axios({
         method: 'post',
         url: '/rutas/rutas',
         data: {
-          id: this.modalInfo.content.id,
-          Origen: this.modalInfo.content.Origen,
-          Destino: this.modalInfo.content.Origen,
-          Distancia: this.modalInfo.content.Distancia,
-          Tarifa: this.modalInfo.content.Tarifa,
-          Estado: this.modalInfo.content.Estado,
-          Duracion:  this.modalInfo.content.Duracion      
+         N_Vuelos: this.modalInfo.content.N_Vuelos,
+         Ruta: this.modalInfo.content.segmentos.ruta.sigla,
+         Fecha: this.modalInfo.content.fecha_salida,
+         Hora: this.modalInfo.content.fecha_salida,
+         Estado: this.modalInfo.content.estado 
         }
       }).then((response) =>{
        Vue.toasted.show('Se ha guardado existosamente la informacion', {
@@ -293,13 +297,12 @@ export default {
     Deshabilitar(row){
      axios({
         method: 'post',
-        url: '/rutas/rutas/deshabilitar',
+        url: '/vuelos/vuelos/deshabilitar',
         data: {
           id: row.item.id,               
         }
       }).then((response)=>{
-       
-       Vue.toasted.show("Ruta Deshabilitada", {
+       Vue.toasted.show("Vuelo Deshabilitado", {
           theme: "primary", 
 	      position: "bottom-right",
 	        duration : 2000
@@ -313,13 +316,13 @@ export default {
     Habilitar(row){
      axios({
         method: 'post',
-        url: '/rutas/rutas/habilitar',
+        url: '/vuelos/vuelos/habilitar',
         data: {
           id: row.item.id,               
         }
       }).then((response)=>{
-      
-      Vue.toasted.show("Ruta Habilitada", {
+       
+      Vue.toasted.show("Vuelo Habilitado", {
          theme: "primary", 
 	       position: "bottom-right",
 	        duration : 2000
@@ -333,6 +336,25 @@ export default {
 	        duration : 2000
        });
        });
+    },
+    sumar(experiencias){
+      var horas= 0;
+      var minutos = 0;
+      var segundos = 0;
+      for(var i = 0; i < experiencias.length; i++){
+        horas += parseInt(experiencias[i].horas.split(':')[0]);
+        minutos += parseInt(experiencias[i].horas.split(':')[1]);
+        segundos += parseInt(experiencias[i].horas.split(':')[2]);        
+      }
+      if(segundos % 60){
+        minutos += parseInt(segundos / 60); 
+        segundos = segundos % 60;       
+      }
+      if(minutos % 60){
+        horas += parseInt(minutos / 60);
+        minutos = minutos % 60;
+      }
+      return horas + ":" + minutos + ":" + segundos;
     }
   }
 }

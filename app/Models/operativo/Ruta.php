@@ -47,7 +47,7 @@ class Ruta extends Model
                 ->join('sucursales','rutas.origen_id','=','sucursales.sucursal_id')
                 ->where([['rutas.origen_id','=',$origen_id],['rutas.destino_id','=',$destino_id]])
                 ->whereDate('vuelos.fecha_salida', '=', $date->format('Y-m-d'))->get();
-       // return DB::table('rutas')->join('sucursales','sucursales.sucursal_id','=','rutas.origen_id')
+       // return DB::table('rutas')->join('sucursales','sucursales.id','=','rutas.origen_id')
        //                         ->join('segmentos','segmentos.ruta_id','=','rutas.id')  
        //                         ->join('vuelos','vuelos.id','=','segmentos.vuelo_id')
        //                         ->where([['rutas.origen_id','=',$origen_id],['rutas.destino_id','=',$destino_id]])
@@ -58,7 +58,7 @@ class Ruta extends Model
     public function scopeDetalleOrigen($query, $origen_id, $destino_id,$fecha_salida)
     {
         
-         return DB::table('rutas')->join('sucursales','sucursales.sucursal_id', '=', 'rutas.origen_id')
+         return DB::table('rutas')->join('sucursales','sucursales.id', '=', 'rutas.origen_id')
                                                ->join('segmentos','segmentos.ruta_id','=','rutas.id')
                                                ->join('vuelos','vuelos.id','=','segmentos.vuelo_id')
                                                ->where([['rutas.origen_id','=',$origen_id],['rutas.destino_id','=',$destino_id],['vuelos.fecha_salida','=',$fecha_salida]])
@@ -78,15 +78,5 @@ class Ruta extends Model
 
 
     }
-     public function scopeBuscador($query, $origen,$destino){
-      return $query->where('destino_id',$destino)
-                  ->where('origen_id',$origen)
-                  ->where('estado',"activo");
-  }
-  public function scopeRutaInactiva($query, $origen,$destino){
-      return $query->where('destino_id',$destino)
-                  ->where('origen_id',$origen)
-                  ->where('estado',"inactivo");
-  }
 
 }

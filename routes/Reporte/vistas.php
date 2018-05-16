@@ -1,12 +1,18 @@
 
 <?php 
-Route::get('/reportes', function () {
-    return view('reportes.Dashboard');
+
+Route::group(['prefix' => 'reportes','middleware' => ['auth']],function(){
+
+	Route::get('/', function () {
+	    return view('reportes.Dashboard');
+	});
+
+	Route::get('/panel', function () {
+	    return view('reportes.PanelConsulta');
+	});
 });
 
-Route::get('/reportes/panel', function () {
-    return view('reportes.PanelConsulta');
-});
+
 
 
  ?>

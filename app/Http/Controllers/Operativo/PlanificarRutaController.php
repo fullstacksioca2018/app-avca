@@ -68,6 +68,10 @@ class PlanificarRutaController extends Controller
   public function obtenerruta(){
     return Sucursal::orderBy('nombre','ASC')->get();        
   }
+  public function rutasTodas(){
+    return Ruta::orderBy('id','ASC')->get();        
+  }
+  
 
   public function crearuta(Request $datos){
      // return $datos;
