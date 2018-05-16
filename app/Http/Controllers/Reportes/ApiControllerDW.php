@@ -15,4 +15,20 @@ class ApiControllerDW extends Controller
             ->get();
         return response()->json($cargos);
     }
+    public function ingresosProyeccion(Request $consulta){
+
+    }
+    /*
+    
+	a = 2(PMS) – PMD
+	a = 2 (37.50) – 30 = 45
+	a = 45
+	b = n/n-1 (PMS – PMD)
+	b = 15
+	Paso 5
+	ynov = a + b(x) = 45+15 (2) = 75 unidades
+	ydic = a + b(x) = 45+15 (3) = 90 unidades
+	yene = a + b(x) = 45+15 (4) = 105 unidades
+
+     */
 }

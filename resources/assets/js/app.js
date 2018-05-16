@@ -42,6 +42,8 @@ Vue.component('CargarAeronave', require('./components/operativo/CargarAeronave.v
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
 
 Vue.component('panel', require('./components/reportes/panel.vue'));
+Vue.component('dashboard', require('./components/reportes/Dashboard.vue'));
+Vue.component('breadcrumbpersonal', require('./components/reportes/breadcrumbPersonal.vue'));
 
 const app = new Vue({
     el: '#app'

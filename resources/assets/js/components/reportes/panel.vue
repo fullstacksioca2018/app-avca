@@ -4,9 +4,9 @@
 		<div class="card">
 	    	<div class="card-block">
 				<div id="panel">
-				    <div class="container" style="width: 95%;">
+				    <div class="container" style="width: 95%; padding-top: 40px;">
 						<!-- Tipo de Consulta -->
-						<b-form-group label="Consultas">
+						<b-form-group>
 					      <b-form-radio-group id="btnradios1"
 					                          buttons
 					                          v-model="form.consulta"
@@ -69,16 +69,16 @@
 								    		<multiselect v-if="filtroA=='Cargo'" v-model="form.datosf[filtroA]" :options="opciones.Cargo" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Cargos" :preselect-first="false" selectLabel="Seleccionar">
 										    <template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fas fa-times-circle"></i></span></span></template>
 										  </multiselect>
-											<multiselect v-if="filtroA=='Sucursal'" v-model="form.datosf[filtroA]" :options="opciones.Sucursal" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Cargos" :preselect-first="false" selectLabel="Seleccionar">
+											<multiselect v-if="filtroA=='Sucursal'" v-model="form.datosf[filtroA]" :options="opciones.Sucursal" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Sucursal" :preselect-first="false" selectLabel="Seleccionar">
 										    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fas fa-times-circle"></i></span></span></template>
 											</multiselect>
-											<multiselect v-if="filtroA=='Origen'" v-model="form.datosf[filtroA]" :options="opciones.Origen" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Cargos" :preselect-first="false" selectLabel="Seleccionar">
+											<multiselect v-if="filtroA=='Origen'" v-model="form.datosf[filtroA]" :options="opciones.Origen" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Sucursal Origen" :preselect-first="false" selectLabel="Seleccionar">
 										    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fas fa-times-circle"></i></span></span></template>
 											</multiselect>
-											<multiselect v-if="filtroA=='Destino'" v-model="form.datosf[filtroA]" :options="opciones.Destino" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Cargos" :preselect-first="false" selectLabel="Seleccionar">
+											<multiselect v-if="filtroA=='Destino'" v-model="form.datosf[filtroA]" :options="opciones.Destino" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Sucursal Destino" :preselect-first="false" selectLabel="Seleccionar">
 										    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fas fa-times-circle"></i></span></span></template>
 											</multiselect>
-											<multiselect v-if="filtroA=='Ruta'" v-model="form.datosf[filtroA]" :options="opciones.Ruta" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Cargos" :preselect-first="false" selectLabel="Seleccionar">
+											<multiselect v-if="filtroA=='Ruta'" v-model="form.datosf[filtroA]" :options="opciones.Ruta" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Ruta" :preselect-first="false" selectLabel="Seleccionar">
 										    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fas fa-times-circle"></i></span></span></template>
 											</multiselect>
 										</b-form-group>
@@ -107,7 +107,7 @@
 					    <div class="form-row" v-if="form.periodo=='Temporada'">
 					    	<div class="col-3" >
 					    		 <legend>Temporada</legend>
-					    		 <multiselect v-model="form.temporadas" :options="opcionesT" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Cargos" :preselect-first="false" selectLabel="Seleccionar">
+					    		 <multiselect v-model="form.temporadas" :options="opcionesT" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Temporada" :preselect-first="false" selectLabel="Seleccionar">
 							    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fas fa-times-circle"></i></span></span></template>
 								</multiselect>
 							    <!-- <b-form-select multiple :select-size="4" v-model="form.temporadas" :options="opcionesT" class="mb-3">
@@ -164,7 +164,7 @@
 		<div class="card">
 	    	<div class="card-block">
 				<div v-show="graficas.length>=1">
-		        	<Resultados :graficas="graficas"></Resultados>
+		        	<Resultados :graficas="graficas" :tipo="form.consulta"></Resultados>
 		        </div>
 	    	</div>
 	    </div>
@@ -181,6 +181,7 @@ import Multiselect from 'vue-multiselect'
 		  Resultados,
 		  Multiselect,
 	    },
+	    props:['GraficaP','user','consultaProp'],
 		data () {
 			return {
 				dataPoints: null,
@@ -219,8 +220,7 @@ import Multiselect from 'vue-multiselect'
 				opcionesT:[ 'Decembrina','Semana Santa','Carnavales'
 				],
 				graficas:[],
-				tipos:['Personal','Ingresos','Servicios'
-				],
+				tipos:[	],
 				parametros:[ 'Asistencias','Inasistencias','Licencias','Vacaciones'
 				],
 				parametrosP:['Asistencias','Inasistencias','Licencias','Vacaciones'
@@ -256,9 +256,13 @@ import Multiselect from 'vue-multiselect'
 					Ruta:['Ruta 1','Ruta 2', 'Ruta 3'
 					],
 				},
+				auxC:false
 			}
 		},
 		computed: {
+		    datosGDashbord: function() {
+		        return this.GraficaP
+		      },
 	      myStyles () {
 	        return {
 	          height: `${this.height}px`,
@@ -303,15 +307,22 @@ import Multiselect from 'vue-multiselect'
 	      }
 	    },
 		watch:{
+			'datosGDashbord': function(){
+				this.Dashboard();
+			},
 			'form.consulta': function(){
-				this.form.parametros=[];
-				this.form.periodo="Actual";
+				if(!this.auxC){
+					this.form.parametros=[];
+					this.form.periodo="Actual";
+					this.form.desde=null;
+					this.form.hasta=null;
+				}
+				else
+					this.auxC=false
 				this.form.filtros=[];
 				this.form.datosf=[];
 				this.filtrosPjr=null;
 				this.filtrosVls=null;
-				this.form.desde=null;
-				this.form.hasta=null;
 				this.form.filtrosP=[];
 				this.form.tipo="Consulta";
 				this.form.busqueda="Más alto";
@@ -333,10 +344,53 @@ import Multiselect from 'vue-multiselect'
 			}
 		},
 		created: function(){
+			this.tipoUser();
             this.CargarSucursales();
             this.CargarCargos();
         },
+        mounted () {
+            this.Dashboard();
+		 },
 		methods:{
+			tipoUser(){
+				if(this.user){
+					switch (this.user) {
+						case "Gerente General":
+							this.tipos=['Personal','Ingresos','Servicios'],
+							this.form.consulta='Personal'
+							break;
+						case "Gerente RRHH":
+							this.tipos=['Personal'],
+							this.form.consulta='Personal'
+							break;
+						case "Gerente Sucursales":
+							this.tipos=['Ingresos','Servicios'],
+							this.form.consulta='Ingresos'
+							break;
+					}
+				}
+			},
+			Dashboard(){
+				if(this.datosGDashbord!=null){
+					this.auxC=true;
+			  		this.graficas=[];
+			  		this.graficas.push(this.datosGDashbord[0]);
+			  		if(this.consultaProp.consulta)
+			  			this.form.consulta=this.consultaProp.consulta
+			  		if(this.consultaProp.parametros){
+			  			this.form.parametros=this.consultaProp.parametros
+			  			this.form.parametrosRest=this.consultaProp.parametros
+			  		}
+			  		if(this.consultaProp.filtrosV)
+			  			this.form.filtrosV=this.consultaProp.filtrosV
+			  		if(this.consultaProp.periodo)
+			  			this.form.periodo=this.consultaProp.periodo
+			  		if(this.consultaProp.desde)
+			  			this.form.desde=this.consultaProp.desde
+			  		if(this.consultaProp.hasta)
+			  			this.form.hasta=this.consultaProp.hasta
+				}
+			},
 			CargarSucursales(){
 				axios({
                     method: 'get',
@@ -496,7 +550,7 @@ import Multiselect from 'vue-multiselect'
 				  				}
 				  				else{
 						  			grafico="Bar";
-						  			inferior=['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'];
+						  			inferior=['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'];
 						  			for (var i = 0; i < this.form.parametros.length; i++) {
 						  				if(titulo=='')
 						  					titulo=this.form.parametros[i];
@@ -539,7 +593,7 @@ import Multiselect from 'vue-multiselect'
 				  		case "Ingresos":
 				  				var label=[];
 				  				var data=[];
-						  		var inferior=['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'];
+						  		var inferior=['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'];
 				  				label=[];
 				  				data=[];
 				  			for (var i = 0; i < this.form.parametros.length; i++) {
@@ -602,7 +656,7 @@ import Multiselect from 'vue-multiselect'
 
 
 				  			titulo="Servicios";
-				  			inferior=[ 'Abril', 'Mayo', 'Junio', 'Julio'];
+				  			inferior=[ 'Abril', 'Mayo'];
 				  			// label=['Vuelos origen 2','Vuelos destino 1','Vuelos ruta 2'];
 				  			// stack=['Stack 0','Stack 1','Stack 2'];
 				  			// data.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);

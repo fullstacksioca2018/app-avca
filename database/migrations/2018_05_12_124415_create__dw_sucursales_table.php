@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfesionesTable extends Migration
+class CreateDwSucursalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateProfesionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('profesiones', function (Blueprint $table) {
-            $table->increments('profesion_id');
-            $table->string('titulo');
-            $table->enum('nivel_academico', ['bachiller', 'tsu', 'profesional', 'especialista 1', 'especialista 2']);
+        Schema::create('DwSucursales', function (Blueprint $table) {
+            $table->increments('sucursal_id');
+            $table->string('nombre', 255)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateProfesionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profesions');
+        Schema::dropIfExists('DwSucursales');
     }
 }

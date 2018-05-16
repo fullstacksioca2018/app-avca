@@ -78,8 +78,7 @@ Route::group(['prefix' => 'online'], function () {
 require 'Operativo\PlanificarRuta.php';
 require 'Operativo\PlanificarTaquilla.php';
 require 'Operativo\PlanificarVuelo.php';
-Route::get('/reportes', function () {
-    return view('reportes.PanelConsulta');
-});
 
-Route::get('listar-cargos', 'Reportes\ApiControllerDW@listCargos')->name('cargo.list.DW');
+
+require 'Reporte\api.php';
+require 'Reporte\vistas.php';

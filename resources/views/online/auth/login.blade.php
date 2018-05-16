@@ -20,23 +20,36 @@
                         {{ csrf_field() }} 
                                 <h1>Iniciar sesión</h1> 
                                 <p> 
-                                    <label for="username" class="uname" > Tu correo electrónico o nombre de usuario </label>
-                                    <input id="username" name="email" value="{{ old('email') }}" required="required" type="text"/>
+                                    <label for="username" class="uname" > <strong> Tu correo electrónico o nombre de usuario </strong></label>
+
+                                    <input id="username" name="email" value="{{ old('email') }}" required="required" type="text" placeholder=""/>
+                                   
+                                 
                                 </p>
+                                  
+
+                                 
                                 <p> 
-                                    <label for="password" class="youpasswd"> Tu contraseña </label>
-                                    <input id="password" name="password" required="required" type="password"/> 
+                                    <label for="password" class="youpasswd"> <strong> Tu contraseña </strong></label>
+                                    <input id="password" name="password" required="required" type="password" placeholder="" /> 
                                 </p>
+
+                               
+                               
                                 <p class="keeplogin"> 
                   <input type="checkbox" name="remember">   
                   <label for="loginkeeping">Recuérdame</label>
+                   
                 </p>
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
+                
+                <p class="signin button">                   
+                  <input type="submit" value="facebook"/> 
+                   <input type="submit" value="Iniciar"/>
+                </p>  
+
                 </p>
                                 <p class="change_link">
-                  No eres miembro todavía ?
+                  <strong>No eres miembro todavía ?</strong>
                   <a href="#toregister" class="to_register">únete a nosotros</a>
                 </p>
                             </form>
@@ -44,36 +57,43 @@
 
                         <div id="register" class="animate form">
                              <form class="form-horizontal" role="form" method="POST" action="{{ url('/online/register') }}">
-                                                                {{ csrf_field() }} 
+                                  {{ csrf_field() }} 
 
-                                <h1> Registrase </h1> 
+                                <h1> Registrarse </h1> 
+                                
                                 <p> 
-                                    <label for="name" class="uname" >Su nombre de usuario</label>
-                                    <input id="name" name="name" value="{{ old('name') }}" required="" type="text"/>
+                                    <label for="name" class="uname" ><strong> Su nombre de usuario </strong></label>
+                                    <input id="name" name="name" value="{{ old('name') }}" required="" type="text" placeholder="" />
                                 </p>
+
+                                
                                 <p> 
-                                    <label for="email" class="youmail"  > Tu correo electrónico</label>
+                                    <label for="email" class="youmail"  > <strong> Tu correo electrónico </strong></label>
                                     <input id="email"
-                                          name="email" value="{{ old('email') }}" required="" type="email"/> 
+                                          name="email" value="{{ old('email') }}" required="" type="email" placeholder=""/> 
                                 </p>
+
+                              
                                 <p> 
-                                    <label for="password"  class="youpasswd" >Tu contraseña </label>
+                                    <label for="password"  class="youpasswd" > <strong> Tu contraseña </strong></label>
                                     <input id="password"
-                                           name="password" required="required" type="password"/>
+                                           name="password" required="required" type="password" placeholder=""/>
                                 </p>
+
+                               
                                 <p> 
-                                    <label for="password-confirm" class="youpasswd" >Por favor, confirme su contraseña </label>
+                                    <label for="password-confirm" class="youpasswd" > <strong>Por favor, confirme su contraseña </strong> </label>
                                     <input id="password-confirm" 
-name="password_confirmation" required="required" type="password"/>
+name="password_confirmation" required="required" type="password" placeholder=""/>
                                 </p>
-                                <p class="signin button"> 
-                   <button type="submit" class="btn btn-primary">
-                                    Registrar
-                                </button>
+                                   <p class="signin button"> 
+                  <input type="submit" value="facebook"/> 
+                  <input type="submit" value="Registrarse"/> 
                 </p>
-                                <p class="change_link">  
-                  Ya eres usuario ?
-                  <a href="#tologin" class="to_register"> Ir e iniciar sesión </a>
+
+                  <p class="change_link"> <strong> 
+                  Ya eres usuario ?</strong>
+                  <a href="#tologin" class="to_register"> inicia tu sesión </a>
                 </p>
                             </form>
                         </div>

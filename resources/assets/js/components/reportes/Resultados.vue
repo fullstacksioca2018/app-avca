@@ -56,7 +56,14 @@
 			</div>
 		</div>
 		<modalDiagnoticar :datos="diagnostico"></modalDiagnoticar>
-		<button class="btn btn-primary" @click="cargar()">Diagnosticar</button>
+		<div class="row" style="margin-left:20px">
+			<div v-if="tipoC=='Ingresos'">
+				<button class="btn btn-primary" @click="cargar()">Proyectar</button>
+			</div>
+			<div v-else>
+				<button class="btn btn-primary" @click="cargar()">Diagnosticar</button>
+			</div>
+		</div>
 	</div>
 </template>
 <script type="text/javascript">
@@ -67,13 +74,18 @@
 	import BargoupExample from './BargoupExample'
 	import { EventBus } from '../event-bus.js'
 	export default {
-		props:['graficas'],
+		props:['graficas','tipo'],
 		components: {
 			LineExample,
 			PieExample,
 			BarExample,
 			BargoupExample,
 			modalDiagnoticar
+		},
+		computed:{
+			tipoC: function(){
+				return this.tipo
+			}
 		},
 		data() {
 	        return {

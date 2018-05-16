@@ -409,7 +409,6 @@
           </div>
 
         </div>
-          <h6 class="float-md-right"><a href="#"><b>+DESTINOS</b></a></h6>
       </div>
 
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
