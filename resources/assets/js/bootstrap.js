@@ -45,6 +45,7 @@ import VueChartjs from 'vue-chartjs/dist/vue-chartjs.js';
 import Toasted from 'vue-toasted';
 
 
+
 Vue.use(Toasted);
 Vue.use(BootstrapVue);
 Vue.use(VueChartjs);

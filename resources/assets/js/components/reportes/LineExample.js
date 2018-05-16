@@ -20,7 +20,17 @@ export default {
         datasets: [
           {
             label: this.chartData.label[0],
-            backgroundColor: '#1C5281',
+            pointHoverBorderColor:"#000",
+            pointBackgroundColor: "#345345",
+            pointBorderColor: "#eee",
+            backgroundColor:"#1C5281",
+            borderColor:"#345345",
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            lineSmooth: true,
+            showLine: true,
+            showPoint: true,
+            fullWidth: true,
             data: this.chartData.data[0]
           }
         ]
@@ -28,22 +38,6 @@ export default {
         tooltips: {
             bodyFontSize: 18
           },
-          options: {
-            low: 0,
-            high: 800,
-            showArea: false,
-            height: '245px',
-            axisX: {
-              showGrid: false
-            },
-            lineSmooth: true,
-            showLine: true,
-            showPoint: true,
-            fullWidth: true,
-            chartPadding: {
-              right: 50
-            }
-          }
         })
     }
     else{

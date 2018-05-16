@@ -10597,6 +10597,15 @@ body {
   border-bottom: 1px solid #a4b7c1;
 }
 
+.content {
+  background-color: transparent;
+}
+
+.rrhh-backend-content {
+  background: url("/../img/rrhh/imagen_principal.png") no-repeat;
+  background-size: contain;
+}
+
 .card-header .form-title {
   font-size: 2rem;
   font-weight: bold;

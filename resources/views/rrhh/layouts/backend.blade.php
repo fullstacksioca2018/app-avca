@@ -10,8 +10,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name') }}</title>
+  <title>{{ config('app.name') }} | @yield('title')</title>
 
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/adminlte/plugins/font-awesome/css/font-awesome.min.css">
   <!-- Theme style -->
@@ -20,7 +21,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Sweetalert -->
   <link rel="stylesheet" href="{{ asset('css/sweetalert.min.css') }}">
-  <link href="{{ asset('img/favicon.png') }}" rel="icon">
   <style>
     .user-menu>.dropdown-menu>.user-header {
       height: 175px;
@@ -39,41 +39,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     .user-menu>.dropdown-menu>.user-body a {
       color: #444;
     }
-    #logoDashBor{
-        background-size: 100% 100%;
-        /* width: 50%; */
-        height: auto;
-        max-width: 100%;
-        height: 30px;
-        background-repeat: no-repeat;
-        background-size: contain;
-        margin: auto;
-    }
-    #logofavi{
-        background-size: 100% 100%;
-        /* width: 50%; */
-        max-width: 100%;
-        height: 30px;
-        background-repeat: no-repeat;
-        background-size: contain;
-        margin: auto;
-    }
-    #logoletra{
-        background-size: 100% 100%;
-        width: 50%;
-        max-width: 100%;
-        height: 30px;
-        background-repeat: no-repeat;
-        background-size: contain;
-        margin: auto;
-    }
   </style>
   @stack('styles')
-  <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -86,18 +53,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
     </ul>
-
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
 
     <!-- Right navbar links | Notifications | User info -->
     <ul class="navbar-nav ml-auto">
@@ -202,24 +157,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <div class="user-body">
             <div class="dropdown-item">
-              <a href="#">Perfil</a>
+              <a href="#">Acción 1</a>
             </div>
             <div class="dropdown-item">
-              <a href="{{ url('/logout') }}"
-                  onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
-                  Salir
-              </a>
-              <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                  {{ csrf_field() }}
-              </form>
+              <a href="#">Acción 2</a>
             </div>
           </div>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-item user-footer">
+            <a href="#" class="btn btn-default">Perfil</a>
+            {{--<a href="#" class="btn btn-default">Salir</a>--}}
+            <a class="btn btn-default" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+              {{ __('Salir') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+            </form>
+          </div>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-              class="fa fa-th-large"></i></a>
       </li>
     </ul>
   </nav>
@@ -227,15 +185,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="{{ asset('img/favicon.png') }}" alt="AVCA Icono" class="brand-image img-circle"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light info"><img id="logoletra" src="{{ asset('img/letras.png') }}" alt="AVCA Icono" style="width: 40%;height: 35px;"></span>
+    </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
-          <img id="logofavi" src="{{ asset('img/favicon.png') }}" alt="AVCA Icono">
-        <div class="info">
-          <img id="logoletra" src="{{ asset('img/letras.png') }}" alt="AVCA Icono">
-        </div>
-      </div>
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
         <div class="image text-white">
@@ -274,7 +232,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
+    <div class="content" style="margin-left: 0; min-height: 100vh;">
       <div class="container-fluid">
         <div class="row">
           @yield('content')
@@ -286,43 +244,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </div>
   <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      <strong>Copyright &copy; 2018 <a href="{{ route('dashboard') }}">AVCA RRHH</a>.</strong> Todos los derechos reservados.
     </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2018 <a href="{{ route('dashboard') }}">AVCA RRHH</a>.</strong> Todos los derechos reservados.
   </footer>
 </div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
 
-
+<!-- Vue App -->
 <script src="{{ asset('js/app.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/adminlte/js/adminlte.min.js"></script>
-<!-- Vue App -->
 <!--Sweetalert-->
-
-
-<!-- <script src="{{ asset('js/app.js') }}"></script> -->
-
-
 <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 @stack('scripts')
 </body>
