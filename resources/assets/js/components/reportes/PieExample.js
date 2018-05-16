@@ -7,8 +7,9 @@ export default {
   data () {
       return {
           datasets: [],
-          background:['#1C5281',
-                      '#E46651',
+          background:[
+                      '#1C5281',
+                      '#403f3f',
                       '#00D8FF',
                       '#DD1B16',
                       '#41B883',

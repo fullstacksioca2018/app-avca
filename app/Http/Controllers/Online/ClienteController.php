@@ -58,7 +58,6 @@ class ClienteController extends Controller
         $c1= $request->get('ninos');
         $c2= $request->get('adultos');
         $c3= $request->get('ninosbrazos');
-
         $vuelos= array();
         $vueloAux;
         $segmentos;

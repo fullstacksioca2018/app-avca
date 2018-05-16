@@ -23,11 +23,27 @@ export default {
       console.log(this.datosN);
       this.renderChart({
         labels: this.datosN.labels,
-        datasets: this.datasets
+        datasets: this.datasets,
       }, {responsive: true, maintainAspectRatio: false,
         tooltips: {
             bodyFontSize: 18
-          }
+          },
+          beginAtZero: true,
+          scales: {
+          yAxes: [{
+            stacked: true,
+            ticks: {
+              beginAtZero: true
+            }
+          }],
+          xAxes: [{
+            stacked: true,
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+
+        }
         })
     },
     construir(){

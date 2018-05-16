@@ -21,9 +21,9 @@ export default {
           {
             label: this.chartData.label[0],
             pointHoverBorderColor:"#000",
-            pointBackgroundColor: "#008cff",
+            pointBackgroundColor: "#345345",
             pointBorderColor: "#eee",
-            backgroundColor:"#fff",
+            backgroundColor:"#1C5281",
             borderColor:"#345345",
             pointRadius: 4,
             pointHoverRadius: 6,
