@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class DW_Demorado extends Model
 {
-    protected $table = "DwDemorado";
+    protected $table = "DwDemorados";
     protected $primaryKey = "demorado_id";
     protected $fillable = [
-			'demora'
+			'salida'
 			,'vuelo_id'
     ];
     
 
-    public function VuelosDemoradosFecha($query, $estado,$inicio,$final){
+    public function scopeVuelosDemoradosFecha($query,$inicio,$final){
     	return $query->whereDate('salida','>=',$inicio)
     				->whereDate('salida','<=',$final)
     				->count();

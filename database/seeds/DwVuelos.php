@@ -89,7 +89,7 @@ class DwVuelos extends Seeder
 			        'fecha_cambio_estado' => $fecha_cambio_estado,
 		        ]);
 		        DB::table('DwDemorados')->insert([
-					'demora' => $demora,
+                    'salida' => $salida,
 					'vuelo_id' => ($i+1)
 				]);
     		}
