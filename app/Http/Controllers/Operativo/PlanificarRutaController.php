@@ -74,14 +74,18 @@ class PlanificarRutaController extends Controller
   
 
   public function crearuta(Request $datos){
-     // return $datos;
+
     $ruta = new Ruta();
+  
     // return  $datos->all();
     // return count($ruta->Buscador($datos->origen['id'],$datos->destino['id'])->get());
+  
     if(count($ruta->Buscador($datos->origen['id'],$datos->destino['id'])->get())){
+      
       return 'La Ruta '.$datos->origen['nombre']." ---> ".$datos->destino['nombre']." Ya Existe";
     }
     else{
+    
       $ruta->origen_id=$datos->origen['id'];
       $ruta->destino_id=$datos->destino['id'];
       $ruta->distancia=(float)$datos->distancia;
@@ -89,8 +93,9 @@ class PlanificarRutaController extends Controller
       $ruta->tarifa_vuelo=(float)$datos->tarifa;    
       $ruta->estado="activo";
       $ruta->sigla="-";
-      // return $ruta;
+      //return $ruta;
       $ruta->save();
+      
       return 'La Ruta '.$datos->origen['nombre']." ---> ".$datos->destino['nombre']." Se ha Generado Exitosamente";
     }
     return "Error inesperado";

@@ -32,6 +32,7 @@ class CreateBoletosTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('factura_id')->unsigned();
             $table->integer('vuelo_id')->unsigned();
+            
             $table->timestamps();
 
             /*

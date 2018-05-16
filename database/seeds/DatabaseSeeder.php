@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ProfesionesTableSeeder::class);
         $this->call(ConceptosTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(EmpleadoSeeder::class);
+        $this->call(TripulanteSeeder::class);
+        $this->call(Tripulante_vueloSeeder::class);
 
         //disable foreign key check for this connection before running seeders
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

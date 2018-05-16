@@ -14,7 +14,7 @@ class Sucursal extends Model
 		'nombre',
 		'direccion',
 		'sigla',
-		'aeropuerto',
+	
 		'estado',
 		'pais',
         'tipo_sucursal',
