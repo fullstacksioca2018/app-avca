@@ -147,7 +147,9 @@ class TaquillaController extends Controller
         /* $user = Auth::guard('online')->user(); */
        $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
         
-            for($key = 0; $key < ($datos->adultos+$datos->ninos); $key++){
+            for($key = 0; $key < ($datos->adultos+$datos->ninos); $key++)
+            {
+                //dd($datos,$request->all());
                 $Nboleto = new Boleto();
                 $Nboleto->boleto_estado="Pagado";
                 $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
@@ -180,27 +182,27 @@ class TaquillaController extends Controller
                 //dd($boletos,$Nboleto);
                 array_push($boletos, $Nboleto);    
                
-                $AuxVuelo = Vuelo::find($datos->vuelo->id);
-                $segmentos=$AuxVuelo->segmentos;
-                if(count($segmentos)==1){
-                    $ruta=$segmentos[0]->ruta;
-                    $origen=$segmentos[0]->ruta->origen;
-                    $destino=$segmentos[0]->ruta->destino;
-                }else{
-                    foreach ($segmentos as $segmento) {
-                       dd("varios segmentos");
-                    }
-                }
-                $objAUX= new stdClass();
-                $objAUX->vuelo=$AuxVuelo;
-                $objAUX->ruta=$ruta;
-                $objAUX->origen=$origen;
-                $objAUX->destino=$destino;
-                array_push($datos_vuelos, $objAUX);
+                
 
             }
             
-        
+            $AuxVuelo = Vuelo::find($datos->vuelo->id);
+            $segmentos=$AuxVuelo->segmentos;
+            if(count($segmentos)==1){
+                $ruta=$segmentos[0]->ruta;
+                $origen=$segmentos[0]->ruta->origen;
+                $destino=$segmentos[0]->ruta->destino;
+            }else{
+                foreach ($segmentos as $segmento) {
+                   dd("varios segmentos");
+                }
+            }
+            $objAUX= new stdClass();
+            $objAUX->vuelo=$AuxVuelo;
+            $objAUX->ruta=$ruta;
+            $objAUX->origen=$origen;
+            $objAUX->destino=$destino;
+            array_push($datos_vuelos, $objAUX);
 
         // ENVIO DE EMAIL
        // Mail::to(Auth::guard('online')->user()->email)->send(new CompraBoleto($boletos, Auth::guard('online')->user(), $datos_vuelos, $factura));

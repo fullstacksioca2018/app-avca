@@ -59,9 +59,9 @@
             <form method="post" id="myForm" action="{{ URL::to('taquilla/BoletoVendido') }}">{{ csrf_field() }} 
               <input type="hidden" form="myForm" name="indicador" id="indicador" value="{{ $indicador }}"> <!-- INDICADOR DE POSICION DEL ARRAY EN LA CACHE -->
               <input type="hidden" form="myForm" name="NinosBrazos_cant" id="NinosBrazos_cant" value="{{ $Contbrazo }}">
-              <input type="hidden" form="myForm" name="tipo_boleto[]" id="tipo_boleto[]" value="adulto">
-              @for($i=0; $i < ($datos->adultos+($datos->ninos-$Contbrazo)); $i++)
               <input type="hidden" form="myForm" name="importe_facturado" value="{{ $datos->ruta->tarifa_vuelo * ($datos->adultos+($datos->ninos-$Contbrazo))}}">
+              @for($i=0; $i < ($datos->adultos+($datos->ninos-$Contbrazo)); $i++)
+              <input type="hidden" form="myForm" name="tipo_boleto[]" id="tipo_boleto[]" value="adulto">
               <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.4s">
                 <h4 class="mb-3">PASAJERO  {{ ($i+1) }}  </h4> <!-- ADULTOS -- LOS NIÑOS Y BEBES EN ASIENTO SE CUENTAN COMO ADULTOS Y PAGAN -->
                 <div class="row">
@@ -158,9 +158,9 @@
             <div class="row">
               <div class="col-md-5 mb-3">
                 <div class="form-group">
-                  <label for="documento[]" form="myForm"><span class="hidden-xs">Documentacion:</span></label>
+                  <label for="documento[]" form="myForm"><span class="hidden-xs" require>Documentacion:</span></label>
                   <div class="form-inline">
-                    <select name="tipo_documento[]" form="myForm" class="form-control" style="width:25%">
+                    <select name="tipo_documento[]" form="myForm" class="form-control" style="width:25%" require>
                       <option value="Venezolano/a">V</option>
                       <option value="Extranjero">P</option>
                     </select>
@@ -224,7 +224,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
             </div>
-            <input type="number" class="form-control" form="myForm" name="numero_tarjeta" id="cc-number" require >
+            <input type="number" class="form-control" form="myForm" name="numero_tarjeta" id="cc-number" require autocomplete="off" >
             <div class="invalid-feedback">Requiere el numero de tarjeta</div>
           </div> <!-- input-group.// -->
         </div> <!-- form-group.// -->
@@ -274,7 +274,7 @@
           <div class="col-sm-4">
             <div class="form-group">
               <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-              <input class="form-control" required type="password" form="myForm" name="csc" id="cc-cvv" maxlength="3">
+              <input class="form-control" required type="password" form="myForm" name="csc" id="cc-cvv" maxlength="3" autocomplete="off">
             </div> <!-- form-group.// -->
             <div class="invalid-feedback">es necesario el CVV</div>
           </div>
