@@ -38,6 +38,7 @@ class PlanificarVueloController extends Controller
              foreach($vuelo->tripulantes as $tripulante){
            
                 $tripulante->empleado;
+                //$tripulante->empleado2->experiencia = 
                 $tripulante->empleado->experiencia = $tripulante->HorasExperiencia($tripulante->id);
                 
             }
@@ -77,8 +78,7 @@ class PlanificarVueloController extends Controller
         $tripulantes = Tripulante::orderBy('id')->get();
         foreach($tripulantes as $tripulante){
             $objAux = new stdClass(); 
-            $tripulante->empleado;
-            $tripulante->empleado->experiencia = $tripulante->HorasExperiencia($tripulante->id);
+            $tripulante->empleado2 = $tripulante->HorasExperiencia($tripulante->id);
             $objAux->tripulante = $tripulante;   
             array_push($obj,$objAux);
         }

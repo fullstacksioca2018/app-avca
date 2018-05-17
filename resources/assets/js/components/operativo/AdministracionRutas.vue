@@ -244,15 +244,17 @@ export default {
           id: this.data[i].ruta.id,
           Origen: {
             id: this.data[i].ruta.origen.id,
-            nombre: this.data[i].ruta.origen.nombre
+            nombre: this.data[i].ruta.origen.nombre 
+                    + " (" + this.data[i].ruta.origen.sigla  + ")"
           },
           Destino: {
             id: this.data[i].ruta.destino.id,
             nombre: this.data[i].ruta.destino.nombre
+                     + " (" + this.data[i].ruta.destino.sigla  + ")"
           },
-          Distancia:this.data[i].ruta.distancia,
-			  	Duracion:this.data[i].ruta.duracion,
-          Tarifa:this.data[i].ruta.tarifa_vuelo,
+          Distancia:this.data[i].ruta.distancia + " Km",
+			  	Duracion:this.data[i].ruta.duracion + " Hs" ,
+          Tarifa:this.data[i].ruta.tarifa_vuelo + " BFS",
           Estado:this.data[i].ruta.estado,
         });
       }

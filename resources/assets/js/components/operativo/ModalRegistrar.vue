@@ -5,6 +5,7 @@
              ref="modal"
              title="Registrar Ruta"
             @hiden="resetModal"
+            hide-footer
            >
     
     <b-form @submit.prevent="guardar()">

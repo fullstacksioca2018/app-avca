@@ -15,7 +15,7 @@ class Tripulante extends Model
     ];
     
    public function empleado(){
-        return $this->hasOne('App\Models\Operativo\Empleado2','id','empleado_id');
+        return $this->hasOne('App\Models\Operativo\Empleado2','id','personal_id');
     } 
 
     public function vuelos(){

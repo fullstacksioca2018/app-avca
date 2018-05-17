@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Operativo\Ruta;
 use App\Models\Operativo\Sucursal;
 
+
 use stdClass;
 
 class PlanificarRutaController extends Controller
@@ -18,7 +19,7 @@ class PlanificarRutaController extends Controller
     }
     
     public function rutas(){
-      $obj = array();
+       $obj = array();
       //$sucursales= Sucursal::orderBy('nombre','ASC')->get();
       $rutas= Ruta::orderBy('id')->get();
       foreach($rutas as $ruta){
@@ -33,7 +34,8 @@ class PlanificarRutaController extends Controller
        
        
       }
-      return $obj;
+      return $obj; 
+   
       
     }
 

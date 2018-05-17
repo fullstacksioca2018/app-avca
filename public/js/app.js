@@ -105235,15 +105235,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           id: this.data[i].ruta.id,
           Origen: {
             id: this.data[i].ruta.origen.id,
-            nombre: this.data[i].ruta.origen.nombre
+            nombre: this.data[i].ruta.origen.nombre + " (" + this.data[i].ruta.origen.sigla + ")"
           },
           Destino: {
             id: this.data[i].ruta.destino.id,
-            nombre: this.data[i].ruta.destino.nombre
+            nombre: this.data[i].ruta.destino.nombre + " (" + this.data[i].ruta.destino.sigla + ")"
           },
-          Distancia: this.data[i].ruta.distancia,
-          Duracion: this.data[i].ruta.duracion,
-          Tarifa: this.data[i].ruta.tarifa_vuelo,
+          Distancia: this.data[i].ruta.distancia + " Km",
+          Duracion: this.data[i].ruta.duracion + " Hs",
+          Tarifa: this.data[i].ruta.tarifa_vuelo + " BFS",
           Estado: this.data[i].ruta.estado
         });
       }
@@ -105511,6 +105511,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -105596,15 +105597,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             for (var i = 0; i < data.data.length; i++) {
                 this.origenes.push({
                     id: data.data[i].sucursal_id,
-                    nombre: data.data[i].nombre
+                    nombre: data.data[i].ciudad + " - " + data.data[i].nombre
                 });
                 this.destinos.push({
                     id: data.data[i].sucursal_id,
-                    nombre: data.data[i].nombre
+                    nombre: data.data[i].ciudad + " - " + data.data[i].nombre
                 });
                 this.sucursales.push({
                     id: data.data[i].sucursal_id,
-                    nombre: data.data[i].nombre
+                    nombre: data.data[i].ciudad + " - " + data.data[i].nombre
                 });
             }
         }
@@ -105626,7 +105627,7 @@ var render = function() {
         "b-modal",
         {
           ref: "modal",
-          attrs: { id: "agregar", title: "Registrar Ruta" },
+          attrs: { id: "agregar", title: "Registrar Ruta", "hide-footer": "" },
           on: { hiden: _vm.resetModal }
         },
         [
@@ -106897,7 +106898,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             for (var i = 0; i < data.data.length; i++) {
                 this.rutas.push({
                     id: data.data[i].ruta.id,
-                    nombre: data.data[i].ruta.origen.nombre + " (" + data.data[i].ruta.origen.aeropuerto + ") -->" + data.data[i].ruta.destino.nombre + " (" + data.data[i].ruta.destino.aeropuerto
+                    nombre: data.data[i].ruta.origen.ciudad + " (" + data.data[i].ruta.origen.nombre + ")-" + data.data[i].ruta.origen.sigla + " <-----> " + data.data[i].ruta.destino.ciudad + " (" + data.data[i].ruta.destino.nombre + ")-" + data.data[i].ruta.destino.sigla
                 });
             }
         },

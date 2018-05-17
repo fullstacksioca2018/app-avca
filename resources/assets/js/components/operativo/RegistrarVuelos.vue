@@ -215,7 +215,8 @@ export default {
             for(var i=0; i < data.data.length; i++){
                 this.rutas.push({
                     id: data.data[i].ruta.id,
-                    nombre: data.data[i].ruta.origen.nombre + " (" + data.data[i].ruta.origen.aeropuerto + ") -->" + data.data[i].ruta.destino.nombre + " (" + data.data[i].ruta.destino.aeropuerto
+                    nombre: data.data[i].ruta.origen.ciudad + " (" + data.data[i].ruta.origen.nombre 
+                            + ")-"+data.data[i].ruta.origen.sigla + " <-----> " + data.data[i].ruta.destino.ciudad + " (" + data.data[i].ruta.destino.nombre +")-"+data.data[i].ruta.destino.sigla
                 });
             }
 
