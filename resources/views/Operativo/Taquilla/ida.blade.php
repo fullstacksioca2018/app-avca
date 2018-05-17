@@ -23,7 +23,7 @@
                       </div>
                     </div>
                      <div class="col-md-6 col-form-label">
-                      <label id="fecha_salida_label" for="destino_id">Fecha de Salidaaaaaa</label>
+                      <label id="fecha_salida_label" for="destino_id">Fecha de Salida</label>
                       <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">
@@ -43,7 +43,7 @@
                         </span>
                       </div>
                     
-                     <input type="number" id="inputadultos1" min="1" max="5" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos','1')">
+                     <input type="number" id="inputadultos1" min="1" max="5" class="form-control" value="1" name="inputadultos1" onchange="validarN('inputadultos','1')">
 
                     </div>
                   </div>
@@ -56,7 +56,7 @@
                           <i class="fa fa-user-plus"></i>
                         </span>
                       </div>
-                    <input type="number" id="inputninos1" min="0" max="5" class="form-control" value="0" name="ninos" onchange="validarN('inputninos','1')">
+                    <input type="number" id="inputninos1" min="0" max="5" class="form-control" value="0" name="inputninos1" onchange="validarN('inputninos','1')">
                     </div>
                   </div>
                 </div>
