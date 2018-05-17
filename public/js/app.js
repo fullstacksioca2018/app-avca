@@ -81368,11 +81368,11 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
       },
       labelSortAsc: {
         type: String,
-        default: 'Click para Ascender'
+        default: 'Click to sort Ascending'
       },
       labelSortDesc: {
         type: String,
-        default: 'Click para Descender'
+        default: 'Click to sort Descending'
       },
       showEmpty: {
         type: Boolean,
@@ -81380,11 +81380,11 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
       },
       emptyText: {
         type: String,
-        default: 'No se encontraron valores'
+        default: 'There are no records to show'
       },
       emptyFilteredText: {
         type: String,
-        default: 'No se encontraron valores'
+        default: 'There are no records matching your request'
       },
       apiUrl: {
         // Passthrough prop. Passed to the context object. Not used by b-table directly
@@ -105168,7 +105168,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'Origen', label: 'Sucursal de Origen', sortable: true }, { key: 'Destino', label: 'Sucursal de Destino', sortable: true }, { key: 'Distancia', label: 'Distancias ', sortable: true }, { key: 'Duracion', label: 'Duracion ', sortable: true }, { key: 'Tarifa', label: 'Tarifa ', sortable: true }, { key: 'Estado', label: 'Estado', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'Origen', label: 'Sucursal de Origen', sortable: true }, { key: 'Destino', label: 'Sucursal de Destino', sortable: true }, { key: 'Distancia', label: 'Distancias ', sortable: true }, { key: 'Duracion', label: 'Duracion ', sortable: true }, { key: 'Tarifa', label: 'Tarifa ', sortable: true }, { key: 'Estado', label: 'Estatus', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       duracionModel: {
         HH: '',
         mm: '',
@@ -105241,9 +105241,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             id: this.data[i].ruta.destino.id,
             nombre: this.data[i].ruta.destino.nombre + " (" + this.data[i].ruta.destino.sigla + ")"
           },
-          Distancia: this.data[i].ruta.distancia + " Km",
-          Duracion: this.data[i].ruta.duracion + " Hs",
-          Tarifa: this.data[i].ruta.tarifa_vuelo + " BFS",
+          Distancia: this.data[i].ruta.distancia,
+          Duracion: this.data[i].ruta.duracion,
+          Tarifa: this.data[i].ruta.tarifa_vuelo,
           Estado: this.data[i].ruta.estado
         });
       }
@@ -106292,7 +106292,7 @@ var render = function() {
                           { staticClass: "col-sm-5" },
                           [
                             _c("label", { attrs: { for: "distancia" } }, [
-                              _c("b", [_vm._v(" Inserte Nueva Distancia: ")])
+                              _c("b", [_vm._v(" Inserte Distancia: ")])
                             ]),
                             _vm._v(" "),
                             _c("b-form-input", {
@@ -106300,7 +106300,7 @@ var render = function() {
                                 id: "distancia",
                                 type: "text",
                                 required: "",
-                                placeholder: "Inserte Nueva Distancia"
+                                placeholder: "Inserte Distancia"
                               },
                               model: {
                                 value: _vm.modalInfo.content.Distancia,
@@ -106323,7 +106323,7 @@ var render = function() {
                           { staticClass: "col-sm-5" },
                           [
                             _c("label", { attrs: { for: "distancia" } }, [
-                              _c("b", [_vm._v(" Inserte Nueva Tarifa: ")])
+                              _c("b", [_vm._v(" Inserte Tarifa: ")])
                             ]),
                             _vm._v(" "),
                             _c("b-form-input", {
@@ -106331,7 +106331,7 @@ var render = function() {
                                 id: "tarifa",
                                 type: "text",
                                 required: "",
-                                placeholder: "Inserte Nueva Tarifa"
+                                placeholder: "Inserte  Tarifa"
                               },
                               model: {
                                 value: _vm.modalInfo.content.Tarifa,

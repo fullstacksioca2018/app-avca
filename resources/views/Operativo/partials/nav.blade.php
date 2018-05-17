@@ -14,7 +14,7 @@
         <li class="nav-item has-treeview">
           <a href="{{ URL::to('/taquilla') }}" class="nav-link">
             <i class="fa fa-users nav-icon"></i>
-            <p>Boleteria <i class="right fa fa-angle-left"></i></p>
+            <p>Taquilla <i class="right fa fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item has-treeview">
@@ -49,7 +49,7 @@
         </li>
         <li class="nav-item has-treeview">
           <a href="{{ URL::to('/vuelos') }}" class="nav-link">
-            <i class="fa fa-file nav-icon"></i>
+            <i class="fa fa-plane nav-icon"></i>
             <p>Administracion de Vuelo <i class="right fa fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">

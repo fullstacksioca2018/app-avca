@@ -92,22 +92,22 @@
        <div class="row">
           <div class="form-group col-sm-1 "></div>
           <div class="col-sm-5">
-            <label for="distancia"> <b> Inserte Nueva Distancia: </b></label>
+            <label for="distancia"> <b> Inserte Distancia: </b></label>
             <b-form-input id="distancia"
                       type="text"
                       required
                       v-model="modalInfo.content.Distancia"
-                      placeholder="Inserte Nueva Distancia">
+                      placeholder="Inserte Distancia">
             </b-form-input>
           </div>
           
          <div class="col-sm-5">
-           <label for="distancia"> <b> Inserte Nueva Tarifa: </b></label>
+           <label for="distancia"> <b> Inserte Tarifa: </b></label>
             <b-form-input id="tarifa"
                           type="text"
                           required
                           v-model="modalInfo.content.Tarifa"
-                          placeholder="Inserte Nueva Tarifa">
+                          placeholder="Inserte  Tarifa">
             </b-form-input>
           </div>
            <div class="form-group col-sm-1 "></div>
@@ -177,7 +177,7 @@ export default {
         { key: 'Distancia', label: 'Distancias ', sortable: true },
         { key: 'Duracion',  label: 'Duracion ',  sortable: true },
         { key: 'Tarifa',    label: 'Tarifa ', sortable: true },
-        { key: 'Estado',    label: 'Estado', sortable: true},
+        { key: 'Estado',    label: 'Estatus', sortable: true},
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
       ],
       duracionModel: {
@@ -252,9 +252,9 @@ export default {
             nombre: this.data[i].ruta.destino.nombre
                      + " (" + this.data[i].ruta.destino.sigla  + ")"
           },
-          Distancia:this.data[i].ruta.distancia + " Km",
-			  	Duracion:this.data[i].ruta.duracion + " Hs" ,
-          Tarifa:this.data[i].ruta.tarifa_vuelo + " BFS",
+          Distancia:this.data[i].ruta.distancia,
+			  	Duracion:this.data[i].ruta.duracion,
+          Tarifa:this.data[i].ruta.tarifa_vuelo,
           Estado:this.data[i].ruta.estado,
         });
       }
