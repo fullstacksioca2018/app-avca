@@ -23,4 +23,18 @@ class DW_Ingreso extends Model
                         ->orderBy('fecha_ingreso','asc')
                         ->get();
 	}
+
+	public function scopeIngresosFechaMes($query,$meses,$year){
+		$array=array();
+		for($i=0;$i<12;$i++){
+			array_push($array, DB::table('dwingresos')
+				->select(DB::raw('MONTH(fecha_ingreso) mes, SUM(monto) as total'))
+	            ->whereMonth('fecha_ingreso',$meses[$i])
+	            ->whereYear('fecha_ingreso',$year)
+	            ->groupBy('mes')
+	            ->orderBy('fecha_ingreso','asc')
+	            ->first());
+		}
+		return $array; 
+	}
 }

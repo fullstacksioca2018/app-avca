@@ -117791,7 +117791,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Proyectar")]
+                  [_vm._v("Pronosticar")]
                 )
               ])
             : _c("div", [
@@ -118004,7 +118004,7 @@ var render = function() {
                                             [
                                               _c("i", {
                                                 staticClass:
-                                                  "fas fa-times-circle"
+                                                  "fa fa-times-circle"
                                               })
                                             ]
                                           )
@@ -118074,7 +118074,7 @@ var render = function() {
                                                     [
                                                       _c("i", {
                                                         staticClass:
-                                                          "fas fa-times-circle"
+                                                          "fa fa-times-circle"
                                                       })
                                                     ]
                                                   )
@@ -118142,7 +118142,7 @@ var render = function() {
                                             [
                                               _c("i", {
                                                 staticClass:
-                                                  "fas fa-times-circle"
+                                                  "fa fa-times-circle"
                                               })
                                             ]
                                           )
@@ -118214,7 +118214,7 @@ var render = function() {
                                               [
                                                 _c("i", {
                                                   staticClass:
-                                                    "fas fa-times-circle"
+                                                    "fa fa-times-circle"
                                                 })
                                               ]
                                             )
@@ -118297,7 +118297,7 @@ var render = function() {
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "fas fa-times-circle"
+                                                              "fa fa-times-circle"
                                                           })
                                                         ]
                                                       )
@@ -118369,7 +118369,7 @@ var render = function() {
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "fas fa-times-circle"
+                                                              "fa fa-times-circle"
                                                           })
                                                         ]
                                                       )
@@ -118442,7 +118442,7 @@ var render = function() {
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "fas fa-times-circle"
+                                                              "fa fa-times-circle"
                                                           })
                                                         ]
                                                       )
@@ -118515,7 +118515,7 @@ var render = function() {
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "fas fa-times-circle"
+                                                              "fa fa-times-circle"
                                                           })
                                                         ]
                                                       )
@@ -118587,7 +118587,7 @@ var render = function() {
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "fas fa-times-circle"
+                                                              "fa fa-times-circle"
                                                           })
                                                         ]
                                                       )
@@ -118669,7 +118669,7 @@ var render = function() {
                                               [
                                                 _c("i", {
                                                   staticClass:
-                                                    "fas fa-times-circle"
+                                                    "fa fa-times-circle"
                                                 })
                                               ]
                                             )
@@ -118742,7 +118742,7 @@ var render = function() {
                                               [
                                                 _c("i", {
                                                   staticClass:
-                                                    "fas fa-times-circle"
+                                                    "fa fa-times-circle"
                                                 })
                                               ]
                                             )
@@ -118817,7 +118817,7 @@ var render = function() {
                                         },
                                         [
                                           _c("i", {
-                                            staticClass: "fas fa-times-circle"
+                                            staticClass: "fa fa-times-circle"
                                           })
                                         ]
                                       )
@@ -118884,7 +118884,7 @@ var render = function() {
                                         },
                                         [
                                           _c("i", {
-                                            staticClass: "fas fa-times-circle"
+                                            staticClass: "fa fa-times-circle"
                                           })
                                         ]
                                       )
@@ -118980,7 +118980,7 @@ var render = function() {
                         }
                       },
                       [
-                        _c("i", { staticClass: "fas fa-check" }),
+                        _c("i", { staticClass: "fa fa-check" }),
                         _vm._v("Generar\n\t\t\t\t              ")
                       ]
                     )
@@ -119026,7 +119026,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-append" }, [
       _c("span", { staticClass: "input-group-text" }, [
-        _c("i", { staticClass: "fas fa-calendar" })
+        _c("i", { staticClass: "fa fa-calendar" })
       ])
     ])
   },
@@ -119036,7 +119036,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-append" }, [
       _c("span", { staticClass: "input-group-text" }, [
-        _c("i", { staticClass: "fas fa-calendar" })
+        _c("i", { staticClass: "fa fa-calendar" })
       ])
     ])
   }
@@ -119282,8 +119282,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -119309,9 +119307,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         labels: ["Asistencia", "otro"]
       },
       datosGLine: {
-        data: [[35200, 32200, 34800]],
+        data: null,
         label: ["AVCA"],
-        labels: ["15 Mayo", "16 Mayo", "17 Mayo"]
+        labels: null
       },
       grafica1: [{
         titulo: "Vuelos Ejecutados Del 15 al 17 de Mayo",
@@ -119494,10 +119492,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         method: 'get',
         url: '/reportes/api/ingresos/?inicio=' + auxI + '&final=' + auxF
       }).then(function (response) {
-        _this2.datosGLine.data = response.data.data;
+        _this2.datosGLine.data = [response.data.data];
         _this2.datosGLine.labels = response.data.labels;
         _this2.datosGLine.titulo = titulo;
-        // console.log(response.data)
+        _this2.grafica5[0].datos.data = [response.data.data];
+        _this2.grafica5[0].datos.labels = response.data.labels;
+        _this2.grafica5[0].titulo;
+        console.log(response.data);
       }).catch(function (err) {
         Vue.toasted.show('Ha ocurrido un error', {
           theme: "primary",
@@ -120263,175 +120264,171 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-8" }, [
-                _c(
-                  "a",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.generar(5)
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "chart-card",
-                      { attrs: { datos: _vm.datosGLine, tipo: "Line" } },
-                      [
-                        _c("template", { slot: "header" }, [
-                          _c("h4", { staticClass: "card-title" }, [
-                            _vm._v("Ingresos")
+            _vm.datosGLine.data != null
+              ? _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-8" },
+                    [
+                      _c(
+                        "chart-card",
+                        { attrs: { datos: _vm.datosGLine, tipo: "Line" } },
+                        [
+                          _c("template", { slot: "header" }, [
+                            _c("h4", { staticClass: "card-title" }, [
+                              _vm._v("Ingresos")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "card-category" }, [
+                              _vm._v("Del 15 de mayo hasta hoy")
+                            ])
                           ]),
                           _vm._v(" "),
-                          _c("p", { staticClass: "card-category" }, [
-                            _vm._v("Del 15 de mayo hasta hoy")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("template", { slot: "footer" }, [
-                          _c("div", { staticClass: "row" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "stats",
-                                staticStyle: { padding: "5px" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "badge badge-secondary",
-                                    attrs: { href: "#" }
-                                  },
-                                  [
-                                    _c("i", { staticClass: "fa fa-history" }),
-                                    _vm._v(" Refrescar")
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass: "stats",
-                                staticStyle: { padding: "5px" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "badge badge-light",
-                                    on: {
-                                      click: function($event) {
-                                        _vm.generar(5)
+                          _c("template", { slot: "footer" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "stats",
+                                  staticStyle: { padding: "5px" }
+                                },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "badge badge-secondary",
+                                      attrs: { href: "#" }
+                                    },
+                                    [
+                                      _c("i", { staticClass: "fa fa-history" }),
+                                      _vm._v(" Refrescar")
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "stats",
+                                  staticStyle: { padding: "5px" }
+                                },
+                                [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "badge badge-light",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.generar(5)
+                                        }
                                       }
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "fa fa-plus-square"
-                                    }),
-                                    _vm._v(" Ver más")
-                                  ]
-                                )
-                              ]
-                            )
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fa fa-plus-square"
+                                      }),
+                                      _vm._v(" Ver más")
+                                    ]
+                                  )
+                                ]
+                              )
+                            ])
                           ])
-                        ])
-                      ],
-                      2
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c(
-                  "a",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.generar(6)
-                      }
-                    }
-                  },
-                  [
+                        ],
+                        2
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
                     _c(
-                      "chart-card",
-                      { attrs: { datos: _vm.datosGPie, tipo: "Pie" } },
+                      "a",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.generar(6)
+                          }
+                        }
+                      },
                       [
-                        _c("template", { slot: "header" }, [
-                          _c("h4", { staticClass: "card-title" }, [
-                            _vm._v("% de Asistencia Del Mes Anterior")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "card-category" }, [
-                            _vm._v("Personal Operativo")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("template", { slot: "footer" }, [
-                          _c("div", { staticClass: "row" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "stats",
-                                staticStyle: { padding: "5px" }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "badge badge-secondary",
-                                    attrs: { href: "#" }
-                                  },
-                                  [
-                                    _c("i", { staticClass: "fa fa-history" }),
-                                    _vm._v(" Refrescar")
-                                  ]
-                                )
-                              ]
-                            ),
+                        _c(
+                          "chart-card",
+                          { attrs: { datos: _vm.datosGPie, tipo: "Pie" } },
+                          [
+                            _c("template", { slot: "header" }, [
+                              _c("h4", { staticClass: "card-title" }, [
+                                _vm._v("% de Asistencia Del Mes Anterior")
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "card-category" }, [
+                                _vm._v("Personal Operativo")
+                              ])
+                            ]),
                             _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass: "stats",
-                                staticStyle: { padding: "5px" }
-                              },
-                              [
+                            _c("template", { slot: "footer" }, [
+                              _c("div", { staticClass: "row" }, [
                                 _c(
-                                  "a",
+                                  "div",
                                   {
-                                    staticClass: "badge badge-light",
-                                    on: {
-                                      click: function($event) {
-                                        _vm.generar(6)
-                                      }
-                                    }
+                                    staticClass: "stats",
+                                    staticStyle: { padding: "5px" }
                                   },
                                   [
-                                    _c("i", {
-                                      staticClass: "fa fa-plus-square"
-                                    }),
-                                    _vm._v(" Ver más")
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "badge badge-secondary",
+                                        attrs: { href: "#" }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fa fa-history"
+                                        }),
+                                        _vm._v(" Refrescar")
+                                      ]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "stats",
+                                    staticStyle: { padding: "5px" }
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "badge badge-light",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.generar(6)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fa fa-plus-square"
+                                        }),
+                                        _vm._v(" Ver más")
+                                      ]
+                                    )
                                   ]
                                 )
-                              ]
-                            )
-                          ])
-                        ])
+                              ])
+                            ])
+                          ],
+                          2
+                        )
                       ],
-                      2
+                      1
                     )
-                  ],
-                  1
-                )
-              ])
-            ])
+                  ])
+                ])
+              : _vm._e()
           ]
         )
       ]),

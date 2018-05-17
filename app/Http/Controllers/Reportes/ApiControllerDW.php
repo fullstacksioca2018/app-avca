@@ -33,17 +33,31 @@ class ApiControllerDW extends Controller
         }
         return response()->json($obj);
     }
+
+    public function PROMEDIOMOVILDOBLE(){
+        $inicio="01-01-2017";
+        $final="31-12-2017";
+        $meses=[1,2,3,4,5,6,7,8,9,10,11,12];
+        $ingresos=DW_Ingreso::IngresosFechaMes($meses,"2017");
+        return response()->json($ingresos);
+
+        
+    }
     /*
-    
+    PMS=muestra/numero de muestras
+     < (D-P)2 El error minimo
+
+
+
 	a = 2(PMS) – PMD
 	a = 2 (37.50) – 30 = 45
 	a = 45
 	b = n/n-1 (PMS – PMD)
 	b = 15
 	Paso 5
-	ynov = a + b(x) = 45+15 (2) = 75 unidades
-	ydic = a + b(x) = 45+15 (3) = 90 unidades
-	yene = a + b(x) = 45+15 (4) = 105 unidades
+	ynov = a + b(x) = 45+ 15(2) = 75 unidades
+	ydic = a + b(x) = 45+ 15(3) = 90 unidades
+	yene = a + b(x) = 45+ 15(4) = 105 unidades
 
      */
 }

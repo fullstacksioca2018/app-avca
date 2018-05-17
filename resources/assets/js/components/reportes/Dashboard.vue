@@ -78,9 +78,8 @@
 
       </div>
     </div>
-    <div class="row">
+    <div class="row" v-if="datosGLine.data!=null">
         <div class="col-md-8">
-        <a @click="generar(5)">
           <chart-card :datos="datosGLine" tipo="Line">
             <template slot="header">
               <h4 class="card-title">Ingresos</h4>
@@ -97,7 +96,6 @@
               </div>
             </template>
           </chart-card>
-        </a>
         </div>
 
         <div class="col-md-4">
@@ -155,9 +153,9 @@
           labels:["Asistencia","otro"]
         },
         datosGLine:{
-          data:[[35200,32200,34800]],
+          data:null,
           label:["AVCA"],
-          labels:["15 Mayo","16 Mayo","17 Mayo"]
+          labels:null
         },
         grafica1:[
           {
@@ -345,10 +343,13 @@
                 method: 'get',
                 url: '/reportes/api/ingresos/?inicio='+auxI+'&final='+auxF
             }).then((response) =>{
-              this.datosGLine.data=response.data.data
+              this.datosGLine.data=[response.data.data]
               this.datosGLine.labels=response.data.labels
               this.datosGLine.titulo=titulo
-              // console.log(response.data)
+              this.grafica5[0].datos.data=[response.data.data]
+              this.grafica5[0].datos.labels=response.data.labels
+              this.grafica5[0].titulo
+              console.log(response.data)
             }).catch((err)=>{
                 Vue.toasted.show('Ha ocurrido un error', {
                     theme: "primary", 
