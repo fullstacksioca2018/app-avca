@@ -29,22 +29,22 @@
       <div class="row">
           <div class="form-group col-sm-1 "></div>
           <div class="col-sm-5">
-            <label for="distancia"> <b> Inserte Nueva Distancia: </b></label>
+            <label for="distancia"> <b> Inserte  Distancia: </b></label>
             <b-form-input id="distancia"
                       type="text"
                       required
                       v-model="form.distancia"
-                      placeholder="Inserte Nueva Distancia">
+                      placeholder="Inserte  Distancia">
             </b-form-input>
           </div>
           
          <div class="col-sm-5">
-           <label for="distancia"> <b> Inserte Nueva Tarifa: </b></label>
+           <label for="distancia"> <b> Inserte  Tarifa: </b></label>
             <b-form-input id="tarifa"
                           type="text"
                           required
                           v-model="form.tarifa"
-                          placeholder="Inserte Nueva Tarifa">
+                          placeholder="Inserte  Tarifa">
             </b-form-input>
           </div>
            <div class="form-group col-sm-1 "></div>

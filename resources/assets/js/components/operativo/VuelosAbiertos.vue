@@ -55,9 +55,9 @@
           Ver
         </b-button>
         <div v-if="row.item.Estado == 'abierto'">
-          <b-button size="sm" @click.stop="Deshabilitar(row)">
+         <!--  <b-button size="sm" @click.stop="Deshabilitar(row)">
             Cancelar
-          </b-button>
+          </b-button> -->
         </div>
         <div v-else>
           <b-button size="sm" @click.stop="Habilitar(row)" variant="success">

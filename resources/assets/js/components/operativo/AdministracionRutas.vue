@@ -177,7 +177,7 @@ export default {
         { key: 'Distancia', label: 'Distancias ', sortable: true },
         { key: 'Duracion',  label: 'Duracion ',  sortable: true },
         { key: 'Tarifa',    label: 'Tarifa ', sortable: true },
-        { key: 'Estado',    label: 'Estado', sortable: true},
+        { key: 'Estado',    label: 'Estatus', sortable: true},
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
       ],
       duracionModel: {
