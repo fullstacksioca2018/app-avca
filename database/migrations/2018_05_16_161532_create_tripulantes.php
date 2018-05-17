@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Tripulantes extends Migration
+class CreateTripulantes extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,11 @@ class Tripulantes extends Migration
     {
         Schema::create('tripulantes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('rango',255);
+            
+            $table->enum('rango', ['piloto', 'copiloto', 'jefe de cabina', 'sobrecargo']);	
             $table->string('licencia',255);
-            $table->integer('empleado_id')->unsigned();
-            $table->foreign('empleado_id')->references('id')->on('empleados2')->onDelete('cascade');
+            $table->integer('personal_id')->unsigned();
+            $table->foreign('personal_id')->references('id')->on('empleados2')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class Tripulantes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tripulantes');
+        //
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TripulantesVuelo extends Migration
+class CreateTripulantesVuelo extends Migration
 {
     /**
      * Run the migrations.
@@ -32,6 +32,6 @@ class TripulantesVuelo extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tripulante_vuelo');
+        //
     }
 }

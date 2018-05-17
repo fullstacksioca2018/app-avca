@@ -16,114 +16,133 @@ class SucursalesTableSeeder extends Seeder
             
             [ 
                'tipo_sucursal'=>  'operativa',
-               'nombre'       => 'jose antonio anzoátegui',
-               'estatus'       => 'activa',
-               'ciudad'       => 'Barcelona',               
+               'nombre'       => 'Jose Antonio Anzoátegui',
+               'estatus'      => 'activa',
+               'ciudad'       => 'Barcelona',  
+               'sigla'       => 'BCN'               
             ],
 
             [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Manuel Piar',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Puerto Ordaz',                    
+                'ciudad'       => 'Puerto Ordaz',  
+                'sigla'       => 'PZO'                   
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Arturo Michelena',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Valencia',                
+                'ciudad'       => 'Valencia',  
+                'sigla'       => 'VLN'               
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Josefa Camejo',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Punto Fijo',                
+                'ciudad'       => 'Punto Fijo',  
+                'sigla'       => 'LSP'     
+                              
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Jacinto Lara',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Barquisimeto',                  
+                'ciudad'       => 'Barquisimeto',      
+                'sigla'       => 'BRM'               
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Juan Pablo Perez Alfonzo',
                 'estatus'       => 'activa',
-                'ciudad'       => 'el vigia',                
+                'ciudad'       => 'El Vigia',    
+                'sigla'       => 'VIG'                           
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Jose Tadeo Monagas',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Maturin',                    
+                'ciudad'       => 'Maturin',     
+                'siglas'       => 'MUN'                
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Santiago Mariño',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Porlamar',                     
+                'ciudad'       => 'Porlamar', 
+                'siglas'       => 'PMV'                      
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Simon Bolivar',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Maiquetia',                    
+                'ciudad'       => 'Maiquetia', 
+                'siglas'       => 'CCS'    
+                                 
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'La Chinita',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Maracaibo',                   
+                'ciudad'       => 'Maracaibo',   
+                'siglas'       => 'MAR'                   
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Cacique Arame',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Puerto Ayacucho',                   
+                'ciudad'       => 'Puerto Ayacucho',    
+                'siglas'       => 'PYH'                  
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Don Edmundo Barrios',
                 'estatus'       => 'activa',
-                'ciudad'       => 'San tome',                
+                'ciudad'       => 'San tome',  
+                'siglas'       => 'SOM'
+
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'las Flecheras',
                 'estatus'       => 'activa',
-                'ciudad'       => 'San Fernando De Apure',                    
+                'ciudad'       => 'San Fernando De Apure',  
+                'siglas'       => 'SFD'                  
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Luisa Caceres de Arismendi',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Barinas',                
+                'ciudad'       => 'Barinas',    
+                'siglas'       => 'BNS'              
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Tomas de Heres',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Ciudad Bolivar',                     
+                'ciudad'       => 'Ciudad Bolivar',  
+                'siglas'       => 'CBL'                    
              ],
 
              [ 
                 'tipo_sucursal'=>  'operativa',
                 'nombre'       => 'Antonio Jose de Sucre',
                 'estatus'       => 'activa',
-                'ciudad'       => 'Cumana',                
+                'ciudad'       => 'Cumana',     
+                'sigla'       => 'CUM'              
              ]
 
         ]);  

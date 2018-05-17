@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aeronave extends Model
 {
-    protected $table = "aeronaves";
+	protected $table = "aeronaves";
+	
+
     protected $fillable = [
 
 		'id',
