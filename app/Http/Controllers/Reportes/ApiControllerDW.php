@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Reportes;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use stdClass;
+use App\Models\reporte\DW_Ingreso;
 
 class ApiControllerDW extends Controller
 {
@@ -15,8 +19,19 @@ class ApiControllerDW extends Controller
             ->get();
         return response()->json($cargos);
     }
-    public function ingresosProyeccion(Request $consulta){
-
+    public function reporteIngresos(Request $consulta){
+        // dd($consulta->all());
+        $ingresos=DW_Ingreso::IngresosFecha($consulta->inicio,$consulta->final);
+        $obj =new stdClass();
+        $obj->labels= array();
+        $obj->data= array();
+        Carbon::setLocale(LC_TIME, 'Spanish');
+        foreach ($ingresos as $ingreso) {
+            $carboAux=Carbon::parse($ingreso->fecha_ingreso);
+            array_push($obj->data, $ingreso->total);
+            array_push($obj->labels, $carboAux->formatLocalized('%d %B'));
+        }
+        return response()->json($obj);
     }
     /*
     

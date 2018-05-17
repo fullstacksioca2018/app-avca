@@ -44396,70 +44396,86 @@ var EventBus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 /* harmony default export */ __webpack_exports__["a"] = ({
   mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins__["a" /* reactiveProp */]],
   extends: __WEBPACK_IMPORTED_MODULE_0__BaseCharts__["b" /* Line */],
+  computed: {
+    datosN: function datosN() {
+      return this.chartData;
+    }
+  },
+  watch: {
+    'datosN': function datosN() {
+      this.beforeDestroyP();
+      this.renderN();
+    }
+  },
   mounted: function mounted() {
-    var background = ['#7ECBD7', '#48B2E4', '#1C5281', '#912740', '#E04352', '#F29229', '#1b98d3', '#204568'];
-    console.log(this.chartData);
-    if (this.chartData.label.length == 1) {
-      this.renderChart({
-        labels: this.chartData.labels,
-        datasets: [{
-          label: this.chartData.label[0],
-          pointHoverBorderColor: "#000",
-          pointBackgroundColor: "#345345",
-          pointBorderColor: "#eee",
-          backgroundColor: "#1C5281",
-          borderColor: "#345345",
-          pointRadius: 4,
-          pointHoverRadius: 6,
-          lineSmooth: true,
-          showLine: true,
-          showPoint: true,
-          fullWidth: true,
-          data: this.chartData.data[0]
-        }]
-      }, { responsive: true, maintainAspectRatio: false,
-        tooltips: {
-          bodyFontSize: 18
+    this.renderN();
+  },
+
+  methods: {
+    renderN: function renderN() {
+      var background = ['#7ECBD7', '#48B2E4', '#1C5281', '#912740', '#E04352', '#F29229', '#1b98d3', '#204568'];
+      if (this.datosN.label.length == 1) {
+        this.renderChart({
+          labels: this.datosN.labels,
+          datasets: [{
+            label: this.datosN.label[0],
+            pointHoverBorderColor: "#000",
+            pointBackgroundColor: "#345345",
+            pointBorderColor: "#eee",
+            backgroundColor: "#1C5281",
+            borderColor: "#345345",
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            lineSmooth: true,
+            showLine: true,
+            showPoint: true,
+            fullWidth: true,
+            data: this.datosN.data[0]
+          }]
+        }, { responsive: true, maintainAspectRatio: false,
+          tooltips: {
+            bodyFontSize: 18
+          }
+        });
+      } else {
+        var datasets = [];
+        for (var i = 0; i < this.datosN.label.length; i++) {
+          if (i > 7) {
+            j = i - 8;
+          } else {
+            j = i;
+          }
+          datasets.push({
+            label: this.datosN.label[i],
+            backgroundColor: background[j],
+            data: this.datosN.data[i]
+          });
         }
-      });
-    } else {
-      var datasets = [];
-      for (var i = 0; i < this.chartData.label.length; i++) {
-        if (i > 7) {
-          j = i - 8;
-        } else {
-          j = i;
-        }
-        datasets.push({
-          label: this.chartData.label[i],
-          backgroundColor: background[j],
-          data: this.chartData.data[i]
+        this.renderChart({
+          labels: this.datosN.labels,
+          datasets: datasets
+        }, { responsive: true, maintainAspectRatio: false,
+          tooltips: {
+            bodyFontSize: 18
+          },
+          options: {
+            low: 0,
+            high: 800,
+            showArea: false,
+            height: '245px',
+            axisX: {
+              showGrid: false
+            },
+            lineSmooth: true,
+            showLine: true,
+            showPoint: true,
+            fullWidth: true,
+            chartPadding: {
+              right: 50
+            }
+          }
         });
       }
-      this.renderChart({
-        labels: this.chartData.labels,
-        datasets: datasets
-      }, { responsive: true, maintainAspectRatio: false,
-        tooltips: {
-          bodyFontSize: 18
-        },
-        options: {
-          low: 0,
-          high: 800,
-          showArea: false,
-          height: '245px',
-          axisX: {
-            showGrid: false
-          },
-          lineSmooth: true,
-          showLine: true,
-          showPoint: true,
-          fullWidth: true,
-          chartPadding: {
-            right: 50
-          }
-        }
-      });
     }
   }
 });
@@ -119281,6 +119297,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       GraficaP: null,
+      ejecutados: 0,
+      abiertos: 0,
+      demorados: 0,
+      cancelados: 0,
       consultaProp: null,
       algo: null,
       datosGPie: {
@@ -119293,10 +119313,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         label: ["AVCA"],
         labels: ["15 Mayo", "16 Mayo", "17 Mayo"]
       },
-      ejecutados: null,
-      abiertos: null,
-      demorados: null,
-      cancelados: null,
       grafica1: [{
         titulo: "Vuelos Ejecutados Del 15 al 17 de Mayo",
         grafica: "Bar",
@@ -119407,6 +119423,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     generar: function generar(tipo) {
+      $('#reportesnav').removeClass('active');
+      $('#panelnav').addClass('active');
       switch (tipo) {
         case 1:
           this.GraficaP = this.grafica1;
@@ -119436,27 +119454,66 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       __WEBPACK_IMPORTED_MODULE_2__event_bus_js__["a" /* EventBus */].$emit('panel', true);
     },
     vuelos: function vuelos(estado) {
-      // url='/api/reporte/vuelos/'+estado;
-      // axios({
-      //       method: 'get',
-      //       url: url       
-      //   }).then((response) =>{
-      //       this.ejecutados=response.data;
-      //   }).catch((err)=>{
-      //       Vue.toasted.show('Ha ocurrido un error', {
-      //           theme: "primary", 
-      //         position: "bottom-right",  
-      //         duration : 2000
-      //       });
-      //       console.log(err);
-      //   });
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: '/reportes/api/vuelos/' + estado
+      }).then(function (response) {
+        switch (estado) {
+          case "abierto":
+            _this.abiertos = response.data;
+            break;
+          case "cancelado":
+            _this.cancelados = response.data;
+            break;
+          case "demorado":
+            _this.demorados = response.data;
+            break;
+          case "ejecutado":
+            _this.ejecutados = response.data;
+            break;
+        }
+      }).catch(function (err) {
+        Vue.toasted.show('Ha ocurrido un error', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        console.log(err);
+      });
+    },
+    ingresos: function ingresos() {
+      var _this2 = this;
+
+      var auxI = "2018-05-15";
+      var auxF = "2018-05-17";
+      var titulo = "Ingresos Del 15 al 17 de Mayo";
+
+      axios({
+        method: 'get',
+        url: '/reportes/api/ingresos/?inicio=' + auxI + '&final=' + auxF
+      }).then(function (response) {
+        _this2.datosGLine.data = response.data.data;
+        _this2.datosGLine.labels = response.data.labels;
+        _this2.datosGLine.titulo = titulo;
+        // console.log(response.data)
+      }).catch(function (err) {
+        Vue.toasted.show('Ha ocurrido un error', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        console.log(err);
+      });
     }
   },
   created: function created() {
-    this.vuelos("abierto");
     this.vuelos("ejecutado");
-    this.vuelos("retrasado");
+    this.vuelos("abierto");
+    this.vuelos("demorado");
     this.vuelos("cancelado");
+    this.ingresos();
     __WEBPACK_IMPORTED_MODULE_2__event_bus_js__["a" /* EventBus */].$on('inicio', function (event) {
       this.GraficaP = null;
     }.bind(this));
@@ -119949,7 +120006,7 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _c("h4", { staticClass: "card-title" }, [
-                                _vm._v("12")
+                                _vm._v(_vm._s(_vm.ejecutados))
                               ])
                             ]
                           ),
@@ -120023,7 +120080,7 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _c("h4", { staticClass: "card-title" }, [
-                                _vm._v("123")
+                                _vm._v(_vm._s(_vm.abiertos))
                               ])
                             ]
                           ),
@@ -120097,7 +120154,7 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _c("h4", { staticClass: "card-title" }, [
-                                _vm._v("3")
+                                _vm._v(_vm._s(_vm.demorados))
                               ])
                             ]
                           ),
@@ -120171,7 +120228,7 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _c("h4", { staticClass: "card-title" }, [
-                                _vm._v("0")
+                                _vm._v(_vm._s(_vm.cancelados))
                               ])
                             ]
                           ),
@@ -120546,6 +120603,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		generar: function generar() {
+			$('#panelnav').removeClass('active');
+			$('#reportesnav').addClass('active');
 			this.items = 1;
 			// history.pushState(null, "", "reportes");
 			__WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('inicio', true);

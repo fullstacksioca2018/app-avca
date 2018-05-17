@@ -17,7 +17,7 @@
             </div>
             <div slot="content">
               <p class="card-category marginLe">Ejecutados</p>
-              <h4 class="card-title">12</h4>
+              <h4 class="card-title">{{ ejecutados }}</h4>
             </div>
             <div slot="footer">
               <a class="badge badge-light" @click="generar(1)"><i class="fa fa-plus-square"></i> Ver más</a>
@@ -33,7 +33,7 @@
             </div>
             <div slot="content">
               <p class="card-category marginLe">Abiertos</p>
-              <h4 class="card-title">123</h4>
+              <h4 class="card-title">{{ abiertos }}</h4>
             </div>
             <div slot="footer">
               <a @click="generar(2)" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
@@ -50,7 +50,7 @@
             </div>
             <div slot="content">
               <p class="card-category marginLe">Demorados</p>
-              <h4 class="card-title">3</h4>
+              <h4 class="card-title">{{ demorados }}</h4>
             </div>
             <div slot="footer">
               <a @click="generar(3)" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
@@ -67,7 +67,7 @@
             </div>
             <div slot="content">
               <p class="card-category marginLe">Cancelados</p>
-              <h4 class="card-title">0</h4>
+              <h4 class="card-title">{{ cancelados }}</h4>
             </div>
             <div slot="footer">
               <a @click="generar(4)" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
@@ -143,6 +143,10 @@
     data () {
       return {
         GraficaP:null,
+        ejecutados:0,
+        abiertos:0,
+        demorados:0,
+        cancelados:0,
         consultaProp:null,
         algo:null,
         datosGPie:{
@@ -155,10 +159,6 @@
           label:["AVCA"],
           labels:["15 Mayo","16 Mayo","17 Mayo"]
         },
-        ejecutados:null,
-        abiertos:null,
-        demorados:null,
-        cancelados:null,
         grafica1:[
           {
             titulo:"Vuelos Ejecutados Del 15 al 17 de Mayo",
@@ -265,7 +265,7 @@
           consulta:"Personal",
           periodo:"Mes anterior",
           parametros:['Asistencias']
-        }
+        },
       }
     },
     computed:{
@@ -278,6 +278,8 @@
     },
       methods:{
         generar(tipo){
+          $('#reportesnav').removeClass('active');
+          $('#panelnav').addClass('active');
           switch (tipo) {
             case 1:
               this.GraficaP=this.grafica1
@@ -307,27 +309,62 @@
           EventBus.$emit('panel', true)
         },
         vuelos(estado){
-          // url='/api/reporte/vuelos/'+estado;
-          // axios({
-          //       method: 'get',
-          //       url: url       
-          //   }).then((response) =>{
-          //       this.ejecutados=response.data;
-          //   }).catch((err)=>{
-          //       Vue.toasted.show('Ha ocurrido un error', {
-          //           theme: "primary", 
-          //         position: "bottom-right",  
-          //         duration : 2000
-          //       });
-          //       console.log(err);
-          //   });
+          axios({
+                method: 'get',
+                url: '/reportes/api/vuelos/'+estado       
+            }).then((response) =>{
+                switch (estado) {
+                  case "abierto":
+                    this.abiertos=response.data
+                    break;
+                  case "cancelado":
+                    this.cancelados=response.data
+                    break;
+                  case "demorado":
+                    this.demorados=response.data
+                    break;
+                  case "ejecutado":
+                    this.ejecutados=response.data
+                    break;
+                }
+            }).catch((err)=>{
+                Vue.toasted.show('Ha ocurrido un error', {
+                    theme: "primary", 
+                  position: "bottom-right",  
+                  duration : 2000
+                });
+                console.log(err);
+            });
+        },
+        ingresos(){
+          var auxI="2018-05-15";
+          var auxF="2018-05-17";
+          var titulo="Ingresos Del 15 al 17 de Mayo";
+
+          axios({
+                method: 'get',
+                url: '/reportes/api/ingresos/?inicio='+auxI+'&final='+auxF
+            }).then((response) =>{
+              this.datosGLine.data=response.data.data
+              this.datosGLine.labels=response.data.labels
+              this.datosGLine.titulo=titulo
+              // console.log(response.data)
+            }).catch((err)=>{
+                Vue.toasted.show('Ha ocurrido un error', {
+                    theme: "primary", 
+                  position: "bottom-right",  
+                  duration : 2000
+                });
+                console.log(err);
+            });
         }
       },
     created: function(){
-      this.vuelos("abierto")
       this.vuelos("ejecutado")
-      this.vuelos("retrasado")
+      this.vuelos("abierto")
+      this.vuelos("demorado")
       this.vuelos("cancelado")
+      this.ingresos()
       EventBus.$on('inicio', function (event) {
         this.GraficaP=null;
       }.bind(this));

@@ -236,14 +236,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+      <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
         <div class="image text-white">
           <i class="fa fa-user-circle"></i>
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ auth()->user()->name }}</a>
         </div>
-      </div>
+      </div> -->
 
       <!-- Sidebar Menu -->
       @include('reportes.nav')
@@ -300,6 +300,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="/adminlte/js/adminlte.min.js"></script>
 <!-- Vue App -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/reportar/main.js') }}"></script>
 <!--Sweetalert-->
 
 <!-- build -->
