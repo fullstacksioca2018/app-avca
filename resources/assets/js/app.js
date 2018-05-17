@@ -28,6 +28,7 @@ Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/Fich
 
 // Nomina del empleado
 Vue.component('generar-nomina', require('./components/backend/rrhh/nomina/GenerarNomina'));
+Vue.component('consultar-nomina', require('./components/backend/rrhh/nomina/ConsultarNomina'));
 
 Vue.component('panel', require('./components/reportes/panel.vue'));
 

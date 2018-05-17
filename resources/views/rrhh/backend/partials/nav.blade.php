@@ -12,7 +12,7 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link active">
+          <a href="#" class="{{ request()->route('dashboard') ? 'nav-link active' : 'nav-link' }}">
             <i class="fa fa-users nav-icon"></i>
             <p>Captación <i class="right fa fa-angle-down"></i></p>
           </a>
@@ -53,19 +53,23 @@
           </a>
         </li>
         {{--Administracion de nominas--}}
+        @if(request()->is('rrhh/backend/nomina/*'))
+        <li class="nav-item has-treeview menu-open">
+        @else
         <li class="nav-item has-treeview">
+        @endif
           <a href="#" class="nav-link">
             <i class="fa fa-file nav-icon"></i>
             <p>Nóminas <i class="right fa fa-angle-down"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('nomina.consult') }}" class="{{ request()->routeIs('nomina.consult') ? 'nav-link active' : 'nav-link' }}">
                 <p style="padding-left: 1.5rem;">Consultar</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('nomina.generate') }}" class="nav-link">
+              <a href="{{ route('nomina.generate') }}" class="{{ request()->routeIs('nomina.generate') ? 'nav-link active' : 'nav-link' }}">
                 <p style="padding-left: 1.5rem;">Generar</p>
               </a>
             </li>

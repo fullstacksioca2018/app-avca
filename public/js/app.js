@@ -44425,6 +44425,7 @@ Vue.component('ficha-empleado', __webpack_require__(304));
 
 // Nomina del empleado
 Vue.component('generar-nomina', __webpack_require__(339));
+Vue.component('consultar-nomina', __webpack_require__(371));
 
 Vue.component('panel', __webpack_require__(344));
 
@@ -44483,6 +44484,9 @@ if (token) {
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+// RRHH
+window.moment = __webpack_require__(0);
 
 //LEO
 window.Vue = __webpack_require__(11);
@@ -113573,6 +113577,355 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 370 */,
+/* 371 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(372)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(374)
+/* template */
+var __vue_template__ = __webpack_require__(375)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-35225e6e"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\rrhh\\nomina\\ConsultarNomina.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-35225e6e", Component.options)
+  } else {
+    hotAPI.reload("data-v-35225e6e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 372 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(373);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("7321f75a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-35225e6e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ConsultarNomina.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-35225e6e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ConsultarNomina.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 373 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 374 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "ConsultarNomina",
+  data: function data() {
+    return {
+      vouchers: [],
+      fecha: '',
+      tipoNomina: '',
+      nominas: []
+    };
+  },
+  mounted: function mounted() {
+    this.obtenerVouchers();
+    this.obtenerNominas();
+  },
+
+  methods: {
+    obtenerVouchers: function obtenerVouchers() {
+      var _this = this;
+
+      axios.get('/rrhh/backend/nomina/obtener-vouchers', {
+        params: {
+          fecha: this.fecha,
+          nomina: this.tipoNomina
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        _this.vouchers = response.data;
+      });
+    },
+    obtenerNominas: function obtenerNominas() {
+      var _this2 = this;
+
+      axios.get('/rrhh/backend/nomina/obtener-nominas').then(function (response) {
+        _this2.nominas = response.data;
+      });
+    }
+  },
+  filters: {
+    moment: function moment(date) {
+      __WEBPACK_IMPORTED_MODULE_0_moment___default.a.locale('es');
+      return __WEBPACK_IMPORTED_MODULE_0_moment___default()(date).format('MMMM YYYY');
+    },
+    uppercase: function uppercase(str) {
+      str = str.toString();
+      return str.charAt(0).toLocaleUpperCase() + str.slice(1);
+    }
+  }
+});
+
+/***/ }),
+/* 375 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("form", { attrs: { action: "#" } }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "fecha" } }, [_vm._v("Período")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.fecha,
+                    expression: "fecha"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "fecha", id: "fecha", required: "" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.fecha = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    _vm.obtenerVouchers
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "", selected: "selected" } }, [
+                  _vm._v("Seleccione")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "01" } }, [
+                  _vm._v("Enero 2018")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "02" } }, [
+                  _vm._v("Febrero 2018")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "03" } }, [
+                  _vm._v("Marzo 2018")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "04" } }, [
+                  _vm._v("Abril 2018")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "05" } }, [_vm._v("Mayo 2018")])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "tipo_nomina" } }, [
+              _vm._v("Tipo de nómina")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tipoNomina,
+                    expression: "tipoNomina"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "tipo_nomina", id: "tipo_nomina", required: "" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.tipoNomina = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    _vm.obtenerVouchers
+                  ]
+                }
+              },
+              [
+                _c("option", { attrs: { value: "", selected: "selected" } }, [
+                  _vm._v("Seleccione")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.nominas, function(nomina) {
+                  return _c(
+                    "option",
+                    { key: nomina.id, domProps: { value: nomina.nomina_id } },
+                    [_vm._v(_vm._s(_vm._f("uppercase")(nomina.nombre)))]
+                  )
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "filtro" } }, [_vm._v("Filtrar por")]),
+        _vm._v(" "),
+        _c("select", {
+          staticClass: "form-control",
+          attrs: { name: "filtro", id: "filtro" }
+        })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-35225e6e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

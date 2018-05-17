@@ -201,4 +201,23 @@ class NominaController extends Controller
             'fecha' => Carbon::now()
         ]);
     }
+
+    /**
+     *  consulta de nomina
+     */
+    public function consultarNomina()
+    {
+        return view('rrhh.backend.nomina.consult');
+    }
+
+    public function obtenerVouchers(Request $request)
+    {
+        //return $request->nomina;
+
+        $vouchers = Voucher::whereMonth('fecha', $request->fecha)
+                    ->where('nomina_id', $request->nomina)
+                    ->get();
+
+        return response()->json($vouchers);
+    }
 }

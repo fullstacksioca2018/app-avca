@@ -38,6 +38,9 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+// RRHH
+window.moment = require('moment');
+
 //LEO
 window.Vue = require('vue');
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.js';
