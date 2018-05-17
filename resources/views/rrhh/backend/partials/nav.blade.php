@@ -61,22 +61,12 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <p style="padding-left: 1.5rem;">Cesta ticket</p>
+                <p style="padding-left: 1.5rem;">Consultar</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <p style="padding-left: 1.5rem;">Especiales</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <p style="padding-left: 1.5rem;">Regulares</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <p style="padding-left: 1.5rem;">Pasivos laborales</p>
+              <a href="{{ route('nomina.generate') }}" class="nav-link">
+                <p style="padding-left: 1.5rem;">Generar</p>
               </a>
             </li>
           </ul>

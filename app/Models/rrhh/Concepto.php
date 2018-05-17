@@ -15,4 +15,9 @@ class Concepto extends Model
     {
         return $this->belongsToMany('App\Models\rrhh\Empleado', 'concepto_empleado', 'concepto_id', 'empleado_id');
     }
+
+    public function nominas()
+    {
+        return $this->belongsToMany('App\Models\rrhh\Nomina', 'concepto_nomina', 'concepto_id', 'nomina_id');
+    }
 }

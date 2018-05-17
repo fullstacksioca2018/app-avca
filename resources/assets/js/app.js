@@ -26,6 +26,9 @@ Vue.component('Rutas', require('./components/operativo/AdministracionRutas.vue')
 // Empleado
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
 
+// Nomina del empleado
+Vue.component('generar-nomina', require('./components/backend/rrhh/nomina/GenerarNomina'));
+
 Vue.component('panel', require('./components/reportes/panel.vue'));
 
 const app = new Vue({

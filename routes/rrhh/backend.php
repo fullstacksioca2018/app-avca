@@ -55,6 +55,13 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
         Route::get('obtener-bancos', 'rrhh\ContratacionController@obtenerBancos');
     });
 
+    //  Nóminas
+    Route::group(['prefix' => 'nomina'], function () {
+        Route::get('generar-nominar', 'rrhh\NominaController@generarNominas')->name('nomina.generate');
+        Route::get('obtener-nominas', 'rrhh\NominaController@obtenerNominas');
+        Route::post('procesar-nomina', 'rrhh\NominaController@procesarNomina');
+    });
+
     // Consultas AJAX
     Route::get('obtener-sucursales', 'rrhh\EmpleadoController@obtenerSucursales');
     Route::get('obtener-areas', 'rrhh\EmpleadoController@obtenerAreas');
