@@ -24,11 +24,11 @@
                 </div>
 
                <div id="soloida">
-               {!! Form::open(['route' => ['taquilla.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
-               <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
+               {!! Form::open(['route' => ['taquilla.DetalleVuelo'], 'method' => 'GET', 'id'=> 'FormIda']) !!}
+               <input type="hidden" name="tipo" id="tipo" value="1">
                  @include('operativo.taquilla.ida')
                  <div class="card-footer text-center">
-                <button type="submit" class="btn  btn-primary">
+                <button type="submit" id="btnIda" class="btn  btn-primary">
                   <i class="fa fa-dot-circle-o"> Aceptar</i>
                 </button>
                 <button type="reset " class="btn  btn-danger">
@@ -39,11 +39,11 @@
 
                </div>
                <div id="idayvuelta">
-               {!! Form::open(['route' => ['taquilla.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
-               <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
+               {!! Form::open(['route' => ['taquilla.DetalleVuelo'], 'method' => 'GET', 'id'=> 'FormIdayVuelta']) !!}
+               <input type="hidden" name="tipo" id="tipo" value="2">
                    @include('operativo.taquilla.idayvuelta')
                    <div class="card-footer text-center">
-                <button type="submit" class="btn  btn-primary">
+                <button type="submit" id="btnIdayVuelta" class="btn  btn-primary">
                   <i class="fa fa-dot-circle-o"> Aceptar</i>
                 </button>
                 <button type="reset " class="btn  btn-danger">
@@ -54,11 +54,11 @@
 
                </div>
                <div id="multidestino">
-               {!! Form::open(['route' => ['taquilla.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
-               <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
+               {!! Form::open(['route' => ['taquilla.DetalleVuelo'], 'method' => 'GET', 'id'=> 'FormMultidestino']) !!}
+               <input type="hidden" name="tipo" id="tipo" value="3">
                    @include('operativo.taquilla.multidestino')
                    <div class="card-footer text-center">
-                <button type="submit" class="btn  btn-primary">
+                <button type="submit" id="btnMultidestino"  class="btn  btn-primary">
                   <i class="fa fa-dot-circle-o"> Aceptar</i>
                 </button>
                 <button type="reset " class="btn  btn-danger">
@@ -148,7 +148,7 @@
        
       }
     });
-
+     //fecha de regreso para Ida y Vuelta
     $("#fecha_salida2").change(function(){
         $("#fecha_regreso").attr({
           min: $("#fecha_salida2").val(),

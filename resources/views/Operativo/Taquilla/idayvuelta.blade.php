@@ -28,7 +28,7 @@
                      
 
                      <div class="col-md-6 col-form-label">
-                      <label id="fecha_salida2_label" for="fecha_salida2">Fecha de Salida</label>
+                      <label id="fecha_salida2_label" for="fecha_salida">Fecha de Salida</label>
                       <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">

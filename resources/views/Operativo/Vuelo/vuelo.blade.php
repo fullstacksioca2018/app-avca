@@ -1,6 +1,8 @@
 @extends('operativo.layouts.backend')
     @section('content')
-
+@php
+dd(\Cache::get('datos'));return;
+@endphp
     <div class="container-fluid">
         <div class="animated fadeIn"> 
             <div class="card">
