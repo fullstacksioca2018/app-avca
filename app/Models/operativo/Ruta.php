@@ -11,7 +11,7 @@ class Ruta extends Model
 
     	  'id',
         'distancia',
-        'sigla', 
+        'sigla',
         'duracion',
         'tarifa_vuelo',
         'origen_id',

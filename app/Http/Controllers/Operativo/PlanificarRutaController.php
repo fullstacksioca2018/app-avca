@@ -40,15 +40,26 @@ class PlanificarRutaController extends Controller
     }
 
     public function ModificarRuta(Request $datos){
-      $ruta= Ruta::find($datos->id);
-      $ruta->distancia=$datos->Distancia;
-      $ruta->duracion=$datos->Duracion;
-      $ruta->tarifa_vuelo=$datos->Tarifa; 
+      $ruta= Ruta::find($datos['id']);
+      $ruta->distancia=$datos['Distancia'];
+      $ruta->duracion=$datos['Duracion'];
+      $ruta->tarifa_vuelo=$datos['Tarifa'];
+
+   
+      
+      //return $datos;
       $ruta->save();
       return 'La Ruta '.$ruta->origen->nombre." ---> ".$ruta->destino->nombre." Fue Actualizada Correctamente";
-        
-      
-  }
+    }
+
+    public function ModificarRuta2(){
+      $ruta= Ruta::find('1');
+      $ruta->distancia="1";
+      $ruta->duracion="1";
+      $ruta->tarifa_vuelo="1"; 
+      $ruta->save();
+      return "ok";
+    }
 
   public function EliminarRuta(Request $datos){
     

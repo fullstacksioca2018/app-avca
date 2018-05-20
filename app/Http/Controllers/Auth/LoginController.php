@@ -63,7 +63,7 @@ class LoginController extends Controller
                 $auxURL='/rutas';
                 break;
             default:
-                $auxURL='/rrhh/frontend';
+                $auxURL='/rutas';
                 break;
         }
 
