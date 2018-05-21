@@ -43,8 +43,7 @@
                         </span>
                       </div>
                     
-                     <input type="number" id="inputadultos1" min="1" max="5" class="form-control" value="1" name="inputadultos1" onchange="validarN('inputadultos','1')">
-
+                     <input type="number" id="inputadultos1" min="1" max="5" class="form-control" value="1" name="inputadultos1" onchange="validarN('inputadultos','1')" >
                     </div>
                   </div>
            

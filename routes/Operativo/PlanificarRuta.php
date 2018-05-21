@@ -1,7 +1,7 @@
 <?php
     Route::group(['prefix'=>'rutas'], function(){
 
-        Route::get('/','Operativo\PlanificarRutaController@ruta');
+        Route::get('/','Operativo\PlanificarRutaController@ruta')->name('ruta');
         Route::get('/rutas','Operativo\PlanificarRutaController@rutas');
         Route::get('/rutas/all','Operativo\PlanificarRutaController@rutasTodas');
         Route::post('/rutas','Operativo\PlanificarRutaController@ModificarRuta');

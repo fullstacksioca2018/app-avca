@@ -1,66 +1,110 @@
 <div class="form-group row">
-  <div class="col-md-6 col-form-label" >
-    <label for="origen_id3">Ciudad Origen</label>
+  
+  <div class="col-md-4 col-form-label" >
+    <label id="origen_label" for="origen_id">Ciudad de Origen</label>
     <div class="form-group">
-      <select data-placeholder="Ciudad-Aeropuerto" name="origen_id" class="  fa-map-markerform-control chosen-select ">
+      <select data-placeholder="Ciudad-Aeropuerto" id="origen_id1" name="origen_id[]" class="  fa-map-markerform-control chosen-select ">
         <option value="#">Cuidad o aeropuerto</option>
-        @foreach ($sucursales as $sucursal)
-          <option value="{{ $sucursal->id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
-        @endforeach
-      </select>
+          @foreach ($sucursales as $sucursal)
+          <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+          @endforeach
+        </select>
+      </div>
     </div>
-  </div>
-  <div class="col-md-6 col-form-label" >
-   <label for="destino_id3">Ciudad de Destino</label>
-   <div class="input-group">
-    <select data-placeholder="Ciudad-Aeropuerto" id="destino_id3" name="destino_id" class="form-control chosen-select ">
-      <option value="#">Cuidad o aeropuerto</option>
-        @foreach ($sucursales as $sucursal)
-                      <option value="{{ $sucursal->id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
-                      @endforeach
-                    </select>
-                      </div>
-                    </div>
-                     <div class="col-md-6 col-form-label">
-                      <label for="fecha_salida3">Fecha de Salida</label>
-                      <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="fa fa-calendar"></i>
-                        </span>
-                      </div>
-                      <input type="date" class="form-control" id="fecha_salida3" name="fecha_salida" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}" value="{{Carbon::now()->addDay(1)->format('Y-m-d')}}">
-                    </div>
-                  </div>
-  <div class="col-md-6 col-form-label row " >
-                 <div class="form-group col-md-6">
-                 <label for="inputadultos3">Adultos</label>
-                      <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="fa fa-user-plus"></i>
-                        </span>
-                      </div>
-                    
-                     <input type="number" id="inputadultos3" min="1" max="5" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos','3')">
+  
+    <div class="col-md-4 col-form-label" >
+      <label id="destino_label" for="destino_id">Ciudad de Destino</label>
+      <div class="input-group">
+        <select data-placeholder="Ciudad-Aeropuerto" id="destino_id1" name="destino_id[]" class="form-control chosen-select ">
+          <option value="#">Cuidad o aeropuerto</option>
+           @foreach ($sucursales as $sucursal)
+           <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+           @endforeach
+        </select>
+      </div>
+    </div>
+    
+    <div class="col-md-4 col-form-label">
+      <label id="fecha_salida2_label" for="salida1">Fecha de Salida</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-calendar"></i>
+          </span>
+        </div>
+        <input type="date" class="form-control" id="salida1" name="fecha_salida[]" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}" value="{{Carbon::now()->addDay(1)->format('Y-m-d')}}">
+      </div>
+    </div>
+    <!-- AQUI EMPIEZA EL MULTIDESTINO -->
+    @php for($i=2;$i<5;$i++){ @endphp
+    <div class="form-group row" id="vuelo{{$i}}">
+      <div class="col-md-4 col-form-label" >
+        <label id="origen_label" for="origen_id{{$i}}">Ciudad de Origen</label>
+        <div class="form-group">
+           <select data-placeholder="Ciudad-Aeropuerto" id="origen_id{{$i}}" name="origen_id[]" class="  fa-map-markerform-control chosen-select ">
+            <option value="#">Cuidad o aeropuerto</option>
+              @foreach ($sucursales as $sucursal)
+              <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
 
-                    </div>
-                  </div>
-           
-                  <div class="form-group  col-md-6">
-             
-              
-                      <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="fa fa-user-plus"></i>
-                        </span>
-                      </div>
-                    <input type="number" id="inputninos3" min="0" max="5" class="form-control" value="0" name="ninos" onchange="validarN('inputninos','3')">
-                    </div>
-                  </div>
-                </div>
-         
-        <div id="contenedorPersonas3">
+        <div class="col-md-4 col-form-label" >
+          <label id="destino_label" for="destino_id{{$i}}">Ciudad de Destino</label>
+          <div class="input-group">
+            <select data-placeholder="Ciudad-Aeropuerto" id="destino_id{{$i}}" name="destino_id[]" class="form-control chosen-select ">
+              <option value="#">Cuidad o aeropuerto</option>
+                @foreach ($sucursales as $sucursal)
+              <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+                @endforeach
+            </select>
+          </div>
+        </div>
+        
+        <div class="col-md-4 col-form-label">
+            <label id="fecha_salida2_label" for="fecha_salida{{$i}}">Fecha de Salida</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-calendar"></i>
+                </span>
+              </div>
+              <input type="date" class="form-control" id="salida{{$i}}" name="fecha_salida[]"min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}" value="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" >
+            </div>
+        </div>
+      </div>
+       @php } @endphp <!-- FIN FOR PARA GENERAR LOS OTROS DESTINOS -->
 </div>
-                </div>
+<!-- AQUI TERMINA EL MULTIDESTINO -->
+<div class=" mr-5">  
+  <button type="button" class="btn btn btn-sm btn-primary ion-plus" id="masV">&nbsp; &nbsp;  + &nbsp; &nbsp;</button>
+  <button type="button" class="btn btn btn-sm btn-danger ion-minus-round" id="menosV">&nbsp; &nbsp;  - &nbsp; &nbsp;</button>
+</div>
+    
+    <div class="col-md-6 col-form-label row " >
+      <div class="form-group col-md-6">
+        <label id="inputadultos_label" for="inputadultos3">Adultos</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fa fa-user-plus"></i>
+            </span>
+          </div>
+          <input type="number" id="inputadultos3" min="1" max="5" class="form-control" value="1" name="inputadultos3" onchange="validarN('inputadultos','3')">
+        </div>
+      </div>
+      <div class="form-group  col-md-6">
+        <label id="inputninos_label" for="inputninos3">Niños</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fa fa-user-plus"></i>
+            </span>
+          </div>
+          <input type="number" id="inputninos3" min="0" max="5" class="form-control" value="0" name="inputninos3" onchange="validarN('inputninos','3')">
+        </div>
+      </div>
+    </div>
+    <div id="contenedorPersonas3"></div> 
+  

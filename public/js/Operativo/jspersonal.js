@@ -1,22 +1,32 @@
 function validarN(event,tipo){
-	//alert("entro al validar n con "+event+tipo);
+		
 	var adultos=parseInt(document.getElementById('inputadultos'+tipo).value);
 	var ninos=parseInt(document.getElementById('inputninos'+tipo).value);
 	if((adultos+ninos)>6){
-		alert("solo pueden ser 6 personas");
-		document.getElementById(event+tipo).value=document.getElementById(event+tipo).value-1;
-		var result=document.getElementById(event+tipo).value;
-	
+		Vue.toasted.show('Maximo 6 personas', {
+			theme: "primary", 
+			 position: "bottom-right",  
+			   duration : 2000
+		  });
+		if((event+tipo)==('inputadultos'+tipo))
+		{
+			if(ninos<=5){document.getElementById(event+tipo).value=document.getElementById(event+tipo).value=(6-ninos)}
+		}
+		if((event+tipo)==('inputninos'+tipo))
+		{
+			if(adultos<5){document.getElementById(event+tipo).value=document.getElementById(event+tipo).value=(6-adultos)}else{document.getElementById(event+tipo).value=0;}
+			ninos=6-adultos;
+			insertarInput(tipo,ninos);
+		}
+		
 	}
-	
 	if((event+tipo)==('inputninos'+tipo))
-		{ console.log("entro a event == inputninos"); insertarInput(tipo);}	
+		{ insertarInput(tipo,ninos);}	
 			
 }
 
-function insertarInput(tipo){
-	document.getElementById('contenedorPersonas'+tipo).innerHTML='';
-	var ninos=parseInt(document.getElementById('inputninos'+tipo).value);
+function insertarInput(tipo,ninos){
+	 document.getElementById('contenedorPersonas'+tipo).innerHTML='';
 	 var elemento='<div class="form-check form-check-inline pt-1 pb-1"><label class="form-check-label " for="inlineRadio1">Los niños mayores de 2 años deben ir sentados.</label></div><div class="form-row">';
 
 	for (var i = 0; i < ninos; i++) {

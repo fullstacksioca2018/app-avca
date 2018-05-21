@@ -29,24 +29,63 @@ class TaquillaController extends Controller
 		
     }
 
+    public function DetalleVuelo2($origen,$destino,$fecha){
+        return "ok";
+        if($origen!="#"){
+            if($destino!="#")
+            {
+                $rutas = Ruta::Rutas($origen,$destino,$fecha);
+                
+            }//fin if destino #
+            else{
+                $rutas = Ruta::Rutas_origen($origen,$fecha);
+                
+            }        
+        }//fin if orgen #
+        else{
+            if($destino!="#")
+            {
+                $rutas = Ruta::Rutas_destino($destino,$fecha);
+            }//fin if destino #
+            else{
+                $rutas = Ruta::Rutas_fecha($fecha);
+            }
+        }
+       if(count($rutas)){
+            $vuelos= array();
+            $vueloAux;
+            $segmentos;
+            $objAUX= new stdclass();
+            
+            foreach($rutas as $vuelo){
+                $vueloAux=Vuelo::find($vuelo->id);
+                $vuelosAux=new stdclass();
+                $segmentos=$vueloAux->segmentos;
+                $segmentosAux=array();
+                foreach($segmentos as $seg){
+                    $segAux= new stdclass();
+                    $segAUX->ruta=$seg->ruta;
+                    $segAUX->origen=$seg->orgien;
+                    $segAUX->destino=$seg->destino;
+                    array_push($segmentosAux,$segAux);
+                }//fin foreach segmentos
+            $vuelosAux->id=$vuelo->id;
+            $vuelosAux->segmentos=$segmentosAux;
+            $vuelosAux->fecha=$vueloAux->fecha_salida;
+            $vuelosAux->estado=$vueloAux->estado;
+            array_push($vuelos,$vuelosAux);
+            }//fin foreach de rutas
+         return json_encode($vuelos);
+       
+        }else{ //fin if vuelos encontrado.
+            return "No hay Vuelos disponibles.";
+        }
+        
+    }
+    
     public function DetalleVuelo(Request $request)
     {
         $tipo = $request->get('tipo');
-        switch ($tipo) {
-            case '1': // ida
-                    $fecha_salida = new DateTime($request->get('fecha_salida'));
-                    $rutas = Ruta::Rutas($request->get('origen_id'),$request->get('destino_id'),$fecha_salida);
-                break;
-            
-            case '2': // vuelta
-            $fecha_regreso = new DateTime($request->get('fecha_regreso'));
-            $rutas = Ruta::Rutas($request->get('destino_id'),$request->get('origen_id'),$fecha_regreso);
-                break;
-            
-            case '3': //Multidestino
-                break;
-        }
-
         $adultos= $request->get('inputadultos'.$tipo);
         $ninos= $request->get('inputninos'.$tipo);
         $edades= array();
@@ -54,57 +93,94 @@ class TaquillaController extends Controller
         for ($i=0;$i<$ninos;$i++) {
             $edad=$request->get('edad'.$i);
             $Nbrazo=$request->get('brazo'.$i);
-            
-            
             array_push($edades,$edad);
             array_push($brazo,$Nbrazo);
-
         }
         $vuelos= array();
         $vueloAux;
-        $segmentos;
-        $origen;
-        $destino;
-        foreach ($rutas as $vueloID) {
-            $vueloAux=Vuelo::find($vueloID->id);
-            $segmentos=$vueloAux->segmentos;
-            if(count($segmentos)==1){
-                $ruta=$segmentos[0]->ruta;
-                $origen=$segmentos[0]->ruta->origen;
-                $destino=$segmentos[0]->ruta->destino;
-            }else{
-                foreach ($segmentos as $segmento) {
-                   dd("varios segmentos");
-                }
-            }
-            $objAUX= new stdClass();
-            $objAUX->vuelo=$vueloAux;
-            $objAUX->ruta=$ruta;
-            $objAUX->origen=$origen;
-            $objAUX->destino=$destino;
-            $objAUX->adultos=$adultos;
-            $objAUX->ninos=$ninos;
-            $objAUX->edades=$edades;
-            $objAUX->brazos=$brazo;
-            array_push($vuelos, $objAUX);
-        }
-        
-        $indicador=count($vuelos);
-        //dd($indicador);return;
-        //if(0){dd("entro al if");}else{dd("entro al else");}
-        if(count($vuelos)){
-                return view('Operativo.Taquilla.Compra.DetalleVuelo')->with('vuelos',$vuelos);
-        }else{
+        $objAUX= new stdclass();
+       
+        switch ($tipo) {
+            case '1': // ida
+                    $fecha_salida = new DateTime($request->get('fecha_salida'));
+                    $rutas = Ruta::Rutas($request->get('origen_id'),$request->get('destino_id'),$fecha_salida);
+                    if(!empty($rutas[0])){
+                             $vueloAux=Vuelo::find($rutas[0]->id);
+                            if($vueloAux->estado == "abierto"){
+                                $objAUX->id=$vueloID->id;
+                                $objAUX->origen=$objMultidestinos->origenes[$i];
+                                $objAUX->destino=$objMultidestinos->destinos[$i];
+                                $objAUX->fecha=$objMultidestinos->fechas[$i];
+                                $objAUX->estado="disponible";
+                            }else{ 
+                                $objAUX->id=$vueloID->id;
+                                $objAUX->origen=$objMultidestinos->origenes[$i];
+                                $objAUX->destino=$objMultidestinos->destinos[$i];
+                                $objAUX->fecha=$objMultidestinos->fechas[$i];
+                                $objAUX->estado="no disponible";
+                            }//fin else hay vuelo
+                }else{ 
+                     $objAUX->estado= "No hay vuelos";
+                }//fin else
+                
+                break;
+            
+            case '2': // Ida y vuelta
+            $fecha_regreso = new DateTime($request->get('fecha_regreso'));
+            $fecha_salida = new DateTime($request->get('fecha_salida2'));
+            $rutas=array();
+            $ruta1 = Ruta::Rutas($request->get('origen_id'),$request->get('destino_id'),$fecha_salida);
+            array_push($rutas,$ruta1);
+            $ruta2 = Ruta::Rutas($request->get('destino_id'),$request->get('origen_id'),$fecha_regreso);
+            array_push($rutas,$ruta2);
+           
 
-			   ?>
-			   <script>
-				   alert("FATAL ERROR - REINICIANDO SISTEMA -- SYSTEM OUT ");
-			   </script> 
-			   <?php  
-			   return view('Operativo.Taquilla.Taquilla')->name('ida');
-			 
+            break;
+            
+            case '3': //multidestino
+            $vuelosMultiDestino=array();
+            $objVuelos= new stdClass();
+            $objVuelos->origenes=$request->origen_id;
+            $objVuelos->destinos=$request->destino_id;
+            $objVuelos->fechas=$request->fecha_salida;
+            $objVuelos->cantidadV=$request->cantidadV;
+
+            for($i=0;$i<$objVuelos->cantidadV;$i++){ //cantidadV = cantidas de segmentos de vuelos seleccionados
+                //$rutas = new stdclass();
+                $date = new DateTime($objVuelos->fechas[$i]);
+                $rutas= Ruta::Rutas($objVuelos->origenes[$i],$objVuelos->destinos[$i],$date);
+                if(!empty($rutas[0])){
+                    foreach ($rutas as $vueloID) {
+                            $vueloAux=Vuelo::find($vueloID->id);
+                            if($vueloAux->estado == "abierto"){
+                                $objAUX->id=$vueloID->id;
+                                $objAUX->origen=$objVuelos->origenes[$i];
+                                $objAUX->destino=$objVuelos->destinos[$i];
+                                $objAUX->fecha=$objVuelos->fechas[$i];
+                                $objAUX->estado="disponible";
+                            }else{ 
+                                $objAUX->id=$vueloID->id;
+                                $objAUX->origen=$objVuelos->origenes[$i];
+                                $objAUX->destino=$objVuelos->destinos[$i];
+                                $objAUX->fecha=$objVuelos->fechas[$i];
+                                $objAUX->estado="no disponible";
+                            }//fin if hay vuelo
+                        }//fin del foreahc
+                }else{ 
+                     $objAUX->id="";
+                     $objAUX->origen="";
+                     $objAUX->destino="";
+                     $objAUX->fecha="";
+                     $objAUX->estado= "No hay vuelos";
+                }//fin else
+                
+            }//fin for.
+            //dd("tipo:",$tipo, "adultos: ",$adultos,"niños: ",$ninos,"edades: ",$edades,"en brazo: ",$brazo,"vuelos encontrados",$vuelosMultiDestino, "todos los datos: ", $objVuelos);
+          return view('online.componentes.DetallePaquete')->with('tipo',$tipo)->with('adultos',$adultos)->with('ninos',$ninos)->with('edades',$edades)->with('brazo',$brazo)->with('vuelosMultidestino',$vuelosMultidestino)->with('objVuelos',$objvuelos);
+                break;
         }
 
+   
     }
     
     public function CompraBoleto($indicador)
