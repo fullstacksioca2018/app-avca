@@ -14,7 +14,23 @@ use stdClass;
 
 class PlanificarVueloController extends Controller
 {
+
+    public function __construct(){
+        Carbon::setLocale('es');
+        date_default_timezone_set('America/Caracas');
+        $vuelos= new Vuelo();
+        //busco todos los destinos programados de la fecha actual en adelante
+        $actual = Carbon::now();
+        $actual2=Carbon::now();
+        $actual2->addHours(1); //agg 1hra para buscar y actualizar los vuelos que ya estan cerrados
+        //$vuelos->VuelosRetrasados($actual2->toDateTimeString());
+        $actual2->addHours(6); 
+        //$vuelos->VuelosCerrados($actual2->toDateTimeString());
+    }
+
     public function vuelo(){
+      
+       
         return view('Operativo.Vuelo.vuelo');
     }
 
@@ -87,7 +103,7 @@ class PlanificarVueloController extends Controller
     }
 
     public function disponibilidad(Request $datos){
-    
+        
         $year=DATE("Y",strtotime($datos['fecha']));
         $mes=DATE("m",strtotime($datos['fecha']));
         $dia=DATE("d",strtotime($datos['fecha']));
@@ -300,4 +316,15 @@ class PlanificarVueloController extends Controller
 
       
     }
+
+/*     <!-- Estados de los vuelos
+    abierto=cuando el gerente de sucursales lo planifica y inicia la venta
+    cerrado=cuando es hora de autorización y embarquaje para iniciar la ejecución del vuelo
+    cancelado=cuando por alguna dificulta inremediable el vuelo se cancela
+    retrasado=cuando se pasa la hora de salida
+    ejecutado=cuando el subgerente de sucursal notifica que ya la aeronave partio a su destino
+   */
+   //PROBLEMA LOS BOLETOS NO PODEMOS RELACIONARLO CON LA TABLA VUELO SI UN VUELO POSEE VARIAS PIERNAS PORQUE UN BOLETO ES DISTINTO POR CADA PIERNA... SOLUCIÓN O RELACIONAR EL BOLETO DIRECCTAMENTE CON PIERNA O ELIMINAR LA TABLA PIERNA O DEJAR LA TABLA PIERNA PERO COLOCAR CADA VUELO UNA PIERNA SI EL DESTINO SE REQUIERE VARIAS PIERNAS NO SE REGISTRA UN SOLO VUELO SINO IGUAL VARIOS VUELOS
+          //AL BOLETO LE AGG LOS CAMPOS CODIGO ASIENTO Y COSTO TOTAL --> */
+  
 

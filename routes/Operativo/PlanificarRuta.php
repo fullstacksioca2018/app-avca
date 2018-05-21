@@ -1,5 +1,5 @@
 <?php
-    Route::group(['prefix'=>'rutas', 'middleware' => 'auth'], function(){
+    Route::group(['prefix'=>'rutas', /* 'middleware' => 'auth' */], function(){
 
         Route::get('/','Operativo\PlanificarRutaController@ruta')->name('ruta');
         Route::get('/rutas','Operativo\PlanificarRutaController@rutas');
@@ -12,7 +12,7 @@
         
     });
 
-    Route::group(['prefix'=>'sucursales', 'middleware' => 'auth'], function(){
+    Route::group(['prefix'=>'sucursales', /* 'middleware' => 'auth' */], function(){
 
         Route::get('/all','Operativo\PlanificarRutaController@obtenerruta');
         Route::post('/','Operativo\PlanificarRutaController@crearuta');
