@@ -105265,6 +105265,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           Duracion: this.modalInfo.content.Duracion
         }
       }).then(function (response) {
+        console.log(response.data);
         Vue.toasted.show('Se ha guardado existosamente la informacion', {
           theme: "primary",
           position: "bottom-right",
@@ -105273,6 +105274,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //this.$refs.myModalRef.hide();
         _this2.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
       }).catch(function (err) {
+        console.log(err);
         Vue.toasted.show('Ha ocurrido un error', {
           theme: "primary",
           position: "bottom-right",

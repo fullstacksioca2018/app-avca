@@ -275,6 +275,7 @@ export default {
           Duracion:  this.modalInfo.content.Duracion      
         }
       }).then((response) =>{
+        console.log(response.data);
        Vue.toasted.show('Se ha guardado existosamente la informacion', {
            theme: "primary", 
 	       position: "bottom-right",
@@ -284,6 +285,7 @@ export default {
        this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
 
       }).catch((err)=>{
+        console.log(err);
          Vue.toasted.show('Ha ocurrido un error', {
          theme: "primary", 
 	      position: "bottom-right",  
