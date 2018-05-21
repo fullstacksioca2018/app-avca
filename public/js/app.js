@@ -106905,11 +106905,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.data = response.data;
                 _this.formatodatos();
 
-                /*  Vue.toasted.show(response.data, {
-                     theme: "primary", 
-                  position: "bottom-right",
-                  duration : 2000
-                 }); */
+                Vue.toasted.show(response.data, {
+                    theme: "primary",
+                    position: "bottom-right",
+                    duration: 2000
+                });
                 //this.$refs.myModalRef.hide();
             }).catch(function (err) {
                 Vue.toasted.show('Ha ocurrido un error', {
@@ -106959,6 +106959,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 _this2.formatorutas(response);
             }).catch(function (err) {
+                console.log(err);
                 Vue.toasted.show('Ha ocurrido un error', {
                     theme: "primary",
                     position: "bottomright",
@@ -107420,11 +107421,7 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(_vm.sumar(tripulante.jche)) +
-                                        " "
-                                    )
+                                    _vm._v(" " + _vm._s(tripulante.jche) + " ")
                                   ]),
                                   _vm._v(" "),
                                   _c("td", [
@@ -107857,7 +107854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Status ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -108744,7 +108741,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estatus ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Status ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -109668,7 +109665,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Status ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -110577,7 +110574,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estatus ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Status ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -111483,7 +111480,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estatus ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Status ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,

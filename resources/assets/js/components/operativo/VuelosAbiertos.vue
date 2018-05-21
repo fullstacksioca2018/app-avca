@@ -160,7 +160,7 @@ export default {
         { key: 'Ruta',   label: 'Segmentos', sortable: true },
         { key: 'Fecha', label: 'Fecha ', sortable: true },
         { key: 'Hora',  label: 'Hora ',  sortable: true },
-        { key: 'Estado',    label: 'Estado ', sortable: true },
+        { key: 'Estado',    label: 'Status ', sortable: true },
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
       ],      
       currentPage: 1,

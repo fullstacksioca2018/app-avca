@@ -117,7 +117,7 @@
                             <tr v-for="tripulante in this.items3"> 
                                 <td> {{tripulante.licencia}} </td>
                                 <td> {{tripulante.nombre + " " + tripulante.apellido}} </td>
-                                <td> {{sumar(tripulante.jche)}} </td>
+                                <td> {{tripulante.jche}} </td>
                                 <td> {{tripulante.jchp.cantidad}} </td>
                                 <td> <label><input type="radio" name="jefecabina">Seleccionar</label> </td>
                             </tr>
@@ -217,11 +217,11 @@ export default {
                     this.formatodatos();
                     
                     
-                   /*  Vue.toasted.show(response.data, {
+                    Vue.toasted.show(response.data, {
                         theme: "primary", 
 	                    position: "bottom-right",
 	                    duration : 2000
-                    }); */
+                    }); 
                     //this.$refs.myModalRef.hide();
                 }).catch((err)=>{
                     Vue.toasted.show('Ha ocurrido un error', {
@@ -278,6 +278,7 @@ export default {
             }).then((response) =>{
                 this.formatorutas(response);
             }).catch((err)=>{
+                console.log(err);
                 Vue.toasted.show('Ha ocurrido un error', {
                     theme: "primary", 
                     position: "bottomright",  

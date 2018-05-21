@@ -109,7 +109,75 @@
  
 <script src="/adminlte/plugins/jquery/jquery.min.js"></script>
 <script src="{{ asset('online/plugins/lib/chosen/chosen.jquery.js') }}" type="text/javascript" charset="utf-8"></script>
+<<<<<<< HEAD
 
+=======
+<script type="text/javascript">
+
+  $(function() {
+        $('.chosen-select').chosen();
+        $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+      });
+
+  
+  $(document).ready(function(){
+     $('#idayvuelta').addClass('oculta');
+    $('#multidestino').addClass('oculta');
+
+    $('#btsoloida').click(function(){
+      if(!$('#btsoloida').hasClass('active')){
+        $('#btsoloida').addClass('active');
+       
+        $('#btidayvuelta').removeClass('active');
+        $('#btmultidestino').removeClass('active');
+        $('#idayvuelta').addClass('oculta');
+        $('#multidestino').addClass('oculta');
+
+         $('#soloida').removeClass('oculta');
+       
+      }
+    });
+     $('#btidayvuelta').click(function(){
+      if(!$('#btidayvuelta').hasClass('active')){
+        $('#btidayvuelta').addClass('active');
+       
+        $('#btsoloida').removeClass('active');
+        $('#btmultidestino').removeClass('active');
+        $('#soloida').addClass('oculta');
+        $('#multidestino').addClass('oculta');
+
+         $('#idayvuelta').removeClass('oculta');
+       
+      }
+    });
+      $('#btmultidestino').click(function(){
+      if(!$('#btmultidestino').hasClass('active')){
+        $('#btmultidestino').addClass('active');
+       
+        $('#btsoloida').removeClass('active');
+        $('#btidayvuelta').removeClass('active');
+        $('#soloida').addClass('oculta');
+        $('#idayvuelta').addClass('oculta');
+
+         $('#multidestino').removeClass('oculta');
+       
+      }
+    });
+     //fecha de regreso para Ida y Vuelta
+    $("#fecha_salida2").change(function(){
+        $("#fecha_regreso").attr({
+          min: $("#fecha_salida2").val(),
+          value: $("#fecha_salida2").val()
+        })
+      });
+    
+  
+  });
+
+ 
+
+</script>
+>>>>>>> 1838077ff3a860ad7fc48b5cf67e19c10cbfc17a
 @endpush
 
 

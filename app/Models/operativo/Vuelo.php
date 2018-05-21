@@ -31,4 +31,22 @@ class Vuelo extends Model
     	return $this->belongsToMany('App\Models\operativo\Tripulante');
     }
 
+    public function scopeVuelosRetrasados($query, $fecha){ //fecha=a la fecha actual+1hra
+
+        $vuelos=$query->where([['vuelos.fecha_salida','<',$fecha],['vuelos.estado','!=','retrasado'],['vuelos.estado','!=','ejecutado'],['vuelos.estado','!=','cancelado']])->get();
+        foreach ($vuelos as $vuelo) {
+            $vuelo->estado="retrasado";
+            $vuelo->save();
+        }
+    }
+
+    public function scopeVuelosCerrados($query, $fecha){ //fecha=a la fecha actual+1hra
+
+        $vuelos=$query->where([['vuelos.fecha_salida','<',$fecha],['vuelos.estado','!=','ejecutado'],['vuelos.estado','!=','cancelado']])->get();
+        foreach ($vuelos as $vuelo) {
+            $vuelo->estado="cerrado";
+            $vuelo->save();
+        }
+    }
+
 }

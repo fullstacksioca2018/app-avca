@@ -1,5 +1,5 @@
 <?php
-    Route::group(['prefix'=>'vuelos','middleware' => 'auth'], function(){
+    Route::group(['prefix'=>'vuelos',/* 'middleware' => 'auth' */], function(){
 
         Route::get('/','Operativo\PlanificarVueloController@vuelo');
         Route::get('/vuelos','Operativo\PlanificarVueloController@vuelos');

@@ -255,7 +255,7 @@ $("#destino_id4").change(function(){
 
 });
 //jhgjhg
-$("#origen_id1").change(function(){
+$("#origen_id1").change(function(){ hgjhgh
 	Vue.toasted.show('Cargando...', {
 		theme: "primary", 
 		position: "bottom-right",  
