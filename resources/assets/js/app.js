@@ -30,7 +30,16 @@ Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/Fich
 Vue.component('generar-nomina', require('./components/backend/rrhh/nomina/GenerarNomina'));
 Vue.component('consultar-nomina', require('./components/backend/rrhh/nomina/ConsultarNomina'));
 
+// Sucursal
+Vue.component('listado-sucursales', require('./components/backend/rrhh/sucursal/ListadoSucursal'));
+
+// Parametros de nomina
+Vue.component('parametros-nomina', require('./components/backend/rrhh/parametros/ParametrosNomina'));
+
 Vue.component('panel', require('./components/reportes/panel.vue'));
+
+import VueSweetalert2 from 'vue-sweetalert2';
+Vue.use(VueSweetalert2);
 
 const app = new Vue({
     el: '#app'

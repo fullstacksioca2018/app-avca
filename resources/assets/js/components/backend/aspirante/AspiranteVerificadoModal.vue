@@ -12,7 +12,7 @@
         <div class="modal-body">
           <div class="alert alert-danger" v-if="errors.length !== 0">
             <ul class="list-unstyled">
-              <li v-for="error in errors">{{ error[0] }}</li>
+              <li v-for="error in errors" :key="error.id">{{ error[0] }}</li>
             </ul>
           </div>
           <form action="#" method="post" id="aspiranteVerificadoForm" @submit.prevent="enviarConvocatoria" novalidate>

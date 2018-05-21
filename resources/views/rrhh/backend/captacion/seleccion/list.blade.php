@@ -26,7 +26,7 @@
 
         {{--Filtrado de aspirantes por estatus--}}
         <aspirante-status></aspirante-status>
-        {{--<vacante-filter></vacante-filter>--}}
+        {{--  <vacante-filter></vacante-filter>  --}}
 
         <hr>
 

@@ -1,10 +1,14 @@
 <template>
-  <div class="input-group">
-    <input type="search" name="search" id="search" :placeholder="placeholder" class="form-control" v-model="search">
-    <div class="input-group-append">
-    <button type="button" class="btn btn-info" @click.prevent="obtenerEmpleado">
-      <i class="fa fa-search"></i>
-    </button>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="input-group">
+        <input type="search" name="search" id="search" :placeholder="placeholder" class="form-control" v-model="search">
+        <div class="input-group-append">
+        <button type="button" class="btn btn-info" @click.prevent="obtenerEmpleado">
+          <i class="fa fa-search"></i>
+        </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>

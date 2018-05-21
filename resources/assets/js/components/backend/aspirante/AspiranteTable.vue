@@ -19,7 +19,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="aspirante in aspirantes">
+            <tr v-for="aspirante in aspirantes" :key="aspirante.id">
               <td>{{ aspirante.created_at }}</td>
               <td>{{ aspirante.nombre }} {{ aspirante.apellido }}</td>
               <td v-if="estatusAnterior === 'registrados'">

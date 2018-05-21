@@ -9,7 +9,7 @@ class Concepto extends Model
     protected $table = 'conceptos';
     protected $primaryKey = 'concepto_id';
 
-    protected $fillable = ['tipo_concepto','descripcion','porcentaje','valor_fijo','valor_variable','bono_vacacional','prestaciones','isl'];
+    protected $fillable = ['tipo_concepto', 'descripcion', 'porcentaje', 'valor_fijo', 'bono_vacacional', 'utilidades', 'islr', 'prestaciones'];
 
     public function empleados()
     {

@@ -11,6 +11,6 @@ class Area extends Model
 
     public function cargos()
     {
-        return $this->hasMany('App\Models\rrhh\Cargo');
+        return $this->hasMany(Cargo::class, 'area_id', 'area_id');
     }
 }

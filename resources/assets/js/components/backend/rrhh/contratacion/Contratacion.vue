@@ -4,10 +4,9 @@
       <div class="card-header bg-info-gradient">
         <h2 class="form-title">Contratación</h2>
       </div>
-      <div class="card-body">
+      <div class="card-body">        
         <buscador formId="ContratacionForm" @aspirante="obtenerAspirante"></buscador>
         <hr>
-
         <form action="#" id="ContratacionForm" autocomplete="off" v-if="aspirante.length !== 0" enctype="multipart/form-data" @submit.prevent="procesarContratacion">
           <!--Datos personales-->
           <fieldset>
