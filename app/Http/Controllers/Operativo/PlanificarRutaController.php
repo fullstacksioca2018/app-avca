@@ -127,4 +127,5 @@ class PlanificarRutaController extends Controller
   
     $ruta->save();
   }
+}
    

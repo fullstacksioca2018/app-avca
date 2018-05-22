@@ -109,9 +109,6 @@
  
 <script src="/adminlte/plugins/jquery/jquery.min.js"></script>
 <script src="{{ asset('online/plugins/lib/chosen/chosen.jquery.js') }}" type="text/javascript" charset="utf-8"></script>
-<<<<<<< HEAD
-
-=======
 <script type="text/javascript">
 
   $(function() {
@@ -177,7 +174,6 @@
  
 
 </script>
->>>>>>> 1838077ff3a860ad7fc48b5cf67e19c10cbfc17a
 @endpush
 
 

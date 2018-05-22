@@ -81368,11 +81368,11 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
       },
       labelSortAsc: {
         type: String,
-        default: 'Click to sort Ascending'
+        default: 'Click para Ascender'
       },
       labelSortDesc: {
         type: String,
-        default: 'Click to sort Descending'
+        default: 'Click para Descender'
       },
       showEmpty: {
         type: Boolean,
@@ -81380,11 +81380,11 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
       },
       emptyText: {
         type: String,
-        default: 'There are no records to show'
+        default: 'No se encontraron valores'
       },
       emptyFilteredText: {
         type: String,
-        default: 'There are no records matching your request'
+        default: 'No se encontraron valores'
       },
       apiUrl: {
         // Passthrough prop. Passed to the context object. Not used by b-table directly
@@ -106857,6 +106857,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -106872,21 +106878,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             minutos: null,
             segundos: null,
             horavuelo: null,
-            itemspilotos: null,
             rutas: [],
             oculto: false,
             items: null,
             items2: null,
             items3: null,
             items4: null,
-            data: null
+            data: null,
+            form: {
+                piloto: null
+            }
+
         };
     },
+
 
     created: function created() {
         this.cargarRutas();
     },
     methods: {
+        onSubmit: function onSubmit(evt) {
+            evt.preventDefault();
+            alert(JSON.stringify(this.ruta));
+            console.log(this.ruta + "," + this.form.piloto);
+            /*  axios({
+                 method: 'post',
+                 url: '/vuelos/crear',
+                 data:{
+                     ruta: this.ruta,
+                     piloto: this.form.piloto,
+                 }
+             }).then((response)=>{
+                 Vue.toasted.show(response.data, {
+                     theme: "primary", 
+                  position: "bottom-right",
+                  duration : 2000
+                 }); 
+             }).cath((response)=>{
+                  Vue.toasted.show('Ha ocurrido un error'.data, {
+                     theme: "primary", 
+                  position: "bottom-right",
+                  duration : 2000
+                 }); 
+             }); */
+        },
+        Prueba: function Prueba() {},
         Buscar: function Buscar() {
             this.enviarFechas();
         },
@@ -106977,6 +107013,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             }
         },
+        doit: function doit(obj) {
+            limite = 3; //limite de checks a seleccionar
+            if (obj.checked) {
+                if (num + 1 > limite) {
+                    obj.checked = false;
+                    alert("Solo puede seleccionar 3 sobrecargos");
+                } else {
+                    num = num + 1;
+                }
+            } else {
+                num = num - 1;
+            }
+        },
         sumar: function sumar(experiencias) {
             console.log(experiencias);
             var horas = 0;
@@ -107018,7 +107067,7 @@ var render = function() {
           on: {
             submit: function($event) {
               $event.preventDefault()
-              _vm.enviarFechas()
+              return _vm.enviarFechas($event)
             }
           }
         },
@@ -107045,46 +107094,40 @@ var render = function() {
           _c("br"),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-5 text-center" }, [
-              _c(
-                "div",
-                {},
-                [
-                  _c("div", { staticClass: "col-md-3" }),
-                  _vm._v(" "),
-                  _c(
-                    "b-form-group",
-                    {
-                      attrs: {
-                        align: "center",
-                        id: "fecha_salida",
-                        label: "Fecha Salida",
-                        "label-for": "fecha_salida"
-                      }
-                    },
-                    [
-                      _c("b-form-input", {
-                        staticClass: "col-md-6",
-                        attrs: {
-                          id: "fecha_salida",
-                          type: "date",
-                          required: ""
+            _c(
+              "div",
+              { staticClass: "col-md-5 text-center" },
+              [
+                _c("div", { staticClass: "col-md-3" }),
+                _vm._v(" "),
+                _c(
+                  "b-form-group",
+                  {
+                    attrs: {
+                      align: "center",
+                      id: "fecha_salida",
+                      label: "Fecha Salida",
+                      "label-for": "fecha_salida"
+                    }
+                  },
+                  [
+                    _c("b-form-input", {
+                      staticClass: "col-md-6",
+                      attrs: { id: "fecha_salida", type: "date", required: "" },
+                      model: {
+                        value: _vm.fecha,
+                        callback: function($$v) {
+                          _vm.fecha = $$v
                         },
-                        model: {
-                          value: _vm.fecha,
-                          callback: function($$v) {
-                            _vm.fecha = $$v
-                          },
-                          expression: "fecha"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ]),
+                        expression: "fecha"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-4 text-center" }, [
               _c("div", {}, [
@@ -107217,343 +107260,402 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-12" }, [
-        _vm.oculto
-          ? _c(
-              "div",
-              { staticClass: "form-group text-center" },
-              [
-                _c(
-                  "b-tabs",
-                  { attrs: { pills: "", card: "" } },
-                  [
-                    _c("b-tab", { attrs: { title: " Piloto", active: "" } }, [
-                      _c(
-                        "table",
-                        { staticClass: "table table-hover table-striped" },
-                        [
-                          _c("thead", [
-                            _c("th", [_vm._v(" # ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Nombre ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Horas de Experiencia")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Vuelos de Quicena ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Asignar ")])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "tbody",
-                            [
-                              _vm._l(this.items, function(tripulante) {
-                                return _c("tr", [
-                                  _c("td", [
-                                    _vm._v(
-                                      " " + _vm._s(tripulante.licencia) + " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          tripulante.nombre +
-                                            " " +
-                                            tripulante.apellido
-                                        ) +
-                                        " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(_vm.sumar(tripulante.pihe)) +
-                                        " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(tripulante.pihp.cantidad) +
-                                        " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _c("label", [
-                                      _c("input", {
-                                        attrs: { type: "radio", name: "piloto" }
-                                      }),
-                                      _vm._v("Seleccionar")
-                                    ])
-                                  ])
-                                ])
-                              }),
-                              _vm._v(" "),
-                              _c("br")
-                            ],
-                            2
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("b-tab", { attrs: { title: "Copiloto" } }, [
-                      _c(
-                        "table",
-                        { staticClass: "table table-hover table-striped" },
-                        [
-                          _c("thead", [
-                            _c("th", [_vm._v(" # ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Nombre ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Horas de Experiencia")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Vuelos de Quicena ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Asignar ")])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "tbody",
-                            [
-                              _vm._l(this.items2, function(tripulante) {
-                                return _c("tr", [
-                                  _c("td", [
-                                    _vm._v(
-                                      " " + _vm._s(tripulante.licencia) + " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          tripulante.nombre +
-                                            " " +
-                                            tripulante.apellido
-                                        ) +
-                                        " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(_vm.sumar(tripulante.copihe)) +
-                                        " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(tripulante.copihp.cantidad) +
-                                        " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _c("label", [
-                                      _c("input", {
-                                        attrs: {
-                                          type: "radio",
-                                          name: "copiloto"
-                                        }
-                                      }),
-                                      _vm._v("Seleccionar")
-                                    ])
-                                  ])
-                                ])
-                              }),
-                              _vm._v(" "),
-                              _c("br")
-                            ],
-                            2
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("b-tab", { attrs: { title: "Jefe de Cabina" } }, [
-                      _c(
-                        "table",
-                        { staticClass: "table table-hover table-striped" },
-                        [
-                          _c("thead", [
-                            _c("th", [_vm._v(" # ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Nombre ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Horas de Experiencia")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Vuelos de Quicena ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Asignar ")])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "tbody",
-                            [
-                              _vm._l(this.items3, function(tripulante) {
-                                return _c("tr", [
-                                  _c("td", [
-                                    _vm._v(
-                                      " " + _vm._s(tripulante.licencia) + " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          tripulante.nombre +
-                                            " " +
-                                            tripulante.apellido
-                                        ) +
-                                        " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(" " + _vm._s(tripulante.jche) + " ")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(tripulante.jchp.cantidad) +
-                                        " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _c("label", [
-                                      _c("input", {
-                                        attrs: {
-                                          type: "radio",
-                                          name: "jefecabina"
-                                        }
-                                      }),
-                                      _vm._v("Seleccionar")
-                                    ])
-                                  ])
-                                ])
-                              }),
-                              _vm._v(" "),
-                              _c("br")
-                            ],
-                            2
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("b-tab", { attrs: { title: "Sobrecargo" } }, [
-                      _c(
-                        "table",
-                        { staticClass: "table table-hover table-striped" },
-                        [
-                          _c("thead", [
-                            _c("th", [_vm._v(" # ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Nombre ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Horas de Experiencia")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Vuelos de Quicena ")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Asignar ")])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "tbody",
-                            [
-                              _vm._l(this.items4, function(tripulante) {
-                                return _c("tr", [
-                                  _c("td", [
-                                    _vm._v(
-                                      " " + _vm._s(tripulante.licencia) + " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          tripulante.nombre +
-                                            " " +
-                                            tripulante.apellido
-                                        ) +
-                                        " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(_vm.sumar(tripulante.sohe)) +
-                                        " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(tripulante.sohp.cantidad) +
-                                        " "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _c("label", [
-                                      _c("input", {
-                                        attrs: {
-                                          type: "radio",
-                                          name: "sobrecargo"
-                                        }
-                                      }),
-                                      _vm._v("Seleccionar")
-                                    ])
-                                  ])
-                                ])
-                              }),
-                              _vm._v(" "),
-                              _c("br")
-                            ],
-                            2
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("b-tab", { attrs: { title: "Aeronave" } })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
+      _c(
+        "b-form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.onSubmit($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _vm.oculto
+              ? _c(
                   "div",
-                  { staticClass: " col-sm-12 " },
+                  { staticClass: "form-group text-center" },
                   [
                     _c(
-                      "b-button",
-                      { attrs: { size: "sm", variant: "primary" } },
-                      [_c("i", [_vm._v("Guardar Vuelo")])]
+                      "b-tabs",
+                      { attrs: { pills: "", card: "" } },
+                      [
+                        _c(
+                          "b-tab",
+                          { attrs: { title: " Piloto", active: "" } },
+                          [
+                            _c(
+                              "b-form-radio-group",
+                              {
+                                attrs: { id: "piloto", name: "piloto" },
+                                model: {
+                                  value: _vm.form.piloto,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "piloto", $$v)
+                                  },
+                                  expression: "form.piloto"
+                                }
+                              },
+                              [
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass:
+                                      "table table-hover table-striped"
+                                  },
+                                  [
+                                    _c("thead", [
+                                      _c("th", [_vm._v(" # ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Nombre ")]),
+                                      _vm._v(" "),
+                                      _c("th", [
+                                        _vm._v(" Horas de Experiencia")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Vuelos de Quicena ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Asignar ")])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      [
+                                        _vm._l(this.items, function(
+                                          tripulante
+                                        ) {
+                                          return _c("tr", [
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(tripulante.licencia) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    tripulante.nombre +
+                                                      " " +
+                                                      tripulante.apellido
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    _vm.sumar(tripulante.pihe)
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    tripulante.pihp.cantidad
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              [
+                                                _c(
+                                                  "b-form-radio",
+                                                  {
+                                                    attrs: {
+                                                      value: tripulante.id
+                                                    }
+                                                  },
+                                                  [_vm._v("Seleccionar")]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ])
+                                        }),
+                                        _vm._v(" "),
+                                        _c("br")
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("b-tab", { attrs: { title: "Copiloto" } }, [
+                          _c(
+                            "table",
+                            { staticClass: "table table-hover table-striped" },
+                            [
+                              _c("thead", [
+                                _c("th", [_vm._v(" # ")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Nombre ")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Horas de Experiencia")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Vuelos de Quicena ")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Asignar ")])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                [
+                                  _vm._l(this.items2, function(tripulante) {
+                                    return _c("tr", [
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(tripulante.licencia) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              tripulante.nombre +
+                                                " " +
+                                                tripulante.apellido
+                                            ) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              _vm.sumar(tripulante.copihe)
+                                            ) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(tripulante.copihp.cantidad) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _c("label", [
+                                          _c("input", {
+                                            attrs: {
+                                              type: "radio",
+                                              name: "copiloto"
+                                            }
+                                          }),
+                                          _vm._v("Seleccionar")
+                                        ])
+                                      ])
+                                    ])
+                                  }),
+                                  _vm._v(" "),
+                                  _c("br")
+                                ],
+                                2
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("b-tab", { attrs: { title: "Jefe de Cabina" } }, [
+                          _c(
+                            "table",
+                            { staticClass: "table table-hover table-striped" },
+                            [
+                              _c("thead", [
+                                _c("th", [_vm._v(" # ")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Nombre ")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Horas de Experiencia")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Vuelos de Quicena ")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Asignar ")])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                [
+                                  _vm._l(this.items3, function(tripulante) {
+                                    return _c("tr", [
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(tripulante.licencia) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              tripulante.nombre +
+                                                " " +
+                                                tripulante.apellido
+                                            ) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " + _vm._s(tripulante.jche) + " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(tripulante.jchp.cantidad) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _c("label", [
+                                          _c("input", {
+                                            attrs: {
+                                              type: "radio",
+                                              name: "jefecabina"
+                                            }
+                                          }),
+                                          _vm._v("Seleccionar")
+                                        ])
+                                      ])
+                                    ])
+                                  }),
+                                  _vm._v(" "),
+                                  _c("br")
+                                ],
+                                2
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("b-tab", { attrs: { title: "Sobrecargo" } }, [
+                          _c(
+                            "table",
+                            { staticClass: "table table-hover table-striped" },
+                            [
+                              _c("thead", [
+                                _c("th", [_vm._v(" # ")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Nombre ")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Horas de Experiencia")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Vuelos de Quicena ")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Asignar ")])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                [
+                                  _vm._l(this.items4, function(tripulante) {
+                                    return _c("tr", [
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(tripulante.licencia) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(
+                                              tripulante.nombre +
+                                                " " +
+                                                tripulante.apellido
+                                            ) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(_vm.sumar(tripulante.sohe)) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(tripulante.sohp.cantidad) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td")
+                                    ])
+                                  }),
+                                  _vm._v(" "),
+                                  _c("br")
+                                ],
+                                2
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("b-tab", { attrs: { title: "Aeronave" } })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: " col-sm-12 " },
+                      [
+                        _c(
+                          "b-button",
+                          { attrs: { type: "submit", variant: "primary" } },
+                          [_vm._v("Submit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-button",
+                          { attrs: { type: "reset", variant: "danger" } },
+                          [_vm._v("Reset")]
+                        )
+                      ],
+                      1
                     )
                   ],
                   1
                 )
-              ],
-              1
-            )
-          : _vm._e()
-      ])
+              : _vm._e()
+          ])
+        ]
+      )
     ],
     1
   )
