@@ -29,25 +29,40 @@ class TaquillaController extends Controller
 		
     }
 
-    public function DetalleVuelo2($origen,$destino,$fecha){
-        return "ok";
-        if($origen!="#"){
-            if($destino!="#")
+    public function DetalleVuelo2(Request $datos){
+         $origen=json_decode($datos['origen']);
+         $destino=json_decode($datos['destino']);
+         $fecha=json_decode($datos['fecha']);
+         
+         /* $o=typeof($origen);
+         $d=typeof($destino);
+         $f=typeof($fecha);
+         return "origen: ".$o." Destino: ".$d." Fecha: ".$f;*/
+         //return "datos cargados correctamente".$origen." ".$destino." ".$fecha; 
+
+        if($origen!=0){
+            if($destino!=0)
             {
+                //return "ok orgien destino y fecha".$origen." ".$destino." ".$fecha;
                 $rutas = Ruta::Rutas($origen,$destino,$fecha);
+                dd($rutas);
+                echo json_encode($rutas);
                 
             }//fin if destino #
             else{
+                return "ok orgien y fecha".$origen." ".$destino." ".$fecha;
                 $rutas = Ruta::Rutas_origen($origen,$fecha);
                 
             }        
         }//fin if orgen #
         else{
-            if($destino!="#")
+            if($destino!=0)
             {
+                return "ok destino y fecha".$origen." ".$destino." ".$fecha;
                 $rutas = Ruta::Rutas_destino($destino,$fecha);
             }//fin if destino #
             else{
+                return "ok fecha".$origen." ".$destino." ".$fecha;
                 $rutas = Ruta::Rutas_fecha($fecha);
             }
         }
@@ -75,7 +90,7 @@ class TaquillaController extends Controller
             $vuelosAux->estado=$vueloAux->estado;
             array_push($vuelos,$vuelosAux);
             }//fin foreach de rutas
-         return json_encode($vuelos);
+         return $vuelos;
        
         }else{ //fin if vuelos encontrado.
             return "No hay Vuelos disponibles.";

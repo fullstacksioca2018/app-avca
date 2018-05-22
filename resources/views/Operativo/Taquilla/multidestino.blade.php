@@ -4,7 +4,7 @@
     <label id="origen_label" for="origen_id">Ciudad de Origen</label>
     <div class="form-group">
       <select data-placeholder="Ciudad-Aeropuerto" id="origen_id1" name="origen_id[]" class="  fa-map-markerform-control chosen-select ">
-        <option value="#">Cuidad o aeropuerto</option>
+        <option value="0">Cuidad o aeropuerto</option>
           @foreach ($sucursales as $sucursal)
           <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
           @endforeach
@@ -16,7 +16,7 @@
       <label id="destino_label" for="destino_id">Ciudad de Destino</label>
       <div class="input-group">
         <select data-placeholder="Ciudad-Aeropuerto" id="destino_id1" name="destino_id[]" class="form-control chosen-select ">
-          <option value="#">Cuidad o aeropuerto</option>
+          <option value="0">Cuidad o aeropuerto</option>
            @foreach ($sucursales as $sucursal)
            <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
            @endforeach
@@ -42,7 +42,7 @@
         <label id="origen_label" for="origen_id{{$i}}">Ciudad de Origen</label>
         <div class="form-group">
            <select data-placeholder="Ciudad-Aeropuerto" id="origen_id{{$i}}" name="origen_id[]" class="  fa-map-markerform-control chosen-select ">
-            <option value="#">Cuidad o aeropuerto</option>
+            <option value="0">Cuidad o aeropuerto</option>
               @foreach ($sucursales as $sucursal)
               <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
               @endforeach
@@ -54,7 +54,7 @@
           <label id="destino_label" for="destino_id{{$i}}">Ciudad de Destino</label>
           <div class="input-group">
             <select data-placeholder="Ciudad-Aeropuerto" id="destino_id{{$i}}" name="destino_id[]" class="form-control chosen-select ">
-              <option value="#">Cuidad o aeropuerto</option>
+              <option value="0">Cuidad o aeropuerto</option>
                 @foreach ($sucursales as $sucursal)
               <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
                 @endforeach

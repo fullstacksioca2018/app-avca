@@ -74,6 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -265,7 +266,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<!-- <script src="/adminlte/plugins/jquery/jquery.min.js"></script> -->
+ <script src="/adminlte/plugins/jquery/jquery.min.js"></script> 
+ <script>
+ $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+ </script>
+ <script
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
 <!-- Bootstrap 4 -->
 <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
