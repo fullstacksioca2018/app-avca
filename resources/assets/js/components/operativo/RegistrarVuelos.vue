@@ -1,8 +1,8 @@
 <template>
     <div>
         <!-- Agregar -->
-        <b-form @submit.prevent="enviarFechas()">
-           <multiselect v-model="ruta" 
+        <b-form @submit.prevent="enviarFechas" >
+            <multiselect v-model="ruta" 
                         :options="rutas" 
                         selectLabel="Seleccionar" 
                         deselectLabel="Eliminar" 
@@ -10,159 +10,165 @@
                         placeholder="Seleccione el Origen" 
                         label="nombre" 
                         track-by="nombre"
-                        ></multiselect>
-        <br/>
-        <div class="row">
-            <div class="col-md-5 text-center">
-                <div class="">
+            ></multiselect>
+            <br/>
+            <div class="row">
+                <div class="col-md-5 text-center">
                     <div class="col-md-3"></div>
-                    <b-form-group align="center" id="fecha_salida"
-                      label="Fecha Salida"
-                      label-for="fecha_salida">
-                        <b-form-input id="fecha_salida"
-                            type="date"
-                            class="col-md-6"
-                            v-model="fecha"
-                            required>
-                        </b-form-input>
-                    </b-form-group>
+                        <b-form-group   align="center" id="fecha_salida"
+                            label="Fecha Salida"
+                            label-for="fecha_salida">
+                            <b-form-input id="fecha_salida"
+                                type="date"
+                                class="col-md-6"
+                                v-model="fecha"
+                                required>
+                            </b-form-input>
+                        </b-form-group>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="">
+                            <label for="duracion" class="text-center"> <b> Hora del Vuelo: </b> </label> 
+                            <div class="row" id="duracion">
+                            <div class="col-sm-4 ">                            
+                                <b-form-input type="number" min="0" max="24" required class="form-control" id="ccyear" placeholder="hora" v-model="hora"></b-form-input> 
+                            </div>
+                            <div class="form-group col-sm-4 ">                          
+                                <b-form-input type="number" min="0" max="60" required class="form-control" id="ccyear" placeholder="minutos" v-model="minutos"></b-form-input>
+                            </div>
+                            <div class="form-group col-sm-4 ">                         
+                                <b-form-input type="number" min="0" max="60" required class="form-control" id="ccyear" placeholder="segundos" v-model="segundos"></b-form-input>
+                            </div>
+                        </div>
+                    </div>                
                 </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="">
-                    <label for="duracion" class="text-center"> <b> Hora del Vuelo: </b> </label> 
-                    <div class="row" id="duracion">
-                        <div class="col-sm-4 ">                            
-                            <b-form-input type="number" min="0" max="24" required class="form-control" id="ccyear" placeholder="hora" v-model="hora"></b-form-input> 
-                        </div>
-                        <div class="form-group col-sm-4 ">                          
-                            <b-form-input type="number" min="0" max="60" required class="form-control" id="ccyear" placeholder="minutos" v-model="minutos"></b-form-input>
-                        </div>
-                        <div class="form-group col-sm-4 ">                         
-                            <b-form-input type="number" min="0" max="60" required class="form-control" id="ccyear" placeholder="segundos" v-model="segundos"></b-form-input>
+                <div class="col-md-3 text-center">
+                    <div class="">
+                        <label for="duracion" class="text-center"> <b style="color:white"> - </b> </label> 
+                        <div class=" col-sm-12 " >
+                            <b-button size="sm"  type="submit" variant="primary">                             
+                                <i class="fa fa-search">Buscar Tripulantes</i>
+                            </b-button>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
-            <div class="col-md-3 text-center">
-                <div class="">
-                    <label for="duracion" class="text-center"> <b style="color:white"> - </b> </label> 
+        </b-form>
+        <b-form @submit.prevent="onSubmit"> 
+        <!-- Parte II  -->
+        <div class="col-md-12">
+            <!-- AQUI VA LA CARGA DE TRIPULANTES Y LA AERONAVE -->
+            <div class="form-group text-center" v-if="oculto"> <!-- AQUI VA EL V-IF DE VERIFICACION -->
+                <!-- AQUI VAN LAS PESTANAS PARA CARGAR LA TRIPULACION -->
+                    <b-tabs pills card >
+                        <b-tab title=" Piloto" active>
+                              <b-form-radio-group id="piloto" v-model="form.piloto" name="piloto">
+                            <table class="table table-hover table-striped"> 
+                                <thead>
+                                    <th> # </th>
+                                    <th> Nombre </th>
+                                    <th> Horas de Experiencia</th>
+                                    <th> Vuelos de Quicena </th>
+                                    <th> Asignar </th>
+                                </thead>
+                                <tbody>
+                                   
+                                   <tr v-for="tripulante in this.items"> 
+                                       
+                                           
+                                                <td> {{tripulante.licencia}} </td>
+                                                <td> {{tripulante.nombre + " " + tripulante.apellido}} </td>
+                                                <td> {{sumar(tripulante.pihe)}} </td>
+                                                <td> {{tripulante.pihp.cantidad}} </td>
+                                               <!--  <td> <label><input type="radio" v-model="form.piloto" :value="tripulante.id" required>Seleccionar</label> </td> -->
+                                                <td>   <b-form-radio  :value="tripulante.id">Seleccionar</b-form-radio ></td>
+                                          
+                                      
+                                          </tr>
+                                          
+                                 
+                                    <br/>
+                                </tbody>
+                            </table>
+                              </b-form-radio-group>
+                        </b-tab>
+                        <b-tab title="Copiloto">
+                            <table class="table table-hover table-striped"> 
+                                <thead>
+                                    <th> # </th>
+                                    <th> Nombre </th>
+                                    <th> Horas de Experiencia</th>
+                                    <th> Vuelos de Quicena </th>
+                                    <th> Asignar </th>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="tripulante in this.items2"> 
+                                        <td> {{tripulante.licencia}} </td>
+                                        <td> {{tripulante.nombre + " " + tripulante.apellido}} </td>
+                                        <td> {{sumar(tripulante.copihe)}} </td>
+                                        <td> {{tripulante.copihp.cantidad}} </td>
+                                        <td> <label><input type="radio" name="copiloto">Seleccionar</label> </td>
+                                    </tr>
+                                    <br/>
+                                </tbody>
+                            </table>           
+                        </b-tab>
+                        <b-tab title="Jefe de Cabina">
+                            <table class="table table-hover table-striped"> 
+                                <thead>
+                                    <th> # </th>
+                                    <th> Nombre </th>
+                                    <th> Horas de Experiencia</th>
+                                    <th> Vuelos de Quicena </th>
+                                    <th> Asignar </th>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="tripulante in this.items3"> 
+                                        <td> {{tripulante.licencia}} </td>
+                                        <td> {{tripulante.nombre + " " + tripulante.apellido}} </td>
+                                        <td> {{tripulante.jche}} </td>
+                                        <td> {{tripulante.jchp.cantidad}} </td>
+                                        <td> <label><input type="radio" name="jefecabina">Seleccionar</label> </td>
+                                    </tr>
+                                    <br/>
+                                </tbody>
+                            </table>
+                        </b-tab>
+                        <b-tab title="Sobrecargo">
+                            <table class="table table-hover table-striped"> 
+                                <thead>
+                                    <th> # </th>
+                                    <th> Nombre </th>
+                                    <th> Horas de Experiencia</th>
+                                    <th> Vuelos de Quicena </th>
+                                    <th> Asignar </th>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="tripulante in this.items4"> 
+                                        <td> {{tripulante.licencia}} </td>
+                                        <td> {{tripulante.nombre + " " + tripulante.apellido}} </td>
+                                        <td> {{sumar(tripulante.sohe)}} </td>
+                                        <td> {{tripulante.sohp.cantidad}} </td>
+                                        <td>   
+                                           <!--  <input type="checkbox" :value="tripulante.id" name="sobrecargos[]">  -->
+                                        </td>                            
+                                    </tr>
+                                    <br/>
+                                </tbody>
+                            </table>
+                        </b-tab>   
+                        <b-tab title="Aeronave">
+                        </b-tab>
+                    </b-tabs>
                     <div class=" col-sm-12 " >
-                        <b-button size="sm"  type="submit" variant="primary">                             
-                            <i class="fa fa-search">Buscar Tripulantes</i>
-                        </b-button>
+                        <b-button type="submit" variant="primary">Submit</b-button>
+                        <b-button type="reset" variant="danger">Reset</b-button>                                    
                     </div>
-                </div>
-            </div>
+            </div> <!-- cierre del v-if -->
         </div>
         </b-form>
-           
-        <div class="col-md-12">
-        <!-- AQUI VA LA CARGA DE TRIPULANTES Y LA AERONAVE -->
-        <div class="form-group text-center" v-if="oculto"> <!-- AQUI VA EL V-IF DE VERIFICACION -->
-        <!-- AQUI VAN LAS PESTANAS PARA CARGAR LA TRIPULACION -->
-            <b-tabs pills card >
-                <b-tab title=" Piloto" active>
-                    <table class="table table-hover table-striped"> 
-                        <thead>
-                            <th> # </th>
-                            <th> Nombre </th>
-                            <th> Horas de Experiencia</th>
-                            <th> Vuelos de Quicena </th>
-                            <th> Asignar </th>
-                        </thead>
-                        <tbody>
-                            <tr v-for="tripulante in this.items"> 
-                                <td> {{tripulante.licencia}} </td>
-                                <td> {{tripulante.nombre + " " + tripulante.apellido}} </td>
-                                <td> {{sumar(tripulante.pihe)}} </td>
-                                <td> {{tripulante.pihp.cantidad}} </td>
-                                <td> <label><input type="radio" name="piloto">Seleccionar</label> </td>
-                            </tr>
-                            <br/>
-                        </tbody>
-                    </table>
-                </b-tab>
-                <b-tab title="Copiloto">
-                    <table class="table table-hover table-striped"> 
-                        <thead>
-                            <th> # </th>
-                            <th> Nombre </th>
-                            <th> Horas de Experiencia</th>
-                            <th> Vuelos de Quicena </th>
-                            <th> Asignar </th>
-                        </thead>
-                        <tbody>
-                            <tr v-for="tripulante in this.items2"> 
-                                <td> {{tripulante.licencia}} </td>
-                                <td> {{tripulante.nombre + " " + tripulante.apellido}} </td>
-                                <td> {{sumar(tripulante.copihe)}} </td>
-                                <td> {{tripulante.copihp.cantidad}} </td>
-                                <td> <label><input type="radio" name="copiloto">Seleccionar</label> </td>
-                            </tr>
-                            <br/>
-                        </tbody>
-                    </table>           
-                </b-tab>
-                <b-tab title="Jefe de Cabina">
-                   <table class="table table-hover table-striped"> 
-                        <thead>
-                            <th> # </th>
-                            <th> Nombre </th>
-                            <th> Horas de Experiencia</th>
-                            <th> Vuelos de Quicena </th>
-                            <th> Asignar </th>
-                        </thead>
-                        <tbody>
-                            <tr v-for="tripulante in this.items3"> 
-                                <td> {{tripulante.licencia}} </td>
-                                <td> {{tripulante.nombre + " " + tripulante.apellido}} </td>
-                                <td> {{tripulante.jche}} </td>
-                                <td> {{tripulante.jchp.cantidad}} </td>
-                                <td> <label><input type="radio" name="jefecabina">Seleccionar</label> </td>
-                            </tr>
-                            <br/>
-                        </tbody>
-                    </table>
-                
-                </b-tab>
-                <b-tab title="Sobrecargo">
-                    <table class="table table-hover table-striped"> 
-                        <thead>
-                            <th> # </th>
-                            <th> Nombre </th>
-                            <th> Horas de Experiencia</th>
-                            <th> Vuelos de Quicena </th>
-                            <th> Asignar </th>
-                        </thead>
-                        <tbody>
-                            <tr v-for="tripulante in this.items4"> 
-                                <td> {{tripulante.licencia}} </td>
-                                <td> {{tripulante.nombre + " " + tripulante.apellido}} </td>
-                                <td> {{sumar(tripulante.sohe)}} </td>
-                                <td> {{tripulante.sohp.cantidad}} </td>
-                                <td> <label><input type="radio" name="sobrecargo">Seleccionar</label> </td>
-                            </tr>
-                            <br/>
-                        </tbody>
-                    </table>
-                  
-                
-                </b-tab>   
-                <b-tab title="Aeronave">
-                  
-                   
-              </b-tab>
-            </b-tabs>
-             <div class=" col-sm-12 " >
-                        <b-button size="sm"  variant="primary">                             
-                            <i>Guardar Vuelo</i>
-                        </b-button>
-                    </div>
-        </div> <!-- cierre del v-if -->
-
        
-            </div>
+           
        
         
         </div>
@@ -183,8 +189,7 @@ export default {
             hora: null,
             minutos: null,
             segundos: null,        
-            horavuelo : null,
-            itemspilotos: null,            
+            horavuelo : null,                    
             rutas: [],
             oculto: false,   
             items: null, 
@@ -192,12 +197,46 @@ export default {
             items3: null,
             items4: null,
             data: null,   
+            form:{
+                piloto: null,
+            }
+           
+           
         }              
-    },   
+    },  
+   
     created: function(){
        this.cargarRutas()
     },
     methods: {
+        onSubmit (evt) {
+            evt.preventDefault();
+            alert(JSON.stringify(this.ruta));
+            console.log(this.ruta +","+this.form.piloto );
+           /*  axios({
+                method: 'post',
+                url: '/vuelos/crear',
+                data:{
+                    ruta: this.ruta,
+                    piloto: this.form.piloto,
+                }
+            }).then((response)=>{
+                Vue.toasted.show(response.data, {
+                    theme: "primary", 
+	                position: "bottom-right",
+	                duration : 2000
+                }); 
+            }).cath((response)=>{
+                 Vue.toasted.show('Ha ocurrido un error'.data, {
+                    theme: "primary", 
+	                position: "bottom-right",
+	                duration : 2000
+                }); 
+            }); */
+        }, 
+        Prueba(){
+
+        },
         Buscar(){
             this.enviarFechas();
            
@@ -299,6 +338,22 @@ export default {
 
 
         },
+        doit(obj){
+            limite=3; //limite de checks a seleccionar
+                if(obj.checked) {
+                    if ((num+1)>limite){
+                        obj.checked=false;
+                        alert("Solo puede seleccionar 3 sobrecargos")
+                    }
+                    else{
+                        num=num+1;
+                    }
+                }
+                else{
+                    num=num-1;
+                }
+        },
+        
         
         sumar(experiencias){
             console.log(experiencias);
