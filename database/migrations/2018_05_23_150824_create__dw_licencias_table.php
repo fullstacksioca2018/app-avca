@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDwAsistenciasTable extends Migration
+class CreateDwLicenciasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateDwAsistenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('DwAsistencias', function (Blueprint $table) {
-            $table->increments('asistencia_id');
+        Schema::create('DwLicencias', function (Blueprint $table) {
+            $table->increments('lecencia_id');
             $table->float('porcentaje')->nullable();
             $table->integer('fecha_id')->unsigned()->nullable();
             $table->integer('empleado_id')->unsigned()->nullable();
@@ -22,7 +22,6 @@ class CreateDwAsistenciasTable extends Migration
 
             $table->foreign('fecha_id')->references('fecha_id')->on('dwfechas')->onDelete('cascade');
             $table->foreign('empleado_id')->references('empleado_id')->on('dwempleados')->onDelete('cascade');
-
         });
     }
 
@@ -33,6 +32,6 @@ class CreateDwAsistenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DwAsistencias');
+        Schema::dropIfExists('DwLicencias');
     }
 }

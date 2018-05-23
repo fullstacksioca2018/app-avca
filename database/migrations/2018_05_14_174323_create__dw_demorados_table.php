@@ -16,8 +16,8 @@ class CreateDwDemoradosTable extends Migration
         Schema::create('DwDemorados', function (Blueprint $table) {
             $table->increments('demorado_id');
             $table->timestamp('salida')->nullable();
-            $table->integer('vuelo_id')->nullable();
-            // $table->foreign('vuelo_id')->references('vuelo_id')->on('dwvuelos')->onDelete('cascade');
+            $table->integer('vuelo_id')->unsigned()->nullable();
+            $table->foreign('vuelo_id')->references('vuelo_id')->on('dwvuelos')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -326,9 +326,9 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 				],
 				graficas:[],
 				tipos:[	],
-				parametros:[ 'Asistencias','Inasistencias','Licencias','Vacaciones'
+				parametros:[ 'Asistencias','Inasistencias','Licencias'/*,'Vacaciones'*/
 				],
-				parametrosP:['Asistencias','Inasistencias','Licencias','Vacaciones'
+				parametrosP:['Asistencias','Inasistencias','Licencias'/*,'Vacaciones'*/
 				],
 				parametrosI:['Ruta','Destino','Origen'
 				],
@@ -617,11 +617,40 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 			increaseHeight () {
 		        this.height += 10
 		      },
+		     validarGG(){
+		     	if(this.form.filtros.length>=1){
+		     		for (var i = 0; i < this.form.filtros.length; i++) {
+		     			if(!(this.form.datosf[this.form.filtros[i]])){
+		     				var text="Ingrese "+this.form.filtros[i]+" para filtrar";
+		     				Vue.toasted.show(text, {
+		                        theme: "primary", 
+			                    position: "bottom-right",  
+			                    duration : 2000
+		                    });
+		                    return false;
+		     			}
+		     			else{
+		     				if(this.form.datosf[this.form.filtros[i]].length==0){
+		     					var text="Ingrese "+this.form.filtros[i]+" para filtrar";
+			     				Vue.toasted.show(text, {
+			                        theme: "primary", 
+				                    position: "bottom-right",  
+				                    duration : 2000
+			                    });
+			                    return false;
+		     				}
+		     			}
+		     			
+		     		}
+		     	}
+		     	return true;
+		     },
 			generar2(){
                // console.log(this.form.datosf)
                this.loading=true;
                this.cargarFiltros();
                this.graficas=[];
+               if(this.validarGG()){
 				axios.post('/reportes/api/reporte',this.form).then((response) =>{
 					console.log(response.data);
 					this.graficas.push({
@@ -642,6 +671,10 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 	                    duration : 2000
                     });
 		        });
+               }
+               else{
+               		this.loading=false;
+               }
 			},
 			generar(){
 				var titulo="";

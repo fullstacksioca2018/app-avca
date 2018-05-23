@@ -19,13 +19,20 @@ class DwAsistenciasSeeder extends Seeder
                     'year'     => $i,
                 ]);
                 $cont++;
-                for ($k=1; $k < 251; $k++) { 
+                for ($k=1; $k < 281; $k++) { 
                     $porcentaje=rand(60, 100);
+                    $valor=100-$porcentaje;
+                    $licencia=rand(0, $valor);
 	    			DB::table('DwAsistencias')->insert([
 			            'porcentaje'      => $porcentaje,
 			            'fecha_id'     => $cont,
                         'empleado_id' => $k
 			        ]);
+                    DB::table('DwLicencias')->insert([
+                        'porcentaje'      => $licencia,
+                        'fecha_id'     => $cont,
+                        'empleado_id' => $k
+                    ]);
 				}
     		}
     	}
@@ -35,13 +42,20 @@ class DwAsistenciasSeeder extends Seeder
 		            'year'     => '2018',
 		        ]);
                 $cont++;
-                for ($k=1; $k < 251; $k++) { 
+                for ($k=1; $k < 281; $k++) { 
                     $porcentaje=rand(70, 100);
+                    $valor=100-$porcentaje;
+                    $licencia=rand(0, $valor);
 	    			DB::table('DwAsistencias')->insert([
 			            'porcentaje'      => $porcentaje,
 			            'fecha_id'     => $cont,
                         'empleado_id' => $k
 			        ]);
+                    DB::table('DwLicencias')->insert([
+                        'porcentaje'      => $licencia,
+                        'fecha_id'     => $cont,
+                        'empleado_id' => $k
+                    ]);
 				}
     		}
         
