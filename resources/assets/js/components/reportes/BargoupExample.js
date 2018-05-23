@@ -19,6 +19,7 @@ export default {
   },
   methods:{
     renderN(){
+      console.log(this.datosN)
       this.construir();
       this.renderChart({
         labels: this.datosN.labels,

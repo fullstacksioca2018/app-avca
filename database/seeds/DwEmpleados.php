@@ -11,6 +11,6 @@ class DwEmpleados extends Seeder
      */
     public function run()
     {
-        //
+        factory(\App\Models\reporte\DW_Empleado::class, 250)->create();
     }
 }

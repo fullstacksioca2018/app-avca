@@ -27,6 +27,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       padding: 10px;
       text-align: center;
     }
+    .info{
+      width: 100%;
+    }
     .user-menu .user-header {
       background-color: #3c8dbc;
     }

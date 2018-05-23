@@ -38,7 +38,10 @@ class DatabaseSeeder extends Seeder
         $this->call(DwSucursales::class);
         $this->call(DwRutas::class);
         $this->call(DwVuelos::class);
+        $this->call(DwCargosSeeder::class);
+        $this->call(DwEmpleados::class);
         $this->call(DwIngresosSeeder::class);
+        $this->call(DwAsistenciasSeeder::class);
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

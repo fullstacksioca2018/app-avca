@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDwSucursalesTable extends Migration
+class CreateDwFechaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateDwSucursalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('DwSucursales', function (Blueprint $table) {
-            $table->increments('sucursal_id');
-            $table->string('nombre', 255)->nullable();
-            $table->string('sigla', 10)->nullable();
+        Schema::create('DwFechas', function (Blueprint $table) {
+            $table->increments('fecha_id');
+            $table->integer('mes')->nullable();
+            $table->integer('year')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateDwSucursalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DwSucursales');
+        Schema::dropIfExists('DwFechas');
     }
 }

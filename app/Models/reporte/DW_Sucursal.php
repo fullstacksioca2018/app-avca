@@ -9,8 +9,13 @@ class DW_Sucursal extends Model
     protected $table = "DwSucursales";
     protected $primaryKey = "sucursal_id";
     protected $fillable = [
-			'nombre'
+			'nombre',
+            'sigla'
     ];
+
+    public function scopebuscar($query,$sucursal){
+        return $query->where('nombre',$sucursal)->first();
+    }
 
     public function origenes()
     {

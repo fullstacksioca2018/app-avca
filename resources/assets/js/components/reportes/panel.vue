@@ -22,10 +22,19 @@
 							    </b-form-group>
 					    	</div>
 					    	<!-- Lapso de Tiempo -->
-					    	<div class="col-3">
+					    	<div class="col-3" v-if="form.consulta!='Personal'">
 							     <b-form-group label="Fecha">
 							      <b-form-radio-group v-model="form.periodo"
 							                          :options="optionsP"
+							                          stacked
+							                          name="radiosStacked">
+							      </b-form-radio-group>
+							    </b-form-group>
+					    	</div>
+					    	<div class="col-3" v-else>
+					    		<b-form-group label="Fecha">
+							      <b-form-radio-group v-model="form.periodo"
+							                          :options="optionsPP"
 							                          stacked
 							                          name="radiosStacked">
 							      </b-form-radio-group>
@@ -122,8 +131,8 @@
 						    	</b-form-select>
 					    	</div>
 						</div>
-					    <div class="form-row" v-if="form.periodo=='Personalizado'">
-					    	<div class="col-md-3">
+					    	<div class="row" v-if="form.periodo=='Personalizado'&&form.consulta!='Personal'">
+					    		<div class="col-md-3">
 					              <label for="fecha_ingreso">Desde</label>
 					              <div class="input-group">
 					              	<b-form-input v-model="form.desde" type="date">
@@ -147,11 +156,91 @@
 					                </div>
 					              </div>
 					            </div>
+					        </div>
+					        <div v-if="form.periodo=='Intervalo'&&form.consulta=='Personal'">
+					        	<br>
+					            <label for="fecha_ingreso">Fecha Personalizada</label>
+					        	<br>
+					        	<div class="row">
+						        	<div class="col-md-2">
+						              <label for="fecha_ingreso">Desde</label>
+						              <div class="input-group">
+						              	<multiselect v-model="form.mesD" :options="mes" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Mes" :preselect-first="true" selectLabel="Seleccionar">
+									    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
+										</multiselect>
+						              </div>
+						            </div>
+						            <div class="col-md-2" id="flex-Perso">
+						              <label for="fecha_ingreso"></label>
+						              <div class="input-group">
+						              	<multiselect v-model="form.yearD" :options="year" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Año" :preselect-first="true" selectLabel="Seleccionar">
+									    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
+										</multiselect>
+						                <div class="input-group-append">
+						                  <span class="input-group-text">
+						                    <i class="fa fa-calendar"></i>
+						                  </span>
+						                </div>
+						              </div>
+						            </div>
+					        	</div>
+					        	<div class="row">
+						            <div class="col-md-2">
+						              <label for="fecha_ingreso">Hasta</label>
+						              <div class="input-group">
+						              	<multiselect v-model="form.mesH" :options="mes" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Mes" :preselect-first="true" selectLabel="Seleccionar">
+									    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
+										</multiselect>
+						              </div>
+						            </div>
+						            <div class="col-md-2" id="flex-Perso">
+						              <label for="fecha_ingreso"></label>
+						              <div class="input-group">
+						              	<multiselect v-model="form.yearH" :options="year" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Año" :preselect-first="true" selectLabel="Seleccionar">
+									    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
+										</multiselect>
+						                <div class="input-group-append">
+						                  <span class="input-group-text">
+						                    <i class="fa fa-calendar"></i>
+						                  </span>
+						                </div>
+						              </div>
+						            </div>
+					        	</div>
+					        <!-- </div> -->
+					    </div><br>
+					    <div v-if="form.periodo=='Personalizado'&&form.consulta=='Personal'">
+					        	<br>
+					            <label for="fecha_ingreso">Fecha Personalizada</label>
+					        	<br>
+					        	<div class="row">
+						        	<div class="col-md-2">
+						              <label for="fecha_ingreso">Mes\Año</label>
+						              <div class="input-group">
+						              	<multiselect v-model="form.mesD" :options="mes" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Mes" :preselect-first="true" selectLabel="Seleccionar">
+									    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
+										</multiselect>
+						              </div>
+						            </div>
+						            <div class="col-md-2" id="flex-Perso">
+						              <label for="fecha_ingreso"></label>
+						              <div class="input-group">
+						              	<multiselect v-model="form.yearD" :options="year" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Año" :preselect-first="true" selectLabel="Seleccionar">
+									    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
+										</multiselect>
+						                <div class="input-group-append">
+						                  <span class="input-group-text">
+						                    <i class="fa fa-calendar"></i>
+						                  </span>
+						                </div>
+						              </div>
+						            </div>
+					        	</div>
 					    </div><br>
 						<div class="row">
 				          <div class="col-12">
 				            <div class="form-group">
-				              <button type="submit" class="btn btn-success" @click="generar()">
+				              <button type="submit" class="btn btn-success" @click="generar2()">
 				                <i class="fa fa-check"></i>Generar
 				              </button>
 				            </div>
@@ -161,12 +250,15 @@
 				    </div>
 			</div>
 		</div>
-		<div class="card">
+		<div class="card" v-if="!loading">
 	    	<div class="card-block">
 				<div v-show="graficas.length>=1">
 		        	<Resultados :graficas="graficas" :tipo="form.consulta"></Resultados>
 		        </div>
 	    	</div>
+	    </div>
+	    <div class="card" v-else>
+	    	<scale-loader :loading="loading" :color="color" :height="height" :width="width"></scale-loader>
 	    </div>
 	</div>
 </div>
@@ -176,10 +268,12 @@
 <script type="text/javascript">
 import Resultados from './Resultados'
 import Multiselect from 'vue-multiselect'
+import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 	export default {
 		components: {
 		  Resultados,
 		  Multiselect,
+		  ScaleLoader,
 	    },
 	    props:['GraficaP','user','consultaProp'],
 		data () {
@@ -198,13 +292,22 @@ import Multiselect from 'vue-multiselect'
 					datosf:[],
 					desde:null,
 					hasta:null,
+					mesD:null,
+					mesH:null,
+					yearD:null,
+					yearH:null,
 					temporadas:[],
-					year:["2017"],
+					year:['2017'],
 					tipo:"Consulta",
 					busqueda:"Más alto",
 					busquedaRow:"1",
 					busquedaMonto:"2000",
-					filtrosV:null
+					filtrosV:null,
+					cargosF:null,
+					sucursalesF:null,
+					origenesF:null,
+					destinosF:null,
+					rutasF:null
 				},
 				tiposC:["Consulta","Busqueda"],
 				filtrosPjr:null,
@@ -215,8 +318,10 @@ import Multiselect from 'vue-multiselect'
 					'Abiertos','Ejecutados','Demorados','Cancelados'
 				],
 				filtrosV:null,
-				year:["2013","2014","2015","2016","2017"
+				year:["2016","2017","2018"
 				],
+				mes:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio"
+				,"Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
 				opcionesT:[ 'Decembrina','Semana Santa','Carnavales'
 				],
 				graficas:[],
@@ -229,6 +334,8 @@ import Multiselect from 'vue-multiselect'
 				],
 				parametrosS:['Vuelos','Pasajeros'
 				],
+				optionsPP:['Mes anterior','Personalizado','Intervalo'
+				],
 				optionsP:['Actual','Semana anterior','Mes anterior','Temporada','Personalizado'
 				],
 				filtros:[
@@ -237,10 +344,6 @@ import Multiselect from 'vue-multiselect'
 				busqueda:["Más alto","Más bajo","Mayor que","Menor que"],
     			busquedaRow:["1","2","3","4","5"],
 				busquedaMonto:["1000","1500","2000","2500","3000"]
-    // ][
-				// 	{text: 'Cargo', value: 'Cargo'},
-				// 	{text: 'Sucursal', value: 'Sucursal'}
-				// ]
 				,
 				filtrosP:['Cargo','Sucursal'
 				],
@@ -256,7 +359,12 @@ import Multiselect from 'vue-multiselect'
 					Ruta:['Ruta 1','Ruta 2', 'Ruta 3'
 					],
 				},
-				auxC:false
+				auxC:false,
+				loading:false,
+				color:"#4DBFEE",
+				size:"5px",
+				height:"50px",
+				width:"8px",
 			}
 		},
 		computed: {
@@ -311,6 +419,9 @@ import Multiselect from 'vue-multiselect'
 				this.Dashboard();
 			},
 			'form.consulta': function(){
+
+			},
+			'form.consulta': function(){
 				if(!this.auxC){
 					this.form.parametros=[];
 					this.form.periodo="Actual";
@@ -319,6 +430,8 @@ import Multiselect from 'vue-multiselect'
 				}
 				else
 					this.auxC=false
+				if(this.form.consulta=='Personal')
+					this.form.periodo="Mes anterior";
 				this.form.filtros=[];
 				this.form.datosf=[];
 				this.filtrosPjr=null;
@@ -347,11 +460,30 @@ import Multiselect from 'vue-multiselect'
 			this.tipoUser();
             this.CargarSucursales();
             this.CargarCargos();
+            if(this.form.consulta=='Personal')
+				this.form.periodo="Mes anterior";
         },
         mounted () {
             this.Dashboard();
 		 },
 		methods:{
+			cargarFiltros(){
+				if(this.form.datosf["Cargo"]){
+					this.form.cargosF=this.form.datosf['Cargo'];
+				}
+				if(this.form.datosf["Sucursal"]){
+					this.form.sucursalesF=this.form.datosf['Sucursal'];
+				}
+				if(this.form.datosf["Origen"]){
+					this.form.origenesF=this.form.datosf['Origen'];
+				}
+				if(this.form.datosf["Destino"]){
+					this.form.destinosF=this.form.datosf['Destino'];
+				}
+				if(this.form.datosf["Ruta"]){
+					this.form.rutasF=this.form.datosf['Ruta'];
+				}
+			},
 			tipoUser(){
 				if(this.user){
 					switch (this.user) {
@@ -485,6 +617,32 @@ import Multiselect from 'vue-multiselect'
 			increaseHeight () {
 		        this.height += 10
 		      },
+			generar2(){
+               // console.log(this.form.datosf)
+               this.loading=true;
+               this.cargarFiltros();
+               this.graficas=[];
+				axios.post('/reportes/api/reporte',this.form).then((response) =>{
+					console.log(response.data);
+					this.graficas.push({
+  						"titulo":response.data.titulo.toUpperCase(),
+  						"grafica":response.data.grafico,
+  						"datos":response.data.datos
+  					});
+               		this.loading=false;
+					Vue.toasted.show('Reporte Generado', {
+                        theme: "primary", 
+	                    position: "bottom-right",  
+	                    duration : 2000
+                    });
+				}).catch(function (error) {
+		        	Vue.toasted.show('Ha ocurrido un error', {
+                        theme: "primary", 
+	                    position: "bottom-right",  
+	                    duration : 2000
+                    });
+		        });
+			},
 			generar(){
 				var titulo="";
 				var grafico="";
@@ -561,11 +719,11 @@ import Multiselect from 'vue-multiselect'
 					  							if(this.form.datosf["Cargo"]){
 					  								for (var k = 0; k < this.form.datosf["Cargo"].length; k++) {
 					  									barras.push(this.form.parametros[i]+": Suc. "+this.form.datosf["Sucursal"][j]+", "+this.form.datosf["Cargo"][k]);
-					  									datosbarra.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
+					  									datosbarra.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
 					  								}
 					  							}else{
 					  								barras.push(this.form.parametros[i]+": Suc. "+this.form.datosf["Sucursal"][j]);
-					  								datosbarra.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
+					  								datosbarra.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
 					  							}
 					  						}
 					  					}
@@ -573,11 +731,11 @@ import Multiselect from 'vue-multiselect'
 					  						if(this.form.datosf["Cargo"]){
 				  								for (var k = 0; k < this.form.datosf["Cargo"].length; k++) {
 					  									barras.push(this.form.parametros[i]+", "+this.form.datosf["Cargo"][k]);
-						  								datosbarra.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
+						  								datosbarra.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
 				  								}
 				  							}else{
 				  								barras.push(this.form.parametros[i]);
-						  						datosbarra.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
+						  						datosbarra.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
 				  							}
 					  					}
 					  				}
@@ -602,7 +760,7 @@ import Multiselect from 'vue-multiselect'
 			  							for (var k = 0; k < this.form.datosf[this.form.filtros[j]].length; k++) {
 			  								if(this.form.filtros[j]==this.form.parametros[i]){
 				  								label.push(this.form.datosf[this.form.filtros[j]][k]);
-				  								data.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
+				  								data.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
 			  								}
 			  							}
 		  							}
@@ -657,10 +815,6 @@ import Multiselect from 'vue-multiselect'
 
 				  			titulo="Servicios";
 				  			inferior=[ 'Abril', 'Mayo'];
-				  			// label=['Vuelos origen 2','Vuelos destino 1','Vuelos ruta 2'];
-				  			// stack=['Stack 0','Stack 1','Stack 2'];
-				  			// data.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
-				  			// data.push([this.aleatorio(),this.aleatorio(),this.aleatorio(),this.aleatorio()]);
 							grafico="BarG";
 							datos={labels:inferior,label:label,stack:stack,data:data}
 			  				this.graficas.push({"titulo":titulo.toUpperCase(),"grafica":grafico,"datos":datos});
@@ -711,5 +865,8 @@ import Multiselect from 'vue-multiselect'
 	.marginCero{
 		margin-right: 0px !important;
 		margin-left: 0px !important;
+	}
+	#flex-Perso .input-group{
+		flex-wrap: inherit;
 	}
 </style>
