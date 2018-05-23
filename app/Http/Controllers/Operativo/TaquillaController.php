@@ -24,46 +24,47 @@ class TaquillaController extends Controller
 
     public function taquilla(){
     	$sucursales = Sucursal::orderBy('ciudad','ASC')->get();
-		//dd($sucursal);
 		return view('Operativo.Taquilla.Taquilla',compact('sucursales'));
 		
     }
 
     public function DetalleVuelo2(Request $datos){
-         $origen=json_decode($datos['origen']);
-         $destino=json_decode($datos['destino']);
-         $fecha=json_decode($datos['fecha']);
          
-         /* $o=typeof($origen);
-         $d=typeof($destino);
-         $f=typeof($fecha);
-         return "origen: ".$o." Destino: ".$d." Fecha: ".$f;*/
-         //return "datos cargados correctamente".$origen." ".$destino." ".$fecha; 
-
-        if($origen!=0){
-            if($destino!=0)
+        $origen = $datos->all();
+    
+        if($origen['origen']!=0){
+            if($origen['destino']!=0)
             {
-                //return "ok orgien destino y fecha".$origen." ".$destino." ".$fecha;
-                $rutas = Ruta::Rutas($origen,$destino,$fecha);
-                dd($rutas);
-                echo json_encode($rutas);
+                
+               // $fechajson =Carbon::parse($origen['fecha'])->format('Y/m/d');
+                
+                $rutas = Ruta::Rutas($origen['origen'],$origen['destino'],$origen['fecha']);
+               /*  echo json_encode($rutas);
+                return; */
                 
             }//fin if destino #
             else{
-                return "ok orgien y fecha".$origen." ".$destino." ".$fecha;
-                $rutas = Ruta::Rutas_origen($origen,$fecha);
-                
+                // $fechajson =Carbon::parse($origen['fecha'])->format('Y/m/d');
+                //return "ok orgien y fecha".$origen." ".$destino." ".$fecha;
+                $rutas = Ruta::Rutas_origen($origen['origen'],$origen['fecha']);
+                //dd($rutas);
             }        
         }//fin if orgen #
         else{
-            if($destino!=0)
+            if($origen['destino']!=0)
             {
-                return "ok destino y fecha".$origen." ".$destino." ".$fecha;
-                $rutas = Ruta::Rutas_destino($destino,$fecha);
+               //  $fechajson =Carbon::parse($origen['fecha'])->format('Y/m/d');
+                //return "ok destino y fecha".$origen." ".$destino." ".$fecha;
+                $rutas = Ruta::Rutas_destino($origen['destino'],$origen['fecha']);
+               // dd($rutas);
             }//fin if destino #
             else{
-                return "ok fecha".$origen." ".$destino." ".$fecha;
-                $rutas = Ruta::Rutas_fecha($fecha);
+                // $fechajson =Carbon::parse(json_decode($origen['fecha']))->format('Y/m/d');
+                //// dd($fechajson);
+                 // return "ok fecha".$origen['origen']." ".$origen['destino']." ".$fechajson;
+                $rutas = Ruta::Rutas_fecha($origen['fecha']);
+                //echo json_encode($rutas[0]);
+                //return;
             }
         }
        if(count($rutas)){
@@ -73,16 +74,18 @@ class TaquillaController extends Controller
             $objAUX= new stdclass();
             
             foreach($rutas as $vuelo){
+                //dd($vuelo);
                 $vueloAux=Vuelo::find($vuelo->id);
                 $vuelosAux=new stdclass();
                 $segmentos=$vueloAux->segmentos;
                 $segmentosAux=array();
                 foreach($segmentos as $seg){
-                    $segAux= new stdclass();
-                    $segAUX->ruta=$seg->ruta;
-                    $segAUX->origen=$seg->orgien;
-                    $segAUX->destino=$seg->destino;
-                    array_push($segmentosAux,$segAux);
+                    if(!empty($seg))
+                    {$segAUX= new stdclass();
+                        $segAUX->ruta=$seg->ruta->id;
+                        $segAUX->origen=$seg->ruta->origen_id;
+                        $segAUX->destino=$seg->ruta->destino_id;
+                        array_push($segmentosAux,$segAUX);}
                 }//fin foreach segmentos
             $vuelosAux->id=$vuelo->id;
             $vuelosAux->segmentos=$segmentosAux;
@@ -90,10 +93,15 @@ class TaquillaController extends Controller
             $vuelosAux->estado=$vueloAux->estado;
             array_push($vuelos,$vuelosAux);
             }//fin foreach de rutas
-         return $vuelos;
+        // dd($vuelos);
+         //dd($vuelos);
+        echo json_encode($vuelos);
+         return;
        
         }else{ //fin if vuelos encontrado.
-            return "No hay Vuelos disponibles.";
+            $vuelos="No hay Vuelos disponibles.";
+            echo json_encode($vuelos);
+            return;
         }
         
     }

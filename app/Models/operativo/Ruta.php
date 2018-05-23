@@ -46,7 +46,7 @@ class Ruta extends Model
                 ->join('rutas','segmentos.ruta_id','=','rutas.id')
                 ->join('sucursales','rutas.origen_id','=','sucursales.sucursal_id')
                 ->where([['rutas.origen_id','=',$origen_id],['rutas.destino_id','=',$destino_id]])
-                ->whereDate('vuelos.fecha_salida', '=', $date->format('Y-m-d'))->get();
+                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); //->format('Y-m-d'))->get()
        // return DB::table('rutas')->join('sucursales','sucursales.id','=','rutas.origen_id')
        //                         ->join('segmentos','segmentos.ruta_id','=','rutas.id')  
        //                         ->join('vuelos','vuelos.id','=','segmentos.vuelo_id')
@@ -63,7 +63,7 @@ class Ruta extends Model
                 ->join('rutas','segmentos.ruta_id','=','rutas.id')
                 ->join('sucursales','rutas.origen_id','=','sucursales.sucursal_id')
                 ->where('rutas.origen_id','=',$origen_id)
-                ->whereDate('vuelos.fecha_salida', '=', $date->format('Y-m-d'))->get();
+                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); /* ->format('Y-m-d'))->get() */
     }
 
     public function scopeRutas_destino($query, $origen_id,$date) //buscar rutas y vuelos por destino y fecha
@@ -74,17 +74,17 @@ class Ruta extends Model
                 ->join('rutas','segmentos.ruta_id','=','rutas.id')
                 ->join('sucursales','rutas.origen_id','=','sucursales.sucursal_id')
                 ->where('rutas.destino_id','=',$destino_id)
-                ->whereDate('vuelos.fecha_salida', '=', $date->format('Y-m-d'))->get();
+                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); /* ->format('Y-m-d'))->get() */
     }
 
-    public function scopeRutas_fecha ($query, $origen_id, $destino_id,$date) //buscar rutas y vuelos por fecha
+    public function scopeRutas_fecha ($query ,$date) //buscar rutas y vuelos por fecha
     {
       return DB::table('vuelos')
                 ->select('vuelos.id')
                 ->join('segmentos','vuelos.id','=','segmentos.vuelo_id')
                 ->join('rutas','segmentos.ruta_id','=','rutas.id')
                 ->join('sucursales','rutas.origen_id','=','sucursales.sucursal_id')
-                ->whereDate('vuelos.fecha_salida', '=', $date->format('Y-m-d'))->get();
+                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); /* ->format('Y-m-d'))->get() */
     }
 
 

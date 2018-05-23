@@ -71,15 +71,41 @@ $(document).ready(function () {
 	var origen=$("#origen_id1").val();
 	var destino=$("#destino_id1").val();
 	var fecha=$("#salida1").val();
-	origenJSON=JSON.stringify(origen);
-	destinoJSON=JSON.stringify(destino);
-	fechaJSON=JSON.stringify(fecha);
 	   $.ajax({  //transformar datos a json para enviarlos
 		url:'taquilla/DetalleVuelo2',
-		data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+		data:{"origen":origen,"destino":destino,"fecha":fecha},
 		type:'get',
-		success: function (response) {
-			$("#resultados_vuelo_1").html(response);
+		dataType: 'json',
+		success: function algo(response){
+			
+			var html='';
+			html+="<strom>Vuelos Disponibles:</strom>";
+			html+="<div class='form-group'>";	
+			html+="<table class='text-center'>"
+			html+="<tr >";
+			html+="<th>Origen  </th>";
+			html+="<th>Destino </th>";
+			html+="<th>Fecha </th>";
+			html+="<th>Hora </th>";
+			html+="<th> - </th>";
+			html+="</tr>";
+			
+			for (var i=0; i<response.length;i++)
+				{
+					if(response[i].estado=="abierto")
+					{
+						html+="<tr >";
+						html+="<th>"+response[i].segmentos[0].origen+"</th>";
+						html+="<th>"+response[i].segmentos[0].destino+"</th>";
+						var elementos = response[i].fecha.split(' ');
+						html+="<th>"+elementos[0]+"</th>";
+						html+="<th>"+elementos[1]+"</th>";
+						html+="<th> - </th>";
+						html+="</tr>";
+					}//fin if vuelos disponibles
+				}//fin for
+			 html+="</table></div></div>";
+			$("#resultados_vuelo_1").html(html);	
 		},
 		statusCode: {
 		   404: function() {
@@ -100,13 +126,12 @@ $(document).ready(function () {
 		var origen=$("#origen_id2").val();
 		var destino=$("#destino_id2").val();
 		var fecha=$("#salida2").val();
-		origenJSON=JSON.stringify(origen);
-		destinoJSON=JSON.stringify(destino);
-		fechaJSON=JSON.stringify(fecha);
+
 		$.ajax({  //transformar datos a json para enviarlos
 			url:'taquilla/DetalleVuelo2',
-			data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+			data:{"origen":origen,"destino":destino,"fecha":fecha},
 			type:'get',
+			dataType: 'json',
 			success: function (response) {
 				$("#resultados_vuelo_2").html(response);
 			},
@@ -128,13 +153,12 @@ $(document).ready(function () {
 		var origen=$("#origen_id3").val();
 		var destino=$("#destino_id3").val();
 		var fecha=$("#salida3").val();
-		origenJSON=JSON.stringify(origen);
-		destinoJSON=JSON.stringify(destino);
-		fechaJSON=JSON.stringify(fecha);
+		
 		$.ajax({  //transformar datos a json para enviarlos
 			url:'taquilla/DetalleVuelo2',
-			data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+			data:{"origen":origen,"destino":destino,"fecha":fecha},
 			type:'get',
+			dataType: 'json',
 			success: function (response) {
 				$("#resultados_vuelo_3").html(response);
 			},
@@ -153,13 +177,12 @@ $(document).ready(function () {
 		var origen=$("#origen_id4").val();
 		var destino=$("#destino_id4").val();
 		var fecha=$("#salida4").val();
-		origenJSON=JSON.stringify(origen);
-		destinoJSON=JSON.stringify(destino);
-		fechaJSON=JSON.stringify(fecha);
+		
 		$.ajax({  //transformar datos a json para enviarlos
 			url:'taquilla/DetalleVuelo2',
-			data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+			data:{"origen":origen,"destino":destino,"fecha":fecha},
 			type:'get',
+			dataType: 'json',
 			success: function (response) {
 				$("#resultados_vuelo_4").html(response);
 			},
@@ -184,13 +207,12 @@ $(document).ready(function () {
 	var origen=$("#origen_id1").val();
 	var destino=$("#destino_id1").val();
 	var fecha=$("#salida1").val();
-	origenJSON=JSON.stringify(origen);
-	destinoJSON=JSON.stringify(destino);
-	fechaJSON=JSON.stringify(fecha);
+
 	   $.ajax({  //transformar datos a json para enviarlos
 		url:'taquilla/DetalleVuelo2',
-		data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+		data:{"origen":origen,"destino":destino,"fecha":fecha},
 		type:'get',
+		dataType: 'json',
 		success: function (response) {
 			$("#resultados_vuelo_1").html(response);
 		},
@@ -215,13 +237,12 @@ $(document).ready(function () {
 			var origen=$("#origen_id2").val();
 			var destino=$("#destino_id2").val();
 			var fecha=$("#salida2").val();
-			origenJSON=JSON.stringify(origen);
-			destinoJSON=JSON.stringify(destino);
-			fechaJSON=JSON.stringify(fecha);
+
 			$.ajax({  //transformar datos a json para enviarlos
 				url:'taquilla/DetalleVuelo2',
-				data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+				data:{"origen":origen,"destino":destino,"fecha":fecha},
 				type:'get',
+				dataType: 'json',
 				success: function (response) {
 					$("#resultados_vuelo_2").html(response);
 				},
@@ -236,9 +257,6 @@ $(document).ready(function () {
 	});
 
 
-
-
-
 	$("#destino_id3").change(function () {
 		var idd = $("#destino_id3").val();
 		$("#origen_id4 option[value=" + idd + "]").attr("selected", true);
@@ -247,12 +265,10 @@ $(document).ready(function () {
 		var origen=$("#origen_id3").val();
 		var destino=$("#destino_id3").val();
 		var fecha=$("#salida3").val();
-		origenJSON=JSON.stringify(origen);
-		destinoJSON=JSON.stringify(destino);
-		fechaJSON=JSON.stringify(fecha);
+		
 		$.ajax({  //transformar datos a json para enviarlos
 			url:'taquilla/DetalleVuelo2',
-			data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+			data:{"origen":origen,"destino":destino,"fecha":fecha},
 			type:'get',
 			success: function (response) {
 				$("#resultados_vuelo_3").html(response);
@@ -272,13 +288,12 @@ $(document).ready(function () {
 		var origen=$("#origen_id4").val();
 		var destino=$("#destino_id4").val();
 		var fecha=$("#salida4").val();
-		origenJSON=JSON.stringify(origen);
-		destinoJSON=JSON.stringify(destino);
-		fechaJSON=JSON.stringify(fecha);
-		$.ajax({  //transformar datos a json para enviarlos
+		
+		$.ajax({  
 			url:'taquilla/DetalleVuelo2',
-			data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+			data:{"origen":origen,"destino":destino,"fecha":fecha},
 			type:'get',
+			dataType: 'json',
 			success: function (response) {
 				$("#resultados_vuelo_4").html(response);
 			},
@@ -299,15 +314,15 @@ $(document).ready(function () {
 		var origen=$("#origen_id1").val();
 		var destino=$("#destino_id1").val();
 		var fecha=$("#salida1").val();
-		origenJSON=JSON.stringify(origen);
-		destinoJSON=JSON.stringify(destino);
-		fechaJSON=JSON.stringify(fecha);
+			
 		$.ajax({  //transformar datos a json para enviarlos
 			url:'taquilla/DetalleVuelo2',
-			data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+			data:{"origen":origen,"destino":destino,"fecha":fecha},
 			type:'get',
+			dataType: 'json',
 			success: function (response) {
-				$("#resultados_vuelo_1").html(response);
+				var id=
+				$("#resultados_vuelo_1").html(response.id);
 			},
 			statusCode: {
 			404: function() {
@@ -325,13 +340,12 @@ $(document).ready(function () {
 		var origen=$("#origen_id2").val();
 		var destino=$("#destino_id2").val();
 		var fecha=$("#salida2").val();
-		origenJSON=JSON.stringify(origen);
-		destinoJSON=JSON.stringify(destino);
-		fechaJSON=JSON.stringify(fecha);
-		$.ajax({  //transformar datos a json para enviarlos
+		
+		$.ajax({  
 			url:'taquilla/DetalleVuelo2',
-			data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+			data:{"origen":origen,"destino":destino,"fecha":fecha},
 			type:'get',
+			dataType: 'json',
 			success: function (response) {
 				$("#resultados_vuelo_2").html(response);
 			},
@@ -350,13 +364,12 @@ $(document).ready(function () {
 		var origen=$("#origen_id3").val();
 		var destino=$("#destino_id3").val();
 		var fecha=$("#salida3").val();
-		origenJSON=JSON.stringify(origen);
-		destinoJSON=JSON.stringify(destino);
-		fechaJSON=JSON.stringify(fecha);
-		$.ajax({  //transformar datos a json para enviarlos
+		
+		$.ajax({  
 			url:'taquilla/DetalleVuelo2',
-			data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+			data:{"origen":origen,"destino":destino,"fecha":fecha},
 			type:'get',
+			dataType: 'json',
 			success: function (response) {
 				$("#resultados_vuelo_3").html(response);
 			},
@@ -375,15 +388,21 @@ $(document).ready(function () {
 		var origen=$("#origen_id4").val();
 		var destino=$("#destino_id4").val();
 		var fecha=$("#salida4").val();
-		origenJSON=JSON.stringify(origen);
-		destinoJSON=JSON.stringify(destino);
-		fechaJSON=JSON.stringify(fecha);
-		$.ajax({  //transformar datos a json para enviarlos
+		$.ajax({  
 			url:'taquilla/DetalleVuelo2',
-			data:{"origen":origenJSON,"destino":destinoJSON,"fecha":fechaJSON},
+			data:{"origen":origen,"destino":destino,"fecha":fecha},
 			type:'get',
+			dataType: 'json',
 			success: function (response) {
-				$("#resultados_vuelo_4").html(response);
+				Vue.toasted.show('Carga de Vuelos completa'+response, {
+					theme: "primary",
+					position: "bottom-right",
+					duration: 2000
+				});
+				$.each(response, function(){
+					$("#resultados_vuelo_4").html($("#resultados_vuelo_4").html()+this.goalone+"</br>");
+				});
+				
 			},
 			statusCode: {
 			404: function() {

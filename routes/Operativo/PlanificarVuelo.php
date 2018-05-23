@@ -6,7 +6,9 @@
         Route::get('/rutas','Operativo\PlanificarVueloController@rutas');
         Route::get('/pilotos','Operativo\PlanificarVueloController@pilotos');
         Route::post('/disponibilidad','Operativo\PlanificarVueloController@disponibilidad');
-        Route::get('/disponibilidad','Operativo\PlanificarVueloController@prueba');
+      /*   Route::get('/disponibilidad','Operativo\PlanificarVueloController@prueba'); */
+        Route::post('/crear','Operativo\PlanificarVueloController@crear');
+        Route::get('/crear','Operativo\PlanificarVueloController@creart');
 
         
     });

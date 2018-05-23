@@ -19,7 +19,7 @@ class Tripulante extends Model
     } 
 
     public function vuelos(){
-        return $this->belongsToMany('App\Vuelo');
+        return $this->belongsToMany('App\Models\Operativo\Vuelo');
     }
     
     public function scopePersona($query){

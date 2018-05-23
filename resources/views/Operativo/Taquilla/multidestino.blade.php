@@ -23,7 +23,7 @@
         </select>
       </div>
     </div>
-    
+  
     <div class="col-md-4 col-form-label">
       <label id="fecha_salida2_label" for="salida1">Fecha de Salida</label>
       <div class="input-group">
