@@ -9,10 +9,9 @@
 		Route::get('/CompraBoleto/{indicador}','Operativo\TaquillaController@CompraBoleto')->name('operativo.CompraBoleto');
 		Route::post('/BoletoVendido', 'Operativo\TaquillaController@BoletoVendido')->name('operativo.BoletoVendido');
 	});
-	Route::group(['prefix'=>'compra',/* 'middleware' => 'auth' */],function(){
-		Route::get('/','Operativo\TaquillaController@DetalleVuelo');
-		
-		
+	//Check
+    Route::group(['prefix'=>'check',/* 'middleware' => 'auth' */],function(){
+		Route::get('/','Operativo\CheckController@check');
 		
 	});
 ?>

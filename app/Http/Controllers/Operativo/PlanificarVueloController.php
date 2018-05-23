@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\operativo\Vuelo;
+use App\Models\operativo\Segmento;
 use App\Models\operativo\Ruta;
 use App\Models\operativo\Aeronave;
 use App\Models\operativo\Tripulante;
@@ -92,13 +93,19 @@ class PlanificarVueloController extends Controller
         $obj = array();
          
         $tripulantes = Tripulante::orderBy('id')->get();
+
         foreach($tripulantes as $tripulante){
             $objAux = new stdClass(); 
             $tripulante->empleado;
             $tripulante->empleado->experiencia = $tripulante->HorasExperiencia($tripulante->id);
-            $objAux->tripulante = $tripulante;   
+            $objAux->tripulante = $tripulante; 
+            
             array_push($obj,$objAux);
         }
+        $objAeronaves = new stdClass(); 
+        $objAeronaves->aeronaves = Aeronave::orderBy('id')->get();
+        array_push($obj,$objAeronaves);
+       
         return $obj;
     }
 
@@ -196,122 +203,99 @@ class PlanificarVueloController extends Controller
         $data['jefac'] = $jefacs;
         
         
-      /*   $aeronaves=$aeronave->Disponibilidad($antes,$despues);
+        $aeronaves=$aeronave->Disponibilidad($antes,$despues);
         $aehm= array(); //HORAS DE VUELOS DESPUES DEL MANTENIMIENTO DE LA AERONAVE
         foreach ($aeronaves as $aeronaveF) {
-            $personal->aeronave = $aeronaveF;
-            $personal->aeronave->$aehm = $aeronave->HorasPostMantenimiento($aeronaveF->id)[0];
+            $personal->aeronaveF = $aeronaveF;
+            $personal->aeronaveF->aehm = $aeronave->HorasPostMantenimiento($aeronaveF->id);
         }  
-        $data['aeronave'] = $aeronaves; */
+        $data['aeronave'] = $aeronaves;
         return $data;
         
     
     }
 
-    public function prueba(Request $dato){
-        $datos['fecha'] = "2018-05-18";
-        $year=DATE("Y",strtotime($datos['fecha']));
-        $mes=DATE("m",strtotime($datos['fecha']));
-        $dia=DATE("d",strtotime($datos['fecha']));
-        $minuto=DATE("i",strtotime($datos['fecha'])); //minutos
-        $hora=DATE("H",strtotime($datos['fecha']));//hora en formato 24hras
-        $actual = Carbon::now();
-        $salidaCarbon = Carbon::parse($datos['fecha']);
-        $actual->addHours(4); //agg 24hras a la hora actual con el fin de permitir planificar vuelos con minimo 4hras de antelación
-
-        if(!($salidaCarbon->gt($actual))){ //si la salida no es despues de la fecha actual
-            return 'Fecha inválida';
-        } 
+    public function crear(Request $request){
+        $fecha          = $request->fecha; 
+        $ruta_id        = $request['ruta']['id'];      
+        $piloto         = Tripulante::find($request->piloto);
+        $copiloto       = Tripulante::find($request->copiloto);
+        $jefac          = Tripulante::find($request->jefac);
+        $sobrecargo1    = Tripulante::find($request->sobrecargo[0]);
+        $sobrecargo2    = Tripulante::find($request->sobrecargo[1]);
+        $sobrecargo3    = Tripulante::find($request->sobrecargo[2]);        
+        $aeronave       = $request['aeronave'];
+        //Generar Vuelo
+        $vuelo = new Vuelo();       
+        $vuelo->estado= "abierto";
+        $vuelo->n_vuelo = 'VH-'.str_random(5);       
+        $vuelo->fecha_salida=$fecha;
+        $vuelo->save();
+        //Generar Segmento
+        $segmento = new Segmento();
+        $segmento->aeronave_id=$aeronave;       
+        $segmento->vuelo_id=$vuelo->id;        
+        $segmento->ruta_id=$ruta_id;        
+        $segmento->save();
+        //Generar Tripulantes
+        
+        $piloto->vuelos()->attach($vuelo->id);
        
+        $copiloto->vuelos()->attach($vuelo->id);
         
-       $personal = new Tripulante;
-        
-        $aeronave= new Aeronave;
-       
-       
-        $horaA=$hora-4;
-        $horaD=$hora+4;
-        $antes=$year.'-'.$mes.'-'.$dia.' '.$horaA.':'.$minuto.':00';
-        $despues=$year.'-'.$mes.'-'.$dia.' '.$horaD.':'.$minuto.':00';
-        
-        //DATOS PARA CALCULAR HORAS PLANIFICADAS DEL PERSONAL PARA LA QUICENA
-        //Y LAS HORAS DE VUELO DE EXPERIENCIA
-        //
-        $actual2=Carbon::now();
-        
-        $mes2=DATE("m",strtotime($salidaCarbon->toDateTimeString()));
-        
-        $year2=DATE("Y",strtotime($salidaCarbon->toDateTimeString()));
-        $fechaincio=DATE("d",strtotime($salidaCarbon->toDateTimeString()));
-        if($fechaincio<15){ //dia de partida para calcular las horas de vuelos planificadas en la quicena
-            $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
-            $fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
-        }
-        else{
-            $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
-            $fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
-        } 
-
-       
-        
-        $pilotos=$personal->Disponibilidad('piloto',$antes,$despues);
-        
-        $pihe= array(); //HORAS DE EXPERIENCIA DEL PILOTO
-        $pihp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
-        foreach ($pilotos as $piloto) {
-            $personal->piloto = $piloto;
-            $personal->piloto->pihe = $personal->HorasExperiencia($piloto->id,$actual2->toDateTimeString()[0]);
-            $personal->piloto->pihp = $personal->VuelosPlanificadas($piloto->id,$fechaincio,$fechafin)[0];
-           
-        } 
-        $data['piloto'] = $pilotos;
-       
-        
-        $copilotos=$personal->Disponibilidad("copiloto",$antes,$despues);
-        $copihe= array(); //HORAS DE EXPERIENCIA DEL COPILOTO
-        $copihp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
-        foreach ($copilotos as $copiloto) {
-            $personal->copiloto = $copiloto;
-            $personal->copiloto->copihe = $personal->HorasExperiencia($copiloto->id,$actual2->toDateTimeString()[0]);
-            $personal->copiloto->copihp = $personal->VuelosPlanificadas($copiloto->id,$fechaincio,$fechafin)[0];
-        }
-        $data['copiloto'] = $copilotos;
-
+        $jefac->vuelos()->attach($vuelo->id);
       
-        $sobrecargos=$personal->Disponibilidad("sobrecargo",$antes,$despues);
-        $sohe= array(); //HORAS DE EXPERIENCIA DEL SOBRECARGO
-        $sohp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
-        $i = 0;
-        foreach ($sobrecargos as $sobrecargo) {
-            $personal->sobrecargo = $sobrecargo;
-            $personal->sobrecargo->sohe = $personal->HorasExperiencia($sobrecargo->id,$actual2->toDateTimeString()[0]);
-            $personal->sobrecargo->sohp = $personal->VuelosPlanificadas($sobrecargo->id,$fechaincio,$fechafin)[0];
-            
-        }
-        $data['sobrecargos'] = $sobrecargos;
-
-        $jefacs=$personal->Disponibilidad("jefe de cabina",$antes,$despues);
-        $jche= array(); //HORAS DE EXPERIENCIA DEL JEFA DE CABINA
-        $jchp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
-        foreach ($jefacs as $jefac) {
-            $personal->jefac = $jefac;
-            $personal->jefac->jche = $personal->HorasExperiencia($jefac->id,$actual2->toDateTimeString()[0]);
-            $personal->jefac->jchp = $personal->VuelosPlanificadas($jefac->id,$fechaincio,$fechafin)[0];
-        }
-
-        $data['jefac'] = $jefacs;
+        $sobrecargo1->vuelos()->attach($vuelo->id);
         
+        $sobrecargo2->vuelos()->attach($vuelo->id);
         
-        $aeronaves=$aeronave->Disponibilidad($antes,$despues);
-        $aehm= array(); //HORAS DE VUELOS DESPUES DEL MANTENIMIENTO DE LA AERONAVE
-        foreach ($aeronaves as $aeronaveF) {
-            $personal->aeronaveF = $aeronaveF;
-            $personal->aeronaveF->$aehm = $aeronave->HorasPostMantenimiento($aeronaveF->id)[0];
-        }  
-        $data['aeronave'] = $aeronaves;
-        return $data;
+        $sobrecargo3->vuelos()->attach($vuelo->id);
+  
+        return "El Vuelo ha sido planificado, [ir a vuelos abiertos]";
+       
+     
         
+        //return $fecha;
     }
+
+    public function creart(){
+        $fecha          = "2018-05-23 00:00:00"; 
+        $ruta_id        = "1";      
+        $piloto         = Tripulante::find("1");
+        $copiloto       = Tripulante::find("2");
+        $jefac          = Tripulante::find("3");
+        $sobrecargo1    = Tripulante::find("4");
+        $sobrecargo2    = Tripulante::find("5");
+        $sobrecargo3    = Tripulante::find("6");        
+        $aeronave       = "1";
+        //Generar Vuelo
+        $vuelo = new Vuelo();       
+        $vuelo->estado= "abierto";
+        $vuelo->n_vuelo = 'VH-'.str_random(5);       
+        $vuelo->fecha_salida=$fecha;
+        $vuelo->save();
+        //Generar Segmento
+        $segmento = new Segmento();
+      
+        $segmento->aeronave_id=$aeronave;
+       
+        $segmento->vuelo_id=$vuelo->id;
+        
+        $segmento->ruta_id=$ruta_id;
+
+        $piloto->vuelos()->attach($vuelo->id);
+        $copiloto->vuelos()->attach($vuelo->id);
+        $jefac->vuelos()->attach($vuelo->id);
+        $sobrecargo1->vuelos()->attach($vuelo->id);
+        $sobrecargo2->vuelos()->attach($vuelo->id);
+        $sobrecargo3->vuelos()->attach($vuelo->id);
+  
+        
+        $segmento->save();
+        return "ok";
+    }
+
+    
        
 
       
