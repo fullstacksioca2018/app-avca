@@ -373,8 +373,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 					Sucursal:[],
 					Origen:[],
 					Destino:[],
-					Ruta:['Ruta 1','Ruta 2', 'Ruta 3'
-					],
+					Ruta:[],
 				},
 				auxC:false,
 				loading:false,
@@ -494,6 +493,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 			this.tipoUser();
             this.CargarSucursales();
             this.CargarCargos();
+            this.CargarRutas();
 			if(this.form.consulta=='Personal'){
 				this.form.periodo="Mes anterior";
 				this.busquedaMonto=this.busquedaMontoP;
@@ -594,9 +594,29 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
                     console.log(err);
                 });
 			},
+			CargarRutas(){
+				axios({
+                    method: 'get',
+                    url: '/reportes/api/rutas'       
+                }).then((response) =>{
+                    this.formatorutas(response);
+                }).catch((err)=>{
+                    Vue.toasted.show('Ha ocurrido un error', {
+                        theme: "primary", 
+	                    position: "bottom-right",  
+	                    duration : 2000
+                    });
+                    console.log(err);
+                });
+			},
 			formatocargos(data){
                 for (var i= 0; i < data.data.length; i++){
 					this.opciones.Cargo.push(data.data[i].titulo);
+				}
+			},
+			formatorutas(data){
+                for (var i= 0; i < data.data.length; i++){
+					this.opciones.Ruta.push(data.data[i]);
 				}
 			},
 			formatosucursal(data){
@@ -700,7 +720,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
                this.cargarFiltros();
                this.graficas=[];
                if(this.validarGG()){
-				axios.post('/reportes/api/reporte',this.form).then((response) =>{
+				axios.post('/reportes/api/reporte/'+this.form.consulta,this.form).then((response) =>{
 					console.log(response.data);
 					this.graficas.push({
   						"titulo":response.data.titulo.toUpperCase(),

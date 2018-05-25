@@ -116338,7 +116338,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 				Sucursal: [],
 				Origen: [],
 				Destino: [],
-				Ruta: ['Ruta 1', 'Ruta 2', 'Ruta 3']
+				Ruta: []
 			},
 			auxC: false,
 			loading: false,
@@ -116443,6 +116443,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 		this.tipoUser();
 		this.CargarSucursales();
 		this.CargarCargos();
+		this.CargarRutas();
 		if (this.form.consulta == 'Personal') {
 			this.form.periodo = "Mes anterior";
 			this.busquedaMonto = this.busquedaMontoP;
@@ -116539,9 +116540,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 				console.log(err);
 			});
 		},
+		CargarRutas: function CargarRutas() {
+			var _this3 = this;
+
+			axios({
+				method: 'get',
+				url: '/reportes/api/rutas'
+			}).then(function (response) {
+				_this3.formatorutas(response);
+			}).catch(function (err) {
+				Vue.toasted.show('Ha ocurrido un error', {
+					theme: "primary",
+					position: "bottom-right",
+					duration: 2000
+				});
+				console.log(err);
+			});
+		},
 		formatocargos: function formatocargos(data) {
 			for (var i = 0; i < data.data.length; i++) {
 				this.opciones.Cargo.push(data.data[i].titulo);
+			}
+		},
+		formatorutas: function formatorutas(data) {
+			for (var i = 0; i < data.data.length; i++) {
+				this.opciones.Ruta.push(data.data[i]);
 			}
 		},
 		formatosucursal: function formatosucursal(data) {
@@ -116631,21 +116654,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			return true;
 		},
 		generar2: function generar2() {
-			var _this3 = this;
+			var _this4 = this;
 
 			// console.log(this.form.datosf)
 			this.loading = true;
 			this.cargarFiltros();
 			this.graficas = [];
 			if (this.validarGG()) {
-				axios.post('/reportes/api/reporte', this.form).then(function (response) {
+				axios.post('/reportes/api/reporte/' + this.form.consulta, this.form).then(function (response) {
 					console.log(response.data);
-					_this3.graficas.push({
+					_this4.graficas.push({
 						"titulo": response.data.titulo.toUpperCase(),
 						"grafica": response.data.grafico,
 						"datos": response.data.datos
 					});
-					_this3.loading = false;
+					_this4.loading = false;
 					Vue.toasted.show('Reporte Generado', {
 						theme: "primary",
 						position: "bottom-right",

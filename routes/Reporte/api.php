@@ -11,9 +11,15 @@ Route::group(['prefix' => 'reportes'], function() {
     Route::get('/api/ingresos/pronostico','Reportes\ApiControllerDW@PROMEDIOMOVILDOBLE')->name('reportes.ingresosP');
     Route::get('/api/rutas','Reportes\ApiControllerDW@listRutas')->name('reportes.rutas');
 
-    Route::get('/api/prueba','Reportes\PanelController@prueba')->name('reportes.prueba');
+    Route::post('/api/reporte/Personal','Reportes\ReportePersonalController@ReportePersonal')->name('reportes.reporte.Personal');
 
-    Route::post('/api/reporte','Reportes\PanelController@reportes')->name('reportes.reporte');
+    Route::post('/api/reporte/Ingresos','Reportes\ReporteIngresosController@ReporteIngreso')->name('reportes.reporte.Ingresos');
+    	
+    // Route::get('/api/prueba','Reportes\PanelController@prueba')->name('reportes.prueba');
+     Route::get('/api/prueba','Reportes\ReporteIngresosController@prueba')->name('reportes.prueba');
+
+
+    Route::post('/api/reporte/Servicios','Reportes\PanelController@reportes')->name('reportes.reporte.Servicios');
 
 });
 

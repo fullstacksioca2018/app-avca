@@ -24,16 +24,14 @@ class ApiControllerDW extends Controller
     public function listRutas()
     {
         $rutas=DW_Ruta::orderBy('ruta_id')->get();
-        dd($rutas);
         $arrayRutas=array();
+        $siglas=array();
         foreach ($rutas as $ruta) {
-            $obj =new stdClass();
-            $obj->id=$ruta->ruta_id;
-            $obj->sigla=$ruta->origen;
-            # code...
+            $sigla=$ruta->ruta_id.'. '.$ruta->origen->sigla.'-'.$ruta->destino->sigla;
+            array_push($siglas, $sigla);
         }
 
-        return response()->json($cargos);
+        return response()->json($siglas);
     }
 
     public function reporteIngresos(Request $consulta){
