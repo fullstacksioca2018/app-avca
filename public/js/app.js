@@ -115975,10 +115975,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_multiselect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_multiselect__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_spinner_dist_vue_spinner_min_js__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_spinner_dist_vue_spinner_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_spinner_dist_vue_spinner_min_js__);
-var _watch;
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -116309,11 +116320,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			parametrosI: ['Ruta', 'Destino', 'Origen'],
 			parametrosS: ['Vuelos', 'Pasajeros'],
 			optionsPP: ['Mes anterior', 'Personalizado', 'Intervalo'],
+			optionsPPB: ['Mes anterior', 'Personalizado'],
 			optionsP: ['Actual', 'Semana anterior', 'Mes anterior', 'Temporada', 'Personalizado'],
 			filtros: ["Cargo", "Sucursal"],
 			busqueda: ["Más alto", "Más bajo", "Mayor que", "Menor que"],
 			busquedaRow: ["1", "2", "3", "4", "5"],
 			busquedaMonto: ["1000", "1500", "2000", "2500", "3000"],
+			busquedaMontoI: ["1000", "1500", "2000", "2500", "3000"],
+			busquedaMontoP: ["80%", "50%", "20%"],
 
 			filtrosP: ['Cargo', 'Sucursal'],
 			filtrosVls: null,
@@ -116370,43 +116384,73 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			}
 		}
 	},
-	watch: (_watch = {
+	watch: {
 		'datosGDashbord': function datosGDashbord() {
 			this.Dashboard();
 		},
-		'form.consulta': function formConsulta() {}
-	}, _defineProperty(_watch, 'form.consulta', function formConsulta() {
-		if (!this.auxC) {
-			this.form.parametros = [];
-			this.form.periodo = "Actual";
-			this.form.desde = null;
-			this.form.hasta = null;
-		} else this.auxC = false;
-		if (this.form.consulta == 'Personal') this.form.periodo = "Mes anterior";
-		this.form.filtros = [];
-		this.form.datosf = [];
-		this.filtrosPjr = null;
-		this.filtrosVls = null;
-		this.form.filtrosP = [];
-		this.form.tipo = "Consulta";
-		this.form.busqueda = "Más alto";
-		this.form.busquedaRow = "1";
-		this.form.busquedaMonto = "2000";
-		this.cambiaOpciones();
-	}), _defineProperty(_watch, 'form.filtros', function formFiltros() {
-		this.StringConsulta();
-	}), _defineProperty(_watch, 'form.busqueda', function formBusqueda() {
-		this.StringConsulta();
-	}), _defineProperty(_watch, 'form.busquedaRow', function formBusquedaRow() {
-		this.StringConsulta();
-	}), _defineProperty(_watch, 'form.busquedaMonto', function formBusquedaMonto() {
-		this.StringConsulta();
-	}), _watch),
+		'form.tipo': function formTipo() {
+			if (this.form.tipo == 'Busqueda') {
+				if (this.form.filtros.length == 0) {
+					if (this.form.consulta == 'Personal') {
+						this.form.filtros.push("Sucursal");
+					}
+				}
+				this.form.periodo = "Mes anterior";
+			} else {
+				this.form.filtros = [];
+			}
+		},
+		'form.consulta': function formConsulta() {
+			if (!this.auxC) {
+				this.form.parametros = [];
+				this.form.periodo = "Actual";
+				this.form.desde = null;
+				this.form.hasta = null;
+			} else this.auxC = false;
+			if (this.form.consulta == 'Personal') {
+				this.form.periodo = "Mes anterior";
+				this.busquedaMonto = this.busquedaMontoP;
+				this.form.busquedaMonto = "50%";
+			} else {
+				this.busquedaMonto = this.busquedaMontoI;
+				this.form.busquedaMonto = 2000;
+			}
+			this.form.filtros = [];
+			this.form.datosf = [];
+			this.filtrosPjr = null;
+			this.filtrosVls = null;
+			this.form.filtrosP = [];
+			this.form.tipo = "Consulta";
+			this.form.busqueda = "Más alto";
+			this.form.busquedaRow = "1";
+			this.form.busquedaMonto = "2000";
+			this.cambiaOpciones();
+		},
+		'form.filtros': function formFiltros() {
+			this.StringConsulta();
+		},
+		'form.busqueda': function formBusqueda() {
+			this.StringConsulta();
+		},
+		'form.busquedaRow': function formBusquedaRow() {
+			this.StringConsulta();
+		},
+		'form.busquedaMonto': function formBusquedaMonto() {
+			this.StringConsulta();
+		}
+	},
 	created: function created() {
 		this.tipoUser();
 		this.CargarSucursales();
 		this.CargarCargos();
-		if (this.form.consulta == 'Personal') this.form.periodo = "Mes anterior";
+		if (this.form.consulta == 'Personal') {
+			this.form.periodo = "Mes anterior";
+			this.busquedaMonto = this.busquedaMontoP;
+			this.form.busquedaMonto = "50%";
+		} else {
+			this.busquedaMonto = this.busquedaMontoI;
+			this.form.busquedaMonto = 2000;
+		}
 	},
 	mounted: function mounted() {
 		this.Dashboard();
@@ -116553,7 +116597,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			this.height += 10;
 		},
 		validarGG: function validarGG() {
-			if (this.form.filtros.length >= 1) {
+			if (this.form.filtros.length >= 1 && this.form.tipo != 'Busqueda') {
 				for (var i = 0; i < this.form.filtros.length; i++) {
 					if (!this.form.datosf[this.form.filtros[i]]) {
 						var text = "Ingrese " + this.form.filtros[i] + " para filtrar";
@@ -116575,6 +116619,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 						}
 					}
 				}
+			}
+			if (this.form.parametros.length == 0) {
+				Vue.toasted.show("Debe seleccionar los parametros para la consulta", {
+					theme: "primary",
+					position: "bottom-right",
+					duration: 2000
+				});
+				return false;
 			}
 			return true;
 		},
@@ -118075,86 +118127,30 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "form-row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-3" },
-                  [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-6" }, [
+                  _c("div", { staticClass: "row" }, [
                     _c(
-                      "b-form-group",
-                      { attrs: { label: "Parametros " + _vm.tipo } },
-                      [
-                        _c("b-form-checkbox-group", {
-                          attrs: {
-                            stacked: "",
-                            name: "flavour2",
-                            options: _vm.parametros,
-                            state: _vm.stateParametros
-                          },
-                          model: {
-                            value: _vm.form.parametros,
-                            callback: function($$v) {
-                              _vm.$set(_vm.form, "parametros", $$v)
-                            },
-                            expression: "form.parametros"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _vm.form.consulta != "Personal"
-                  ? _c(
                       "div",
-                      { staticClass: "col-3" },
+                      { staticClass: "col-6" },
                       [
                         _c(
                           "b-form-group",
-                          { attrs: { label: "Fecha" } },
+                          { attrs: { label: "Parametros " + _vm.tipo } },
                           [
-                            _c("b-form-radio-group", {
+                            _c("b-form-checkbox-group", {
                               attrs: {
-                                options: _vm.optionsP,
                                 stacked: "",
-                                name: "radiosStacked"
+                                name: "flavour2",
+                                options: _vm.parametros,
+                                state: _vm.stateParametros
                               },
                               model: {
-                                value: _vm.form.periodo,
+                                value: _vm.form.parametros,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.form, "periodo", $$v)
+                                  _vm.$set(_vm.form, "parametros", $$v)
                                 },
-                                expression: "form.periodo"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      { staticClass: "col-3" },
-                      [
-                        _c(
-                          "b-form-group",
-                          { attrs: { label: "Fecha" } },
-                          [
-                            _c("b-form-radio-group", {
-                              attrs: {
-                                options: _vm.optionsPP,
-                                stacked: "",
-                                name: "radiosStacked"
-                              },
-                              model: {
-                                value: _vm.form.periodo,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "periodo", $$v)
-                                },
-                                expression: "form.periodo"
+                                expression: "form.parametros"
                               }
                             })
                           ],
@@ -118163,6 +118159,819 @@ var render = function() {
                       ],
                       1
                     ),
+                    _vm._v(" "),
+                    _vm.form.consulta != "Personal"
+                      ? _c(
+                          "div",
+                          { staticClass: "col-6" },
+                          [
+                            _c(
+                              "b-form-group",
+                              { attrs: { label: "Fecha" } },
+                              [
+                                _c("b-form-radio-group", {
+                                  attrs: {
+                                    options: _vm.optionsP,
+                                    stacked: "",
+                                    name: "radiosStacked"
+                                  },
+                                  model: {
+                                    value: _vm.form.periodo,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form, "periodo", $$v)
+                                    },
+                                    expression: "form.periodo"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.form.consulta == "Personal" &&
+                    _vm.form.tipo != "Busqueda"
+                      ? _c(
+                          "div",
+                          { staticClass: "col-6" },
+                          [
+                            _c(
+                              "b-form-group",
+                              { attrs: { label: "Fecha" } },
+                              [
+                                _c("b-form-radio-group", {
+                                  attrs: {
+                                    options: _vm.optionsPP,
+                                    stacked: "",
+                                    name: "radiosStacked"
+                                  },
+                                  model: {
+                                    value: _vm.form.periodo,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form, "periodo", $$v)
+                                    },
+                                    expression: "form.periodo"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.form.consulta == "Personal" &&
+                    _vm.form.tipo == "Busqueda"
+                      ? _c(
+                          "div",
+                          { staticClass: "col-6" },
+                          [
+                            _c(
+                              "b-form-group",
+                              { attrs: { label: "Fecha" } },
+                              [
+                                _c("b-form-radio-group", {
+                                  attrs: {
+                                    options: _vm.optionsPPB,
+                                    stacked: "",
+                                    name: "radiosStacked"
+                                  },
+                                  model: {
+                                    value: _vm.form.periodo,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form, "periodo", $$v)
+                                    },
+                                    expression: "form.periodo"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _vm.form.periodo == "Temporada"
+                    ? _c("div", { staticClass: "form-row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-6" },
+                          [
+                            _c("legend", [_vm._v("Temporada")]),
+                            _vm._v(" "),
+                            _c("multiselect", {
+                              attrs: {
+                                options: _vm.opcionesT,
+                                multiple: true,
+                                "close-on-select": false,
+                                "clear-on-select": false,
+                                "hide-selected": true,
+                                "preserve-search": true,
+                                placeholder: "Seleccione Temporada",
+                                "preselect-first": false,
+                                selectLabel: "Seleccionar"
+                              },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "tag",
+                                  fn: function(props) {
+                                    return [
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "custom__tag multiselect__tag"
+                                        },
+                                        [
+                                          _c("span", [
+                                            _vm._v(_vm._s(props.option))
+                                          ]),
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass: "custom__remove",
+                                              on: {
+                                                click: function($event) {
+                                                  props.remove(props.option)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fa fa-times-circle"
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                }
+                              ]),
+                              model: {
+                                value: _vm.form.temporadas,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "temporadas", $$v)
+                                },
+                                expression: "form.temporadas"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-4" },
+                          [
+                            _c("legend", [_vm._v("Año")]),
+                            _vm._v(" "),
+                            _c("multiselect", {
+                              attrs: {
+                                options: _vm.year,
+                                multiple: true,
+                                "close-on-select": false,
+                                "clear-on-select": false,
+                                "hide-selected": true,
+                                "preserve-search": true,
+                                placeholder: "Seleccione Cargos",
+                                "preselect-first": false,
+                                selectLabel: "Seleccionar"
+                              },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "tag",
+                                  fn: function(props) {
+                                    return [
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "custom__tag multiselect__tag"
+                                        },
+                                        [
+                                          _c("span", [
+                                            _vm._v(_vm._s(props.option))
+                                          ]),
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass: "custom__remove",
+                                              on: {
+                                                click: function($event) {
+                                                  props.remove(props.option)
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fa fa-times-circle"
+                                              })
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  }
+                                }
+                              ]),
+                              model: {
+                                value: _vm.form.year,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "year", $$v)
+                                },
+                                expression: "form.year"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.form.periodo == "Personalizado" &&
+                  _vm.form.consulta != "Personal"
+                    ? _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("label", { attrs: { for: "fecha_ingreso" } }, [
+                            _vm._v("Desde")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "input-group" },
+                            [
+                              _c("b-form-input", {
+                                attrs: { type: "date" },
+                                model: {
+                                  value: _vm.form.desde,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "desde", $$v)
+                                  },
+                                  expression: "form.desde"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm._m(0)
+                            ],
+                            1
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("label", { attrs: { for: "fecha_ingreso" } }, [
+                            _vm._v("Hasta")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "input-group" },
+                            [
+                              _c("b-form-input", {
+                                attrs: { type: "date" },
+                                model: {
+                                  value: _vm.form.hasta,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "hasta", $$v)
+                                  },
+                                  expression: "form.hasta"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm._m(1)
+                            ],
+                            1
+                          )
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.form.periodo == "Intervalo" &&
+                  _vm.form.consulta == "Personal"
+                    ? _c("div", [
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "fecha_ingreso" } }, [
+                          _vm._v("Fecha Personalizada")
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-5" }, [
+                            _c("label", { attrs: { for: "fecha_ingreso" } }, [
+                              _vm._v("Desde")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "input-group" },
+                              [
+                                _c("multiselect", {
+                                  attrs: {
+                                    options: _vm.mes,
+                                    multiple: false,
+                                    "close-on-select": true,
+                                    "clear-on-select": false,
+                                    "hide-selected": true,
+                                    "preserve-search": true,
+                                    placeholder: "Mes",
+                                    "preselect-first": true,
+                                    selectLabel: "Seleccionar"
+                                  },
+                                  scopedSlots: _vm._u([
+                                    {
+                                      key: "tag",
+                                      fn: function(props) {
+                                        return [
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "custom__tag multiselect__tag"
+                                            },
+                                            [
+                                              _c("span", [
+                                                _vm._v(_vm._s(props.option))
+                                              ]),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "custom__remove",
+                                                  on: {
+                                                    click: function($event) {
+                                                      props.remove(props.option)
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-times-circle"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ]),
+                                  model: {
+                                    value: _vm.form.mesD,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form, "mesD", $$v)
+                                    },
+                                    expression: "form.mesD"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "col-md-5",
+                              attrs: { id: "flex-Perso" }
+                            },
+                            [
+                              _c("label", { attrs: { for: "fecha_ingreso" } }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "input-group" },
+                                [
+                                  _c("multiselect", {
+                                    attrs: {
+                                      options: _vm.year,
+                                      multiple: false,
+                                      "close-on-select": true,
+                                      "clear-on-select": false,
+                                      "hide-selected": true,
+                                      "preserve-search": true,
+                                      placeholder: "Año",
+                                      "preselect-first": true,
+                                      selectLabel: "Seleccionar"
+                                    },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "tag",
+                                        fn: function(props) {
+                                          return [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "custom__tag multiselect__tag"
+                                              },
+                                              [
+                                                _c("span", [
+                                                  _vm._v(_vm._s(props.option))
+                                                ]),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "custom__remove",
+                                                    on: {
+                                                      click: function($event) {
+                                                        props.remove(
+                                                          props.option
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "fa fa-times-circle"
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ]),
+                                    model: {
+                                      value: _vm.form.yearD,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "yearD", $$v)
+                                      },
+                                      expression: "form.yearD"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._m(2)
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-5" }, [
+                            _c("label", { attrs: { for: "fecha_ingreso" } }, [
+                              _vm._v("Hasta")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "input-group" },
+                              [
+                                _c("multiselect", {
+                                  attrs: {
+                                    options: _vm.mes,
+                                    multiple: false,
+                                    "close-on-select": true,
+                                    "clear-on-select": false,
+                                    "hide-selected": true,
+                                    "preserve-search": true,
+                                    placeholder: "Mes",
+                                    "preselect-first": true,
+                                    selectLabel: "Seleccionar"
+                                  },
+                                  scopedSlots: _vm._u([
+                                    {
+                                      key: "tag",
+                                      fn: function(props) {
+                                        return [
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "custom__tag multiselect__tag"
+                                            },
+                                            [
+                                              _c("span", [
+                                                _vm._v(_vm._s(props.option))
+                                              ]),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "custom__remove",
+                                                  on: {
+                                                    click: function($event) {
+                                                      props.remove(props.option)
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-times-circle"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ]),
+                                  model: {
+                                    value: _vm.form.mesH,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form, "mesH", $$v)
+                                    },
+                                    expression: "form.mesH"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "col-md-5",
+                              attrs: { id: "flex-Perso" }
+                            },
+                            [
+                              _c("label", { attrs: { for: "fecha_ingreso" } }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "input-group" },
+                                [
+                                  _c("multiselect", {
+                                    attrs: {
+                                      options: _vm.year,
+                                      multiple: false,
+                                      "close-on-select": true,
+                                      "clear-on-select": false,
+                                      "hide-selected": true,
+                                      "preserve-search": true,
+                                      placeholder: "Año",
+                                      "preselect-first": true,
+                                      selectLabel: "Seleccionar"
+                                    },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "tag",
+                                        fn: function(props) {
+                                          return [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "custom__tag multiselect__tag"
+                                              },
+                                              [
+                                                _c("span", [
+                                                  _vm._v(_vm._s(props.option))
+                                                ]),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "custom__remove",
+                                                    on: {
+                                                      click: function($event) {
+                                                        props.remove(
+                                                          props.option
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "fa fa-times-circle"
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ]),
+                                    model: {
+                                      value: _vm.form.yearH,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "yearH", $$v)
+                                      },
+                                      expression: "form.yearH"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._m(3)
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    : _vm._e(),
+                  _c("br"),
+                  _vm._v(" "),
+                  _vm.form.periodo == "Personalizado" &&
+                  _vm.form.consulta == "Personal"
+                    ? _c("div", [
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "fecha_ingreso" } }, [
+                          _vm._v("Fecha Personalizada")
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-5" }, [
+                            _c("label", { attrs: { for: "fecha_ingreso" } }, [
+                              _vm._v("Mes\\Año")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "input-group" },
+                              [
+                                _c("multiselect", {
+                                  attrs: {
+                                    options: _vm.mes,
+                                    multiple: false,
+                                    "close-on-select": true,
+                                    "clear-on-select": false,
+                                    "hide-selected": true,
+                                    "preserve-search": true,
+                                    placeholder: "Mes",
+                                    "preselect-first": true,
+                                    selectLabel: "Seleccionar"
+                                  },
+                                  scopedSlots: _vm._u([
+                                    {
+                                      key: "tag",
+                                      fn: function(props) {
+                                        return [
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "custom__tag multiselect__tag"
+                                            },
+                                            [
+                                              _c("span", [
+                                                _vm._v(_vm._s(props.option))
+                                              ]),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "custom__remove",
+                                                  on: {
+                                                    click: function($event) {
+                                                      props.remove(props.option)
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fa fa-times-circle"
+                                                  })
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ]),
+                                  model: {
+                                    value: _vm.form.mesD,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form, "mesD", $$v)
+                                    },
+                                    expression: "form.mesD"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "col-md-5",
+                              attrs: { id: "flex-Perso" }
+                            },
+                            [
+                              _c("label", { attrs: { for: "fecha_ingreso" } }),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "input-group" },
+                                [
+                                  _c("multiselect", {
+                                    attrs: {
+                                      options: _vm.year,
+                                      multiple: false,
+                                      "close-on-select": true,
+                                      "clear-on-select": false,
+                                      "hide-selected": true,
+                                      "preserve-search": true,
+                                      placeholder: "Año",
+                                      "preselect-first": true,
+                                      selectLabel: "Seleccionar"
+                                    },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "tag",
+                                        fn: function(props) {
+                                          return [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "custom__tag multiselect__tag"
+                                              },
+                                              [
+                                                _c("span", [
+                                                  _vm._v(_vm._s(props.option))
+                                                ]),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "custom__remove",
+                                                    on: {
+                                                      click: function($event) {
+                                                        props.remove(
+                                                          props.option
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "fa fa-times-circle"
+                                                    })
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ]),
+                                    model: {
+                                      value: _vm.form.yearD,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "yearD", $$v)
+                                      },
+                                      expression: "form.yearD"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm._m(4)
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    : _vm._e(),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-12" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            attrs: { type: "submit" },
+                            on: {
+                              click: function($event) {
+                                _vm.generar2()
+                              }
+                            }
+                          },
+                          [
+                            _c("i", { staticClass: "fa fa-check" }),
+                            _vm._v("Generar\n\t\t\t\t              ")
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -118477,7 +119286,7 @@ var render = function() {
                         ])
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.form.filtros != null
+                    _vm.form.filtros != null && _vm.form.tipo != "Busqueda"
                       ? _c(
                           "div",
                           _vm._l(_vm.form.filtros, function(filtroA) {
@@ -119007,710 +119816,6 @@ var render = function() {
                   ],
                   1
                 )
-              ]),
-              _vm._v(" "),
-              _vm.form.periodo == "Temporada"
-                ? _c("div", { staticClass: "form-row" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-3" },
-                      [
-                        _c("legend", [_vm._v("Temporada")]),
-                        _vm._v(" "),
-                        _c("multiselect", {
-                          attrs: {
-                            options: _vm.opcionesT,
-                            multiple: true,
-                            "close-on-select": false,
-                            "clear-on-select": false,
-                            "hide-selected": true,
-                            "preserve-search": true,
-                            placeholder: "Seleccione Temporada",
-                            "preselect-first": false,
-                            selectLabel: "Seleccionar"
-                          },
-                          scopedSlots: _vm._u([
-                            {
-                              key: "tag",
-                              fn: function(props) {
-                                return [
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "custom__tag multiselect__tag"
-                                    },
-                                    [
-                                      _c("span", [
-                                        _vm._v(_vm._s(props.option))
-                                      ]),
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass: "custom__remove",
-                                          on: {
-                                            click: function($event) {
-                                              props.remove(props.option)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fa fa-times-circle"
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              }
-                            }
-                          ]),
-                          model: {
-                            value: _vm.form.temporadas,
-                            callback: function($$v) {
-                              _vm.$set(_vm.form, "temporadas", $$v)
-                            },
-                            expression: "form.temporadas"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col-2" },
-                      [
-                        _c("legend", [_vm._v("Año")]),
-                        _vm._v(" "),
-                        _c("multiselect", {
-                          attrs: {
-                            options: _vm.year,
-                            multiple: true,
-                            "close-on-select": false,
-                            "clear-on-select": false,
-                            "hide-selected": true,
-                            "preserve-search": true,
-                            placeholder: "Seleccione Cargos",
-                            "preselect-first": false,
-                            selectLabel: "Seleccionar"
-                          },
-                          scopedSlots: _vm._u([
-                            {
-                              key: "tag",
-                              fn: function(props) {
-                                return [
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "custom__tag multiselect__tag"
-                                    },
-                                    [
-                                      _c("span", [
-                                        _vm._v(_vm._s(props.option))
-                                      ]),
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass: "custom__remove",
-                                          on: {
-                                            click: function($event) {
-                                              props.remove(props.option)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fa fa-times-circle"
-                                          })
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              }
-                            }
-                          ]),
-                          model: {
-                            value: _vm.form.year,
-                            callback: function($$v) {
-                              _vm.$set(_vm.form, "year", $$v)
-                            },
-                            expression: "form.year"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.form.periodo == "Personalizado" &&
-              _vm.form.consulta != "Personal"
-                ? _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-3" }, [
-                      _c("label", { attrs: { for: "fecha_ingreso" } }, [
-                        _vm._v("Desde")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "input-group" },
-                        [
-                          _c("b-form-input", {
-                            attrs: { type: "date" },
-                            model: {
-                              value: _vm.form.desde,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "desde", $$v)
-                              },
-                              expression: "form.desde"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm._m(0)
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-3" }, [
-                      _c("label", { attrs: { for: "fecha_ingreso" } }, [
-                        _vm._v("Hasta")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "input-group" },
-                        [
-                          _c("b-form-input", {
-                            attrs: { type: "date" },
-                            model: {
-                              value: _vm.form.hasta,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "hasta", $$v)
-                              },
-                              expression: "form.hasta"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm._m(1)
-                        ],
-                        1
-                      )
-                    ])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.form.periodo == "Intervalo" && _vm.form.consulta == "Personal"
-                ? _c("div", [
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "fecha_ingreso" } }, [
-                      _vm._v("Fecha Personalizada")
-                    ]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-2" }, [
-                        _c("label", { attrs: { for: "fecha_ingreso" } }, [
-                          _vm._v("Desde")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "input-group" },
-                          [
-                            _c("multiselect", {
-                              attrs: {
-                                options: _vm.mes,
-                                multiple: false,
-                                "close-on-select": true,
-                                "clear-on-select": false,
-                                "hide-selected": true,
-                                "preserve-search": true,
-                                placeholder: "Mes",
-                                "preselect-first": true,
-                                selectLabel: "Seleccionar"
-                              },
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "tag",
-                                  fn: function(props) {
-                                    return [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "custom__tag multiselect__tag"
-                                        },
-                                        [
-                                          _c("span", [
-                                            _vm._v(_vm._s(props.option))
-                                          ]),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "custom__remove",
-                                              on: {
-                                                click: function($event) {
-                                                  props.remove(props.option)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass:
-                                                  "fa fa-times-circle"
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  }
-                                }
-                              ]),
-                              model: {
-                                value: _vm.form.mesD,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "mesD", $$v)
-                                },
-                                expression: "form.mesD"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "col-md-2",
-                          attrs: { id: "flex-Perso" }
-                        },
-                        [
-                          _c("label", { attrs: { for: "fecha_ingreso" } }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "input-group" },
-                            [
-                              _c("multiselect", {
-                                attrs: {
-                                  options: _vm.year,
-                                  multiple: false,
-                                  "close-on-select": true,
-                                  "clear-on-select": false,
-                                  "hide-selected": true,
-                                  "preserve-search": true,
-                                  placeholder: "Año",
-                                  "preselect-first": true,
-                                  selectLabel: "Seleccionar"
-                                },
-                                scopedSlots: _vm._u([
-                                  {
-                                    key: "tag",
-                                    fn: function(props) {
-                                      return [
-                                        _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "custom__tag multiselect__tag"
-                                          },
-                                          [
-                                            _c("span", [
-                                              _vm._v(_vm._s(props.option))
-                                            ]),
-                                            _c(
-                                              "span",
-                                              {
-                                                staticClass: "custom__remove",
-                                                on: {
-                                                  click: function($event) {
-                                                    props.remove(props.option)
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass:
-                                                    "fa fa-times-circle"
-                                                })
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    }
-                                  }
-                                ]),
-                                model: {
-                                  value: _vm.form.yearD,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "yearD", $$v)
-                                  },
-                                  expression: "form.yearD"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm._m(2)
-                            ],
-                            1
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-2" }, [
-                        _c("label", { attrs: { for: "fecha_ingreso" } }, [
-                          _vm._v("Hasta")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "input-group" },
-                          [
-                            _c("multiselect", {
-                              attrs: {
-                                options: _vm.mes,
-                                multiple: false,
-                                "close-on-select": true,
-                                "clear-on-select": false,
-                                "hide-selected": true,
-                                "preserve-search": true,
-                                placeholder: "Mes",
-                                "preselect-first": true,
-                                selectLabel: "Seleccionar"
-                              },
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "tag",
-                                  fn: function(props) {
-                                    return [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "custom__tag multiselect__tag"
-                                        },
-                                        [
-                                          _c("span", [
-                                            _vm._v(_vm._s(props.option))
-                                          ]),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "custom__remove",
-                                              on: {
-                                                click: function($event) {
-                                                  props.remove(props.option)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass:
-                                                  "fa fa-times-circle"
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  }
-                                }
-                              ]),
-                              model: {
-                                value: _vm.form.mesH,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "mesH", $$v)
-                                },
-                                expression: "form.mesH"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "col-md-2",
-                          attrs: { id: "flex-Perso" }
-                        },
-                        [
-                          _c("label", { attrs: { for: "fecha_ingreso" } }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "input-group" },
-                            [
-                              _c("multiselect", {
-                                attrs: {
-                                  options: _vm.year,
-                                  multiple: false,
-                                  "close-on-select": true,
-                                  "clear-on-select": false,
-                                  "hide-selected": true,
-                                  "preserve-search": true,
-                                  placeholder: "Año",
-                                  "preselect-first": true,
-                                  selectLabel: "Seleccionar"
-                                },
-                                scopedSlots: _vm._u([
-                                  {
-                                    key: "tag",
-                                    fn: function(props) {
-                                      return [
-                                        _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "custom__tag multiselect__tag"
-                                          },
-                                          [
-                                            _c("span", [
-                                              _vm._v(_vm._s(props.option))
-                                            ]),
-                                            _c(
-                                              "span",
-                                              {
-                                                staticClass: "custom__remove",
-                                                on: {
-                                                  click: function($event) {
-                                                    props.remove(props.option)
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass:
-                                                    "fa fa-times-circle"
-                                                })
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    }
-                                  }
-                                ]),
-                                model: {
-                                  value: _vm.form.yearH,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "yearH", $$v)
-                                  },
-                                  expression: "form.yearH"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm._m(3)
-                            ],
-                            1
-                          )
-                        ]
-                      )
-                    ])
-                  ])
-                : _vm._e(),
-              _c("br"),
-              _vm._v(" "),
-              _vm.form.periodo == "Personalizado" &&
-              _vm.form.consulta == "Personal"
-                ? _c("div", [
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: "fecha_ingreso" } }, [
-                      _vm._v("Fecha Personalizada")
-                    ]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-2" }, [
-                        _c("label", { attrs: { for: "fecha_ingreso" } }, [
-                          _vm._v("Mes\\Año")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "input-group" },
-                          [
-                            _c("multiselect", {
-                              attrs: {
-                                options: _vm.mes,
-                                multiple: false,
-                                "close-on-select": true,
-                                "clear-on-select": false,
-                                "hide-selected": true,
-                                "preserve-search": true,
-                                placeholder: "Mes",
-                                "preselect-first": true,
-                                selectLabel: "Seleccionar"
-                              },
-                              scopedSlots: _vm._u([
-                                {
-                                  key: "tag",
-                                  fn: function(props) {
-                                    return [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass:
-                                            "custom__tag multiselect__tag"
-                                        },
-                                        [
-                                          _c("span", [
-                                            _vm._v(_vm._s(props.option))
-                                          ]),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "custom__remove",
-                                              on: {
-                                                click: function($event) {
-                                                  props.remove(props.option)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass:
-                                                  "fa fa-times-circle"
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  }
-                                }
-                              ]),
-                              model: {
-                                value: _vm.form.mesD,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "mesD", $$v)
-                                },
-                                expression: "form.mesD"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "col-md-2",
-                          attrs: { id: "flex-Perso" }
-                        },
-                        [
-                          _c("label", { attrs: { for: "fecha_ingreso" } }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "input-group" },
-                            [
-                              _c("multiselect", {
-                                attrs: {
-                                  options: _vm.year,
-                                  multiple: false,
-                                  "close-on-select": true,
-                                  "clear-on-select": false,
-                                  "hide-selected": true,
-                                  "preserve-search": true,
-                                  placeholder: "Año",
-                                  "preselect-first": true,
-                                  selectLabel: "Seleccionar"
-                                },
-                                scopedSlots: _vm._u([
-                                  {
-                                    key: "tag",
-                                    fn: function(props) {
-                                      return [
-                                        _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "custom__tag multiselect__tag"
-                                          },
-                                          [
-                                            _c("span", [
-                                              _vm._v(_vm._s(props.option))
-                                            ]),
-                                            _c(
-                                              "span",
-                                              {
-                                                staticClass: "custom__remove",
-                                                on: {
-                                                  click: function($event) {
-                                                    props.remove(props.option)
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass:
-                                                    "fa fa-times-circle"
-                                                })
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    }
-                                  }
-                                ]),
-                                model: {
-                                  value: _vm.form.yearD,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "yearD", $$v)
-                                  },
-                                  expression: "form.yearD"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm._m(4)
-                            ],
-                            1
-                          )
-                        ]
-                      )
-                    ])
-                  ])
-                : _vm._e(),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-12" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        attrs: { type: "submit" },
-                        on: {
-                          click: function($event) {
-                            _vm.generar2()
-                          }
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "fa fa-check" }),
-                        _vm._v("Generar\n\t\t\t\t              ")
-                      ]
-                    )
-                  ])
-                ])
               ])
             ],
             1
