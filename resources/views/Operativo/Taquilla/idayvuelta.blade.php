@@ -73,7 +73,7 @@
                           <i class="fa fa-plane"></i>
                         </span>
                       </div>
-                      <select class="form-control" id="vuelo_regreso" name="vuelo">
+                      <select class="form-control" id="vuelo_regreso" name="vuelo_regreso">
                         <option value="0"> Ningun Vuelo seleccionado </option>
                       </select>
                       <input type="hidden" id="precioregreso2" name="precioregreso2" value="">

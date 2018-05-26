@@ -7,7 +7,7 @@
    $Contbrazo=0;
    $tarifaT=0;
    //contador de niños en brazo 
-   
+  
    for($i=0;$i<$ninos;$i++){             
     if(($brazo[$i] != null) && ($brazo[$i] != 'En asiento') ){$Contbrazo++;}
      }
@@ -17,6 +17,7 @@
         {
           $tarifaT=$tarifaT+$tarifas_multidestino[$i];
         }
+        
     }
    @endphp
 <div class="container-fluid">
@@ -29,13 +30,13 @@
               <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Precio: </span>
                 @if($tipo==1)
-                <span class="badge badge-primary badge-pill">{{ ($adultos + $ninos) - $Contbrazo }} Boletos</span>
+                <span class="badge badge-primary badge-pill">{{ ($adultos + $ninos) - $Contbrazo }} Boleto(s)</span>
                 @endif 
                 @if($tipo==2)
-                <span class="badge badge-primary badge-pill">{{ (($adultos + $ninos) - $Contbrazo)*2 }} Boletos</span>
+                <span class="badge badge-primary badge-pill">{{ (($adultos + $ninos) - $Contbrazo)*2 }} Boleto(s)</span>
                 @endif
                 @if($tipo==3)
-                <span class="badge badge-primary badge-pill">{{ ($adultos + $ninos) - $Contbrazo }} Boletos {{$tarifaT}}</span>
+                <span class="badge badge-primary badge-pill">{{ ($adultos + $ninos) - $Contbrazo }} Boleto(s) </span>
                 @endif
               </h4>
               <ul class="list-group mb-3">
@@ -91,13 +92,23 @@
             <!-- FORMULARIOS DE COMPRA -->
             <form method="post" id="myForm" action="{{ URL::to('taquilla/BoletoVendido') }}">{{ csrf_field() }} 
               <input type="hidden" form="myForm" name="NinosBrazos_cant" id="NinosBrazos_cant" value="{{ $Contbrazo }}">
+              <input type="hidden" form="myForm" name="tipo" id="tipo" value="{{ $tipo }}">
+              <input type="hidden" form="myForm" name="adultos" id="adultos" value="{{ $adultos }}">
+              <input type="hidden" form="myForm" name="ninos" id="ninos" value="{{ $ninos }}" >
               @if($tipo==1)
               <input type="hidden" form="myForm" name="importe_facturado" value="{{ $tarifa * ($adultos+($ninos-$Contbrazo))}}">
+              <input type="hidden" form="myForm" name="vuelo" id="vuelo" value="{{ $vuelo }}">
               @endif
               @if($tipo==2)
+              <input type="hidden" form="myForm" name="vuelo" id="vuelo" value="{{ $vuelo }}">
+              <input type="hidden" form="myForm" name="vuelo_regreso" id="vuelo_regreso" value="{{ $vuelo_regreso }}">
               <input type="hidden" form="myForm" name="importe_facturado" value="{{ ($tarifa + $tarifa_regreso) * ($adultos+($ninos-$Contbrazo))}}">
               @endif
               @if($tipo==3)
+              <input type="hidden" form="myForm" name="cantidadV" id="cantidadV" value="{{ $cantidadV }}">
+              @for($i=0;$i<$cantidadV;$i++)
+              <input type="hidden" form="myForm" name="vuelo[]" id="vuelo{{$i}}" value="{{ $vuelos[$i] }}">
+              @endfor
               <input type="hidden" form="myForm" name="importe_facturado" value="{{ $tarifaT * ($adultos+($ninos-$Contbrazo))}}">
               @endif
               @for($i=0; $i < ($adultos+($ninos-$Contbrazo)); $i++)
@@ -107,7 +118,7 @@
                 <div class="row">
                   <h4 class="mb-3">PASAJERO  {{ ($i+1) }}</h4>&nbsp;&nbsp;&nbsp; <!-- ADULTOS -- LOS NIÑOS Y BEBES EN ASIENTO SE CUENTAN COMO ADULTOS Y PAGAN -->
                       <div class="form-group">
-                     <input type="text" id="Buscarci" name="Buscarci" placeholder="Cedula..." required> 
+                     <input type="text" id="Buscarci" name="Buscarci" placeholder="Cedula..."> 
                           <button type="button" class="btn btn-primary" id="btnbuscar">
                         <i class="fa fa-search"></i>Buscar</button>
                     </div>
@@ -159,20 +170,6 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="Enfermedad">Enfermedad</label>
-                <select class="custom-select d-block w-100" form="myForm" name="detalles_salud[]" id="Enfermedad[]" required>
-                  <option value="Ninguna"> Ninguna</option>
-                  <option value="Discapacidad motriz"> Discapacidad motriz</option>
-                  <option value="Discapacidad visual"> Discapacidad visual</option>
-                  <option value="Disminución visual y esquema corporal"> Disminución visual y esquema corporal</option>
-                  <option value="Discapacidad visual">Discapacidad visual</option>
-                  <option value="Disminuidos visuales"> Disminuidos visuales</option>
-                  <option value="Discapacidad auditiva"> Discapacidad auditiva</option>
-                  <option value="Discapacidad mental"> Discapacidad mental</option>
-                  <option value="Parálisis cerebral">Parálisis cerebral</option>
-                </select><div class="invalid-feedback">por favor valide su seleccion.</div>
-              </div>
               <div class="col-md-4 mb-3">
                 <label for="Puesto">Preferencia</label>
                 <select class="custom-select d-block w-100" form="myForm" name="asiento[]" id="Puesto[]" required>
@@ -236,7 +233,8 @@
           </div>
         </div>
      @endfor
-     <button class="btn btn-primary btn-lg " data-toggle="modal" data-target="#exampleModal" type="button">Comprar boletos</button>
+     <button class="btn btn-success btn-md " data-toggle="modal" data-target="#exampleModal" type="button">Comprar boletos</button>
+     <button class="btn btn-primary" type="submit" form="myForm" id="reservar" name="reservar"> Reservar  </button>
     </div>
 <!-- ===================== -->
 <!-- Modal -->
@@ -244,7 +242,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Proceso de pago</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Datos de Pago</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -255,10 +253,10 @@
         <p> <img src="{{ asset('online/img/pago/pay-visa.png') }}"> 
           <img src="{{ asset('online/img/pago/pay-mastercard.png') }}"> 
           <img src="{{ asset('online/img/pago/pay-american-ex.png') }}">
-          <img src="{{ asset('online/img/pago/pay-visa-el.png') }}">
+          <img src="{{ asset('online/img/pago/pay-maestro.png') }}">
         </p>
         <div class="form-group">
-          <label for="username">Titular de Tarjeta</label>
+          <label for="username">Nombre</label>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-user"></i></span>
@@ -269,67 +267,38 @@
           </div> <!-- input-group.// -->
         </div> <!-- form-group.// -->
         <div class="form-group">
-          <label for="cardNumber">Numero de la Tarjeta</label>
+          <label for="cardNumber">Numero de Referencia</label>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
             </div>
             <input type="number" class="form-control" form="myForm" name="numero_tarjeta" id="cc-number" require autocomplete="off" >
-            <div class="invalid-feedback">Requiere el numero de tarjeta</div>
+            <div class="invalid-feedback">Requiere el numero de referencia</div>
           </div> <!-- input-group.// -->
         </div> <!-- form-group.// -->
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-sm-7">
             <div class="form-group">
-              <label><span class="hidden-xs">Fecha de Vencimiento</span> </label>
+              <label><span class="hidden-xs">Tipo de Pago</span> </label>
               <div class="form-inline"  id="cc-expiration">
-                <select class="form-control" name="fecha_vencimiento" form="myForm" style="width:45%">
-                  <option>MM</option>
-                  <option>01 - Enero</option>
-                  <option>02 - Febrero</option>
-                  <option>03 - Marzo</option>
-                  <option>04 - Abril</option>
-                  <option>05 - Mayo</option>
-                  <option>06 - Junio</option>
-                  <option>07 - Julio</option>
-                  <option>08 - Agosto</option>
-                  <option>09 - Septiembre</option>
-                  <option>10 - Octubre</option>
-                  <option>11 - Noviembre</option>
-                  <option>12 - Diciembre</option>
+                <select class="form-control" name="tipo_pago" form="myForm">
+                  <option>Débito</option>
+                  <option>Crédito</option>
                 </select>
-                <span style="width:10%; text-align: center"> / </span>
-                <select class="form-control" style="width:45%">
-                  <option>YY</option>
-                  <option>2018</option>
-                  <option>2019</option>
-                  <option>2020</option>
-                  <option>2019</option>
-                  <option>2020</option>
-                  <option>2021</option>
-                  <option>2022</option>
-                  <option>2023</option>
-                  <option>2024</option>
-                  <option>2025</option>
-                  <option>2026</option>
-                  <option>2027</option>
-                  <option>2028</option>
-                  <option>2029</option>
-                  <option>2030</option>
+                <label><span class="hidden-xs">Tipo de Tarjeta</span> </label>
+                <select class="form-control"  id="tipo_tarjeta">
+                  <option>MAESTRO</option>
+                  <option>VISA</option>
+                  <option>MASTERCARD</option>
+                  <option>AMERICAM EXPRESS</option>
+                  
                 </select>
               </div>
               <div class="invalid-feedback">requiere la fecha de Vencimiento</div>
             </div>
           </div>
-          <div class="col-sm-4">
-            <div class="form-group">
-              <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-              <input class="form-control" required type="password" form="myForm" name="csc" id="cc-cvv" maxlength="3" autocomplete="off">
-            </div> <!-- form-group.// -->
-            <div class="invalid-feedback">es necesario el CVV</div>
-          </div>
         </div> <!-- row.// -->
-        <button class="subscribe btn btn-primary" type="submit" form="myForm"> Confirmar  </button>
+        <button class="subscribe btn btn-primary" type="submit" form="myForm" id="pagar" name="pagar"> Registrar Pago  </button>
       </div> <!-- card-body.// -->
     </div>
   </div>

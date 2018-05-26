@@ -118,7 +118,7 @@ class TaquillaController extends Controller
                  $destino=$request->get('destino_id');
                  $fecha=$request->get('fecha_salida');
                  $precio=$request->get('tarifasoloida');
-                 $n_vuelo=$request->get('vuelo_soloida');
+                 $n_vuelo=$request->get('vuelo');
                  return view('Operativo.Taquilla.Compra.CompraBoleto')->with('vuelo',$n_vuelo)->with('tipo',$tipo)->with('origen',$origen)->with('destino',$destino)->with('fecha',$fecha)->with('tarifa',$precio)->with('adultos',$adultos)->with('ninos',$ninos)->with('edades',$edades)->with('brazo',$brazo);
                  break;
             case 2: //ida y vuelta
@@ -128,9 +128,8 @@ class TaquillaController extends Controller
                 $fecha_regreso=$request->get('fecha_regreso');
                 $precio1=$request->get('tarifaida');
                 $precio2=$request->get('tarifaregreso');
-                $n_vuelo=$request->get('vuelo_ida');
+                $n_vuelo=$request->get('vuelo');
                 $n_vueloR=$request->get('vuelo_regreso');
-                
                 return view('Operativo.Taquilla.Compra.CompraBoleto')->with('vuelo',$n_vuelo)->with('vuelo_regreso',$n_vueloR)->with('tipo',$tipo)->with('origen',$origen)->with('destino',$destino)->with('fecha',$fecha)->with('fecha_regreso',$fecha_regreso)->with('tarifa',$precio1)->with('tarifa_regreso',$precio2)->with('adultos',$adultos)->with('ninos',$ninos)->with('edades',$edades)->with('brazo',$brazo);
                 break;
             case 3: //multidestino
@@ -139,8 +138,7 @@ class TaquillaController extends Controller
                 $destino=$request->destino_id;
                 $fecha=$request->fecha_salida;
                 $precios=$request->tarifamultidestino;
-                $vuelos=$request->vuelos_;
-               
+                $vuelos=$request->vuelo_;
                 return view('Operativo.Taquilla.Compra.CompraBoleto')->with('vuelos',$vuelos)->with('tarifas_multidestino',$precios)->with('tipo',$tipo)->with('cantidadV',$cantidadV)->with('origen',$origen)->with('destino',$destino)->with('fecha',$fecha)->with('adultos',$adultos)->with('ninos',$ninos)->with('edades',$edades)->with('brazo',$brazo);
                 break;
        }//fin switch
@@ -148,9 +146,11 @@ class TaquillaController extends Controller
 
     public function BoletoVendido(Request $request)
     {
-        $indicador=$request->indicador;
-        $datos=\Cache::get('datos'.$indicador);
-        $boletos = array();
+        $tipo=$request->tipo;
+        if(isset($request->reservar))
+        {$btn="reservar";
+        }else{ $btn="compra";}
+        
         $datos_vuelos = array();   
          $rutas = array();
         
@@ -158,7 +158,7 @@ class TaquillaController extends Controller
          $tarjeta = new Tarjeta($request->all());
          $tarjeta->titular = $request->usernam;
          $tarjeta->numero_tarjeta = $request->numero_tarjeta;
-         $tarjeta->fecha_vencimiento = $request->fecha_vencimiento;
+         $tarjeta->fecha_vencimiento = $request->tipo_pago." - ".$request->tipo_tarjeta;
          $tarjeta->save();
 
          // // SAVE DATOS DE FACTURAS
@@ -168,8 +168,8 @@ class TaquillaController extends Controller
          $factura->fecha = Carbon::now();
          $factura->importe_facturado = $request->importe_facturado;
          $factura->numero_control = 'N°'.'00-'.random_int(100000, 999999);
-         $factura->adultos_cant = $datos->adultos;
-         $factura->ninos_cant = $datos->ninos;
+         $factura->adultos_cant = $request->adultos;
+         $factura->ninos_cant = $request->ninos;
          $factura->NinosBrazos_cant = $request->NinosBrazos_cant;
          $factura->tarjeta_id = $tarjeta->id;
          $factura->save();
@@ -179,7 +179,51 @@ class TaquillaController extends Controller
         /* $user = Auth::guard('online')->user(); */
        $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
         
-            for($key = 0; $key < ($datos->adultos+$datos->ninos); $key++)
+       switch ($tipo) {
+           case 1:
+           $boletos = array();   
+            for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
+                {
+                    $Nboleto = new Boleto();
+                    $Nboleto->boleto_estado="Pagado";
+                    $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
+                    if($request->tipo_boleto[$key]=="adulto")
+                        $Nboleto->asiento=$request->asiento[$key];
+                    else{
+                        $Nboleto->asiento="null";
+                    }
+                    $Nboleto->primerNombre=$request->primerNombre[$key];
+                    $Nboleto->segundoNombre = $request->segundoNombre[$key];
+                    $Nboleto->tipo_documento=$request->tipo_documento[$key];
+                    $Nboleto->documento=$request->documento[$key];
+                    $Nboleto->genero=$request->genero[$key]; 
+                    $Nboleto->apellido=$request->apellido[$key]; 
+                    $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
+                    $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
+                    $Nboleto->user_id="1";
+                    $Nboleto->factura_id=$factura->id;
+                    $Nboleto->vuelo_id=$request->vuelo;
+                    $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
+
+                    $Nboleto->save();
+                    array_push($boletos, $Nboleto);
+                }// fin for
+                $AuxVuelo = Vuelo::find($request->vuelo);
+                $segmentos=$AuxVuelo->segmentos;
+                    $ruta=$segmentos[0]->ruta;
+                    $origen=$segmentos[0]->ruta->origen;
+                    $destino=$segmentos[0]->ruta->destino;
+                $objAUX= new stdClass();
+                $objAUX->vuelo=$AuxVuelo;
+                $objAUX->ruta=$ruta;
+                $objAUX->origen=$origen;
+                $objAUX->destino=$destino;
+                $objAUX->boletos=$boletos;
+                array_push($datos_vuelos, $objAUX);
+            break;
+            case 2:
+            $boletos = array();
+            for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
             {
                 $Nboleto = new Boleto();
                 $Nboleto->boleto_estado="Pagado";
@@ -197,47 +241,122 @@ class TaquillaController extends Controller
                 $Nboleto->apellido=$request->apellido[$key]; 
                 $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
                 $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
-                if(($request->tipo_boleto[$key])=="bebe en brazos")
-                    $Nboleto->detalles_salud="null";
-                else{
-                    $Nboleto->detalles_salud=$request->detalles_salud[$key];
-                }
-
                 $Nboleto->user_id="1";
                 $Nboleto->factura_id=$factura->id;
-                $Nboleto->vuelo_id=$datos->vuelo->id;
+                $Nboleto->vuelo_id=$request->vuelo;
                 $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
 
                 $Nboleto->save();
-                array_push($boletos, $Nboleto);    
-               
+                array_push($boletos, $Nboleto);
+            }// fin for
+            $boletos = array();
+            for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
+                {
+                    $Nboleto = new Boleto();
+                    $Nboleto->boleto_estado="Pagado";
+                    $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
+                    if($request->tipo_boleto[$key]=="adulto")
+                        $Nboleto->asiento=$request->asiento[$key];
+                    else{
+                        $Nboleto->asiento="null";
+                    }
+                    $Nboleto->primerNombre=$request->primerNombre[$key];
+                    $Nboleto->segundoNombre = $request->segundoNombre[$key];
+                    $Nboleto->tipo_documento=$request->tipo_documento[$key];
+                    $Nboleto->documento=$request->documento[$key];
+                    $Nboleto->genero=$request->genero[$key]; 
+                    $Nboleto->apellido=$request->apellido[$key]; 
+                    $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
+                    $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
+                    $Nboleto->user_id="1";
+                    $Nboleto->factura_id=$factura->id;
+                    $Nboleto->vuelo_id=$request->vuelo_regreso;
+                    $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
+                    $Nboleto->save();
+                    array_push($boletos, $Nboleto);
+                }// fin for
+                $AuxVuelo = Vuelo::find($request->vuelo);
+                $segmentos=$AuxVuelo->segmentos;
+                    $ruta=$segmentos[0]->ruta;
+                    $origen=$segmentos[0]->ruta->origen;
+                    $destino=$segmentos[0]->ruta->destino;
+                $objAUX= new stdClass();
+                $objAUX->vuelo=$AuxVuelo;
+                $objAUX->ruta=$ruta;
+                $objAUX->origen=$origen;
+                $objAUX->destino=$destino;
+                $objAUX->boletos=$boletos;
+                array_push($datos_vuelos, $objAUX);
+                $AuxVuelo = Vuelo::find($request->vuelo_regreso);
+                $segmentos=$AuxVuelo->segmentos;
+                    $ruta=$segmentos[0]->ruta;
+                    $origen=$segmentos[0]->ruta->origen;
+                    $destino=$segmentos[0]->ruta->destino;
+                $objAUX= new stdClass();
+                $objAUX->vuelo=$AuxVuelo;
+                $objAUX->ruta=$ruta;
+                $objAUX->origen=$origen;
+                $objAUX->destino=$destino;
+                $objAUX->boletos=$boletos;
+                array_push($datos_vuelos, $objAUX);
+            break;
+            case 3:
+                //dd($tipo,"vuelos a tomar",$request->vuelo);
+               // dd($request->adultos,$request->ninos);
+               $c=0; 
+               for($i=0;$i<$request->cantidadV;$i++)
+                { 
+                    $boletos = array();
+                    for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
+                    {
+                       $c++;
+                        $Nboleto = new Boleto();
+                        $Nboleto->boleto_estado="Pagado";
+                        $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
+                        if($request->tipo_boleto[$key]=="adulto")
+                            $Nboleto->asiento=$request->asiento[$key];
+                        else{
+                            $Nboleto->asiento="null";
+                        }
+                        $Nboleto->primerNombre=$request->primerNombre[$key];
+                        $Nboleto->segundoNombre = $request->segundoNombre[$key];
+                        $Nboleto->tipo_documento=$request->tipo_documento[$key];
+                        $Nboleto->documento=$request->documento[$key];
+                        $Nboleto->genero=$request->genero[$key]; 
+                        $Nboleto->apellido=$request->apellido[$key]; 
+                        $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
+                        $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
+                        $Nboleto->user_id="1";
+                        $Nboleto->factura_id=$factura->id;
+                        $Nboleto->vuelo_id=$request->vuelo[$i];
+                        $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
+                        $Nboleto->save();
+                        array_push($boletos, $Nboleto);
+                    }// fin for interno
+                   
+                    $AuxVuelo = Vuelo::find($request->vuelo[$i]);
+                $segmentos=$AuxVuelo->segmentos;
+                    $ruta=$segmentos[0]->ruta;
+                    $origen=$segmentos[0]->ruta->origen;
+                    $destino=$segmentos[0]->ruta->destino;
+                $objAUX= new stdClass();
+                $objAUX->vuelo=$AuxVuelo;
+                $objAUX->ruta=$ruta;
+                $objAUX->origen=$origen;
+                $objAUX->destino=$destino;
+                $objAUX->boletos=$boletos;
+                array_push($datos_vuelos, $objAUX);
+                }//fin for externo
                 
-
-            }
+            break;
             
-            $AuxVuelo = Vuelo::find($datos->vuelo->id);
-            $segmentos=$AuxVuelo->segmentos;
-            if(count($segmentos)==1){
-                $ruta=$segmentos[0]->ruta;
-                $origen=$segmentos[0]->ruta->origen;
-                $destino=$segmentos[0]->ruta->destino;
-            }else{
-                foreach ($segmentos as $segmento) {
-                   dd("varios segmentos");
-                }
-            }
-            $objAUX= new stdClass();
-            $objAUX->vuelo=$AuxVuelo;
-            $objAUX->ruta=$ruta;
-            $objAUX->origen=$origen;
-            $objAUX->destino=$destino;
-            array_push($datos_vuelos, $objAUX);
+        }// fin switch
 
         // ENVIO DE EMAIL
        // Mail::to(Auth::guard('online')->user()->email)->send(new CompraBoleto($boletos, Auth::guard('online')->user(), $datos_vuelos, $factura));
 
 
-        return view('Operativo.Taquilla.Compra.BoletoVendido')->with('boletos',$boletos)->with('factura', $factura)->with('indicador',$indicador)->with('datos_vuelo',$datos_vuelos);  
+        return view('Operativo.Taquilla.Compra.BoletoVendido')->with('factura', $factura)->with('tipo',$tipo)->with('datos_vuelo',$datos_vuelos);  
       
     } 
 

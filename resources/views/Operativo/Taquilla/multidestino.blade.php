@@ -44,7 +44,7 @@
                           <i class="fa fa-plane"></i>
                         </span>
                       </div>
-                      <select class="form-control" id="vuelo_1" name="vuelo_1">
+                      <select class="form-control" id="vuelo_1" name="vuelo_[]">
                         <option value="0"> Ningun Vuelo seleccionado </option>
                       </select>
                       <input type="hidden" id="segmento1" name="segmento1" value="">

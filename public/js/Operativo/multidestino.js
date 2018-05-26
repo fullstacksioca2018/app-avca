@@ -122,7 +122,6 @@ $(document).ready(function () {
 		var destino=$("#destino_id").val();
 		var fecha=$("#fecha_salida").val();
 		var tipo=1;
-		alert(origen+destino+fecha+tipo);
    CargarAjax(origen,destino,fecha,tipo,"soloida");
 });
 
