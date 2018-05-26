@@ -33,6 +33,20 @@
                       <input type="date" class="form-control" id="fecha_salida" name="fecha_salida" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}" value="{{Carbon::now()->addDay(1)->format('Y-m-d')}}">
                     </div>
                   </div>
+                  <div class="col-md-6 col-form-label">
+                      <label id="vuelo_label" for="vuelo">Seleccione el Vuelo</label>
+                      <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa fa-plane"></i>
+                        </span>
+                      </div>
+                      <select class="form-control" id="vuelo_soloida" name="vuelo">
+                        <option value="0"> Ningun Vuelo seleccionado </option>
+                      </select>
+                      <input type="hidden" id="tarifasoloida" name="tarifasoloida" value="">
+                    </div>
+                  </div>
   <div class="col-md-6 col-form-label row " >
                  <div class="form-group col-md-6">
                 <label id="inputadultos_label" for="inputadultos1">Adultos</label>

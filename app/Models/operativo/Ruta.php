@@ -41,50 +41,44 @@ class Ruta extends Model
     public function scopeRutas($query, $origen_id, $destino_id,$date) //buscar rutas y vuelos por origen, destino y fecha
     {
       return DB::table('vuelos')
-                ->select('vuelos.id')
+                ->select('vuelos.id','rutas.tarifa_vuelo')
                 ->join('segmentos','vuelos.id','=','segmentos.vuelo_id')
                 ->join('rutas','segmentos.ruta_id','=','rutas.id')
                 ->join('sucursales','rutas.origen_id','=','sucursales.sucursal_id')
                 ->where([['rutas.origen_id','=',$origen_id],['rutas.destino_id','=',$destino_id]])
-                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); //->format('Y-m-d'))->get()
-       // return DB::table('rutas')->join('sucursales','sucursales.id','=','rutas.origen_id')
-       //                         ->join('segmentos','segmentos.ruta_id','=','rutas.id')  
-       //                         ->join('vuelos','vuelos.id','=','segmentos.vuelo_id')
-       //                         ->where([['rutas.origen_id','=',$origen_id],['rutas.destino_id','=',$destino_id]])
-       //                         ->whereDate('vuelos.fecha_salida', '=', $date->format('Y-m-d'));
-       //                         ->get();
+                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); 
     }
     
     public function scopeRutas_origen($query, $origen_id,$date) //buscar rutas y vuelos por origen y fecha
     {
       return DB::table('vuelos')
-                ->select('vuelos.id')
+                ->select('vuelos.id','rutas.tarifa_vuelo')
                 ->join('segmentos','vuelos.id','=','segmentos.vuelo_id')
                 ->join('rutas','segmentos.ruta_id','=','rutas.id')
                 ->join('sucursales','rutas.origen_id','=','sucursales.sucursal_id')
                 ->where('rutas.origen_id','=',$origen_id)
-                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); /* ->format('Y-m-d'))->get() */
+                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); 
     }
 
-    public function scopeRutas_destino($query, $origen_id,$date) //buscar rutas y vuelos por destino y fecha
+    public function scopeRutas_destino($query, $destino_id,$date) //buscar rutas y vuelos por destino y fecha
     {
       return DB::table('vuelos')
-                ->select('vuelos.id')
+                ->select('vuelos.id','rutas.tarifa_vuelo')
                 ->join('segmentos','vuelos.id','=','segmentos.vuelo_id')
                 ->join('rutas','segmentos.ruta_id','=','rutas.id')
                 ->join('sucursales','rutas.origen_id','=','sucursales.sucursal_id')
                 ->where('rutas.destino_id','=',$destino_id)
-                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); /* ->format('Y-m-d'))->get() */
+                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); 
     }
 
     public function scopeRutas_fecha ($query ,$date) //buscar rutas y vuelos por fecha
     {
       return DB::table('vuelos')
-                ->select('vuelos.id')
+                ->select('vuelos.id','rutas.tarifa_vuelo')
                 ->join('segmentos','vuelos.id','=','segmentos.vuelo_id')
                 ->join('rutas','segmentos.ruta_id','=','rutas.id')
                 ->join('sucursales','rutas.origen_id','=','sucursales.sucursal_id')
-                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); /* ->format('Y-m-d'))->get() */
+                ->whereDate('vuelos.fecha_salida', '=', $date)->get(); 
     }
 
 

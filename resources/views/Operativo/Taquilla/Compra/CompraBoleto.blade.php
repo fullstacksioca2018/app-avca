@@ -3,13 +3,21 @@
   
 @section('content')
    @php
-   $datos=\Cache::get('datos'.$indicador);
+   
    $Contbrazo=0;
-   foreach($datos->brazos as $brazo){
-                 
-    if(($brazo != null) && ($brazo != 'En asiento') ){$Contbrazo++;}
-    
-   }
+   $tarifaT=0;
+   //contador de niños en brazo 
+   
+   for($i=0;$i<$ninos;$i++){             
+    if(($brazo[$i] != null) && ($brazo[$i] != 'En asiento') ){$Contbrazo++;}
+     }
+    //contador de tarifas multivuelo
+    if($tipo==3){
+        for($i=0;$i<$cantidadV;$i++)
+        {
+          $tarifaT=$tarifaT+$tarifas_multidestino[$i];
+        }
+    }
    @endphp
 <div class="container-fluid">
   <div class="animated fadeIn">
@@ -20,11 +28,19 @@
             <div class="container kieto">
               <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Precio: </span>
-                <span class="badge badge-primary badge-pill">{{ ($datos->adultos + $datos->ninos) - $Contbrazo }} Boletos</span>
+                @if($tipo==1)
+                <span class="badge badge-primary badge-pill">{{ ($adultos + $ninos) - $Contbrazo }} Boletos</span>
+                @endif 
+                @if($tipo==2)
+                <span class="badge badge-primary badge-pill">{{ (($adultos + $ninos) - $Contbrazo)*2 }} Boletos</span>
+                @endif
+                @if($tipo==3)
+                <span class="badge badge-primary badge-pill">{{ ($adultos + $ninos) - $Contbrazo }} Boletos {{$tarifaT}}</span>
+                @endif
               </h4>
               <ul class="list-group mb-3">
                 <!-- MOSTRAR LAS TASAS PARA CADA PASAJERO -->
-                @for($i=0; $i < ($datos->adultos+($datos->ninos - $Contbrazo)); $i++) 
+                @for($i=0; $i < ($adultos+($ninos - $Contbrazo)); $i++) 
                   <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div class="row">
                       <h6 class="my-0">Pasajero {{ ($i+1) }}:
@@ -43,12 +59,29 @@
                       </h6>
                       <br>
                     </div>
-                    <span class="text-muted">{{ $datos->ruta->tarifa_vuelo }}Bs</span>
+                    @if($tipo==1)
+                    <span class="text-muted">{{ $tarifa }}Bs</span>
+                    @endif
+                    @if($tipo==2)
+                    <span class="text-muted">{{ $tarifa+$tarifa_regreso }}Bs</span>
+                    @endif
+                    @if($tipo==3)
+                    <span class="text-muted">{{ $tarifaT }}Bs</span>
+                    @endif
+
                   </li>
                 @endfor <!-- FIN TASAS -->
                 <li class="list-group-item d-flex justify-content-between border-primary">
                   <span>Total a PagarBs</span>
-                  <strong>{{ $datos->ruta->tarifa_vuelo * ($datos->adultos+($datos->ninos-$Contbrazo))}} Bs</strong>
+                  @if($tipo==1)
+                  <strong>{{ $tarifa * ($adultos+($ninos-$Contbrazo))}} Bs</strong>
+                  @endif
+                  @if($tipo==2)
+                  <strong>{{ ($tarifa+$tarifa_regreso) * ($adultos+($ninos-$Contbrazo))}} Bs</strong>
+                  @endif
+                  @if($tipo==3)
+                  <strong>{{ $tarifaT * ($adultos+($ninos-$Contbrazo))}} Bs</strong>
+                  @endif
                 </li>
               </ul>
             </div>
@@ -57,14 +90,32 @@
             <h3 class="mb-4 ml-5">Formulario de Boletos</h3>
             <!-- FORMULARIOS DE COMPRA -->
             <form method="post" id="myForm" action="{{ URL::to('taquilla/BoletoVendido') }}">{{ csrf_field() }} 
-              <input type="hidden" form="myForm" name="indicador" id="indicador" value="{{ $indicador }}"> <!-- INDICADOR DE POSICION DEL ARRAY EN LA CACHE -->
               <input type="hidden" form="myForm" name="NinosBrazos_cant" id="NinosBrazos_cant" value="{{ $Contbrazo }}">
-              <input type="hidden" form="myForm" name="importe_facturado" value="{{ $datos->ruta->tarifa_vuelo * ($datos->adultos+($datos->ninos-$Contbrazo))}}">
-              @for($i=0; $i < ($datos->adultos+($datos->ninos-$Contbrazo)); $i++)
+              @if($tipo==1)
+              <input type="hidden" form="myForm" name="importe_facturado" value="{{ $tarifa * ($adultos+($ninos-$Contbrazo))}}">
+              @endif
+              @if($tipo==2)
+              <input type="hidden" form="myForm" name="importe_facturado" value="{{ ($tarifa + $tarifa_regreso) * ($adultos+($ninos-$Contbrazo))}}">
+              @endif
+              @if($tipo==3)
+              <input type="hidden" form="myForm" name="importe_facturado" value="{{ $tarifaT * ($adultos+($ninos-$Contbrazo))}}">
+              @endif
+              @for($i=0; $i < ($adultos+($ninos-$Contbrazo)); $i++)
               <input type="hidden" form="myForm" name="tipo_boleto[]" id="tipo_boleto[]" value="adulto">
               <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.4s">
-                <h4 class="mb-3">PASAJERO  {{ ($i+1) }}  </h4> <!-- ADULTOS -- LOS NIÑOS Y BEBES EN ASIENTO SE CUENTAN COMO ADULTOS Y PAGAN -->
+                  <div class="col-sm-12">
                 <div class="row">
+                  <h4 class="mb-3">PASAJERO  {{ ($i+1) }}</h4>&nbsp;&nbsp;&nbsp; <!-- ADULTOS -- LOS NIÑOS Y BEBES EN ASIENTO SE CUENTAN COMO ADULTOS Y PAGAN -->
+                      <div class="form-group">
+                     <input type="text" id="Buscarci" name="Buscarci" placeholder="Cedula..." required> 
+                          <button type="button" class="btn btn-primary" id="btnbuscar">
+                        <i class="fa fa-search"></i>Buscar</button>
+                    </div>
+                  
+                  </div>
+                </div>
+                  
+                  <div class="row">
                   <div class="col-md-4 mb-2" >
                     <label for="firstName">Primer Nombre:</label>
                     <input type="text" form="myForm" class="form-control" name="primerNombre[]" id="firstName[]" placeholder="Nombre" required>
@@ -138,7 +189,7 @@
     @for($i=0; $i <$Contbrazo; $i++)
       <div class="container pasajero box wow fadeInLeft" data-wow-duration="2.4s">
         <input type="hidden" form="myForm" name="tipo_boleto[]" id="tipo_boleto[]" value="bebe en brazos">
-        <h4 class="mb-3">PASAJERO  {{ ($i+1+$datos->adultos+($datos->ninos-$Contbrazo)) }} <span>Bebé en brazos</span></h4>
+        <h4 class="mb-3">PASAJERO  {{ ($i+1+$adultos+($ninos-$Contbrazo)) }} <span>Bebé en brazos</span></h4>
         <div class="row">
           <div class="col-md-4 mb-3">
             <label for="firstName">Primer Nombre:</label>
@@ -174,7 +225,6 @@
             <div class="col-md-4 ">
               <label for="coñooo">Fecha de nacimiento:</label>
               <input type="date" form="myForm" name="fecha_nacimiento[]" class="form-control impout3" require>
-              <i class="fa fa-calendar prefix icocalendario3"></i>
             </div>
             <div class=" col col-md-2 mb-2">
               <label for="genero[]" form="myForm">Sexo:</label>
@@ -302,13 +352,8 @@
 
 <!--Lo del selcet de la busqueda para las compra boleto-->
 
-<script src="{{ asset('online/plugins/lib/chosen/chosen.jquery.js') }}" type="text/javascript" charset="utf-8"></script>
-<script>
-$(function() {
-      $('.chosen-select').chosen();
-      $('.chosen-select-deselect').chosen({ allow_single_deselect: false });
-    });
-</script>
+
+
   @endpush
     @push('styles')
  <link href="{{ asset('online/css/estilomod.css') }}" rel="stylesheet">
@@ -317,5 +362,10 @@ $(function() {
   <link href="{{ asset('online/css/estilocompras.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('online/plugins/lib/chosen/chosen.css') }}">
  <link rel="stylesheet" href="{{ asset('online/plugins/lib/chosen/bootstrap-chosen.css') }}">
+@endpush
+
+@push('scripts')
+<script src="{{asset('js/Operativo/compraboleto.js')}}"></script>
+
 @endpush
 @endsection

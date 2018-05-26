@@ -37,6 +37,10 @@ class Cliente extends Model
     	
     	return $this->belongsTo('App\Models\Online\Pais');
 
-    }
+	}
+	/* public function scopeCedula($query, $cedula) //buscar rutas y vuelos por origen, destino y fecha
+    {
+		return $query->where('documento',$cedula); 
+    } */
 
 }

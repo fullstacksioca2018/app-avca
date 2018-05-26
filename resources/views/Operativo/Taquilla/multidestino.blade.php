@@ -33,8 +33,23 @@
           </span>
         </div>
         <input type="date" class="form-control" id="salida1" name="fecha_salida[]" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}" value="{{Carbon::now()->addDay(1)->format('Y-m-d')}}">
+        <input type="hidden" id="tarifamultidestino1" name="tarifamultidestino[]" value="">
       </div>
     </div>
+    <div class="col-md-6 col-form-label">
+                      <label id="vuelo_label" for="vuelo">Seleccione Vuelo destino N° 1</label>
+                      <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa fa-plane"></i>
+                        </span>
+                      </div>
+                      <select class="form-control" id="vuelo_1" name="vuelo_1">
+                        <option value="0"> Ningun Vuelo seleccionado </option>
+                      </select>
+                      <input type="hidden" id="segmento1" name="segmento1" value="">
+                    </div>
+                  </div>
     <!-- AQUI EMPIEZA EL MULTIDESTINO -->
     @php for($i=2;$i<5;$i++){ @endphp
     <div class="form-group row" id="vuelo{{$i}}">
@@ -69,10 +84,24 @@
                 <span class="input-group-text">
                   <i class="fa fa-calendar"></i>
                 </span>
+                <input type="hidden" id="tarifamultidestino{{$i}}" name="tarifamultidestino[]" value="">
               </div>
               <input type="date" class="form-control" id="salida{{$i}}" name="fecha_salida[]"min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}" value="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" >
             </div>
         </div>
+        <div class="col-md-6 col-form-label">
+                      <label id="vuelo_label" for="vuelo">Seleccione Vuelo para el destino N° {{ $i }}</label>
+                      <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa fa-plane"></i>
+                        </span>
+                      </div>
+                      <select class="form-control" id="vuelo_{{ $i }}" name="vuelo_[]">
+                        <option value="0"> Ningun Vuelo seleccionado </option>
+                      </select>
+                    </div>
+                  </div>
       </div>
        @php } @endphp <!-- FIN FOR PARA GENERAR LOS OTROS DESTINOS -->
 </div>
