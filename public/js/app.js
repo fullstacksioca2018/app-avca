@@ -116321,7 +116321,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			parametrosS: ['Vuelos', 'Pasajeros'],
 			optionsPP: ['Mes anterior', 'Personalizado', 'Intervalo'],
 			optionsPPB: ['Mes anterior', 'Personalizado'],
-			optionsP: ['Actual', 'Semana anterior', 'Mes anterior', 'Temporada', 'Personalizado'],
+			optionsP: ['Actual', 'Semana anterior', 'Mes anterior', 'Temporada', 'Personalizado', 'Intervalo'],
 			filtros: ["Cargo", "Sucursal"],
 			busqueda: ["Más alto", "Más bajo", "Mayor que", "Menor que"],
 			busquedaRow: ["1", "2", "3", "4", "5"],
@@ -118476,8 +118476,7 @@ var render = function() {
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.form.periodo == "Intervalo" &&
-                  _vm.form.consulta == "Personal"
+                  _vm.form.periodo == "Intervalo"
                     ? _c("div", [
                         _c("br"),
                         _vm._v(" "),

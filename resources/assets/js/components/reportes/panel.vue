@@ -96,7 +96,7 @@
 					              </div>
 					            </div>
 					        </div>
-					        <div v-if="form.periodo=='Intervalo'&&form.consulta=='Personal'">
+					        <div v-if="form.periodo=='Intervalo'">
 					        	<br>
 					            <label for="fecha_ingreso">Fecha Personalizada</label>
 					        	<br>
@@ -351,7 +351,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 				],
 				optionsPPB:['Mes anterior','Personalizado'
 				],
-				optionsP:['Actual','Semana anterior','Mes anterior','Temporada','Personalizado'
+				optionsP:['Actual','Semana anterior','Mes anterior','Temporada','Personalizado','Intervalo'
 				],
 				filtros:[
 					"Cargo","Sucursal"

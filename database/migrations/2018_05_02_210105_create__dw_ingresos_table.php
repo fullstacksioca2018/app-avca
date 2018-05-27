@@ -16,7 +16,7 @@ class CreateDwIngresosTable extends Migration
         Schema::create('DwIngresos', function (Blueprint $table) {
             $table->increments('ingreso_id');
             $table->float('monto');
-            $table->datetime('fecha_ingreso');
+            $table->dateTime('fecha_ingreso');
             $table->timestamps();
         });
     }

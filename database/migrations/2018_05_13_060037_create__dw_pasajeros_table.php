@@ -15,7 +15,7 @@ class CreateDwPasajerosTable extends Migration
     {
         Schema::create('DwPasajeros', function (Blueprint $table) {
             $table->increments('pasajero_id');
-            $table->timestamp('fecha_nacimiento')->nullable();
+            $table->dateTime('fecha_nacimiento')->nullable();
             $table->string('genero', 10)->nullable();
             $table->string('discapacidad', 10)->nullable();
             $table->timestamps();

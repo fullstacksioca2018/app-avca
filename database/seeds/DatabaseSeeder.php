@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
 
         //SEEDER MODULO REPORTE
         $this->call(DwSucursales::class);
+        $this->call(DwPasajeros::class);
         $this->call(DwRutas::class);
         $this->call(DwVuelos::class);
         $this->call(DwCargosSeeder::class);

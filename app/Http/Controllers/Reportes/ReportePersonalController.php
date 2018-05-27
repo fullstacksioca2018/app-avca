@@ -14,6 +14,11 @@ use stdClass;
 
 class ReportePersonalController extends Controller
 {
+    public function __construct(){
+        Carbon::resetToStringFormat();
+      Carbon::setLocale('es');
+      date_default_timezone_set('America/Caracas');
+    }
     public function periodos($consulta){
     	$fechas=array();
     	if($consulta->periodo=='Intervalo'){
