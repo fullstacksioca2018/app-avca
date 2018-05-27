@@ -11,6 +11,15 @@ class DW_ReporteIngresos extends Model
 {
 
 
+    public function scopePorFecha($query,$desde,$hasta){
+        return DB::table('dwingresos')
+                ->select('fecha_ingreso', DB::raw('SUM(dwingresos.monto) as total'))
+                ->whereDate('dwingresos.fecha_ingreso','>=',$desde)
+                ->whereDate('dwingresos.fecha_ingreso','<=',$hasta)
+                ->groupBy('dwingresos.fecha_ingreso')
+                ->get();
+    }
+
     public function scopePorRutaFecha($query,$desde,$hasta,$ruta_id){
     	$ruta=DW_Ruta::find($ruta_id);
         $ruta2=DB::table('DwRutas')
@@ -30,8 +39,8 @@ class DW_ReporteIngresos extends Model
                 ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
                 ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
                 ->where('DwRutas.ruta_id',$ruta_id)
-                ->whereDate('dwingresos.fecha_ingreso','>=',$desde->toDateTimeString())
-        		->whereDate('dwingresos.fecha_ingreso','<=',$hasta->toDateTimeString())
+                ->whereDate('dwingresos.fecha_ingreso','>=',$desde)
+        		->whereDate('dwingresos.fecha_ingreso','<=',$hasta)
                 ->groupBy('dwingresos.fecha_ingreso')
                 ->get();
         }
@@ -43,11 +52,38 @@ class DW_ReporteIngresos extends Model
                 ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
                 ->where('DwRutas.ruta_id',$ruta_id)
                 ->orWhere('DwRutas.ruta_id',$ruta_id)
-                ->whereDate('dwingresos.fecha_ingreso','>=',$desde->toDateTimeString())
-                ->whereDate('dwingresos.fecha_ingreso','<=',$hasta->toDateTimeString())
+                ->whereDate('dwingresos.fecha_ingreso','>=',$desde)
+                ->whereDate('dwingresos.fecha_ingreso','<=',$hasta)
                 ->groupBy('dwingresos.fecha_ingreso')
                 ->get();
         }
 
+    }
+
+    public function scopePorOrigenFecha($query,$desde,$hasta,$origen){
+        return DB::table('dwingresos')
+            ->select('fecha_ingreso', DB::raw('SUM(dwingresos.monto) as total'))
+            ->join('DwBoletos', 'DwBoletos.ingreso_id', '=', 'dwingresos.ingreso_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->where('DwRutas.origen_id',$origen)
+            ->whereDate('dwingresos.fecha_ingreso','>=',$desde)
+            ->whereDate('dwingresos.fecha_ingreso','<=',$hasta)
+            ->groupBy('dwingresos.fecha_ingreso')
+            ->get();
+
+    }
+
+    public function scopePorDestinoFecha($query,$desde,$hasta,$destino){
+        return DB::table('dwingresos')
+            ->select('fecha_ingreso', DB::raw('SUM(dwingresos.monto) as total'))
+            ->join('DwBoletos', 'DwBoletos.ingreso_id', '=', 'dwingresos.ingreso_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->where('DwRutas.destino_id',$destino)
+            ->whereDate('dwingresos.fecha_ingreso','>=',$desde)
+            ->whereDate('dwingresos.fecha_ingreso','<=',$hasta)
+            ->groupBy('dwingresos.fecha_ingreso')
+            ->get();
     }
 }

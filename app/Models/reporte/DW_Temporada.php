@@ -14,9 +14,9 @@ class DW_Temporada extends Model
 			,'final'
     ];
 
-    public function buscar($query, $nombre, $year){
+    public function scopebuscar($query, $nombre, $year){
     	return $query->where('nombre','=',$nombre)
     				->whereYear('inicio', $year)
-					->get();
+					->first();
     }
 }

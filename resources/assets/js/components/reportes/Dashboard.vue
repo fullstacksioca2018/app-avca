@@ -197,7 +197,7 @@
         },
         grafica3:[
           {
-            titulo:"Vuelos Demorados Del 15 al 17 de Mayo",
+            titulo:"Vuelos Demorados Del 15 al 31 de Mayo",
             grafica:"Bar",
             datos:{
               labels:["15 Mayo","16 Mayo","17 Mayo"],
@@ -212,7 +212,7 @@
           filtrosV:['Demorados'],
           periodo:"Personalizado",
           desde:"2018-05-15",
-          hasta:"2018-05-17"
+          hasta:"2018-05-31"
         },
         grafica4:[
           {
@@ -235,7 +235,7 @@
         },
         grafica5:[
         {
-          titulo:"Ingresos Del 15 al 17 de Mayo",
+          titulo:"Ingresos Del 15 al 31 de Mayo",
           grafica:"Line",
           datos:{
             data:[[35200,32200,34800]],
@@ -336,8 +336,8 @@
         },
         ingresos(){
           var auxI="2018-05-15";
-          var auxF="2018-05-17";
-          var titulo="Ingresos Del 15 al 17 de Mayo";
+          var auxF="2018-05-31";
+          var titulo="Ingresos Del 15 al 31 de Mayo";
 
           axios({
                 method: 'get',

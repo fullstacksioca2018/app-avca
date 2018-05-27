@@ -45,8 +45,8 @@ class DwTemporadas extends Seeder
 
         DB::table('DwTemporadas')->insert([
             'nombre'      => 'Semana Santa',
-            'inicio'      => '2017-03-13 12:00:00',
-            'final'     => '2017-03-22 12:00:00',
+            'inicio'      => '2018-03-13 12:00:00',
+            'final'     => '2018-03-22 12:00:00',
         ]);
 
         DB::table('DwTemporadas')->insert([

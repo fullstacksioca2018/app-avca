@@ -351,7 +351,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 				],
 				optionsPPB:['Mes anterior','Personalizado'
 				],
-				optionsP:['Actual','Semana anterior','Mes anterior','Temporada','Personalizado','Intervalo'
+				optionsP:['Actual','Semana anterior','Mes anterior','Temporada','Personalizado'
 				],
 				filtros:[
 					"Cargo","Sucursal"
@@ -704,7 +704,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 		     			
 		     		}
 		     	}
-		     	if(this.form.parametros.length==0){
+		     	if(this.form.parametros.length==0&&(this.form.consulta!='Ingresos'||(this.form.consulta=='Ingresos'&&this.form.tipo=='Busqueda'))){
 		     		Vue.toasted.show("Debe seleccionar los parametros para la consulta", {
                         theme: "primary", 
 	                    position: "bottom-right",  

@@ -116321,7 +116321,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			parametrosS: ['Vuelos', 'Pasajeros'],
 			optionsPP: ['Mes anterior', 'Personalizado', 'Intervalo'],
 			optionsPPB: ['Mes anterior', 'Personalizado'],
-			optionsP: ['Actual', 'Semana anterior', 'Mes anterior', 'Temporada', 'Personalizado', 'Intervalo'],
+			optionsP: ['Actual', 'Semana anterior', 'Mes anterior', 'Temporada', 'Personalizado'],
 			filtros: ["Cargo", "Sucursal"],
 			busqueda: ["Más alto", "Más bajo", "Mayor que", "Menor que"],
 			busquedaRow: ["1", "2", "3", "4", "5"],
@@ -116643,7 +116643,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 					}
 				}
 			}
-			if (this.form.parametros.length == 0) {
+			if (this.form.parametros.length == 0 && (this.form.consulta != 'Ingresos' || this.form.consulta == 'Ingresos' && this.form.tipo == 'Busqueda')) {
 				Vue.toasted.show("Debe seleccionar los parametros para la consulta", {
 					theme: "primary",
 					position: "bottom-right",
@@ -120244,7 +120244,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         hasta: "2018-05-31"
       },
       grafica3: [{
-        titulo: "Vuelos Demorados Del 15 al 17 de Mayo",
+        titulo: "Vuelos Demorados Del 15 al 31 de Mayo",
         grafica: "Bar",
         datos: {
           labels: ["15 Mayo", "16 Mayo", "17 Mayo"],
@@ -120258,7 +120258,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         filtrosV: ['Demorados'],
         periodo: "Personalizado",
         desde: "2018-05-15",
-        hasta: "2018-05-17"
+        hasta: "2018-05-31"
       },
       grafica4: [{
         titulo: "Vuelos Cancelados Del 15 al 31 de Mayo",
@@ -120278,7 +120278,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         hasta: "2018-05-31"
       },
       grafica5: [{
-        titulo: "Ingresos Del 15 al 17 de Mayo",
+        titulo: "Ingresos Del 15 al 31 de Mayo",
         grafica: "Line",
         datos: {
           data: [[35200, 32200, 34800]],
@@ -120383,8 +120383,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       var auxI = "2018-05-15";
-      var auxF = "2018-05-17";
-      var titulo = "Ingresos Del 15 al 17 de Mayo";
+      var auxF = "2018-05-31";
+      var titulo = "Ingresos Del 15 al 31 de Mayo";
 
       axios({
         method: 'get',
