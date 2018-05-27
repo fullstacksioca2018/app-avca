@@ -67,7 +67,7 @@
 <!-- JOooodeeerrr segundo select -->
 
   <div class="col-md-6">
-        <label for="exampleFormControlSelect1" class="h">Desde:</label>
+        <label for="exampleFormControlSelect1" class="h">Hasta:</label>
         <div class="form-group">         
       
             <select data-placeholder="Ciudad-Aeropuerto" name="destino_id" class="chosen-select impout3" class="form-control impout3" tabindex="2">
@@ -114,7 +114,7 @@
 <div class="col col-md-1 col-lg-1">
        <label for="exampleFormControlSelect1" class="h">Adultos:</label>
         <div class="form-group">    
-    <input type="number" id="inputadultos" min="1" max="5" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')"> 
+    <input type="number" id="inputadultos" min="1" max="6" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')"> 
      </div>
       </div>
         

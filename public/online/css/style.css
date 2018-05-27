@@ -350,7 +350,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu li:hover > a, .nav-menu > .menu-active > a { /*COLOR LETRA NAV ACTIVO*/
-  color:#00C6C6;
+  /*color:#00C6C6;*/
   font-size: 20px;
 }
 
@@ -374,7 +374,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #333;
   transition: 0.3s;
   display: block;
-  font-size: 13px;
+  font-size: 20px;
   text-transform: none;
 }
 

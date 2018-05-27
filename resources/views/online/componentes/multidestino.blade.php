@@ -240,30 +240,31 @@
   ======================= -->
 <div class="mr-5">
   
-
-<button type="button" class="btn btn btn-sm btn-primary ion-plus" id="masV" onclick="masvuelos()"></button>
-<button type="button" class="btn btn btn-sm btn-danger ion-minus-round" id="menosV" onclick="menosvuelos()"></button>
-
 </div>
 
 <!-- ======================
     INICIO DEL Calendario
   ======================= -->
 
- <div class="form-row pt-3">
+ <div class="form-row pt-1">
 
 
+<div class="col col-md-1 col-lg-1 mt-4">
+<button type="button" class="btn btn btn-sm btn-primary ion-plus" id="masV" onclick="masvuelos()"></button>
+</div>
 
+<div class="col col-md-1 col-lg-1 mt-4 ml-2">
+<button type="button" class="btn btn btn-sm btn-danger ion-minus-round" id="menosV" onclick="menosvuelos()"></button>
+</div>
 
-
-<div class="col col-md-1 col-lg-1">
+<div class="col col-md-1 col-lg-1 ml-3">
        <label for="exampleFormControlSelect1" class="h">Adultos:</label>
         <div class="form-group">    
-    <input type="number" id="inputadultos" min="1" max="5" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')"> 
+    <input type="number" id="inputadultos" min="1" max="6" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')"> 
      </div>
       </div>
         
-    <div class="col col-md-1 col-lg-1">
+    <div class="col col-md-1 col-lg-1 mr-3">
       <label for="exampleFormControlSelect1" class="h">Niños:</label>
       <div class="form-group">        
         <input type="number" id="inputninos" min="0" max="5" class="form-control" value="0" name="ninos" onchange="validarN('inputninos')">

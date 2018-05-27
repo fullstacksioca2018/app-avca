@@ -532,7 +532,7 @@
 <!-- <p class="alert alert-success">ingrese los datos correctamnete</p> -->
 
 <div class="form-group">
-<label for="username">Nombre completo (El que tiene en la tarjeta)</label>
+<label for="username">Nombre completo (Como aparace en la tarjeta)</label>
 <div class="input-group">
   <div class="input-group-prepend">
     <span class="input-group-text"><i class="fa fa-user"></i></span>
@@ -551,7 +551,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
   </div>
-  <input type="text" class="form-control" name="numero_tarjeta" id="cc-number" placeholder="">
+  <input type="text" class="form-control" name="numero_tarjeta" minlength="18" maxlength="18" id="cc-number" placeholder="">
   <div class="invalid-feedback">
                   Requiere el numero de tarjeta
                 </div>
@@ -631,7 +631,6 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    alert("message?: DOMString");
 document.getElementById('nino').value = sessionStorage.getItem('ninos');
   document.getElementById('adulto').value = sessionStorage.getItem('adultos');
   document.getElementById('brazo').value = sessionStorage.getItem('brazos');

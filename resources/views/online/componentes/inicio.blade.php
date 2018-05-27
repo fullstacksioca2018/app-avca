@@ -102,7 +102,7 @@
                   <div class="col col-md-1 col-lg-1">
                     <label for="exampleFormControlSelect1" class="h">Adultos:</label>
                     <div class="form-group">
-                      <input type="number" id="inputadultos" min="1" max="5" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')">
+                      <input type="number" id="inputadultos" min="1" max="6" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')">
                     </div>
                   </div>
 
@@ -145,7 +145,7 @@
       ==============================-->
 
 
-    </div>
+    
 
     <div id="intro-carousel" class="owl-carousel" >
       <div class="item" style="background-image: url('{{ asset('online/img/intro-carousel/1.jpg') }} ');"></div>

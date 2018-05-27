@@ -2,7 +2,7 @@ function validarN(event){
 	var adultos=parseInt(document.getElementById('inputadultos').value);
 	var ninos=parseInt(document.getElementById('inputninos').value);
 	if((adultos+ninos)>6){
-		alert("solo pueden ser 6 personas");
+		alert("solo se pueden seleccionar 6 personas");
 		document.getElementById(event).value=document.getElementById(event).value-1;
 	}
 	if(event=='inputninos')

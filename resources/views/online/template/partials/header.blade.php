@@ -32,24 +32,28 @@
             </ul>
           </li>
           
+
           @if (Auth::guest())
-           <li><i class="ion-person"></i><a href="#" data-toggle="modal" data-target="#Login"> Iniciar sesión</a></li>
-          <li><i class="ion-person-add"></i><a href="#" data-toggle="modal" data-target="#Register"> Registrarse</a></li>
+          <li class="menu-has-children"></i><i class="fa fa-lock"></i><a href="">Acceder</a>
+            <ul>
+              <li><a href="#" data-toggle="modal" data-target="#Login"> Iniciar sesión</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#Register"> Registrarse</a></li>
+            </ul>
+          </li>
           @else
 
 
 
           <li><i></i><a href="#" data-toggle="modal" data-target="#Checkin"> Check-in</a></li>
           {{-- <li><i></i><a href=" {{ URL::to('/online/cliente/ConsultarBoleto') }}"> Mis Boletos</a></li> --}}
-          <li class="dropdown" class="nav-item">
-            <a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-              {{ Auth::guard('online')->user()->name }} <span class="caret"></span>
+          <li class="menu-has-children">
+             <a href="#"> {{ Auth::guard('online')->user()->name }} <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu">
-              <li class="nav-item"><a class="dropdown-item" href="{{ URL::to('/online/cliente/MiPerfil', Auth::guard('online')->user()->id) }}">Mi perfil</a></li>
-              <li class="nav-item"><a class="dropdown-item" href="{{ URL::to('/online/cliente/ModificarPerfil', Auth::guard('online')->user()->id) }}">Modificar perfil</a></li>
-              <li class="nav-item">
-                <a class="dropdown-item mr-2" href="{{ url('/online/logout') }}"
+            <ul {{-- class="dropdown-menu" --}}>
+              <li><a  href="{{ URL::to('/online/cliente/MiPerfil', Auth::guard('online')->user()->id) }}">Mi perfil</a></li>
+              <li><a href="{{ URL::to('/online/cliente/ModificarPerfil', Auth::guard('online')->user()->id) }}">Modificar perfil</a></li>
+              <li>
+                <a href="{{ url('/online/logout') }}"
                   onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
                   Cerrar sesión

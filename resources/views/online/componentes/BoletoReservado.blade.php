@@ -17,7 +17,7 @@
     <thead>
             <div class="table-detalles"><img src="{{ asset('online/img/logo.png') }} " height="40" class="d-inline-block align-right" alt="AVCA"></div>
             
-          </thead>
+    </thead>
     
    @foreach ($datos_vuelos as $dato_vuelo)
       @php
@@ -50,12 +50,14 @@
 
     @endforeach
     <tr class="table-detalles">
-      <th class="thresumen">Cantidad pasajeros: {{ $factura->ninos_cant + $factura->adultos_cant }}</th>
       <th class="thresumen">Costo Total: {{ $factura->importe_facturado }}</th>
       <th class="thresumen2"></th>
       <th class="thresumen2"></th>
-      <th></th>
-
+      <th class="thresumen2"></th>
+      <th class="thresumen2"></th>
+      <th class="thresumen2"></th>
+      <th class="thresumen2"></th>
+      <th class="thresumen2"></th>
     </tr>
 
 
@@ -75,51 +77,7 @@
 
    <div class="col-sm-3 p-1">
     <div class="card-resumen">
-      <!--VER MAS-->
-      {{--<p class="pthsiglas">Resumen de tu viaje</p>
-       <div class="vermas">
-          <a data-toggle="collapse" href="#resumen" role="button" aria-expanded="false" aria-controls="#resumen">Resumen costo del viaje <i class="ion-android-arrow-dropdown"></i></a>
-        </div>
-
-        <div class="collapse" id="resumen">
-          <table class="table table-sm content-right">
-
-            <tr>
-              <th><a class="aresumen" data-toggle="collapse" href="#Pasajero1" role="button" aria-expanded="false" aria-controls="#Pasajero1">Pasajero 1: Adulto <i class="ion-android-arrow-dropdown"></i></a></th>
-              <th>250.000bs</th>
-            </tr>
-            <tr class="collapse" id="Pasajero1">
-              <th class="thresumen">Costo de vuelo: 225.000bs</th>
-              <th class="thresumen2">Impuestos: 25.000bs</th>
-              <th class="thresumen">Total: 250.000bs</th>
-            </tr>
-            
-            <tr>
-              <th><a class="aresumen" data-toggle="collapse" href="#Pasajero2" role="button" aria-expanded="false" aria-controls="#Pasajero2">Pasajero 2: Adulto <i class="ion-android-arrow-dropdown"></i></a></th>
-              <th>250.000bs</th>
-            </tr>
-            <tr class="collapse" id="Pasajero2">
-              <th class="thresumen">Costo de vuelo: 225.000bs</th>
-             
-              
-            </tr>
-            <tr>
-               <th class="thresumen2">Impuestos: 25.000bs</th>
-            </tr>
-            <tr>
-              <th class="thresumen">Total: 250.000bs</th>
-            </tr>
-            
-            <tr>
-              <th colspan="2" class="thresumen3">COSTO TOTAL DEL VIAJE
-              : 500.000bs</th>
-            </tr>
-              
-            
-          </table>
-        </div>--}} <!--FIN VER MAS-->
-      
-    
+     
      <p class="ion-android-alert thresumen"> Información importante sobre el vuelo</p>
 
      <div class="card-text">
