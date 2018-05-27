@@ -66,7 +66,7 @@ class PlanificarRutaController extends Controller
     $ruta =Ruta::find($datos['id']);
     $ruta->estado="inactivo";
     $ruta->save();
-    return response()->json(['message' => 'Vacante publicada exitosamente!']);
+   
     return "La Ruta ha sido deshabilitada";
   }
 

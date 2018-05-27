@@ -286,6 +286,7 @@ export default {
                 }); 
               
             }).catch((err)=>{
+                console.log(err);
                  Vue.toasted.show('Ha ocurrido un error'.data, {
                     theme: "primary", 
 	                position: "bottom-right",
