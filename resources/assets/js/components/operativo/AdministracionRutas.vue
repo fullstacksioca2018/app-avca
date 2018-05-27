@@ -92,22 +92,22 @@
        <div class="row">
           <div class="form-group col-sm-1 "></div>
           <div class="col-sm-5">
-            <label for="distancia"> <b> Inserte Nueva Distancia: </b></label>
+            <label for="distancia"> <b> Inserte Distancia: </b></label>
             <b-form-input id="distancia"
                       type="text"
                       required
                       v-model="modalInfo.content.Distancia"
-                      placeholder="Inserte Nueva Distancia">
+                      placeholder="Inserte Distancia">
             </b-form-input>
           </div>
           
          <div class="col-sm-5">
-           <label for="distancia"> <b> Inserte Nueva Tarifa: </b></label>
+           <label for="distancia"> <b> Inserte Tarifa: </b></label>
             <b-form-input id="tarifa"
                           type="text"
                           required
                           v-model="modalInfo.content.Tarifa"
-                          placeholder="Inserte Nueva Tarifa">
+                          placeholder="Inserte  Tarifa">
             </b-form-input>
           </div>
            <div class="form-group col-sm-1 "></div>
@@ -177,7 +177,7 @@ export default {
         { key: 'Distancia', label: 'Distancias ', sortable: true },
         { key: 'Duracion',  label: 'Duracion ',  sortable: true },
         { key: 'Tarifa',    label: 'Tarifa ', sortable: true },
-        { key: 'Estado',    label: 'Estado', sortable: true},
+        { key: 'Estado',    label: 'Estatus', sortable: true},
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
       ],
       duracionModel: {
@@ -244,11 +244,13 @@ export default {
           id: this.data[i].ruta.id,
           Origen: {
             id: this.data[i].ruta.origen.id,
-            nombre: this.data[i].ruta.origen.nombre
+            nombre: this.data[i].ruta.origen.nombre 
+                    + " (" + this.data[i].ruta.origen.sigla  + ")"
           },
           Destino: {
             id: this.data[i].ruta.destino.id,
             nombre: this.data[i].ruta.destino.nombre
+                     + " (" + this.data[i].ruta.destino.sigla  + ")"
           },
           Distancia:this.data[i].ruta.distancia,
 			  	Duracion:this.data[i].ruta.duracion,
@@ -273,6 +275,7 @@ export default {
           Duracion:  this.modalInfo.content.Duracion      
         }
       }).then((response) =>{
+        console.log(response.data);
        Vue.toasted.show('Se ha guardado existosamente la informacion', {
            theme: "primary", 
 	       position: "bottom-right",
@@ -282,6 +285,7 @@ export default {
        this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
 
       }).catch((err)=>{
+        console.log(err);
          Vue.toasted.show('Ha ocurrido un error', {
          theme: "primary", 
 	      position: "bottom-right",  

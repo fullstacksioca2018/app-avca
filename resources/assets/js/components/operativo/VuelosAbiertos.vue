@@ -55,9 +55,9 @@
           Ver
         </b-button>
         <div v-if="row.item.Estado == 'abierto'">
-          <b-button size="sm" @click.stop="Deshabilitar(row)">
+         <!--  <b-button size="sm" @click.stop="Deshabilitar(row)">
             Cancelar
-          </b-button>
+          </b-button> -->
         </div>
         <div v-else>
           <b-button size="sm" @click.stop="Habilitar(row)" variant="success">
@@ -160,7 +160,7 @@ export default {
         { key: 'Ruta',   label: 'Segmentos', sortable: true },
         { key: 'Fecha', label: 'Fecha ', sortable: true },
         { key: 'Hora',  label: 'Hora ',  sortable: true },
-        { key: 'Estado',    label: 'Estado ', sortable: true },
+        { key: 'Estado',    label: 'Status ', sortable: true },
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
       ],      
       currentPage: 1,

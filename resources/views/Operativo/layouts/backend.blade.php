@@ -74,6 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -190,9 +191,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Sidebar -->
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
-          <img id="logofavi" src="{{ asset('img/favicon.png') }}" alt="AVCA Icono">
+         <!--  <img id="logofavi" src="{{ asset('img/favicon.png') }}" alt="AVCA Icono"> -->
         <div class="info">
-          <img id="logoletra" src="{{ asset('img/letras.png') }}" alt="AVCA Icono">
+          <img id="logoletra" src="{{ asset('img/logo.png') }}" alt="AVCA Icono">
         </div>
       </div>
       <!-- Sidebar user panel (optional) -->
@@ -257,7 +258,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2018 <a href="{{ route('dashboard') }}">AVCA RRHH</a>.</strong> Todos los derechos reservados.
+    <strong>Copyright &copy; 2018 <a href="{{ route('ruta') }}">AVCA ADMINISTRATIVO</a>.</strong> Todos los derechos reservados.
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -265,7 +266,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<!-- <script src="/adminlte/plugins/jquery/jquery.min.js"></script> -->
+ <script src="/adminlte/plugins/jquery/jquery.min.js"></script> 
 <!-- Bootstrap 4 -->
 <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->

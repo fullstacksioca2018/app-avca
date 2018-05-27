@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models\operativo;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,10 @@ class Sucursal extends Model
         'estatus',
         'ciudad'
     ];
+
+    public function siglas($id){
+        return DB::select('SELECT sigla FROM sucursales WHERE sucursal_id = ?', [$id]);
+    }
 
     public function rutas()
     {

@@ -108700,7 +108700,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'Origen', label: 'Sucursal de Origen', sortable: true }, { key: 'Destino', label: 'Sucursal de Destino', sortable: true }, { key: 'Distancia', label: 'Distancias ', sortable: true }, { key: 'Duracion', label: 'Duracion ', sortable: true }, { key: 'Tarifa', label: 'Tarifa ', sortable: true }, { key: 'Estado', label: 'Estado', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'Origen', label: 'Sucursal de Origen', sortable: true }, { key: 'Destino', label: 'Sucursal de Destino', sortable: true }, { key: 'Distancia', label: 'Distancias ', sortable: true }, { key: 'Duracion', label: 'Duracion ', sortable: true }, { key: 'Tarifa', label: 'Tarifa ', sortable: true }, { key: 'Estado', label: 'Estatus', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       duracionModel: {
         HH: '',
         mm: '',
@@ -108767,11 +108767,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           id: this.data[i].ruta.id,
           Origen: {
             id: this.data[i].ruta.origen.id,
-            nombre: this.data[i].ruta.origen.nombre
+            nombre: this.data[i].ruta.origen.nombre + " (" + this.data[i].ruta.origen.sigla + ")"
           },
           Destino: {
             id: this.data[i].ruta.destino.id,
-            nombre: this.data[i].ruta.destino.nombre
+            nombre: this.data[i].ruta.destino.nombre + " (" + this.data[i].ruta.destino.sigla + ")"
           },
           Distancia: this.data[i].ruta.distancia,
           Duracion: this.data[i].ruta.duracion,
@@ -108797,6 +108797,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           Duracion: this.modalInfo.content.Duracion
         }
       }).then(function (response) {
+        console.log(response.data);
         Vue.toasted.show('Se ha guardado existosamente la informacion', {
           theme: "primary",
           position: "bottom-right",
@@ -108805,6 +108806,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //this.$refs.myModalRef.hide();
         _this2.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
       }).catch(function (err) {
+        console.log(err);
         Vue.toasted.show('Ha ocurrido un error', {
           theme: "primary",
           position: "bottom-right",
@@ -109043,6 +109045,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -109128,15 +109131,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             for (var i = 0; i < data.data.length; i++) {
                 this.origenes.push({
                     id: data.data[i].sucursal_id,
-                    nombre: data.data[i].nombre
+                    nombre: data.data[i].ciudad + " - " + data.data[i].nombre
                 });
                 this.destinos.push({
                     id: data.data[i].sucursal_id,
-                    nombre: data.data[i].nombre
+                    nombre: data.data[i].ciudad + " - " + data.data[i].nombre
                 });
                 this.sucursales.push({
                     id: data.data[i].sucursal_id,
-                    nombre: data.data[i].nombre
+                    nombre: data.data[i].ciudad + " - " + data.data[i].nombre
                 });
             }
         }
@@ -109158,7 +109161,7 @@ var render = function() {
         "b-modal",
         {
           ref: "modal",
-          attrs: { id: "agregar", title: "Registrar Ruta" },
+          attrs: { id: "agregar", title: "Registrar Ruta", "hide-footer": "" },
           on: { hiden: _vm.resetModal }
         },
         [
@@ -109251,7 +109254,7 @@ var render = function() {
                   { staticClass: "col-sm-5" },
                   [
                     _c("label", { attrs: { for: "distancia" } }, [
-                      _c("b", [_vm._v(" Inserte Nueva Distancia: ")])
+                      _c("b", [_vm._v(" Inserte  Distancia: ")])
                     ]),
                     _vm._v(" "),
                     _c("b-form-input", {
@@ -109259,7 +109262,7 @@ var render = function() {
                         id: "distancia",
                         type: "text",
                         required: "",
-                        placeholder: "Inserte Nueva Distancia"
+                        placeholder: "Inserte  Distancia"
                       },
                       model: {
                         value: _vm.form.distancia,
@@ -109278,7 +109281,7 @@ var render = function() {
                   { staticClass: "col-sm-5" },
                   [
                     _c("label", { attrs: { for: "distancia" } }, [
-                      _c("b", [_vm._v(" Inserte Nueva Tarifa: ")])
+                      _c("b", [_vm._v(" Inserte  Tarifa: ")])
                     ]),
                     _vm._v(" "),
                     _c("b-form-input", {
@@ -109286,7 +109289,7 @@ var render = function() {
                         id: "tarifa",
                         type: "text",
                         required: "",
-                        placeholder: "Inserte Nueva Tarifa"
+                        placeholder: "Inserte  Tarifa"
                       },
                       model: {
                         value: _vm.form.tarifa,
@@ -109823,7 +109826,7 @@ var render = function() {
                           { staticClass: "col-sm-5" },
                           [
                             _c("label", { attrs: { for: "distancia" } }, [
-                              _c("b", [_vm._v(" Inserte Nueva Distancia: ")])
+                              _c("b", [_vm._v(" Inserte Distancia: ")])
                             ]),
                             _vm._v(" "),
                             _c("b-form-input", {
@@ -109831,7 +109834,7 @@ var render = function() {
                                 id: "distancia",
                                 type: "text",
                                 required: "",
-                                placeholder: "Inserte Nueva Distancia"
+                                placeholder: "Inserte Distancia"
                               },
                               model: {
                                 value: _vm.modalInfo.content.Distancia,
@@ -109854,7 +109857,7 @@ var render = function() {
                           { staticClass: "col-sm-5" },
                           [
                             _c("label", { attrs: { for: "distancia" } }, [
-                              _c("b", [_vm._v(" Inserte Nueva Tarifa: ")])
+                              _c("b", [_vm._v(" Inserte Tarifa: ")])
                             ]),
                             _vm._v(" "),
                             _c("b-form-input", {
@@ -109862,7 +109865,7 @@ var render = function() {
                                 id: "tarifa",
                                 type: "text",
                                 required: "",
-                                placeholder: "Inserte Nueva Tarifa"
+                                placeholder: "Inserte  Tarifa"
                               },
                               model: {
                                 value: _vm.modalInfo.content.Tarifa,
@@ -110334,6 +110337,89 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -110349,31 +110435,123 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             minutos: null,
             segundos: null,
             horavuelo: null,
-            itemspilotos: null,
             rutas: [],
             oculto: false,
             items: null,
-            data: null
+            items2: null,
+            items3: null,
+            items4: null,
+            items5: null,
+            data: null,
+            form: {
+                piloto: null,
+                copiloto: null,
+                jefac: null,
+                sobrecargo: [],
+                aeronave: null
+            }
+
         };
     },
+
 
     created: function created() {
         this.cargarRutas();
     },
-    methods: {
-        Buscar: function Buscar() {
-            this.enviarFechas();
-            this.Cargadatos(this);
-            this.oculto = true;
+    watch: {
+        'sobrecargoC': function sobrecargoC(newVal, oldVal) {
+            if (newVal.length === 4) {
+                alert('solo 3 sobrecargos');
+                this.form.sobrecargo.splice(3, 1);
+            }
+        }
+    },
+    computed: {
+        sobrecargoC: function sobrecargoC() {
+            return this.form.sobrecargo;
         },
-        enviarFechas: function enviarFechas() {
+        limite: function limite() {
+            if (this.form.sobrecargo.length > 2) {
+                Vue.toasted.show("Escoge solo 3", {
+                    theme: "primary",
+                    position: "bottom-right",
+                    duration: 2000
+                });
+                return true;
+            }
+            return false;
+        }
+    },
+    methods: {
+        onSubmit: function onSubmit(evt) {
+            evt.preventDefault();
             axios({
                 method: 'post',
-                url: '/vuelos/tripulantes',
+                url: '/vuelos/crear',
                 data: {
-                    fecha: this.fecha + " " + this.hora + ":" + this.minutos + ":" + this.segundos
+                    fecha: this.fecha + " " + this.hora + ":" + this.minutos + ":" + this.segundos,
+                    ruta: this.ruta,
+                    piloto: this.form.piloto,
+                    copiloto: this.form.copiloto,
+                    jefac: this.form.jefac,
+                    sobrecargo: this.form.sobrecargo,
+                    aeronave: this.form.aeronave
                 }
             }).then(function (response) {
+                Vue.toasted.show(response.data, {
+                    theme: "primary",
+                    position: "bottom-right",
+                    duration: 2000
+                });
+            }).catch(function (err) {
+                Vue.toasted.show('Ha ocurrido un error'.data, {
+                    theme: "primary",
+                    position: "bottom-right",
+                    duration: 2000
+                });
+            });
+        },
+        onReset: function onReset(evt) {
+            var _this = this;
+
+            evt.preventDefault();
+            /* Reset our form values */
+            this.form.piloto = null;
+            this.form.name = '';
+            this.form.food = null;
+            this.form.sobrecargo = [];
+            this.limite = false;
+            /* Trick to reset/clear native browser form validation state */
+            this.show = false;
+            this.$nextTick(function () {
+                _this.show = true;
+            });
+        },
+        Buscar: function Buscar() {
+            this.enviarFechas();
+        },
+        enviarFechas: function enviarFechas() {
+            var _this2 = this;
+
+            this.oculto = true;
+            this.hora = parseInt(this.hora);
+            this.minutos = parseInt(this.minutos);
+            this.segundos = parseInt(this.segundos);
+            if (this.hora < 10) this.hora = "0" + this.hora;
+            if (this.minutos < 10) this.minutos = "0" + this.minutos;
+            if (this.segundos < 10) this.segundos = "0" + this.segundos;
+            axios({
+                method: 'post',
+                url: '/vuelos/disponibilidad',
+                data: {
+                    fecha: this.fecha + " " + this.hora + ":" + this.minutos + ":" + this.segundos
+
+                }
+            }).then(function (response) {
+                _this2.data = response.data;
+                console.log(_this2.data);
+                _this2.formatodatos();
+
                 Vue.toasted.show(response.data, {
                     theme: "primary",
                     position: "bottom-right",
@@ -110402,20 +110580,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         formatodatos: function formatodatos() {
             this.items = [];
-            for (var i = 0; i < this.data.length; i++) {
-                //console.log(this.data[i].tripulante   );
-                if (this.data[i].tripulante.rango === 'piloto') this.items.push(this.data[i].tripulante);
+            this.items2 = [];
+            this.items3 = [];
+            this.items4 = [];
+            this.items5 = [];
+
+            for (var i = 0; i < this.data.piloto.length; i++) {
+                this.items.push(this.data.piloto[i]);
+            }
+            for (var i = 0; i < this.data.copiloto.length; i++) {
+                this.items2.push(this.data.copiloto[i]);
+            }
+            for (var i = 0; i < this.data.jefac.length; i++) {
+                this.items3.push(this.data.jefac[i]);
+            }
+            for (var i = 0; i < this.data.sobrecargo.length; i++) {
+                this.items4.push(this.data.sobrecargo[i]);
+            }
+            for (var i = 0; i < this.data.aeronave.length; i++) {
+                this.items5.push(this.data.aeronave[i]);
             }
         },
         cargarRutas: function cargarRutas() {
-            var _this = this;
+            var _this3 = this;
 
             axios({
                 method: 'get',
                 url: '/vuelos/rutas'
             }).then(function (response) {
-                _this.formatorutas(response);
+                _this3.formatorutas(response);
             }).catch(function (err) {
+                console.log(err);
                 Vue.toasted.show('Ha ocurrido un error', {
                     theme: "primary",
                     position: "bottomright",
@@ -110427,13 +110622,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         formatorutas: function formatorutas(data) {
             console.log(data);
             for (var i = 0; i < data.data.length; i++) {
-                this.rutas.push({
+                if (data.data[i].ruta.estado === "activo") this.rutas.push({
                     id: data.data[i].ruta.id,
-                    nombre: data.data[i].ruta.origen.nombre + " (" + data.data[i].ruta.origen.aeropuerto + ") -->" + data.data[i].ruta.destino.nombre + " (" + data.data[i].ruta.destino.aeropuerto
+                    nombre: data.data[i].ruta.origen.ciudad + " (" + data.data[i].ruta.origen.nombre + ")-" + data.data[i].ruta.origen.sigla + " <-----> " + data.data[i].ruta.destino.ciudad + " (" + data.data[i].ruta.destino.nombre + ")-" + data.data[i].ruta.destino.sigla
                 });
             }
         },
         sumar: function sumar(experiencias) {
+            console.log(experiencias);
             var horas = 0;
             var minutos = 0;
             var segundos = 0;
@@ -110450,7 +110646,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 horas += parseInt(minutos / 60);
                 minutos = minutos % 60;
             }
-            return horas + ":" + minutos + ":" + segundos;
+
+            if (segundos < 10) return horas + ":" + minutos + ":" + segundos + "0";else return horas + ":" + minutos + ":" + segundos;
         }
     }
 });
@@ -110466,285 +110663,833 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("multiselect", {
-        attrs: {
-          options: _vm.rutas,
-          selectLabel: "Seleccionar",
-          deselectLabel: "Eliminar",
-          selectedLabel: "Seleccionado",
-          placeholder: "Seleccione el Origen",
-          label: "nombre",
-          "track-by": "nombre"
+      _c(
+        "b-form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.enviarFechas($event)
+            }
+          }
         },
-        model: {
-          value: _vm.ruta,
-          callback: function($$v) {
-            _vm.ruta = $$v
-          },
-          expression: "ruta"
-        }
-      }),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-5 text-center" }, [
-          _c(
-            "div",
-            {},
-            [
-              _c("div", { staticClass: "col-md-3" }),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                {
-                  attrs: {
-                    align: "center",
-                    id: "fecha_salida",
-                    label: "Fecha Salida",
-                    "label-for": "fecha_salida"
-                  }
-                },
-                [
-                  _c("b-form-input", {
-                    staticClass: "col-md-6",
-                    attrs: { id: "fecha_salida", type: "date", required: "" },
-                    model: {
-                      value: _vm.fecha,
-                      callback: function($$v) {
-                        _vm.fecha = $$v
-                      },
-                      expression: "fecha"
-                    }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-4 text-center" }, [
-          _c("div", {}, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "row", attrs: { id: "duracion" } }, [
-              _c(
-                "div",
-                { staticClass: "col-sm-4 " },
-                [
-                  _c("b-form-input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "number",
-                      min: "0",
-                      max: "24",
-                      id: "ccyear",
-                      placeholder: "hora"
-                    },
-                    model: {
-                      value: _vm.hora,
-                      callback: function($$v) {
-                        _vm.hora = $$v
-                      },
-                      expression: "hora"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "form-group col-sm-4 " },
-                [
-                  _c("b-form-input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "number",
-                      min: "0",
-                      max: "60",
-                      id: "ccyear",
-                      placeholder: "minutos"
-                    },
-                    model: {
-                      value: _vm.minutos,
-                      callback: function($$v) {
-                        _vm.minutos = $$v
-                      },
-                      expression: "minutos"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "form-group col-sm-4 " },
-                [
-                  _c("b-form-input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "number",
-                      min: "0",
-                      max: "60",
-                      id: "ccyear",
-                      placeholder: "segundos"
-                    },
-                    model: {
-                      value: _vm.segundos,
-                      callback: function($$v) {
-                        _vm.segundos = $$v
-                      },
-                      expression: "segundos"
-                    }
-                  })
-                ],
-                1
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-3 text-center" }, [
-          _c("div", {}, [
-            _vm._m(1),
-            _vm._v(" "),
+        [
+          _c("multiselect", {
+            attrs: {
+              options: _vm.rutas,
+              selectLabel: "Seleccionar",
+              deselectLabel: "Eliminar",
+              selectedLabel: "Seleccionado",
+              placeholder: "Seleccione el Origen",
+              label: "nombre",
+              "track-by": "nombre"
+            },
+            model: {
+              value: _vm.ruta,
+              callback: function($$v) {
+                _vm.ruta = $$v
+              },
+              expression: "ruta"
+            }
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
             _c(
               "div",
-              { staticClass: " col-sm-12 " },
+              { staticClass: "col-md-5 text-center" },
               [
+                _c("div", { staticClass: "col-md-3" }),
+                _vm._v(" "),
                 _c(
-                  "b-button",
+                  "b-form-group",
                   {
-                    attrs: { size: "sm", variant: "primary" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.Buscar()
-                      }
+                    attrs: {
+                      align: "center",
+                      id: "fecha_salida",
+                      label: "Fecha Salida",
+                      "label-for": "fecha_salida"
                     }
                   },
-                  [_c("i", { staticClass: "fa fa-search" }, [_vm._v("Buscar")])]
+                  [
+                    _c("b-form-input", {
+                      staticClass: "col-md-6",
+                      attrs: { id: "fecha_salida", type: "date", required: "" },
+                      model: {
+                        value: _vm.fecha,
+                        callback: function($$v) {
+                          _vm.fecha = $$v
+                        },
+                        expression: "fecha"
+                      }
+                    })
+                  ],
+                  1
                 )
               ],
               1
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-12" }, [
-          _vm.oculto
-            ? _c(
-                "div",
-                { staticClass: "form-group text-center" },
-                [
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4 text-center" }, [
+              _c("div", {}, [
+                _c(
+                  "label",
+                  { staticClass: "text-center", attrs: { for: "duracion" } },
+                  [_c("b", [_vm._v(" Hora del Vuelo: ")])]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "row", attrs: { id: "duracion" } }, [
                   _c(
-                    "b-tabs",
-                    { attrs: { pills: "", card: "" } },
+                    "div",
+                    { staticClass: "col-sm-4 " },
                     [
-                      _c("b-tab", { attrs: { title: " Piloto", active: "" } }, [
-                        _c(
-                          "table",
-                          { staticClass: "table table-hover table-striped" },
-                          [
-                            _c("thead", [
-                              _c("th", [_vm._v(" # ")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v(" Nombre ")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v(" Horas de Experiencia")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v(" Vuelos de Quicena ")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v(" Asignar ")])
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "tbody",
-                              [
-                                _vm._l(this.items, function(tripulante) {
-                                  return _c("tr", [
-                                    _c("td", [
-                                      _vm._v(
-                                        " " + _vm._s(tripulante.licencia) + " "
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(tripulante.empleado.nombre) +
-                                          " "
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("td", [
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.sumar(
-                                              tripulante.empleado.experiencia
-                                            )
-                                          ) +
-                                          " "
-                                      )
-                                    ])
-                                  ])
-                                }),
-                                _vm._v(" "),
-                                _c("br")
-                              ],
-                              2
-                            )
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("b-tab", { attrs: { title: "Copiloto" } }),
-                      _vm._v(" "),
-                      _c("b-tab", { attrs: { title: "Jefe de Cabina" } }),
-                      _vm._v(" "),
-                      _c("b-tab", { attrs: { title: "Sobrecargo" } }),
-                      _vm._v(" "),
-                      _c("b-tab", { attrs: { title: "Aeronave" } })
+                      _c("b-form-input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "number",
+                          min: "0",
+                          max: "23",
+                          required: "",
+                          id: "ccyear",
+                          placeholder: "hora"
+                        },
+                        model: {
+                          value: _vm.hora,
+                          callback: function($$v) {
+                            _vm.hora = $$v
+                          },
+                          expression: "hora"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-sm-4 " },
+                    [
+                      _c("b-form-input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "number",
+                          min: "0",
+                          max: "59",
+                          required: "",
+                          id: "ccyear",
+                          placeholder: "minutos"
+                        },
+                        model: {
+                          value: _vm.minutos,
+                          callback: function($$v) {
+                            _vm.minutos = $$v
+                          },
+                          expression: "minutos"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-sm-4 " },
+                    [
+                      _c("b-form-input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "number",
+                          min: "0",
+                          max: "59",
+                          required: "",
+                          id: "ccyear",
+                          placeholder: "segundos"
+                        },
+                        model: {
+                          value: _vm.segundos,
+                          callback: function($$v) {
+                            _vm.segundos = $$v
+                          },
+                          expression: "segundos"
+                        }
+                      })
                     ],
                     1
                   )
-                ],
-                1
-              )
-            : _vm._e()
-        ])
-      ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3 text-center" }, [
+              _c("div", {}, [
+                _c(
+                  "label",
+                  { staticClass: "text-center", attrs: { for: "duracion" } },
+                  [
+                    _c("b", { staticStyle: { color: "white" } }, [
+                      _vm._v(" - ")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: " col-sm-12 " },
+                  [
+                    _c(
+                      "b-button",
+                      {
+                        attrs: {
+                          size: "sm",
+                          type: "submit",
+                          variant: "primary"
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-search" }, [
+                          _vm._v("Buscar Tripulantes")
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.onSubmit($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _vm.oculto
+              ? _c(
+                  "div",
+                  { staticClass: "form-group text-center" },
+                  [
+                    _c(
+                      "b-tabs",
+                      { attrs: { pills: "", card: "" } },
+                      [
+                        _c(
+                          "b-tab",
+                          { attrs: { title: " Piloto", active: "" } },
+                          [
+                            _c(
+                              "b-form-radio-group",
+                              {
+                                attrs: {
+                                  id: "piloto",
+                                  name: "piloto",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.piloto,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "piloto", $$v)
+                                  },
+                                  expression: "form.piloto"
+                                }
+                              },
+                              [
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass:
+                                      "table table-hover table-striped"
+                                  },
+                                  [
+                                    _c("thead", [
+                                      _c("th", [_vm._v(" # ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Nombre ")]),
+                                      _vm._v(" "),
+                                      _c("th", [
+                                        _vm._v(" Horas de Experiencia")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Vuelos de Quicena ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Asignar ")])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      [
+                                        _vm._l(this.items, function(
+                                          tripulante
+                                        ) {
+                                          return _c("tr", [
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(tripulante.licencia) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    tripulante.nombre +
+                                                      " " +
+                                                      tripulante.apellido
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    _vm.sumar(tripulante.pihe)
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    tripulante.pihp.cantidad
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              [
+                                                _c(
+                                                  "b-form-radio",
+                                                  {
+                                                    attrs: {
+                                                      value: tripulante.id
+                                                    }
+                                                  },
+                                                  [_vm._v("Seleccionar")]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ])
+                                        }),
+                                        _vm._v(" "),
+                                        _c("br")
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-tab",
+                          { attrs: { title: "Copiloto" } },
+                          [
+                            _c(
+                              "b-form-radio-group",
+                              {
+                                attrs: {
+                                  id: "copiloto",
+                                  name: "copiloto",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.copiloto,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "copiloto", $$v)
+                                  },
+                                  expression: "form.copiloto"
+                                }
+                              },
+                              [
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass:
+                                      "table table-hover table-striped"
+                                  },
+                                  [
+                                    _c("thead", [
+                                      _c("th", [_vm._v(" # ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Nombre ")]),
+                                      _vm._v(" "),
+                                      _c("th", [
+                                        _vm._v(" Horas de Experiencia")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Vuelos de Quicena ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Asignar ")])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      [
+                                        _vm._l(this.items2, function(
+                                          tripulante
+                                        ) {
+                                          return _c("tr", [
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(tripulante.licencia) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    tripulante.nombre +
+                                                      " " +
+                                                      tripulante.apellido
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    _vm.sumar(tripulante.copihe)
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    tripulante.copihp.cantidad
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              [
+                                                _c(
+                                                  "b-form-radio",
+                                                  {
+                                                    attrs: {
+                                                      value: tripulante.id
+                                                    }
+                                                  },
+                                                  [_vm._v("Seleccionar")]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ])
+                                        }),
+                                        _vm._v(" "),
+                                        _c("br")
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-tab",
+                          { attrs: { title: "Jefe de Cabina" } },
+                          [
+                            _c(
+                              "b-form-radio-group",
+                              {
+                                attrs: {
+                                  id: "jefecabina",
+                                  name: "jefecabina",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.jefac,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "jefac", $$v)
+                                  },
+                                  expression: "form.jefac"
+                                }
+                              },
+                              [
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass:
+                                      "table table-hover table-striped"
+                                  },
+                                  [
+                                    _c("thead", [
+                                      _c("th", [_vm._v(" # ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Nombre ")]),
+                                      _vm._v(" "),
+                                      _c("th", [
+                                        _vm._v(" Horas de Experiencia")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Vuelos de Quicena ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Asignar ")])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      [
+                                        _vm._l(this.items3, function(
+                                          tripulante
+                                        ) {
+                                          return _c("tr", [
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(tripulante.licencia) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    tripulante.nombre +
+                                                      " " +
+                                                      tripulante.apellido
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    _vm.sumar(tripulante.jche)
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    tripulante.jchp.cantidad
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              [
+                                                _c(
+                                                  "b-form-radio",
+                                                  {
+                                                    attrs: {
+                                                      value: tripulante.id
+                                                    }
+                                                  },
+                                                  [_vm._v("Seleccionar")]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ])
+                                        }),
+                                        _vm._v(" "),
+                                        _c("br")
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-tab",
+                          { attrs: { title: "Sobrecargo" } },
+                          [
+                            _c(
+                              "b-form-checkbox-group",
+                              {
+                                attrs: {
+                                  id: "sobrecargos",
+                                  name: "jefecabina"
+                                },
+                                model: {
+                                  value: _vm.form.sobrecargo,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "sobrecargo", $$v)
+                                  },
+                                  expression: "form.sobrecargo"
+                                }
+                              },
+                              [
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass:
+                                      "table table-hover table-striped"
+                                  },
+                                  [
+                                    _c("thead", [
+                                      _c("th", [_vm._v(" # ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Nombre ")]),
+                                      _vm._v(" "),
+                                      _c("th", [
+                                        _vm._v(" Horas de Experiencia")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Vuelos de Quicena ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Asignar ")])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      [
+                                        _vm._l(this.items4, function(
+                                          tripulante
+                                        ) {
+                                          return _c("tr", [
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(tripulante.licencia) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    tripulante.nombre +
+                                                      " " +
+                                                      tripulante.apellido
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    _vm.sumar(tripulante.sohe)
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    tripulante.sohp.cantidad
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              [
+                                                _c(
+                                                  "b-form-checkbox",
+                                                  {
+                                                    attrs: {
+                                                      value: tripulante.id
+                                                    }
+                                                  },
+                                                  [_vm._v("Seleccionar")]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ])
+                                        }),
+                                        _vm._v(" "),
+                                        _c("br")
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-tab",
+                          { attrs: { title: "Aeronave" } },
+                          [
+                            _c(
+                              "b-form-radio-group",
+                              {
+                                attrs: {
+                                  id: "jefecabina",
+                                  name: "aeronave",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.aeronave,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "aeronave", $$v)
+                                  },
+                                  expression: "form.aeronave"
+                                }
+                              },
+                              [
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass:
+                                      "table table-hover table-striped"
+                                  },
+                                  [
+                                    _c("thead", [
+                                      _c("th", [_vm._v(" Aeronave ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Modelo ")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Horas de Vuelo")]),
+                                      _vm._v(" "),
+                                      _c("th", [_vm._v(" Asignar ")])
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      [
+                                        _vm._l(this.items5, function(aeronave) {
+                                          return _c("tr", [
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(aeronave.matricula) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(aeronave.modelo) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("td", [
+                                              _vm._v(
+                                                " " +
+                                                  _vm._s(
+                                                    _vm.sumar(aeronave.aehm)
+                                                  ) +
+                                                  " "
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              [
+                                                _c(
+                                                  "b-form-radio",
+                                                  {
+                                                    attrs: {
+                                                      value: aeronave.id
+                                                    }
+                                                  },
+                                                  [_vm._v("Seleccionar")]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ])
+                                        }),
+                                        _vm._v(" "),
+                                        _c("br")
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: " col-sm-12 " },
+                      [
+                        _c(
+                          "b-button",
+                          { attrs: { type: "submit", variant: "primary" } },
+                          [_vm._v("Guardar Vuelo")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-button",
+                          { attrs: { type: "reset", variant: "danger" } },
+                          [_vm._v("Limpiar")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              : _vm._e()
+          ])
+        ]
+      )
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "label",
-      { staticClass: "text-center", attrs: { for: "duracion" } },
-      [_c("b", [_vm._v(" Hora del Vuelo: ")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "label",
-      { staticClass: "text-center", attrs: { for: "duracion" } },
-      [_c("b", { staticStyle: { color: "white" } }, [_vm._v(" - ")])]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -111040,7 +111785,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Status ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -111448,25 +112193,7 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     row.item.Estado == "abierto"
-                      ? _c(
-                          "div",
-                          [
-                            _c(
-                              "b-button",
-                              {
-                                attrs: { size: "sm" },
-                                on: {
-                                  click: function($event) {
-                                    $event.stopPropagation()
-                                    _vm.Deshabilitar(row)
-                                  }
-                                }
-                              },
-                              [_vm._v("\n          Cancelar\n        ")]
-                            )
-                          ],
-                          1
-                        )
+                      ? _c("div")
                       : _c(
                           "div",
                           [
@@ -111945,7 +112672,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Status ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -112869,7 +113596,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Status ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -113778,7 +114505,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Status ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -114684,7 +115411,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Estado ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'N_Vuelo', label: 'Numero de Vuelo', sortable: true }, { key: 'Ruta', label: 'Segmentos', sortable: true }, { key: 'Fecha', label: 'Fecha ', sortable: true }, { key: 'Hora', label: 'Hora ', sortable: true }, { key: 'Estado', label: 'Status ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
