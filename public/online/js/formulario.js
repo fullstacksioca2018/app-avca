@@ -30,20 +30,10 @@ function FunctionVuelo(id){
 }
 
 function ComBoleto(){
-	//alert(sessionStorage.getItem('ninos'));
+	alert(sessionStorage.getItem('ninos'));
 	document.getElementById('nino').value = sessionStorage.getItem('ninos');
 	document.getElementById('adulto').value = sessionStorage.getItem('adultos');
 	document.getElementById('brazo').value = sessionStorage.getItem('brazos');
 	document.getElementById('vuelo_id').value = sessionStorage.getItem('vuelo');
-	return false; 
-}
-
-function BoletoReservado(){
-	//alert(sessionStorage.getItem('ninos'));
-	alert('estoy aqui');
-	document.getElementById('ReservaNino').value = sessionStorage.getItem('ninos');
-	document.getElementById('ReservaAdulto').value = sessionStorage.getItem('adultos');
-	document.getElementById('ReservaBrazo').value = sessionStorage.getItem('brazos');
-	document.getElementById('ReservaVuelo_id').value = sessionStorage.getItem('vuelo');
 	return false; 
 }

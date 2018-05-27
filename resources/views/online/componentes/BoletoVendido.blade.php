@@ -13,7 +13,7 @@
   
 
 
-  <table class="table-sm">
+  <table class="table-sm ">
     <thead>
             <div class="table-detalles"><img src="{{ asset('online/img/logo.png') }} " height="40" class="d-inline-block align-right" alt="AVCA"></div>
             
@@ -36,16 +36,15 @@
       <th class="thresumen">Costo: {{ $dato_vuelo->ruta->tarifa_vuelo }}</th>
     </tr>
 
-      @for($i = 0; $i < $factura->ninos_cant + $factura->adultos_cant; $i++)
+      @foreach ($boletos as $boleto)
         <tr>
 
-          <th class="thresumen">Pasajero: {{ $boletos[$i]->primerNombre }} {{ $boletos[$i]->apellido }}</th>
+          <th class="thresumen">Pasajero: {{ $boleto->primerNombre }} {{ $boleto->apellido }}</th>
 
-          <th class="thresumen">Localizador: {{ $boletos[$i]->localizador }} </th>
+          <th class="thresumen">Localizador: {{ $boleto->localizador }} </th>
 
         </tr>
-            
-      @endfor
+      @endforeach
     
 
     @endforeach
@@ -64,10 +63,8 @@
 
 </div>
 
-      <div class="titulo-detalles">
- <p> La informacion de su boleto ha sido enviada a su correo</p>
-      </div><!--titulo detalles-->
-  <a type="" href="{{ URL::to('/online/cliente/MiPerfil', Auth::guard('online')->user()->id) }}" class="btn btn-md btn-primary">Aceptar</a>
+
+
 
    </div><!--w75-->  
 

@@ -15,19 +15,8 @@
           <li><i class="fa fa-globe"></i><a href="#portfolio">Destinos</a></li>
           <li class="menu-has-children"><i class="fa fa-briefcase"></i></i><a href="">Guía al Pasajero</a>
             <ul>
-            
-            @if (Auth::guest())
-
               <li><a href="{{ route('cliente.equipaje') }}">Equipaje</a></li>
               <li><a href="{{ route('cliente.documentacion') }}">Documentación</a></li>
-
-            @else
-              
-              <li><a href="{{ URL::to('/online/cliente/equipaje') }}">Equipaje</a></li>
-              <li><a href="{{ URL::to('/online/cliente/documentacion') }}">Documentación</a></li>
-            
-            @endif
-
             
             </ul>
           </li>
@@ -37,27 +26,23 @@
           <li><i class="ion-person-add"></i><a href="#" data-toggle="modal" data-target="#Register"> Registrarse</a></li>
           @else
 
-
-
           <li><i></i><a href="#" data-toggle="modal" data-target="#Checkin"> Check-in</a></li>
-          {{-- <li><i></i><a href=" {{ URL::to('/online/cliente/ConsultarBoleto') }}"> Mis Boletos</a></li> --}}
           <li class="dropdown" class="nav-item">
             <a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-              {{ Auth::guard('online')->user()->name }} <span class="caret"></span>
+              {{ Auth::user()->name }} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="nav-item"><a class="dropdown-item" href="{{ URL::to('/online/cliente/MiPerfil', Auth::guard('online')->user()->id) }}">Mi perfil</a></li>
-              <li class="nav-item"><a class="dropdown-item" href="{{ URL::to('/online/cliente/ModificarPerfil', Auth::guard('online')->user()->id) }}">Modificar perfil</a></li>
               <li class="nav-item">
                 <a class="dropdown-item mr-2" href="{{ url('/online/logout') }}"
                   onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
-                  Cerrar sesión
+                  Salir
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
                 </form>
               </li>
+              <li class="nav-item"><a class="dropdown-item" href="#">Mi cuenta</a></li>
             </ul>
           </li>
           @endif
