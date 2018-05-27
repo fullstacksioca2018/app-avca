@@ -91,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       @role('admin')
       @include('rrhh.layouts.partials.admin_nav')
       @endrole
-
+  
       {{-- Gerente Menu --}}
       @role('gerente')
       @include('rrhh.layouts.partials.nav')
@@ -101,7 +101,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       @role('analista.area')
       @include('rrhh.layouts.partials.nav')
       @endrole
-
     </div>
     <!-- /.sidebar -->
   </aside>
