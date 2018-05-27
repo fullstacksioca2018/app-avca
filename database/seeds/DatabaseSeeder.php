@@ -14,11 +14,11 @@ class DatabaseSeeder extends Seeder
         //disable foreign key check for this connection before running seeders
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
+        $this->call(TabuladorSalarialTableSeeder::class);
+        $this->call(AreasTableSeeder::class);
+        $this->call(CargosTableSeeder::class);
         $this->call(SucursalesTableSeeder::class);
         $this->call(DepartamentosTableSeeder::class);
-        $this->call(TabuladorSalarialTableSeeder::class);
-        $this->call(CargosTableSeeder::class);
-        $this->call(AreasTableSeeder::class);
         $this->call(VacantesTableSeeder::class);
         $this->call(AspirantesTableSeeder::class);
         $this->call(ProfesionesTableSeeder::class);

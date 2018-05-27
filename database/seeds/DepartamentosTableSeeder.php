@@ -13,182 +13,182 @@ class DepartamentosTableSeeder extends Seeder
     {
         DB::table('departamentos')->insert([
             [
-                'descripcion' => 'presidencia',
+                'descripcion' => 'Presidencia',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'oficina control interno',
+                'descripcion' => 'Oficina Control Interno',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'oficina asesora jurídica',
+                'descripcion' => 'Oficina Asesora Jurídica',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'oficina asesora de planeación',
+                'descripcion' => 'Oficina Asesora de Planeación',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'departamento de seguridad',
+                'descripcion' => 'Departamento de Seguridad',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'vicepresidencia',
+                'descripcion' => 'Vicepresidencia',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'grupo desarrollo organizacional',
+                'descripcion' => 'Grupo de Desarrollo Organizacional',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'grupo gestión de rrhh',
+                'descripcion' => 'Grupo Gestión de RRHH',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'grupo control de calidad',
+                'descripcion' => 'Grupo Control de Calidad',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'departamento administrativo de la calidad técnica',
+                'descripcion' => 'Departamento Administrativo de la Calidad Técnica',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección administrativa - área gestión administrativa',
+                'descripcion' => 'Dirección Administrativa - Área de Gestión Administrativa',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección administrativa - área telemática',
+                'descripcion' => 'Dirección Administrativa - Área telemática',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección administrativa - área gestión documental',
+                'descripcion' => 'Dirección Administrativa - Área Gestión Documental',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección administrativa - área adquisiciones',
+                'descripcion' => 'Dirección Administrativa - Área Adquisiciones',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección administrativa - área apoyo logístico',
+                'descripcion' => 'Dirección Administrativa - Área Apoyo Logístico',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección financiera - área gestión financiera',
+                'descripcion' => 'Dirección Financiera - Área Gestión Financiera',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección financiera - área tesorería',
+                'descripcion' => 'Dirección Financiera - Área Tesorería',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección financiera - área presupuesto',
+                'descripcion' => 'Dirección Financiera - Área Presupuesto',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección financiera - área de crédito y recaudo',
+                'descripcion' => 'Dirección Financiera - Área de Crédito y Recaudo',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección financiera - área de contabilidad',
+                'descripcion' => 'Dirección Financiera - Área de Contabilidad',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección comercial - área de servicio al cliente',
+                'descripcion' => 'dirección comercial - Área de Servicio al Cliente',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección comercial - área de ventas presenciales',
+                'descripcion' => 'Dirección Comercial - Área de Ventas Presenciales',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección comercial - área de ventas no presenciales',
+                'descripcion' => 'Dirección Comercial - Área de Ventas no Presenciales',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección comercial - área de aeropuertos',
+                'descripcion' => 'Dirección Comercial - rea de aeropuertos',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección comercial - área de publicidad y mercadeo',
+                'descripcion' => '¨Dirección Comercial - Área de Publicidad y Mercadeo',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección de operaciones aereas - área de direccionamiento operacional',
+                'descripcion' => 'Dirección de Operaciones Áereas - Área de Direccionamiento Operacional',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección de operaciones aereas - área de ingeniería de operaciones',
+                'descripcion' => 'Dirección de Operaciones Aéreas - Área de Ingeniería de Operaciones',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección de operaciones aereas - área operativa',
+                'descripcion' => 'Dirección de Operaciones aéreas - Área Operativa',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección de operaciones aereas - área de despacho',
+                'descripcion' => 'Dirección de Operaciones Aéreas - área de despacho',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección de operaciones aereas - área centro control de operaciones',
+                'descripcion' => 'Dirección de Operaciones Aéreas - Área Centro Control de oOeraciones',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección de operaciones aereas - área de entranamiento',
+                'descripcion' => 'Dirección de Operaciones Áéreas - Área de Entrenamiento',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección técnica - área de direccionamiento técnico',
+                'descripcion' => 'Dirección Técnica - Área de Direccionamiento Técnico',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección técnica - área de mantenimiento',
+                'descripcion' => 'Dirección Técnica - Área de Mantenimiento',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección técnica - área de ingeniería y planeación',
+                'descripcion' => 'Dirección Técnica - Área de Ingeniería y Planeación',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección técnica - área de procesos logísticos',
+                'descripcion' => 'Dirección Técnica - Área de Procesos Logísticos',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'descripcion' => 'dirección técnica - área de confiabilidad',
+                'descripcion' => 'Dirección Técnica - Área de Confiabilidad',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
