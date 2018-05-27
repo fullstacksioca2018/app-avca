@@ -5,5 +5,5 @@ Route::group(['prefix' => 'frontend', 'middleware' => 'guest', 'namespace' => 'r
    Route::get('/', 'FrontendController@home')->name('home');
    Route::get('obtener-cargos/{area}', 'FrontendController@obtenerCargos')->name('cargos.get');
    Route::get('perfil-cargo/{vacante_id}/{cargo_id}', 'FrontendController@verPerfil')->name('perfil.show');
-   Route::post('registrar-aspirante', 'AspiranteController@store')->name('aspirante.store');
+   Route::post('registrar-aspirante', 'FrontendController@registrarAspirante')->name('aspirante.store');
 });

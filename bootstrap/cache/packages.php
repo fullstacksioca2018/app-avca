@@ -72,4 +72,15 @@
       'Debugbar' => 'Barryvdh\\Debugbar\\Facade',
     ),
   ),
+  'caffeinated/shinobi' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Shinobi' => 'Caffeinated\\Shinobi\\Facades\\Shinobi',
+    ),
+  ),
 );

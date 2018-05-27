@@ -31,11 +31,12 @@
     27 => 'UxWeb\\SweetAlert\\SweetAlertServiceProvider',
     28 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     29 => 'Barryvdh\\Debugbar\\ServiceProvider',
-    30 => 'Collective\\Html\\HtmlServiceProvider',
-    31 => 'App\\Providers\\AppServiceProvider',
-    32 => 'App\\Providers\\AuthServiceProvider',
-    33 => 'App\\Providers\\EventServiceProvider',
-    34 => 'App\\Providers\\RouteServiceProvider',
+    30 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
+    31 => 'Collective\\Html\\HtmlServiceProvider',
+    32 => 'App\\Providers\\AppServiceProvider',
+    33 => 'App\\Providers\\AuthServiceProvider',
+    34 => 'App\\Providers\\EventServiceProvider',
+    35 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -54,10 +55,11 @@
     12 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
     13 => 'UxWeb\\SweetAlert\\SweetAlertServiceProvider',
     14 => 'Barryvdh\\Debugbar\\ServiceProvider',
-    15 => 'App\\Providers\\AppServiceProvider',
-    16 => 'App\\Providers\\AuthServiceProvider',
-    17 => 'App\\Providers\\EventServiceProvider',
-    18 => 'App\\Providers\\RouteServiceProvider',
+    15 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
+    16 => 'App\\Providers\\AppServiceProvider',
+    17 => 'App\\Providers\\AuthServiceProvider',
+    18 => 'App\\Providers\\EventServiceProvider',
+    19 => 'App\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (

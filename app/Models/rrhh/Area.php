@@ -13,4 +13,9 @@ class Area extends Model
     {
         return $this->hasMany(Cargo::class, 'area_id', 'area_id');
     }
+
+    public function vacantes()
+    {
+        return $this->hasMany(Vacante::class, 'area_id', 'area_id');
+    }
 }

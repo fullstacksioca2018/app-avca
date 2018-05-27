@@ -13,4 +13,9 @@ class Vacante extends Model
     {
         return $this->belongsTo('App\Models\rrhh\Cargo', 'cargo_id', 'vacante_id');
     }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'area_id', 'vacante_id');
+    }
 }

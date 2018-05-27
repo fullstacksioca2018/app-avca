@@ -41,6 +41,11 @@ Vue.component('panel', require('./components/reportes/panel.vue'));
 import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2);
 
+// Loader
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.min.css';
+Vue.use(Loading);
+
 const app = new Vue({
     el: '#app'
 });

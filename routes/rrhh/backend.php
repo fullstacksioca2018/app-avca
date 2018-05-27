@@ -1,8 +1,10 @@
 <?php
 
-// Rutas para el frontend del módulo de Recursos Humanos de AVCA
+// Rutas para el backend del módulo de Recursos Humanos de AVCA
 Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
+    // Dashboard
     Route::get('admin', 'rrhh\BackendController@dashboard')->name('dashboard');
+
     // Vacantes
     Route::group(['prefix' => 'vacante'], function () {
       Route::get('registrar', 'rrhh\VacanteController@create')->name('vacante.create');
@@ -10,19 +12,10 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
     });
 
     // Cargos
-    Route::group(['prefix' => 'cargo'], function() {
-        Route::get('listar-cargos', 'rrhh\CargoController@list')->name('cargo.list');
-        Route::get('crear-cargo', 'rrhh\CargoController@create')->name('cargo.create');
-        Route::post('registrar-cargo', 'rrhh\CargoController@store')->name('cargo.store');
-        Route::get('editar-cargo/{id}', 'rrhh\CargoController@edit')->name('cargo.edit');
-        Route::post('actualizar-cargo/{id}', 'rrhh\CargoController@update')->name('cargo.update');
-    });
+    require (__DIR__ . '/cargos.php');
 
-    // Seleccion
-    Route::group(['prefix' => 'seleccion', 'namespace' => 'rrhh'], function () {
-        Route::get('listado-cargos-vacantes', 'SeleccionController@listadoCargosVacante')->name('seleccion.listCargosVacante');
-        Route::get('seleccion', 'SeleccionController@index')->name('seleccion.list');
-    });
+    // Seleccion de aspirantes
+    require (__DIR__ . '/aspirantes.php');
 
     // Datos del empleado
     Route::group(['prefix' => 'perfil'], function () {
@@ -106,4 +99,10 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
     Route::get('obtener-datos-entrevista/{aspirante}', 'rrhh\SeleccionController@obtenerDatosEntrevista');
 
     Route::get('obtener-aspirantes/{cedula}', 'rrhh\BusquedaController@obtenerAspirantesPorCedula');
+
+    // Roles
+    require(__DIR__ . '/roles.php');
+
+    // Usuarios
+    require(__DIR__ . '/users.php');    
 });

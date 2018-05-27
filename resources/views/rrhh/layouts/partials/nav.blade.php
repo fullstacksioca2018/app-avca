@@ -1,5 +1,5 @@
 <nav class="mt-2">
-  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">    
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <li class="nav-item has-treeview menu-open">
       <a href="#" class="nav-link active">
         <i class="nav-icon fa fa-dashboard"></i>
@@ -9,7 +9,7 @@
         </p>
       </a>
       <ul class="nav nav-treeview">
-        @if(request()->is('rrhh/backend/seleccion/*' || request()->is('rrhh/backend/seleccion/*')))
+        @if(request()->is('rrhh/backend/seleccion/*')))
         <li class="nav-item has-treeview menu-open">
         @else
         <li class="nav-item has-treeview">
@@ -27,7 +27,7 @@
             @if (request()->is('rrhh/backend/vacante/*'))
             <li class="nav-item has-treeview menu-open">
             @else
-            <li class="nav-item has-treeview menu-open">
+            <li class="nav-item has-treeview">
             @endif
               <a href="#" class="nav-link">
                 <p style="padding-left: 1.5rem;">Reclutamiento Externo <i class="right fa fa-angle-down"></i></p>
@@ -41,7 +41,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="{{ route('seleccion.listCargosVacante') }}" class="{{ request()->routeIs('seleccion.listCargosVacante') ? 'nav-link active' : 'nav-link' }}">
+              <a href="{{ route('aspirantes.areas') }}" class="{{ request()->routeIs('aspirantes.areas') ? 'nav-link active' : 'nav-link' }}">
                 <p style="padding-left: 1.5rem;">Selección</p>
               </a>
             </li>
