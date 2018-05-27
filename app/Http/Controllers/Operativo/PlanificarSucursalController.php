@@ -13,5 +13,9 @@ class PlanificarSucursalController extends Controller
         return Sucursal::orderBy('nombre','ASC')->get();        
     }
 
+    public function sucursal(){
+        return view('Operativo.Sucursal.Sucursal');
+    }
+
     
 }
