@@ -135,7 +135,7 @@
     </b-modal>
 
     <!-- AGREGAR -->
-     <RegistrarRutas> </RegistrarRutas>
+     <RegistrarAeronaves> </RegistrarAeronaves>
 
   </b-container>
 </template>
@@ -143,13 +143,13 @@
 <script>
 
 import axios  from 'axios';
-import RegistrarRutas from './ModalRegistrar';
+import RegistrarAeronaves from './RegistrarAeronaves';
 import {EventBus} from './event-bus.js'
 
 
 export default {
   components: {
-    RegistrarRutas
+    RegistrarAeronaves
   },
   created: function(){
     EventBus.$on('actualizartabla',(event) =>{

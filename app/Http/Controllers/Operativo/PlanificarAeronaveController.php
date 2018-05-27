@@ -55,24 +55,31 @@ class PlanificarAeronaveController extends Controller
     }
 
     public function modificar(Request $datos){
-      
-
         $aeronave = Aeronave::find($datos['id']);
-       
         $aeronave->matricula=$datos['matricula'];
-        
         $aeronave->modelo=$datos['modelo'];
- 
         $aeronave->capacidad_asientos=$datos['capacidad'];   
-
-		
-
-  
-     
-        
         //return $datos;
         $aeronave->save();
         return "La Aeronave Fue Actualizada Correctamente";
+    }
+
+    public function guardar(Request $datos){
+   
+        $aeronave = new Aeronave();
+        $aeronave->modelo = $datos['modelo'];      
+        $aeronave->capacidad_asientos = $datos['capacidad'];
+        $aeronave->matricula = $datos['matricula'];
+        $aeronave->estado = 'activo';
+        $aeronave->ultimo_mantenimiento = Carbon::now();
+        $aeronave->capacidad_equipaje = "68";
+        $aeronave->asiento_primera_clase = "20";
+        $aeronave->asiento_economicos = "34";
+        $aeronave->asiento_observacion = "10";
+       
+        $aeronave->save();
+        return "se ha guardado exitosamente la aeronave";
+       
     }
 
 

@@ -43,12 +43,16 @@ window.Vue = require('vue');
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.js';
 import VueChartjs from 'vue-chartjs/dist/vue-chartjs.js';
 import Toasted from 'vue-toasted';
+import VuejsDialog from "vuejs-dialog"
+
 
 
 
 Vue.use(Toasted);
 Vue.use(BootstrapVue);
+Vue.use(VuejsDialog)
 Vue.use(VueChartjs);
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

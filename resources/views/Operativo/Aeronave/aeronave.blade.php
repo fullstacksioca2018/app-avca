@@ -7,7 +7,7 @@
     <div class="animated fadeIn">
         <div class="card">
             <div class="card-header text-center">
-                <strong>Gestionar Taquilla </strong>
+                <strong>Gestionar Aeronave </strong>
             </div>
             <div class="card-body">                    
                   <Aeronaves> </Aeronaves>
