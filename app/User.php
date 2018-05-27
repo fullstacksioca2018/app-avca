@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, ShinobiTrait;
 
     protected $guard = 'user';
     /**

@@ -11,6 +11,11 @@ class Cargo extends Model
 
     public function area()
     {
-        return $this->belongsTo(Area::class);
+        return $this->belongsTo(Area::class, 'area_id', 'cargo_id');
+    }
+
+    public function vacantes()
+    {
+        return $this->hasMany(Vacante::class, 'cargo_id', 'cargo_id');
     }
 }

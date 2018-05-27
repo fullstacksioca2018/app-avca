@@ -23,7 +23,12 @@ class DatabaseSeeder extends Seeder
         $this->call(AspirantesTableSeeder::class);
         $this->call(ProfesionesTableSeeder::class);
         $this->call(ConceptosTableSeeder::class);
+        $this->call(NominasTableSeeder::class);
+        $this->call(EmpleadosTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+
+        // Permisos del sistema
+        $this->call(PermissionsTableSeeder::class);
 
         //disable foreign key check for this connection before running seeders
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

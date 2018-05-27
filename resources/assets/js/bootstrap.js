@@ -14,6 +14,11 @@ try {
     require('bootstrap');
 } catch (e) {}
 
+// Bootstrap Tootlip
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -37,6 +42,9 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+// RRHH
+window.moment = require('moment');
 
 //LEO
 window.Vue = require('vue');

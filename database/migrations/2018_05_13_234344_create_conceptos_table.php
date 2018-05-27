@@ -18,12 +18,11 @@ class CreateConceptosTable extends Migration
             $table->string('tipo_concepto');
             $table->string('descripcion',255);
             $table->float('porcentaje')->nullable();
-            $table->double('valor_fijo')->nullable();
-            $table->float('valor_variable')->nullable();
-            $table->boolean('bono_vacacional');
-            $table->boolean('utilidades');
-            $table->boolean('prestaciones');
-            $table->boolean('isl');
+            $table->double('valor_fijo')->nullable();            
+            $table->boolean('bono_vacacional')->nullable();
+            $table->boolean('utilidades')->nullable();
+            $table->boolean('prestaciones')->nullable();
+            $table->boolean('islr')->nullable();
             $table->timestamps();
         });
     }

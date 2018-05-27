@@ -8,4 +8,5 @@ class Sucursal extends Model
 {
     protected $table = "sucursales";
     protected $primaryKey = "sucursal_id";
+    protected $fillable = ['tipo_sucursal', 'nombre', 'estatus', 'ciudad'];
 }

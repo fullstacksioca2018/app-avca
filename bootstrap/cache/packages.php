@@ -61,4 +61,26 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'barryvdh/laravel-debugbar' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Debugbar' => 'Barryvdh\\Debugbar\\Facade',
+    ),
+  ),
+  'caffeinated/shinobi' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Shinobi' => 'Caffeinated\\Shinobi\\Facades\\Shinobi',
+    ),
+  ),
 );

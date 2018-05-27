@@ -18,7 +18,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\TrustProxies::class,
+        \App\Http\Middleware\TrustProxies::class,        
     ];
 
     /**
@@ -63,7 +63,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         //SHINOBI
-        // 'roleshinobi' => \Caffeinated\Shinobi\Middleware\UserHasRole::class,
-        // 'permissionshinobi' => \Caffeinated\Shinobi\Middleware\UserHasPermission::class,
+        'role' => \Caffeinated\Shinobi\Middleware\UserHasRole::class,
+        'permission' => \Caffeinated\Shinobi\Middleware\UserHasPermission::class,
+        // Por defecto tiene la palabra 'shinobi' al final del nombre pero se lo quité
+        // para hacerlo mas corto
     ];
 }
