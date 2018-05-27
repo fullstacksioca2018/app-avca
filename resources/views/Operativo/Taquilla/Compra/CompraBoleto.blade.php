@@ -125,7 +125,6 @@
                   
                   </div>
                 </div>
-                  
                   <div class="row">
                   <div class="col-md-4 mb-2" >
                     <label for="firstName">Primer Nombre:</label>
@@ -234,7 +233,7 @@
         </div>
      @endfor
      <button class="btn btn-success btn-md " data-toggle="modal" data-target="#exampleModal" type="button">Comprar boletos</button>
-     <button class="btn btn-primary" type="submit" form="myForm" id="reservar" name="reservar"> Reservar  </button>
+     <input class="btn btn-primary" type="submit" form="myForm" id="reservar" name="reservar" value="Reservar">
     </div>
 <!-- ===================== -->
 <!-- Modal -->
@@ -261,7 +260,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-user"></i></span>
             </div>
-            <input type="text" class="form-control" form="myForm"   name="usernam" id="cc-name" required>
+            <input type="text" class="form-control" form="myForm"   name="usernam" id="cc-name" >
             <small class="text-muted"></small>
             <div class="invalid-feedback">nombre requerido</div>
           </div> <!-- input-group.// -->
@@ -272,7 +271,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
             </div>
-            <input type="number" class="form-control" form="myForm" name="numero_tarjeta" id="cc-number" require autocomplete="off" >
+            <input type="number" class="form-control" form="myForm" name="numero_tarjeta" id="cc-number"  autocomplete="off" >
             <div class="invalid-feedback">Requiere el numero de referencia</div>
           </div> <!-- input-group.// -->
         </div> <!-- form-group.// -->
@@ -294,7 +293,6 @@
                   
                 </select>
               </div>
-              <div class="invalid-feedback">requiere la fecha de Vencimiento</div>
             </div>
           </div>
         </div> <!-- row.// -->

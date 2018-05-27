@@ -1546,7 +1546,7 @@ color: dodgerblue;
   background: rgba(8, 30, 91, 1);
   padding: 0 0 30px 0;
   color: #eee;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 #footer .footer-top {
@@ -1598,19 +1598,19 @@ color: dodgerblue;
 }
 /*----ICONOS SOCIALES----*/
 .twitter  i{
-  color: #1da1f2;
+  color: #FFFFFF;
 }
 
 .facebook i{
-  color: rgb(45, 70, 159);
+  color: #FFFFFF;
 }
 
 .instagram i{
-  color: #9e057a;
+  color: #FFFFFF;
 }
 
 .google-plus i{
-  color: #f50a1d;
+  color: #FFFFFF;
 }
 
 .twitter  i:hover{

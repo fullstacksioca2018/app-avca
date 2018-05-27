@@ -11,6 +11,7 @@ class VueloSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
         $dia=array('8','9','10','11','12','13', '15','16','17','18','19','20','22','23','24','25','26','27', '29','30','31');
         $mes=date('m');            //valor del mes
         $diactual=date('d');
@@ -34,3 +35,26 @@ class VueloSeeder extends Seeder
         
                            
                       
+=======
+        factory(App\Models\operativo\Vuelo::class, 20)->create();
+
+        DB::table('vuelos')->insert([
+			'estado' => 'abierto',
+			'fecha_salida' => '2018-06-05 1:10:34',
+	        'n_vuelo' => 'VH-2131',
+        ]);
+
+        DB::table('vuelos')->insert([
+			'estado' => 'abierto',
+			'fecha_salida' => '2018-06-10 20:38:34',
+	        'n_vuelo' => 'VH-2231',
+        ]);
+
+        DB::table('vuelos')->insert([
+            'estado' => 'abierto',
+            'fecha_salida' => '2018-06-15 14:58:34',
+            'n_vuelo' => 'VH-2431',
+        ]);
+    }
+}
+>>>>>>> 33b260bb145ceef5b0903c5f9327463f0f04a4d7
