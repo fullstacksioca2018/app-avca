@@ -7,20 +7,20 @@
         <i class="nav-icon fa fa-dashboard"></i>
         <p>
           Gerencia General
-          <i class="right fa fa-angle-left"></i>
+          <i class="right"></i>
         </p>
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item has-treeview menu-open">
-          <a href="{{ URL::to('/reportes')}}" class="nav-link active">
+          <a href="{{ URL::to('/reportes')}}" id="reportesnav" class="nav-link">
             <i class="fa fa-users nav-icon"></i>
-            <p>Inicio <i class="right fa fa-angle-left"></i></p>
+            <p>Inicio <i class="right"></i></p>
           </a>
         </li>
         <li class="nav-item has-treeview menu-open">
-          <a href="{{ URL::to('/reportes/panel') }}" class="nav-link">
+          <a href="{{ URL::to('/reportes/panel') }}" id="panelnav" class="nav-link">
             <i class="fa fa-user nav-icon"></i>
-            <p>Reportes y Estadisticas<i class="right fa fa-angle-left"></i></p>
+            <p>Reportes y Estadisticas<i class="right"></i></p>
           </a>
         </li>
       </ul>

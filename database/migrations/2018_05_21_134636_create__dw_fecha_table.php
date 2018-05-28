@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDwPasajerosTable extends Migration
+class CreateDwFechaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateDwPasajerosTable extends Migration
      */
     public function up()
     {
-        Schema::create('DwPasajeros', function (Blueprint $table) {
-            $table->increments('pasajero_id');
-            $table->dateTime('fecha_nacimiento')->nullable();
-            $table->string('genero', 10)->nullable();
-            $table->string('discapacidad', 10)->nullable();
+        Schema::create('DwFechas', function (Blueprint $table) {
+            $table->increments('fecha_id');
+            $table->integer('mes')->nullable();
+            $table->integer('year')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateDwPasajerosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DwPasajeros');
+        Schema::dropIfExists('DwFechas');
     }
 }

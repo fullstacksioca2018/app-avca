@@ -34,10 +34,16 @@ class DatabaseSeeder extends Seeder
         $this->call(RutaSeeder::class);
         $this->call(SegmentoSeeder::class);
 
-        //SEEDER MODULO OPERATIVO
+        //SEEDER MODULO REPORTE
         $this->call(DwSucursales::class);
+        $this->call(DwPasajeros::class);
         $this->call(DwRutas::class);
         $this->call(DwVuelos::class);
+        $this->call(DwCargosSeeder::class);
+        $this->call(DwEmpleados::class);
+        $this->call(DwIngresosSeeder::class);
+        $this->call(DwAsistenciasSeeder::class);
+        $this->call(DwTemporadas::class);
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

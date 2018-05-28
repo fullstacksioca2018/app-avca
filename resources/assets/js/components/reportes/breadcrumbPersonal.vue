@@ -27,6 +27,8 @@
   	},
 	 methods:{
 	        generar(){
+          $('#panelnav').removeClass('active');
+            $('#reportesnav').addClass('active');
 		        this.items=1;
             // history.pushState(null, "", "reportes");
 	      		EventBus.$emit('inicio', true)

@@ -27,23 +27,7 @@ export default {
       }, {responsive: true, maintainAspectRatio: false,
         tooltips: {
             bodyFontSize: 18
-          },
-          beginAtZero: true,
-          scales: {
-          yAxes: [{
-            stacked: true,
-            ticks: {
-              beginAtZero: true
-            }
-          }],
-          xAxes: [{
-            stacked: true,
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-
-        }
+          }
         })
     },
     construir(){

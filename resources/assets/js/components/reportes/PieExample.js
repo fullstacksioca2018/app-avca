@@ -9,10 +9,10 @@ export default {
           datasets: [],
           background:[
                       '#1C5281',
-                      '#403f3f',
-                      '#00D8FF',
+                      '#48B2E4',
+                      '#7ECBD7',
+                      '#EEEEEE',
                       '#DD1B16',
-                      '#41B883',
                       '#007bff',
                       '#087574',
                       '#ff1B16']

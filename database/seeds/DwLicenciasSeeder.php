@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DwCargos extends Seeder
+class DwLicenciasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
