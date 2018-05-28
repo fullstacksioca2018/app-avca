@@ -170,8 +170,8 @@ class NominaController extends Controller
 
     // Calculo de sueldo base
     public function calculoSueldoBase($empleado)
-    {
-        $cargo = Cargo::findOrFail($empleado->cargo);
+    {        
+        $cargo = Cargo::findOrFail($empleado->cargo_id);
         $tabulador_salarial = TabuladorSalarial::findOrFail($cargo->tabulador_salarial_id);
         return $tabulador_salarial->sueldo_base;
     }
