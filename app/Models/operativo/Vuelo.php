@@ -49,4 +49,10 @@ class Vuelo extends Model
         }
     }
 
+    public function scopeActualizar($query, $dato, $estado){
+        $vuelo =Vuelo::find($dato);
+        $vuelo->estado=$estado;
+        $vuelo->save();
+    }
+
 }

@@ -59,12 +59,7 @@
             Cancelar
           </b-button>
         </div>
-        <div v-else>
-          <b-button size="sm" @click.stop="Habilitar(row)" variant="success">
-            
-            Habilitar
-          </b-button>
-        </div>
+        
         </b-input-group>
       </template>
       <template slot="row-details" slot-scope="row">
@@ -201,7 +196,7 @@ export default {
   
          
        
-             this.$root.$emit('bv::show::modal', 'modalInfo', button)
+             this.$root.$emit('bv::show::modal', 'VuelosCancelados', button)
     },
    
     resetModal () {

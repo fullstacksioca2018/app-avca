@@ -30,6 +30,29 @@ class PlanificarVueloController extends Controller
         $vuelos->VuelosCerrados($actual2->toDateTimeString());
     }
 
+    public function ejecutar(Request $datos){
+        $fecha = $datos['Fecha'] . " " . $datos['Hora'];
+
+        if($fecha <= Carbon::now()){
+            $vuelo = new Vuelo();
+            $vuelo->Actualizar($datos['id'], "ejecutado");
+            return "Vuelo Ejecutado";
+            
+        }
+        else{
+           return "La fecha de ejecucion esta pautada para el ".$fecha;
+        }            
+    }
+
+    public function cancelar(Request $datos){
+      
+            $vuelo = new Vuelo();
+            $vuelo->Actualizar($datos['id'], "cancelado");
+            return "Vuelo cancelado";
+            
+    
+    }
+
     public function vuelo(){
       
        
