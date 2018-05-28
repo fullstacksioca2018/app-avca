@@ -3,10 +3,10 @@
 
 @section('content')
 
-	<!--==========================
+  <!--==========================
     Intro Section
   ============================-->
-
+    
   <section id="intro">
 
     <div class="intro-content">
@@ -38,8 +38,12 @@
   ======================= -->
   <div class="row">
     <div class="col-md-8 offset-md-2">
-
-  {!! Form::open(['route' => ['cliente.DetalleMultidestino'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
+  
+  @if (Auth::guest())
+  <form method="get" action="{{ URL::to('/cliente/DetalleMultidestino') }}" onsubmit="myFunction()">
+  @else
+  <form method="get" action="{{ URL::to('/online/cliente/DetalleMultidestino') }}" onsubmit="myFunction()">
+  @endif
 
   <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
   <input type="hidden" name="cantidadV" id="cantidadV" value="2">
@@ -79,7 +83,7 @@
 
       <div class="col-md-4">
         <label for="coñooo" class="h">Fecha ida:</label>
-        <input type="date" name="fecha_salida[]" class="form-control impout3">
+        <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">
         <i class="fa fa-calendar prefix icocalendario"></i>
       </div>
 
@@ -128,7 +132,7 @@
         </div>
 <div class="col-md-4">            
             <label for="coñooo" class="h">Fecha ida:</label>
-            <input type="date" name="fecha_salida[]" class="form-control impout3">       
+            <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
           <i class="fa fa-calendar prefix icocalendario"></i>
                  
         </div>
@@ -174,7 +178,7 @@
         </div>
 <div class="col-md-4 ">            
             <label for="coñooo" class="h">Fecha ida:</label>
-            <input type="date" name="fecha_salida[]" class="form-control impout3">       
+            <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
           <i class="fa fa-calendar prefix icocalendario"></i>
                  
         </div>
@@ -221,7 +225,7 @@
         </div>
 <div class="col-md-4">            
             <label for="coñooo" class="h">Fecha ida:</label>
-            <input type="date" name="fecha_salida[]" class="form-control impout3">       
+            <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
           <i class="fa fa-calendar prefix icocalendario"></i>
                  
         </div>
@@ -236,30 +240,31 @@
   ======================= -->
 <div class="mr-5">
   
-
-<button type="button" class="btn btn btn-sm btn-primary ion-plus" id="masV" onclick="masvuelos()"></button>
-<button type="button" class="btn btn btn-sm btn-danger ion-minus-round" id="menosV" onclick="menosvuelos()"></button>
-
 </div>
 
 <!-- ======================
     INICIO DEL Calendario
   ======================= -->
 
- <div class="form-row pt-3">
+ <div class="form-row pt-1">
 
 
+<div class="col col-md-1 col-lg-1 mt-4">
+<button type="button" class="btn btn btn-sm btn-primary ion-plus" id="masV" onclick="masvuelos()"></button>
+</div>
 
+<div class="col col-md-1 col-lg-1 mt-4 ml-2">
+<button type="button" class="btn btn btn-sm btn-danger ion-minus-round" id="menosV" onclick="menosvuelos()"></button>
+</div>
 
-
-<div class="col col-md-1 col-lg-1">
+<div class="col col-md-1 col-lg-1 ml-3">
        <label for="exampleFormControlSelect1" class="h">Adultos:</label>
         <div class="form-group">    
-    <input type="number" id="inputadultos" min="1" max="5" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')"> 
+    <input type="number" id="inputadultos" min="1" max="6" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')"> 
      </div>
       </div>
         
-    <div class="col col-md-1 col-lg-1">
+    <div class="col col-md-1 col-lg-1 mr-3">
       <label for="exampleFormControlSelect1" class="h">Niños:</label>
       <div class="form-group">        
         <input type="number" id="inputninos" min="0" max="5" class="form-control" value="0" name="ninos" onchange="validarN('inputninos')">
@@ -285,7 +290,7 @@
     FIN DEL Calendario
   ======================= -->
 
-{!! Form::close() !!} 
+</form> 
  <!-- ============================
     FIN DEL FORMULARIO DE COMPRAS
   ==============================-->
@@ -382,7 +387,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
             <div class="portfolio-wrap">
               <figure>
-                <img src="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" class="img-fluid" alt="">
+                <img src="{{ asset('online/img/portfolio/barcelona/barcelona3.jpg') }}" class="img-fluid" alt="">
 
                 <a href="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" data-lightbox="portfolio" data-title="La Casa Fuerte, Barcelona - Estado Anzoategui" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
 
@@ -434,7 +439,16 @@
 
                 <a href="{{ asset('online/img/portfolio/cumana/cumana3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
 
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                @if (Auth::guest())
+
+                <a href="{{ route('destino.cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+
+              @else
+                
+                <a href="{{ URL::to('/online/destino/cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+
+              @endif
+              
               </figure>
 
               <div class="portfolio-info">

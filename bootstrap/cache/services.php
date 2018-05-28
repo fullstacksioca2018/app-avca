@@ -26,15 +26,19 @@
     22 => 'Barryvdh\\DomPDF\\ServiceProvider',
     23 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     24 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
-    25 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    26 => 'Collective\\Html\\HtmlServiceProvider',
-    27 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    28 => 'UxWeb\\SweetAlert\\SweetAlertServiceProvider',
-    29 => 'Collective\\Html\\HtmlServiceProvider',
-    30 => 'App\\Providers\\AppServiceProvider',
-    31 => 'App\\Providers\\AuthServiceProvider',
-    32 => 'App\\Providers\\EventServiceProvider',
-    33 => 'App\\Providers\\RouteServiceProvider',
+    25 => 'Laracasts\\Flash\\FlashServiceProvider',
+    26 => 'Laravel\\Socialite\\SocialiteServiceProvider',
+    27 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    28 => 'Collective\\Html\\HtmlServiceProvider',
+    29 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    30 => 'UxWeb\\SweetAlert\\SweetAlertServiceProvider',
+    31 => 'Collective\\Html\\HtmlServiceProvider',
+    32 => 'App\\Providers\\AppServiceProvider',
+    33 => 'App\\Providers\\AuthServiceProvider',
+    34 => 'App\\Providers\\EventServiceProvider',
+    35 => 'App\\Providers\\RouteServiceProvider',
+    36 => 'Laravel\\Socialite\\SocialiteServiceProvider',
+    37 => 'Laracasts\\Flash\\FlashServiceProvider',
   ),
   'eager' => 
   array (
@@ -51,11 +55,13 @@
     10 => 'Barryvdh\\DomPDF\\ServiceProvider',
     11 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     12 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
-    13 => 'UxWeb\\SweetAlert\\SweetAlertServiceProvider',
-    14 => 'App\\Providers\\AppServiceProvider',
-    15 => 'App\\Providers\\AuthServiceProvider',
-    16 => 'App\\Providers\\EventServiceProvider',
-    17 => 'App\\Providers\\RouteServiceProvider',
+    13 => 'Laracasts\\Flash\\FlashServiceProvider',
+    14 => 'UxWeb\\SweetAlert\\SweetAlertServiceProvider',
+    15 => 'App\\Providers\\AppServiceProvider',
+    16 => 'App\\Providers\\AuthServiceProvider',
+    17 => 'App\\Providers\\EventServiceProvider',
+    18 => 'App\\Providers\\RouteServiceProvider',
+    19 => 'Laracasts\\Flash\\FlashServiceProvider',
   ),
   'deferred' => 
   array (
@@ -157,6 +163,7 @@
     'translation.loader' => 'Illuminate\\Translation\\TranslationServiceProvider',
     'validator' => 'Illuminate\\Validation\\ValidationServiceProvider',
     'validation.presence' => 'Illuminate\\Validation\\ValidationServiceProvider',
+    'Laravel\\Socialite\\Contracts\\Factory' => 'Laravel\\Socialite\\SocialiteServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
     'html' => 'Collective\\Html\\HtmlServiceProvider',
     'form' => 'Collective\\Html\\HtmlServiceProvider',
@@ -200,6 +207,9 @@
     array (
     ),
     'Illuminate\\Validation\\ValidationServiceProvider' => 
+    array (
+    ),
+    'Laravel\\Socialite\\SocialiteServiceProvider' => 
     array (
     ),
     'Laravel\\Tinker\\TinkerServiceProvider' => 

@@ -15,14 +15,14 @@ class CreateFacturasTable extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('numero_factura',20);
-            $table->date('fecha');
+            $table->string('numero_factura',20)->nullable();
+            $table->date('fecha')->nullable();
             $table->float('importe_facturado');
-            $table->string('numero_control',20);
-            $table->integer('adultos_cant');
+            $table->string('numero_control',20)->nullable();
+            $table->integer('adultos_cant')->nullable();
             $table->integer('ninos_cant')->nullable();
             $table->integer('NinosBrazos_cant')->nullable();
-            $table->integer('tarjeta_id')->unsigned();
+            $table->integer('tarjeta_id')->unsigned()->nullable();
             $table->timestamps();
 
             /*
