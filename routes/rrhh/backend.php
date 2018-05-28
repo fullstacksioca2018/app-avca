@@ -35,19 +35,7 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
     });
 
     // Contratacion
-    Route::group(['prefix' => 'contratacion'], function () {
-        Route::get('contratacion', 'rrhh\ContratacionController@formContratacion')->name('contratacion.form');
-        Route::post('contratacion', 'rrhh\ContratacionController@procesarContratacion')->name('contratacion.form');
-        Route::get('obtener-aspirante-info/{id}', 'rrhh\ContratacionController@obtenerAspiranteInfo');
-        Route::get('obtener-estados', 'rrhh\ContratacionController@obtenerEstados');
-        Route::get('obtener-profesiones', 'rrhh\ContratacionController@obtenerProfesiones');
-        Route::get('obtener-departamentos', 'rrhh\ContratacionController@obtenerDepartamentos');
-        Route::get('obtener-profesiones/{nivel_academico}', 'rrhh\ContratacionController@obtenerProfesiones');
-        Route::get('obtener-sucursales', 'rrhh\ContratacionController@obtenerSucursales');
-        Route::get('obtener-cargos', 'rrhh\ContratacionController@obtenerCargos');
-        Route::get('obtener-tabulador', 'rrhh\ContratacionController@obtenerTabuladorSalarial');
-        Route::get('obtener-bancos', 'rrhh\ContratacionController@obtenerBancos');
-    });
+    require(__DIR__ . '/contratacion.php');
 
     //  Nóminas
     Route::group(['prefix' => 'nomina', 'namespace' => 'rrhh'], function () {

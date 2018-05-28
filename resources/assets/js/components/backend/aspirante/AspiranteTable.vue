@@ -20,6 +20,7 @@
             <tr v-for="aspirante in aspirants" :key="aspirante.id">
               <td>{{ aspirante.created_at }}</td>
               <td>{{ aspirante.nombre }} {{ aspirante.apellido }}</td>
+
               <td v-if="estatusAnterior === 'registrados'">
                 <a :href="aspirante.curriculum" class="btn btn-outline-info">
                   <i class="fa fa-file-pdf-o"></i> Ver curriculum
@@ -90,7 +91,7 @@
     data() {
       return {
         aspirants: this.aspirantes,
-        estatus: 'registrados',
+        estatus: 'verificados',
         estatusAnterior: 'registrados',
       }
     },

@@ -50,6 +50,11 @@
                 <p style="padding-left: 1.5rem;">Contratación</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('empleados.list') }}" class="{{ request()->routeIs('empleados.list') ? 'nav-link active' : 'nav-link' }}">
+                <p style="padding-left: 1.5rem;">Contrato laboral</p>
+              </a>
+            </li>
           </ul>
         </li>        
         <li class="nav-item">

@@ -33,7 +33,7 @@ class CreateEmpleadosTable extends Migration
             $table->integer('sucursal_id')->unsigned();
             $table->integer('departamento_id')->unsigned();
             $table->integer('cargo_id')->unsigned();
-            $table->enum('tipo_empleado', ['administrativo', 'operativo', 'tripulacion']);
+            $table->integer('area_id')->unsigned();
             $table->enum('nivel_academico', ['bachiller', 'tsu', 'profesional', 'especialista 1', 'especialista 2']);
             $table->string('profesion');
             $table->enum('condicion_laboral', ['fijo', 'contratado', 'inactivo', 'suplente']);

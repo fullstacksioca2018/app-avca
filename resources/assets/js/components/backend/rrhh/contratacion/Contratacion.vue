@@ -2,10 +2,16 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header bg-info-gradient">
-        <h2 class="form-title">Contratación</h2>
+        Contratación
       </div>
       <div class="card-body">        
-        <buscador formId="ContratacionForm" @aspirante="obtenerAspirante"></buscador>
+        <buscador 
+          formId="ContratacionForm" 
+          @aspirante="obtenerAspirante" 
+          @cargo="obtenerCargo"
+          @sucursal="obtenerSucursal"
+        >          
+        </buscador>
         <hr>
         <form action="#" id="ContratacionForm" autocomplete="off" v-if="aspirante.length !== 0" enctype="multipart/form-data" @submit.prevent="procesarContratacion">
           <!--Datos personales-->
@@ -56,7 +62,7 @@
                     <option value="" selected="selected">Seleccione</option>
                     <option value="solter@">Solter@</option>
                     <option value="casad@">Casad@</option>
-                    <option value="concubinato">Concubinato</option>
+                    <option value="concubin@">Concubinato</option>
                     <option value="divorciad@">Divorciad@</option>
                     <option value="viud@">Viud@</option>
                   </select>
@@ -189,41 +195,28 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="sucursal">Sucursal</label>
-                  <select name="sucursal" id="sucursal" class="form-control">
-                    <option value="" selected="selected">Seleccione</option>
-                    <option :value="sucursal.sucursal_id" v-for="sucursal in sucursales" :key="sucursal.id">{{ sucursal.nombre }}</option>
-                  </select>
+                  <div class="form-control">{{ sucursal.nombre }}</div>
+                  <input type="hidden" name="sucursal_id" id="sucursal_id" :value="sucursal.sucursal_id">
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <label for="departamento">Departamento</label>
-                  <select name="departamento" id="departamento" class="form-control">
+                  <select name="departamento_id" id="departamento_id" class="form-control">
                     <option value="" selected="selected">Seleccione</option>
                     <option :value="departamento.departamento_id" v-for="departamento in departamentos" :key="departamento.id">{{ departamento.descripcion }}</option>
                   </select>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-6">
                 <div class="form-group">
                   <label for="cargo">Cargo</label>
-                  <select ref="cargo" name="cargo" id="cargo" class="form-control" @change="obtenerTabuladorSalarial" v-model="cargo">
-                    <option value="" selected="selected">Seleccione</option>
-                    <option :value="cargo.cargo_id" v-for="cargo in cargos" :key="cargo.id">{{ cargo.titulo }}</option>
-                  </select>
+                  <div class="form-control">{{ cargo.titulo }}</div>
+                  <input type="hidden" name="cargo_id" :value="cargo.cargo_id">
+                  <!-- Guardando el area -->
+                  <input type="hidden" name="area_id" :value="cargo.area_id">
                 </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label for="tipo_empleado">Tipo de empleado</label>
-                  <select ref="tipo_empleado" name="tipo_empleado" id="tipo_empleado" class="form-control">
-                    <option value="" selected="selected">Seleccione</option>
-                    <option value="administrativo">Administrativo</option>
-                    <option value="operativo">Operativo</option>
-                    <option value="tripulacion">Tripulación</option>
-                  </select>
-                </div>
-              </div>
+              </div>              
             </div>
             <div class="row">
               <div class="col-md-2">
@@ -244,7 +237,7 @@
                   <label for="profesion">Profesión</label>
                   <select name="profesion" id="profesion" class="form-control">
                     <option value="" selected="selected">Seleccione</option>
-                    <option :value="profesion.profesion_id" v-for="profesion in profesiones">{{ profesion.titulo }}</option>
+                    <option :value="profesion.profesion_id" v-for="profesion in profesiones" :key="profesion.id">{{ profesion.titulo }}</option>
                   </select>
                 </div>
               </div>
@@ -306,7 +299,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="banco">Banco</label>
-                  <select name="banco" id="banco" class="form-control" @change="obtenerCodigoBancario" v-model="banco">
+                  <select name="banco" id="banco" class="form-control" @change="obtenerCodigoBancario" v-model="banco" required>
                     <option value="" selected="selected">Seleccione</option>
                     <option :value="banco.banco" v-for="banco in bancos" :key="banco.id">{{ banco.banco }}</option>
                   </select>
@@ -316,11 +309,11 @@
                 <label for="cuenta_bancaria">Número de cuenta bancaria</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
-            <span class="input-group-text">
-              <input type="text" name="codigo_cuenta" id="codigo_cuenta" :value="codigo_cuenta" size="4" style="border: none; background: transparent;">
-            </span>
+                    <span class="input-group-text">
+                      <input type="text" name="codigo_cuenta" id="codigo_cuenta" :value="codigo_cuenta" size="4" style="border: none; background: transparent;">
+                    </span>
                   </div>
-                  <input type="text" name="cuenta_bancaria" id="cuenta_bancaria" class="form-control" placeholder="Número de cuenta bancaria" maxlength="20">
+                  <input type="text" name="cuenta_bancaria" id="cuenta_bancaria" class="form-control" placeholder="Número de cuenta bancaria" maxlength="20" required>
                 </div>
               </div>
             </div>
@@ -337,10 +330,7 @@
 </template>
 
 <script>
-  import Buscador from "../Buscador";
-  import VueSweetalert2 from 'vue-sweetalert2';
-
-  Vue.use(VueSweetalert2);
+  import Buscador from "../Buscador";  
 
   export default {
     name: "Contratacion",
@@ -362,9 +352,8 @@
           'auditiva'
         ],
         // Datos laborales
-        sucursales: [],
-        departamentos: [],
-        cargos: [],
+        sucursal: '',
+        departamentos: [],        
         profesiones: [],
         nivel_academico: '',
         cargo: '',
@@ -378,10 +367,8 @@
     },
     mounted() {
       this.obtenerEstados();
-      // Laborales
-      this.obtenerSucursales();
-      this.obtenerDepartamentos();
-      this.obtenerCargos();
+      // Laborales      
+      this.obtenerDepartamentos();      
       // Nomina
       this.obtenerBancos();
     },
@@ -389,11 +376,17 @@
       obtenerAspirante(aspirante) {
         this.aspirante = aspirante;
       },
+      obtenerCargo(cargo) {
+        this.cargo = cargo;        
+      },
+      obtenerSucursal(sucursal) {
+        this.sucursal = sucursal;        
+      },
       //  Metodo para procesar el formulario de contratacion
       procesarContratacion() {
         let contratacionForm = document.getElementById('ContratacionForm');
         let formData = new FormData(contratacionForm);
-
+        let loader = this.$loading.show();
         axios.post('/rrhh/backend/contratacion/contratacion', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -408,6 +401,8 @@
               showConfirmButton: true,
               //timer: 2000
             });
+            document.getElementById('ContratacionForm').reset();
+            loader.hide();
           })
       },
       procesarEmpleado() {
@@ -436,25 +431,13 @@
           this.ciudadesFiltradas = '';
         }
       },
-      // Laborales
-      obtenerSucursales() {
-        axios.get('/rrhh/backend/contratacion/obtener-sucursales')
-          .then((response) => {
-            this.sucursales = response.data;
-          });
-      },
+      // Laborales      
       obtenerDepartamentos() {
         axios.get('/rrhh/backend/contratacion/obtener-departamentos')
           .then((response) => {
             this.departamentos = response.data;
           });
-      },
-      obtenerCargos() {
-        axios.get('/rrhh/backend/contratacion/obtener-cargos')
-          .then((response) => {
-            this.cargos = response.data;
-          });
-      },
+      },      
       obtenerProfesiones() {
         axios.get('/rrhh/backend/contratacion/obtener-profesiones', {
           params: {

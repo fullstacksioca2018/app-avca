@@ -12,6 +12,10 @@ class EmpleadosTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        DB::table('empleados')->truncate();
+
         DB::table('empleados')->insert([
             
             // Gerente RRHH
@@ -34,16 +38,14 @@ class EmpleadosTableSeeder extends Seeder
                 'sucursal_id' => 1,
                 'departamento_id' => 1,
                 'cargo_id' => 31,
-                'tipo_empleado' => 'administrativo',
+                'area_id' => 1,
                 'nivel_academico' => 'profesional',
-                'profesion' => 'Administración de Empresas',
+                'profesion' => 2,
                 'condicion_laboral' => 'fijo',
                 'tipo_horario' => 'fijo',
                 'fecha_ingreso' => '2000-01-01',
                 'banco' =>'banesco',
-                'cuenta_bancaria'=> '01341234567891234546',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'cuenta_bancaria'=> '01340000000000000001'
             ],
                 // area administrativa
             [
@@ -65,16 +67,14 @@ class EmpleadosTableSeeder extends Seeder
                 'sucursal_id' => 1,
                 'departamento_id' => 1,
                 'cargo_id' => 32,
-                'tipo_empleado' => 'administrativo',
+                'area_id' => 1,
                 'nivel_academico' => 'profesional',
-                'profesion' => 'Administración de Empresas',
+                'profesion' => 2,
                 'condicion_laboral' => 'fijo',
                 'tipo_horario' => 'fijo',
                 'fecha_ingreso' => '2000-01-01',
                 'banco' =>'banesco',
-                'cuenta_bancaria'=> '01341234567891234568',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'cuenta_bancaria'=> '01340000000000000002'
             ],
 
                         // area operativa
@@ -97,16 +97,14 @@ class EmpleadosTableSeeder extends Seeder
                 'sucursal_id' => 1,
                 'departamento_id' => 1,
                 'cargo_id' => 33,
-                'tipo_empleado' => 'administrativo',
+                'area_id' => 3,
                 'nivel_academico' => 'profesional',
-                'profesion' => 'Administración Pública',
+                'profesion' => 30,
                 'condicion_laboral' => 'fijo',
                 'tipo_horario' => 'fijo',
                 'fecha_ingreso' => '2000-01-01',
                 'banco' =>'banesco',
-                'cuenta_bancaria'=> '01341234567891234569',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'cuenta_bancaria'=> '01340000000000000003'
             ],
 
                     // area telematica
@@ -129,16 +127,14 @@ class EmpleadosTableSeeder extends Seeder
                 'sucursal_id' => 1,
                 'departamento_id' => 1,
                 'cargo_id' => 34,
-                'tipo_empleado' => 'administrativo',
+                'area_id' => 5,
                 'nivel_academico' => 'profesional',
-                'profesion' => 'Telecomunicaciones',
+                'profesion' => 17,
                 'condicion_laboral' => 'fijo',
                 'tipo_horario' => 'fijo',
                 'fecha_ingreso' => '2000-01-01',
                 'banco' =>'banesco',
-                'cuenta_bancaria'=> '01341234567891234560',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'cuenta_bancaria'=> '01340000000000000004'
             ],
 
                 // area apoyo logistico
@@ -161,16 +157,14 @@ class EmpleadosTableSeeder extends Seeder
                 'sucursal_id' => 1,
                 'departamento_id' => 1,
                 'cargo_id' => 35,
-                'tipo_empleado' => 'administrativo',
+                'area_id' => 2,
                 'nivel_academico' => 'profesional',
-                'profesion' => 'Ingeniería Logística',
+                'profesion' => 47,
                 'condicion_laboral' => 'fijo',
                 'tipo_horario' => 'fijo',
                 'fecha_ingreso' => '2000-01-01',
                 'banco' =>'banesco',
-                'cuenta_bancaria'=> '01341234567891234561',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'cuenta_bancaria'=> '01340000000000000005'
             ],
 
                             // area oficina
@@ -193,16 +187,14 @@ class EmpleadosTableSeeder extends Seeder
                 'sucursal_id' => 1,
                 'departamento_id' => 1,
                 'cargo_id' => 36,
-                'tipo_empleado' => 'administrativo',
+                'area_id' => 4,
                 'nivel_academico' => 'profesional',
-                'profesion' => 'Economía',
+                'profesion' =>3, 
                 'condicion_laboral' => 'fijo',
                 'tipo_horario' => 'fijo',
                 'fecha_ingreso' => '2000-01-01',
                 'banco' =>'banesco',
-                'cuenta_bancaria'=> '01341234567891234562',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'cuenta_bancaria'=> '01340000000000000006'
             ],
 
                              // area tripulacion
@@ -225,23 +217,21 @@ class EmpleadosTableSeeder extends Seeder
                 'sucursal_id' => 1,
                 'departamento_id' => 1,
                 'cargo_id' => 37,
-                'tipo_empleado' => 'administrativo',
+                'area_id' => 6,
                 'nivel_academico' => 'profesional',
-                'profesion' => 'Ingeniería Aeronáutica',
+                'profesion' => 41,
                 'condicion_laboral' => 'fijo',
                 'tipo_horario' => 'fijo',
                 'fecha_ingreso' => '2000-01-01',
                 'banco' =>'banesco',
-                'cuenta_bancaria'=> '01341234567891234563',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'cuenta_bancaria'=> '01340000000000000007'
             ],
 
-                // Gerente Sucursales
+                // Gerente Sucursal_ides
            [
                 'cedula' => 19708478,
                 'nombre' => 'Gerente',
-                'apellido' =>'Sucursal',
+                'apellido' =>'Sucursal_id',
                'nacionalidad' => 'v',
                 'fecha_nacimiento' => '1980-10-01',
                 'estado_civil' => 'solter@',
@@ -252,21 +242,19 @@ class EmpleadosTableSeeder extends Seeder
                 'direccion' => 'El Peñon',
                 'telefono_fijo' => '02945111580',
                 'telefono_movil' => '04167834720',
-                'email' =>'Gerente-Sucursal@hotm1il.com',
+                'email' =>'Gerente-Sucursal_id@hotm1il.com',
                 'tipo_discapacidad' => 'visual',
                 'sucursal_id' => 1,
                 'departamento_id' => 1,
                 'cargo_id' => 38,
-                'tipo_empleado' => 'administrativo',
+                'area_id' => 1,
                 'nivel_academico' => 'profesional',
-                'profesion' => 'Negocios Internacionales',
+                'profesion' => 52,
                 'condicion_laboral' => 'fijo',
                 'tipo_horario' => 'fijo',
                 'fecha_ingreso' => '2000-01-01',
                 'banco' =>'banesco',
-                'cuenta_bancaria'=> '01341234567891234564',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'cuenta_bancaria'=> '01340000000000000008'
             ],
 
             // Analista Nomina
@@ -289,18 +277,17 @@ class EmpleadosTableSeeder extends Seeder
                 'sucursal_id' => 1,
                 'departamento_id' => 1,
                 'cargo_id' => 39,
-                'tipo_empleado' => 'administrativo',
+                'area_id' => 1,
                 'nivel_academico' => 'profesional',
-                'profesion' => 'Contaduría Pública',
+                'profesion' => 31,
                 'condicion_laboral' => 'fijo',
                 'tipo_horario' => 'fijo',
                 'fecha_ingreso' => '2000-01-01',
                 'banco' =>'banesco',
-                'cuenta_bancaria'=> '01341234567891234565',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'cuenta_bancaria'=> '01340000000000000009'
             ],
 
         ]);
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
