@@ -95,6 +95,7 @@
               <input type="hidden" form="myForm" name="tipo" id="tipo" value="{{ $tipo }}">
               <input type="hidden" form="myForm" name="adultos" id="adultos" value="{{ $adultos }}">
               <input type="hidden" form="myForm" name="ninos" id="ninos" value="{{ $ninos }}" >
+              <input type="hidden" form="myForm" name="user_id" id="user_id" value="" >
               @if($tipo==1)
               <input type="hidden" form="myForm" name="importe_facturado" value="{{ $tarifa * ($adultos+($ninos-$Contbrazo))}}">
               <input type="hidden" form="myForm" name="vuelo" id="vuelo" value="{{ $vuelo }}">
@@ -129,16 +130,12 @@
                   <div class="row">
                   <div class="col-md-4 mb-2" >
                     <label for="firstName">Primer Nombre:</label>
-                    <input type="text" form="myForm" class="form-control" name="primerNombre[]" id="firstName[]" placeholder="Nombre" required>
+                    <input type="text" form="myForm" class="form-control" name="primerNombre[]" id="firstName{{$i}}" placeholder="Nombre" required>
                     <div class="invalid-feedback">Valide su primer nombre es necesario.</div>
-                  </div>
-                  <div class="col-md-4 mb-3">
-                    <label for="lastName">Segundo Nombre:</label>
-                    <input type="text" form="myForm" class="form-control" name="segundoNombre[]" id="lastName[]" placeholder="Segundo Nombre"  required>
                   </div> 
               <div class=" col col-md-4 mb-3">
                 <label for="lastName">Apellido(s):</label>
-                <input type="text" form="myForm" class="form-control" name="apellido[]" id="lastName[]" placeholder="Apellido"  required>
+                <input type="text" form="myForm" class="form-control" name="apellido[]" id="lastName{{$i}}" placeholder="Apellido"  required>
                 <div class="invalid-feedback">Valide su primer Apellido es necesario.</div>
               </div>
             </div>
@@ -147,35 +144,26 @@
                 <div class="form-group">
                   <label for="documento[]"><span class="hidden-xs">Documentacion:</span> </label>
                   <div class="form-inline">
-                    <select class="form-control" form="myForm" name="tipo_documento[]" style="width:25%">
+                    <select class="form-control" form="myForm" name="tipo_documento[]" id="tipo_documento{{$i}}" style="width:25%">
                       <option value="Venezolano/a">V</option>
                       <option value="Extranjero">P</option>
                     </select>
                     <span style="width:6%; text-align: center">-</span>
-                    <input type="number" form="myForm" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="######" required >
+                    <input type="number" form="myForm" class="form-control" style="width:65%" name="documento[]" id="documento{{$i}}" placeholder="######" required >
                     <div class="invalid-feedback" >Es necesario.</div>
                   </div>
                 </div>
               </div>
               <div class="col-md-4 ">
                 <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-                <input type="date" form="myForm" name="fecha_nacimiento[]" class="form-control" require >
+                <input type="date" form="myForm" name="fecha_nacimiento[]" id="fecha_nacimiento{{$i}}" class="form-control" require >
               </div>
               <div class=" col col-md-2 mb-2">
                 <label for="genero[]">Sexo:</label>
-                <select name="genero[]" form="myForm" class="form-control">
+                <select name="genero[]" id="genero{{$i}}" form="myForm" class="form-control">
                   <option value="masculino">M</option>
                   <option value="femenino">F</option>
                 </select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4 mb-3">
-                <label for="Puesto">Preferencia</label>
-                <select class="custom-select d-block w-100" form="myForm" name="asiento[]" id="Puesto[]" required>
-                  <option value="Pasillo">Pasillo</option>
-                  <option value="Ventana">Ventana</option>
-                </select><div class="invalid-feedback">por favor valide su seleccion.</div>
               </div>
             </div>
           </div>
@@ -187,10 +175,11 @@
       <div class="container pasajero box wow fadeInLeft" data-wow-duration="2.4s">
         <input type="hidden" form="myForm" name="tipo_boleto[]" id="tipo_boleto[]" value="bebe en brazos">
         <h4 class="mb-3">PASAJERO  {{ ($i+1+$adultos+($ninos-$Contbrazo)) }} <span>Bebé en brazos</span></h4>
+
         <div class="row">
           <div class="col-md-4 mb-3">
             <label for="firstName">Primer Nombre:</label>
-            <input type="text" form="myForm" class="form-control" name="primerNombre[]" id="firstName[]" placeholder="Primer Nombre"  required>
+            <input type="text" form="myForm" class="form-control" name="primerNombre[]" id="firstName" placeholder="Primer Nombre"  required>
             <div class="invalid-feedback">Valide su primer nombre es necesario.</div>
           </div>
           <div class="col-md-4 mb-3">

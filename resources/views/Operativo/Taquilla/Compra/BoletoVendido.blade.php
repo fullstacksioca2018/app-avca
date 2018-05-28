@@ -55,8 +55,14 @@
                 <th class="thresumen">Costo Total: {{ $factura->importe_facturado }}</th>
               </tr>
               <tr>
-                <th class="thresumen">Nro de Factura: {{ $factura->numero_factura}} <a href="imprimirfactura.php?id='{{ $factura->id}}'">Imprimir</a> </th>
-              </tr>
+              @if($btn!="reserva")  
+              <th class="thresumen">Nro de Factura: {{ $factura->numero_factura}} <a href="imprimirfactura.php?id='{{ $factura->id}}'">Imprimir</a> </th>
+             @endif
+             @if($btn=="reserva")
+             <th class="thresumen">Nro de Factura: {{ $factura->numero_factura}} -- Boleto(s) Reservado(s)  </th>
+             @endif
+                
+            </tr>
             </table>
           </div><!--col-sm-10-->
         </div>

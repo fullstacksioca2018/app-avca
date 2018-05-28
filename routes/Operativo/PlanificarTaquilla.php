@@ -7,7 +7,7 @@
 		Route::get('/DetalleVuelo','Operativo\TaquillaController@DetalleVuelo')->name('taquilla.DetalleVuelo');
 		Route::get('/DetalleVuelo2','Operativo\TaquillaController@DetalleVuelo2')->name('taquilla.DetalleVuelo2');
 		Route::get('/CompraBoleto','Operativo\TaquillaController@CompraBoleto')->name('operativo.CompraBoleto');
-		Route::get('/BuscarCedula','Operativo\TaquillaController@BuscarCedula')->name('operativo.BuscarCedula');
+		Route::get('/taquilla/BuscarCedula','Operativo\TaquillaController@BuscarCedula');
 		Route::post('/BoletoVendido', 'Operativo\TaquillaController@BoletoVendido')->name('operativo.BoletoVendido');
 	});
 	//Check
