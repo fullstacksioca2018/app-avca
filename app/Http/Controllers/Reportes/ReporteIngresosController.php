@@ -124,16 +124,19 @@ class ReporteIngresosController extends Controller
 
 
     public function prueba(){
-        // $actual=Carbon::now();
-        // $actual->subWeeks(2);
-        // while ($actual->dayOfWeekIso!=1) {
-        //     $actual->addDay();
-        // }
-        // $obj= new stdClass();
-        // $obj->tipo="Fecha";
-        // $obj->desde=$actual;
-        // $obj->hasta=$actual->copy()->addDays(6);
-        return $temporada=DW_Temporada::buscar("Semana Santa","2017");
+        $actual=Carbon::now();
+                $actual->subMonth();
+                $desde=Carbon::parse("01-".$actual->month."-".$actual->year);
+                $hasta=$desde->copy();
+                while ($desde->month==$hasta->month) {
+                    $hasta->addDay();
+                }
+                $hasta->subDay();
+                $obj= new stdClass();
+                $obj->tipo="Fecha";
+                $obj->desde=$desde;
+                $obj->hasta=$hasta;
+        return DW_ReporteIngresos::AltoDestinoIngreso($obj,4);
     }
 
     ////////////////////////////////////////////////////////////////
@@ -153,46 +156,61 @@ class ReporteIngresosController extends Controller
         $titulo="";
         $previos=array();
         $periodos=$this->periodos($consulta); //fechas meses para consulta
-
         // return response()->json($periodos);
         // $labels=$this->labelsPeriodos($periodos);
-        if($consulta->tipo!="Busqueda"){
+        // if($consulta->tipo!="Busqueda"){
             if($consulta->filtros){
                 for ($pp=0; $pp < count($periodos); $pp++) {
                     for($f=0;$f<count($consulta->filtros);$f++){
                         switch ($consulta->filtros[$f]) {
                             case 'Ruta':
-                                for ($r=0; $r <count($consulta->rutasF) ; $r++) {
-                                    $ruta=DW_Ruta::find($consulta->rutasF[$r]);
-                                    $labelsAux="Ruta ".$ruta->ruta_id.'. '.$ruta->origen->sigla.'-'.$ruta->destino->sigla;
-                                    array_push($labels,$labelsAux);
-                                    $info=$this->consultaIngresoRuta($periodos[$pp],$consulta->rutasF[$r]);
-                                    // return $info;
+                                if($consulta->tipo!="Busqueda"){
+                                    for ($r=0; $r <count($consulta->rutasF) ; $r++) {
+                                        $ruta=DW_Ruta::find($consulta->rutasF[$r]);
+                                        $labelsAux="Ruta ".$ruta->ruta_id.'. '.$ruta->origen->sigla.'-'.$ruta->destino->sigla;
+                                        array_push($labels,$labelsAux);
+                                        $info=$this->consultaIngresoRuta($periodos[$pp],$consulta->rutasF[$r]);
+                                        array_push($previos, $info);
+
+                                    }
+                                }
+                                else{
+                                   $info=$this->busquedaIngresoRuta($periodos[$pp],$consulta->busqueda,$consulta->busquedaMonto,$consulta->busquedaRow); 
+                                   // return $info;
                                     array_push($previos, $info);
                                 }
                                 break;
                             case 'Origen':
-                                for ($o=0; $o <count($consulta->origenesF) ; $o++) {
-                                    $origen=DW_Sucursal::buscar($consulta->origenesF[$o]);
-                                    $labelsAux="Origen ".$origen->nombre;
-                                    array_push($labels,$labelsAux);
-                                    $info=$this->consultaIngresoOrigen($periodos[$pp],$origen->sucursal_id);
-                                    // return $info;
-                                    array_push($previos, $info);
-                                    // return $info;
+                                if($consulta->tipo!="Busqueda"){
+                                    for ($o=0; $o <count($consulta->origenesF) ; $o++) {
+                                        $origen=DW_Sucursal::buscar($consulta->origenesF[$o]);
+                                        $labelsAux="Origen ".$origen->nombre;
+                                        array_push($labels,$labelsAux);
+                                        $info=$this->consultaIngresoOrigen($periodos[$pp],$origen->sucursal_id);
+                                    }
                                 }
+                                else{
+                                    $info=$this->busquedaIngresoOrigen($periodos[$pp],$consulta->busqueda,$consulta->busquedaMonto,$consulta->busquedaRow);
+                                }
+                                // return $info;
+                                array_push($previos, $info);
+                                    // return $info;
                                 // return "F Origen";
                                 break;
                             case 'Destino':
-                                for ($o=0; $o <count($consulta->destinosF) ; $o++) {
-                                    $destino=DW_Sucursal::buscar($consulta->destinosF[$o]);
-                                    $labelsAux="Destino ".$destino->nombre;
-                                    array_push($labels,$labelsAux);
-                                    $info=$this->consultaIngresoDestino($periodos[$pp],$destino->sucursal_id);
-                                    // return $info;
-                                    array_push($previos, $info);
-                                    // return $info;
+                                if($consulta->tipo!="Busqueda"){
+                                    for ($o=0; $o <count($consulta->destinosF) ; $o++) {
+                                        $destino=DW_Sucursal::buscar($consulta->destinosF[$o]);
+                                        $labelsAux="Destino ".$destino->nombre;
+                                        array_push($labels,$labelsAux);
+                                        $info=$this->consultaIngresoDestino($periodos[$pp],$destino->sucursal_id);
+                                    }
                                 }
+                                else{
+                                    $info=$this->busquedaIngresoDestino($periodos[$pp],$consulta->busqueda,$consulta->busquedaMonto,$consulta->busquedaRow);
+                                }
+                                array_push($previos, $info);
+                                // return $info;
                                 // return "F Destino";
                                 break;
                         }
@@ -209,14 +227,19 @@ class ReporteIngresosController extends Controller
                 }
             }            
             // return $datos;
-            $datos=$this->formatiarLabelData($previos);
+            $datos=$this->formatiarLabelData($previos,$consulta->tipo);
+            // return response()->JSON($datos);
             $obj= new stdClass();
-            if(((count($consulta->filtros))>1)||((count($consulta->rutasF))>1)||((count($consulta->origenesF))>1)||((count($consulta->destinosF))>1)){ //GRAFICA BARG
+            if(((count($consulta->filtros))>1)||((count($consulta->rutasF))>1)||((count($consulta->origenesF))>1)||((count($consulta->destinosF))>1)||($consulta->tipo=='Busqueda')){ //GRAFICA BARG
                 $obj->titulo="Ingresos";
                 $obj->grafico="Bar";
                 $obj2= new stdClass();
                 $obj2->label=$labels;
                 $obj2->labels=$datos->label2;
+                if($consulta->tipo=='Busqueda'){
+                    $obj2->label=$datos->label2;
+                    $obj2->labels=[$consulta->textC];
+                }
                 // $obj2->stack=$stack;
                 $obj2->tipo="Ingresos";
                 $obj2->data=$datos->data;
@@ -233,10 +256,11 @@ class ReporteIngresosController extends Controller
             }
                 // return "algo";
             return response()->json($obj); 
-        }
-        else{
-            //si es una busqueda
-        }
+        // }
+        // else{
+        //     return "busqueda";
+        //     //si es una busqueda
+        // }
         return $consulta->all();
     }
 
@@ -301,62 +325,77 @@ class ReporteIngresosController extends Controller
 
     }
 
-    public function formatiarLabelData($previos){
+    public function formatiarLabelData($previos,$tipo){
         $labels=array();
+        $label=array(); 
+        $label2=array(); 
+        $data=array(); 
         if(count($previos[0])!=0){
-            $actual=Carbon::parse($previos[0][0]->fecha_ingreso);
-            $desde=Carbon::parse($actual->year."-".$actual->month."-1");
-            $hasta=$desde->copy();
-            while ($desde->month==$hasta->month) {
-                $hasta->addDay();
-            }
+            if($tipo!='Busqueda'){
+                $actual=Carbon::parse($previos[0][0]->fecha_ingreso);
+                $desde=Carbon::parse($actual->year."-".$actual->month."-1");
+                $hasta=$desde->copy();
+                while ($desde->month==$hasta->month) {
+                    $hasta->addDay();
+                }
 
-            $hasta->subDay();
-            $label=array(); 
-            $label2=array(); 
-            $data=array(); 
-            for ($dia=1; $dia < $hasta->day; $dia++) {
-                for ($i=0; $i < count($previos); $i++) { 
-                    for ($j=0; $j < count($previos[$i]); $j++) { 
-                        $actual=Carbon::parse($previos[$i][$j]->fecha_ingreso);
-                        if($actual->day==$dia){
-                            array_push($label, $actual->toDateTimeString());
-                            array_push($label2, $actual->formatLocalized('%d %B %Y'));
-                            $j=count($previos[$i]);
-                            $i=count($previos);
-                            break;
-                        }
-                        else{
-                            if($actual->day>$dia){
+                $hasta->subDay();
+                for ($dia=1; $dia < $hasta->day; $dia++) {
+                    for ($i=0; $i < count($previos); $i++) { 
+                        for ($j=0; $j < count($previos[$i]); $j++) { 
+                            $actual=Carbon::parse($previos[$i][$j]->fecha_ingreso);
+                            if($actual->day==$dia){
+                                array_push($label, $actual->toDateTimeString());
+                                array_push($label2, $actual->formatLocalized('%d %B %Y'));
                                 $j=count($previos[$i]);
+                                $i=count($previos);
                                 break;
                             }
+                            else{
+                                if($actual->day>$dia){
+                                    $j=count($previos[$i]);
+                                    break;
+                                }
+                            }
+                            
                         }
-                        
                     }
                 }
-            }
-            for ($i=0; $i < count($previos); $i++) {
-                $dataAux=array();
-                for($indL=0;$indL<count($label);$indL++){
-                    for ($j=0; $j < count($previos[$i]); $j++) { 
-                        $actual1=Carbon::parse($previos[$i][$j]->fecha_ingreso);
-                        $actual2=Carbon::parse($label[$indL]);
-                        if($actual1->day==$actual2->day){
-                            array_push($dataAux, $previos[$i][$j]->total);
-                            $j=count($previos[$i]);
-                        }
-                        else{
-                            if($actual1->day>$actual2->day){
-                                array_push($dataAux, 0);
+                for ($i=0; $i < count($previos); $i++) {
+                    $dataAux=array();
+                    for($indL=0;$indL<count($label);$indL++){
+                        for ($j=0; $j < count($previos[$i]); $j++) { 
+                            $actual1=Carbon::parse($previos[$i][$j]->fecha_ingreso);
+                            $actual2=Carbon::parse($label[$indL]);
+                            if($actual1->day==$actual2->day){
+                                array_push($dataAux, $previos[$i][$j]->total);
                                 $j=count($previos[$i]);
                             }
-                        } 
+                            else{
+                                if($actual1->day>$actual2->day){
+                                    array_push($dataAux, 0);
+                                    $j=count($previos[$i]);
+                                }
+                            } 
+                        }
+                    }
+                    array_push($data, $dataAux);
+                }
+                // return "sdgsdgdf";
+            }
+            else{
+                $dataAux=array();
+                for ($i=0; $i < count($previos); $i++) {  //recorrer parametros
+                    for ($j=0; $j < count($previos[$i]); $j++) {  //recorrer label
+                        array_push($data, [$previos[$i][$j]->data]);
+
+                        array_push($label, $previos[$i][$j]->label);
+                        array_push($label2, $previos[$i][$j]->label);
+
                     }
                 }
-                array_push($data, $dataAux);
+                // array_push($data, $dataAux);
             }
-            // return "sdgsdgdf";
             $obj=new stdClass();
             $obj->data=$data;
             $obj->label=$label;
@@ -374,5 +413,165 @@ class ReporteIngresosController extends Controller
             return $obj;
         }
 
+    }
+    public function busquedaIngresoRuta($periodo,$busqueda,$Monto,$Row){
+        switch ($busqueda) {
+            case "Más alto":
+                $info=DW_ReporteIngresos::AltoRutaIngreso($periodo,$Row);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $ruta=DW_Ruta::find($key->ruta_id);
+                    $obj->label="Ruta ".$ruta->ruta_id.'. '.$ruta->origen->sigla.'-'.$ruta->destino->sigla;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                break;
+            case "Más bajo":
+                $info=DW_ReporteIngresos::BajaRutaIngreso($periodo,$Row);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $ruta=DW_Ruta::find($key->ruta_id);
+                    $obj->label="Ruta ".$ruta->ruta_id.'. '.$ruta->origen->sigla.'-'.$ruta->destino->sigla;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                // return "Más bajo";
+                break;
+            case "Mayor que":
+                $info=DW_ReporteIngresos::MayorRutaIngreso($periodo,$Row,$Monto);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $ruta=DW_Ruta::find($key->ruta_id);
+                    $obj->label="Ruta ".$ruta->ruta_id.'. '.$ruta->origen->sigla.'-'.$ruta->destino->sigla;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                // return "Mayor que";
+            // return "Entro";
+                break;
+            case "Menor que":
+                $info=DW_ReporteIngresos::MenorRutaIngreso($periodo,$Row,$Monto);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $ruta=DW_Ruta::find($key->ruta_id);
+                    $obj->label="Ruta ".$ruta->ruta_id.'. '.$ruta->origen->sigla.'-'.$ruta->destino->sigla;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                break;
+        }
+        return $info;
+    }
+    public function busquedaIngresoOrigen($periodo,$busqueda,$Monto,$Row){
+        switch ($busqueda) {
+            case "Más alto":
+                $info=DW_ReporteIngresos::AltoOrigenIngreso($periodo,$Row);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $obj->label="Origen ".$key->nombre;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                break;
+            case "Más bajo":
+                $info=DW_ReporteIngresos::BajaOrigenIngreso($periodo,$Row);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $obj->label="Origen ".$key->nombre;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                // return "Más bajo";
+                break;
+            case "Mayor que":
+                $info=DW_ReporteIngresos::MayorOrigenIngreso($periodo,$Row,$Monto);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $obj->label="Origen ".$key->nombre;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                // return "Mayor que";
+            // return "Entro";
+                break;
+            case "Menor que":
+                $info=DW_ReporteIngresos::MenorOrigenIngreso($periodo,$Row,$Monto);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $obj->label="Origen ".$key->nombre;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                break;
+        }
+        return $info;
+    }
+    public function busquedaIngresoDestino($periodo,$busqueda,$Monto,$Row){
+        switch ($busqueda) {
+            case "Más alto":
+                $info=DW_ReporteIngresos::AltoDestinoIngreso($periodo,$Row);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $obj->label="Destino ".$key->nombre;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                break;
+            case "Más bajo":
+                $info=DW_ReporteIngresos::BajaDestinoIngreso($periodo,$Row);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $obj->label="Destino ".$key->nombre;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                // return "Más bajo";
+                break;
+            case "Mayor que":
+                $info=DW_ReporteIngresos::MayorDestinoIngreso($periodo,$Row,$Monto);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $obj->label="Destino ".$key->nombre;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                // return "Mayor que";
+            // return "Entro";
+                break;
+            case "Menor que":
+                $info=DW_ReporteIngresos::MenorDestinoIngreso($periodo,$Row,$Monto);
+                $datos= array();
+                foreach ($info as $key) {
+                    $obj=new stdClass();
+                    $obj->label="Destino ".$key->nombre;
+                    $obj->data=$key->total;
+                    array_push($datos, $obj);
+                }
+                return $datos;
+                break;
+        }
+        return $info;
     }
 }

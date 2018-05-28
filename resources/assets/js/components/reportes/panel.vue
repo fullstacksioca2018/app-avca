@@ -196,7 +196,7 @@
 							                          name="radiosBtnDefault" />
 							    </b-form-group>
 							    <div v-if="form.tipo=='Busqueda'" id="Busqueda" class="row marginCero">
-									<legend class="typo__label">Condición: [{{ textC }}]</legend>
+									<legend class="typo__label">Condición: [{{ form.textC }}]</legend>
 									  <multiselect v-model="form.busqueda" :options="busqueda" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione filtro" :preselect-first="false" selectLabel="Seleccionar" class="col-5 sinpadding">
 									    <template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
 									  </multiselect>
@@ -294,8 +294,8 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 				dataPoints: null,
         		height: 20,
 				datos:[23,21,12,43],
-				textC:null,
 				form:{
+					textC:null,
 					consulta:"Personal",
 					parametros:[],
 					parametrosRest:[],
@@ -628,24 +628,24 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
                 }
 			},
 			StringConsulta(){
-				this.textC=null;
+				this.form.textC=null;
 				if(this.form.busqueda=='Más alto'||this.form.busqueda=='Más bajo'){
 					if(this.form.busquedaRow=='1'){
-						this.textC="El "+this.form.busqueda;
+						this.form.textC="El "+this.form.busqueda;
 					}
 					else{
-						this.textC="Los "+this.form.busquedaRow+" "+this.form.busqueda;
+						this.form.textC="Los "+this.form.busquedaRow+" "+this.form.busqueda;
 					}
 				}
 				else{
 					if(this.form.busquedaRow=='1'){
-						this.textC="El "+this.form.busqueda+" "+this.form.busquedaMonto;
+						this.form.textC="El "+this.form.busqueda+" "+this.form.busquedaMonto;
 					}
 					else{
 						if(this.form.busqueda=='Mayor que')
-							this.textC="Los "+this.form.busquedaRow+" Mayores que "+this.form.busquedaMonto;
+							this.form.textC="Los "+this.form.busquedaRow+" Mayores que "+this.form.busquedaMonto;
 						else
-							this.textC="Los "+this.form.busquedaRow+" Menores que "+this.form.busquedaMonto;
+							this.form.textC="Los "+this.form.busquedaRow+" Menores que "+this.form.busquedaMonto;
 					}
 				}
 

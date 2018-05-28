@@ -116275,8 +116275,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			dataPoints: null,
 			height: 20,
 			datos: [23, 21, 12, 43],
-			textC: null,
 			form: {
+				textC: null,
 				consulta: "Personal",
 				parametros: [],
 				parametrosRest: [],
@@ -116576,18 +116576,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			}
 		},
 		StringConsulta: function StringConsulta() {
-			this.textC = null;
+			this.form.textC = null;
 			if (this.form.busqueda == 'Más alto' || this.form.busqueda == 'Más bajo') {
 				if (this.form.busquedaRow == '1') {
-					this.textC = "El " + this.form.busqueda;
+					this.form.textC = "El " + this.form.busqueda;
 				} else {
-					this.textC = "Los " + this.form.busquedaRow + " " + this.form.busqueda;
+					this.form.textC = "Los " + this.form.busquedaRow + " " + this.form.busqueda;
 				}
 			} else {
 				if (this.form.busquedaRow == '1') {
-					this.textC = "El " + this.form.busqueda + " " + this.form.busquedaMonto;
+					this.form.textC = "El " + this.form.busqueda + " " + this.form.busquedaMonto;
 				} else {
-					if (this.form.busqueda == 'Mayor que') this.textC = "Los " + this.form.busquedaRow + " Mayores que " + this.form.busquedaMonto;else this.textC = "Los " + this.form.busquedaRow + " Menores que " + this.form.busquedaMonto;
+					if (this.form.busqueda == 'Mayor que') this.form.textC = "Los " + this.form.busquedaRow + " Mayores que " + this.form.busquedaMonto;else this.form.textC = "Los " + this.form.busquedaRow + " Menores que " + this.form.busquedaMonto;
 				}
 			}
 		},
@@ -117428,7 +117428,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['datos', 'ind', 'titulo'],
+	props: ['datos', 'ind', 'titulo', 'color'],
 	data: function data() {
 		return {
 			activo: false
@@ -119030,7 +119030,9 @@ var render = function() {
                           },
                           [
                             _c("legend", { staticClass: "typo__label" }, [
-                              _vm._v("Condición: [" + _vm._s(_vm.textC) + "]")
+                              _vm._v(
+                                "Condición: [" + _vm._s(_vm.form.textC) + "]"
+                              )
                             ]),
                             _vm._v(" "),
                             _c("multiselect", {
