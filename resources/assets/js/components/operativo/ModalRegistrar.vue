@@ -132,7 +132,7 @@
            guardar(){
                axios({
                 method: 'post',
-                url: '/sucursales',
+                url: '/sucursales/ruta',
                 data: this.form
                 
                }).then((response)=>{

@@ -244,12 +244,12 @@ export default {
           id: this.data[i].ruta.id,
           Origen: {
             id: this.data[i].ruta.origen.id,
-            nombre: this.data[i].ruta.origen.nombre 
+            nombre: this.data[i].ruta.origen.ciudad  
                     + " (" + this.data[i].ruta.origen.sigla  + ")"
           },
           Destino: {
             id: this.data[i].ruta.destino.id,
-            nombre: this.data[i].ruta.destino.nombre
+            nombre: this.data[i].ruta.destino.ciudad 
                      + " (" + this.data[i].ruta.destino.sigla  + ")"
           },
           Distancia:this.data[i].ruta.distancia,

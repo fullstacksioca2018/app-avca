@@ -15,8 +15,9 @@
     Route::group(['prefix'=>'sucursales', /* 'middleware' => 'auth' */], function(){
 
         Route::get('/all','Operativo\PlanificarRutaController@obtenerruta');
-        Route::post('/','Operativo\PlanificarRutaController@crearuta');
-        Route::get('/','Operativo\PlanificarRutaController@prueba');
+        Route::post('/ruta','Operativo\PlanificarRutaController@crearuta');
+        Route::get('/','Operativo\PlanificarRutaController@sucursal');
+       
       
     
         

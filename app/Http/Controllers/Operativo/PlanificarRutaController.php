@@ -123,17 +123,6 @@ class PlanificarRutaController extends Controller
    
   }
 
-  public function prueba(){
-    $ruta = new Ruta();
-    
-    $ruta->origen_id=1;
-    $ruta->destino_id=2;
-    $ruta->distancia=500;
-    $ruta->duracion="00:00:00";
-    $ruta->tarifa_vuelo=7000;    
-    $ruta->estado="activo";
-    $ruta->
-    $ruta->save();
-  }
+  
 }
    
