@@ -94,9 +94,8 @@
 
                   <div class="col-md-4">
                     <label for="coñooo" class="h">Fecha ida:</label>
-                    <!-- fecha salida -->
-                    <input type="date" class="form-control" id="fecha_salida" name="fecha_salida" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">
-  
+                    <input type="date" name="fecha_salida" class="form-control impout3" placeholder="DD/MM/YYY">
+                    <i class="fa fa-calendar prefix icocalendario"></i>
                   </div>
 
                   <div class="col col-md-1 col-lg-1">
@@ -122,13 +121,14 @@
               {{-- ====================================== 
                               Contador de personas
                   ====================================== --}}              
-              <div id="contenedorPersonas"> 
+              <div id="contenedorPersonas" 
               </div>              
 
               {{--  Boton de envio  --}}
               <div class="form-row">
-                  <input type="submit" value="BUSCAR" class="btn btn-primary">
-              </div>
+                <input type="submit" value="BUSCAR" class="btn btn-primary">
+              </div>        
+
             {!! Form::close() !!} 
             <!-- ======================
             FIN DEL Form
@@ -232,7 +232,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
             <div class="portfolio-wrap">
               <figure>
-                <img src="{{ asset('online/img/portfolio/barcelona/barcelona3.jpg') }}" class="img-fluid" alt="">
+                <img src="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" class="img-fluid" alt="">
 
                 <a href="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" data-lightbox="portfolio" data-title="La Casa Fuerte, Barcelona - Estado Anzoategui" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
 
@@ -284,16 +284,7 @@
 
                 <a href="{{ asset('online/img/portfolio/cumana/cumana3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
 
-                @if (Auth::guest())
-
-                <a href="{{ route('destino.cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-
-              @else
-                
-                <a href="{{ URL::to('/online/destino/cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-
-              @endif
-              
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">
@@ -370,6 +361,7 @@
           </div>
 
         </div>
+          <h6 class="float-md-right"><a href="#"><b>+DESTINOS</b></a></h6>
       </div>
 
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

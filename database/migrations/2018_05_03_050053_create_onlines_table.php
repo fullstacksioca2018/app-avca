@@ -17,7 +17,6 @@ class CreateOnlinesTable extends Migration
             $table->string('name');
             $table->string('email',50)->unique();
             $table->string('password');
-            $table->string('avatar',100)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

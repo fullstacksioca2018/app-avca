@@ -37,6 +37,10 @@ class Cliente extends Model
     	
     	return $this->belongsTo('App\Models\operativo\Pais');
 
+	}
+	
+	public function Cedula($cedula){
+        return DB::select('SELECT * FROM clientes WHERE documento = ?', [$cedula]);
     }
 
 }

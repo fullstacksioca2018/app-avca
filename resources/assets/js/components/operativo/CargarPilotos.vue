@@ -74,7 +74,7 @@ export default {
         if(!d.getTime() && d.getTime() !== 0) return false; // Invalid date
         return d.toISOString().slice(0,10) === dateString;
     },
-   
+       
     Cargadatos(ctx){
       axios.get("/vuelos/pilotos").then(function(response){
       

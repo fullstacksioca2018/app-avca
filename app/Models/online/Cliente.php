@@ -18,17 +18,17 @@ class Cliente extends Model
 		'direccion',
 		'fecha_nacimiento',
 		'genero',
-        'pais',
 		'telefono_fijo',
 		'telefono_movil',
 		'user_id',
+		'pais_id'
 
     ];
 
     public function user()
     {
     	
-    	return $this->belongsTo('App\Models\Online');
+    	return $this->belongsTo('App\Models\Online\User');
 
     }
 
@@ -37,6 +37,7 @@ class Cliente extends Model
     	
     	return $this->belongsTo('App\Models\Online\Pais');
 
-    }
+	}
+	
 
 }

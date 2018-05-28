@@ -15,19 +15,8 @@
           <li><i class="fa fa-globe"></i><a href="#portfolio">Destinos</a></li>
           <li class="menu-has-children"><i class="fa fa-briefcase"></i></i><a href="">Guía al Pasajero</a>
             <ul>
-            
-            @if (Auth::guest())
-
               <li><a href="{{ route('cliente.equipaje') }}">Equipaje</a></li>
               <li><a href="{{ route('cliente.documentacion') }}">Documentación</a></li>
-
-            @else
-              
-              <li><a href="{{ URL::to('/online/cliente/equipaje') }}">Equipaje</a></li>
-              <li><a href="{{ URL::to('/online/cliente/documentacion') }}">Documentación</a></li>
-            
-            @endif
-
             
             </ul>
           </li>
@@ -42,8 +31,6 @@
           </li>
           @else
 
-
-
           <li><i></i><a href="#" data-toggle="modal" data-target="#Checkin"> Check-in</a></li>
           {{-- <li><i></i><a href=" {{ URL::to('/online/cliente/ConsultarBoleto') }}"> Mis Boletos</a></li> --}}
           <li class="menu-has-children">
@@ -56,12 +43,13 @@
                 <a href="{{ url('/online/logout') }}"
                   onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
-                  Cerrar sesión
+                  Salir
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
                 </form>
               </li>
+              <li class="nav-item"><a class="dropdown-item" href="#">Mi cuenta</a></li>
             </ul>
           </li>
           @endif

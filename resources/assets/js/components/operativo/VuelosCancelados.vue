@@ -59,12 +59,7 @@
             Cancelar
           </b-button>
         </div>
-        <div v-else>
-          <b-button size="sm" @click.stop="Habilitar(row)" variant="success">
-            
-            Habilitar
-          </b-button>
-        </div>
+        
         </b-input-group>
       </template>
       <template slot="row-details" slot-scope="row">
@@ -161,7 +156,7 @@ export default {
         { key: 'Ruta',   label: 'Segmentos', sortable: true },
         { key: 'Fecha', label: 'Fecha ', sortable: true },
         { key: 'Hora',  label: 'Hora ',  sortable: true },
-        { key: 'Estado',    label: 'Estado ', sortable: true },
+        { key: 'Estado',    label: 'Status ', sortable: true },
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
       ],      
       currentPage: 1,
@@ -201,7 +196,7 @@ export default {
   
          
        
-             this.$root.$emit('bv::show::modal', 'modalInfo', button)
+             this.$root.$emit('bv::show::modal', 'VuelosCancelados', button)
     },
    
     resetModal () {

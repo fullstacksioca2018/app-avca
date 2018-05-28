@@ -3,10 +3,10 @@
 
 @section('content')
 
-  <!--==========================
+	<!--==========================
     Intro Section
   ============================-->
-    
+
   <section id="intro">
 
     <div class="intro-content">
@@ -38,12 +38,8 @@
   ======================= -->
   <div class="row">
     <div class="col-md-8 offset-md-2">
-  
-  @if (Auth::guest())
-  <form method="get" action="{{ URL::to('/cliente/DetalleMultidestino') }}" onsubmit="myFunction()">
-  @else
-  <form method="get" action="{{ URL::to('/online/cliente/DetalleMultidestino') }}" onsubmit="myFunction()">
-  @endif
+
+  {!! Form::open(['route' => ['cliente.DetalleMultidestino'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
 
   <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
   <input type="hidden" name="cantidadV" id="cantidadV" value="2">
@@ -83,7 +79,7 @@
 
       <div class="col-md-4">
         <label for="coñooo" class="h">Fecha ida:</label>
-        <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">
+        <input type="date" name="fecha_salida[]" class="form-control impout3">
         <i class="fa fa-calendar prefix icocalendario"></i>
       </div>
 
@@ -132,7 +128,7 @@
         </div>
 <div class="col-md-4">            
             <label for="coñooo" class="h">Fecha ida:</label>
-            <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
+            <input type="date" name="fecha_salida[]" class="form-control impout3">       
           <i class="fa fa-calendar prefix icocalendario"></i>
                  
         </div>
@@ -178,7 +174,7 @@
         </div>
 <div class="col-md-4 ">            
             <label for="coñooo" class="h">Fecha ida:</label>
-            <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
+            <input type="date" name="fecha_salida[]" class="form-control impout3">       
           <i class="fa fa-calendar prefix icocalendario"></i>
                  
         </div>
@@ -225,7 +221,7 @@
         </div>
 <div class="col-md-4">            
             <label for="coñooo" class="h">Fecha ida:</label>
-            <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
+            <input type="date" name="fecha_salida[]" class="form-control impout3">       
           <i class="fa fa-calendar prefix icocalendario"></i>
                  
         </div>
@@ -290,7 +286,7 @@
     FIN DEL Calendario
   ======================= -->
 
-</form> 
+{!! Form::close() !!} 
  <!-- ============================
     FIN DEL FORMULARIO DE COMPRAS
   ==============================-->
@@ -387,7 +383,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
             <div class="portfolio-wrap">
               <figure>
-                <img src="{{ asset('online/img/portfolio/barcelona/barcelona3.jpg') }}" class="img-fluid" alt="">
+                <img src="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" class="img-fluid" alt="">
 
                 <a href="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" data-lightbox="portfolio" data-title="La Casa Fuerte, Barcelona - Estado Anzoategui" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
 
@@ -439,16 +435,7 @@
 
                 <a href="{{ asset('online/img/portfolio/cumana/cumana3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
 
-                @if (Auth::guest())
-
-                <a href="{{ route('destino.cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-
-              @else
-                
-                <a href="{{ URL::to('/online/destino/cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-
-              @endif
-              
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">
@@ -525,6 +512,7 @@
           </div>
 
         </div>
+          <h6 class="float-md-right"><a href="#"><b>+DESTINOS</b></a></h6>
       </div>
 
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -7,7 +7,7 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+ window.Vue = require('vue');
 
 
 /**
@@ -37,6 +37,8 @@ Vue.component('CargarCopilotos', require('./components/operativo/CargarCopilotos
 Vue.component('CargarJefeCabina', require('./components/operativo/CargarJefeCabina.vue'));
 Vue.component('CargarSobrecargo', require('./components/operativo/CargarSobrecargo.vue'));
 Vue.component('CargarAeronave', require('./components/operativo/CargarAeronave.vue'));
+// AERONAVES
+Vue.component('Aeronaves',require('./components/operativo/AdministracionAeronaves.vue'));
 
 // Empleado
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));

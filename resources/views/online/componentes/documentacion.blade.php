@@ -122,7 +122,6 @@
             <img class="card-img-right flex-auto d-none d-lg-block" src="{{ asset('online/img/documentacion/lista.png') }}" height="150px" alt="Recomendaciones">
           </div>
         </div>
-    </div>
         
        
     <!---->

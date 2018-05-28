@@ -15,18 +15,18 @@ class CreateClientesTable extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre',20)->nullable();
-            $table->string('apellido',100)->nullable();
-            $table->string('tipo_documento',50)->nullable();
-            $table->string('documento', 50)->nullable();
-            $table->string('codigo_postal',10)->nullable();
-            $table->string('direccion',100)->nullable();
-            $table->date('fecha_nacimiento')->nullable();
-            $table->string('genero',10)->nullable();
-            $table->string('telefono_fijo',11)->nullable();
-            $table->string('telefono_movil',11)->nullable();
-            $table->string('pais',100)->nullable();
+            $table->string('nombre',20);
+            $table->string('apellido',100);
+            $table->string('tipo_documento',50);
+            $table->string('documento', 50);
+            $table->string('codigo_postal',10);
+            $table->string('direccion',100);
+            $table->date('fecha_nacimiento');
+            $table->string('genero',10);
+            $table->string('telefono_fijo',11);
+            $table->string('telefono_movil',11);
             $table->integer('user_id')->unsigned();
+            $table->integer('pais_id')->unsigned();
             $table->timestamps();
 
              /*
@@ -34,7 +34,8 @@ class CreateClientesTable extends Migration
             |Llaves Foraneas |
             |=================
             */
-            
+
+            $table->foreign('pais_id')->references('id')->on('paises')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('onlines')->onDelete('cascade');
 
         });

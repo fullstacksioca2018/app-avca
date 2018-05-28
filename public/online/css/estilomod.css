@@ -4,7 +4,7 @@
  .container-detalles {
     margin: 1rem;
     background: white;
-    margin-left: 4rem;
+
   }
 
   .card-detalles{
@@ -173,20 +173,6 @@
   font-weight: bold;
 }
 
-.pthsiglas2{
-  font-size: 16px;
-  padding: 0px;
-  margin: 0px;
-  font-weight: bold;
-}
-.pthsiglas3{
-  font-size: 20px;
-  padding: 0px;
-  margin: 0px;
-  font-weight: bold;
-  text-align: center;
-}
-
 .pthhrs{
   font-size: 16px;
   padding: 0px;
@@ -213,7 +199,7 @@
     }
 
     .thresumen{
-      font-size: 12px;
+      font-size: 16px;
       color: (0, 55, 158, 1);
       font-weight: bold;
     }
@@ -247,71 +233,6 @@
       color: blue;
     }
 
-    /*destinos*/
-    .titulo {
-    font-size: 25px;
-    color: rgba(8, 30, 91, 1);
-    margin-top: 1rem;
-    margin-bottom: 0px;
-    }
-
-  .infor{
-    font-size: 15px;
-    color: black;
-    margin-top: 0px;
-    margin-bottom: 0px;
-   }
-
-   .container.det{
-    text-decoration-line: line-through;
-   }
-
-   .thbtn{
-    background: white;
-    text-align: center;
-   /* border-right: #076df3 solid 1px;*/
-
-   }
-
-   .modtit{
-    font-size: 16px;
-    color: white;
-    font-weight: bold;
-    background: #076df3;
-   }
-
-   .modbod{
-    font-size: 14px;
-    margin-bottom: 0px;
-    color: black;
-   }
-
-   .infmod{
-    font-size: 14px;
-    font-weight: bold;
-    text-align: left;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    margin-left: 1rem;
-   }
-
-   .modfoot{
-    font-weight: bold;
-    font-size: 12px;
-    font-style: oblique;
-   }
-/*perfil*/
-  .card-perfil{
-    border: #076df3 solid 1px;
-     
-  }
-
-  .pperfil{
-    margin-left: 1rem;
-    margin-top: 1rem;
-  }
-
-
 
 /*
 
@@ -336,32 +257,3 @@
       padding-left: 34rem;
       padding-right: 6rem;
     }*/
-    .ec-stars-wrapper {
-  /* Espacio entre los inline-block (los hijos, los `a`) 
-     http://ksesocss.blogspot.com/2012/03/display-inline-block-y-sus-empeno-en.html */
-  font-size: 0;
-  /* Podríamos quitarlo, 
-    pero de esta manera (siempre que no le demos padding), 
-    sólo aplicará la regla .ec-stars-wrapper:hover a cuando
-    también se esté haciendo hover a alguna estrella */
-  display: inline-block;
-}
-.ec-stars-wrapper a {
-  text-decoration: none;
-  display: inline-block;
-  /* Volver a dar tamaño al texto */
-  font-size: 32px;
-  font-size: 2rem;
-  
-  color: #888;
-}
-
-.ec-stars-wrapper:hover a {
-  color: rgb(39, 130, 228);
-}
-/*
- * El selector de hijo, es necesario para aumentar la especifidad
- */
-.ec-stars-wrapper > a:hover ~ a {
-  color: #888;
-}

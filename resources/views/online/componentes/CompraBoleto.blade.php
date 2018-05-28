@@ -45,10 +45,7 @@
           <div class="container kieto">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Precio: </span>
-            {{-- ENTERIOR
-                <span class="badge badge-primary badge-pill">{{ $cantidad*(count($objMultidestinos)) }} Boletos</span>
-             --}}
-            <span class="badge badge-primary badge-pill">{{ $cantidad }} Boletos</span>
+            <span class="badge badge-primary badge-pill">{{ $cantidad*(count($objMultidestinos)) }} Boletos</span>
           </h4>
 
           <ul class="list-group mb-3">
@@ -193,36 +190,17 @@
         <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Precio: </span>
-            {{-- ANTERIOR
-                <span class="badge badge-secondary badge-pill">{{ $cantidad*2 }} Boletos</span>
-              --}}
-            <span class="badge badge-secondary badge-pill">{{ $cantidad }} Boletos</span>
+            <span class="badge badge-secondary badge-pill">{{ $cantidad*2 }} Boletos</span>
           </h4>
 
           <ul class="list-group mb-3">
             @for($i = 0; $i < ($cantidad-$ninosbrazos); $i++)
               <li class="list-group-item d-flex justify-content-between lh-condensed">
                   <div>
-                      <h6 class="my-0">Pasajero {{ ($i+1) }}:
-                        <div id="accordion" class="mt-3 pl-0">   
-                          <h5 class="mb-0">
-                        <a herf="#!" class="collapsed" data-toggle="collapse" data-target="#collapseThree{{ ($i+1+$cantidad-$ninosbrazos) }}" aria-expanded="false" aria-controls="collapseThree">
-                         Tasas <i class="fa fa-angle-double-down"></i>
-                        </a>
-                      </h5>  
-                       <div id="collapseThree{{ ($i+1+$cantidad-$ninosbrazos) }}" class="collapse mt-1 ml-1" aria-labelledby="headingThree" data-parent="#accordion">    
-                         <h6 class="my-0">Vuelo: <span class="text-muted der">0Bs</span></h6>
-                                
-                         <h6 class="my-0">Cargos:<span class="text-muted der">0Bs </span></h6>
-
-                         <h6 class="my-0">Impuesto:<span class="text-muted der1">0Bs </span></h6>   
-                        </div> 
-                  </div> 
-                      </h6>
+                      <h6 class="my-0">Pasajero {{ ($i+1) }}:</h6>
                   </div>
                 <span class="text-muted">{{ $tarifa_vuelo*2 }}Bs</span>
               </li>
-
             @endfor
 
             @for ($i = 0; $i <$ninosbrazos ; $i++)
@@ -268,31 +246,29 @@
  Descomenta --}}
 
             @if(isset($objMultidestinos))
-            <form method="post" name="FormReserva" action="{{ URL::to('/online/cliente/BoletoVendido') }}" onsubmit="ComBoleto()">
+            <form method="post" action="{{ URL::to('/online/cliente/BoletoVendido') }}" onsubmit="ComBoleto()">
 
                         {{ csrf_field() }} 
 
                  @php
                   for($i=0;$i<(count($objMultidestinos));$i++){
                 @endphp
-                  <input type="hidden" name="tipo_vuelo" value="MultiDestino">
                   <input type="hidden" name="vuelos[]" value="{{ $objMultidestinos[$i]->vuelo->id }}">
                  @php
                    }
                  @endphp
             @else
               @if(isset($vuelo))
-              <form method="post" name="FormReserva" action="{{ URL::to('/online/cliente/BoletoVendidoRetorno') }}" onsubmit="ComBoleto()">
+              <form method="post" action="{{ URL::to('/online/cliente/BoletoVendidoRetorno') }}" onsubmit="ComBoleto()">
               
                         {{ csrf_field() }} 
-                  <input type="hidden" name="tipo_vuelo" value="IdaVuelta">
                   <input type="hidden" name="vuelo" id="vuelo_id">
                   <input type="hidden" name="vuelta" id="vuelo_id2" value="{{ $vuelo }}">
               @else
-              <form method="post" name="FormReserva" action="{{ URL::to('/online/cliente/BoletoVendido') }}" onsubmit="ComBoleto()">
+              <form method="post" action="{{ URL::to('/online/cliente/BoletoVendido') }}" onsubmit="ComBoleto()">
                         {{ csrf_field() }} 
 
-                  <input type="hidden" name="tipo_vuelo" value="SoloIda">    
+              
                   <input type="hidden" name="vuelo" id="vuelo_id">
               @endif
             @endif
@@ -326,18 +302,18 @@
             <div class="row">
               <div class="col-md-4 mb-2" >
                 <label for="firstName">Primer Nombre:</label>
-                <input type="text" class="form-control" name="primerNombre[]" id="firstName¨[]" placeholder="Primer nombre" required="">
+                <input type="text" class="form-control" name="primerNombre[]" id="firstName¨[]" placeholder="" value="" required="">
                 <div class="invalid-feedback">
                   Valide su primer nombre es necesario.
                 </div>
               </div>
                <div class="col-md-4 mb-3">
                 <label for="lastName">Segundo Nombre:</label>
-                <input type="text" class="form-control" name="segundoNombre[]" id="lastNameÑ[]" placeholder="Segundo nombre">                
+                <input type="text" class="form-control" name="segundoNombre[]" id="lastNameÑ[]" placeholder="" value="" required="">                
               </div> 
               <div class=" col col-md-4 mb-3">
                 <label for="lastName">Apellido(s):</label>
-                <input type="text" class="form-control" name="apellido[]" id="lastName[]" placeholder="Apellido(s)"  required="">
+                <input type="text" class="form-control" name="apellido[]" id="lastName[]" placeholder="" value="" required="">
                 <div class="invalid-feedback">
                   Valide su primer Apellido es necesario.
                 </div>
@@ -351,12 +327,12 @@
           <div class="form-group">
             <label for="documento[]"><span class="hidden-xs">Documentacion:</span> </label>
           <div class="form-inline">
-          <select class="form-control" name="tipo_documento[]" style="width:25%">
-            <option value="Venezolano/a">V</option>
-            <option value="Extranjero">P</option>
+            <select class="form-control" name="tipo_documento[]" style="width:25%">
+          <option value="Venezolano/a">V</option>
+          <option value="Extranjero">P</option>
           </select>
               <span style="width:6%; text-align: center">-</span>
-          <input type="text" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8" required="">
+          <input type="text" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="######" required="">
                 <div class="invalid-feedback" >
                   Es necesario.
                 </div>
@@ -380,12 +356,9 @@
             </div>    
 
 
-            {{-- <div class="row">
-
-              ============= Discapacidad ==================
-
+            <div class="row">
               <div class="col-md-5 mb-3">
-                <label for="Enfermedad">Discapacidad</label>
+                <label for="Enfermedad">Enfermedad</label>
                 <select class="custom-select d-block w-100" name="detalles_salud[]" id="Enfermedad[]" required="">
                   <option value="Ninguna"> Ninguna</option>
                   <option value="Discapacidad motriz"> Discapacidad motriz</option>
@@ -400,12 +373,9 @@
                 <div class="invalid-feedback">
                   por favor valide su seleccion.
                 </div>
-              </div> 
-              
-              ============= Puesto preferencial ==================
-
+              </div>
               <div class="col-md-4 mb-3">
-                <label for="Puesto">Puesto preferenciales</label>
+                <label for="Puesto">Puesto</label>
                 <select class="custom-select d-block w-100" name="asiento[]" id="Puesto[]" required="">
                   <option value="Pasillo">Pasillo</option>
                   <option value="Ventana">Ventana</option>
@@ -415,7 +385,7 @@
                 </div>
               </div>
             
-            </div> --}}
+            </div>
                 </div>
 <!-- FIN JODAAAA PASAJEROS NORMALES -->
             
@@ -441,18 +411,18 @@
             <div class="row">
               <div class="col-md-4 mb-3">
                 <label for="firstName">Primer Nombre:</label>
-                <input type="text" class="form-control" name="primerNombre[]" id="firstName[]" placeholder="Primer nombre" required="">
+                <input type="text" class="form-control" name="primerNombre[]" id="firstName[]" placeholder="" value="" required="">
                 <div class="invalid-feedback">
                   Valide su primer nombre es necesario.
                 </div>
               </div>
                <div class="col-md-4 mb-3">
                 <label for="lastName">Segundo Nombre:</label>
-                <input type="text" class="form-control" name="segundoNombre[]" id="lastName[]" placeholder="Segundo nombre">                
+                <input type="text" class="form-control" name="segundoNombre[]" id="lastName[]" placeholder="" value="" required="">                
               </div> 
               <div class=" col col-md-4 mb-3">
                 <label for="lastName">Apellido(s):</label>
-                <input type="text" class="form-control" name="apellido[]" id="lastName[]" placeholder="Apellido(s)" required="">
+                <input type="text" class="form-control" name="apellido[]" id="lastName[]" placeholder="" value="" required="">
                 <div class="invalid-feedback">
                   Valide su primer Apellido es necesario.
                 </div>
@@ -470,7 +440,7 @@
           <option value="Extranjero">P</option>
           </select>
               <span style="width:6%; text-align: center">-</span>
-          <input type="text" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8" required>
+          <input type="text" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="######" required="">
                 <div class="invalid-feedback" >
                   Es necesario.
                 </div>
@@ -498,14 +468,19 @@
             </div>
       @endfor
 
+{{-- 
+      @guest
+
+        <button class="btn btn-primary btn-lg " id="login" type="button">Comprar boletos
+        </button>
+
+      @else --}}
+
         <button class="btn btn-primary btn-lg " 
             data-toggle="modal" data-target="#exampleModal" type="submit">Comprar boletos
         </button>
-        @php
-          $url='/online/cliente/BoletoReservado';
-        @endphp
-        <button type="button" class="btn btn-danger btn-lg " onclick="document.FormReserva.action='{{ URL::to($url) }}';document.FormReserva.submit();" onkeypress="document.FormReserva.action='{{ URL::to($url) }}';document.FormReserva.submit();">Reservar boleto</button>
-      
+
+      {{-- @endguest --}}
 
     </div>
             
@@ -563,31 +538,17 @@
         <div class="form-group">
             <label><span class="hidden-xs">Fecha de Vencimiento</span> </label>
           <div class="form-inline"  id="cc-expiration">
-        <select class="form-control" name="fecha_vencimiento" style="width:45%" required>
+            <select class="form-control" name="fecha_vencimiento" style="width:45%">
           <option>MM</option>
-          <option value="01 - Enero">01 - Enero</option>
-          <option value="02 - Febrero">02 - Febrero</option>
-          <option value="03 - Marzo">03 - Marzo</option>
-          <option value="04 - Abril">04 - Abril</option>
-          <option value="05 - Mayo">05 - Mayo</option>
-          <option value="06 - Junio">06 - Junio</option>
-          <option value="07 - Julio">07 - Julio</option>
-          <option value="08 - Agosto">08 - Agosto</option>
-          <option value="09 - Septiembre">09 - Septiembre</option>
-          <option value="10 - Octubre">10 - Octubre</option>
-          <option value="11 - Noviembre">11 - Noviembre</option>
-          <option value="12 - Diciembre">12 - Diciembre</option>
+          <option>01 - Enero</option>
+          <option>02 - Febrero</option>
+          <option>03 - Marzo</option>
         </select>
               <span style="width:10%; text-align: center"> / </span>
-              <select class="form-control" style="width:45%" required>
+              <select class="form-control" style="width:45%">
           <option>YY</option>
-          <option value="2018">2018</option>
-          <option value="2019">2019</option>
-          <option value="2020">2020</option>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-          <option value="2023">2023</option>
-          <option value="2024">2024</option>
+          <option>2018</option>
+          <option>2019</option>
         </select>
           </div>
           <div class="invalid-feedback">
@@ -598,14 +559,14 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-            <input type="password" class="form-control" name="csc" id="cc-cvv" minlength="3" maxlength="3" placeholder="***" required>
+            <input class="form-control" required="" type="text" name="csc" id="cc-cvv">
         </div> <!-- form-group.// -->
-        <div class="invalid-feedback">
+         <div class="invalid-feedback">
                  es necesario el CVV
-        </div>
+                </div>
     </div>
 </div> <!-- row.// -->
-<button class="subscribe btn btn-primary" type="submit"> Confirmar </button>
+<button class="subscribe btn btn-primary" type="submit"> Confirmar  </button>
 
 </div> <!-- card-body.// -->
 <!-- </article>  card.// -->
