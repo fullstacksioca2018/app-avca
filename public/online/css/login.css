@@ -1,8 +1,11 @@
+
+
 @font-face {
     font-family: 'Raleway', sans-serif;
 }
 /* CSS reset */
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
 	padding:0;
 }
 html,body {
@@ -42,7 +45,7 @@ footer, header, hgroup, menu, nav, section {
 }
 /* General Demo Style */
 body{
-	
+	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 	background: #fff url(../images/bg.jpg) repeat top left;
 	font-weight: 400;
 	font-size: 15px;
@@ -55,7 +58,7 @@ a{
 }
 .container{
 	width: 100%;
-	height: 118%;
+	height: 100%;
 	position: relative;
 	text-align: justify;
 
@@ -290,8 +293,7 @@ input {
 
 /*styling both submit buttons */
 #wrapper p.button input{
-	margin-left: 18px;
-	width: 26%;
+	width: 30%;
 	cursor: pointer;	
 	background: rgb(61, 157, 179);
 	padding: 8px 5px;
@@ -299,7 +301,7 @@ input {
 	color: #fff;
 	font-size: 24px;	
 	border: 1px solid rgb(28, 108, 122);	
-	margin-bottom: 5px;	
+	margin-bottom: 10px;	
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 	-webkit-border-radius: 3px;
 	   -moz-border-radius: 3px;
@@ -333,71 +335,12 @@ input {
 }
 p.login.button,
 p.signin.button{
-	
+	text-align: right;
 	margin: 5px 0;
 }
 
 
-/* ------------*/
-
-.icouser{
-  position: absolute;
-  left: 17px;
-  top: 140px;
-  padding-top: 10px;
-  padding-left: 20px;
- font-size: 38px;
-color: rgba(0, 0, 0, 0.8) ;
-}
-.impout3{
-padding-left: 31px;
-}
-
-.icouser2{
-  position: absolute;
-  left: 17px;
-  top: 236px;
-  padding-top: 10px;
-  padding-left: 20px;
- font-size: 36px;
-color: rgba(0, 0, 0, 0.8) ;
-}
-
-.icomail{
-  position: absolute;
-  left: 16px;
-  top: 240px;
-  padding-top: 10px;
-  padding-left: 20px;
- font-size: 32px;
-color: rgba(0, 0, 0, 0.8) ;
-}
-
-
-.icocontra1{
-  position: absolute;
-  left: 17px;
-  top: 332px;
-  padding-top: 10px;
-  padding-left: 20px;
- font-size: 36px;
-color: rgba(0, 0, 0, 0.8) ;
-}
-
-.icocontra2{
-  position: absolute;
-  left: 17px;
-  top: 424px;
-  padding-top: 10px;
-  padding-left: 20px;
- font-size: 36px;
-color: rgba(0, 0, 0, 0.8) ;
-}
-/*--------*/
-
-
-
-
+/* styling the checkbox "keep me logged in"*/
 .keeplogin{
 	margin-top: -5px;
 }
@@ -420,8 +363,8 @@ color: rgba(0, 0, 0, 0.8) ;
 p.change_link{
 	position: absolute;
 	color: rgb(127, 124, 124);
-	left: 1px;
-	height: 50px;
+	left: 0px;
+	height: 20px;
 	width: 438px;
 	padding: 17px 30px 20px 30px;
 	font-size: 16px	;

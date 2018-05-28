@@ -136,7 +136,7 @@
                 data: this.form
                 
                }).then((response)=>{
-                
+                console.log(response.data);
                 Vue.toasted.show(response.data, {
                     theme: "primary", 
 	                position: "bottom-right",

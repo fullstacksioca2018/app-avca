@@ -1598,19 +1598,19 @@ color: dodgerblue;
 }
 /*----ICONOS SOCIALES----*/
 .twitter  i{
-  color: #FFFFFF;
+  color: #1da1f2;
 }
 
 .facebook i{
-  color: #FFFFFF;
+  color: rgb(45, 70, 159);
 }
 
 .instagram i{
-  color: #FFFFFF;
+  color: #9e057a;
 }
 
 .google-plus i{
-  color: #FFFFFF;
+  color: #f50a1d;
 }
 
 .twitter  i:hover{

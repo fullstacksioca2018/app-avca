@@ -148,19 +148,20 @@ class TaquillaController extends Controller
     {
         $tipo=$request->tipo;
         if(isset($request->reservar))
-        {$btn="reservar";
+        {$btn="reserva";
         }else{ $btn="compra";}
+        dd($btn);
         
         $datos_vuelos = array();   
          $rutas = array();
-        
-         // SAVE DATOS DE TARJETA
+        if($btn!="reserva"){
+         // SAVE DATOS DE bauche si fue una compra
          $tarjeta = new Tarjeta($request->all());
          $tarjeta->titular = $request->usernam;
          $tarjeta->numero_tarjeta = $request->numero_tarjeta;
          $tarjeta->fecha_vencimiento = $request->tipo_pago." - ".$request->tipo_tarjeta;
          $tarjeta->save();
-
+        }
          // // SAVE DATOS DE FACTURAS
 
          $factura = new Factura();
@@ -171,7 +172,12 @@ class TaquillaController extends Controller
          $factura->adultos_cant = $request->adultos;
          $factura->ninos_cant = $request->ninos;
          $factura->NinosBrazos_cant = $request->NinosBrazos_cant;
-         $factura->tarjeta_id = $tarjeta->id;
+         if($bt!="reserva")
+         {
+             $factura->tarjeta_id = $tarjeta->id;
+         }else{
+             $factura->tarjeta_id = 0; // 0 porque no tiene tarjeta asociada.
+         }
          $factura->save();
          
          // SAVE DATOS DE BOLETOS
@@ -185,7 +191,12 @@ class TaquillaController extends Controller
             for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
                 {
                     $Nboleto = new Boleto();
+                    if($bt!="reserva")
+                    {          
                     $Nboleto->boleto_estado="Pagado";
+                    }else{
+                        $Nboleto->boleto_estado="Reservado";
+                    }
                     $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
                     if($request->tipo_boleto[$key]=="adulto")
                         $Nboleto->asiento=$request->asiento[$key];
@@ -200,11 +211,12 @@ class TaquillaController extends Controller
                     $Nboleto->apellido=$request->apellido[$key]; 
                     $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
                     $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
+      //================ REVISAR ESTO ==============================              
                     $Nboleto->user_id="1";
+    //==============================================================
                     $Nboleto->factura_id=$factura->id;
                     $Nboleto->vuelo_id=$request->vuelo;
                     $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
-
                     $Nboleto->save();
                     array_push($boletos, $Nboleto);
                 }// fin for
@@ -226,7 +238,12 @@ class TaquillaController extends Controller
             for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
             {
                 $Nboleto = new Boleto();
-                $Nboleto->boleto_estado="Pagado";
+                if($bt!="reserva")
+                {  
+                    $Nboleto->boleto_estado="Pagado";
+                }else{
+                    $Nboleto->boleto_estado="Reservado";
+                }
                 $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
                 if($request->tipo_boleto[$key]=="adulto")
                     $Nboleto->asiento=$request->asiento[$key];
@@ -253,6 +270,7 @@ class TaquillaController extends Controller
             for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
                 {
                     $Nboleto = new Boleto();
+                    
                     $Nboleto->boleto_estado="Pagado";
                     $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
                     if($request->tipo_boleto[$key]=="adulto")
