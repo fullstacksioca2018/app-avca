@@ -4,7 +4,7 @@
   <div v-show="GraficaP==null">
     <div class="card">
       <div class="card-header text-center">
-          <strong>Vuelos De la Quincena</strong>
+          <strong>Vuelos <p class="font-weight-light" style="    display: initial;">Del 15 Mayo al 31 de Mayo</p></strong>
       </div>
     </div>
     <div class="container-fluid">
@@ -159,7 +159,7 @@
         },
         grafica1:[
           {
-            titulo:"Vuelos Ejecutados Del 15 al 17 de Mayo",
+            titulo:"Vuelos Ejecutados Del 15 al 31 de Mayo",
             grafica:"Bar",
             datos:{
               labels:["15 Mayo","16 Mayo","17 Mayo"],
@@ -174,7 +174,7 @@
           filtrosV:['Ejecutados'],
           periodo:"Personalizado",
           desde:"2018-05-15",
-          hasta:"2018-05-17"
+          hasta:"2018-05-31"
         },
         grafica2:[
           {
@@ -335,10 +335,11 @@
             });
         },
         ingresos(){
+          var myDate = new Date();
           var auxI="2018-05-15";
-          var auxF="2018-05-31";
-          var titulo="Ingresos Del 15 al 31 de Mayo";
-
+          var auxF="2018-05-"+myDate.getDate();
+          var titulo="Ingresos Del 15 al "+myDate.getDate()+" de Mayo";
+          this.grafica5[0].titulo=titulo
           axios({
                 method: 'get',
                 url: '/reportes/api/ingresos/?inicio='+auxI+'&final='+auxF
@@ -348,7 +349,6 @@
               this.datosGLine.titulo=titulo
               this.grafica5[0].datos.data=[response.data.data]
               this.grafica5[0].datos.labels=response.data.labels
-              this.grafica5[0].titulo
               console.log(response.data)
             }).catch((err)=>{
                 Vue.toasted.show('Ha ocurrido un error', {
