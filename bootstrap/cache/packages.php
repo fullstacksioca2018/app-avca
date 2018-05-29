@@ -24,6 +24,28 @@
       0 => 'Hesto\\MultiAuth\\MultiAuthServiceProvider',
     ),
   ),
+  'laracasts/flash' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laracasts\\Flash\\FlashServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Flash' => 'Laracasts\\Flash\\Flash',
+    ),
+  ),
+  'laravel/socialite' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Socialite\\SocialiteServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Socialite' => 'Laravel\\Socialite\\Facades\\Socialite',
+    ),
+  ),
   'laravel/tinker' => 
   array (
     'providers' => 

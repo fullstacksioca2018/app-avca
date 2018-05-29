@@ -13,18 +13,6 @@ jQuery(document).ready(function( $ ) {
     return false;
   });
 
-  // Stick the header at top on scroll
-  $("#header").sticky({topSpacing:0, zIndex: '50'});
-
-  // Intro background carousel
-  $("#intro-carousel").owlCarousel({
-    autoplay: true,
-    dots: false,
-    loop: true,
-    animateOut: 'fadeOut',
-    items: 1
-  });
-
   // Initiate the wowjs animation library
   new WOW().init();
 
@@ -110,9 +98,49 @@ jQuery(document).ready(function( $ ) {
     }
   });
 
+  // Header scroll class
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 100) {
+      $('#header').addClass('header-scrolled');
+    } else {
+      $('#header').removeClass('header-scrolled');
+    }
+  });
 
-  // Porfolio - uses the magnific popup jQuery plugin
-   // Porfolio isotope and filter
+  // Intro carousel
+  var introCarousel = $(".carousel");
+  var introCarouselIndicators = $(".carousel-indicators");
+  introCarousel.find(".carousel-inner").children(".carousel-item").each(function(index) {
+    (index === 0) ?
+    introCarouselIndicators.append("<li data-target='#introCarousel' data-slide-to='" + index + "' class='active'></li>") :
+    introCarouselIndicators.append("<li data-target='#introCarousel' data-slide-to='" + index + "'></li>");
+
+    $(this).css("background-image", "url('" + $(this).children('.carousel-background').children('img').attr('src') +"')");
+    $(this).children('.carousel-background').remove();
+  });
+
+  $(".carousel").swipe({
+    swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+      if (direction == 'left') $(this).carousel('next');
+      if (direction == 'right') $(this).carousel('prev');
+    },
+    allowPageScroll:"vertical"
+  });
+
+  // Skills section
+  $('#skills').waypoint(function() {
+    $('.progress .progress-bar').each(function() {
+      $(this).css("width", $(this).attr("aria-valuenow") + '%');
+    });
+  }, { offset: '80%'} );
+
+  // jQuery counterUp (used in Facts section)
+  $('[data-toggle="counter-up"]').counterUp({
+    delay: 10,
+    time: 1000
+  });
+
+  // Porfolio isotope and filter
   var portfolioIsotope = $('.portfolio-container').isotope({
     itemSelector: '.portfolio-item',
     layoutMode: 'fitRows'
@@ -125,14 +153,6 @@ jQuery(document).ready(function( $ ) {
     portfolioIsotope.isotope({ filter: $(this).data('filter') });
   });
 
-  // Testimonials carousel (uses the Owl Carousel library)
-  $(".testimonials-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    responsive: { 0: { items: 1 }, 768: { items: 2 }, 900: { items: 3 } }
-  });
-
   // Clients carousel (uses the Owl Carousel library)
   $(".clients-carousel").owlCarousel({
     autoplay: true,
@@ -142,23 +162,12 @@ jQuery(document).ready(function( $ ) {
     }
   });
 
-  //Google Map
-  var get_latitude = $('#google-map').data('latitude');
-  var get_longitude = $('#google-map').data('longitude');
-
-  function initialize_google_map() {
-    var myLatlng = new google.maps.LatLng(get_latitude, get_longitude);
-    var mapOptions = {
-      zoom: 14,
-      scrollwheel: false,
-      center: myLatlng
-    };
-    var map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
-    var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map
-    });
-  }
-  google.maps.event.addDomListener(window, 'load', initialize_google_map);
+  // Testimonials carousel (uses the Owl Carousel library)
+  $(".testimonials-carousel").owlCarousel({
+    autoplay: true,
+    dots: true,
+    loop: true,
+    items: 1
+  });
 
 });

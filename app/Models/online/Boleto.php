@@ -25,6 +25,7 @@ class Boleto extends Model
         'factura_id',
         'vuelo_id',
         'localizador',
+        'puesto',
 
     ];
 

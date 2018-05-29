@@ -163,6 +163,9 @@ return [
         //LEO
         // Caffeinated\Shinobi\ShinobiServiceProvider::class,
 
+        //Propios
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
     ],
 
     /*
@@ -217,6 +220,8 @@ return [
         // 'Shinobi' => Caffeinated\Shinobi\Facades\Shinobi::class,
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Flash' => Laracasts\Flash\Flash::class
     ],
 
 ];

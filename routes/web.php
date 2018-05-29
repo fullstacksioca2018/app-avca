@@ -58,6 +58,13 @@ Route::group(['prefix' => 'cliente'], function() {
 
 });
 
+/*Rutas destinos*/
+Route::group(['prefix' => 'destino'], function() {
+    
+    Route::get('/cumana', 'Online\DestinoController@cumana')->name('destino.cumana'); 
+
+});
+
 /* AUTH ONLINE*/
 Route::group(['prefix' => 'online'], function () {
   Route::get('/login', 'OnlineAuth\LoginController@showLoginForm')->name('online.login');

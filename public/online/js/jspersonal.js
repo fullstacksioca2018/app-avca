@@ -37,7 +37,6 @@ function brazosOpc(ind){
 
     var cont=2;
     function masvuelos(){
-      alert("entro");
       if(cont<4){
         cont++;
         $("#cantidadV").val(cont);
