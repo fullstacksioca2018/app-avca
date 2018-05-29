@@ -12,7 +12,7 @@
         <div class="modal-body">
           <div class="alert alert-danger" v-if="errors.length !== 0">
             <ul class="list-unstyled">
-              <li v-for="error in errors">{{ error[0] }}</li>
+              <li v-for="error in errors" :key="error.id">{{ error[0] }}</li>
             </ul>
           </div>
           <form action="#" method="post" id="aspiranteVerificadoForm" @submit.prevent="enviarConvocatoria" novalidate>
@@ -56,6 +56,8 @@
             <input type="hidden" name="email" :value="emailVerificado">
             <input type="hidden" name="aspirante_id" :value="aspirante.aspirante_id">
             <input type="hidden" name="nombre" :value="aspirante.nombre + ' ' + aspirante.apellido">
+            <input type="hidden" name="vacante" :value="vacante">
+            <input type="hidden" name="estatus" value="verificados">
             <button type="submit" class="btn btn-info">
               <i class="fa fa-envelope-o"></i> Enviar
             </button>
@@ -70,10 +72,7 @@
 </template>
 
 <script>
-  import {EventBus} from "../event-bus";
-  import VueSweetalert2 from 'vue-sweetalert2';
-
-  Vue.use(VueSweetalert2);
+  import {EventBus} from "../event-bus";  
 
   export default {
     name: "AspiranteVerificadoModal",
@@ -82,20 +81,23 @@
         emailVerificado: '',
         aspirante: '',
         errors: [],
-        aspirantes: []
+        aspirants: [],
+        vacante: ''
       }
     },
     mounted() {
-      EventBus.$on('email-verificado', (aspirante) => {
+      EventBus.$on('email-verificado', (aspirante, vacante) => {
         this.emailVerificado = aspirante.email;
         this.aspirante = aspirante;
+        this.vacante = vacante;
       });
     },
     methods: {
       enviarConvocatoria() {
         let aspiranteVerificadoForm = document.getElementById('aspiranteVerificadoForm');
         let formData = new FormData(aspiranteVerificadoForm);
-        axios.post('/rrhh/backend/enviar-convocatoria', formData)
+        
+        axios.post('/rrhh/backend/seleccion/enviar-convocatoria', formData)
           .then(response => {
             if (response.data.isValid === false) {
               this.errors = response.data.errors;
@@ -114,9 +116,9 @@
               });
 
               console.log(response.data);
-              this.aspirantes = response.data;
+              this.aspirants = response.data;
 
-              EventBus.$emit('aspirantes', this.aspirantes);
+              EventBus.$emit('aspirantes', this.aspirants[0]);
             }
           })
           .catch(error => {

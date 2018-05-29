@@ -73,11 +73,11 @@
 
         <div class="col-md-6">
         <div class="form-group">
-          <label>
-              <span class="mr-3">Sexo:</span> <br>
-              <input type="radio" name="sexo" value="f"> Femenino   
-              <input type="radio" name="sexo" value="m">   Masculino
+          <p class="font-weight-bold">Sexo:</p>
+          <label class="mr-2">
+              <input type="radio" name="sexo" value="f"> F
           </label>
+          <label><input type="radio" name="sexo" value="m"> M</label>
         </div>
       </div>
       </div>

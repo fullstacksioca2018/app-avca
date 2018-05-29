@@ -49,13 +49,14 @@
   <header class="header">
     <nav class="navbar navbar-expand-lg fixed-top header__navbar">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#start">
+        <a class="navbar-brand" href="{{ route('home') }}">
           <img src="{{ asset('img/rrhh/logo-avca.png') }}" alt="Logo Avca" class="img-fluid" width="128">
         </a>
         <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation"></button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0 smooth-scroll">
+            @if(\Illuminate\Support\Facades\Request::routeIs('home'))
             <li class="nav-item active">
               <a class="nav-link" href="#application">
                 <i class="fas fa-briefcase"></i>
@@ -82,6 +83,7 @@
                 Acceder <span class="sr-only">(Acceder al sistema)</span>
               </a>
             </li>
+            @endif
           </ul>
         </div>
       </div>

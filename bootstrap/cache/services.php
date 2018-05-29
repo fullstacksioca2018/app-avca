@@ -32,13 +32,13 @@
     28 => 'Collective\\Html\\HtmlServiceProvider',
     29 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     30 => 'UxWeb\\SweetAlert\\SweetAlertServiceProvider',
-    31 => 'Collective\\Html\\HtmlServiceProvider',
-    32 => 'App\\Providers\\AppServiceProvider',
-    33 => 'App\\Providers\\AuthServiceProvider',
-    34 => 'App\\Providers\\EventServiceProvider',
-    35 => 'App\\Providers\\RouteServiceProvider',
-    36 => 'Laravel\\Socialite\\SocialiteServiceProvider',
-    37 => 'Laracasts\\Flash\\FlashServiceProvider',
+    31 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    32 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
+    33 => 'Collective\\Html\\HtmlServiceProvider',
+    34 => 'App\\Providers\\AppServiceProvider',
+    35 => 'App\\Providers\\AuthServiceProvider',
+    36 => 'App\\Providers\\EventServiceProvider',
+    37 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -62,6 +62,8 @@
     17 => 'App\\Providers\\EventServiceProvider',
     18 => 'App\\Providers\\RouteServiceProvider',
     19 => 'Laracasts\\Flash\\FlashServiceProvider',
+    20 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    21 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
   ),
   'deferred' => 
   array (
