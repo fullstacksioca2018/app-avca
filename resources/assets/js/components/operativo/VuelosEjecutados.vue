@@ -153,7 +153,7 @@ export default {
   },
   data () {
     return {
-      items: null,
+      items: [],
       data: null,
       fields: [      
         { key: 'N_Vuelo',    label: 'Numero de Vuelo',  sortable: true },

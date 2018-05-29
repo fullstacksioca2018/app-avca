@@ -100,6 +100,7 @@ class TaquillaController extends Controller
     
     public function CompraBoleto(Request $request)
     {
+        
         $tipo=$request->get('tipo');
         
         $adultos= $request->get('inputadultos'.$tipo);
@@ -146,6 +147,8 @@ class TaquillaController extends Controller
 
     public function BoletoVendido(Request $request)
     {
+        return $request->all();
+        
         $tipo=$request->tipo;
         if(isset($request->reservar))
         {$btn="reserva";
