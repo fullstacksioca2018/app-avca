@@ -52,7 +52,7 @@ class LoginController extends Controller
     public function redirectPath()
     {
         $auxURL;
-        if((Auth::user()->isRole('gerente.RRHH'))||(Auth::user()->isRole('admin'))){
+        if((Auth::user()->isRole('gerente'))||(Auth::user()->isRole('gerente.RRHH'))||(Auth::user()->isRole('admin'))){
             $auxURL='/rrhh/backend/admin';
         }
         else{
