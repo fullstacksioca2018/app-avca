@@ -315,12 +315,12 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 					busqueda:"Más alto",
 					busquedaRow:"1",
 					busquedaMonto:"2000",
-					filtrosV:null,
-					cargosF:null,
-					sucursalesF:null,
-					origenesF:null,
-					destinosF:null,
-					rutasF:null
+					filtrosV:[],
+					cargosF:[],
+					sucursalesF:[],
+					origenesF:[],
+					destinosF:[],
+					rutasF:[]
 				},
 				tiposC:["Consulta","Busqueda"],
 				filtrosPjr:null,

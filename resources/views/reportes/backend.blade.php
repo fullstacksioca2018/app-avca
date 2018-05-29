@@ -105,9 +105,90 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Right navbar links | Notifications | User info -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
-      @include('rrhh.layouts.partials.messages')
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fa fa-comments-o"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="/adminlte/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="/adminlte/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fa fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="/adminlte/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fa fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
       <!-- Notifications Dropdown Menu -->
-      @include ('rrhh.layouts.partials.notifications')
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fa fa-bell-o"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
       <!-- Profile Dropdown Menu -->
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link" data-toggle="dropdown">
@@ -167,27 +248,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div> -->
 
-<<<<<<< HEAD:resources/views/reportes/backend.blade.php
       <!-- Sidebar Menu -->
       @include('reportes.nav')
       <!-- /.sidebar-menu -->
-=======
-      {{-- Admin menu --}}
-      @role('admin')
-      @include('rrhh.layouts.partials.admin_nav')
-      @endrole
-
-      {{-- Gerente Menu --}}
-      @role('gerente')
-      @include('rrhh.layouts.partials.nav')
-      @endrole
-
-      {{-- Analista Menu --}}
-      @role('analista.area')
-      @include('rrhh.layouts.partials.nav')
-      @endrole
-
->>>>>>> RRHHIntegrado:resources/views/rrhh/layouts/backend.blade.php
     </div>
     <!-- /.sidebar -->
   </aside>
@@ -195,13 +258,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" id="app">
     <!-- Content Header (Page header) -->
-<<<<<<< HEAD:resources/views/reportes/backend.blade.php
     
-=======
-    <div class="content-header">
-      @yield('breadcrumb')
-    </div>
->>>>>>> RRHHIntegrado:resources/views/rrhh/layouts/backend.blade.php
     <!-- /.content-header -->
 
     <!-- Main content -->

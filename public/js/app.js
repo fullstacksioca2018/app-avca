@@ -123390,12 +123390,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 				busqueda: "Más alto",
 				busquedaRow: "1",
 				busquedaMonto: "2000",
-				filtrosV: null,
-				cargosF: null,
-				sucursalesF: null,
-				origenesF: null,
-				destinosF: null,
-				rutasF: null
+				filtrosV: [],
+				cargosF: [],
+				sucursalesF: [],
+				origenesF: [],
+				destinosF: [],
+				rutasF: []
 			},
 			tiposC: ["Consulta", "Busqueda"],
 			filtrosPjr: null,

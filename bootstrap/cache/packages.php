@@ -1,4 +1,15 @@
 <?php return array (
+  'barryvdh/laravel-debugbar' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Debugbar' => 'Barryvdh\\Debugbar\\Facade',
+    ),
+  ),
   'barryvdh/laravel-dompdf' => 
   array (
     'providers' => 
@@ -8,6 +19,17 @@
     'aliases' => 
     array (
       'PDF' => 'Barryvdh\\DomPDF\\Facade',
+    ),
+  ),
+  'caffeinated/shinobi' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Caffeinated\\Shinobi\\ShinobiServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Shinobi' => 'Caffeinated\\Shinobi\\Facades\\Shinobi',
     ),
   ),
   'fideloper/proxy' => 

@@ -10,12 +10,12 @@
         "caffeinated/shinobi": "^3.2",
         "fideloper/proxy": "^4.0",
         "hesto/multi-auth": "^2.0",
+        "laracasts/flash": "^3.0",
         "laravel/framework": "5.6.*",
+        "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "~5.0",
         "nesbot/carbon": "^1.27",
-        "laracasts/flash": "^3.0",
-        "laravel/socialite": "^3.0"
         "uxweb/sweet-alert": "^1.4"
     },
     "require-dev": {
