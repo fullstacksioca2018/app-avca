@@ -15,13 +15,13 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
 
  <!--Datepicker funcional -->
-  <link rel="stylesheet" href="{{ asset('online/plugins/lib/datepicker/jquery-ui-1.12.1.custom/jquery-ui.min.css') }}">
+{{--   <link rel="stylesheet" href="{{ asset('online/plugins/lib/datepicker/jquery-ui-1.12.1.custom/jquery-ui.min.css') }}"> --}}
  
   <script src="{{ asset('online/plugins/lib/jquery/jquery.min.js') }}"></script>
-  
+  {{-- 
   <script src="{{ asset('online/plugins/lib/datepicker/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
  <script src="{{ asset('online/plugins/lib/datepicker/jquery-ui-1.12.1.custom/datepicker-es.js') }}"></script>
-  <script src="{{ asset('online/plugins/lib/datepicker/jquery-ui-1.12.1.custom/maindatepicker.js') }}"></script>
+  <script src="{{ asset('online/plugins/lib/datepicker/jquery-ui-1.12.1.custom/maindatepicker.js') }}"></script> --}}
 
 <link rel="stylesheet" href="{{ asset('online/plugins/lib/font-awesome/css/font-awesome.css') }}">
 <!-- Bootstrap CSS File -->
@@ -95,7 +95,7 @@
 <script src="{{ asset('online/js/prueba.js') }}"></script>
 <script src="{{ asset('online/js/jspersonal.js') }}"></script>
 <script src="{{ asset('online/js/formulario.js') }}"></script>
-
+<script src="{{ asset('online/js/multidestino.js') }}"></script>
 
 <!--Lo del Select niños en brazos y esas cosas Main JS -->
 
@@ -120,7 +120,12 @@
 
 
    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
+  
+  <style type="text/css">
+  .oculta{
+    display: none;
+  }
+</style>
   <script>
     $('div.alert').delay(5000).fadeOut(350);
   </script>
