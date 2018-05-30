@@ -55,18 +55,18 @@
       <div class="form-group col-sm-2 "></div>
       <div class="col-sm-3 ">
       <span class="help-block"> Horas </span>
-      <b-form-input type="number" min="0" max="24" class="form-control" id="ccyear" v-model="form.duracion.HH"></b-form-input> 
+      <b-form-input type="number" min="0" max="23" class="form-control" id="ccyear" v-model="form.duracion.HH"></b-form-input> 
       
       </div>
      
       <div class="form-group col-sm-3 ">
         <span class="help-block"> Minutos </span>
-        <b-form-input type="number" min="0" max="60" class="form-control" id="ccyear" v-model="form.duracion.mm"></b-form-input>
+        <b-form-input type="number" min="0" max="59" class="form-control" id="ccyear" v-model="form.duracion.mm"></b-form-input>
       </div>
        
       <div class="form-group col-sm-3 ">
         <span class="help-block"> Segundos </span>
-        <b-form-input type="number" min="0" max="60" class="form-control" id="ccyear" v-model="form.duracion.ss"></b-form-input>
+        <b-form-input type="number" min="0" max="59" class="form-control" id="ccyear" v-model="form.duracion.ss"></b-form-input>
       </div>
      
     </div>

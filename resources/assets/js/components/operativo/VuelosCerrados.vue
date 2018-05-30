@@ -26,7 +26,7 @@
         </b-form-group>
       </b-col>
       <b-col md="6" class="my-1">
-         <b-btn v-b-modal.agregar variant="primary">Agregar Nuevo Vuelo</b-btn>
+         
       </b-col>
       <b-col md="6" class="my-1">
         <b-form-group horizontal label="Per page" class="mb-0">

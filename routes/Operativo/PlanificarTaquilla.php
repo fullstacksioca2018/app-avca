@@ -14,6 +14,8 @@
     Route::group(['prefix'=>'check',/* 'middleware' => 'auth' */],function(){
 		Route::get('/','Operativo\CheckController@check');
 		Route::get('/check','Operativo\CheckController@checks');
+		Route::get('/chequeados','Operativo\CheckController@chequeados');
+		Route::get('/todos','Operativo\CheckController@todos');
 		Route::post('/check/chekear','Operativo\CheckController@checkearBoleto');
 
 		
