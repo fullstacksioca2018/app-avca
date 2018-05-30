@@ -39,6 +39,8 @@ Vue.component('CargarSobrecargo', require('./components/operativo/CargarSobrecar
 Vue.component('CargarAeronave', require('./components/operativo/CargarAeronave.vue'));
 // AERONAVES
 Vue.component('Aeronaves',require('./components/operativo/AdministracionAeronaves.vue'));
+// Sucursales
+Vue.component('Sucursales',require('./components/operativo/Sucursales.vue'));
 // CHECK
 Vue.component('Check',require('./components/operativo/Check.vue'));
 Vue.component('porCheck',require('./components/operativo/porCheck.vue'));

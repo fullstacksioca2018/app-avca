@@ -14,7 +14,13 @@
           <div class="form-group col-sm-1 "></div>
           <div class="col-sm-12">
             <label for="distancia"> <b> Origen: </b></label>
-           <multiselect v-model="form.origen" :options="origenes" selectLabel="Seleccionar" deselectLabel="Eliminar" selectedLabel="Seleccionado" placeholder="Seleccione el Origen" label="nombre" track-by="nombre"></multiselect>
+           <multiselect v-model="form.origen" 
+                        :options="origenes" 
+                        selectLabel="Seleccionar" 
+                        deselectLabel="Eliminar" 
+                        selectedLabel="Seleccionado" 
+                        placeholder="Seleccione el Origen" 
+                        label="nombre" track-by="nombre"></multiselect>
           </div>
           <div class="form-group col-sm-1 "></div>
           <div class="col-sm-12">
