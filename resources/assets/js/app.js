@@ -36,6 +36,9 @@ Vue.component('listado-sucursales', require('./components/backend/rrhh/sucursal/
 // Parametros de nomina
 Vue.component('parametros-nomina', require('./components/backend/rrhh/parametros/ParametrosNomina'));
 
+// Asistencia del empleado
+Vue.component('empleado', require('./components/backend/rrhh/asistencia/Empleado'));
+
 Vue.component('panel', require('./components/reportes/panel.vue'));
 
 import VueSweetalert2 from 'vue-sweetalert2';

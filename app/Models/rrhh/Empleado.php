@@ -40,4 +40,19 @@ class Empleado extends Model
         $tabulador_salarial = TabuladorSalarial::where('tabulador_salarial_id', $cargo->tabulador_salarial_id)->first();        
         return $tabulador_salarial;
     }
+
+    public function grupo()
+    {
+        return $this->belongsTo (Grupo::class);
+    }
+
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class);
+    }
+
+    public function sucursal()
+    {
+        return $this->belongsTo(Sucursal::class, 'sucursal_id', 'empleado_id');
+    }
 }

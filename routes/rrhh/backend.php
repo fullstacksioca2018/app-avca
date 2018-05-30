@@ -71,9 +71,10 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
         Route::post('registrar-tabulador', 'ParametrosController@registrarTabulador')->name('tabulador.store');
         Route::get('obtener-tabulador/{tabulador}', 'ParametrosController@obtenerTabulador')->name('tabulador.get');
         Route::post('actualizar-tabulador', 'ParametrosController@actualizarTabulador')->name('tabulador.update');
-        
-
     });
+
+    // Asistencia
+    require (__DIR__ . '/asistencia.php');
 
     // Consultas AJAX
     Route::get('obtener-sucursales', 'rrhh\EmpleadoController@obtenerSucursales');
