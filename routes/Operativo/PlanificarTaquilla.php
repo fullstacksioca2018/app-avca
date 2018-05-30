@@ -13,6 +13,9 @@
 	//Check
     Route::group(['prefix'=>'check',/* 'middleware' => 'auth' */],function(){
 		Route::get('/','Operativo\CheckController@check');
+		Route::get('/check','Operativo\CheckController@checks');
+		Route::post('/check/chekear','Operativo\CheckController@checkearBoleto');
+
 		
 	});
 ?>

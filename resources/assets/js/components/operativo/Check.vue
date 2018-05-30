@@ -12,22 +12,7 @@
           </b-input-group>
         </b-form-group>
       </b-col>
-      <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Ordenar" class="mb-0">
-          <b-input-group>
-            <b-form-select v-model="sortBy" :options="sortOptions">
-              <option slot="first" :value="null">-- ninguno --</option>
-            </b-form-select>
-            <b-form-select :disabled="!sortBy" v-model="sortDesc" slot="append">
-              <option :value="false">Asc</option>
-              <option :value="true">Desc</option>
-            </b-form-select>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-      <b-col md="6" class="my-1">
-         <b-btn v-b-modal.agregar variant="primary">Agregar Nueva Ruta</b-btn>
-      </b-col>
+      <p></p>
       <b-col md="6" class="my-1">
         <b-form-group horizontal label="Por Página" class="mb-0">
           <b-form-select :options="pageOptions" v-model="perPage" />
@@ -47,25 +32,17 @@
              :sort-desc.sync="sortDesc"
              @filtered="onFiltered"
     >
-     
-      <template slot="Origen" slot-scope="row">{{row.value.nombre}}</template>
-      <template slot="Destino" slot-scope="row">{{row.value.nombre}}</template>
    
       <template slot="actions" slot-scope="row">
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
         <b-input-group>
-        <b-button size="sm" @click.stop="info(row.item,row.item, row.index, $event.target)" class="mr-1" variant="primary">
-          Modificar
-        </b-button>
-        <div v-if="row.item.Estado == 'activo'">
-          <b-button size="sm" @click.stop="Deshabilitar(row)">
-            
-            Desabilitar
+          <div v-if="row.item.estatus != 'Chequeado'">
+          <b-button size="sm" class="btn btn-warning btn-sm" @click.stop="chekear(row)" variant="success">
+            Check-In
           </b-button>
-        </div>
-        <div v-else>
-          <b-button size="sm" @click.stop="Habilitar(row)" variant="success">
-            
+          </div>
+          <div v-else>
+          <b-button size="sm" disabled="disabled" variant="primary">
             Habilitar
           </b-button>
         </div>
@@ -84,7 +61,7 @@
     </b-col>
 
     
-    <!-- Modal Actualizar -->
+    <!-- Modal cargar maletas -->
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>
     <div v-if="modalInfo.content != ''">
     <b-form @submit.prevent="actualizar()">
@@ -142,23 +119,16 @@
      
     </b-modal>
 
-    <!-- AGREGAR -->
-     <RegistrarRutas> </RegistrarRutas>
-
   </b-container>
 </template>
 
 <script>
 
 import axios  from 'axios';
-import RegistrarRutas from './ModalRegistrar';
 import {EventBus} from './event-bus.js'
 
 
 export default {
-  components: {
-    RegistrarRutas
-  },
   created: function(){
     EventBus.$on('actualizartabla',(event) =>{
       this.Cargadatos(this);
@@ -172,28 +142,18 @@ export default {
       data: null,
       fields: [
       
-        { key: 'Origen',    label: 'Sucursal de Origen',  sortable: true },
-        { key: 'Destino',   label: 'Sucursal de Destino', sortable: true },
-        { key: 'Distancia', label: 'Distancias ', sortable: true },
-        { key: 'Duracion',  label: 'Duracion ',  sortable: true },
-        { key: 'Tarifa',    label: 'Tarifa ', sortable: true },
-        { key: 'Estado',    label: 'Estatus', sortable: true},
+        { key: 'n_vuelo',    label: 'Vuelo',  sortable: true },
+        { key: 'cedula', label: 'Cedula ', sortable: true},
+        { key: 'pasajero', label: 'Nombre Pasajero ', sortable: true},
+        { key: 'localizador',   label: 'Localizador de Boleto', sortable: true },
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
       ],
-      duracionModel: {
-        HH : '',
-        mm : '',
-        ss : ''
-      },
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
       pageOptions: [ 5, 10, 15 ],
-      sortBy: null,
-      sortDesc: false,
       filter: null,
-      modalInfo: { title: '', content: '' },
-      estados:['activo','inactivo']
+      modalInfo: { title: '', content: '' }
     }
   },
   computed: {
@@ -205,14 +165,14 @@ export default {
     }
   },
   methods: {
-    info (item, index, button) {
+      info (item, index, button) {
       this.modalInfo.content = item;
-      this.modalInfo.title = item.Origen.nombre + " - " + item.Destino.nombre;
+      /* this.modalInfo.title = item.Origen.nombre + " - " + item.Destino.nombre;
       var elementos = item.Duracion.split(':')
      
       this.duracionModel.HH = elementos[0]
       this.duracionModel.mm = elementos[1]
-      this.duracionModel.ss = elementos[2]
+      this.duracionModel.ss = elementos[2] */
       
       this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
@@ -227,7 +187,7 @@ export default {
       this.currentPage = 1
     },
     Cargadatos(ctx){
-      axios.get("/rutas/rutas").then(function(response){
+      axios.get("/check/check").then(function(response){
         // console.log(response.data);
         ctx.data = response.data;
         ctx.formatodatos();
@@ -241,49 +201,51 @@ export default {
       this.items = [];
       for (var i= 0; i < this.data.length; i++){
         this.items.push({
-          id: this.data[i].ruta.id,
-          Origen: {
-            id: this.data[i].ruta.origen.id,
-            nombre: this.data[i].ruta.origen.ciudad  
-                    + " (" + this.data[i].ruta.origen.sigla  + ")"
-          },
-          Destino: {
-            id: this.data[i].ruta.destino.id,
-            nombre: this.data[i].ruta.destino.ciudad 
-                     + " (" + this.data[i].ruta.destino.sigla  + ")"
-          },
-          Distancia:this.data[i].ruta.distancia,
-			  	Duracion:this.data[i].ruta.duracion,
-          Tarifa:this.data[i].ruta.tarifa_vuelo,
-          Estado:this.data[i].ruta.estado,
+          id: this.data[i].id,
+          n_vuelo: this.data[i].codvuelos,
+          pasajero:this.data[i].pasajero,
+          nombreCompleto:this.data[i].nombre_pasajero,
+          cedula:this.data[i].documento,
+          origen:{
+             nombre:this.data[i].origen,
+             sigla:this.data[i].sigla_destino,
+             aeropuerto:this.data[i].aeropuerto_origen
+            },
+          destino:{
+             nombre:this.data[i].destino,
+             sigla:this.data[i].sigla_destino,
+             aeropuerto:this.data[i].aeropuerto_destino
+            },
+          estatus:this.data[i].estatus,
+          localizador:this.data[i].localizador
         });
       }
      
     },
     actualizar(){
-      this.modalInfo.content.Duracion=this.duracionModel.HH+':'+ this.duracionModel.mm+':'+ this.duracionModel.ss;
       axios({
         method: 'post',
-        url: '/rutas/rutas',
+        url: '/check/check',
         data: {
           id: this.modalInfo.content.id,
-          Origen: this.modalInfo.content.Origen,
-          Destino: this.modalInfo.content.Destino,
+          n_vuelo: this.modalInfo.n_vuelo,
+          pasajero: this.modalInfo.pasajero,
+          nombreCompleto: this.modalInfo.nombreCompleto,
+          cedula: this.modalInfo.cedula,
+          origen: this.modalInfo.content.origen,
+          destino: this.modalInfo.content.destino,
           Distancia: this.modalInfo.content.Distancia,
-          Tarifa: this.modalInfo.content.Tarifa,
-          Estado: this.modalInfo.content.Estado,
-          Duracion:  this.modalInfo.content.Duracion      
+          estatus: this.modalInfo.content.estatus,
+          localizador:  this.modalInfo.content.localizador      
         }
       }).then((response) =>{
         console.log(response.data);
-       Vue.toasted.show('Se ha guardado existosamente la informacion', {
+       Vue.toasted.show('Se ha guardado exitosamente la informacion', {
            theme: "primary", 
 	       position: "bottom-right",
 	        duration : 2000
        });
-       //this.$refs.myModalRef.hide();
        this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
-
       }).catch((err)=>{
         console.log(err);
          Vue.toasted.show('Ha ocurrido un error', {
@@ -294,55 +256,40 @@ export default {
         console.log(err);
       });
     },
-    Deshabilitar(row){
-     axios({
-        method: 'post',
-        url: '/rutas/rutas/deshabilitar',
-        data: {
-          id: row.item.id,               
-        }
-      }).then((response)=>{
-       
-       Vue.toasted.show("Ruta Deshabilitada", {
-          theme: "primary", 
-	      position: "bottom-right",
-	        duration : 2000
-       });
-       this.Cargadatos(this);
+    chekear(row){
+     this.$dialog.confirm('Esta opcion no puede ser revertida')
+	    .then(function () {
+              axios({
+                  method: 'post',
+                  url: '/check/check/chekear',
+                  data: {
+                    id: row.item.id,               
+                  }
+                }).then((response)=>{
+                
+                Vue.toasted.show(response.data, {
+                  theme: "primary", 
+                  position: "bottom-right",
+                    duration : 2000
+                });
+                 EventBus.$emit('actualizartabla',true);
+               // this.Cargadatos(this);
 
-      }).catch((err)=>{
-        console.log(err);
-       });
-    },
-    Habilitar(row){
-     axios({
-        method: 'post',
-        url: '/rutas/rutas/habilitar',
-        data: {
-          id: row.item.id,               
-        }
-      }).then((response)=>{
-      
-      Vue.toasted.show("Ruta Habilitada", {
-         theme: "primary", 
-	       position: "bottom-right",
-	        duration : 2000
-       });
-       this.Cargadatos(this);
-
-      }).catch((err)=>{
-        Vue.toasted.show(err, {
-          theme: "primary",  
-	      position: "bottom-right",
-	        duration : 2000
-       });
-       });
-    }
+                }).catch((err)=>{
+                  Vue.toasted.show("Boleto Check-In incorrecto"+err, {
+                    theme: "primary",  
+                  position: "bottom-right",
+                    duration : 2000
+                });
+                });
+                //fin axios
+        })
+	      .catch(function () {
+		    console.log('Cancelar esta Operacion')
+	       });
+    } 
   }
-}
+} 
 </script>
 
 <!-- table-complete-1.vue -->
-
-
-

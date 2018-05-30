@@ -41,7 +41,8 @@ Vue.component('CargarAeronave', require('./components/operativo/CargarAeronave.v
 Vue.component('Aeronaves',require('./components/operativo/AdministracionAeronaves.vue'));
 // Sucursales
 Vue.component('Sucursales',require('./components/operativo/Sucursales.vue'));
-
+// CHECK
+Vue.component('Check',require('./components/operativo/Check.vue'));
 // Empleado
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
 

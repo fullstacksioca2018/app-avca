@@ -44554,7 +44554,8 @@ Vue.component('CargarAeronave', __webpack_require__(337));
 Vue.component('Aeronaves', __webpack_require__(338));
 // Sucursales
 Vue.component('Sucursales', __webpack_require__(343));
-
+// CHECK
+Vue.component('Check', __webpack_require__(411));
 // Empleado
 Vue.component('ficha-empleado', __webpack_require__(346));
 
@@ -105322,7 +105323,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         data: {
           id: this.modalInfo.content.id,
           Origen: this.modalInfo.content.Origen,
-          Destino: this.modalInfo.content.Origen,
+          Destino: this.modalInfo.content.Destino,
           Distancia: this.modalInfo.content.Distancia,
           Tarifa: this.modalInfo.content.Tarifa,
           Estado: this.modalInfo.content.Estado,
@@ -121949,6 +121950,796 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-6a2b010b", module.exports)
+  }
+}
+
+/***/ }),
+/* 411 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(412)
+/* template */
+var __vue_template__ = __webpack_require__(413)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\operativo\\Check.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7261cf06", Component.options)
+  } else {
+    hotAPI.reload("data-v-7261cf06", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 412 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__event_bus_js__ = __webpack_require__(9);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    var _this = this;
+
+    __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$on('actualizartabla', function (event) {
+      _this.Cargadatos(_this);
+    });
+    this.Cargadatos(this);
+  },
+  data: function data() {
+    return {
+      items: null,
+      data: null,
+      fields: [{ key: 'n_vuelo', label: 'Vuelo', sortable: true }, { key: 'cedula', label: 'Cedula ', sortable: true }, { key: 'pasajero', label: 'Nombre Pasajero ', sortable: true }, { key: 'localizador', label: 'Localizador de Boleto', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      currentPage: 1,
+      perPage: 5,
+      totalRows: 0,
+      pageOptions: [5, 10, 15],
+      filter: null,
+      modalInfo: { title: '', content: '' }
+    };
+  },
+
+  computed: {
+    sortOptions: function sortOptions() {
+      // Create an options list from our fields
+      return this.fields.filter(function (f) {
+        return f.sortable;
+      }).map(function (f) {
+        return { text: f.label, value: f.key };
+      });
+    }
+  },
+  methods: {
+    info: function info(item, index, button) {
+      this.modalInfo.content = item;
+      /* this.modalInfo.title = item.Origen.nombre + " - " + item.Destino.nombre;
+      var elementos = item.Duracion.split(':')
+      
+      this.duracionModel.HH = elementos[0]
+      this.duracionModel.mm = elementos[1]
+      this.duracionModel.ss = elementos[2] */
+
+      this.$root.$emit('bv::show::modal', 'modalInfo', button);
+    },
+    resetModal: function resetModal() {
+      this.modalInfo.title = '';
+      this.modalInfo.content = '';
+    },
+    onFiltered: function onFiltered(filteredItems) {
+      // Trigger pagination to update the number of buttons/pages due to filtering
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
+    },
+    Cargadatos: function Cargadatos(ctx) {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get("/check/check").then(function (response) {
+        // console.log(response.data);
+        ctx.data = response.data;
+        ctx.formatodatos();
+        ctx.totalRows = ctx.items.length;
+      }).catch(function (err) {
+        console.log("err");
+        console.log(err);
+      });
+    },
+    formatodatos: function formatodatos() {
+      this.items = [];
+      for (var i = 0; i < this.data.length; i++) {
+        this.items.push({
+          id: this.data[i].id,
+          n_vuelo: this.data[i].codvuelos,
+          pasajero: this.data[i].pasajero,
+          nombreCompleto: this.data[i].nombre_pasajero,
+          cedula: this.data[i].documento,
+          origen: {
+            nombre: this.data[i].origen,
+            sigla: this.data[i].sigla_destino,
+            aeropuerto: this.data[i].aeropuerto_origen
+          },
+          destino: {
+            nombre: this.data[i].destino,
+            sigla: this.data[i].sigla_destino,
+            aeropuerto: this.data[i].aeropuerto_destino
+          },
+          estatus: this.data[i].estatus,
+          localizador: this.data[i].localizador
+        });
+      }
+    },
+    actualizar: function actualizar() {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/check/check',
+        data: {
+          id: this.modalInfo.content.id,
+          n_vuelo: this.modalInfo.n_vuelo,
+          pasajero: this.modalInfo.pasajero,
+          nombreCompleto: this.modalInfo.nombreCompleto,
+          cedula: this.modalInfo.cedula,
+          origen: this.modalInfo.content.origen,
+          destino: this.modalInfo.content.destino,
+          Distancia: this.modalInfo.content.Distancia,
+          estatus: this.modalInfo.content.estatus,
+          localizador: this.modalInfo.content.localizador
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        Vue.toasted.show('Se ha guardado exitosamente la informacion', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        _this2.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+      }).catch(function (err) {
+        console.log(err);
+        Vue.toasted.show('Ha ocurrido un error', {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        console.log(err);
+      });
+    },
+    chekear: function chekear(row) {
+      this.$dialog.confirm('Esta opcion no puede ser revertida').then(function () {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+          method: 'post',
+          url: '/check/check/chekear',
+          data: {
+            id: row.item.id
+          }
+        }).then(function (response) {
+
+          Vue.toasted.show(response.data, {
+            theme: "primary",
+            position: "bottom-right",
+            duration: 2000
+          });
+          __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$emit('actualizartabla', true);
+          // this.Cargadatos(this);
+        }).catch(function (err) {
+          Vue.toasted.show("Boleto Check-In incorrecto" + err, {
+            theme: "primary",
+            position: "bottom-right",
+            duration: 2000
+          });
+        });
+        //fin axios
+      }).catch(function () {
+        console.log('Cancelar esta Operacion');
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 413 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Filtro" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Escriba para buscar" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-input-group-append",
+                        [
+                          _c(
+                            "b-btn",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Limpiar")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("p"),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Por Página" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.pageOptions },
+                    model: {
+                      value: _vm.perPage,
+                      callback: function($$v) {
+                        _vm.perPage = $$v
+                      },
+                      expression: "perPage"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          "show-empty": "",
+          stacked: "md",
+          items: _vm.items,
+          fields: _vm.fields,
+          "current-page": _vm.currentPage,
+          "per-page": _vm.perPage,
+          filter: _vm.filter,
+          "sort-by": _vm.sortBy,
+          "sort-desc": _vm.sortDesc
+        },
+        on: {
+          "update:sortBy": function($event) {
+            _vm.sortBy = $event
+          },
+          "update:sortDesc": function($event) {
+            _vm.sortDesc = $event
+          },
+          filtered: _vm.onFiltered
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "actions",
+            fn: function(row) {
+              return [
+                _c("b-input-group", [
+                  row.item.estatus != "Chequeado"
+                    ? _c(
+                        "div",
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              staticClass: "btn btn-warning btn-sm",
+                              attrs: { size: "sm", variant: "success" },
+                              on: {
+                                click: function($event) {
+                                  $event.stopPropagation()
+                                  _vm.chekear(row)
+                                }
+                              }
+                            },
+                            [_vm._v("\n          Check-In\n        ")]
+                          )
+                        ],
+                        1
+                      )
+                    : _c(
+                        "div",
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: {
+                                size: "sm",
+                                disabled: "disabled",
+                                variant: "primary"
+                              }
+                            },
+                            [_vm._v("\n          Habilitar\n        ")]
+                          )
+                        ],
+                        1
+                      )
+                ])
+              ]
+            }
+          },
+          {
+            key: "row-details",
+            fn: function(row) {
+              return [
+                _c("b-card", [
+                  _c(
+                    "ul",
+                    _vm._l(row.item, function(value, key) {
+                      return _c("li", { key: key }, [
+                        _vm._v(_vm._s(key) + ": " + _vm._s(value))
+                      ])
+                    })
+                  )
+                ])
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "b-col",
+        { staticClass: "col-md-12 " },
+        [
+          _c("b-pagination", {
+            staticClass: "my-0",
+            attrs: {
+              align: "center",
+              "total-rows": _vm.totalRows,
+              "per-page": _vm.perPage
+            },
+            model: {
+              value: _vm.currentPage,
+              callback: function($$v) {
+                _vm.currentPage = $$v
+              },
+              expression: "currentPage"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            id: "modalInfo",
+            title: _vm.modalInfo.title,
+            "hide-footer": ""
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _vm.modalInfo.content != ""
+            ? _c(
+                "div",
+                [
+                  _c(
+                    "b-form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.actualizar()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "form-group col-sm-1 " }),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-5" },
+                          [
+                            _c("label", { attrs: { for: "distancia" } }, [
+                              _c("b", [_vm._v(" Inserte Distancia: ")])
+                            ]),
+                            _vm._v(" "),
+                            _c("b-form-input", {
+                              attrs: {
+                                id: "distancia",
+                                type: "text",
+                                required: "",
+                                placeholder: "Inserte Distancia"
+                              },
+                              model: {
+                                value: _vm.modalInfo.content.Distancia,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    _vm.modalInfo.content,
+                                    "Distancia",
+                                    $$v
+                                  )
+                                },
+                                expression: "modalInfo.content.Distancia"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-5" },
+                          [
+                            _c("label", { attrs: { for: "distancia" } }, [
+                              _c("b", [_vm._v(" Inserte Tarifa: ")])
+                            ]),
+                            _vm._v(" "),
+                            _c("b-form-input", {
+                              attrs: {
+                                id: "tarifa",
+                                type: "text",
+                                required: "",
+                                placeholder: "Inserte  Tarifa"
+                              },
+                              model: {
+                                value: _vm.modalInfo.content.Tarifa,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.modalInfo.content, "Tarifa", $$v)
+                                },
+                                expression: "modalInfo.content.Tarifa"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group col-sm-1 " })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [_c("p")]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row text-center" }, [
+                        _c("div", { staticClass: "col-sm-12 " }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "text-center",
+                              attrs: { for: "duracion" }
+                            },
+                            [_c("b", [_vm._v(" Tiempo de Vuelo: ")])]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "row col-sm-12 ",
+                          attrs: { id: "duracion" }
+                        },
+                        [
+                          _c("div", { staticClass: "form-group col-sm-2 " }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-sm-3 " },
+                            [
+                              _c("span", { staticClass: "help-block" }, [
+                                _vm._v(" Horas ")
+                              ]),
+                              _vm._v(" "),
+                              _c("b-form-input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "number",
+                                  min: "0",
+                                  max: "24",
+                                  id: "ccyear"
+                                },
+                                model: {
+                                  value: _vm.duracionModel.HH,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.duracionModel, "HH", $$v)
+                                  },
+                                  expression: "duracionModel.HH"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "form-group col-sm-3 " },
+                            [
+                              _c("span", { staticClass: "help-block" }, [
+                                _vm._v(" Minutos ")
+                              ]),
+                              _vm._v(" "),
+                              _c("b-form-input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "number",
+                                  min: "0",
+                                  max: "60",
+                                  id: "ccyear"
+                                },
+                                model: {
+                                  value: _vm.duracionModel.mm,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.duracionModel, "mm", $$v)
+                                  },
+                                  expression: "duracionModel.mm"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "form-group col-sm-3 " },
+                            [
+                              _c("span", { staticClass: "help-block" }, [
+                                _vm._v(" Segundos ")
+                              ]),
+                              _vm._v(" "),
+                              _c("b-form-input", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "number",
+                                  min: "0",
+                                  max: "60",
+                                  id: "ccyear"
+                                },
+                                model: {
+                                  value: _vm.duracionModel.ss,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.duracionModel, "ss", $$v)
+                                  },
+                                  expression: "duracionModel.ss"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "text-center" },
+                        [
+                          _c(
+                            "b-button",
+                            { attrs: { type: "submit", variant: "primary" } },
+                            [_vm._v("Actualizar")]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7261cf06", module.exports)
   }
 }
 
