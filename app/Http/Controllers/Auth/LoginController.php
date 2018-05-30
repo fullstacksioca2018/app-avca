@@ -42,6 +42,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+
     }
     public function showLoginForm()
     {
@@ -54,18 +55,22 @@ class LoginController extends Controller
         $auxURL;
         if((Auth::user()->isRole('gerente'))||(Auth::user()->isRole('gerente.RRHH'))||(Auth::user()->isRole('admin'))){
             $auxURL='/rrhh/backend/admin';
+            $this->redirectTo='/rrhh/backend/admin';
         }
         else{
             if(Auth::user()->isRole('operador.taquilla')){
                 $auxURL='/taquilla';            
+                $this->redirectTo='/taquilla';
             }
             else{
                 if((Auth::user()->isRole('gerente.sucursales'))||(Auth::user()->isRole('subgerente.sucursal'))){
                     $auxURL='/vuelos';            
+                    $this->redirectTo='/vuelos';
                 }
                 else{
                     if(Auth::user()->isRole('gerente.general')){
                         $auxURL='/reportes';
+                        $this->redirectTo='/reportes';
                     }
                 }
             }
