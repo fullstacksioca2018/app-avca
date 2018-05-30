@@ -123751,7 +123751,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			var _this4 = this;
 
 			// console.log(this.form.datosf)
-			this.loading = true;
+			var loader = this.$loading.show();
+			// this.loading=true;
 			this.cargarFiltros();
 			this.graficas = [];
 			if (this.validarGG()) {
@@ -123762,13 +123763,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 						"grafica": response.data.grafico,
 						"datos": response.data.datos
 					});
-					_this4.loading = false;
+					// this.loading=false;
+					loader.hide();
 					Vue.toasted.show('Reporte Generado', {
 						theme: "primary",
 						position: "bottom-right",
 						duration: 2000
 					});
 				}).catch(function (error) {
+					loader.hide();
 					Vue.toasted.show('Ha ocurrido un error', {
 						theme: "primary",
 						position: "bottom-right",
@@ -125173,20 +125176,7 @@ var render = function() {
                   [_vm._v("Pronosticar")]
                 )
               ])
-            : _c("div", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    on: {
-                      click: function($event) {
-                        _vm.cargar()
-                      }
-                    }
-                  },
-                  [_vm._v("Diagnosticar")]
-                )
-              ])
+            : _c("div")
         ]
       )
     ],
@@ -127306,7 +127296,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         labels: null
       },
       grafica1: [{
-        titulo: "Vuelos Ejecutados Del 15 al 17 de Mayo",
+        titulo: "Vuelos Ejecutados Del 15 al 31 de Mayo",
         grafica: "Bar",
         datos: {
           labels: ["15 Mayo", "16 Mayo", "17 Mayo"],
@@ -127320,7 +127310,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         filtrosV: ['Ejecutados'],
         periodo: "Personalizado",
         desde: "2018-05-15",
-        hasta: "2018-05-17"
+        hasta: "2018-05-31"
       },
       grafica2: [{
         titulo: "Vuelos Abiertos Del 15 al 31 de Mayo",
@@ -127478,10 +127468,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     ingresos: function ingresos() {
       var _this2 = this;
 
+      var loader = this.$loading.show();
+      var myDate = new Date();
       var auxI = "2018-05-15";
-      var auxF = "2018-05-31";
-      var titulo = "Ingresos Del 15 al 31 de Mayo";
-
+      var auxF = "2018-05-" + myDate.getDate();
+      var titulo = "Ingresos Del 15 al " + myDate.getDate() + " de Mayo";
+      this.grafica5[0].titulo = titulo;
       axios({
         method: 'get',
         url: '/reportes/api/ingresos/?inicio=' + auxI + '&final=' + auxF
@@ -127491,7 +127483,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this2.datosGLine.titulo = titulo;
         _this2.grafica5[0].datos.data = [response.data.data];
         _this2.grafica5[0].datos.labels = response.data.labels;
-        _this2.grafica5[0].titulo;
+        loader.hide();
         console.log(response.data);
       }).catch(function (err) {
         Vue.toasted.show('Ha ocurrido un error', {
@@ -127950,7 +127942,17 @@ var render = function() {
           [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-header text-center" }, [
-                _c("strong", [_vm._v("Vuelos De la Quincena")])
+                _c("strong", [
+                  _vm._v("Vuelos "),
+                  _c(
+                    "p",
+                    {
+                      staticClass: "font-weight-light",
+                      staticStyle: { display: "initial" }
+                    },
+                    [_vm._v("Del 15 Mayo al 31 de Mayo")]
+                  )
+                ])
               ])
             ]),
             _vm._v(" "),

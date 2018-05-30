@@ -18,13 +18,13 @@
   <!-- <button href="#" type="button" class="btn btn-primary btn-lg active"> Sin Retorno</button> -->
 
   @if(Auth::guest())
-    <a href="{{ route('cliente.index1') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">solo ida</a>
-    <a href="{{ route('cliente.index2') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">ida y vuelta</a>
-    <a href="{{ route('cliente.index3') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">multi-destino</a>
+    <a href="#" id="btsoloida" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">solo ida</a>
+    <a href="#" id="btidayvuelta" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">ida y vuelta</a>
+    <a href="#" id="btmultidestino" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">multi-destino</a>
   @else
-    <a href="{{ URL::to('/online/inicio') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">solo ida</a>
-    <a href="{{ URL::to('/online/inicio2') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">ida y vuelta</a>
-    <a href="{{ URL::to('/online/inicio3') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">multi-destino</a>
+    <a href="#" id="btsoloida" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">solo ida</a>
+    <a href="#" id="btidayvuelta" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">ida y vuelta</a>
+    <a href="#" id="btmultidestino" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">multi-destino</a>
   @endif
   
   
@@ -38,98 +38,49 @@
       <div class="row">
         <div class="col-md-8 offset-md-2">
         
-          @if (Auth::guest())
-            {!! Form::open(['route' => ['cliente.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
-          @else
-            <form method="get" onsubmit="myFunction()" action="{{ URL::to('/online/cliente/DetalleVuelo') }}">
+        
+         <div id="soloida"> 
+            @if (Auth::guest())
+              {!! Form::open(['route' => ['cliente.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
+                  @include('online.componentes.ida')
+              {!! Form::close() !!}
+            @else
+              <form method="get" onsubmit="myFunction()" action="{{ URL::to('/online/cliente/DetalleVuelo') }}">
+                  @include('online.componentes.ida')      
+              </form>
             @endif
-              <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0"> 
-              
-              <div class="form-row">
-                {{--  SELECT DESDE  --}}
-                <div class="col col-md-6">
-                  <label for="exampleFormControlSelect1" class="h">Desde:</label>
-                  <div class="form-group">         
                 
-                    <select data-placeholder="Ciudad-Aeropuerto" name="origen_id" class="chosen-select impout3" class="form-control impout3" tabindex="2">
-                      <option value="#">Cuidad o aeropuerto</option>
-                      @foreach ($sucursales as $sucursal)
-                            <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
-                      @endforeach
-                    </select>
-                    <i class="fa fa-map-marker prefix icociudad2"></i>
-                    
-                  </div>  
-                </div>  
+         </div>
+
+         <div id="idayvuelta">
+
+            @if(Auth::guest())
+              <form method="get" action="{{ URL::to('/cliente/DetalleRetorno') }}" onsubmit="myFunction()">
+                  @include('online.componentes.retorno');
+              </form>
+            @else
+              <form method="get" action="{{ URL::to('/online/cliente/DetalleRetorno') }}" onsubmit="myFunction()">
+                  @include('online.componentes.retorno');
+              </form>
+            @endif
+            
+         </div>
+
+         <div id="multidestino">
             
 
-                {{--  SELECT HASTA  --}}
-                <div class="col-md-6">
-                  <label for="exampleFormControlSelect1" class="h">Hasta:</label>
-                  <div class="form-group">         
-                
-                    <select data-placeholder="Ciudad-Aeropuerto"  name="destino_id" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
-                      <option value="#">Cuidad o aeropuerto</option>
-                      @foreach ($sucursales as $sucursal)
-                            <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
-                      @endforeach
-                    </select>
-                    <i class="fa fa-map-marker prefix icociudad2"></i>
-                  </div>  
-                </div>
+            @if(Auth::guest())
+              <form method="get" action="{{ URL::to('/cliente/DetalleMultidestino') }}" onsubmit="myFunction()">
+                @include('online.componentes.multidestino');
+              </form>
+            @else
+              <form method="get" action="{{ URL::to('/online/cliente/DetalleMultidestino') }}" onsubmit="myFunction()">
+                @include('online.componentes.multidestino')
+              </form>
+            @endif
 
-              </div> <!-- fin de form-row -->
+         </div> 
 
-              <!-- Grd row -->
-
-              <!-- ======================
-                  FIN DESDE / HASTA
-                ======================= -->
-
-              <!-- ======================
-                  INICIO DEL Calendario
-                ======================= -->
-
-              <div class="form-row">
-
-                  <div class="col-md-4">
-                    <label for="coñooo" class="h">Fecha ida:</label>
-                    <!-- fecha salida -->
-                    <input type="date" class="form-control" id="fecha_salida" name="fecha_salida" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">
-  
-                  </div>
-
-                  <div class="col col-md-1 col-lg-1">
-                    <label for="exampleFormControlSelect1" class="h">Adultos:</label>
-                    <div class="form-group">
-                      <input type="number" id="inputadultos" min="1" max="6" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')">
-                    </div>
-                  </div>
-
-                  <div class="col col-md-1 col-lg-1">
-                    <label for="exampleFormControlSelect1" class="h">Niños:</label>
-                    <div class="form-group">
-                      <input type="number" id="inputninos" min="0" max="5" class="form-control" value="0" name="ninos" onchange="validarN('inputninos')">
-                    </div>
-                  </div>
-
-              </div>
-
-              <!-- ======================
-                FIN DEL Calendario
-              ======================= -->
-
-              {{-- ====================================== 
-                              Contador de personas
-                  ====================================== --}}              
-              <div id="contenedorPersonas"> 
-              </div>              
-
-              {{--  Boton de envio  --}}
-              <div class="form-row">
-                  <input type="submit" value="BUSCAR" class="btn btn-primary">
-              </div>
-            {!! Form::close() !!} 
             <!-- ======================
             FIN DEL Form
             ======================= -->

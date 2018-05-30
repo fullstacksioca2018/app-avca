@@ -86,7 +86,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         Role::create([
-            'name'      => 'Genente de Sucursales',
+            'name'      => 'Gerente de Sucursales',
             'slug'      => 'gerente.sucursales',
             'special'   => 'all-access'
         ]);
@@ -102,6 +102,11 @@ class UsersTableSeeder extends Seeder
             'slug'      => 'operador.taquilla',
             'special'   => 'all-access'
         ]);
+        Role::create([
+            'name'      => 'Gerente RRHH',
+            'slug'      => 'gerente',
+            'special'   => 'all-access'
+        ]);
 
             DB::table('role_user')->insert([
                 'user_id' => 1,
@@ -114,6 +119,10 @@ class UsersTableSeeder extends Seeder
             DB::table('role_user')->insert([
                 'user_id' => 2,
                 'role_id' => 2 
+            ]);
+            DB::table('role_user')->insert([
+                'user_id' => 2,
+                'role_id' => 7 
             ]);
             DB::table('role_user')->insert([
                 'user_id' => 3,

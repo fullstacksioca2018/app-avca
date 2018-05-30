@@ -187,13 +187,14 @@ class ReporteIngresosController extends Controller
                                         $labelsAux="Origen ".$origen->nombre;
                                         array_push($labels,$labelsAux);
                                         $info=$this->consultaIngresoOrigen($periodos[$pp],$origen->sucursal_id);
+                                        array_push($previos, $info);
                                     }
                                 }
                                 else{
                                     $info=$this->busquedaIngresoOrigen($periodos[$pp],$consulta->busqueda,$consulta->busquedaMonto,$consulta->busquedaRow);
+                                    array_push($previos, $info);
                                 }
                                 // return $info;
-                                array_push($previos, $info);
                                     // return $info;
                                 // return "F Origen";
                                 break;
@@ -204,12 +205,13 @@ class ReporteIngresosController extends Controller
                                         $labelsAux="Destino ".$destino->nombre;
                                         array_push($labels,$labelsAux);
                                         $info=$this->consultaIngresoDestino($periodos[$pp],$destino->sucursal_id);
+                                        array_push($previos, $info);
                                     }
                                 }
                                 else{
                                     $info=$this->busquedaIngresoDestino($periodos[$pp],$consulta->busqueda,$consulta->busquedaMonto,$consulta->busquedaRow);
+                                    array_push($previos, $info);
                                 }
-                                array_push($previos, $info);
                                 // return $info;
                                 // return "F Destino";
                                 break;
@@ -226,7 +228,6 @@ class ReporteIngresosController extends Controller
                     array_push($previos, $info);
                 }
             }            
-            // return $datos;
             $datos=$this->formatiarLabelData($previos,$consulta->tipo);
             // return response()->JSON($datos);
             $obj= new stdClass();

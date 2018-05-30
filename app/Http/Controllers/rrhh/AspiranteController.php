@@ -89,7 +89,7 @@ class AspiranteController extends Controller
 
         $data = $request->all();
 
-        Mail::to($request->email)->send(new ConvocatoriaEnviada($data));
+        //Mail::to($request->email)->send(new ConvocatoriaEnviada($data));
 
         $aspirante = Aspirante::findOrFail($request->aspirante_id);
         $aspirante->estatus = 'convocados';
