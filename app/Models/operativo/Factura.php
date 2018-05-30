@@ -25,14 +25,14 @@ class Factura extends Model
 	public function boletos()
 	{
 
-		return hasMany('App\Boleto');
+		return hasMany('App\Models\operativo\Boleto');
 		
 	}
 
 	public function tarjeta()
 	{
 
-		return belongsTo('App\tarjeta');
+		return belongsTo('App\Models\operativo\Tarjeta');
 		
 	}
 

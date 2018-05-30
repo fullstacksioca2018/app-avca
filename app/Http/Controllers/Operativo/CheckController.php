@@ -13,6 +13,7 @@ use App\Models\operativo\Vuelo;
 use App\Models\online\Factura;
 use App\Models\online\Tarjeta;
 use App\Models\online\Boleto;
+use App\Models\Operativo\Maleta;
 use stdClass;
 
 class CheckController extends Controller
@@ -128,6 +129,22 @@ class CheckController extends Controller
             $boleto->boleto_estado="Chequeado";
             $boleto->save();
             return "El Boleto ha sido Chequeado";
+        }
+
+        public function addMaletas(Request $datos)
+        {
+           //dd($datos->all());
+           $maleta= new Maleta();
+           $maleta->boleto_id=$datos['id'];
+           $maleta->cantidad=$datos['equipaje'];
+           $maleta->peso=$datos['peso'];
+           $maleta->save();
+
+           $boleto=Boleto::find($datos['id']);
+           $boleto->asiento=$datos['puesto'];
+           $boleto->boleto_estado="Chequeado";
+           $boleto->save();
+           return "Boleto Chequeado Correctamente";
         }
 
 }

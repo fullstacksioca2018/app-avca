@@ -27,7 +27,7 @@ class CreateFacturasTable extends Migration
 
             /*
             |=================
-            |Llaves Foraneas |
+            | Llaves Foraneas |
             |=================
             */
 

@@ -58,11 +58,11 @@
       <b-pagination  align="center" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
     </b-col>
    
-    <!-- Modal Actualizar -->
+    <!-- Modal Registrar -->
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>  
      <!-- <pre>El modalinfo tiene {{modalInfo.content}}</pre> -->
      <div v-if="modalInfo.content != ''">
-    <b-form @submit.prevent="actualizar()">
+    <b-form @submit.prevent="addMaletas()">
          
        <div class="row">
           <div class="form-group col-sm-1 "></div>
@@ -83,7 +83,6 @@
         <div class="col-sm-4">
             <b-form-input id="equipaje"
                           type="number"
-                          required
                           v-model="form.equipaje">
             </b-form-input>
           </div>
@@ -95,7 +94,6 @@
            <b-input-group append="kgrs">
             <b-form-input id="peso"
                           type="number"
-                          required
                           v-model="form.peso">
             </b-form-input>
            </b-input-group>
@@ -108,7 +106,6 @@
           <b-input-group append="BsS">
             <b-form-input id="sobrepeso"
                           type="number"
-                          required
                           v-model="form.sobrepeso"
                           disable>
             </b-form-input>
@@ -119,11 +116,11 @@
    <div class="row"><p></p><p></p></div><!--  espacio -->
    <div id='search-results' class="col-sm-6">
          <label for="asiento" >Seleccione el Asiento:   </label>
-         <multiselect v-model="form.puesto" :options="puestos" selectLabel="Seleccionar" deselectLabel="Eliminar" selectedLabel="Seleccionado" placeholder="Seleccione el Puesto" label="asiento" track-by="asiento"></multiselect>                 
-         <!-- <multiselect v-model="value" :options="options" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Pick a value"></multiselect> -->
+          
+         <multiselect v-model="form.puesto" :options="puestos" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione filtro" :preselect-first="false" selectLabel="Seleccionar" deselectLabel="Eliminar" required></multiselect>
 
     </div> 
-    <div class="row"><p></p><p></p><pre>Su puesto {{ form.puesto }} !! </pre></div><!--  espacio -->
+    <div class="row"><p></p><p></p></div><!--  espacio -->
       <div class="text-center">
         <b-button type="submit" variant="primary" >Actualizar</b-button>
       </div>
@@ -171,75 +168,72 @@ export default {
       pageOptions: [ 5, 10, 15 ],
       filter: null,
       modalInfo: { title: '', content: '' },
-      form: {equipaje: '', peso:'', sobrepeso:'', puesto:''},
+      form: {equipaje: '', peso:'', puesto:'', id:''},
        puestos: [
         "V-1",
         "V-2",
-        "V-3"
-        /* {puesto: "V-1"}, 
-        {puesto: "P-2"} */
-        /* {P3:"P-3"}, 
-        {V4:"V-4"}, 
-        {V5:"V-5"}, 
-        {P6:"P-6"}, 
-        {P7:"P-7"}, 
-        {V8:"V-8"}, 
-        {V9:"V-9"}, 
-        {P10:"P-10"}, 
-        {P11:"P-11"}, 
-        {V12:"V-12"}, 
-        {V13:"V-13"}, 
-        {P14:"P-14"}, 
-        {P15:"P-15"}, 
-        {V16:"V-16"}, 
-        {V17:"V-17"}, 
-        {P18:"P-18"}, 
-        {P19:"P-19"}, 
-        {V20:"V-20"}, 
-        {V21:"V-21"}, 
-        {P22:"P-22"}, 
-        {P23:"P-23"}, 
-        {V24:"V-24"}, 
-        {V25:"V-25"}, 
-        {P26:"P-26"}, 
-        {P27:"P-27"}, 
-        {V28:"V-28"},         
-        {V29:"V-29"}, 
-        {P30:"P-30"},              
-        {P31:"P-31"},              
-        {V32:"V-32"},              
-        {V33:"V-33"},              
-        {P34:"P-34"},              
-        {P35:"P-35"},              
-        {V36:"V-36"},              
-        {V37:"V-37"},              
-        {P38:"P-38"},              
-        {P39:"P-39"},              
-        {V40:"V-40"},              
-        {V41:"V-41"},              
-        {P42:"P-42"},              
-        {P43:"P-43"},              
-        {V44:"V-44"},              
-        {V45:"V-45"},              
-        {P46:"P-46"},             
-        {P47:"P-47"},              
-        {V48:"V-48"},              
-        {V49:"V-49"},              
-        {P50:"P-50"},              
-        {P51:"P-51"},              
-        {V52:"V-52"},              
-        {V53:"V-53"},              
-        {P54:"P-54"},                             
-        {P55:"P-55"}, 
-        {V56:"V-56"}, 
-        {V57:"V-57"}, 
-        {P58:"P-58"}, 
-        {P59:"P-59"}, 
-        {V60:"V-60"}, 
-        {V61:"V-61"}, 
-        {P62:"P-62"}, 
-        {P63:"P-63"}, 
-        {V64:"V-64"} */
+        "P-3", 
+        "V-4", 
+        "V-5", 
+        "P-6", 
+        "P-7", 
+        "V-8", 
+        "V-9", 
+        "P-10", 
+        "P-11", 
+        "V-12", 
+        "V-13", 
+        "P-14", 
+        "P-15", 
+        "V-16", 
+        "V-17", 
+        "P-18", 
+        "P-19", 
+        "V-20", 
+        "V-21", 
+        "P-22", 
+        "P-23", 
+        "V-24", 
+        "V-25", 
+        "P-26", 
+        "P-27", 
+        "V-28",         
+        "V-29", 
+        "P-30",              
+        "P-31",              
+        "V-32",              
+        "V-33",              
+        "P-34",              
+        "P-35",              
+        "V-36",              
+        "V-37",              
+        "P-38",              
+        "P-39",              
+        "V-40",              
+        "V-41",              
+        "P-42",              
+        "P-43",              
+        "V-44",              
+        "V-45",              
+        "P-46",             
+        "P-47",              
+        "V-48",              
+        "V-49",              
+        "P-50",              
+        "P-51",              
+        "V-52",              
+        "V-53",              
+        "P-54",                             
+        "P-55", 
+        "V-56", 
+        "V-57", 
+        "P-58", 
+        "P-59", 
+        "V-60", 
+        "V-61", 
+        "P-62", 
+        "P-63", 
+        "V-64" 
       ] 
     }
   },
@@ -295,6 +289,24 @@ export default {
       }
      
     },
+    addMaletas(){
+               this.form.id=this.modalInfo.content.id;
+               axios({
+                method: 'post',
+                url: '/check/maletas',
+                data: this.form
+               }).then((response)=>{
+                Vue.toasted.show(response.data, {
+                    theme: "primary", 
+	                position: "bottom-right",
+	                duration : 2000
+                });
+                EventBus.$emit('actualizartabla',true);
+                this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+               }).catch((err) =>{
+
+               });
+           },
     chekear(row){
      this.$dialog.confirm('Esta opcion no puede ser revertida')
 	    .then(function () {

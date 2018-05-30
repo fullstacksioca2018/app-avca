@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Models\operativo;
+namespace App\Models\Operativo;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Boleto extends Model
 {
     protected $table = "boletos";
-    protected $fillable = [
-
+    protected $fillable =[
 		'boleto_estado',
 		'fecha_expiracion',
 		'asiento',
@@ -23,7 +22,7 @@ class Boleto extends Model
 		'detalles_salud',
 		'user_id',
 		'factura_id',
-		'vuelo_id',,
+		'vuelo_id',
         'localizador',
 
     ];
@@ -44,9 +43,14 @@ class Boleto extends Model
     }
     public function scopeCheckin($query, $localizador)
     {
-
         return DB::table('boletos')->select('id')->where('localizador',$localizador);
 
     }
+   
+    public function maleta()
+    {
+    	return $this->hasOne('App\Models\operativo\Maleta');
+
+	}
 
 }

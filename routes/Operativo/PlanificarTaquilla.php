@@ -17,6 +17,7 @@
 		Route::get('/chequeados','Operativo\CheckController@chequeados');
 		Route::get('/todos','Operativo\CheckController@todos');
 		Route::post('/check/chekear','Operativo\CheckController@checkearBoleto');
+		Route::post('/maletas','Operativo\CheckController@addMaletas');
 
 		
 	});
