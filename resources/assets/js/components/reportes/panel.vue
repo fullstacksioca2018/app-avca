@@ -745,6 +745,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 		        });
                }
                else{
+            		loader.hide();
                		this.loading=false;
                }
 			},
