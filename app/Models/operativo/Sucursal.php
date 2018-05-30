@@ -13,13 +13,10 @@ class Sucursal extends Model
 
 		'sucursal_id',
 		'nombre',
-		'direccion',
-		'sigla',
-	
-		'estado',
-		'pais',
+		'sigla',	
+		'estatus',
         'tipo_sucursal',
-        'estatus',
+      
         'ciudad'
     ];
 
