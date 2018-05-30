@@ -62345,7 +62345,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.1.1 (https://getbootstrap.com/)
+  * Bootstrap v4.1.0 (https://getbootstrap.com/)
   * Copyright 2011-2018 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
@@ -62416,7 +62416,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): util.js
+   * Bootstrap (v4.1.0): util.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -62549,7 +62549,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): alert.js
+   * Bootstrap (v4.1.0): alert.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -62561,7 +62561,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
      * ------------------------------------------------------------------------
      */
     var NAME = 'alert';
-    var VERSION = '4.1.1';
+    var VERSION = '4.1.0';
     var DATA_KEY = 'bs.alert';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -62598,11 +62598,9 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
       // Public
       _proto.close = function close(element) {
-        var rootElement = this._element;
+        element = element || this._element;
 
-        if (element) {
-          rootElement = this._getRootElement(element);
-        }
+        var rootElement = this._getRootElement(element);
 
         var customEvent = this._triggerCloseEvent(rootElement);
 
@@ -62724,7 +62722,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): button.js
+   * Bootstrap (v4.1.0): button.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -62736,7 +62734,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
      * ------------------------------------------------------------------------
      */
     var NAME = 'button';
-    var VERSION = '4.1.1';
+    var VERSION = '4.1.0';
     var DATA_KEY = 'bs.button';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -62888,7 +62886,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): carousel.js
+   * Bootstrap (v4.1.0): carousel.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -62900,7 +62898,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
      * ------------------------------------------------------------------------
      */
     var NAME = 'carousel';
-    var VERSION = '4.1.1';
+    var VERSION = '4.1.0';
     var DATA_KEY = 'bs.carousel';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -63389,7 +63387,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): collapse.js
+   * Bootstrap (v4.1.0): collapse.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -63401,7 +63399,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
      * ------------------------------------------------------------------------
      */
     var NAME = 'collapse';
-    var VERSION = '4.1.1';
+    var VERSION = '4.1.0';
     var DATA_KEY = 'bs.collapse';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -63672,7 +63670,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
           var $this = $$$1(this);
           var data = $this.data(DATA_KEY);
 
-          var _config = _objectSpread({}, Default, $this.data(), typeof config === 'object' && config ? config : {});
+          var _config = _objectSpread({}, Default, $this.data(), typeof config === 'object' && config);
 
           if (!data && _config.toggle && /show|hide/.test(config)) {
             _config.toggle = false;
@@ -63749,7 +63747,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): dropdown.js
+   * Bootstrap (v4.1.0): dropdown.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -63761,7 +63759,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
      * ------------------------------------------------------------------------
      */
     var NAME = 'dropdown';
-    var VERSION = '4.1.1';
+    var VERSION = '4.1.0';
     var DATA_KEY = 'bs.dropdown';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -64231,7 +64229,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): modal.js
+   * Bootstrap (v4.1.0): modal.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -64243,7 +64241,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
      * ------------------------------------------------------------------------
      */
     var NAME = 'modal';
-    var VERSION = '4.1.1';
+    var VERSION = '4.1.0';
     var DATA_KEY = 'bs.modal';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -64719,7 +64717,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
         return this.each(function () {
           var data = $$$1(this).data(DATA_KEY);
 
-          var _config = _objectSpread({}, Default, $$$1(this).data(), typeof config === 'object' && config ? config : {});
+          var _config = _objectSpread({}, Modal.Default, $$$1(this).data(), typeof config === 'object' && config);
 
           if (!data) {
             data = new Modal(this, _config);
@@ -64809,7 +64807,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): tooltip.js
+   * Bootstrap (v4.1.0): tooltip.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -64821,7 +64819,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
      * ------------------------------------------------------------------------
      */
     var NAME = 'tooltip';
-    var VERSION = '4.1.1';
+    var VERSION = '4.1.0';
     var DATA_KEY = 'bs.tooltip';
     var EVENT_KEY = "." + DATA_KEY;
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
@@ -65326,7 +65324,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
       };
 
       _proto._getConfig = function _getConfig(config) {
-        config = _objectSpread({}, this.constructor.Default, $$$1(this.element).data(), typeof config === 'object' && config ? config : {});
+        config = _objectSpread({}, this.constructor.Default, $$$1(this.element).data(), config);
 
         if (typeof config.delay === 'number') {
           config.delay = {
@@ -65476,7 +65474,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): popover.js
+   * Bootstrap (v4.1.0): popover.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -65488,7 +65486,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
      * ------------------------------------------------------------------------
      */
     var NAME = 'popover';
-    var VERSION = '4.1.1';
+    var VERSION = '4.1.0';
     var DATA_KEY = 'bs.popover';
     var EVENT_KEY = "." + DATA_KEY;
     var JQUERY_NO_CONFLICT = $$$1.fn[NAME];
@@ -65673,7 +65671,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): scrollspy.js
+   * Bootstrap (v4.1.0): scrollspy.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -65685,7 +65683,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
      * ------------------------------------------------------------------------
      */
     var NAME = 'scrollspy';
-    var VERSION = '4.1.1';
+    var VERSION = '4.1.0';
     var DATA_KEY = 'bs.scrollspy';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -65812,7 +65810,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
 
       _proto._getConfig = function _getConfig(config) {
-        config = _objectSpread({}, Default, typeof config === 'object' && config ? config : {});
+        config = _objectSpread({}, Default, config);
 
         if (typeof config.target !== 'string') {
           var id = $$$1(config.target).attr('id');
@@ -65985,7 +65983,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): tab.js
+   * Bootstrap (v4.1.0): tab.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -65997,7 +65995,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
      * ------------------------------------------------------------------------
      */
     var NAME = 'tab';
-    var VERSION = '4.1.1';
+    var VERSION = '4.1.0';
     var DATA_KEY = 'bs.tab';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
@@ -66233,7 +66231,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_chartjs_dist_vue_chartjs_js___default.a)
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.1.1): index.js
+   * Bootstrap (v4.0.0): index.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -67787,8 +67785,7 @@ webpackContext.id = 190;
         // Add dismiss button
         dismissBtn = h('b-button-close', { attrs: { 'aria-label': this.dismissLabel }, on: { click: this.dismiss } }, [this.$slots.dismiss]);
       }
-      var alert = h('div', { class: this.classObject, attrs: { role: 'alert', 'aria-live': 'polite', 'aria-atomic': true } }, [dismissBtn, this.$slots.default]);
-      return !this.fade ? alert : h('transition', { props: { name: 'fade', appear: true } }, [alert]);
+      return h('div', { class: this.classObject, attrs: { role: 'alert', 'aria-live': 'polite', 'aria-atomic': true } }, [dismissBtn, this.$slots.default]);
     },
 
     model: {
@@ -67829,10 +67826,6 @@ webpackContext.id = 190;
       },
       show: {
         type: [Boolean, Number],
-        default: false
-      },
-      fade: {
-        type: Boolean,
         default: false
       }
     },
@@ -68479,14 +68472,18 @@ webpackContext.id = 190;
 
       var tag = suppliedProps.active ? 'span' : bLink;
 
-      var componentData = { props: pluckProps(props$3, suppliedProps) };
+      var componentData = {
+        props: pluckProps(props$3, suppliedProps),
+        domProps: { innerHTML: suppliedProps.text }
+      };
+
       if (suppliedProps.active) {
         componentData.attrs = { 'aria-current': suppliedProps.ariaCurrent };
       } else {
         componentData.attrs = { href: suppliedProps.href };
       }
 
-      return h(tag, mergeData(data, componentData), children || suppliedProps.text);
+      return h(tag, mergeData(data, componentData), children);
     }
   };
 
@@ -69346,7 +69343,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$a = assign({}, copyProps(cardMixin.props, prefixPropName.bind(null, 'body')), {
+  var props$10 = assign({}, copyProps(cardMixin.props, prefixPropName.bind(null, 'body')), {
     bodyClass: {
       type: [String, Object, Array],
       default: null
@@ -69375,7 +69372,7 @@ webpackContext.id = 190;
 
   var CardBody = {
     functional: true,
-    props: props$a,
+    props: props$10,
     render: function render(h, _ref) {
       var _ref2;
 
@@ -69407,7 +69404,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$b = assign({}, copyProps(cardMixin.props, prefixPropName.bind(null, 'header')), {
+  var props$11 = assign({}, copyProps(cardMixin.props, prefixPropName.bind(null, 'header')), {
     header: {
       type: String,
       default: null
@@ -69420,7 +69417,7 @@ webpackContext.id = 190;
 
   var CardHeader = {
     functional: true,
-    props: props$b,
+    props: props$11,
     render: function render(h, _ref) {
       var _ref2;
 
@@ -69436,7 +69433,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$c = assign({}, copyProps(cardMixin.props, prefixPropName.bind(null, 'footer')), {
+  var props$12 = assign({}, copyProps(cardMixin.props, prefixPropName.bind(null, 'footer')), {
     footer: {
       type: String,
       default: null
@@ -69449,7 +69446,7 @@ webpackContext.id = 190;
 
   var CardFooter = {
     functional: true,
-    props: props$c,
+    props: props$12,
     render: function render(h, _ref) {
       var _ref2;
 
@@ -69465,7 +69462,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$d = {
+  var props$13 = {
     src: {
       type: String,
       default: null,
@@ -69491,7 +69488,7 @@ webpackContext.id = 190;
 
   var CardImg = {
     functional: true,
-    props: props$d,
+    props: props$13,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -69512,10 +69509,10 @@ webpackContext.id = 190;
     }
   };
 
-  var cardImgProps = copyProps(props$d, prefixPropName.bind(null, 'img'));
+  var cardImgProps = copyProps(props$13, prefixPropName.bind(null, 'img'));
   cardImgProps.imgSrc.required = false;
 
-  var props$e = assign({}, props$a, props$b, props$c, cardImgProps, copyProps(cardMixin.props), {
+  var props$14 = assign({}, props$10, props$11, props$12, cardImgProps, copyProps(cardMixin.props), {
     align: {
       type: String,
       default: null
@@ -69528,7 +69525,7 @@ webpackContext.id = 190;
 
   var bCard = {
     functional: true,
-    props: props$e,
+    props: props$14,
     render: function render(h, _ref) {
       var _class;
 
@@ -69552,15 +69549,15 @@ webpackContext.id = 190;
         }
       }
       if (props$$1.header || $slots.header) {
-        childNodes.push(h(CardHeader, { props: pluckProps(props$b, props$$1) }, $slots.header));
+        childNodes.push(h(CardHeader, { props: pluckProps(props$11, props$$1) }, $slots.header));
       }
       if (props$$1.noBody) {
         childNodes.push($slots.default);
       } else {
-        childNodes.push(h(CardBody, { props: pluckProps(props$a, props$$1) }, $slots.default));
+        childNodes.push(h(CardBody, { props: pluckProps(props$10, props$$1) }, $slots.default));
       }
       if (props$$1.footer || $slots.footer) {
-        childNodes.push(h(CardFooter, { props: pluckProps(props$c, props$$1) }, $slots.footer));
+        childNodes.push(h(CardFooter, { props: pluckProps(props$12, props$$1) }, $slots.footer));
       }
       if (img && props$$1.imgBottom) {
         // Below the footer placement.
@@ -69574,7 +69571,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$f = {
+  var props$15 = {
     tag: {
       type: String,
       default: 'div'
@@ -69591,7 +69588,7 @@ webpackContext.id = 190;
 
   var bCardGroup = {
     functional: true,
-    props: props$f,
+    props: props$15,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -70178,7 +70175,7 @@ webpackContext.id = 190;
     return 'data:image/svg+xml;charset=UTF-8,' + src;
   }
 
-  var props$g = {
+  var props$16 = {
     src: {
       type: String,
       default: null
@@ -70249,7 +70246,7 @@ webpackContext.id = 190;
 
   var bImg = {
     functional: true,
-    props: props$g,
+    props: props$16,
     render: function render(h, _ref) {
       var _class;
 
@@ -70425,7 +70422,7 @@ webpackContext.id = 190;
 
   vueUse(VuePlugin$8);
 
-  var props$h = {
+  var props$17 = {
     tag: {
       type: String,
       default: 'div'
@@ -70438,7 +70435,7 @@ webpackContext.id = 190;
 
   var Container = {
     functional: true,
-    props: props$h,
+    props: props$17,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -70455,7 +70452,7 @@ webpackContext.id = 190;
 
   var COMMON_ALIGNMENT = ['start', 'end', 'center'];
 
-  var props$i = {
+  var props$18 = {
     tag: {
       type: String,
       default: 'div'
@@ -70489,7 +70486,7 @@ webpackContext.id = 190;
 
   var bRow = {
     functional: true,
-    props: props$i,
+    props: props$18,
     render: function render(h, _ref) {
       var _class;
 
@@ -70596,7 +70593,7 @@ webpackContext.id = 190;
     order: keys(breakpointOrder)
   });
 
-  var props$j = assign({}, breakpointCol, breakpointOffset, breakpointOrder, {
+  var props$19 = assign({}, breakpointCol, breakpointOffset, breakpointOrder, {
     tag: {
       type: String,
       default: 'div'
@@ -70627,7 +70624,7 @@ webpackContext.id = 190;
    */
   var bCol = {
     functional: true,
-    props: props$j,
+    props: props$19,
     render: function render(h, _ref) {
       var _classList$push;
 
@@ -70659,7 +70656,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$k = {
+  var props$20 = {
     tag: {
       type: String,
       default: 'div'
@@ -70668,7 +70665,7 @@ webpackContext.id = 190;
 
   var bFormRow = {
     functional: true,
-    props: props$k,
+    props: props$20,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -71059,26 +71056,26 @@ webpackContext.id = 190;
     bToggle: bToggle
   };
 
-  var VuePlugin$a = {
+  var VuePlugin$10 = {
     install: function install(Vue) {
       registerDirectives(Vue, directives);
     }
   };
 
-  vueUse(VuePlugin$a);
+  vueUse(VuePlugin$10);
 
-  var components$a = {
+  var components$10 = {
     bCollapse: bCollapse
   };
 
-  var VuePlugin$b = {
+  var VuePlugin$11 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$a);
-      Vue.use(VuePlugin$a);
+      registerComponents(Vue, components$10);
+      Vue.use(VuePlugin$10);
     }
   };
 
-  vueUse(VuePlugin$b);
+  vueUse(VuePlugin$11);
 
   /**!
    * @fileOverview Kickass library to create and place poppers near their reference elements.
@@ -73615,61 +73612,6 @@ webpackContext.id = 190;
     }
   };
 
-  var BvEvent = function () {
-    function BvEvent(type) {
-      var eventInit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      classCallCheck(this, BvEvent);
-
-      // Start by emulating native Event constructor.
-      if (!type) {
-        throw new TypeError('Failed to construct \'' + this.constructor.name + '\'. 1 argument required, ' + arguments.length + ' given.');
-      }
-      // Assign defaults first, the eventInit,
-      // and the type last so it can't be overwritten.
-      assign(this, BvEvent.defaults(), eventInit, { type: type });
-      // Freeze some props as readonly, but leave them enumerable.
-      defineProperties(this, {
-        type: readonlyDescriptor(),
-        cancelable: readonlyDescriptor(),
-        nativeEvent: readonlyDescriptor(),
-        target: readonlyDescriptor(),
-        relatedTarget: readonlyDescriptor(),
-        vueTarget: readonlyDescriptor()
-      });
-      // Create a private variable using closure scoping.
-      var defaultPrevented = false;
-      // Recreate preventDefault method. One way setter.
-      this.preventDefault = function preventDefault() {
-        if (this.cancelable) {
-          defaultPrevented = true;
-        }
-      };
-      // Create 'defaultPrevented' publicly accessible prop
-      // that can only be altered by the preventDefault method.
-      defineProperty$1(this, 'defaultPrevented', {
-        enumerable: true,
-        get: function get$$1() {
-          return defaultPrevented;
-        }
-      });
-    }
-
-    createClass(BvEvent, null, [{
-      key: 'defaults',
-      value: function defaults$$1() {
-        return {
-          type: '',
-          cancelable: true,
-          nativeEvent: null,
-          target: null,
-          relatedTarget: null,
-          vueTarget: null
-        };
-      }
-    }]);
-    return BvEvent;
-  }();
-
   // Return an Array of visible items
   function filterVisible(els) {
     return (els || []).filter(isVisible);
@@ -73731,8 +73673,7 @@ webpackContext.id = 190;
     data: function data() {
       return {
         visible: false,
-        inNavbar: null,
-        visibleChangePrevented: false
+        inNavbar: null
       };
     },
     created: function created() {
@@ -73764,36 +73705,19 @@ webpackContext.id = 190;
     },
 
     watch: {
-      visible: function visible(newValue, oldValue) {
-        if (this.visibleChangePrevented) {
-          this.visibleChangePrevented = false;
+      visible: function visible(state, old) {
+        if (state === old) {
+          // Avoid duplicated emits
           return;
         }
-
-        if (newValue !== oldValue) {
-          var evtName = newValue ? 'show' : 'hide';
-          var bvEvt = new BvEvent(evtName, {
-            cancelable: true,
-            vueTarget: this,
-            target: this.$refs.menu,
-            relatedTarget: null
-          });
-          this.emitEvent(bvEvt);
-          if (bvEvt.defaultPrevented) {
-            // Reset value and exit if canceled
-            this.visibleChangePrevented = true;
-            this.visible = oldValue;
-            return;
-          }
-          if (evtName === 'show') {
-            this.showMenu();
-          } else {
-            this.hideMenu();
-          }
+        if (state) {
+          this.showMenu();
+        } else {
+          this.hideMenu();
         }
       },
-      disabled: function disabled(newValue, oldValue) {
-        if (newValue !== oldValue && newValue && this.visible) {
+      disabled: function disabled(state, old) {
+        if (state !== old && state && this.visible) {
           // Hide dropdown if disabled changes to true
           this.visible = false;
         }
@@ -73805,16 +73729,12 @@ webpackContext.id = 190;
       }
     },
     methods: {
-      // Event emitter
-      emitEvent: function emitEvent(bvEvt) {
-        var type = bvEvt.type;
-        this.$emit(type, bvEvt);
-        this.emitOnRoot('bv::dropdown::' + type, bvEvt);
-      },
       showMenu: function showMenu() {
         if (this.disabled) {
           return;
         }
+        // TODO: move emit show to visible watcher, to allow cancelling of show
+        this.$emit('show');
         // Ensure other menus are closed
         this.emitOnRoot('bv::dropdown::shown', this);
 
@@ -73845,6 +73765,8 @@ webpackContext.id = 190;
         this.$nextTick(this.focusFirstItem);
       },
       hideMenu: function hideMenu() {
+        // TODO: move emit hide to visible watcher, to allow cancelling of hide
+        this.$emit('hide');
         this.setTouchStart(false);
         this.emitOnRoot('bv::dropdown::hidden', this);
         this.$emit('hidden');
@@ -73947,17 +73869,12 @@ webpackContext.id = 190;
           // We only toggle on Click, Enter, Space, and Arrow Down
           return;
         }
+        evt.preventDefault();
+        evt.stopPropagation();
         if (this.disabled) {
           this.visible = false;
           return;
         }
-        this.$emit('toggle', evt);
-        if (evt.defaultPrevented) {
-          // Exit if canceled
-          return;
-        }
-        evt.preventDefault();
-        evt.stopPropagation();
         // Toggle visibility
         this.visible = !this.visible;
       },
@@ -74202,11 +74119,11 @@ webpackContext.id = 190;
     }
   };
 
-  var props$l = propsFactory();
+  var props$21 = propsFactory();
 
   var bDropdownItem = {
     functional: true,
-    props: props$l,
+    props: props$21,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -74220,7 +74137,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$m = {
+  var props$22 = {
     disabled: {
       type: Boolean,
       default: false
@@ -74229,7 +74146,7 @@ webpackContext.id = 190;
 
   var bDropdownItemButton = {
     functional: true,
-    props: props$m,
+    props: props$22,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -74249,7 +74166,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$n = {
+  var props$23 = {
     id: {
       type: String,
       default: null
@@ -74262,7 +74179,7 @@ webpackContext.id = 190;
 
   var bDropdownHeader = {
     functional: true,
-    props: props$n,
+    props: props$23,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -74275,7 +74192,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$o = {
+  var props$24 = {
     tag: {
       type: String,
       default: 'div'
@@ -74284,7 +74201,7 @@ webpackContext.id = 190;
 
   var bDropdownDivider = {
     functional: true,
-    props: props$o,
+    props: props$24,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data;
@@ -74296,7 +74213,7 @@ webpackContext.id = 190;
     }
   };
 
-  var components$b = {
+  var components$11 = {
     bDropdown: bDropdown,
     bDd: bDropdown,
     bDropdownItem: bDropdownItem,
@@ -74311,15 +74228,15 @@ webpackContext.id = 190;
     bDdDivider: bDropdownDivider
   };
 
-  var VuePlugin$c = {
+  var VuePlugin$12 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$b);
+      registerComponents(Vue, components$11);
     }
   };
 
-  vueUse(VuePlugin$c);
+  vueUse(VuePlugin$12);
 
-  var props$p = {
+  var props$25 = {
     type: {
       type: String,
       default: 'iframe',
@@ -74339,7 +74256,7 @@ webpackContext.id = 190;
 
   var bEmbed = {
     functional: true,
-    props: props$p,
+    props: props$25,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -74353,19 +74270,19 @@ webpackContext.id = 190;
     }
   };
 
-  var components$c = {
+  var components$12 = {
     bEmbed: bEmbed
   };
 
-  var VuePlugin$d = {
+  var VuePlugin$13 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$c);
+      registerComponents(Vue, components$12);
     }
   };
 
-  vueUse(VuePlugin$d);
+  vueUse(VuePlugin$13);
 
-  var props$q = {
+  var props$26 = {
     id: {
       type: String,
       default: null
@@ -74386,7 +74303,7 @@ webpackContext.id = 190;
 
   var Form = {
     functional: true,
-    props: props$q,
+    props: props$26,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -74405,7 +74322,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$r = {
+  var props$27 = {
     id: {
       type: String,
       default: null
@@ -74426,7 +74343,7 @@ webpackContext.id = 190;
 
   var bFormText = {
     functional: true,
-    props: props$r,
+    props: props$27,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -74443,7 +74360,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$s = {
+  var props$28 = {
     id: {
       type: String,
       default: null
@@ -74460,7 +74377,7 @@ webpackContext.id = 190;
 
   var bFormInvalidFeedback = {
     functional: true,
-    props: props$s,
+    props: props$28,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -74474,7 +74391,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$t = {
+  var props$29 = {
     id: {
       type: String,
       default: null
@@ -74491,7 +74408,7 @@ webpackContext.id = 190;
 
   var bFormValidFeedback = {
     functional: true,
-    props: props$t,
+    props: props$29,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -74505,7 +74422,7 @@ webpackContext.id = 190;
     }
   };
 
-  var components$d = {
+  var components$13 = {
     bForm: Form,
     bFormRow: bFormRow,
     bFormText: bFormText,
@@ -74514,13 +74431,13 @@ webpackContext.id = 190;
     bFormValidFeedback: bFormValidFeedback
   };
 
-  var VuePlugin$e = {
+  var VuePlugin$14 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$d);
+      registerComponents(Vue, components$13);
     }
   };
 
-  vueUse(VuePlugin$e);
+  vueUse(VuePlugin$14);
 
   /* Form control contextual state class computation
    *
@@ -74843,18 +74760,18 @@ webpackContext.id = 190;
     }
   };
 
-  var components$e = {
+  var components$14 = {
     bFormGroup: bFormGroup,
     bFormFieldset: bFormGroup
   };
 
-  var VuePlugin$f = {
+  var VuePlugin$15 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$e);
+      registerComponents(Vue, components$14);
     }
   };
 
-  vueUse(VuePlugin$f);
+  vueUse(VuePlugin$15);
 
   /*
    * form-radio & form-check mixin
@@ -75390,7 +75307,7 @@ webpackContext.id = 190;
     }
   };
 
-  var components$f = {
+  var components$15 = {
     bFormCheckbox: bFormCheckbox,
     bCheckbox: bFormCheckbox,
     bCheck: bFormCheckbox,
@@ -75399,13 +75316,13 @@ webpackContext.id = 190;
     bCheckGroup: bFormCheckboxGroup
   };
 
-  var VuePlugin$g = {
+  var VuePlugin$16 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$f);
+      registerComponents(Vue, components$15);
     }
   };
 
-  vueUse(VuePlugin$g);
+  vueUse(VuePlugin$16);
 
   var bFormRadio = {
     mixins: [idMixin, formRadioCheckMixin, formMixin, formStateMixin],
@@ -75589,20 +75506,20 @@ webpackContext.id = 190;
     }
   };
 
-  var components$g = {
+  var components$16 = {
     bFormRadio: bFormRadio,
     bRadio: bFormRadio,
     bFormRadioGroup: bFormRadioGroup,
     bRadioGroup: bFormRadioGroup
   };
 
-  var VuePlugin$h = {
+  var VuePlugin$17 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$g);
+      registerComponents(Vue, components$16);
     }
   };
 
-  vueUse(VuePlugin$h);
+  vueUse(VuePlugin$17);
 
   // Valid supported input types
   var TYPES = ['text', 'password', 'email', 'number', 'url', 'tel', 'search', 'range', 'color', 'date', 'time', 'datetime', 'datetime-local', 'month', 'week'];
@@ -75613,6 +75530,7 @@ webpackContext.id = 190;
       return h('input', {
         ref: 'input',
         class: this.inputClass,
+        domProps: { value: this.localValue },
         attrs: {
           id: this.safeId(),
           name: this.name,
@@ -75623,14 +75541,18 @@ webpackContext.id = 190;
           placeholder: this.placeholder,
           autocomplete: this.autocomplete || null,
           'aria-required': this.required ? 'true' : null,
-          'aria-invalid': this.computedAriaInvalid,
-          value: this.value
+          'aria-invalid': this.computedAriaInvalid
         },
         on: {
           input: this.onInput,
           change: this.onChange
         }
       });
+    },
+    data: function data() {
+      return {
+        localValue: this.value
+      };
     },
 
     props: {
@@ -75693,49 +75615,40 @@ webpackContext.id = 190;
         return this.ariaInvalid;
       }
     },
-    mounted: function mounted() {
-      if (this.value) {
-        var fValue = this.format(this.value, null);
-        this.setValue(fValue);
-      }
-    },
-
     watch: {
-      value: function value(newVal) {
-        if (this.lazyFormatter) {
-          this.setValue(newVal);
-        } else {
-          var fValue = this.format(newVal, null);
-          this.setValue(fValue);
+      value: function value(newVal, oldVal) {
+        if (newVal !== oldVal) {
+          this.localValue = newVal;
+        }
+      },
+      localValue: function localValue(newVal, oldVal) {
+        if (newVal !== oldVal) {
+          this.$emit('input', newVal);
         }
       }
     },
     methods: {
       format: function format(value, e) {
         if (this.formatter) {
-          return this.formatter(value, e);
+          var formattedValue = this.formatter(value, e);
+          if (formattedValue !== value) {
+            return formattedValue;
+          }
         }
         return value;
       },
-      setValue: function setValue(value) {
-        this.$emit('input', value);
-        // When formatter removes last typed character, value of text input should update to formatted value
-        this.$refs.input.value = value;
-      },
       onInput: function onInput(evt) {
         var value = evt.target.value;
-
         if (this.lazyFormatter) {
-          this.setValue(value);
+          // Update the model with the current unformated value
+          this.localValue = value;
         } else {
-          var fValue = this.format(value, evt);
-          this.setValue(fValue);
+          this.localValue = this.format(value, evt);
         }
       },
       onChange: function onChange(evt) {
-        var fValue = this.format(evt.target.value, evt);
-        this.setValue(fValue);
-        this.$emit('change', fValue);
+        this.localValue = this.format(evt.target.value, evt);
+        this.$emit('change', this.localValue);
       },
       focus: function focus() {
         if (!this.disabled) {
@@ -75745,18 +75658,18 @@ webpackContext.id = 190;
     }
   };
 
-  var components$h = {
+  var components$17 = {
     bFormInput: bFormInput,
     bInput: bFormInput
   };
 
-  var VuePlugin$i = {
+  var VuePlugin$18 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$h);
+      registerComponents(Vue, components$17);
     }
   };
 
-  vueUse(VuePlugin$i);
+  vueUse(VuePlugin$18);
 
   var bFormTextarea = {
     mixins: [idMixin, formMixin, formSizeMixin, formStateMixin],
@@ -75900,18 +75813,18 @@ webpackContext.id = 190;
     }
   };
 
-  var components$i = {
+  var components$18 = {
     bFormTextarea: bFormTextarea,
     bTextarea: bFormTextarea
   };
 
-  var VuePlugin$j = {
+  var VuePlugin$19 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$i);
+      registerComponents(Vue, components$18);
     }
   };
 
-  vueUse(VuePlugin$j);
+  vueUse(VuePlugin$19);
 
   var bFormFile = {
     mixins: [idMixin, formMixin, formStateMixin, formCustomMixin],
@@ -76155,18 +76068,18 @@ webpackContext.id = 190;
     }
   };
 
-  var components$j = {
+  var components$19 = {
     bFormFile: bFormFile,
     bFile: bFormFile
   };
 
-  var VuePlugin$k = {
+  var VuePlugin$20 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$j);
+      registerComponents(Vue, components$19);
     }
   };
 
-  vueUse(VuePlugin$k);
+  vueUse(VuePlugin$20);
 
   var bFormSelect = {
     mixins: [idMixin, formMixin, formSizeMixin, formStateMixin, formCustomMixin, formOptionsMixin],
@@ -76265,18 +76178,18 @@ webpackContext.id = 190;
     }
   };
 
-  var components$k = {
+  var components$20 = {
     bFormSelect: bFormSelect,
     bSelect: bFormSelect
   };
 
-  var VuePlugin$l = {
+  var VuePlugin$21 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$k);
+      registerComponents(Vue, components$20);
     }
   };
 
-  vueUse(VuePlugin$l);
+  vueUse(VuePlugin$21);
 
   var THROTTLE = 100;
 
@@ -76461,20 +76374,20 @@ webpackContext.id = 190;
     }
   };
 
-  var components$l = {
+  var components$21 = {
     bImg: bImg,
     bImgLazy: bImgLazy
   };
 
-  var VuePlugin$m = {
+  var VuePlugin$22 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$l);
+      registerComponents(Vue, components$21);
     }
   };
 
-  vueUse(VuePlugin$m);
+  vueUse(VuePlugin$22);
 
-  var props$u = {
+  var props$30 = {
     fluid: {
       type: Boolean,
       default: false
@@ -76523,7 +76436,7 @@ webpackContext.id = 190;
 
   var bJumbotron = {
     functional: true,
-    props: props$u,
+    props: props$30,
     render: function render(h, _ref) {
       var _class2;
 
@@ -76568,31 +76481,31 @@ webpackContext.id = 190;
     }
   };
 
-  var components$m = {
+  var components$22 = {
     bJumbotron: bJumbotron
   };
 
-  var VuePlugin$n = {
+  var VuePlugin$23 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$m);
+      registerComponents(Vue, components$22);
     }
   };
 
-  vueUse(VuePlugin$n);
+  vueUse(VuePlugin$23);
 
-  var components$n = {
+  var components$23 = {
     bLink: bLink
   };
 
-  var VuePlugin$o = {
+  var VuePlugin$24 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$n);
+      registerComponents(Vue, components$23);
     }
   };
 
-  vueUse(VuePlugin$o);
+  vueUse(VuePlugin$24);
 
-  var props$v = {
+  var props$31 = {
     tag: {
       type: String,
       default: 'div'
@@ -76605,7 +76518,7 @@ webpackContext.id = 190;
 
   var bListGroup = {
     functional: true,
-    props: props$v,
+    props: props$31,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -76625,7 +76538,7 @@ webpackContext.id = 190;
   delete linkProps$2.href.default;
   delete linkProps$2.to.default;
 
-  var props$w = assign({
+  var props$32 = assign({
     tag: {
       type: String,
       default: 'div'
@@ -76646,7 +76559,7 @@ webpackContext.id = 190;
 
   var bListGroupItem = {
     functional: true,
-    props: props$w,
+    props: props$32,
     render: function render(h, _ref) {
       var _class;
 
@@ -76667,20 +76580,20 @@ webpackContext.id = 190;
     }
   };
 
-  var components$o = {
+  var components$24 = {
     bListGroup: bListGroup,
     bListGroupItem: bListGroupItem
   };
 
-  var VuePlugin$p = {
+  var VuePlugin$25 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$o);
+      registerComponents(Vue, components$24);
     }
   };
 
-  vueUse(VuePlugin$p);
+  vueUse(VuePlugin$25);
 
-  var props$x = {
+  var props$33 = {
     tag: {
       type: String,
       default: 'div'
@@ -76689,7 +76602,7 @@ webpackContext.id = 190;
 
   var MediaBody = {
     functional: true,
-    props: props$x,
+    props: props$33,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -76701,7 +76614,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$y = {
+  var props$34 = {
     tag: {
       type: String,
       default: 'div'
@@ -76714,7 +76627,7 @@ webpackContext.id = 190;
 
   var MediaAside = {
     functional: true,
-    props: props$y,
+    props: props$34,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -76727,7 +76640,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$z = {
+  var props$35 = {
     tag: {
       type: String,
       default: 'div'
@@ -76748,7 +76661,7 @@ webpackContext.id = 190;
 
   var bMedia = {
     functional: true,
-    props: props$z,
+    props: props$35,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -76774,19 +76687,74 @@ webpackContext.id = 190;
     }
   };
 
-  var components$p = {
+  var components$25 = {
     bMedia: bMedia,
     bMediaAside: MediaAside,
     bMediaBody: MediaBody
   };
 
-  var VuePlugin$q = {
+  var VuePlugin$26 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$p);
+      registerComponents(Vue, components$25);
     }
   };
 
-  vueUse(VuePlugin$q);
+  vueUse(VuePlugin$26);
+
+  var BvEvent = function () {
+    function BvEvent(type) {
+      var eventInit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      classCallCheck(this, BvEvent);
+
+      // Start by emulating native Event constructor.
+      if (!type) {
+        throw new TypeError('Failed to construct \'' + this.constructor.name + '\'. 1 argument required, ' + arguments.length + ' given.');
+      }
+      // Assign defaults first, the eventInit,
+      // and the type last so it can't be overwritten.
+      assign(this, BvEvent.defaults(), eventInit, { type: type });
+      // Freeze some props as readonly, but leave them enumerable.
+      defineProperties(this, {
+        type: readonlyDescriptor(),
+        cancelable: readonlyDescriptor(),
+        nativeEvent: readonlyDescriptor(),
+        target: readonlyDescriptor(),
+        relatedTarget: readonlyDescriptor(),
+        vueTarget: readonlyDescriptor()
+      });
+      // Create a private variable using closure scoping.
+      var defaultPrevented = false;
+      // Recreate preventDefault method. One way setter.
+      this.preventDefault = function preventDefault() {
+        if (this.cancelable) {
+          defaultPrevented = true;
+        }
+      };
+      // Create 'defaultPrevented' publicly accessible prop
+      // that can only be altered by the preventDefault method.
+      defineProperty$1(this, 'defaultPrevented', {
+        enumerable: true,
+        get: function get$$1() {
+          return defaultPrevented;
+        }
+      });
+    }
+
+    createClass(BvEvent, null, [{
+      key: 'defaults',
+      value: function defaults$$1() {
+        return {
+          type: '',
+          cancelable: true,
+          nativeEvent: null,
+          target: null,
+          relatedTarget: null,
+          vueTarget: null
+        };
+      }
+    }]);
+    return BvEvent;
+  }();
 
   // Selectors for padding/margin adjustments
   var Selector = {
@@ -77548,28 +77516,28 @@ webpackContext.id = 190;
     bModal: bModal$1
   };
 
-  var VuePlugin$r = {
+  var VuePlugin$27 = {
     install: function install(Vue) {
       registerDirectives(Vue, directives$1);
     }
   };
 
-  vueUse(VuePlugin$r);
+  vueUse(VuePlugin$27);
 
-  var components$q = {
+  var components$26 = {
     bModal: bModal
   };
 
-  var VuePlugin$s = {
+  var VuePlugin$28 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$q);
-      Vue.use(VuePlugin$r);
+      registerComponents(Vue, components$26);
+      Vue.use(VuePlugin$27);
     }
   };
 
-  vueUse(VuePlugin$s);
+  vueUse(VuePlugin$28);
 
-  var props$A = {
+  var props$36 = {
     tag: {
       type: String,
       default: 'ul'
@@ -77602,7 +77570,7 @@ webpackContext.id = 190;
 
   var bNav = {
     functional: true,
-    props: props$A,
+    props: props$36,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -77625,11 +77593,11 @@ webpackContext.id = 190;
     }
   };
 
-  var props$B = propsFactory();
+  var props$37 = propsFactory();
 
   var bNavItem = {
     functional: true,
-    props: props$B,
+    props: props$37,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -77641,7 +77609,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$C = {
+  var props$38 = {
     tag: {
       type: String,
       default: 'span'
@@ -77650,7 +77618,7 @@ webpackContext.id = 190;
 
   var bNavText = {
     functional: true,
-    props: props$C,
+    props: props$38,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -77744,7 +77712,7 @@ webpackContext.id = 190;
     }
   };
 
-  var components$r = {
+  var components$27 = {
     bNav: bNav,
     bNavItem: bNavItem,
     bNavText: bNavText,
@@ -77755,16 +77723,16 @@ webpackContext.id = 190;
     bNavDd: bNavItemDropdown
   };
 
-  var VuePlugin$t = {
+  var VuePlugin$29 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$r);
-      Vue.use(VuePlugin$c);
+      registerComponents(Vue, components$27);
+      Vue.use(VuePlugin$12);
     }
   };
 
-  vueUse(VuePlugin$t);
+  vueUse(VuePlugin$29);
 
-  var props$D = {
+  var props$39 = {
     tag: {
       type: String,
       default: 'nav'
@@ -77796,7 +77764,7 @@ webpackContext.id = 190;
 
   var bNavbar = {
     functional: true,
-    props: props$D,
+    props: props$39,
     render: function render(h, _ref) {
       var _class;
 
@@ -77812,7 +77780,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$E = {
+  var props$40 = {
     tag: {
       type: String,
       default: 'ul'
@@ -77829,7 +77797,7 @@ webpackContext.id = 190;
 
   var bNavbarNav = {
     functional: true,
-    props: props$E,
+    props: props$40,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -77849,7 +77817,7 @@ webpackContext.id = 190;
   linkProps$3.href.default = undefined;
   linkProps$3.to.default = undefined;
 
-  var props$F = assign(linkProps$3, {
+  var props$41 = assign(linkProps$3, {
     tag: {
       type: String,
       default: 'div'
@@ -77858,7 +77826,7 @@ webpackContext.id = 190;
 
   var bNavbarBrand = {
     functional: true,
-    props: props$F,
+    props: props$41,
     render: function render(h, _ref) {
       var props = _ref.props,
           data = _ref.data,
@@ -77919,7 +77887,7 @@ webpackContext.id = 190;
     }
   };
 
-  var components$s = {
+  var components$28 = {
     bNavbar: bNavbar,
     bNavbarNav: bNavbarNav,
     bNavbarBrand: bNavbarBrand,
@@ -77927,16 +77895,16 @@ webpackContext.id = 190;
     bNavToggle: bNavbarToggle
   };
 
-  var VuePlugin$u = {
+  var VuePlugin$30 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$s);
-      Vue.use(VuePlugin$t);
-      Vue.use(VuePlugin$b);
-      Vue.use(VuePlugin$c);
+      registerComponents(Vue, components$28);
+      Vue.use(VuePlugin$29);
+      Vue.use(VuePlugin$11);
+      Vue.use(VuePlugin$12);
     }
   };
 
-  vueUse(VuePlugin$u);
+  vueUse(VuePlugin$30);
 
   /**
    * @param {number} length
@@ -77961,7 +77929,7 @@ webpackContext.id = 190;
   var ELLIPSIS_THRESHOLD = 3;
 
   // Props object
-  var props$G = {
+  var props$42 = {
     disabled: {
       type: Boolean,
       default: false
@@ -78046,7 +78014,7 @@ webpackContext.id = 190;
       };
     },
 
-    props: props$G,
+    props: props$42,
     render: function render(h) {
       var _this = this;
 
@@ -78367,7 +78335,7 @@ webpackContext.id = 190;
     }
   };
 
-  var props$H = {
+  var props$43 = {
     perPage: {
       type: Number,
       default: 20
@@ -78384,7 +78352,7 @@ webpackContext.id = 190;
     // Our render function is brought in from the pagination mixin
   };var bPagination = {
     mixins: [paginationMixin],
-    props: props$H,
+    props: props$43,
     computed: {
       numberOfPages: function numberOfPages() {
         var result = Math.ceil(this.totalRows / this.perPage);
@@ -78423,23 +78391,23 @@ webpackContext.id = 190;
     }
   };
 
-  var components$t = {
+  var components$29 = {
     bPagination: bPagination
   };
 
-  var VuePlugin$v = {
+  var VuePlugin$31 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$t);
+      registerComponents(Vue, components$29);
     }
   };
 
-  vueUse(VuePlugin$v);
+  vueUse(VuePlugin$31);
 
   // Props needed for router links
   var routerProps = pickLinkProps('activeClass', 'exactActiveClass', 'append', 'exact', 'replace', 'target', 'rel');
 
   // Props object
-  var props$I = assign(
+  var props$44 = assign(
   // pagination-nav specific props
   {
     numberOfPages: {
@@ -78468,7 +78436,7 @@ webpackContext.id = 190;
   // Our render function is brought in via the pagination mixin
   var bPaginationNav = {
     mixins: [paginationMixin],
-    props: props$I,
+    props: props$44,
     computed: {
       // Used by render function to trigger wraping in '<nav>' element
       isNav: function isNav() {
@@ -78515,17 +78483,17 @@ webpackContext.id = 190;
     }
   };
 
-  var components$u = {
+  var components$30 = {
     bPaginationNav: bPaginationNav
   };
 
-  var VuePlugin$w = {
+  var VuePlugin$32 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$u);
+      registerComponents(Vue, components$30);
     }
   };
 
-  vueUse(VuePlugin$w);
+  vueUse(VuePlugin$32);
 
   var NAME = 'tooltip';
   var CLASS_PREFIX = 'bs-tooltip';
@@ -80124,17 +80092,17 @@ webpackContext.id = 190;
     }
   };
 
-  var components$v = {
+  var components$31 = {
     bPopover: bPopover
   };
 
-  var VuePlugin$x = {
+  var VuePlugin$33 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$v);
+      registerComponents(Vue, components$31);
     }
   };
 
-  vueUse(VuePlugin$x);
+  vueUse(VuePlugin$33);
 
   var bProgressBar = {
     render: function render(h) {
@@ -80312,18 +80280,18 @@ webpackContext.id = 190;
     }
   };
 
-  var components$w = {
+  var components$32 = {
     bProgress: bProgress,
     bProgressBar: bProgressBar
   };
 
-  var VuePlugin$y = {
+  var VuePlugin$34 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$w);
+      registerComponents(Vue, components$32);
     }
   };
 
-  vueUse(VuePlugin$y);
+  vueUse(VuePlugin$34);
 
   var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -82129,7 +82097,7 @@ webpackContext.id = 190;
           role: this.isStacked ? 'table' : null,
           'aria-busy': this.computedBusy ? 'true' : 'false',
           'aria-colcount': String(fields.length),
-          'aria-rowcount': this.$attrs['aria-rowcount'] || this.items.length > this.perPage ? this.items.length : null
+          'aria-rowcount': this.$attrs['aria-rowcount'] || this.perPage && this.perPage > 0 ? '-1' : null
         }
       }, [caption, colgroup, thead, tfoot, tbody]);
 
@@ -82165,13 +82133,6 @@ webpackContext.id = 190;
       sortDesc: {
         type: Boolean,
         default: false
-      },
-      sortDirection: {
-        type: String,
-        default: 'asc',
-        validator: function validator(direction) {
-          return arrayIncludes(['asc', 'desc', 'last'], direction);
-        }
       },
       caption: {
         type: String,
@@ -82294,10 +82255,6 @@ webpackContext.id = 190;
         default: false
       },
       noProviderFiltering: {
-        type: Boolean,
-        default: false
-      },
-      noSortReset: {
         type: Boolean,
         default: false
       },
@@ -82644,21 +82601,11 @@ webpackContext.id = 190;
         this.$emit('row-hovered', item, index, e);
       },
       headClicked: function headClicked(e, field) {
-        var _this4 = this;
-
         if (this.stopIfBusy(e)) {
           // If table is busy (via provider) then don't propagate
           return;
         }
         var sortChanged = false;
-        var toggleLocalSortDesc = function toggleLocalSortDesc() {
-          var sortDirection = field.sortDirection || _this4.sortDirection;
-          if (sortDirection === 'asc') {
-            _this4.localSortDesc = false;
-          } else if (sortDirection === 'desc') {
-            _this4.localSortDesc = true;
-          }
-        };
         if (field.sortable) {
           if (field.key === this.localSortBy) {
             // Change sorting direction on current column
@@ -82666,12 +82613,12 @@ webpackContext.id = 190;
           } else {
             // Start sorting this column ascending
             this.localSortBy = field.key;
-            toggleLocalSortDesc();
+            this.localSortDesc = false;
           }
           sortChanged = true;
-        } else if (this.localSortBy && !this.noSortReset) {
+        } else if (this.localSortBy) {
           this.localSortBy = null;
-          toggleLocalSortDesc();
+          this.localSortDesc = false;
           sortChanged = true;
         }
         this.$emit('head-clicked', field.key, field, e);
@@ -82707,7 +82654,7 @@ webpackContext.id = 190;
         }
       },
       _providerUpdate: function _providerUpdate() {
-        var _this5 = this;
+        var _this4 = this;
 
         // Refresh the provider items
         if (this.computedBusy || !this.hasProvider) {
@@ -82721,7 +82668,7 @@ webpackContext.id = 190;
         if (data && data.then && typeof data.then === 'function') {
           // Provider returned Promise
           data.then(function (items) {
-            _this5._providerSetLocal(items);
+            _this4._providerSetLocal(items);
           });
         } else {
           // Provider returned Array data
@@ -82759,17 +82706,17 @@ webpackContext.id = 190;
     }
   };
 
-  var components$x = {
+  var components$33 = {
     bTable: bTable
   };
 
-  var VuePlugin$z = {
+  var VuePlugin$35 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$x);
+      registerComponents(Vue, components$33);
     }
   };
 
-  vueUse(VuePlugin$z);
+  vueUse(VuePlugin$35);
 
   // Helper component
   var bTabButtonHelper = {
@@ -83166,22 +83113,20 @@ webpackContext.id = 190;
         props: { mode: 'out-in' },
         on: {
           beforeEnter: this.beforeEnter,
-          beforeLeave: this.beforeLeave
+          afterEnter: this.afterEnter,
+          afterLeave: this.afterLeave
         }
       }, [content]);
     },
 
     methods: {
       beforeEnter: function beforeEnter() {
-        var _this = this;
-
-        // change opacity 1 frame after display
-        // otherwise css transition won't happen
-        window.requestAnimationFrame(function () {
-          _this.show = true;
-        });
+        this.show = false;
       },
-      beforeLeave: function beforeLeave() {
+      afterEnter: function afterEnter() {
+        this.show = true;
+      },
+      afterLeave: function afterLeave() {
         this.show = false;
       }
     },
@@ -83260,18 +83205,18 @@ webpackContext.id = 190;
     }
   };
 
-  var components$y = {
+  var components$34 = {
     bTabs: bTabs,
     bTab: bTab
   };
 
-  var VuePlugin$A = {
+  var VuePlugin$36 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$y);
+      registerComponents(Vue, components$34);
     }
   };
 
-  vueUse(VuePlugin$A);
+  vueUse(VuePlugin$36);
 
   var bTooltip = {
     mixins: [toolpopMixin],
@@ -83311,21 +83256,21 @@ webpackContext.id = 190;
     }
   };
 
-  var components$z = {
+  var components$35 = {
     bTooltip: bTooltip
   };
 
-  var VuePlugin$B = {
+  var VuePlugin$37 = {
     install: function install(Vue) {
-      registerComponents(Vue, components$z);
+      registerComponents(Vue, components$35);
     }
   };
 
-  vueUse(VuePlugin$B);
+  vueUse(VuePlugin$37);
 
 
 
-  var components$A = /*#__PURE__*/Object.freeze({
+  var components$36 = /*#__PURE__*/Object.freeze({
     Alert: VuePlugin,
     Badge: VuePlugin$1,
     Breadcrumb: VuePlugin$2,
@@ -83334,34 +83279,34 @@ webpackContext.id = 190;
     ButtonGroup: VuePlugin$4,
     Card: VuePlugin$7,
     Carousel: VuePlugin$8,
-    Collapse: VuePlugin$b,
-    Dropdown: VuePlugin$c,
-    Embed: VuePlugin$d,
-    Form: VuePlugin$e,
-    FormGroup: VuePlugin$f,
-    FormInput: VuePlugin$i,
-    FormTextarea: VuePlugin$j,
-    FormFile: VuePlugin$k,
-    FormCheckbox: VuePlugin$g,
-    FormRadio: VuePlugin$h,
-    FormSelect: VuePlugin$l,
-    Image: VuePlugin$m,
+    Collapse: VuePlugin$11,
+    Dropdown: VuePlugin$12,
+    Embed: VuePlugin$13,
+    Form: VuePlugin$14,
+    FormGroup: VuePlugin$15,
+    FormInput: VuePlugin$18,
+    FormTextarea: VuePlugin$19,
+    FormFile: VuePlugin$20,
+    FormCheckbox: VuePlugin$16,
+    FormRadio: VuePlugin$17,
+    FormSelect: VuePlugin$21,
+    Image: VuePlugin$22,
     InputGroup: VuePlugin$6,
-    Jumbotron: VuePlugin$n,
+    Jumbotron: VuePlugin$23,
     Layout: VuePlugin$9,
-    Link: VuePlugin$o,
-    ListGroup: VuePlugin$p,
-    Media: VuePlugin$q,
-    Modal: VuePlugin$s,
-    Nav: VuePlugin$t,
-    Navbar: VuePlugin$u,
-    Pagination: VuePlugin$v,
-    PaginationNav: VuePlugin$w,
-    Popover: VuePlugin$x,
-    Progress: VuePlugin$y,
-    Table: VuePlugin$z,
-    Tabs: VuePlugin$A,
-    Tooltip: VuePlugin$B
+    Link: VuePlugin$24,
+    ListGroup: VuePlugin$25,
+    Media: VuePlugin$26,
+    Modal: VuePlugin$28,
+    Nav: VuePlugin$29,
+    Navbar: VuePlugin$30,
+    Pagination: VuePlugin$31,
+    PaginationNav: VuePlugin$32,
+    Popover: VuePlugin$33,
+    Progress: VuePlugin$34,
+    Table: VuePlugin$35,
+    Tabs: VuePlugin$36,
+    Tooltip: VuePlugin$37
   });
 
   /*
@@ -83937,13 +83882,13 @@ webpackContext.id = 190;
     bScrollspy: bScrollspy
   };
 
-  var VuePlugin$C = {
+  var VuePlugin$38 = {
     install: function install(Vue) {
       registerDirectives(Vue, directives$2);
     }
   };
 
-  vueUse(VuePlugin$C);
+  vueUse(VuePlugin$38);
 
   var inBrowser$2 = typeof window !== 'undefined' && typeof document !== 'undefined';
 
@@ -84108,13 +84053,13 @@ webpackContext.id = 190;
     bTooltip: bTooltip$1
   };
 
-  var VuePlugin$D = {
+  var VuePlugin$39 = {
     install: function install(Vue) {
       registerDirectives(Vue, directives$3);
     }
   };
 
-  vueUse(VuePlugin$D);
+  vueUse(VuePlugin$39);
 
   var inBrowser$3 = typeof window !== 'undefined' && typeof document !== 'undefined';
 
@@ -84278,25 +84223,25 @@ webpackContext.id = 190;
     bPopover: bPopover$1
   };
 
-  var VuePlugin$E = {
+  var VuePlugin$40 = {
     install: function install(Vue) {
       registerDirectives(Vue, directives$4);
     }
   };
 
-  vueUse(VuePlugin$E);
+  vueUse(VuePlugin$40);
 
 
 
   var directives$5 = /*#__PURE__*/Object.freeze({
-    Toggle: VuePlugin$a,
-    Modal: VuePlugin$r,
-    Scrollspy: VuePlugin$C,
-    Tooltip: VuePlugin$D,
-    Popover: VuePlugin$E
+    Toggle: VuePlugin$10,
+    Modal: VuePlugin$27,
+    Scrollspy: VuePlugin$38,
+    Tooltip: VuePlugin$39,
+    Popover: VuePlugin$40
   });
 
-  var VuePlugin$F = {
+  var VuePlugin$41 = {
     install: function install(Vue) {
       if (Vue._bootstrap_vue_installed) {
         return;
@@ -84305,8 +84250,8 @@ webpackContext.id = 190;
       Vue._bootstrap_vue_installed = true;
 
       // Register component plugins
-      for (var plugin in components$A) {
-        Vue.use(components$A[plugin]);
+      for (var plugin in components$36) {
+        Vue.use(components$36[plugin]);
       }
 
       // Register directive plugins
@@ -84316,9 +84261,9 @@ webpackContext.id = 190;
     }
   };
 
-  vueUse(VuePlugin$F);
+  vueUse(VuePlugin$41);
 
-  return VuePlugin$F;
+  return VuePlugin$41;
 
 })));
 //# sourceMappingURL=bootstrap-vue.js.map
@@ -123751,7 +123696,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			var _this4 = this;
 
 			// console.log(this.form.datosf)
-			this.loading = true;
+			var loader = this.$loading.show();
+			// this.loading=true;
 			this.cargarFiltros();
 			this.graficas = [];
 			if (this.validarGG()) {
@@ -123762,13 +123708,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 						"grafica": response.data.grafico,
 						"datos": response.data.datos
 					});
-					_this4.loading = false;
+					// this.loading=false;
+					loader.hide();
 					Vue.toasted.show('Reporte Generado', {
 						theme: "primary",
 						position: "bottom-right",
 						duration: 2000
 					});
 				}).catch(function (error) {
+					loader.hide();
 					Vue.toasted.show('Ha ocurrido un error', {
 						theme: "primary",
 						position: "bottom-right",
@@ -125173,20 +125121,7 @@ var render = function() {
                   [_vm._v("Pronosticar")]
                 )
               ])
-            : _c("div", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    on: {
-                      click: function($event) {
-                        _vm.cargar()
-                      }
-                    }
-                  },
-                  [_vm._v("Diagnosticar")]
-                )
-              ])
+            : _c("div")
         ]
       )
     ],
@@ -127306,7 +127241,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         labels: null
       },
       grafica1: [{
-        titulo: "Vuelos Ejecutados Del 15 al 17 de Mayo",
+        titulo: "Vuelos Ejecutados Del 15 al 31 de Mayo",
         grafica: "Bar",
         datos: {
           labels: ["15 Mayo", "16 Mayo", "17 Mayo"],
@@ -127320,7 +127255,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         filtrosV: ['Ejecutados'],
         periodo: "Personalizado",
         desde: "2018-05-15",
-        hasta: "2018-05-17"
+        hasta: "2018-05-31"
       },
       grafica2: [{
         titulo: "Vuelos Abiertos Del 15 al 31 de Mayo",
@@ -127478,10 +127413,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     ingresos: function ingresos() {
       var _this2 = this;
 
+      var loader = this.$loading.show();
+      var myDate = new Date();
       var auxI = "2018-05-15";
-      var auxF = "2018-05-31";
-      var titulo = "Ingresos Del 15 al 31 de Mayo";
-
+      var auxF = "2018-05-" + myDate.getDate();
+      var titulo = "Ingresos Del 15 al " + myDate.getDate() + " de Mayo";
+      this.grafica5[0].titulo = titulo;
       axios({
         method: 'get',
         url: '/reportes/api/ingresos/?inicio=' + auxI + '&final=' + auxF
@@ -127491,7 +127428,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this2.datosGLine.titulo = titulo;
         _this2.grafica5[0].datos.data = [response.data.data];
         _this2.grafica5[0].datos.labels = response.data.labels;
-        _this2.grafica5[0].titulo;
+        loader.hide();
         console.log(response.data);
       }).catch(function (err) {
         Vue.toasted.show('Ha ocurrido un error', {
@@ -127950,7 +127887,17 @@ var render = function() {
           [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-header text-center" }, [
-                _c("strong", [_vm._v("Vuelos De la Quincena")])
+                _c("strong", [
+                  _vm._v("Vuelos "),
+                  _c(
+                    "p",
+                    {
+                      staticClass: "font-weight-light",
+                      staticStyle: { display: "initial" }
+                    },
+                    [_vm._v("Del 15 Mayo al 31 de Mayo")]
+                  )
+                ])
               ])
             ]),
             _vm._v(" "),
