@@ -3,14 +3,17 @@
 @section('content')
 {{-- {{ dd($paquetes) }} --}}
 
+<script src="{{ asset('online/js/alerta.js') }}"></script>
+
  <div class="container-detalles">
+          <div class="titulo_detalles"><b>Selecciona tu boleto de multidestino</b></div>
           <h2 class="pdetalles"><b>Los precios son por persona, por viaje e incluyen todos los impuestos y cargos; sin embargo, no incluyen los cargos de equipaje</b></h2>
 @php
 	$contadorP=1;
 @endphp
     @foreach ($paquetes as $paquete)
 	
-	<form action="{{  URL::to('/online/cliente/DetalleMultidestino') }}" method="get" accept-charset="utf-8">
+	<form action="{{  URL::to('/online/cliente/DetalleMultidestino2') }}" method="get" accept-charset="utf-8">
 		
 		{{ csrf_field() }} 
 
@@ -70,7 +73,13 @@
           <input type="hidden" name="ninos" value="{{ $ObjVuelo->ninos }}">
           <input type="hidden" name="adultos" value="{{ $ObjVuelo->adultos }}">
           <input type="hidden" name="ninosbrazos" value="{{ $ObjVuelo->ninosbrazos}}">
+
+        @if(Auth::guest())
+          <button id="login" class="btn btn-md btn-primary">Seleccionar</button>
+        @else
           <button type="submit" class="btn btn-md btn-primary">Seleccionar</button>
+        @endif
+          
         
       </div> <!--fin col-md-4-->
    </div><!--row sm-4-->

@@ -41,6 +41,8 @@ Route::group(['prefix' => 'cliente'], function() {
 
     // Route::get('/DetalleRetorno', 'Online\ClienteController@DetalleRetorno')->name('cliente.DetalleRetorno');
 
+    Route::get('/DetalleRetorno', 'Online\ClienteController@DetalleRetorno')->name('cliente.DetalleRetorno');
+
     Route::get('/equipaje', 'Online\ClienteController@equipaje')->name('cliente.equipaje');
 
     Route::get('/documentacion', 'Online\ClienteController@documentacion')->name('cliente.documentacion');
@@ -49,14 +51,15 @@ Route::group(['prefix' => 'cliente'], function() {
 
     // Route::get('CompraBoleto/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}', 'Online\ClienteController@CompraBoleto2')->name('cliente.CompraBoleto2');
 
-    // Route::get('DetalleRetorno/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}/{retorno}', 'Online\ClienteController@DetalleRetorno2')->name('cliente.DetalleRetorno2');
+     Route::get('DetalleRetorno/{cantidad}/{ninosbrazos}/{tarifa_vuelo}/{vuelo}/{retorno}', 'Online\ClienteController@DetalleRetorno2')->name('cliente.DetalleRetorno2');
 
+   //Route::get('ConsultarBoleto','Online\UserController@ConsultarBoleto')->name('cliente.ConsultarBoleto');
 
     Route::get('/DetalleMultidestino', 'Online\ClienteController@DetalleMultidestino')->name('cliente.DetalleMultidestino');
 
     Route::post('/checkin', 'Online\ClienteController@Checkin')->name('cliente.Checkin'); 
 
-    
+    Route::post('inicio', 'Online\UserController@update')->name('cliente.ActualizarPerfil');
 
 });
 
@@ -93,3 +96,7 @@ Route::get('/reportes', function () {
 });
 
 Route::get('listar-cargos', 'Reportes\ApiControllerDW@listCargos')->name('cargo.list.DW');
+
+//Rutas de login social
+Route::get('auth/{provider}', 'OnlineAuth\SocialAuthController@redirectToProvider')->name('social.auth');
+Route::get('auth/{provider}/callback', 'OnlineAuth\SocialAuthController@handleProviderCallback');

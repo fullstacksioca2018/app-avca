@@ -37,8 +37,13 @@
   <div class="row">
     <div class="col-md-8 offset-md-2">
 
+        @if (Auth::guest())
+            <form method="get" action="{{ URL::to('/cliente/DetalleRetorno') }}" onsubmit="myFunction()">
+        @else
+            <form method="get" action="{{ URL::to('/online/cliente/DetalleRetorno') }}" onsubmit="myFunction()">
 
-      <form method="get" action="{{ URL::to('/online/cliente/DetalleRetorno') }}" onsubmit="myFunction()">
+        @endif
+      
         
           <div class="form-row">
   
@@ -89,60 +94,22 @@
 
  <div class="form-row">
 
-
+    
 
 <div class="col-md-4">            
             <label for="from" class="h">Fecha de ida:</label>           
-            <input type="date" class="form-control impout3" name="fecha_salida">       
+            <input type="date" class="form-control impout3" id="fecha_salida" name="fecha_salida" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}>       
              <i class="fa fa-calendar prefix icocalendario"></i>
                  
         </div>
 
 <div class="col-md-4">            
             <label for="to" class="h">De regreso:</label>           
-            <input type="date" class="form-control impout3" name="fecha_retorno">       
+            <input type="date" class="form-control impout3" id="fecha_regreso" name="fecha_retorno" min="{{Carbon::now()->addDay(2)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}>       
              <i class="fa fa-calendar prefix icocalendario"></i>                 
         </div>
 
-<script>
-    $.datepicker.setDefaults( $.datepicker.regional[ "es" ] );
-    $( function() {
-    var dateFormat = "dd/mm/yy",
-    from = $( "#from" )
-    .datepicker({
-    minDate:1,
-    defaultDate: "+1",
-    //changeMonth: true,
-    showAnim: 'drop',
-    numberOfMonths: 2,
-    maxDate:"+3M",
-    })
-    .on( "change", function() {
-    to.datepicker( "option", "minDate", getDate( this ) );
-    }),
-    to = $( "#to" ).datepicker({
-
-    defaultDate: "+1",
-    //changeMonth: true,
-    showAnim: 'drop',
-    numberOfMonths: 2,
-    maxDate:"+3M",
-    minDate:1,
-    })
-    .on( "change", function() {
-    from.datepicker( "option", "maxDate", getDate( this ) );
-    });
-    function getDate( element ) {
-    var date;
-    try {
-    date = $.datepicker.parseDate( dateFormat, element.value );
-    } catch( error ) {
-    date = null;
-    }
-    return date;
-    }
-    } );
-</script>
+  <script src="/online/js/FechaValidada.js" type="text/javascript"></script>
 
 <div class="col col-md-1 col-lg-1">
        <label for="exampleFormControlSelect1" class="h">Adultos:</label>
@@ -280,7 +247,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
             <div class="portfolio-wrap">
               <figure>
-                <img src="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" class="img-fluid" alt="">
+                <img src="{{ asset('online/img/portfolio/barcelona/barcelona3.jpg') }}" class="img-fluid" alt="">
 
                 <a href="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" data-lightbox="portfolio" data-title="La Casa Fuerte, Barcelona - Estado Anzoategui" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
 
@@ -332,7 +299,16 @@
 
                 <a href="{{ asset('online/img/portfolio/cumana/cumana3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
 
-                <a href="{{ route('destino.cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                @if (Auth::guest())
+
+                  <a href="{{ route('destino.cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+
+                @else
+                
+                  <a href="{{ URL::to('/online/destino/cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+
+                @endif
+                
               </figure>
 
               <div class="portfolio-info">

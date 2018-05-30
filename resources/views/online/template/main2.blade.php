@@ -42,7 +42,7 @@
   <link href="{{ asset('online/plugins/lib/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
   <link href="{{ asset('online/plugins/lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
   <link href="{{ asset('online/plugins/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('plugins/lib/wowalerta/css/wow-alert.css') }}">
+  <link rel="stylesheet" href="{{ asset('online/plugins/lib/wowalerta/css/wow-alert.css') }}">
 
   <!-- Main Stylesheet File -->
   <link href="{{ asset('online/css/estilomod.css') }}" rel="stylesheet">
@@ -50,6 +50,7 @@
   <link href="{{ asset('online/css/destinos.css') }}" rel="stylesheet">
   <link href="{{ asset('online/css/estilocompras.css') }}" rel="stylesheet">
    <link href="{{ asset('online/css/estilomodallogin.css') }}" rel="stylesheet">
+   <link href="{{ asset('online/css/userconsulta.css') }}" rel="stylesheet">
 @yield('style')
 
 
@@ -94,13 +95,15 @@
 <script src="{{ asset('online/js/prueba.js') }}"></script>
 <script src="{{ asset('online/js/jspersonal.js') }}"></script>
 <script src="{{ asset('online/js/formulario.js') }}"></script>
+
+
 <!--Lo del Select niños en brazos y esas cosas Main JS -->
 
 {{--======================================================
                         scritp propios 
     ======================================================--}}
 
-<script src="{{ asset('online/js/alerta.js') }}"></script>
+
 
 </head>
 
@@ -111,12 +114,15 @@
   @include('online.template.partials.ModalCheckin')
   @include('online.template.partials.header')
   @include('online.template.partials.erros')
+  @include('flash::message')
   @yield('content')
   @include('online.template.partials.footer')
 
 
    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-
+  <script>
+    $('div.alert').delay(5000).fadeOut(350);
+  </script>
 </body>
 </html>
