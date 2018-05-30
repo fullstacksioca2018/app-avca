@@ -123404,7 +123404,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			filtrosV: null,
 			year: ["2016", "2017", "2018"],
 			mes: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-			opcionesT: ['Decembrina', 'Semana Santa', 'Carnavales'],
+			opcionesT: ['Decembrina', 'Semana Santa', 'Carnaval'],
 			graficas: [],
 			tipos: [],
 			parametros: ['Asistencias', 'Inasistencias', 'Licencias' /*,'Vacaciones'*/

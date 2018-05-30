@@ -335,7 +335,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 				],
 				mes:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio"
 				,"Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
-				opcionesT:[ 'Decembrina','Semana Santa','Carnavales'
+				opcionesT:[ 'Decembrina','Semana Santa','Carnaval'
 				],
 				graficas:[],
 				tipos:[	],
