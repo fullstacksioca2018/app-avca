@@ -2,17 +2,61 @@
 
 namespace App\Http\Controllers\rrhh;
 
-use App\Mail\rrhh\ConvocatoriaEnviada;
+use Validator;
+use App\Models\rrhh\Area;
+use App\Models\rrhh\Cargo;
+use App\Models\rrhh\Vacante;
+use Illuminate\Http\Request;
+use App\Models\rrhh\Sucursal;
 use App\Models\rrhh\Aspirante;
 use App\Models\rrhh\Entrevista;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use Validator;
+use App\Mail\rrhh\ConvocatoriaEnviada;
 
 class SeleccionController extends Controller
 {
+    public function listadoCargosVacante()
+    {   
+        $vacantes = DB::table("cargos")
+            ->join("areas", "areas.area_id", "=", "cargos.area_id")
+            ->join("vacantes", "vacantes.cargo_id", "=", "cargos.cargo_id")
+            ->join('sucursales', "sucursales.sucursal_id", "=", "vacantes.sucursal_id")
+            ->where([
+                //["areas.area_id", "=", 1],
+                ["vacantes.estatus", "=", "activa"]
+            ])
+            /*->where("areas.slug", "=", $slug)
+            ->orWhere("cargos.cargo_id", "=", "vacantes.cargo_id")*/
+            ->select("cargos.*", "vacantes.*", "sucursales.*")
+            ->get();
+        
+
+        return $vacantes;        
+
+
+        $data = [];
+        $area = Area::findOrFail(1);
+        //return $area->cargos;
+        $vacantes = Vacante::all();
+
+        foreach ($area->cargos as $cargo) {
+            foreach ($vacantes as $vacante) {
+                if ($vacante->cargo_id === $cargo->cargo_id && $vacante->estatus === 'activa') {
+                    $data = [
+                        'cargo' => $cargo->titulo,
+                        'f_pub' => $vacante->fecha_publicacion
+                    ];
+                }
+            }
+        }
+        return $data;
+        return $area->cargos;
+
+        
+    }
+
     public function index()
     {
         return view('rrhh.backend.captacion.seleccion.list');

@@ -335,6 +335,7 @@
             });
         },
         ingresos(){
+        let loader = this.$loading.show();
           var myDate = new Date();
           var auxI="2018-05-15";
           var auxF="2018-05-"+myDate.getDate();
@@ -349,6 +350,7 @@
               this.datosGLine.titulo=titulo
               this.grafica5[0].datos.data=[response.data.data]
               this.grafica5[0].datos.labels=response.data.labels
+            loader.hide();
               console.log(response.data)
             }).catch((err)=>{
                 Vue.toasted.show('Ha ocurrido un error', {

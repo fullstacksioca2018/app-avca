@@ -315,12 +315,12 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 					busqueda:"Más alto",
 					busquedaRow:"1",
 					busquedaMonto:"2000",
-					filtrosV:null,
-					cargosF:null,
-					sucursalesF:null,
-					origenesF:null,
-					destinosF:null,
-					rutasF:null
+					filtrosV:[],
+					cargosF:[],
+					sucursalesF:[],
+					origenesF:[],
+					destinosF:[],
+					rutasF:[]
 				},
 				tiposC:["Consulta","Busqueda"],
 				filtrosPjr:null,
@@ -716,7 +716,8 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 		     },
 			generar2(){
                // console.log(this.form.datosf)
-               this.loading=true;
+        	let loader = this.$loading.show();
+               // this.loading=true;
                this.cargarFiltros();
                this.graficas=[];
                if(this.validarGG()){
@@ -727,13 +728,15 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
   						"grafica":response.data.grafico,
   						"datos":response.data.datos
   					});
-               		this.loading=false;
+               		// this.loading=false;
+            		loader.hide();
 					Vue.toasted.show('Reporte Generado', {
                         theme: "primary", 
 	                    position: "bottom-right",  
 	                    duration : 2000
                     });
 				}).catch(function (error) {
+            		loader.hide();
 		        	Vue.toasted.show('Ha ocurrido un error', {
                         theme: "primary", 
 	                    position: "bottom-right",  

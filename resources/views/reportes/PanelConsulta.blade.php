@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <!-- Metodo VUEJS/ assets/Operativo/AdministracionRuta-->
                     <div id="app">
-						<panel user="{{ auth()->user()->role }}"></panel>
+						<panel user="Gerente General"></panel>
                     </div>
                 </div>
             </div>

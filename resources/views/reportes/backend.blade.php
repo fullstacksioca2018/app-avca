@@ -93,7 +93,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Right navbar links | Notifications | User info -->
     <ul class="navbar-nav ml-auto">
-      
       <!-- Profile Dropdown Menu -->
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link" data-toggle="dropdown">
@@ -195,22 +194,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<!-- <script src="/adminlte/plugins/jquery/jquery.min.js"></script> -->
+<!-- Vue App -->
+<script src="{{ asset('js/app.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/adminlte/js/adminlte.min.js"></script>
-<!-- Vue App -->
-<script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('js/reportar/main.js') }}"></script>
 <!--Sweetalert-->
-
-<!-- build -->
-<!-- <script src="/js/app.js"></script> -->
-
 <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+
+<script src="{{ asset('js/reportar/main.js') }}"></script>
+
 @stack('scripts')
 </body>
 </html>

@@ -39,7 +39,7 @@
 			<button class="btn btn-primary" @click="pronosticar()">Pronosticar</button>
 		</div>
 		<div v-else>
-			<button class="btn btn-primary" @click="cargar()">Diagnosticar</button>
+			<!-- <button class="btn btn-primary" @click="cargar()">Diagnosticar</button> -->
 		</div>
 	</div></div>
 </template>

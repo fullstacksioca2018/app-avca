@@ -2,7 +2,7 @@
     @section('content')
     <breadcrumbpersonal></breadcrumbpersonal>
     <div class="container-fluid">
-            <dashboard user="{{ auth()->user()->role }}"></dashboard>
+            <dashboard user="Gerente General"></dashboard>
     </div>
     
 

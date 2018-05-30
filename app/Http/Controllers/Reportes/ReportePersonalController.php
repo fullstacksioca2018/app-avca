@@ -217,7 +217,6 @@ class ReportePersonalController extends Controller
         $cont=0;
         $titulo="";
 
-        // return response()->json($consulta->all());
         $periodos=$this->periodos($consulta); //fechas meses para consulta
         $labels=$this->labelsPeriodos($periodos);
         if($consulta->tipo!="Busqueda"){
@@ -346,6 +345,7 @@ class ReportePersonalController extends Controller
                         //ES GRAFICA PIE 'TORTA'
                     }
                 }       
+                
                 $cont++;
                 for($p=0;$p<count($consulta->parametros);$p++){
                     if($titulo=='')
@@ -353,7 +353,7 @@ class ReportePersonalController extends Controller
                     else
                         $titulo=$titulo.", ".$consulta->parametros[$p];
                 }
-                    // return "sin filtros";
+         // return "sin filtros";
             }
         }
         else{ //Es una busqueda
@@ -389,9 +389,10 @@ class ReportePersonalController extends Controller
                 return "Error";
             }
         }
-        $obj= new stdClass();
-        if(((count($periodos))>1)||((count($consulta->sucursalesF))>1)||((count($consulta->cargosF))>1)||($consulta->tipo=="Busqueda"&&(count($label))>1)){ //GRAFICA BARG
-            $obj->titulo=$titulo;
+         $obj= new stdClass();
+        // return response()->json($consulta->sucursalesF);
+         if(((count($periodos))>1)||((count($consulta->sucursalesF))>1)||((count($consulta->cargosF))>1)||($consulta->tipo=="Busqueda"&&(count($label))>1)){ //GRAFICA BARG
+         $obj->titulo=$titulo;
             $obj->grafico="BarG";
             $obj2= new stdClass();
             $obj2->labels=$labels;
@@ -402,7 +403,7 @@ class ReportePersonalController extends Controller
             $obj->datos=$obj2;
         }
         else{ //GRAFICA TORTA PIE
-            $acumulador=0;
+         $acumulador=0;
             if($consulta->tipo!='Busqueda'){
                 foreach ($data as $key) {
                     $acumulador=$acumulador+$key;
@@ -426,7 +427,7 @@ class ReportePersonalController extends Controller
             $obj->datos=$obj2;
         }
             // return "algo";
-        return response()->json($obj);  
+         return response()->json($obj);  
     }   
 
     public function tituloString($parametros,$busqueda,$Monto,$Row){

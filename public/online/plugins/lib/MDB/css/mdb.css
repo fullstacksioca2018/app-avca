@@ -5499,7 +5499,7 @@ a.waves-effect, a.waves-light {
     margin-top: 0; }
     .navbar .dropdown-menu a {
       padding: 10px;
-      font-size: 0.9375rem;
+      font-size: 20px;
       font-weight: 300;
       color: #000000 !important; }
   .navbar.navbar-light .navbar-nav .nav-item .nav-link.disbled {

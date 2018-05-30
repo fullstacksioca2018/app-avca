@@ -14,11 +14,11 @@
                       <img src="{{ asset('online/img/login/web-checkin.png') }}"  alt="" style="height: 100px" class="img-fluid mb-2 mt-3">
 
                   </div>
-                  
-                   {!! Form::open(['route' => 'cliente.Checkin', 'method' => 'POST']) !!}
+
+                  {!! Form::open(['route' => 'online.cliente.Checkin', 'method' => 'POST']) !!}
                             
                         {{ csrf_field() }}
-                        
+
                           <div class="form-group">
                               <label for="localizador" class="col-md-4 control-label"><strong>Localizador</strong></label>
                   
@@ -36,7 +36,8 @@
                 
                               </div>
                           </div>
-                  {!! Form::close() !!}
+                   {!! Form::close() !!} 
+                
                 </div>
             </div>
         </div>

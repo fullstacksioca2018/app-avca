@@ -13,13 +13,13 @@
       <ul class="nav nav-treeview">
         <li class="nav-item has-treeview menu-open">
           <a href="{{ URL::to('/reportes')}}" id="reportesnav" class="nav-link">
-            <i class="fa fa-users nav-icon"></i>
+            <i class="fa fa-home nav-icon"></i>
             <p>Inicio <i class="right"></i></p>
           </a>
         </li>
         <li class="nav-item has-treeview menu-open">
           <a href="{{ URL::to('/reportes/panel') }}" id="panelnav" class="nav-link">
-            <i class="fa fa-user nav-icon"></i>
+            <i class="fa  fa-line-chart nav-icon"></i>
             <p>Reportes y Estadisticas<i class="right"></i></p>
           </a>
         </li>
