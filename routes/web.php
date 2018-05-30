@@ -85,6 +85,7 @@ Route::group(['prefix' => 'online'], function () {
   Route::get('/password/reset', 'OnlineAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'OnlineAuth\ResetPasswordController@showResetForm');
 });
+require 'AdministradorOnline.php';
 
 
 

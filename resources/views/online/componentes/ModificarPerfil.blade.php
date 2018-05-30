@@ -25,7 +25,7 @@
      <div class="py-2 text-center box wow flipInX" data-wow-duration="0.8s">
       <img class=" mx-auto img-fluid" src="{{ asset('online/img/logo.png') }}" width="150px" height="100px">
         <h2>Edite su perfil</h2>
-        <cite class="lead">Viaje con nosotos y llenase de experiencias y diverción.</cite>
+        <cite class="lead">Viaje con nosotos y llenese de experiencias y diverción.</cite>
         
         
      </div>
