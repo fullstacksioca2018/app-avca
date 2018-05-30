@@ -16,7 +16,7 @@ class AreasTableSeeder extends Seeder
 
         DB::table('areas')->insert([
             [
-                'nombre' => 'administrativa',
+                'nombre' => 'Administrativa',
                 'slug' => 'administrativa',
                 'foto' => '/rrhh/areas/administrativa.jpeg'
             ],
@@ -26,7 +26,7 @@ class AreasTableSeeder extends Seeder
                 'foto' => '/rrhh/areas/apoyo-logistico.jpg'
             ],
             [
-                'nombre' => 'operativo',
+                'nombre' => 'Operativo',
                 'slug' => 'operativo',
                 'foto' => '/rrhh/areas/operativo.jpeg'
             ],

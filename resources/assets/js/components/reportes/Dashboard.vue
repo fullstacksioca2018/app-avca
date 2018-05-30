@@ -4,7 +4,7 @@
   <div v-show="GraficaP==null">
     <div class="card">
       <div class="card-header text-center">
-          <strong>Vuelos De la Quincena</strong>
+          <strong>Vuelos <p class="font-weight-light" style="    display: initial;">Del 15 Mayo al 31 de Mayo</p></strong>
       </div>
     </div>
     <div class="container-fluid">
@@ -17,7 +17,7 @@
             </div>
             <div slot="content">
               <p class="card-category marginLe">Ejecutados</p>
-              <h4 class="card-title">12</h4>
+              <h4 class="card-title">{{ ejecutados }}</h4>
             </div>
             <div slot="footer">
               <a class="badge badge-light" @click="generar(1)"><i class="fa fa-plus-square"></i> Ver más</a>
@@ -33,7 +33,7 @@
             </div>
             <div slot="content">
               <p class="card-category marginLe">Abiertos</p>
-              <h4 class="card-title">123</h4>
+              <h4 class="card-title">{{ abiertos }}</h4>
             </div>
             <div slot="footer">
               <a @click="generar(2)" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
@@ -50,7 +50,7 @@
             </div>
             <div slot="content">
               <p class="card-category marginLe">Demorados</p>
-              <h4 class="card-title">3</h4>
+              <h4 class="card-title">{{ demorados }}</h4>
             </div>
             <div slot="footer">
               <a @click="generar(3)" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
@@ -67,7 +67,7 @@
             </div>
             <div slot="content">
               <p class="card-category marginLe">Cancelados</p>
-              <h4 class="card-title">0</h4>
+              <h4 class="card-title">{{ cancelados }}</h4>
             </div>
             <div slot="footer">
               <a @click="generar(4)" class="badge badge-light"><i class="fa fa-plus-square"></i> Ver más</a>
@@ -78,9 +78,8 @@
 
       </div>
     </div>
-    <div class="row">
+    <div class="row" v-if="datosGLine.data!=null">
         <div class="col-md-8">
-        <a @click="generar(5)">
           <chart-card :datos="datosGLine" tipo="Line">
             <template slot="header">
               <h4 class="card-title">Ingresos</h4>
@@ -97,7 +96,6 @@
               </div>
             </template>
           </chart-card>
-        </a>
         </div>
 
         <div class="col-md-4">
@@ -143,6 +141,10 @@
     data () {
       return {
         GraficaP:null,
+        ejecutados:0,
+        abiertos:0,
+        demorados:0,
+        cancelados:0,
         consultaProp:null,
         algo:null,
         datosGPie:{
@@ -151,17 +153,13 @@
           labels:["Asistencia","otro"]
         },
         datosGLine:{
-          data:[[35200,32200,34800]],
+          data:null,
           label:["AVCA"],
-          labels:["15 Mayo","16 Mayo","17 Mayo"]
+          labels:null
         },
-        ejecutados:null,
-        abiertos:null,
-        demorados:null,
-        cancelados:null,
         grafica1:[
           {
-            titulo:"Vuelos Ejecutados Del 15 al 17 de Mayo",
+            titulo:"Vuelos Ejecutados Del 15 al 31 de Mayo",
             grafica:"Bar",
             datos:{
               labels:["15 Mayo","16 Mayo","17 Mayo"],
@@ -176,7 +174,7 @@
           filtrosV:['Ejecutados'],
           periodo:"Personalizado",
           desde:"2018-05-15",
-          hasta:"2018-05-17"
+          hasta:"2018-05-31"
         },
         grafica2:[
           {
@@ -199,7 +197,7 @@
         },
         grafica3:[
           {
-            titulo:"Vuelos Demorados Del 15 al 17 de Mayo",
+            titulo:"Vuelos Demorados Del 15 al 31 de Mayo",
             grafica:"Bar",
             datos:{
               labels:["15 Mayo","16 Mayo","17 Mayo"],
@@ -214,7 +212,7 @@
           filtrosV:['Demorados'],
           periodo:"Personalizado",
           desde:"2018-05-15",
-          hasta:"2018-05-17"
+          hasta:"2018-05-31"
         },
         grafica4:[
           {
@@ -237,7 +235,7 @@
         },
         grafica5:[
         {
-          titulo:"Ingresos Del 15 al 17 de Mayo",
+          titulo:"Ingresos Del 15 al 31 de Mayo",
           grafica:"Line",
           datos:{
             data:[[35200,32200,34800]],
@@ -265,7 +263,7 @@
           consulta:"Personal",
           periodo:"Mes anterior",
           parametros:['Asistencias']
-        }
+        },
       }
     },
     computed:{
@@ -278,6 +276,8 @@
     },
       methods:{
         generar(tipo){
+          $('#reportesnav').removeClass('active');
+          $('#panelnav').addClass('active');
           switch (tipo) {
             case 1:
               this.GraficaP=this.grafica1
@@ -307,27 +307,67 @@
           EventBus.$emit('panel', true)
         },
         vuelos(estado){
-          // url='/api/reporte/vuelos/'+estado;
-          // axios({
-          //       method: 'get',
-          //       url: url       
-          //   }).then((response) =>{
-          //       this.ejecutados=response.data;
-          //   }).catch((err)=>{
-          //       Vue.toasted.show('Ha ocurrido un error', {
-          //           theme: "primary", 
-          //         position: "bottom-right",  
-          //         duration : 2000
-          //       });
-          //       console.log(err);
-          //   });
+          axios({
+                method: 'get',
+                url: '/reportes/api/vuelos/'+estado       
+            }).then((response) =>{
+                switch (estado) {
+                  case "abierto":
+                    this.abiertos=response.data
+                    break;
+                  case "cancelado":
+                    this.cancelados=response.data
+                    break;
+                  case "demorado":
+                    this.demorados=response.data
+                    break;
+                  case "ejecutado":
+                    this.ejecutados=response.data
+                    break;
+                }
+            }).catch((err)=>{
+                Vue.toasted.show('Ha ocurrido un error', {
+                    theme: "primary", 
+                  position: "bottom-right",  
+                  duration : 2000
+                });
+                console.log(err);
+            });
+        },
+        ingresos(){
+        let loader = this.$loading.show();
+          var myDate = new Date();
+          var auxI="2018-05-15";
+          var auxF="2018-05-"+myDate.getDate();
+          var titulo="Ingresos Del 15 al "+myDate.getDate()+" de Mayo";
+          this.grafica5[0].titulo=titulo
+          axios({
+                method: 'get',
+                url: '/reportes/api/ingresos/?inicio='+auxI+'&final='+auxF
+            }).then((response) =>{
+              this.datosGLine.data=[response.data.data]
+              this.datosGLine.labels=response.data.labels
+              this.datosGLine.titulo=titulo
+              this.grafica5[0].datos.data=[response.data.data]
+              this.grafica5[0].datos.labels=response.data.labels
+            loader.hide();
+              console.log(response.data)
+            }).catch((err)=>{
+                Vue.toasted.show('Ha ocurrido un error', {
+                    theme: "primary", 
+                  position: "bottom-right",  
+                  duration : 2000
+                });
+                console.log(err);
+            });
         }
       },
     created: function(){
-      this.vuelos("abierto")
       this.vuelos("ejecutado")
-      this.vuelos("retrasado")
+      this.vuelos("abierto")
+      this.vuelos("demorado")
       this.vuelos("cancelado")
+      this.ingresos()
       EventBus.$on('inicio', function (event) {
         this.GraficaP=null;
       }.bind(this));

@@ -16,12 +16,12 @@ class CreateDwRutasTable extends Migration
         Schema::create('DwRutas', function (Blueprint $table) {
             $table->increments('ruta_id');
             $table->float('tarifa_vuelo')->unsigned();
-            $table->integer('origen_id')->unsigned();
-            $table->integer('destino_id')->unsigned();
+            $table->integer('origen_id')->unsigned()->unsigned();
+            $table->integer('destino_id')->unsigned()->unsigned();
             $table->timestamps();
 
-            // $table->foreign('origen_id')->references('sucursal_id')->on('dwsucursales')->onDelete('cascade');
-            // $table->foreign('destino_id')->references('sucursal_id')->on('dwsucursales')->onDelete('cascade');
+            $table->foreign('origen_id')->references('sucursal_id')->on('dwsucursales')->onDelete('cascade');
+            $table->foreign('destino_id')->references('sucursal_id')->on('dwsucursales')->onDelete('cascade');
         });
     }
 

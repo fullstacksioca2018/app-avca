@@ -8,10 +8,14 @@
       <div class="animated fadeIn">
   <div class="container-detalles">
     <h2 class="pdetalles"><b>Los precios son por persona, por viaje e incluyen todos los impuestos y cargos; sin embargo, no incluyen los cargos de equipaje</b></h2>
-
+     @php $indicador='0'; @endphp
      @foreach ($vuelos as $obj)
-
+    
     @php
+     
+    
+     \Cache::put('datos'.$indicador,$obj,100);
+     
       $salida = Carbon::parse($obj->vuelo->fecha_salida);
       $fecha = Carbon::parse($obj->vuelo->fecha_salida);
       $hora=Carbon::parse($obj->ruta->duracion);
@@ -58,7 +62,7 @@
             <thead>
               <tr class="table-detalles2">
                 <th scope="col" class="pthsalida">N°Vuelo: {{ $obj->vuelo->n_vuelo }} - Sólo ida</th>
-                <th scope="col" class="pthsalida">Clase Económica</th>
+                <th scope="col" class="pthsalida">Clase Unica</th>
                 <th scope="col" class="pthsalida">Tiempo Estimado de Vuelo: {{ $hora->format('H') }}h {{ $hora->format('i') }}min</th>
                 <th scope="col" class="pthsalida">Atr-72</th>
               </tr>
@@ -85,7 +89,7 @@
          @if((!isset($retorno))&&(!isset($objMultidestinos)))
      <div class="col-sm-2">
        
-          <a class="btn btn-primary" href="{{ URL::to('compra/Operativo/'.$obj->cantidad.'/'.$obj->ninosbrazos.'/'.$obj->ruta->tarifa_vuelo.'/') }}" onclick="FunctionVuelo('{{ $obj->vuelo->id }}')">Seleccionar</a>
+          <a class="btn btn-primary" id="enlace{{$indicador}}"  href="{{ URL::to('taquilla/CompraBoleto/'.$indicador) }}">Seleccionar</a>
         </div>
       </div> <!--fin col-md-4-->
   @else
@@ -130,6 +134,7 @@
 </div>
 </div>
 </div>
+@php $indicador++; @endphp
 @endforeach
 
 @push('styles')
@@ -138,7 +143,6 @@
   <link href="{{ asset('online/css/destinos.css') }}" rel="stylesheet">
   <link href="{{ asset('online/css/estilocompras.css') }}" rel="stylesheet">
 @endpush
-
 
 @endsection
 <!--hasta aquí el detalles-->

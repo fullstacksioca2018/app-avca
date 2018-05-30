@@ -3,11 +3,6 @@
     <div class="card">
       <div class="card-header bg-info-gradient">Empleados</div>
       <div class="card-body">
-        <div class="row">
-          <div class="col-md-4 offset-md-4">
-            <!--<buscador />            -->
-          </div>
-        </div>
         <hr>
         <div class="row mt-3">
           <div class="col-12">
