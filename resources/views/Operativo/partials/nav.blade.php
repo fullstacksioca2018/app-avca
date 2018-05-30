@@ -7,36 +7,55 @@
         <i class="nav-icon fa fa-dashboard"></i>
         <p>
           Gerencia de Sucursales
-          <i class="right fa fa-angle-left"></i>
+          <!-- <i class="right fa fa-angle-left"> --></i>
         </p>
       </a>
       <ul class="nav nav-treeview">
+        <!-- INICIO DE TAQUILLA -->
         <li class="nav-item has-treeview">
           <a href="{{ URL::to('/taquilla') }}" class="nav-link">
             <i class="fa fa-users nav-icon"></i>
-            <p>Boleteria <i class="right fa fa-angle-left"></i></p>
+            <p>Taquilla <i class="right fa fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item has-treeview">
               <a href="{{ URL::to('/taquilla') }}" class="nav-link">
                 <i class="fa fa-circle-o nav-icon"></i>
-                <p>Gestionar Taquilla <i class="right fa fa-angle-left"></i></p>
+                <p>Gestionar Taquilla  <i class="right fa fa-angle-left"></i></p>
               </a>
-              <ul class="nav nav-treeview">
+            </li>
+            <!-- <ul class="nav nav-treeview"> -->
                 <li class="nav-item">
-                  <a href="{{ URL::to('/chequear') }}" class="nav-link">
-                    <i class="fa fa-circle nav-icon"></i>
+                  <a href="{{ URL::to('/check') }}" class="nav-link">
+                    <i class="fa fa-check nav-icon"></i>
                     <p>Chequear Boleto</p>
                   </a>
                 </li>
-              </ul>
+              <!-- </ul> -->
+          </ul>
+        </li>
+        <!-- HASTA AQUI TAQUILLA -->
+        <!--   INICIO DE VUELOS -->
+        <li class="nav-item has-treeview">
+          <a href="{{ URL::to('/vuelos') }}" class="nav-link">
+            <i class="fa fa-plane nav-icon"></i>
+            <p>Administracion de Vuelo <i class="right fa fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ URL::to('/vuelos') }}" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p> Planificar Vuelos</p>
+              </a>
             </li>
           </ul>
         </li>
+       <!--  FINAL DE VUELOS  -->
+        <!-- INICIO DE RUTAS  -->
         <li class="nav-item has-treeview">
           <a href="{{ URL::to('/rutas') }}" class="nav-link">
             <i class="fa fa-user nav-icon"></i>
-            <p>Administracion de Rutas<i class="right fa fa-angle-left"></i></p>
+            <p>Admin. de Rutas <i class="right fa fa-angle-left"> </i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -47,26 +66,30 @@
             </li>
           </ul>
         </li>
+        <!-- FINAL DE RUTAS  -->
+      <!--  INICIO DE MANTENIMIENTO  -->
         <li class="nav-item has-treeview">
-          <a href="{{ URL::to('/vuelos') }}" class="nav-link">
-            <i class="fa fa-plane nav-icon"></i>
-            <p>Administracion de Vuelo <i class="right fa fa-angle-left"></i></p>
+          <a  class="nav-link">
+            <i class="fa fa-gear nav-icon"></i>
+            <p>Mantenimiento <i class="right fa fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fa fa-circle-o nav-icon"></i>
-                <p> Planificar Vuelos</p>
+              <a href="{{ URL::to('/aeronave') }}" class="nav-link">
+                <i class="fa fa-fighter-jet nav-icon"></i>
+                <p>Planificar Aeronave</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ URL::to('/sucursales') }}" class="nav-link">
+                <i class="fa fa-map-marker nav-icon"></i>
+                <p>Planificar Sucursales</p>
               </a>
             </li>
           </ul>
         </li>
-        <li class="nav-item has-treeview">
-          <a href="{{ URL::to('/aeronaves') }}" class="nav-link">
-            <i class="fa fa-cog nav-icon"></i>
-            <p>Administracion de Aeronave <i class="right fa fa-angle-left"></i></p>
-          </a>
-        </li>
+       <!--  FINAL DE Mantenimiento  -->
+       <!-- INICIO DE REPORTES Y ESTADISTICAS  -->
         <li class="nav-item">
           <a href="{{ URL::to('/reportes') }}" class="nav-link">
             <i class="nav-icon fa fa-bar-chart"></i>
@@ -75,6 +98,7 @@
             </p>
           </a>
         </li>
+        <!-- FINAL DE REPORTES Y ESTADISTICAS  -->
       </ul>
     </li>
   </ul>

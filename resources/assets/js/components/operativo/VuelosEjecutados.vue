@@ -153,14 +153,14 @@ export default {
   },
   data () {
     return {
-      items: null,
+      items: [],
       data: null,
       fields: [      
         { key: 'N_Vuelo',    label: 'Numero de Vuelo',  sortable: true },
         { key: 'Ruta',   label: 'Segmentos', sortable: true },
         { key: 'Fecha', label: 'Fecha ', sortable: true },
         { key: 'Hora',  label: 'Hora ',  sortable: true },
-        { key: 'Estado',    label: 'Estado ', sortable: true },
+        { key: 'Estado',    label: 'Status ', sortable: true },
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
       ],      
       currentPage: 1,

@@ -17,11 +17,11 @@ class CreateDwEmpleadosTable extends Migration
             $table->increments('empleado_id');
             $table->string('estado',10)->nullable();
             $table->timestamp('fecha_contratacion')->nullable();
-            $table->integer('cargo_id')->nullable();
-            $table->integer('sucursal_id')->nullable();
+            $table->integer('cargo_id')->unsigned()->nullable();
+            $table->integer('sucursal_id')->unsigned()->nullable();
             $table->timestamps();
-            // $table->foreign('cargo_id')->references('cargo_id')->on('dwcargos')->onDelete('cascade');
-            // $table->foreign('sucursal_id')->references('sucursal_id')->on('dwsucursales')->onDelete('cascade');
+            $table->foreign('cargo_id')->references('cargo_id')->on('dwcargos')->onDelete('cascade');
+            $table->foreign('sucursal_id')->references('sucursal_id')->on('dwsucursales')->onDelete('cascade');
 
         });
     }

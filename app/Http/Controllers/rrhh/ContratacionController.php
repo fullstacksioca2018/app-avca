@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\rrhh;
 
-use App\Models\rrhh\Aspirante;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\rrhh\Cargo;
-use App\Models\rrhh\Departamento;
-use App\Models\rrhh\Empleado;
-use App\Models\rrhh\Profesion;
-use App\Models\rrhh\Sucursal;
-use App\Models\rrhh\TabuladorSalarial;
+use App\Models\rrhh\Vacante;
 use Illuminate\Http\Request;
+use App\Models\rrhh\Empleado;
+use App\Models\rrhh\Sucursal;
+use App\Models\rrhh\Aspirante;
+use App\Models\rrhh\Profesion;
+use App\Models\rrhh\Departamento;
 use App\Http\Controllers\Controller;
+use App\Models\rrhh\TabuladorSalarial;
 use Illuminate\Support\Facades\Storage;
 
 class ContratacionController extends Controller
@@ -23,9 +25,14 @@ class ContratacionController extends Controller
     }
 
     public function procesarContratacion(Request $request)
-    {
+    {        
         $empleado = new Empleado($request->all());
-        $empleado->foto = $request->file('foto')->hashName();
+
+        $empleado->cuenta_bancaria = $request->codigo_cuenta.$request->cuenta_bancaria;
+
+        if ($request->hasFile('foto')) {            
+            $empleado->foto = $request->file('foto')->hashName();
+        }        
 
         if ($empleado->save()) {
             // Guardando el archivo de la foto
@@ -38,15 +45,26 @@ class ContratacionController extends Controller
             $aspirante->delete();
 
             // Generando el contrato en pdf
-            //$datosEmpleado = $request->all();
-            //$this->generarContrato($datosEmpleado);
+            // $datosEmpleado = $request->all();
+            // return $this->generarContrato($datosEmpleado);
+
             return response()->json();
         }
     }
 
-    public function generarContrato($datosEmpleado)
+    // Muestra el listad de empleados junto a boton para generar el contrato en pdf
+    public function listarEmpleados()
     {
+        $empleados = Empleado::all();
+        return view('rrhh.backend.captacion.contratacion.contrato', compact('empleados'));
+    }
 
+    // Genera el contrato en pdf
+    public function generarContratoPdf(Empleado $empleado)
+    {  
+        $pdf = PDF::loadView('rrhh.backend.pdf.contrato', ['empleado' => $empleado]);        
+
+        return $pdf->download($empleado->cedula.'.pdf');
     }
 
     public function obtenerAspiranteInfo($aspirante_id)
@@ -65,7 +83,7 @@ class ContratacionController extends Controller
     public function obtenerProfesiones(Request $request)
     {
         //return $request->nivel_academico;
-        $profesiones = Profesion::where('nivel_academico', '=', 'especialista 1')->get();
+        $profesiones = Profesion::where('nivel_academico', '=', $request->nivel_academico)->get();
         //return $profesiones;
         return response()->json($profesiones);
         //return "Hola";
@@ -74,10 +92,13 @@ class ContratacionController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function obtenerSucursales()
+    public function obtenerSucursal(Request $request)
     {
-        $data = Sucursal::all();
-        return response()->json($data);
+        $vacante = Vacante::where('vacante_id', $request->vacante_id)->first();
+
+        $sucursal = Sucursal::where('sucursal_id', $vacante->sucursal_id)->first();
+
+        return response()->json($sucursal);
     }
 
     /**
@@ -89,10 +110,10 @@ class ContratacionController extends Controller
         return response()->json($data);
     }
 
-    public function obtenerCargos()
+    public function obtenerCargo(Request $request)
     {
-        $cargos = Cargo::all();
-        return response()->json($cargos);
+        $cargo = Cargo::where('cargo_id', $request->cargo_id)->first();
+        return response()->json($cargo);
     }
 
     public function obtenerTabuladorSalarial(Request $request)

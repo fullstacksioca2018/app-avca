@@ -7,7 +7,7 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+ window.Vue = require('vue');
 
 
 /**
@@ -37,13 +37,33 @@ Vue.component('CargarCopilotos', require('./components/operativo/CargarCopilotos
 Vue.component('CargarJefeCabina', require('./components/operativo/CargarJefeCabina.vue'));
 Vue.component('CargarSobrecargo', require('./components/operativo/CargarSobrecargo.vue'));
 Vue.component('CargarAeronave', require('./components/operativo/CargarAeronave.vue'));
+// AERONAVES
+Vue.component('Aeronaves',require('./components/operativo/AdministracionAeronaves.vue'));
 
 // Empleado
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
 
+// Nomina del empleado
+Vue.component('generar-nomina', require('./components/backend/rrhh/nomina/GenerarNomina'));
+Vue.component('consultar-nomina', require('./components/backend/rrhh/nomina/ConsultarNomina'));
+
+// Sucursal
+Vue.component('listado-sucursales', require('./components/backend/rrhh/sucursal/ListadoSucursal'));
+
+// Parametros de nomina
+Vue.component('parametros-nomina', require('./components/backend/rrhh/parametros/ParametrosNomina'));
+
 Vue.component('panel', require('./components/reportes/panel.vue'));
 Vue.component('dashboard', require('./components/reportes/Dashboard.vue'));
 Vue.component('breadcrumbpersonal', require('./components/reportes/breadcrumbPersonal.vue'));
+
+import VueSweetalert2 from 'vue-sweetalert2';
+Vue.use(VueSweetalert2);
+
+// Loader
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.min.css';
+Vue.use(Loading);
 
 const app = new Vue({
     el: '#app'

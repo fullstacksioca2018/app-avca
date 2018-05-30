@@ -14,6 +14,11 @@ try {
     require('bootstrap');
 } catch (e) {}
 
+// Bootstrap Tootlip
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -38,17 +43,24 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+// RRHH
+window.moment = require('moment');
+
 //LEO
 window.Vue = require('vue');
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.js';
 import VueChartjs from 'vue-chartjs/dist/vue-chartjs.js';
 import Toasted from 'vue-toasted';
+import VuejsDialog from "vuejs-dialog"
+
 
 
 
 Vue.use(Toasted);
 Vue.use(BootstrapVue);
+Vue.use(VuejsDialog)
 Vue.use(VueChartjs);
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

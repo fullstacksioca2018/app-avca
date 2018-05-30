@@ -16,6 +16,7 @@ class CreateDwSucursalesTable extends Migration
         Schema::create('DwSucursales', function (Blueprint $table) {
             $table->increments('sucursal_id');
             $table->string('nombre', 255)->nullable();
+            $table->string('sigla', 10)->nullable();
             $table->timestamps();
         });
     }

@@ -52,19 +52,23 @@ class LoginController extends Controller
     public function redirectPath()
     {
         $auxURL;
-        switch (Auth::user()->role) {
-            case 'Gerente General':
-                $auxURL='/reportes';
-                break;
-            case 'Gerente RRHH':
-                $auxURL='/rrhh/backend/admin';
-                break;
-            case 'Gerente Sucursales':
-                $auxURL='/rutas';
-                break;
-            default:
-                $auxURL='/rrhh/frontend';
-                break;
+        if((Auth::user()->isRole('gerente'))||(Auth::user()->isRole('gerente.RRHH'))||(Auth::user()->isRole('admin'))){
+            $auxURL='/rrhh/backend/admin';
+        }
+        else{
+            if(Auth::user()->isRole('operador.taquilla')){
+                $auxURL='/taquilla';            
+            }
+            else{
+                if((Auth::user()->isRole('gerente.sucursales'))||(Auth::user()->isRole('subgerente.sucursal'))){
+                    $auxURL='/vuelos';            
+                }
+                else{
+                    if(Auth::user()->isRole('gerente.general')){
+                        $auxURL='/reportes';
+                    }
+                }
+            }
         }
 
         if (method_exists($this, 'redirectTo')) {

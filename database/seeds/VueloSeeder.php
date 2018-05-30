@@ -11,9 +11,9 @@ class VueloSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\operativo\Vuelo::class, 20)->create();
+       // factory(App\Models\operativo\Vuelo::class, 20)->create();
 
-        DB::table('vuelos')->insert([
+       /* DB::table('vuelos')->insert([
 			'estado' => 'abierto',
 			'fecha_salida' => '2018-05-12 1:10:34',
 	        'n_vuelo' => 'VH-2131',
@@ -29,6 +29,7 @@ class VueloSeeder extends Seeder
             'estado' => 'abierto',
             'fecha_salida' => '2018-05-23 14:58:34',
             'n_vuelo' => 'VH-2431',
-        ]);
+        ]);*/
+        
     }
-}
+}            

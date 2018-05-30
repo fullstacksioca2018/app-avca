@@ -60,6 +60,7 @@ class DashboardController extends Controller
             break;
 
 		}
+		// dd(date("n"));
 		if($estado!="demorado"){
     		return json_decode(DW_Vuelo::VuelosEstadoFecha($estado,$fechaincio,$fechafin));
 		}

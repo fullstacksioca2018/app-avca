@@ -83,6 +83,8 @@
               </div>
             </div>
             <input type="hidden" name="aspirante_id" :value="aspirante.aspirante_id">
+            <input type="hidden" name="vacante" :value="vacante">
+            <input type="hidden" name="estatus" value="convocados">
             <div class="row">
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">Guardar</button></div>
@@ -98,33 +100,32 @@
 </template>
 
 <script>
-  import {EventBus} from "../event-bus";
-  import VueSweetalert2 from 'vue-sweetalert2';
-
-  Vue.use(VueSweetalert2);
+  import {EventBus} from "../event-bus";  
 
   export default {
     name: "AspiranteConvocadoModal",
     data() {
       return {
         aspirante: '',
-        aspirantes: []
+        aspirants: [],
+        vacante: ''
       }
     },
     mounted() {
-      EventBus.$on('aspirante-seleccionado', (aspirante) => {
+      EventBus.$on('aspirante-seleccionado', (aspirante, vacante) => {
         this.aspirante = aspirante;
+        this.vacante = vacante
       });
     },
     methods: {
       guardarEntrevista() {
         let form = document.getElementById('entrevistaForm');
         let formData = new FormData(form);
-
-        axios.post('/rrhh/backend/guardar-entrevista', formData)
+        
+        axios.post('/rrhh/backend/seleccion/guardar-entrevista', formData)
           .then(response => {
             console.log(response.data);
-            this.aspirantes = response.data;
+            this.aspirants = response.data;            
 
             $("#aspiranteConvocadoModal").modal('hide');//ocultamos el modal
             $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
@@ -136,9 +137,9 @@
               title: 'Chequeo del aspirante exitoso',
               showConfirmButton: false,
               timer: 2000
-            });
+            });            
 
-            EventBus.$emit('aspirantes', this.aspirantes);
+            EventBus.$emit('aspirantes', this.aspirants[0]);
           })
           .catch(error => {
             console.log(error);

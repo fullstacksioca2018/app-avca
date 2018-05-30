@@ -15,7 +15,7 @@ class CreateDwCargosTable extends Migration
     {
         Schema::create('DwCargos', function (Blueprint $table) {
             $table->increments('cargo_id');
-            $table->string('nombre',20)->nullable();
+            $table->mediumText('titulo')->nullable();
             $table->timestamps();
         });
     }

@@ -43,7 +43,11 @@
                 </p>
                 
                 <p class="signin button">                   
-                  <input type="submit" value="facebook"/> 
+                  
+
+              <a class="btn btn-primary" href="{{ route('social.auth', 'facebook') }}">
+                  Facebook
+              </a> 
                    <input type="submit" value="Iniciar"/>
                 </p>  
 
@@ -86,8 +90,12 @@
                                     <input id="password-confirm" 
 name="password_confirmation" required="required" type="password" placeholder=""/>
                                 </p>
-                                   <p class="signin button"> 
-                  <input type="submit" value="facebook"/> 
+                                   <p class="signin button">
+
+
+                  <a class="btn btn-primary" href="{{ route('social.auth', 'facebook') }}">
+                      Facebook
+                  </a>  
                   <input type="submit" value="Registrarse"/> 
                 </p>
 
