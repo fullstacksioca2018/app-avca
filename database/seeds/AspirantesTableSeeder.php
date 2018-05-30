@@ -27,10 +27,10 @@ class AspirantesTableSeeder extends Seeder
             'telefono_fijo' => '02934673294',
             'curriculum' => 'curriculum',
             'vacante_id' => 1,
+            'cargo_id' => 25,
             'created_at'            => date('Y-m-d H:i:s'),
             'updated_at'            => date('Y-m-d H:i:s')
         ]);
-
         DB::table('aspirantes')->insert([
                 'cedula' => 16313659,
                 'nacionalidad' => 'v',
@@ -43,10 +43,10 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_fijo' => '02935144880',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 1,
+                'cargo_id' => 25,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
         ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 3871882,
                 'nacionalidad' => 'v',
@@ -59,10 +59,10 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_fijo' => '02935144880',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 1,
+                'cargo_id' => 25,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 4188779,
                 'nacionalidad' => 'v',
@@ -75,6 +75,7 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_fijo' => '02935144880',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 1,
+                'cargo_id' => 25,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -91,10 +92,10 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_fijo' => '02935144880',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 2,
+                'cargo_id' => 26,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 28690222,
                 'nacionalidad' => 'v',
@@ -107,10 +108,10 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_fijo' => '02945142358',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 2,
+                'cargo_id' => 26,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 29721806,
                 'nacionalidad' => 'v',
@@ -123,10 +124,10 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_fijo' => '04167834720',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 2,
+                'cargo_id' => 26,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30078848,
                 'nacionalidad' => 'v',
@@ -139,6 +140,7 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_fijo' => '02956123597',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 2,
+                'cargo_id' => 26,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -155,10 +157,10 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_fijo' => '02934312225',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 3,
+                'cargo_id' => 21,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
         DB::table('aspirantes')->insert([
                 'cedula' => 30143089,
                 'nacionalidad' => 'v',
@@ -171,10 +173,10 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_fijo' => '02813154785',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 3,
+                'cargo_id' => 21,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30379484,
                 'nacionalidad' => 'v',
@@ -187,10 +189,10 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_fijo' => '02934678523',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 3,
+                'cargo_id' => 21,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30508924,
                 'nacionalidad' => 'v',
@@ -203,6 +205,7 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_fijo' => '02945161287',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 3,
+                'cargo_id' => 21,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -219,10 +222,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02126589243',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 4,
+                'cargo_id' => 22,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
 DB::table('aspirantes')->insert([
                 'cedula' => 31279311,
                 'nacionalidad' => 'v',
@@ -235,10 +238,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02946547896',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 4,
+                'cargo_id' => 22,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 31043150,
                 'nacionalidad' => 'v',
@@ -251,10 +254,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02951234585',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 4,
+                'cargo_id' => 22,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30379339,
                 'nacionalidad' => 'v',
@@ -267,6 +270,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02813692142',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 4,
+                'cargo_id' => 22,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -283,11 +287,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02833578213',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 5,
-
+                'cargo_id' => 1,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'           => date('Y-m-d H:i:s')
             ]);
-
 DB::table('aspirantes')->insert([
                 'cedula' => 30989089,
                 'nacionalidad' => 'v',
@@ -300,11 +303,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02641479655',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 5,
-
+                'cargo_id' => 1,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'           => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30143077,
                 'nacionalidad' => 'v',
@@ -317,11 +319,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02126984523',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 5,
-
+                'cargo_id' => 1,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30336048,
                 'nacionalidad' => 'v',
@@ -334,7 +335,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02692296375',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 5,
-
+                'cargo_id' => 1,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -351,7 +352,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02322558899',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 6,
-
+                'cargo_id' => 3,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'           => date('Y-m-d H:i:s')
             ]);
@@ -368,11 +369,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02242263176',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 6,
-
+                'cargo_id' => 3,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'           => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30378815,
                 'nacionalidad' => 'v',
@@ -385,11 +385,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02483336685',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 6,
-
+                'cargo_id' => 3,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
                 ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30636549,
                 'nacionalidad' => 'v',
@@ -402,14 +401,12 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02934678532',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 6,
+                'cargo_id' => 3,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
-
             // vacantes renzo
             // vacantes 7
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30078548,
                 'nacionalidad' => 'v',
@@ -422,10 +419,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02934214507',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 7,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30917640,
                 'nacionalidad' => 'v',
@@ -438,10 +435,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02632687410',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 7,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 31043508,
                 'nacionalidad' => 'v',
@@ -454,10 +451,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02362038542',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 7,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30804574,
                 'nacionalidad' => 'v',
@@ -470,12 +467,11 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02983459971',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 7,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             // vacantes 8
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30989321,
                 'nacionalidad' => 'v',
@@ -488,10 +484,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02272676021',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 8,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30917694,
                 'nacionalidad' => 'v',
@@ -504,10 +500,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02618751020',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 8,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 12687215,
                 'nacionalidad' => 'v',
@@ -520,10 +516,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02457812654',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 8,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 14873002,
                 'nacionalidad' => 'v',
@@ -536,12 +532,11 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02689821454',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 8,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             // vacantes 9
-
             DB::table('aspirantes')->insert([
                 'cedula' => 18233557,
                 'nacionalidad' => 'v',
@@ -554,10 +549,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02936542269',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 9,
+                'cargo_id' => 18,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 22687521,
                 'nacionalidad' => 'v',
@@ -570,10 +565,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02634520122',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 9,
+                'cargo_id' => 18,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 17321596,
                 'nacionalidad' => 'v',
@@ -586,10 +581,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02349658412',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 9,
+                'cargo_id' => 18,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 13854632,
                 'nacionalidad' => 'v',
@@ -602,13 +597,11 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02249012248',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 9,
+                'cargo_id' => 18,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
-
             // vacantes 10
-
             DB::table('aspirantes')->insert([
                 'cedula' => 11057463,
                 'nacionalidad' => 'v',
@@ -621,10 +614,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02642013650',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 10,
+                'cargo_id' => 19,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 14680301,
                 'nacionalidad' => 'v',
@@ -637,10 +630,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02126852227',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 10,
+                'cargo_id' => 19,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16691001,
                 'nacionalidad' => 'v',
@@ -653,10 +646,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02682401121',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 10,
+                'cargo_id' => 19,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15796322,
                 'nacionalidad' => 'v',
@@ -669,13 +662,11 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02942244867',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 10,
+                'cargo_id' => 19,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
-
             // vacantes 11
-
             DB::table('aspirantes')->insert([
                 'cedula' => 19000224,
                 'nacionalidad' => 'v',
@@ -688,10 +679,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02249742823',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 11,
+                'cargo_id' => 8,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 8635269,
                 'nacionalidad' => 'v',
@@ -704,10 +695,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02953642214',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 11,
+                'cargo_id' => 8,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 10236411,
                 'nacionalidad' => 'v',
@@ -720,10 +711,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02647955462',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 11,
+                'cargo_id' => 8,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 5362248,
                 'nacionalidad' => 'v',
@@ -736,11 +727,11 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02126954187',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 11,
+                'cargo_id' => 8,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
             // vacantes 12
-
             DB::table('aspirantes')->insert([
                 'cedula' => 8651999,
                 'nacionalidad' => 'v',
@@ -753,10 +744,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02952155146',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 12,
+                'cargo_id' => 9,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16745632,
                 'nacionalidad' => 'v',
@@ -769,10 +760,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02123640450',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 12,
+                'cargo_id' => 9,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 12310248,
                 'nacionalidad' => 'v',
@@ -785,10 +776,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02453674554',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 12,
+                'cargo_id' => 9,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 20345870,
                 'nacionalidad' => 'v',
@@ -801,10 +792,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02248478410',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 12,
+                'cargo_id' => 9,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
                 ]);
-
             DB::table('aspirantes')->insert([                   //vacante 13
                 'cedula' => 17684100,
                 'nacionalidad' => 'v',
@@ -817,10 +808,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02914512052',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 13,
+                'cargo_id' => 25,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 11010140,
                 'nacionalidad' => 'v',
@@ -833,10 +824,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02934673893',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 13,
+                'cargo_id' => 25,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 17000331,
                 'nacionalidad' => 'v',
@@ -849,10 +840,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02122485484',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 13,
+                'cargo_id' => 25,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 7246921,
                 'nacionalidad' => 'v',
@@ -865,10 +856,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02363201245',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 13,
+                'cargo_id' => 25,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             
                 DB::table('aspirantes')->insert([
                 'cedula' => 19224987,
@@ -882,10 +873,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '04167834720',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 14,
+                'cargo_id' => 26,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
                 ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15746109,
                 'nacionalidad' => 'v',
@@ -898,10 +889,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02934510496',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 14,
+                'cargo_id' => 26,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 13002143,
                 'nacionalidad' => 'v',
@@ -914,10 +905,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02935214512',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 14,
+                'cargo_id' => 26,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 24002689,
                 'nacionalidad' => 'v',
@@ -930,10 +921,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02945162684',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 14,
+                'cargo_id' => 26,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             
                 DB::table('aspirantes')->insert([
                 'cedula' => 19301400,
@@ -947,6 +938,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02816845723',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 15,
+                'cargo_id' => 21,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -963,10 +955,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02368745215',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 15,
+                'cargo_id' => 21,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 21002147,
                 'nacionalidad' => 'v',
@@ -979,10 +971,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02468745455',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 15,
+                'cargo_id' => 21,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 18000002,
                 'nacionalidad' => 'v',
@@ -995,10 +987,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02128672223',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 15,
+                'cargo_id' => 21,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             
                 DB::table('aspirantes')->insert([
                 'cedula' => 7159749,
@@ -1012,6 +1004,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02740459632',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 16,
+                'cargo_id' => 22,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -1028,10 +1021,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02953648483',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 16,
+                'cargo_id' => 22,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 22046954,
                 'nacionalidad' => 'v',
@@ -1044,10 +1037,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02946958461',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 16,
+                'cargo_id' => 22,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15238754,
                 'nacionalidad' => 'v',
@@ -1060,10 +1053,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02124887965',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 16,
+                'cargo_id' => 22,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             
                 DB::table('aspirantes')->insert([
                 'cedula' => 26348751,
@@ -1077,6 +1070,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02934844988',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 17,
+                'cargo_id' => 1,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -1093,10 +1087,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02956545456',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 17,
+                'cargo_id' => 1,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
                 ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15000333,
                 'nacionalidad' => 'v',
@@ -1109,10 +1103,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '04167834720',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 17,
+                'cargo_id' => 1,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 156788760,
                 'nacionalidad' => 'v',
@@ -1125,10 +1119,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02677839898',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 17,
+                'cargo_id' => 1,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             
                 DB::table('aspirantes')->insert([
                 'cedula' => 14543123,
@@ -1142,6 +1136,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02719874720',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 18,
+                'cargo_id' => 3,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -1158,10 +1153,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02720987654',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 18,
+                'cargo_id' => 3,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16226003,
                 'nacionalidad' => 'v',
@@ -1174,10 +1169,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02394720099',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 18,
+                'cargo_id' => 3,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')           
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15444333,
                 'nacionalidad' => 'v',
@@ -1190,14 +1185,12 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02267834345',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 18,
+                'cargo_id' => 3,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
-
             // vacantes renzo
             // vacantes 19
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16900003,
                 'nacionalidad' => 'v',
@@ -1210,10 +1203,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02396788888',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 19,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15600002,
                 'nacionalidad' => 'v',
@@ -1226,6 +1219,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02427171777',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 19,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
@@ -1241,6 +1235,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02127814722',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 19,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
@@ -1256,13 +1251,11 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02953314720',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 19,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
-
             // vacantes 20
-
             DB::table('aspirantes')->insert([
                 'cedula' => 1544433,
                 'nacionalidad' => 'v',
@@ -1275,10 +1268,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02267834720',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 20,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')  
                 ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 18098765,
                 'nacionalidad' => 'v',
@@ -1291,6 +1284,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02122128877',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 20,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
@@ -1306,6 +1300,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02124720011',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 20,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
@@ -1321,13 +1316,11 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '04167829898',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 20,
+                'cargo_id' => 2,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
-
             // vacantes 21
-
             DB::table('aspirantes')->insert([
                 'cedula' => 14777666,
                 'nacionalidad' => 'v',
@@ -1340,10 +1333,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02254720011',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 21,
+                'cargo_id' => 18,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 17676788,
                 'nacionalidad' => 'v',
@@ -1356,6 +1349,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02864321112',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 21,
+                'cargo_id' => 18,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -1371,6 +1365,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02416834721',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 21,
+                'cargo_id' => 18,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -1386,13 +1381,11 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02417834720',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 21,
+                'cargo_id' => 18,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
-
             // vacantes 22
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16123321,
                 'nacionalidad' => 'v',
@@ -1405,10 +1398,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02812810909',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 22,
+                'cargo_id' => 19,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16767999,
                 'nacionalidad' => 'v',
@@ -1421,6 +1414,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02934313131',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 22,
+                'cargo_id' => 19,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -1436,6 +1430,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02917678989',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 22,
+                'cargo_id' => 19,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -1451,13 +1446,11 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02934314151',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 22,
+                'cargo_id' => 19,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
-
             // vacantes 23
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15444666,
                 'nacionalidad' => 'v',
@@ -1470,10 +1463,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02934311010',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 23,
+                'cargo_id' => 8,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16123345,
                 'nacionalidad' => 'v',
@@ -1486,6 +1479,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02930998877',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 23,
+                'cargo_id' => 8,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
@@ -1501,6 +1495,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02934312020',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 23,
+                'cargo_id' => 8,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
@@ -1516,12 +1511,11 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02934317123',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 23,
+                'cargo_id' => 8,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             // vacantes 24
-
             DB::table('aspirantes')->insert([
                 'cedula' => 22333123,
                 'nacionalidad' => 'v',
@@ -1534,10 +1528,10 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02937834720',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 24,
+                'cargo_id' => 9,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15089185,
                 'nacionalidad' => 'v',
@@ -1550,6 +1544,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02937213995',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 24,
+                'cargo_id' => 9,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
@@ -1565,6 +1560,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02934332040',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 24,
+                'cargo_id' => 9,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
@@ -1580,6 +1576,7 @@ DB::table('aspirantes')->insert([
                 'telefono_fijo' => '02937213995',
                 'curriculum' => 'curriculum',
                 'vacante_id' => 24,
+                'cargo_id' => 9,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);        

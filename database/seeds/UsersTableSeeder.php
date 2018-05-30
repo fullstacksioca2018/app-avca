@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name'              => 'Admin',
+            'modulo'            => 'rrhh',
             'email'             => 'admin@avca.com',
             'password'          => bcrypt('admin'),
             'remember_token'    => str_random(10),
@@ -24,6 +25,7 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'name'              => 'Pepito Pérez',
+            'modulo'            => 'rrhh',
             'email'             => 'pperez@gmail.com',
             'password'          => bcrypt('gerente'),
             'remember_token'    => str_random(10),
@@ -33,6 +35,7 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'name'              => 'Jaimito Jopez',
+            'modulo'            => 'reporte',
             'email'             => 'gerentegeneral@gmail.com',
             'password'          => bcrypt('gerente'),
             'remember_token'    => str_random(10),
@@ -42,6 +45,7 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Pablito Garcia',
+            'modulo'            => 'operativo2',
             'email' => 'sucursales@gmail.com',
             'password' => bcrypt('gerente'),
             'remember_token'    => str_random(10),
@@ -51,6 +55,7 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Juan Garcia',
+            'modulo'            => 'operativo2',
             'email' => 'subgerente@gmail.com',
             'password' => bcrypt('gerente'),
             'remember_token'    => str_random(10),
@@ -60,6 +65,7 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Jarel Machado',
+            'modulo'            => 'operativo1',
             'email' => 'taquilla@gmail.com',
             'password' => bcrypt('gerente'),
             'remember_token'    => str_random(10),
@@ -75,7 +81,7 @@ class UsersTableSeeder extends Seeder
 
         Role::create([
             'name'      => 'Gerente RRHH',
-            'slug'      => 'gerente.RRHH',
+            'slug'      => 'gerente',
             'special'   => 'all-access'
         ]);
 
@@ -102,11 +108,6 @@ class UsersTableSeeder extends Seeder
             'slug'      => 'operador.taquilla',
             'special'   => 'all-access'
         ]);
-        Role::create([
-            'name'      => 'Gerente RRHH',
-            'slug'      => 'gerente',
-            'special'   => 'all-access'
-        ]);
 
             DB::table('role_user')->insert([
                 'user_id' => 1,
@@ -119,10 +120,6 @@ class UsersTableSeeder extends Seeder
             DB::table('role_user')->insert([
                 'user_id' => 2,
                 'role_id' => 2 
-            ]);
-            DB::table('role_user')->insert([
-                'user_id' => 2,
-                'role_id' => 7 
             ]);
             DB::table('role_user')->insert([
                 'user_id' => 3,
