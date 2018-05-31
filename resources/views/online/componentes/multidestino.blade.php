@@ -7,8 +7,8 @@
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
       
-            <select data-placeholder="Ciudad-Aeropuerto" name="origen_id[]"  class="chosen-select impout3" class="form-control impout3" tabindex="2">
-              <option value="#">Cuidad o aeropuerto</option>
+            <select data-placeholder="Ciudad-Aeropuerto" id="origen_id1" name="origen_id[]"  class="chosen-select impout3" class="form-control impout3" tabindex="2">
+              <option value="#">Ciudad o aeropuerto</option>
               @foreach ($sucursales as $sucursal)
                     <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
               @endforeach
@@ -24,8 +24,8 @@
         <label for="exampleFormControlSelect1" class="h">Hasta:</label>
         <div class="form-group">         
       
-            <select data-placeholder="Ciudad-Aeropuerto" name="destino_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
-             <option value="#">Cuidad o aeropuerto</option> 
+            <select data-placeholder="Ciudad-Aeropuerto" id="destino_id1" name="destino_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
+             <option value="#">Ciudad o aeropuerto</option> 
               @foreach ($sucursales as $sucursal)
                     <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
               @endforeach
@@ -35,8 +35,8 @@
         </div>
 
       <div class="col-md-4">
-        <label for="coñooo" class="h">Fecha ida:</label>
-        <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">
+        <label for="coñooo" id="fecha_salida2_label" class="h">Fecha ida:</label>
+        <input type="date" id="salida1" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">
         <i class="fa fa-calendar prefix icocalendario"></i>
       </div>
 
@@ -57,8 +57,8 @@
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
       
-            <select data-placeholder="Ciudad-Aeropuerto" name="origen_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2">
-              <option value="#">Cuidad o aeropuerto</option>
+            <select data-placeholder="Ciudad-Aeropuerto" id="origen_id2" name="origen_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2">
+              <option value="#">Ciudad o aeropuerto</option>
               @foreach ($sucursales as $sucursal)
                     <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
               @endforeach
@@ -74,8 +74,8 @@
         <label for="exampleFormControlSelect1"  class="h">Hasta:</label>
         <div class="form-group">         
       
-            <select data-placeholder="Ciudad-Aeropuerto" name="destino_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
-             <option value="#">Cuidad o aeropuerto</option> 
+            <select data-placeholder="Ciudad-Aeropuerto" id="destino_id2" name="destino_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
+             <option value="#">Ciudad o aeropuerto</option> 
               @foreach ($sucursales as $sucursal)
                     <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
               @endforeach
@@ -85,7 +85,7 @@
         </div>
 <div class="col-md-4">            
             <label for="coñooo" class="h">Fecha ida:</label>
-            <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
+            <input type="date" id="salida2" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
           <i class="fa fa-calendar prefix icocalendario"></i>
                  
         </div>
@@ -103,8 +103,8 @@
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
       
-            <select data-placeholder="Ciudad-Aeropuerto" name="origen_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2">
-              <option value="#">Cuidad o aeropuerto</option>
+            <select data-placeholder="Ciudad-Aeropuerto" id="origen_id3" name="origen_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2">
+              <option value="#">Ciudad o aeropuerto</option>
               @foreach ($sucursales as $sucursal)
                     <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
               @endforeach
@@ -120,8 +120,8 @@
         <label for="exampleFormControlSelect1" class="h">Hasta:</label>
         <div class="form-group">         
       
-            <select data-placeholder="Ciudad-Aeropuerto" name="destino_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
-             <option value="#">Cuidad o aeropuerto</option> 
+            <select data-placeholder="Ciudad-Aeropuerto" id="destino_id3" name="destino_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
+             <option value="#">Ciudad o aeropuerto</option> 
               @foreach ($sucursales as $sucursal)
                     <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
               @endforeach
@@ -131,7 +131,7 @@
         </div>
 <div class="col-md-4 ">            
             <label for="coñooo" class="h">Fecha ida:</label>
-            <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
+            <input type="date" id="salida3" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
           <i class="fa fa-calendar prefix icocalendario"></i>
                  
         </div>
@@ -150,8 +150,8 @@
         <label for="exampleFormControlSelect1" class="h">Desde:</label>
         <div class="form-group">         
       
-            <select data-placeholder="Ciudad-Aeropuerto" name="origen_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2">
-              <option value="#">Cuidad o aeropuerto</option>
+            <select data-placeholder="Ciudad-Aeropuerto" id="origen_id4" name="origen_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2">
+              <option value="#">Ciudad o aeropuerto</option>
               @foreach ($sucursales as $sucursal)
                     <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
               @endforeach
@@ -167,8 +167,8 @@
         <label for="exampleFormControlSelect1"  class="h">Hasta:</label>
         <div class="form-group">         
       
-            <select data-placeholder="Ciudad-Aeropuerto" name="destino_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
-             <option value="#">Cuidad o aeropuerto</option> 
+            <select data-placeholder="Ciudad-Aeropuerto" id="destino_id4" name="destino_id[]" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
+             <option value="#">Ciudad o aeropuerto</option> 
               @foreach ($sucursales as $sucursal)
                     <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
               @endforeach
@@ -178,7 +178,7 @@
         </div>
 <div class="col-md-4">            
             <label for="coñooo" class="h">Fecha ida:</label>
-            <input type="date" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
+            <input type="date" id="salida4" name="fecha_salida[]" class="form-control impout3" min="{{Carbon::now()->addDay(1)->format('Y-m-d')}}" max="{{Carbon::now()->addYear(1)->format('Y-m-d')}}">       
           <i class="fa fa-calendar prefix icocalendario"></i>
                  
         </div>
