@@ -122959,7 +122959,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -123038,6 +123038,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: "Empleado",
   data: function data() {
     return {
+      asistencia: '',
       empleado: '',
       codigo: ''
     };
@@ -123050,11 +123051,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var loader = this.$loading.show();
       axios.get('/rrhh/backend/asistencia/obtener-empleado/' + this.codigo).then(function (response) {
         console.log(response.data);
-        _this.empleado = response.data;
+        _this.empleado = response.data[0];
+        _this.asistencia = response.data[1];
         loader.hide();
-        /*setTimeout(() => {
+        setTimeout(function () {
           window.location.reload(true);
-        }, 3000)*/
+        }, 10000);
       }).catch(function (error) {
         console.error(error);
       });
@@ -123209,7 +123211,9 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "hora text-center" }, [
-            _c("h6", [_vm._v("Hora actual")]),
+            _vm.asistencia !== null
+              ? _c("h6", [_vm._v("Hora de salida")])
+              : _c("h6", [_vm._v("Hora de entrada")]),
             _vm._v(" "),
             _c("h2", [_vm._v(_vm._s(_vm.horaActual))])
           ])
