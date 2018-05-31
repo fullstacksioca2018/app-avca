@@ -17,7 +17,7 @@ class CreateGruposTable extends Migration
             $table->increments('id');
             $table->enum('tipo_grupo', ['A', 'B', 'C']);
             $table->string('nombre');
-            $table->integer('horas_Jornada');
+            $table->integer('horas_jornada');
             $table->time('hora_inicio');
             $table->time('hora_fin');
             $table->timestamps();
