@@ -53,27 +53,27 @@ class LoginController extends Controller
     public function redirectPath()
     {
         $auxURL;
-        if((Auth::user()->isRole('gerente'))||(Auth::user()->isRole('gerente.RRHH'))||(Auth::user()->isRole('admin'))){
-            $auxURL='/rrhh/backend/admin';
-            $this->redirectTo='/rrhh/backend/admin';
-        }
-        else{
-            if(Auth::user()->isRole('operador.taquilla')){
-                $auxURL='/taquilla';            
+        switch (Auth::user()->modulo) {
+            case 'rrhh':
+                $auxURL='/rrhh/backend/admin';
+                $this->redirectTo='/rrhh/backend/admin';
+                break;
+            case 'online':
+                $auxURL='/online/inicio';
+                $this->redirectTo='/online/inicio';
+                break;
+            case 'operativo1':
+                $auxURL='/taquilla';
                 $this->redirectTo='/taquilla';
-            }
-            else{
-                if((Auth::user()->isRole('gerente.sucursales'))||(Auth::user()->isRole('subgerente.sucursal'))){
-                    $auxURL='/vuelos';            
-                    $this->redirectTo='/vuelos';
-                }
-                else{
-                    if(Auth::user()->isRole('gerente.general')){
-                        $auxURL='/reportes';
-                        $this->redirectTo='/reportes';
-                    }
-                }
-            }
+                break;
+            case 'operativo2':
+                $auxURL='/vuelos';
+                $this->redirectTo='/vuelos';
+                break;
+            case 'reporte':
+                $auxURL='/reportes';
+                $this->redirectTo='/reportes';
+                break;
         }
 
         if (method_exists($this, 'redirectTo')) {

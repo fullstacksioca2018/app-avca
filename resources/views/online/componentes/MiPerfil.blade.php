@@ -356,8 +356,8 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
                       </div>
-                      <input type="text" class="form-control" name="numero_tarjeta" id="cc-number" placeholder="">
-                      <div class="invalid-feedback" minlength="18" maxlength="18">
+                      <input type="text" class="form-control" name="numero_tarjeta" id="cc-number" placeholder="" minlength="18" maxlength="18">
+                      <div class="invalid-feedback">
                                       Requiere el numero de tarjeta
                                     </div>
                     </div> <!-- input-group.// -->
@@ -707,8 +707,8 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
                       </div>
-                      <input type="text" class="form-control" name="numero_tarjeta" id="cc-number" placeholder="">
-                      <div class="invalid-feedback" minlength="18" maxlength="18">
+                      <input type="text" class="form-control" name="numero_tarjeta" id="cc-number" placeholder="" minlength="18" maxlength="18">
+                      <div class="invalid-feedback">
                                       Requiere el numero de tarjeta
                                     </div>
                     </div> <!-- input-group.// -->

@@ -342,6 +342,7 @@ class RerservarBoletoController extends Controller
 
                 $boleto->boleto_estado = 'Cancelado';
                 $boleto->save();
+                 flash("Estimado cliente su boleto ha sido cancelado debido a que la fecha de la reserva caducado")->error()->important();
                 return redirect()->back();
             }
 

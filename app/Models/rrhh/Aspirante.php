@@ -9,7 +9,7 @@ class Aspirante extends Model
 {
     protected $table = "aspirantes";
     protected $primaryKey = "aspirante_id";
-    protected $fillable = ['cedula', 'nacionalidad', 'fecha_nacimiento', 'apellido', 'nombre', 'email', 'telefono_movil', 'telefono_fijo', 'curriculum', 'vacante_id'];
+    protected $fillable = ['cedula', 'nacionalidad', 'fecha_nacimiento', 'apellido', 'nombre', 'email', 'telefono_movil', 'telefono_fijo', 'curriculum', 'vacante_id','cargo_id'];
 
     public function getFullNameAttribute()
     {
