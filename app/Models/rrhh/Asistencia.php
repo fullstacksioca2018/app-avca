@@ -18,9 +18,9 @@ class Asistencia extends Model
         'h_extras_nocturnas',
         'h_faltantes_nocturnas',
         'h_extras_diurnas_feriado',
-        'h_faltantes_diurnas_feriado ',
-        'h_extras_nocturnas_feriado ',
-        'h_faltantes_nocturnas_feriado ',
+        'h_faltantes_diurnas_feriado',
+        'h_extras_nocturnas_feriado',
+        'h_faltantes_nocturnas_feriado',
         'empleado_id'
     ];
     
