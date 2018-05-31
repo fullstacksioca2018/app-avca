@@ -30,18 +30,28 @@ class CreateEmpleadosTable extends Migration
             $table->string('telefono_movil', 15);
             $table->string('email', 60)->unique();
             $table->enum('tipo_discapacidad', ['trastorno del habla y lenguaje', 'visual', 'motriz', 'auditiva'])->nullable();
-            $table->integer('sucursal')->unsigned();
-            $table->integer('departamento')->unsigned();
-            $table->integer('cargo')->unsigned();
-            $table->enum('tipo_empleado', ['administrativo', 'operativo', 'tripulacion']);
+            $table->integer('sucursal_id')->unsigned();
+            $table->integer('departamento_id')->unsigned();
+            $table->integer('cargo_id')->unsigned();
+            $table->integer('area_id')->unsigned();
             $table->enum('nivel_academico', ['bachiller', 'tsu', 'profesional', 'especialista 1', 'especialista 2']);
             $table->string('profesion');
             $table->enum('condicion_laboral', ['fijo', 'contratado', 'inactivo', 'suplente']);
             $table->enum('tipo_horario', ['fijo', 'rotativo']);
             $table->date('fecha_ingreso');
             $table->string('banco', 100);
-            $table->bigInteger('cuenta_bancaria');
+            $table->bigInteger('cuenta_bancaria')->unique();
             $table->timestamps();
+
+            $table->foreign('cargo_id')->references('cargo_id')->on('cargos')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('sucursal_id')->references('sucursal_id')->on('sucursales')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('departamento_id')->references('departamento_id')->on('departamentos')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

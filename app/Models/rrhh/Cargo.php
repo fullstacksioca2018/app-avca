@@ -18,4 +18,9 @@ class Cargo extends Model
     {
         return $this->hasMany(Vacante::class, 'cargo_id', 'cargo_id');
     }
+
+    public function empleados()
+    {
+        return $this->hasMany(Empleado::class, 'cargo_id', 'cargo_id');
+    }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 offset-md-4">
         <form autocomplete="off">
           <div class="input-group">
             <input type="text" name="cedula" id="cedula" class="form-control" placeholder="Ingrese la cédula a buscar..." v-model="busqueda" @keyup.prevent="obtenerAspirantesPorCedula">
@@ -28,11 +28,9 @@
   </div>
 </template>
 
-<script>
-  import ResultadosBusqueda from "./ResultadosBusqueda";
+<script>  
   export default {
-    name: "Buscador",
-    components: {ResultadosBusqueda},
+    name: "Buscador",    
     props: {
       formId: {
         type: String,
@@ -43,7 +41,7 @@
       return {
         busqueda: '',
         aspirantes: [],
-        aspirante: ''
+        aspirante: '',        
       }
     },
     methods: {
@@ -71,11 +69,36 @@
             this.busqueda = aspirante.cedula;
             this.$emit('aspirante', response.data);
             this.aspirantes.splice(0);
+
+            // Obtengo el cargo
+            this.obtenerCargo(this.aspirante);
+            // Obtengo la sucursal
+            this.obtenerSucursal(this.aspirante);
           })
           .catch(error => {
             console.log(error)
           });
-      }
+      },
+      obtenerSucursal(aspirante) {
+        axios.get('/rrhh/backend/contratacion/obtener-sucursal', {
+          params: {
+            vacante_id: aspirante.vacante_id
+          }
+        })
+          .then((response) => {
+            this.$emit('sucursal', response.data);
+          });
+      },
+      obtenerCargo(aspirante) {        
+        axios.get('/rrhh/backend/contratacion/obtener-cargo', {
+          params: {
+            cargo_id: aspirante.cargo_id
+          }
+        })
+          .then((response) => {
+            this.$emit('cargo', response.data);
+          });
+      },
       /*obtenerAspirante(aspirante) {
         //this.aspirante = aspirante;
         this.$emit('aspirante', aspirante);

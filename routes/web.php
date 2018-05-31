@@ -58,6 +58,13 @@ Route::group(['prefix' => 'cliente'], function() {
 
 });
 
+/*Rutas destinos*/
+Route::group(['prefix' => 'destino'], function() {
+    
+    Route::get('/cumana', 'Online\DestinoController@cumana')->name('destino.cumana'); 
+
+});
+
 /* AUTH ONLINE*/
 Route::group(['prefix' => 'online'], function () {
   Route::get('/login', 'OnlineAuth\LoginController@showLoginForm')->name('online.login');
@@ -78,8 +85,15 @@ Route::group(['prefix' => 'online'], function () {
 require 'Operativo\PlanificarRuta.php';
 require 'Operativo\PlanificarTaquilla.php';
 require 'Operativo\PlanificarVuelo.php';
-Route::get('/reportes', function () {
-    return view('reportes.PanelConsulta');
-});
 
+
+require 'Reporte\api.php';
+require 'Reporte\vistas.php';
 Route::get('listar-cargos', 'Reportes\ApiControllerDW@listCargos')->name('cargo.list.DW');
+
+//Rutas de login social
+Route::get('auth/{provider}', 'OnlineAuth\SocialAuthController@redirectToProvider')->name('social.auth');
+Route::get('auth/{provider}/callback', 'OnlineAuth\SocialAuthController@handleProviderCallback');
+require 'Operativo\PlanificarAeronave.php';
+require 'Operativo\PlanificarSucursal.php';
+

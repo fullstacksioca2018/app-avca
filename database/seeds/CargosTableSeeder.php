@@ -41,7 +41,7 @@ Requisito Básico para Personal FAV
                 'area_id'               => 3,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
-            ],
+            ],            
             [
                 'titulo'                => 'Secretaria ejecutiva',
                 'perfil'                => '<h2>SECRETARIA EJECUTIVA</h2>
@@ -646,7 +646,276 @@ Especialización en áreas relacionadas a las funciones específicas del cargo o
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ],
+            [
+                'titulo'                => 'Gerente de RRHH',
+                'perfil'                => '<h2>GERENTE DE RECURSOS HUMANOS</h2>
 
+<h4>FUNCIÓN GENERAL DEL CARGO</h4>
+<p>Controlar la ejecución de los planes y programas de los subsistemas de recursos humanos en una unidad central de recursos humanos,</p><p> planificando y aplicando los lineamientos técnicos en el desarrollo de los planes y programas,</p><p> para adaptar las normas y procedimientos según las necesidades del sistema de recursos humanos
+.</p>
+
+<h4>EDUCACIÓN Y CONOCIMIENTOS</h4>
+<p>Licenciado en Relaciones Industriales o el equivalente.</p>
+
+<h4>EXPERIENCIA</h4>
+<p>Once (11) años de experiencia progresiva de carácter operativo, supervisorio y estratégico en el</p><p> área de Administración de Recursos Humanos.</p>',
+                'funciones'             =>'<h4>FUNCIONES ESPECIFICAS</h4>
+
+<li>Asesora técnicamente a las distintas dependencias de la Institución, en materia de Administración de Recursos Humanos.</li>
+<li>Planifica, coordina, dirige y supervisa las actividades de la unidad a su cargo.</li>
+<li>Planifica, coordina y supervisa el diseño e implantación de planes y programas de los subsistemas de recursos humanos que son de la competencia de la unidad.</li>
+<li>Mantiene relaciones con empresas privadas y organismos del Estado para la ejecución del Plan Central de Adiestramiento.</li>',
+                'tabulador_salarial_id' => 4,
+                'area_id'               => 1,
+                'created_at'            => date('Y-m-d H:i:s'),
+                'updated_at'            => date('Y-m-d H:i:s')
+            ],
+            [
+                'titulo'                => 'Analista de Talento Humano Área Administrativa',
+                'perfil'                => '<h2>ANALISTA DE TALENTO HUMANO ÁREA ADMINISTRATIVA</h2>
+
+<h4>FUNCIÓN GENERAL DEL CARGO</h4>
+<p>Analizar actividades técnicas y/o administrativas relacionadas con el recurso humano, desarrollando y ejecutando planes </p><p>y programas pertinentes a la administración de personal, a fin de lograr y mantener un buen clima laboral.</p>
+
+<h4>EDUCACIÓN Y CONOCIMIENTOS</h4>
+<p>Licenciado en Relaciones Industriales o el equivalente.</p>
+
+<h4>EXPERIENCIA</h4>
+<p>Un (1) año de experiencia progresiva de carácter operativo, en el área de Administración de Recursos Humanos.</p>',
+                'funciones'             =>'<h4>FUNCIONES ESPECIFICAS</h4>
+
+<li>Analiza solicitudes de aumento de sueldos y salarios, para ascensos, traslados, promociones y/o decretos.</li>
+<li>Elabora y mantiene actualizado el registro de asignación de cargos (R.A.C) de la dependencia.</li>
+<li>Realiza análisis y descripciones de cargos.</li>
+<li>Realiza valoración de cargos.</li>
+<li>Mantiene actualizado el archivo de elegibles.</li>
+<li>Recibe y analiza solicitudes de empleo.</li>
+<li>Realiza entrevistas a los aspirantes a cargos.</li>
+<li>Realiza la evaluación de requisitos mínimos.</li>
+<li>Verifica y analiza las referencias de los aspirantes a cargos.</li>
+<li>Administra y corrige pruebas para la selección de personal.</li>
+<li>Ejecuta el proceso de inducción al candidato seleccionado.</li>
+<li>Realiza los trámites de nombramiento.</li>
+<li>Realiza el trámite de movimientos de nómina.</li>
+',
+                'tabulador_salarial_id' => 4,
+                'area_id'               => 1,
+                'created_at'            => date('Y-m-d H:i:s'),
+                'updated_at'            => date('Y-m-d H:i:s')
+            ],
+            [
+                'titulo'                => 'Analista de Talento Humano Área Operativa',
+                'perfil'                => '<h2>ANALISTA DE TALENTO HUMANO ÁREA OPERATIVA</h2>
+
+<h4>FUNCIÓN GENERAL DEL CARGO</h4>
+<p>Analizar actividades técnicas y/o administrativas relacionadas con el recurso humano, desarrollando y ejecutando planes </p><p>y programas pertinentes a la administración de personal, a fin de lograr y mantener un buen clima laboral.</p>
+
+<h4>EDUCACIÓN Y CONOCIMIENTOS</h4>
+<p>Licenciado en Relaciones Industriales o el equivalente.</p>
+
+<h4>EXPERIENCIA</h4>
+<p>Un (1) año de experiencia progresiva de carácter operativo, en el área de Administración de Recursos Humanos.</p>',
+                'funciones'             =>'<h4>FUNCIONES ESPECIFICAS</h4>
+
+<li>Analiza solicitudes de aumento de sueldos y salarios, para ascensos, traslados, promociones y/o decretos.</li>
+<li>Elabora y mantiene actualizado el registro de asignación de cargos (R.A.C) de la dependencia.</li>
+<li>Realiza análisis y descripciones de cargos.</li>
+<li>Realiza valoración de cargos.</li>
+<li>Mantiene actualizado el archivo de elegibles.</li>
+<li>Recibe y analiza solicitudes de empleo.</li>
+<li>Realiza entrevistas a los aspirantes a cargos.</li>
+<li>Realiza la evaluación de requisitos mínimos.</li>
+<li>Verifica y analiza las referencias de los aspirantes a cargos.</li>
+<li>Administra y corrige pruebas para la selección de personal.</li>
+<li>Ejecuta el proceso de inducción al candidato seleccionado.</li>
+<li>Realiza los trámites de nombramiento.</li>
+<li>Realiza el trámite de movimientos de nómina.</li>
+',
+                'tabulador_salarial_id' => 4,
+                'area_id'               => 3,
+                'created_at'            => date('Y-m-d H:i:s'),
+                'updated_at'            => date('Y-m-d H:i:s')
+            ],[
+                'titulo'                => 'Analista de Talento Humano Área Telemática',
+                'perfil'                => '<h2>ANALISTA DE TALENTO HUMANO ÁREA TELEMÁTICA</h2>
+
+<h4>FUNCIÓN GENERAL DEL CARGO</h4>
+<p>Analizar actividades técnicas y/o administrativas relacionadas con el recurso humano, desarrollando y ejecutando planes </p><p>y programas pertinentes a la administración de personal, a fin de lograr y mantener un buen clima laboral.</p>
+
+<h4>EDUCACIÓN Y CONOCIMIENTOS</h4>
+<p>Licenciado en Relaciones Industriales o el equivalente.</p>
+
+<h4>EXPERIENCIA</h4>
+<p>Un (1) año de experiencia progresiva de carácter operativo, en el área de Administración de Recursos Humanos.</p>',
+                'funciones'             =>'<h4>FUNCIONES ESPECIFICAS</h4>
+
+<li>Analiza solicitudes de aumento de sueldos y salarios, para ascensos, traslados, promociones y/o decretos.</li>
+<li>Elabora y mantiene actualizado el registro de asignación de cargos (R.A.C) de la dependencia.</li>
+<li>Realiza análisis y descripciones de cargos.</li>
+<li>Realiza valoración de cargos.</li>
+<li>Mantiene actualizado el archivo de elegibles.</li>
+<li>Recibe y analiza solicitudes de empleo.</li>
+<li>Realiza entrevistas a los aspirantes a cargos.</li>
+<li>Realiza la evaluación de requisitos mínimos.</li>
+<li>Verifica y analiza las referencias de los aspirantes a cargos.</li>
+<li>Administra y corrige pruebas para la selección de personal.</li>
+<li>Ejecuta el proceso de inducción al candidato seleccionado.</li>
+<li>Realiza los trámites de nombramiento.</li>
+<li>Realiza el trámite de movimientos de nómina.</li>
+',
+                'tabulador_salarial_id' => 4,
+                'area_id'               => 5,
+                'created_at'            => date('Y-m-d H:i:s'),
+                'updated_at'            => date('Y-m-d H:i:s')
+            ],[
+                'titulo'                => 'Analista de Talento Humano Área Apoyo Logistico',
+                'perfil'                => '<h2>ANALISTA DE TALENTO HUMANO ÁREA APOYO LOGISTICO</h2>
+
+<h4>FUNCIÓN GENERAL DEL CARGO</h4>
+<p>Analizar actividades técnicas y/o administrativas relacionadas con el recurso humano, desarrollando y ejecutando planes </p><p>y programas pertinentes a la administración de personal, a fin de lograr y mantener un buen clima laboral.</p>
+
+<h4>EDUCACIÓN Y CONOCIMIENTOS</h4>
+<p>Licenciado en Relaciones Industriales o el equivalente.</p>
+
+<h4>EXPERIENCIA</h4>
+<p>Un (1) año de experiencia progresiva de carácter operativo, en el área de Administración de Recursos Humanos.</p>',
+                'funciones'             =>'<h4>FUNCIONES ESPECIFICAS</h4>
+
+<li>Analiza solicitudes de aumento de sueldos y salarios, para ascensos, traslados, promociones y/o decretos.</li>
+<li>Elabora y mantiene actualizado el registro de asignación de cargos (R.A.C) de la dependencia.</li>
+<li>Realiza análisis y descripciones de cargos.</li>
+<li>Realiza valoración de cargos.</li>
+<li>Mantiene actualizado el archivo de elegibles.</li>
+<li>Recibe y analiza solicitudes de empleo.</li>
+<li>Realiza entrevistas a los aspirantes a cargos.</li>
+<li>Realiza la evaluación de requisitos mínimos.</li>
+<li>Verifica y analiza las referencias de los aspirantes a cargos.</li>
+<li>Administra y corrige pruebas para la selección de personal.</li>
+<li>Ejecuta el proceso de inducción al candidato seleccionado.</li>
+<li>Realiza los trámites de nombramiento.</li>
+<li>Realiza el trámite de movimientos de nómina.</li>
+',
+                'tabulador_salarial_id' => 4,
+                'area_id'               => 2,
+                'created_at'            => date('Y-m-d H:i:s'),
+                'updated_at'            => date('Y-m-d H:i:s')
+            ],[
+                'titulo'                => 'Analista de Talento Humano Área Oficina',
+                'perfil'                => '<h2>ANALISTA DE TALENTO HUMANO ÁREA OFICINA</h2>
+
+<h4>FUNCIÓN GENERAL DEL CARGO</h4>
+<p>Analizar actividades técnicas y/o administrativas relacionadas con el recurso humano, desarrollando y ejecutando planes </p><p>y programas pertinentes a la administración de personal, a fin de lograr y mantener un buen clima laboral.</p>
+
+<h4>EDUCACIÓN Y CONOCIMIENTOS</h4>
+<p>Licenciado en Relaciones Industriales o el equivalente.</p>
+
+<h4>EXPERIENCIA</h4>
+<p>Un (1) año de experiencia progresiva de carácter operativo, en el área de Administración de Recursos Humanos.</p>',
+                'funciones'             =>'<h4>FUNCIONES ESPECIFICAS</h4>
+
+<li>Analiza solicitudes de aumento de sueldos y salarios, para ascensos, traslados, promociones y/o decretos.</li>
+<li>Elabora y mantiene actualizado el registro de asignación de cargos (R.A.C) de la dependencia.</li>
+<li>Realiza análisis y descripciones de cargos.</li>
+<li>Realiza valoración de cargos.</li>
+<li>Mantiene actualizado el archivo de elegibles.</li>
+<li>Recibe y analiza solicitudes de empleo.</li>
+<li>Realiza entrevistas a los aspirantes a cargos.</li>
+<li>Realiza la evaluación de requisitos mínimos.</li>
+<li>Verifica y analiza las referencias de los aspirantes a cargos.</li>
+<li>Administra y corrige pruebas para la selección de personal.</li>
+<li>Ejecuta el proceso de inducción al candidato seleccionado.</li>
+<li>Realiza los trámites de nombramiento.</li>
+<li>Realiza el trámite de movimientos de nómina.</li>
+',
+                'tabulador_salarial_id' => 4,
+                'area_id'               => 4,
+                'created_at'            => date('Y-m-d H:i:s'),
+                'updated_at'            => date('Y-m-d H:i:s')
+            ],[
+                'titulo'                => 'Analista de Talento Humano Área Tripulación',
+                'perfil'                => '<h2>ANALISTA DE TALENTO HUMANO ÁREA TRIPULACIÓN</h2>
+
+<h4>FUNCIÓN GENERAL DEL CARGO</h4>
+<p>Analizar actividades técnicas y/o administrativas relacionadas con el recurso humano, desarrollando y ejecutando planes </p><p>y programas pertinentes a la administración de personal, a fin de lograr y mantener un buen clima laboral.</p>
+
+<h4>EDUCACIÓN Y CONOCIMIENTOS</h4>
+<p>Licenciado en Relaciones Industriales o el equivalente.</p>
+
+<h4>EXPERIENCIA</h4>
+<p>Un (1) año de experiencia progresiva de carácter operativo, en el área de Administración de Recursos Humanos.</p>',
+                'funciones'             =>'<h4>FUNCIONES ESPECIFICAS</h4>
+
+<li>Analiza solicitudes de aumento de sueldos y salarios, para ascensos, traslados, promociones y/o decretos.</li>
+<li>Elabora y mantiene actualizado el registro de asignación de cargos (R.A.C) de la dependencia.</li>
+<li>Realiza análisis y descripciones de cargos.</li>
+<li>Realiza valoración de cargos.</li>
+<li>Mantiene actualizado el archivo de elegibles.</li>
+<li>Recibe y analiza solicitudes de empleo.</li>
+<li>Realiza entrevistas a los aspirantes a cargos.</li>
+<li>Realiza la evaluación de requisitos mínimos.</li>
+<li>Verifica y analiza las referencias de los aspirantes a cargos.</li>
+<li>Administra y corrige pruebas para la selección de personal.</li>
+<li>Ejecuta el proceso de inducción al candidato seleccionado.</li>
+<li>Realiza los trámites de nombramiento.</li>
+<li>Realiza el trámite de movimientos de nómina.</li>
+',
+                'tabulador_salarial_id' => 4,
+                'area_id'               => 6,
+                'created_at'            => date('Y-m-d H:i:s'),
+                'updated_at'            => date('Y-m-d H:i:s')
+            ],[
+                'titulo'                => 'Gerente de Sucursal',
+                'perfil'                => '<h2>GERENTE DE SUCURSAL</h2>
+
+<h4>FUNCIÓN GENERAL DEL CARGO</h4>
+<p>Apertura de la sucursal, manejo de controles diarios de inventario y mermas, capacitación de personal, administración de la sucursal buscando rendimiento económico,</p><p> manejo de personal satisfacción de clientes, </p><p>manejo de quejas, proyección de ventas diarias, solución a problemas de mantenimiento, </p><p>pleno conocimiento de normas vigentes establecidas por parte de las dependencias de gobierno.</p>
+
+<h4>EDUCACIÓN Y CONOCIMIENTOS</h4>
+<p>Licenciado en Administración Comercial, Relaciones Industriales o el equivalente.</p>
+
+<h4>EXPERIENCIA</h4>
+<p>Cinco (5) años de experiencia progresiva de carácter operativo, en el área de Administración de Comercial.</p>',
+                'funciones'             =>'<h4>FUNCIONES ESPECIFICAS</h4>
+
+<li>Velar por el buen funcionamiento de la Sucursal.</li>
+<li>Controlar el Registro de Asistencia del ersonal a su cargo.</li>
+<li>Reportar y registrar las incidencias presentes en la sucursal a su cargo.</li>
+<li>Administrar el personal a su cargo.</li>
+<li>Coordinar el mantenimineto de las instalaciones y equipos a su cargo.</li>
+<li>.</li>
+<li>.</li>
+',
+                'tabulador_salarial_id' => 4,
+                'area_id'               => 1,
+                'created_at'            => date('Y-m-d H:i:s'),
+                'updated_at'            => date('Y-m-d H:i:s')
+            ],[
+                'titulo'                => 'Analista de Nómina',
+                'perfil'                => '<h2>ANALISTA DE NÓMINA</h2>
+
+<h4>FUNCIÓN GENERAL DEL CARGO</h4>
+<p>Analizar la nómina del personal de la Empresa, revisando y verificando los procesos y cálculos efectuados para</p><p> la cancelación de los diversos conceptos, a fin de garantizar su correcta elaboración..</p>
+
+<h4>EDUCACIÓN Y CONOCIMIENTOS</h4>
+<p>Licenciado en Contaduría Pública, Administración Comercial, Relaciones Industriales o sus equivalentes.</p>
+
+<h4>EXPERIENCIA</h4>
+<p>Tres (3) años de experiencia progresiva de carácter operativo y supervisorio en el área de elaboración y análisis de nómina.</p>',
+                'funciones'             =>'<h4>FUNCIONES ESPECIFICAS</h4>
+
+<li>Verifica cálculos de actualización de sueldos de deudas, por sueldos atrasados, descuentos y otros conceptos.</li>
+<li>Revisa los listados de la pre-nómina para verificar que los datos y cálculos estén correctos.</li>
+<li>Revisa y analiza la nómina para verificar que los datos y cálculos estén correctos.</li>
+<li>Verifica que los datos contenidos en los cheques de la nómina de personal sean los correctos.</li>
+<li>Analiza órdenes de pago para la elaboración de extra-nómina.</li>
+<li>Recibe de la Unidad de Recursos Humanos, informes contentivos de medidas de embargo de sueldos a personal de la Institución.</li>
+<li>Supervisa y controla los trámites administrativos que se han de llevar a cabo para la retención de sueldos con respecto a medidas de embargo.</li>
+',
+                'tabulador_salarial_id' => 4,
+                'area_id'               => 1,
+                'created_at'            => date('Y-m-d H:i:s'),
+                'updated_at'            => date('Y-m-d H:i:s')
+            ],
         ]);
     }
 }

@@ -13,13 +13,12 @@
   
 
 
-  <table class="table-sm ">
+  <table class="table-sm">
     <thead>
             <div class="table-detalles"><img src="{{ asset('online/img/logo.png') }} " height="40" class="d-inline-block align-right" alt="AVCA"></div>
             
           </thead>
     
-   
    @foreach ($datos_vuelos as $dato_vuelo)
       @php
         $salida = Carbon::parse($dato_vuelo->vuelo->fecha_salida);
@@ -36,12 +35,23 @@
       <th class="thresumen">{{ $fecha->format('d/m/Y') }}</th>
       <th class="thresumen">Costo: {{ $dato_vuelo->ruta->tarifa_vuelo }}</th>
     </tr>
+
+      @for($i = 0; $i < $factura->ninos_cant + $factura->adultos_cant; $i++)
+        <tr>
+
+          <th class="thresumen">Pasajero: {{ $boletos[$i]->primerNombre }} {{ $boletos[$i]->apellido }}</th>
+
+          <th class="thresumen">Localizador: {{ $boletos[$i]->localizador }} </th>
+
+        </tr>
+            
+      @endfor
+    
+
     @endforeach
     <tr class="table-detalles">
-    @foreach($facturas as $fac)  
-      <th class="thresumen">Cantidad pasajeros: {{ $fac->ninos_cant + $fac->adultos_cant }}</th>
-      <th class="thresumen">Costo Total: {{ $fac->importe_facturado }}</th>
-    @endforeach
+      <th class="thresumen">Cantidad pasajeros: {{ $factura->ninos_cant + $factura->adultos_cant }}</th>
+      <th class="thresumen">Costo Total: {{ $factura->importe_facturado }}</th>
       <th class="thresumen2"></th>
       <th class="thresumen2"></th>
       <th></th>
@@ -54,8 +64,10 @@
 
 </div>
 
-
-
+      <div class="titulo-detalles">
+ <p> La informacion de su boleto ha sido enviada a su correo</p>
+      </div><!--titulo detalles-->
+  <a type="" href="{{ URL::to('/online/cliente/MiPerfil', Auth::guard('online')->user()->id) }}" class="btn btn-md btn-primary">Aceptar</a>
 
    </div><!--w75-->  
 
@@ -114,7 +126,7 @@
         <li class="thresumen2">Los boletos no son reembolsables ni transferibles.</li>
         <li class="thresumen2">Si se imposibilita para viajar, los boletos tienen una duración de 1 año desde su compra</li>
         <li class="thresumen2">Las tarifas de AVCA permiten viajar de un destino a otro con un artículo de mano, de llevar otro se cobrará sobrecargo; de igual manera se aplicará sobrecargo a maletas con más de 23kgs</li>
-        
+        <li class="thresumen2">Utilice el localizador al momento de realizar su check-in</li>
       </div>
 
      </div>

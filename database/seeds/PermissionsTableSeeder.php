@@ -470,5 +470,39 @@ class PermissionsTableSeeder extends Seeder
             'slug'          => 'vouchers.destroy',
             'description'   => 'Eliminar cualquier voucher del sistema'
         ]);
+
+        //Permisos Modulo Operativo
+        Permission::create([
+            'name'          => 'Operaciones de taquilla',
+            'slug'          => 'operacion.taquilla',
+            'description'   => 'Vender, Reservar y check de boletos'
+        ]);
+        Permission::create([
+            'name'          => 'Operaciones de Sucursal',
+            'slug'          => 'operacion.sucursal',
+            'description'   => 'Visualizar y cambiar estado de vuelos de sucursal'
+        ]);
+        Permission::create([
+            'name'          => 'Planificaciòn de Vuelos',
+            'slug'          => 'planificacion.vuelos',
+            'description'   => 'Crear, Eliminar y modificar Vuelos y rutas'
+        ]);
+        //Permisos Modulo Reporte
+        Permission::create([
+            'name'          => 'Reporte de Personal',
+            'slug'          => 'reporte.personal',
+            'description'   => 'Visualizar y parametrizar reportes del personal'
+        ]);
+        Permission::create([
+            'name'          => 'Reporte de Ingresos',
+            'slug'          => 'reporte.ingreso',
+            'description'   => 'Visualizar y parametrizar reportes del ingresos'
+        ]);
+        Permission::create([
+            'name'          => 'Reporte de Servicios',
+            'slug'          => 'reporte.servicio',
+            'description'   => 'Visualizar y parametrizar reportes del servicios'
+        ]);
+
     }
 }

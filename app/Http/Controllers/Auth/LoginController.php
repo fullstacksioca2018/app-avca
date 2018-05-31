@@ -42,6 +42,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+
     }
     public function showLoginForm()
     {
@@ -52,18 +53,26 @@ class LoginController extends Controller
     public function redirectPath()
     {
         $auxURL;
-        switch (Auth::user()->role) {
-            case 'Gerente General':
-                $auxURL='/reportes';
-                break;
-            case 'Gerente RRHH':
+        switch (Auth::user()->modulo) {
+            case 'rrhh':
                 $auxURL='/rrhh/backend/admin';
+                $this->redirectTo='/rrhh/backend/admin';
                 break;
-            case 'Gerente Sucursales':
-                $auxURL='/rutas';
+            case 'online':
+                $auxURL='/online/inicio';
+                $this->redirectTo='/online/inicio';
                 break;
-            default:
-                $auxURL='/rrhh/frontend';
+            case 'operativo1':
+                $auxURL='/taquilla';
+                $this->redirectTo='/taquilla';
+                break;
+            case 'operativo2':
+                $auxURL='/vuelos';
+                $this->redirectTo='/vuelos';
+                break;
+            case 'reporte':
+                $auxURL='/reportes';
+                $this->redirectTo='/reportes';
                 break;
         }
 

@@ -26,11 +26,13 @@ $factory->define(App\Models\operativo\Ruta::class, function (Faker $faker) {
     }
     else{
         $random_destino++;
+        $Sdestino=App\Models\operativo\Sucursal::where('sucursal_id','=',$random_destino)->get();
+        $siglaAux=$Sorigen[0]->sigla.'-'.$Sdestino[0]->sigla;
         return [
             'distancia' => $faker->longitude($min = 200, $max = 800),
             'sigla'  => $siglaAux,
-            'origen_id' => $Sorigen->id,
-            'destino_id' => $Sdestino->id,  
+            'origen_id' => $random_origen,
+            'destino_id' => $random_destino, 
             'estado'    =>  'activo'
         ];
 

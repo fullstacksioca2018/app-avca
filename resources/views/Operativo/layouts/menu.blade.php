@@ -6,7 +6,7 @@
                 <i class="nav-icon icon-speedometer"></i> Panel de Control
               </a>
             </li>
-            <li class="nav-title">Boleteria</li>
+            <li class="nav-title">Taquilla</li>
             <li class="nav-item">
               <a class="nav-link" href="{!! url('/'); !!}">
                 <i class="nav-icon icon-plane"></i> Gestionar Taquilla

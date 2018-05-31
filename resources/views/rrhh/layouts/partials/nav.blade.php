@@ -50,6 +50,11 @@
                 <p style="padding-left: 1.5rem;">Contratación</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('empleados.list') }}" class="{{ request()->routeIs('empleados.list') ? 'nav-link active' : 'nav-link' }}">
+                <p style="padding-left: 1.5rem;">Contrato laboral</p>
+              </a>
+            </li>
           </ul>
         </li>        
         <li class="nav-item">
@@ -127,6 +132,18 @@
             </p>
           </a>
         </li>
+
+        {{--  Opcion para el gerente de la sucursal  --}}
+        <li class="nav-item">
+          <a href="{{ route('asistencia.register') }}" class="{{ request()->routeIs('asistencia.register') ? 'nav-link active' : 'nav-link' }}">
+            <i class="nav-icon fa fa-clock-o"></i>
+            <p>
+              Asistencia
+            </p>
+          </a>
+        </li>
+
+
       </ul>
     </li>
   </ul>
