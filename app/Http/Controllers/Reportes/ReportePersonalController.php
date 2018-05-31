@@ -376,7 +376,6 @@ class ReportePersonalController extends Controller
                 }
                 for($p=0;$p<count($consulta->parametros);$p++){
                     $info=$this->busquedaPersonal($consultaFiltro,$consulta->parametros[$p],$periodos[0],$consulta->busqueda,$consulta->busquedaMonto,$consulta->busquedaRow);
-                    // return $info;
                     for ($i=0; $i < count($info->labels) ; $i++) {
                         array_push($data, [$info->data[$i]]);
                         array_push($label, $info->labels[$i]);
@@ -474,7 +473,7 @@ class ReportePersonalController extends Controller
                 break;
 
             case 'Inasistencias':
-                return $this->busquedaPersonalAusencias($tipo,$parametro,$periodo,$busqueda,$Monto,$Row);
+        return $this->busquedaPersonalAusencias($tipo,$parametro,$periodo,$busqueda,$Monto,$Row);
                 break;
         }
         return 0;
@@ -724,7 +723,6 @@ class ReportePersonalController extends Controller
                 switch ($busqueda) {
                     case "Más alto":
                         $sucursales=DW_Reporte::SucursalesAusenciaAlta($periodo,$Row);
-                        return $sucursales;
                         // return "Más alto";
                         break;
                     case "Más bajo":
