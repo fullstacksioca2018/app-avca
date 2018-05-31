@@ -31,7 +31,6 @@ class AspirantesTableSeeder extends Seeder
             'created_at'            => date('Y-m-d H:i:s'),
             'updated_at'            => date('Y-m-d H:i:s')
         ]);
-
         DB::table('aspirantes')->insert([
                 'cedula' => 16313659,
                 'nacionalidad' => 'v',
@@ -48,7 +47,6 @@ class AspirantesTableSeeder extends Seeder
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
         ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 3871882,
                 'nacionalidad' => 'v',
@@ -65,7 +63,6 @@ class AspirantesTableSeeder extends Seeder
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 4188779,
                 'nacionalidad' => 'v',
@@ -99,7 +96,6 @@ class AspirantesTableSeeder extends Seeder
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 28690222,
                 'nacionalidad' => 'v',
@@ -116,7 +112,6 @@ class AspirantesTableSeeder extends Seeder
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 29721806,
                 'nacionalidad' => 'v',
@@ -133,7 +128,6 @@ class AspirantesTableSeeder extends Seeder
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30078848,
                 'nacionalidad' => 'v',
@@ -167,7 +161,6 @@ class AspirantesTableSeeder extends Seeder
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
         DB::table('aspirantes')->insert([
                 'cedula' => 30143089,
                 'nacionalidad' => 'v',
@@ -184,7 +177,6 @@ class AspirantesTableSeeder extends Seeder
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30379484,
                 'nacionalidad' => 'v',
@@ -201,7 +193,6 @@ class AspirantesTableSeeder extends Seeder
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30508924,
                 'nacionalidad' => 'v',
@@ -235,7 +226,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
 DB::table('aspirantes')->insert([
                 'cedula' => 31279311,
                 'nacionalidad' => 'v',
@@ -252,7 +242,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 31043150,
                 'nacionalidad' => 'v',
@@ -269,7 +258,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30379339,
                 'nacionalidad' => 'v',
@@ -300,11 +288,9 @@ DB::table('aspirantes')->insert([
                 'curriculum' => 'curriculum',
                 'vacante_id' => 5,
                 'cargo_id' => 1,
-
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'           => date('Y-m-d H:i:s')
             ]);
-
 DB::table('aspirantes')->insert([
                 'cedula' => 30989089,
                 'nacionalidad' => 'v',
@@ -318,11 +304,9 @@ DB::table('aspirantes')->insert([
                 'curriculum' => 'curriculum',
                 'vacante_id' => 5,
                 'cargo_id' => 1,
-
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'           => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30143077,
                 'nacionalidad' => 'v',
@@ -336,11 +320,9 @@ DB::table('aspirantes')->insert([
                 'curriculum' => 'curriculum',
                 'vacante_id' => 5,
                 'cargo_id' => 1,
-
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30336048,
                 'nacionalidad' => 'v',
@@ -354,7 +336,6 @@ DB::table('aspirantes')->insert([
                 'curriculum' => 'curriculum',
                 'vacante_id' => 5,
                 'cargo_id' => 1,
-
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
@@ -372,7 +353,6 @@ DB::table('aspirantes')->insert([
                 'curriculum' => 'curriculum',
                 'vacante_id' => 6,
                 'cargo_id' => 3,
-
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'           => date('Y-m-d H:i:s')
             ]);
@@ -390,11 +370,9 @@ DB::table('aspirantes')->insert([
                 'curriculum' => 'curriculum',
                 'vacante_id' => 6,
                 'cargo_id' => 3,
-
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'           => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30378815,
                 'nacionalidad' => 'v',
@@ -408,11 +386,9 @@ DB::table('aspirantes')->insert([
                 'curriculum' => 'curriculum',
                 'vacante_id' => 6,
                 'cargo_id' => 3,
-
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
                 ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30636549,
                 'nacionalidad' => 'v',
@@ -429,11 +405,8 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
-
             // vacantes renzo
             // vacantes 7
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30078548,
                 'nacionalidad' => 'v',
@@ -450,7 +423,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30917640,
                 'nacionalidad' => 'v',
@@ -467,7 +439,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 31043508,
                 'nacionalidad' => 'v',
@@ -484,7 +455,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30804574,
                 'nacionalidad' => 'v',
@@ -501,9 +471,7 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             // vacantes 8
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30989321,
                 'nacionalidad' => 'v',
@@ -520,7 +488,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 30917694,
                 'nacionalidad' => 'v',
@@ -537,7 +504,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 12687215,
                 'nacionalidad' => 'v',
@@ -554,7 +520,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 14873002,
                 'nacionalidad' => 'v',
@@ -571,9 +536,7 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             // vacantes 9
-
             DB::table('aspirantes')->insert([
                 'cedula' => 18233557,
                 'nacionalidad' => 'v',
@@ -590,7 +553,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 22687521,
                 'nacionalidad' => 'v',
@@ -607,7 +569,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 17321596,
                 'nacionalidad' => 'v',
@@ -624,7 +585,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 13854632,
                 'nacionalidad' => 'v',
@@ -641,10 +601,7 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
-
             // vacantes 10
-
             DB::table('aspirantes')->insert([
                 'cedula' => 11057463,
                 'nacionalidad' => 'v',
@@ -661,7 +618,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 14680301,
                 'nacionalidad' => 'v',
@@ -678,7 +634,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16691001,
                 'nacionalidad' => 'v',
@@ -695,7 +650,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15796322,
                 'nacionalidad' => 'v',
@@ -712,10 +666,7 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
-
             // vacantes 11
-
             DB::table('aspirantes')->insert([
                 'cedula' => 19000224,
                 'nacionalidad' => 'v',
@@ -732,7 +683,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 8635269,
                 'nacionalidad' => 'v',
@@ -749,7 +699,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 10236411,
                 'nacionalidad' => 'v',
@@ -766,7 +715,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 5362248,
                 'nacionalidad' => 'v',
@@ -784,7 +732,6 @@ DB::table('aspirantes')->insert([
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
             // vacantes 12
-
             DB::table('aspirantes')->insert([
                 'cedula' => 8651999,
                 'nacionalidad' => 'v',
@@ -801,7 +748,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16745632,
                 'nacionalidad' => 'v',
@@ -818,7 +764,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 12310248,
                 'nacionalidad' => 'v',
@@ -835,7 +780,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 20345870,
                 'nacionalidad' => 'v',
@@ -852,7 +796,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
                 ]);
-
             DB::table('aspirantes')->insert([                   //vacante 13
                 'cedula' => 17684100,
                 'nacionalidad' => 'v',
@@ -869,7 +812,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 11010140,
                 'nacionalidad' => 'v',
@@ -886,7 +828,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 17000331,
                 'nacionalidad' => 'v',
@@ -903,7 +844,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 7246921,
                 'nacionalidad' => 'v',
@@ -920,7 +860,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             
                 DB::table('aspirantes')->insert([
                 'cedula' => 19224987,
@@ -938,7 +877,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
                 ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15746109,
                 'nacionalidad' => 'v',
@@ -955,7 +893,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 13002143,
                 'nacionalidad' => 'v',
@@ -972,7 +909,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 24002689,
                 'nacionalidad' => 'v',
@@ -989,7 +925,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             
                 DB::table('aspirantes')->insert([
                 'cedula' => 19301400,
@@ -1024,7 +959,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 21002147,
                 'nacionalidad' => 'v',
@@ -1041,7 +975,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 18000002,
                 'nacionalidad' => 'v',
@@ -1058,7 +991,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             
                 DB::table('aspirantes')->insert([
                 'cedula' => 7159749,
@@ -1093,7 +1025,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 22046954,
                 'nacionalidad' => 'v',
@@ -1110,7 +1041,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15238754,
                 'nacionalidad' => 'v',
@@ -1127,7 +1057,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             
                 DB::table('aspirantes')->insert([
                 'cedula' => 26348751,
@@ -1162,7 +1091,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
                 ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15000333,
                 'nacionalidad' => 'v',
@@ -1179,7 +1107,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 156788760,
                 'nacionalidad' => 'v',
@@ -1196,7 +1123,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             
                 DB::table('aspirantes')->insert([
                 'cedula' => 14543123,
@@ -1231,7 +1157,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16226003,
                 'nacionalidad' => 'v',
@@ -1248,7 +1173,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')           
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15444333,
                 'nacionalidad' => 'v',
@@ -1265,11 +1189,8 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
-
             // vacantes renzo
             // vacantes 19
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16900003,
                 'nacionalidad' => 'v',
@@ -1286,7 +1207,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15600002,
                 'nacionalidad' => 'v',
@@ -1335,10 +1255,7 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
-
             // vacantes 20
-
             DB::table('aspirantes')->insert([
                 'cedula' => 1544433,
                 'nacionalidad' => 'v',
@@ -1355,7 +1272,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')  
                 ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 18098765,
                 'nacionalidad' => 'v',
@@ -1404,10 +1320,7 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
-
             // vacantes 21
-
             DB::table('aspirantes')->insert([
                 'cedula' => 14777666,
                 'nacionalidad' => 'v',
@@ -1424,7 +1337,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 17676788,
                 'nacionalidad' => 'v',
@@ -1473,10 +1385,7 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
-
             // vacantes 22
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16123321,
                 'nacionalidad' => 'v',
@@ -1493,7 +1402,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16767999,
                 'nacionalidad' => 'v',
@@ -1542,10 +1450,7 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
-
-
             // vacantes 23
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15444666,
                 'nacionalidad' => 'v',
@@ -1562,7 +1467,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 16123345,
                 'nacionalidad' => 'v',
@@ -1611,9 +1515,7 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             // vacantes 24
-
             DB::table('aspirantes')->insert([
                 'cedula' => 22333123,
                 'nacionalidad' => 'v',
@@ -1630,7 +1532,6 @@ DB::table('aspirantes')->insert([
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')            
             ]);
-
             DB::table('aspirantes')->insert([
                 'cedula' => 15089185,
                 'nacionalidad' => 'v',

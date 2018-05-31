@@ -7,7 +7,8 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+ window.Vue = require('vue');
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -21,7 +22,23 @@ Vue.component('vacante-filter', require('./components/backend/vacante/VacanteFil
 Vue.component('aspirante-table', require('./components/backend/aspirante/AspiranteTable'));
 Vue.component('aspirante-status', require('./components/backend/aspirante/AspiranteStatus'));
 Vue.component('contratacion', require('./components/backend/rrhh/contratacion/Contratacion'));
+//RUTAS
 Vue.component('Rutas', require('./components/operativo/AdministracionRutas.vue'));
+//VUELOS
+Vue.component('Vuelos', require('./components/operativo/PlanificarVuelos.vue'));
+Vue.component('VuelosAbiertos', require('./components/operativo/VuelosAbiertos.vue'));
+Vue.component('VuelosCerrados', require('./components/operativo/VuelosCerrados.vue'));
+Vue.component('VuelosRetrasados', require('./components/operativo/VuelosRetrasados.vue'));
+Vue.component('VuelosEjecutados', require('./components/operativo/VuelosEjecutados.vue'));
+Vue.component('VuelosCancelados', require('./components/operativo/VuelosCancelados.vue'));
+//TRIPULACION
+Vue.component('CargarPilotos', require('./components/operativo/CargarPilotos.vue'));
+Vue.component('CargarCopilotos', require('./components/operativo/CargarCopilotos.vue'));
+Vue.component('CargarJefeCabina', require('./components/operativo/CargarJefeCabina.vue'));
+Vue.component('CargarSobrecargo', require('./components/operativo/CargarSobrecargo.vue'));
+Vue.component('CargarAeronave', require('./components/operativo/CargarAeronave.vue'));
+// AERONAVES
+Vue.component('Aeronaves',require('./components/operativo/AdministracionAeronaves.vue'));
 
 // Empleado
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
@@ -40,6 +57,8 @@ Vue.component('parametros-nomina', require('./components/backend/rrhh/parametros
 Vue.component('empleado', require('./components/backend/rrhh/asistencia/Empleado'));
 
 Vue.component('panel', require('./components/reportes/panel.vue'));
+Vue.component('dashboard', require('./components/reportes/Dashboard.vue'));
+Vue.component('breadcrumbpersonal', require('./components/reportes/breadcrumbPersonal.vue'));
 
 import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2);

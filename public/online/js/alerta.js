@@ -1,7 +1,7 @@
 $(function(){
 	
-	$('#login').click(function() {
-		alert("No se puede realizar la compra del boleto sin haber iniciado sesión");
+	$('#login').click(function(){
+		alert("Debe iniciar sesión para realizar la compra del boleto.");
 	});
 
 });

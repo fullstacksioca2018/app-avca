@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'AVCA'),
 
     /*
     |--------------------------------------------------------------------------
@@ -161,8 +161,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         //LEO
-        // Caffeinated\Shinobi\ShinobiServiceProvider::class,
+        Caffeinated\Shinobi\ShinobiServiceProvider::class,
 
+        //Propios
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
     ],
 
     /*
@@ -214,9 +217,11 @@ return [
         'Carbon' => 'Carbon\Carbon',
 
         //LEO
-        // 'Shinobi' => Caffeinated\Shinobi\Facades\Shinobi::class,
+      //  'Shinobi' => Caffeinated\Shinobi\Facades\Shinobi::class,
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Flash' => Laracasts\Flash\Flash::class
     ],
 
 ];
