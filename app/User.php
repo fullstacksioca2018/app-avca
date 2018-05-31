@@ -3,14 +3,12 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Caffeinated\Shinobi\Traits\ShinobiTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, ShinobiTrait;
+    use Notifiable;
 
-    protected $guard = 'user';
     /**
      * The attributes that are mass assignable.
      *
@@ -20,7 +18,6 @@ class User extends Authenticatable
         'name', 'email', 'password','modulo',
     ];
 
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -29,5 +26,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
 }
