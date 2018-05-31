@@ -48,9 +48,9 @@
       </div>
 
       <!--Hora-->
-      <div class="hora text-center">
-        <h6>Hora actual</h6>
-        <!--<h2>{{ \Carbon\Carbon::now()->format('H:i:s A') }}</h2>-->
+      <div class="hora text-center">        
+        <h6 v-if="asistencia !== null">Hora de salida</h6>
+        <h6 v-else>Hora de entrada</h6>        
         <h2>{{ horaActual }}</h2>
       </div>
     </div>
@@ -64,6 +64,7 @@
     name: "Empleado",
     data() {
       return {
+        asistencia: '',
         empleado: '',
         codigo: ''
       }
@@ -74,11 +75,12 @@
         axios.get('/rrhh/backend/asistencia/obtener-empleado/' + this.codigo)
           .then((response) => {
             console.log(response.data)
-            this.empleado = response.data;
+            this.empleado = response.data[0];
+            this.asistencia = response.data[1];
             loader.hide();
-            /*setTimeout(() => {
+            setTimeout(() => {
               window.location.reload(true);
-            }, 3000)*/
+            }, 10000)
           })
           .catch((error) => {
             console.error(error)

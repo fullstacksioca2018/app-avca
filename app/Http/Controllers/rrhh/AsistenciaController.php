@@ -51,7 +51,7 @@ class AsistenciaController extends Controller
         if (count($asistencia) === 0) {
             $this->registrarAsistencia($fecha, $fecha_feriada, $empleado_id);
 
-            return response()->json($empleado, 200);
+            return response()->json([$empleado, $asistencia], 200);
         } else {
             // El usuario esta marcando la hora de salida
 
@@ -165,7 +165,7 @@ class AsistenciaController extends Controller
             }
 
             // Retorna los datos del empleado
-            return response()->json($empleado, 200);
+            return response()->json([$empleado, $asistencia], 200);
         }
     }
 
