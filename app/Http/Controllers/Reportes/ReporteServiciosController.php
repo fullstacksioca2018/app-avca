@@ -100,19 +100,22 @@ class ReporteServiciosController extends Controller
     }
 
     public function prueba(){
-        $actual=Carbon::now();
-        $actual->subMonth();
-        $desde=Carbon::parse("01-".$actual->month."-".$actual->year);
-        $hasta=$desde->copy();
-        while ($desde->month==$hasta->month) {
-            $hasta->addDay();
-        }
-        $hasta->subDay();
-        $obj= new stdClass();
-        $obj->tipo="Fecha";
-        $obj->desde=$desde;
-        $obj->hasta=$hasta;
-        return  DW_ReporteServicio::VuelosDestino($obj,6,'Ejecutados');
+        $horas="18:34:23";
+        $myArray = explode(':', $horas);
+        return $myArray[0];
+        // $actual=Carbon::now();
+        // $actual->subMonth();
+        // $desde=Carbon::parse("01-".$actual->month."-".$actual->year);
+        // $hasta=$desde->copy();
+        // while ($desde->month==$hasta->month) {
+        //     $hasta->addDay();
+        // }
+        // $hasta->subDay();
+        // $obj= new stdClass();
+        // $obj->tipo="Fecha";
+        // $obj->desde=$desde;
+        // $obj->hasta=$hasta;
+        // return  DW_ReporteServicio::VuelosDestino($obj,6,'Ejecutados');
     }
     public function ReporteServicio(Request $consulta){
     	$label=array();
