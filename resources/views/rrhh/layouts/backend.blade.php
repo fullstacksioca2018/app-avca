@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,6 +96,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       {{-- Analista Menu --}}
       @role('analista.area')
       @include('rrhh.layouts.partials.nav')
+      @endrole
+
+      {{-- Gerente de sucursal Menu --}}
+      @role('gerente.sucursal')
+      @include('rrhh.layouts.partials.sucursal_nav')
       @endrole
 
     </div>

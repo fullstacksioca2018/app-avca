@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(VacantesTableSeeder::class);
         $this->call(AspirantesTableSeeder::class);
         $this->call(GruposTableSeeder::class);
-        //$this->call(ProfesionesTableSeeder::class);
+        $this->call(ProfesionesTableSeeder::class);
         $this->call(ConceptosTableSeeder::class);
         $this->call(NominasTableSeeder::class);
         $this->call(EmpleadosTableSeeder::class);

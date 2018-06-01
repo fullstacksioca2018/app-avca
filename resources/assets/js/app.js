@@ -60,6 +60,10 @@ Vue.component('panel', require('./components/reportes/panel.vue'));
 Vue.component('dashboard', require('./components/reportes/Dashboard.vue'));
 Vue.component('breadcrumbpersonal', require('./components/reportes/breadcrumbPersonal.vue'));
 
+// Componente Reloj
+Vue.component('reloj', require('./components/backend/rrhh/Reloj'));
+
+// Sweetalert
 import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2);
 

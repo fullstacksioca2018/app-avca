@@ -1,16 +1,21 @@
 <template>
-  <div>
+  <div class="asistencia-empleado">
     <div class="form-group">
+      <label for="codigo">Por favor lea código de barra de su carnet o ingrese manualmente su cédula</label>
       <input type="text" name="codigo" id="codigo" class="form-control input-lg" autofocus="autofocus" v-model="codigo" @change.prevent="obtenerEmpleado">
     </div>
 
-    <div class="empleado" v-if="empleado !== ''">
+    <div class="img-pistola text-center" v-if="empleado === ''">
+      <img src="/img/rrhh/pistola-codigo-barras.png" alt="Pistola de códigos">
+    </div>
+
+    <div class="empleado" v-else>
       <div class="pull-right">
-        <p>Hoy es, <span class="fecha">{{ fechaActual }}</span></p>
+        <!-- <p>Hoy es, <span class="fecha">{{ fechaActual }}</span></p> -->
       </div>
       <div class="clearfix"></div>
       <div class="alert alert-dark text-center">
-        <h6 class="m-0 p-0">Bienvenido a la sucursal <b>{{ empleado.nombre_sucursal }}</b> de AVCA</h6>
+        <h6 class="m-0 p-0">Sucursal <b>{{ empleado.nombre_sucursal }}</b> de AVCA</h6>
       </div>
 
       <!--Informacion del empleado-->

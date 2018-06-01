@@ -43,7 +43,7 @@ class Empleado extends Model
 
     public function grupo()
     {
-        return $this->belongsTo (Grupo::class);
+        return $this->belongsTo(Grupo::class);
     }
 
     public function asistencias()
@@ -54,5 +54,15 @@ class Empleado extends Model
     public function sucursal()
     {
         return $this->belongsTo(Sucursal::class, 'sucursal_id', 'empleado_id');
+    }
+
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class, 'empleado_id', 'departamento_id');
+    }    
+
+    public function getFullNameAttribute()
+    {
+        return $this->nombre . ' ' . $this->apellido;
     }
 }

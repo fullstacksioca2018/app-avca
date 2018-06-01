@@ -72,6 +72,102 @@ class UsersTableSeeder extends Seeder
             'created_at'        => date('Y-m-d H:i:s'),
             'updated_at'        => date('Y-m-d H:i:s')
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Dolores De Cabeza',
+            'modulo'            => 'rrhh',
+            'email' => 'dolores.cabeza@avca.com',
+            'password' => bcrypt('gerente'),
+            'remember_token'    => str_random(10),
+            'created_at'        => date('Y-m-d H:i:s'),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ]);
+        
+
+
+        //de aqui RRHH
+        DB::table('users')->insert([
+            'name' => 'Gerente',
+            'modulo'            => 'rrhh',
+            'email' => 'GerenteRRHH@hotmail.com',
+            'password' => bcrypt('gerente'),
+            'remember_token'    => str_random(10),
+            'created_at'        => date('Y-m-d H:i:s'),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Renzo Jose',
+            'modulo'            => 'rrhh',
+            'email' => 'Analista-Administrativo@hotmail.com',
+            'password' => bcrypt('gerente'),
+            'remember_token'    => str_random(10),
+            'created_at'        => date('Y-m-d H:i:s'),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Cesar',
+            'modulo'            => 'rrhh',
+            'email' => 'Analista-Operativo@hotmail.com',
+            'password' => bcrypt('gerente'),
+            'remember_token'    => str_random(10),
+            'created_at'        => date('Y-m-d H:i:s'),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Victor',
+            'modulo'            => 'rrhh',
+            'email' => 'Analista-telematico@hotmail.com',
+            'password' => bcrypt('gerente'),
+            'remember_token'    => str_random(10),
+            'created_at'        => date('Y-m-d H:i:s'),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ]);
+         DB::table('users')->insert([
+            'name' => 'Carolina',
+            'modulo'            => 'rrhh',
+            'email' => 'Analista-Apoyo-Logistico@hotmail.com',
+            'password' => bcrypt('gerente'),
+            'remember_token'    => str_random(10),
+            'created_at'        => date('Y-m-d H:i:s'),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ]);
+         DB::table('users')->insert([
+            'name' => 'Isabel',
+            'modulo'            => 'rrhh',
+            'email' => 'Analista-oficina@hotmail.com',
+            'password' => bcrypt('gerente'),
+            'remember_token'    => str_random(10),
+            'created_at'        => date('Y-m-d H:i:s'),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ]);
+         DB::table('users')->insert([
+            'name' => 'Luis',
+            'modulo'            => 'rrhh',
+            'email' => 'Analista-Tripulacion@hotmail.com',
+            'password' => bcrypt('gerente'),
+            'remember_token'    => str_random(10),
+            'created_at'        => date('Y-m-d H:i:s'),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ]);
+         DB::table('users')->insert([
+            'name' => 'Gerente',
+            'modulo'            => 'rrhh',
+            'email' => 'Gerente-Sucursal@hotmail.com',
+            'password' => bcrypt('gerente'),
+            'remember_token'    => str_random(10),
+            'created_at'        => date('Y-m-d H:i:s'),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ]);
+         DB::table('users')->insert([
+            'name' => 'Analista',
+            'modulo'            => 'rrhh',
+            'email' => 'Analista-Nomina@hotmail.com',
+            'password' => bcrypt('gerente'),
+            'remember_token'    => str_random(10),
+            'created_at'        => date('Y-m-d H:i:s'),
+            'updated_at'        => date('Y-m-d H:i:s')
+        ]);
         
         Role::create([
             'name'      => 'Admin',

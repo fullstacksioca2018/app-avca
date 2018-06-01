@@ -226,6 +226,86 @@ class ConceptosTableSeeder extends Seeder
                     'prestaciones'      => '0',
                     'islr'               => '0'
                 ],
+                [
+                    'tipo_concepto'     => '520',
+                    'descripcion'       => 'Horas Extras Diurnas',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
+                [
+                    'tipo_concepto'     => '521',
+                    'descripcion'       => 'Horas Faltantes Diurnas',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
+                [
+                    'tipo_concepto'     => '522',
+                    'descripcion'       => 'Horas Extras Nocturnas',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
+                [
+                    'tipo_concepto'     => '523',
+                    'descripcion'      => 'Horas Faltantes Nocturnas',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
+                [
+                    'tipo_concepto'     => '524',
+                    'descripcion'   => 'Horas Extras Diurnas Feriado',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
+                [
+                    'tipo_concepto'     => '525',
+                  'descripcion'  => 'Horas Faltantes Diurnas Feriado',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
+                [
+                    'tipo_concepto'     => '526',
+                  'descripcion'  => 'Horas Extras Nocturnas Feriado',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
+                [
+                    'tipo_concepto'     => '526',
+                'descripcion'  => 'Horas Faltantes Nocturnas Feriado',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
             ]);
         }
     }

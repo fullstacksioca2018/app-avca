@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\rrhh;
 
+use Carbon\Carbon;
 use App\Models\rrhh\Area;
 use App\Models\rrhh\Cargo;
+use App\Models\rrhh\Event;
 use Illuminate\Http\Request;
 use App\Models\rrhh\Concepto;
 use App\Models\rrhh\Empleado;
 use App\Models\rrhh\Sucursal;
 use App\Models\rrhh\Departamento;
 use App\Models\rrhh\CargaFamiliar;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
@@ -145,5 +148,87 @@ class EmpleadoController extends Controller
         }*/
 
         return response()->json();
+    }
+
+    /**
+     * Obtiene el listado de empleados en por la sucursal
+     */
+    public function empleadosPorSucursal(Sucursal $sucursal)
+    {        
+        $empleados = Empleado::where([
+            ['sucursal_id', '=', $sucursal->sucursal_id],
+            ['empleado_id', '<>', auth()->user()->empleado->empleado_id]
+        ])->get();
+        
+        return view('rrhh.backend.gerente_sucursal.empleados', compact('sucursal', 'empleados'));
+    }
+
+    /**
+     * Muestra el listado de empleados por sucursal que hayan asistido en el dia
+     */
+    public function empleadosPorSucursalAsistentes(Sucursal $sucursal)
+    {
+        $empleados = DB::table('empleados')
+            ->join('asistencias', 'empleados.empleado_id', '=', 'asistencias.empleado_id')
+            ->join('sucursales', 'empleados.sucursal_id', '=', 'sucursales.sucursal_id')
+            ->join('grupos', 'empleados.grupo_id', '=', 'grupos.id')
+            ->join('cargos', 'empleados.cargo_id', '=', 'cargos.cargo_id')
+            ->where([
+                ['asistencias.h_entrada', '<>', null],
+                ['asistencias.fecha', '=', Carbon::now()->format('Y-m-d')],
+                ['sucursales.sucursal_id', $sucursal->sucursal_id]
+            ])
+            ->select('empleados.*', 'grupos.nombre as nombre_grupo', 'cargos.titulo as titulo_cargo', 'asistencias.h_entrada')
+            ->get();
+        
+        return view('rrhh.backend.gerente_sucursal.empleados-asistentes', compact('sucursal', 'empleados'));
+    }
+
+    public function CalendarioFeriado(Sucursal $sucursal)
+    {        
+        $events = Event::all()->toArray();
+        
+        return view('rrhh.backend.gerente_sucursal.calendario-feriado', compact('events', 'sucursal'));
+    }
+
+    public function guardarEventoCalendario(Request $request)
+    {
+        //dd($request->all());
+        $event = new Event();
+        if ($request->isMethod('post')) {
+            //dd($event);
+            if ($request->post('title') && $request->post('start') && $request->post('end') && $request->post('color')) {
+                //return $request->all();
+                $event->title   = $request->title;
+                $event->color   = $request->color;
+                $event->start   = $request->start;
+                $event->end     = $request->end;
+
+                if ($event->save()) {
+                    return redirect()->back();
+                }
+            }
+        }        
+    }
+
+    public function editarEventoCalendario(Request $request)
+    {
+        if ($request->post('delete') && $request->post('id')) {
+            $id = $request->post('id');
+            $event = Event::findOrFail($id);
+            if ($event->delete()) {
+                return redirect()->back();
+            }
+        } elseif ($request->post('title') && $request->post('color') && $request->post('id')) {
+            $id = $request->post('id');
+            $event = Event::findOrFail($id);
+
+            $event->title   = $request->title;
+            $event->color   = $request->color;            
+            
+            if ($event->save()) {
+                return redirect()->back();
+            }
+        }
     }
 }

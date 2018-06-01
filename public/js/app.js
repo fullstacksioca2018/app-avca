@@ -45127,6 +45127,10 @@ Vue.component('panel', __webpack_require__(452));
 Vue.component('dashboard', __webpack_require__(474));
 Vue.component('breadcrumbpersonal', __webpack_require__(489));
 
+// Componente Reloj
+Vue.component('reloj', __webpack_require__(499));
+
+// Sweetalert
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_sweetalert2__["a" /* default */]);
 
@@ -122959,7 +122963,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -122972,6 +122976,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -123082,8 +123091,14 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "asistencia-empleado" }, [
     _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "codigo" } }, [
+        _vm._v(
+          "Por favor lea código de barra de su carnet o ingrese manualmente su cédula"
+        )
+      ]),
+      _vm._v(" "),
       _c("input", {
         directives: [
           {
@@ -123116,22 +123131,23 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _vm.empleado !== ""
-      ? _c("div", { staticClass: "empleado" }, [
-          _c("div", { staticClass: "pull-right" }, [
-            _c("p", [
-              _vm._v("Hoy es, "),
-              _c("span", { staticClass: "fecha" }, [
-                _vm._v(_vm._s(_vm.fechaActual))
-              ])
-            ])
-          ]),
+    _vm.empleado === ""
+      ? _c("div", { staticClass: "img-pistola text-center" }, [
+          _c("img", {
+            attrs: {
+              src: "/img/rrhh/pistola-codigo-barras.png",
+              alt: "Pistola de códigos"
+            }
+          })
+        ])
+      : _c("div", { staticClass: "empleado" }, [
+          _c("div", { staticClass: "pull-right" }),
           _vm._v(" "),
           _c("div", { staticClass: "clearfix" }),
           _vm._v(" "),
           _c("div", { staticClass: "alert alert-dark text-center" }, [
             _c("h6", { staticClass: "m-0 p-0" }, [
-              _vm._v("Bienvenido a la sucursal "),
+              _vm._v("Sucursal "),
               _c("b", [_vm._v(_vm._s(_vm.empleado.nombre_sucursal))]),
               _vm._v(" de AVCA")
             ])
@@ -123218,7 +123234,6 @@ var render = function() {
             _c("h2", [_vm._v(_vm._s(_vm.horaActual))])
           ])
         ])
-      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -129441,6 +129456,257 @@ exports.push([module.i, "@keyframes spinAround{0%{transform:rotate(0deg)}to{tran
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 498 */,
+/* 499 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(500)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(502)
+/* template */
+var __vue_template__ = __webpack_require__(503)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-e051ab52"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\backend\\rrhh\\Reloj.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e051ab52", Component.options)
+  } else {
+    hotAPI.reload("data-v-e051ab52", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 500 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(501);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("12a72d1a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e051ab52\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reloj.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e051ab52\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reloj.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 501 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.reloj > div[data-v-e051ab52], .fecha > div[data-v-e051ab52] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;        \n    -webkit-box-align: baseline;        \n        -ms-flex-align: baseline;        \n            align-items: baseline;\n    width: 100%;        \n    font-size: 1rem;\n}\n.reloj p[data-v-e051ab52], .fecha p[data-v-e051ab52] {\n    margin: 0;\n}\n.fecha p[data-v-e051ab52] {\n    margin-left: 0.25rem;\n}\n.reloj .cajaSegundos[data-v-e051ab52] {\n    display: inline-block;\n}\n.reloj .ampm[data-v-e051ab52] {        \n    font-size: 0.75rem;\n    margin-left: 0.25rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 502 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            fecha: '',
+            hora: '',
+            minutos: '',
+            segundos: '',
+            diaSemana: '',
+            dia: '',
+            mes: '',
+            anio: '',
+            ampm: '',
+            semana: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+            meses: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            horaCompleta: []
+        };
+    },
+    mounted: function mounted() {
+        this.obtenerHora();
+    },
+
+    methods: {
+        obtenerHora: function obtenerHora() {
+            this.fecha = new Date();
+            this.hora = this.fecha.getHours();
+            this.minutos = this.fecha.getMinutes();
+            this.segundos = this.fecha.getSeconds();
+            this.diaSemana = this.fecha.getDay();
+            this.dia = this.fecha.getDate();
+            this.mes = this.fecha.getMonth();
+            this.anio = this.fecha.getFullYear();
+
+            if (this.hora >= 12) {
+                this.hora = this.hora - 12;
+                this.ampm = "PM";
+            } else {
+                this.ampm = "AM";
+            }
+            if (this.hora == 0) {
+                this.hora = 12;
+            }
+            if (this.hora < 10) this.hora = "0" + this.hora;else this.hora;
+
+            if (minutos < 10) this.minutos = "0" + this.minutos;else this.minutos;
+
+            if (this.segundos < 10) this.segundos = "0" + this.segundos;else this.segundos;
+
+            setInterval(this.obtenerHora, 1000);
+        }
+    }
+});
+
+/***/ }),
+/* 503 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "d-flex justify-content-between" }, [
+    _c("div", { staticClass: "fecha" }, [
+      _c("div", [
+        _c("i", { staticClass: "fa fa-calendar mr-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "diaSemana", attrs: { id: "diaSemana" } }, [
+          _vm._v(_vm._s(_vm.semana[_vm.diaSemana]) + ",")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "dia", attrs: { id: "dia" } }, [
+          _vm._v(_vm._s(_vm.dia))
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v("de")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "mes", attrs: { id: "mes" } }, [
+          _vm._v(_vm._s(_vm.meses[_vm.mes]))
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v("del")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "anio", attrs: { id: "anio" } }, [
+          _vm._v(_vm._s(_vm.anio))
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "reloj ml-auto" }, [
+      _c("div", { staticClass: "text-right" }, [
+        _c("i", { staticClass: "fa fa-clock-o mr-1" }),
+        _vm._v(" "),
+        _c("p", { staticClass: "horas", attrs: { id: "horas" } }, [
+          _vm._v(_vm._s(_vm.hora))
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v(":")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "minutos", attrs: { id: "minutos" } }, [
+          _vm._v(_vm._s(_vm.minutos))
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v(":")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "segundos", attrs: { id: "segundos" } }, [
+          _vm._v(_vm._s(_vm.segundos))
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "ampm", attrs: { id: "ampm" } }, [
+          _vm._v(_vm._s(_vm.ampm))
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e051ab52", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
