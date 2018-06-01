@@ -123523,7 +123523,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 					case "Gerente RRHH":
 						this.tipos = ['Personal'], this.form.consulta = 'Personal';
 						break;
-					case "Gerente Sucursales":
+					case "Gerente de Sucursales":
 						this.tipos = ['Ingresos', 'Servicios'], this.form.consulta = 'Ingresos';
 						break;
 				}
@@ -123696,36 +123696,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 			var _this4 = this;
 
 			// console.log(this.form.datosf)
-			var loader = this.$loading.show();
-			// this.loading=true;
-			this.cargarFiltros();
-			this.graficas = [];
-			if (this.validarGG()) {
-				axios.post('/reportes/api/reporte/' + this.form.consulta, this.form).then(function (response) {
-					console.log(response.data);
-					_this4.graficas.push({
-						"titulo": response.data.titulo.toUpperCase(),
-						"grafica": response.data.grafico,
-						"datos": response.data.datos
+			if (this.form.consulta != 'Servicios') {
+				var loader = this.$loading.show();
+				// this.loading=true;
+				this.cargarFiltros();
+				this.graficas = [];
+				if (this.validarGG()) {
+					axios.post('/reportes/api/reporte/' + this.form.consulta, this.form).then(function (response) {
+						console.log(response.data);
+						_this4.graficas.push({
+							"titulo": response.data.titulo.toUpperCase(),
+							"grafica": response.data.grafico,
+							"datos": response.data.datos
+						});
+						// this.loading=false;
+						loader.hide();
+						Vue.toasted.show('Reporte Generado', {
+							theme: "primary",
+							position: "bottom-right",
+							duration: 2000
+						});
+					}).catch(function (error) {
+						loader.hide();
+						Vue.toasted.show('Ha ocurrido un error', {
+							theme: "primary",
+							position: "bottom-right",
+							duration: 2000
+						});
 					});
-					// this.loading=false;
+				} else {
 					loader.hide();
-					Vue.toasted.show('Reporte Generado', {
-						theme: "primary",
-						position: "bottom-right",
-						duration: 2000
-					});
-				}).catch(function (error) {
-					loader.hide();
-					Vue.toasted.show('Ha ocurrido un error', {
-						theme: "primary",
-						position: "bottom-right",
-						duration: 2000
-					});
-				});
+					this.loading = false;
+				}
 			} else {
-				loader.hide();
-				this.loading = false;
+				this.generar();
 			}
 		},
 		generar: function generar() {
@@ -127417,8 +127421,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var loader = this.$loading.show();
       var myDate = new Date();
       var auxI = "2018-05-15";
-      var auxF = "2018-05-" + myDate.getDate();
-      var titulo = "Ingresos Del 15 al " + myDate.getDate() + " de Mayo";
+      var auxF = "2018-06-" + myDate.getDate();
+      var titulo = "Ingresos Del 15 de Mayo al " + myDate.getDate() + " al 1 Junio";
       this.grafica5[0].titulo = titulo;
       axios({
         method: 'get',
@@ -127896,7 +127900,7 @@ var render = function() {
                       staticClass: "font-weight-light",
                       staticStyle: { display: "initial" }
                     },
-                    [_vm._v("Del 15 Mayo al 31 de Mayo")]
+                    [_vm._v("Del 1 Junio al 15 de Junio")]
                   )
                 ])
               ])

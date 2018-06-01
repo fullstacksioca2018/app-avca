@@ -51,10 +51,10 @@ class ReportePersonalController extends Controller
 				array_push($fechas, $auxfecha->fecha_id);
 				return $fechas;
 	    	}else{
-	        	$actual=Carbon::now();
-	        	$actual->subMonth();
-				$auxfecha=DW_Fecha::buscar($actual->year,$actual->month);
-				array_push($fechas, $auxfecha->fecha_id);
+                $actual=Carbon::now();
+                $actual->subMonth();
+                $auxfecha=DW_Fecha::buscar($actual->year,$actual->month);
+                array_push($fechas, $auxfecha->fecha_id);
 				return $fechas;
     		}
     	}
@@ -216,8 +216,8 @@ class ReportePersonalController extends Controller
         $auxdata=array();
         $cont=0;
         $titulo="";
-
         $periodos=$this->periodos($consulta); //fechas meses para consulta
+        // return $periodos;
         $labels=$this->labelsPeriodos($periodos);
         if($consulta->tipo!="Busqueda"){
             if($consulta->filtros){

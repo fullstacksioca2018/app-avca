@@ -536,7 +536,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 							this.tipos=['Personal'],
 							this.form.consulta='Personal'
 							break;
-						case "Gerente Sucursales":
+						case "Gerente de Sucursales":
 							this.tipos=['Ingresos','Servicios'],
 							this.form.consulta='Ingresos'
 							break;
@@ -716,6 +716,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 		     },
 			generar2(){
                // console.log(this.form.datosf)
+              if(this.form.consulta!='Servicios'){
         	let loader = this.$loading.show();
                // this.loading=true;
                this.cargarFiltros();
@@ -748,6 +749,9 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
             		loader.hide();
                		this.loading=false;
                }
+           		}else{
+           			this.generar();
+           		}
 			},
 			generar(){
 				var titulo="";

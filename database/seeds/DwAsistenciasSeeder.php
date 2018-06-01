@@ -36,7 +36,7 @@ class DwAsistenciasSeeder extends Seeder
 				}
     		}
     	}
-    	for ($j=1; $j < 5; $j++) { 
+    	for ($j=1; $j < 6; $j++) { 
     			DB::table('DwFechas')->insert([
 		            'mes'      => $j,
 		            'year'     => '2018',
