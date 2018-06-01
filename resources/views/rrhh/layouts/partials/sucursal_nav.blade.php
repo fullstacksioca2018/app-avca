@@ -28,6 +28,14 @@
             <p>Calendario feriado</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('asistencia.register') }}" class="{{ request()->routeIs('asistencia.register') ? 'nav-link active' : 'nav-link' }}">
+            <i class="nav-icon fa fa-clock-o"></i>
+            <p>
+              Asistencia
+            </p>
+          </a>
+        </li>
       </ul>
     </li>
   </ul>
