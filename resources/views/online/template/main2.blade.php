@@ -126,6 +126,8 @@
     display: none;
   }
 </style>
+@yield('scripts')
+
   <script>
     $('div.alert').delay(5000).fadeOut(350);
   </script>

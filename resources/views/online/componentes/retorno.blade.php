@@ -1,6 +1,6 @@
 <div class="form-row">
   
-        <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0"> 
+        <input type="hidden" name="ninosbrazos" id="ninosbrazos2" value="0"> 
 
        <div class="col-md-6">
         <label for="exampleFormControlSelect1" class="h">Desde:</label>

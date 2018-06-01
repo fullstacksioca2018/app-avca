@@ -1,4 +1,4 @@
-<input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
+<input type="hidden" name="ninosbrazos" id="ninosbrazos3" value="0">
   <input type="hidden" name="cantidadV" id="cantidadV" value="2">
   
     <div class="form-row p-1" id="vuelo1">

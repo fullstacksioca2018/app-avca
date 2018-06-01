@@ -230,14 +230,16 @@
                @foreach ($boletos as $boleto)
               
                 @php
+                  
                   $salida = Carbon::parse($boleto->fecha_salida);
                   $fecha = Carbon::parse($boleto->fecha_salida);
                   $hora=Carbon::parse($boleto->duracion);
                   $llegada=$salida->copy();
                   $llegada->addHours($hora->hour);
                   $llegada->addMinutes($hora->minute);
+                  $auxCarbon=$salida->subHours(23)->copy();
+                  $actual= Carbon::now();
                 @endphp
-
               <tbody>
                 <tr>
                   <td scope="row">{{ $boleto->pasajero }}</td>
@@ -248,9 +250,13 @@
                     
                   @if($boleto->estatus == 'Pagado')
                       <td> <p class=""> {{ $boleto->estatus }} </p></td>
-                      <td><a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#chequeo{{ $boleto->boleto_id }}"> Check-in</a></td>
+                      <td>
+                      @if($actual->gt($auxCarbon))
+                      <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#todo{{ $boleto->boleto_id }}"> Check-in</a>
+                      @endif
+                      </td>
 
-  <div class="modal fade" id="chequeo{{ $boleto->boleto_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="todo{{ $boleto->boleto_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background: linear-gradient(-40deg,#45cafc,#303f9f 50%, #081e5b)!important">
@@ -301,6 +307,7 @@
 
                   @if($boleto->estatus == 'Chequeado')
                       <td> <p class=""> {{ $boleto->estatus }} </p></td>
+                      <td> </td>
                   
                   @endif
 
@@ -476,6 +483,8 @@
                   $llegada=$salida->copy();
                   $llegada->addHours($hora->hour);
                   $llegada->addMinutes($hora->minute);
+                  $auxCarbon=$salida->subHours(23)->copy();
+                  $actual= Carbon::now();
                 @endphp
                 
               <tbody>
@@ -488,7 +497,12 @@
                     
                   @if($boleto->estatus == 'Pagado')
                       <td> <p class=""> {{ $boleto->estatus }} </p></td>
-                      <td><a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#chequeo{{ $boleto->boleto_id }}"> Check-in</a></td>
+                      
+                      <td>
+                      @if($actual->gt($auxCarbon))
+                      <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#chequeo{{ $boleto->boleto_id }}"> Check-in</a>
+                      @endif
+                      </td>
 
   <div class="modal fade" id="chequeo{{ $boleto->boleto_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -595,7 +609,8 @@
                   <td>{{ $fecha->format('d/m/Y') }}</td>
                   <td>{{ $salida->format('h:i A') }}/{{ $llegada->format('h:i A') }}</td>
                   <td>{{ $boleto->localizador }}</td>
-                  <td>{{ $boleto->estatus }}</td>      
+                  <td>{{ $boleto->estatus }}</td>  
+                  <td></td>    
                 </tr>
              </tbody> 
 
@@ -659,11 +674,11 @@
                     <td> <p class=""> {{ $boleto->estatus }} </p></td>
 
                     <td><a href="#" class="btn btn-primary btn-sm" 
-                        data-toggle="modal" data-target="#exampleModal{{ $boleto->boleto_id }}">Comprar Boleto</a>
+                        data-toggle="modal" data-target="#exampleModalR{{ $boleto->boleto_id }}">Comprar Boleto</a>
                     </td>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal{{ $boleto->boleto_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModalR{{ $boleto->boleto_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">

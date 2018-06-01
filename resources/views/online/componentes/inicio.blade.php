@@ -41,11 +41,11 @@
         
          <div id="soloida"> 
             @if (Auth::guest())
-              {!! Form::open(['route' => ['cliente.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
+              {!! Form::open(['route' => ['cliente.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction(1)']) !!}
                   @include('online.componentes.ida')
               {!! Form::close() !!}
             @else
-              <form method="get" onsubmit="myFunction()" action="{{ URL::to('/online/cliente/DetalleVuelo') }}">
+              <form method="get" onsubmit="myFunction(1)" action="{{ URL::to('/online/cliente/DetalleVuelo') }}">
                   @include('online.componentes.ida')      
               </form>
             @endif
@@ -55,11 +55,11 @@
          <div id="idayvuelta">
 
             @if(Auth::guest())
-              <form method="get" action="{{ URL::to('/cliente/DetalleRetorno') }}" onsubmit="myFunction()">
+              <form method="get" action="{{ URL::to('/cliente/DetalleRetorno') }}" onsubmit="myFunction(2)">
                   @include('online.componentes.retorno');
               </form>
             @else
-              <form method="get" action="{{ URL::to('/online/cliente/DetalleRetorno') }}" onsubmit="myFunction()">
+              <form method="get" action="{{ URL::to('/online/cliente/DetalleRetorno') }}" onsubmit="myFunction(2)">
                   @include('online.componentes.retorno');
               </form>
             @endif
@@ -70,11 +70,11 @@
             
 
             @if(Auth::guest())
-              <form method="get" action="{{ URL::to('/cliente/DetalleMultidestino') }}" onsubmit="myFunction()">
+              <form method="get" action="{{ URL::to('/cliente/DetalleMultidestino') }}" onsubmit="myFunction(3)">
                 @include('online.componentes.multidestino');
               </form>
             @else
-              <form method="get" action="{{ URL::to('/online/cliente/DetalleMultidestino') }}" onsubmit="myFunction()">
+              <form method="get" action="{{ URL::to('/online/cliente/DetalleMultidestino') }}" onsubmit="myFunction(3)">
                 @include('online.componentes.multidestino')
               </form>
             @endif

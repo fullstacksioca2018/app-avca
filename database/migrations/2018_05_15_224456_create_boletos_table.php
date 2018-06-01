@@ -16,7 +16,7 @@ class CreateBoletosTable extends Migration
         Schema::create('boletos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('primerNombre',50);
-            $table->string('segundoNombre',50);
+            $table->string('segundoNombre',50)->nullable();
             $table->string('apellido',50);
             $table->enum('genero',['masculino','femenino']);
             $table->date('fecha_nacimiento');

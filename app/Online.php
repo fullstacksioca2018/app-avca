@@ -46,6 +46,26 @@ class Online extends Authenticatable
     }
 
     public function boletos($id){
-        return DB::Table('boletos')->where('user_id',$id)->get();
+        return DB::Table('boletos')
+            ->select('boletos.*')
+            ->where('user_id',$id)
+            ->join('vuelos','vuelos.id','boletos.vuelo_id')
+            ->orderBy('vuelos.fecha_salida')
+            ->get();
+    }
+
+    public function pasajeros($id){
+        return DB::Table('boletos')
+            ->where('user_id',$id)
+            ->where('tipo_boleto','adulto')
+            ->groupBy('boletos.documento')
+            ->get();
+    }
+    public function pasajerosN($id){
+        return DB::Table('boletos')
+            ->where('user_id',$id)
+            ->where('tipo_boleto','bebe en brazos')
+            ->groupBy('boletos.documento')
+            ->get();
     }
 }

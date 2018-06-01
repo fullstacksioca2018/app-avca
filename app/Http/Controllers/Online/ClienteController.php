@@ -117,19 +117,23 @@ class ClienteController extends Controller
 
     public function CompraBoleto($cantidad,$ninosbrazos,$tarifa_vuelo)
     {
-        
-        return view('online.componentes.CompraBoleto',compact('cantidad','ninosbrazos','tarifa_vuelo'));
+        $pasajeros=Auth::guard('online')->user()->pasajeros(Auth::guard('online')->user()->id);
+        $pasajerosN=Auth::guard('online')->user()->pasajerosN(Auth::guard('online')->user()->id);
+        return view('online.componentes.CompraBoleto',compact('cantidad','ninosbrazos','tarifa_vuelo','pasajeros','pasajerosN'));
 
     }
 
     public function CompraBoleto2($cantidad,$ninosbrazos,$tarifa_vuelo,$vuelo)
     {
-        return view('online.componentes.CompraBoleto',compact('cantidad','ninosbrazos','tarifa_vuelo','vuelo'));
+        $pasajeros=Auth::guard('online')->user()->pasajeros(Auth::guard('online')->user()->id);
+        $pasajerosN=Auth::guard('online')->user()->pasajerosN(Auth::guard('online')->user()->id);
+        return view('online.componentes.CompraBoleto',compact('cantidad','ninosbrazos','tarifa_vuelo','vuelo','pasajeros','pasajerosN'));
 
     }
 
     public function BoletoVendido(Request $request)
     {
+        dd($request->all());
          //para resumen
          $boletos = array();
          $datos_vuelos = array();   
@@ -279,8 +283,8 @@ class ClienteController extends Controller
     public function BoletoVendido2(Request $request)
     {
 
-        //dd($request->all());
-
+        dd($request->all());
+        $id='pasajeroHelp1';
         $boletos = array();
         $datos_vuelos = array();
         $rutas = array();
@@ -322,18 +326,24 @@ class ClienteController extends Controller
                     else{
                         $Nboleto->asiento="null";
                     }
-                    $Nboleto->primerNombre=$request->primerNombre[$key];
-                    $Nboleto->segundoNombre = $request->segundoNombre[$key];
-                    $Nboleto->tipo_documento = $request->tipo_documento[$key];
-                    $Nboleto->documento=$request->documento[$key];
-                    $Nboleto->genero=$request->genero[$key]; 
-                    $Nboleto->apellido=$request->apellido[$key]; 
-                    $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
-                    $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
-                    if($request->tipo_boleto[$key]=="bebe en brazos")
-                        $Nboleto->detalles_salud="null";
+                    if($request->primerNombre[$key]!=null){
+                        $Nboleto->primerNombre=$request->primerNombre[$key];
+                        $Nboleto->segundoNombre = $request->segundoNombre[$key];
+                        $Nboleto->tipo_documento = $request->tipo_documento[$key];
+                        $Nboleto->documento=$request->documento[$key];
+                        $Nboleto->genero=$request->genero[$key]; 
+                        $Nboleto->apellido=$request->apellido[$key]; 
+                        $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
+                        $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
+                        if($request->tipo_boleto[$key]=="bebe en brazos")
+                            $Nboleto->detalles_salud="null";
+                        else{
+                            $Nboleto->detalles_salud=$request->detalles_salud[$key];
+                        }
+                    }
                     else{
-                        $Nboleto->detalles_salud=$request->detalles_salud[$key];
+                        //
+
                     }
                     $Nboleto->user_id=$user->id;
                     $Nboleto->factura_id=$factura->id;

@@ -1,4 +1,4 @@
-<input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
+<input type="hidden" name="ninosbrazos" id="ninosbrazos1" value="0">
 
 <div class="form-row">
   {{--  SELECT DESDE  --}}
