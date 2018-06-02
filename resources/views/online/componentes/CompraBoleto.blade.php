@@ -40,16 +40,18 @@
 
   <div class="card-body"> <!-- ==EL BOOOODYYYY DEL CARD==-->
   
-  @if(!isset($vuelo))
+  @if(isset($vuelo))
+
     <nav aria-label="breadcrumb" id="migaDePan">
       <ol class="breadcrumb bg-primary">
         <li class="breadcrumb-item"><a href="#">Inicio</a></li>
         <li class="breadcrumb-item"><a href="#">Selección del vuelo de ida</a></li>
+        <li class="breadcrumb-item"><a href="#">Selección del vuelo de retorno</a></li>
         <li class="breadcrumb-item active" aria-current="page">Registro de Pasajero</li>
       </ol>
-    </nav>
+    </nav> 
 
-  @elseif(isset($objMultidestinos))
+    @elseif(isset($objMultidestinos))
     
     <nav aria-label="breadcrumb" id="migaDePan">
       <ol class="breadcrumb bg-primary">
@@ -58,17 +60,15 @@
         <li class="breadcrumb-item active" aria-current="page">Registro de Pasajero</li>
       </ol>
     </nav>
-
   @else
-
-  <nav aria-label="breadcrumb" id="migaDePan">
+   
+   <nav aria-label="breadcrumb" id="migaDePan">
       <ol class="breadcrumb bg-primary">
         <li class="breadcrumb-item"><a href="#">Inicio</a></li>
         <li class="breadcrumb-item"><a href="#">Selección del vuelo de ida</a></li>
-        <li class="breadcrumb-item"><a href="#">Selección del vuelo de retorno</a></li>
         <li class="breadcrumb-item active" aria-current="page">Registro de Pasajero</li>
       </ol>
-    </nav>  
+    </nav>
 
   @endif
 
