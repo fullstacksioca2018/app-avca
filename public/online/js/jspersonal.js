@@ -39,6 +39,7 @@ function brazosOpc(ind,tipo){
 	var ninos=parseInt(document.getElementById('inputninos'+tipo).value);
 	var name='edad'+ind;
 	var id="#opcninos"+ind;
+	$(id).html('');
 	if(parseInt(document.getElementsByName(name)[0].value)<=1){
 	var elemento='<div class="form-check form-check-inline ml-3"><input class="form-check-input" type="radio" name="brazo'+ind+'" id="brazo'+ind+'" value="En brazo" checked><label class="form-check-label " for="inlineRadio1">En brazo</label></div><div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="brazo'+ind+'" id="inlineRadio2" value="En asiento"><label class="form-check-label " for="inlineRadio2">En asiento</label></div>';
 	 $(id).append(elemento);

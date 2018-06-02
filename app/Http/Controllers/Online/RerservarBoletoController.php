@@ -86,12 +86,12 @@ class RerservarBoletoController extends Controller
                         array_push($boletos, $Nboleto);            
                     }//termina for adultos
                     //fin ninos
-                    for($key; $key <$cant; $key++){ //niños
+                    for($key=0; $key2 <$request->brazo; $key++){ //niños
                         $Nboleto = new Boleto();
                         $Nboleto->boleto_estado="Reservado";
                         $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
                        
-                        if($request->pasajeroHelpN[$key]==0){
+                        if($request->pasajeroHelpN[$key2]==0){
                             $Nboleto->primerNombre=$request->primerNombre[$key];
                             $Nboleto->segundoNombre = $request->segundoNombre[$key];
                             $Nboleto->tipo_documento = $request->tipo_documento[$key];
@@ -102,7 +102,7 @@ class RerservarBoletoController extends Controller
                             $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
                         }
                         else{
-                            $Nboleto2=Boleto::where('documento','=',$request->pasajeroHelpN[$key])->limit(1)->get();
+                            $Nboleto2=Boleto::where('documento','=',$request->pasajeroHelpN[$key2])->limit(1)->get();
                             $Nboleto->primerNombre=$Nboleto2[0]->primerNombre;
                             $Nboleto->segundoNombre = $Nboleto2[0]->segundoNombre;
                             $Nboleto->tipo_documento = $Nboleto2[0]->tipo_documento;
@@ -115,7 +115,7 @@ class RerservarBoletoController extends Controller
                         }
                         $Nboleto->user_id=$user->id;
                         $Nboleto->factura_id=$factura->id;
-                        $Nboleto->vuelo_id=$idvuelo;
+                        $Nboleto->vuelo_id=$request->vuelos[$i];
                         $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
                         $Nboleto->save();
                         array_push($boletos, $Nboleto);            
@@ -196,7 +196,7 @@ class RerservarBoletoController extends Controller
                         $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
                     }
                     else{
-                        $Nboleto2=Boleto::where('documento','=',$request->pasajeroHelpN[$key])->limit(1)->get();
+                        $Nboleto2=Boleto::where('documento','=',$request->pasajeroHelpN[$key2])->limit(1)->get();
                         $Nboleto->primerNombre=$Nboleto2[0]->primerNombre;
                         $Nboleto->segundoNombre = $Nboleto2[0]->segundoNombre;
                         $Nboleto->tipo_documento = $Nboleto2[0]->tipo_documento;
@@ -295,19 +295,19 @@ class RerservarBoletoController extends Controller
                    }
                    $Nboleto->user_id=$user->id;
                    $Nboleto->factura_id=$factura->id;
-                   $Nboleto->vuelo_id=$idvuelo;
+                   $Nboleto->vuelo_id=$request->vuelo;
                    $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
                    $Nboleto->save();
                   
                    array_push($boletos, $Nboleto);            
                }//termina for adultos
                //fin ninos
-               for($key; $key <$cant; $key++){ //niños
+               for($key2=0; $key2 <$cant; $key++){ //niños
                    $Nboleto = new Boleto();
                    $Nboleto->boleto_estado="Reservado";
                    $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
                   
-                   if($request->pasajeroHelpN[$key]==0){
+                   if($request->pasajeroHelpN[$key2]==0){
                        $Nboleto->primerNombre=$request->primerNombre[$key];
                        $Nboleto->segundoNombre = $request->segundoNombre[$key];
                        $Nboleto->tipo_documento = $request->tipo_documento[$key];
@@ -318,7 +318,7 @@ class RerservarBoletoController extends Controller
                        $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
                    }
                    else{
-                       $Nboleto2=Boleto::where('documento','=',$request->pasajeroHelpN[$key])->limit(1)->get();
+                       $Nboleto2=Boleto::where('documento','=',$request->pasajeroHelpN[$key2])->limit(1)->get();
                        $Nboleto->primerNombre=$Nboleto2[0]->primerNombre;
                        $Nboleto->segundoNombre = $Nboleto2[0]->segundoNombre;
                        $Nboleto->tipo_documento = $Nboleto2[0]->tipo_documento;
@@ -331,12 +331,12 @@ class RerservarBoletoController extends Controller
                    }
                    $Nboleto->user_id=$user->id;
                    $Nboleto->factura_id=$factura->id;
-                   $Nboleto->vuelo_id=$idvuelo;
+                   $Nboleto->vuelo_id=$request->vuelo;
                    $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
                    $Nboleto->save();
                    array_push($boletos, $Nboleto);            
                }//fin for niños    
-                $AuxVuelo = Vuelo::find($request->vuelos[$i]);
+                $AuxVuelo = Vuelo::find($request->vuelo);
                 $segmentos=$vueloAux->segmentos;
                 if(count($segmentos)==1){
                     $ruta=$segmentos[0]->ruta;
@@ -414,12 +414,12 @@ class RerservarBoletoController extends Controller
                         array_push($boletos, $Nboleto);            
                     }//termina for adultos
                     //fin ninos
-                    for($key; $key <$cant; $key++){ //niños
+                    for($key2=0; $key2 <$request->brazo; $key++){ //niños
                         $Nboleto = new Boleto();
                         $Nboleto->boleto_estado="Reservado";
                         $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
                        
-                        if($request->pasajeroHelpN[$key]==0){
+                        if($request->pasajeroHelpN[$key2]==0){
                             $Nboleto->primerNombre=$request->primerNombre[$key];
                             $Nboleto->segundoNombre = $request->segundoNombre[$key];
                             $Nboleto->tipo_documento = $request->tipo_documento[$key];
@@ -430,7 +430,7 @@ class RerservarBoletoController extends Controller
                             $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
                         }
                         else{
-                            $Nboleto2=Boleto::where('documento','=',$request->pasajeroHelpN[$key])->limit(1)->get();
+                            $Nboleto2=Boleto::where('documento','=',$request->pasajeroHelpN[$key2])->limit(1)->get();
                             $Nboleto->primerNombre=$Nboleto2[0]->primerNombre;
                             $Nboleto->segundoNombre = $Nboleto2[0]->segundoNombre;
                             $Nboleto->tipo_documento = $Nboleto2[0]->tipo_documento;
@@ -446,7 +446,8 @@ class RerservarBoletoController extends Controller
                         $Nboleto->vuelo_id=$idvuelo;
                         $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
                         $Nboleto->save();
-                        array_push($boletos, $Nboleto);            
+                        array_push($boletos, $Nboleto);
+                        $key++;            
                     }//fin for niños
                 $AuxVuelo = Vuelo::find($idvuelo);
                 $segmentos=$AuxVuelo->segmentos;

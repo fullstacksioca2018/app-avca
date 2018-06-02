@@ -39,18 +39,47 @@
       </div>
 
   <div class="card-body"> <!-- ==EL BOOOODYYYY DEL CARD==-->
+  
+  @if(!isset($vuelo))
+    <nav aria-label="breadcrumb" id="migaDePan">
+      <ol class="breadcrumb bg-primary">
+        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="#">Selección del vuelo de ida</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Registro de Pasajero</li>
+      </ol>
+    </nav>
+
+  @elseif(isset($objMultidestinos))
+    
+    <nav aria-label="breadcrumb" id="migaDePan">
+      <ol class="breadcrumb bg-primary">
+        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="#">Selección de paquete de MultiDestino</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Registro de Pasajero</li>
+      </ol>
+    </nav>
+
+  @else
+
   <nav aria-label="breadcrumb" id="migaDePan">
-  <ol class="breadcrumb bg-primary">
-    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="#">Selecciòn</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Registro de Pasajero</li>
-  </ol>
-</nav>
+      <ol class="breadcrumb bg-primary">
+        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="#">Selección del vuelo de ida</a></li>
+        <li class="breadcrumb-item"><a href="#">Selección del vuelo de retorno</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Registro de Pasajero</li>
+      </ol>
+    </nav>  
+
+  @endif
+
     <br> <br>
      
   @if(!isset($vuelo))
 
      @if(isset($objMultidestinos))
+    
+
+
      {{-- {{ dd($objMultidestinos) }} --}}
           @php
               $costoP=0;
@@ -331,6 +360,7 @@
        <label for="firstName">PASAJERO  {{ ($i+1) }}</label>
        <select  class="form-control" name="pasajeroHelp[]" id="pasajeroHelp{{ ($i+1)}}" onchange="pasajeroAjax({{ $i+1 }})">
          <option value="0" >Otro</option>
+
          @foreach ($pasajeros as $pasajero)
               <option value="{{$pasajero->documento}}" >V {{$pasajero->documento}}, {{$pasajero->primerNombre.' '.$pasajero->apellido}}</option>
           @endforeach
@@ -338,7 +368,7 @@
      </div>
    </div>
               <!-- JODAAAA PASAJEROS NORMALES -->
-                             <div class="oculta" id="contenedorP{{ ($i+1) }}">    
+    <div class="oculta" id="contenedorP{{ ($i+1) }}">    
                                
             <input type="hidden" name="tipo_boleto[]" id="tipo_boleto" value="{{ "adulto" }}">
             @if(!isset($vuelo))
@@ -386,7 +416,7 @@
             <option value="Extranjero">P</option>
           </select>
               <span style="width:6%; text-align: center">-</span>
-          <input type="text" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8">
+          <input type="number" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8">
                 <div class="invalid-feedback" >
                   Es necesario.
                 </div>
@@ -410,42 +440,6 @@
             </div>    
           </div>
 
-            {{-- <div class="row">
-
-              ============= Discapacidad ==================
-
-              <div class="col-md-5 mb-3">
-                <label for="Enfermedad">Discapacidad</label>
-                <select class="custom-select d-block w-100" name="detalles_salud[]" id="Enfermedad[]" >
-                  <option value="Ninguna"> Ninguna</option>
-                  <option value="Discapacidad motriz"> Discapacidad motriz</option>
-                  <option value="Discapacidad visual"> Discapacidad visual</option>
-                  <option value="Disminución visual y esquema corporal"> Disminución visual y esquema corporal</option>
-                  <option value="Discapacidad visual">Discapacidad visual</option>
-                  <option value="Disminuidos visuales"> Disminuidos visuales</option>
-                  <option value="Discapacidad auditiva"> Discapacidad auditiva</option>
-                  <option value="Discapacidad mental"> Discapacidad mental</option>
-                  <option value="Parálisis cerebral">Parálisis cerebral</option>
-                </select>
-                <div class="invalid-feedback">
-                  por favor valide su seleccion.
-                </div>
-              </div> 
-              
-              ============= Puesto preferencial ==================
-
-              <div class="col-md-4 mb-3">
-                <label for="Puesto">Puesto preferenciales</label>
-                <select class="custom-select d-block w-100" name="asiento[]" id="Puesto[]">
-                  <option value="Pasillo">Pasillo</option>
-                  <option value="Ventana">Ventana</option>
-                </select>
-                <div class="invalid-feedback">
-                  por favor valide su seleccion.
-                </div>
-              </div>
-            
-            </div> --}}
                 </div>
 <!-- FIN JODAAAA PASAJEROS NORMALES -->
             
@@ -461,9 +455,9 @@
                     
         @for ($i = 0; $i <$ninosbrazos; $i++)
 
+           
         <div class="container pasajero box wow fadeInLeft" data-wow-duration="2.4s">
-  
-            <div class="oculta" id="contenedorN{{ ($i+1) }}">    
+   
           <input type="hidden" name="tipo_boleto[]" id="tipo_boleto[]" value="{{ "bebe en brazos" }}">
 
             <label class="mb-3">PASAJERO  {{ ($i+1+$cantidad-$ninosbrazos) }} <span>Bebé en brazos</span>  </label>
@@ -473,6 +467,8 @@
                      <option value="{{$pasajero->documento}}" >V {{$pasajero->documento}}, {{$pasajero->primerNombre.' '.$pasajero->apellido}}</option>
                  @endforeach
               </select>
+
+            <div class="oculta" id="contenedorN{{ ($i+1) }}">
             <div class="row">
               <div class="col-md-4 mb-3">
                 <label for="firstName">Primer Nombre:</label>
@@ -505,7 +501,7 @@
           <option value="Extranjero">P</option>
           </select>
               <span style="width:6%; text-align: center">-</span>
-          <input type="text" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8">
+          <input type="number" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8">
                 <div class="invalid-feedback" >
                   Es necesario.
                 </div>
@@ -587,7 +583,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
   </div>
-  <input type="text" class="form-control" name="numero_tarjeta" minlength="18" maxlength="18" id="cc-number" placeholder="">
+  <input type="number" class="form-control" name="numero_tarjeta" minlength="18" maxlength="18" id="cc-number" placeholder="">
   <div class="invalid-feedback">
                   Requiere el numero de tarjeta
                 </div>
