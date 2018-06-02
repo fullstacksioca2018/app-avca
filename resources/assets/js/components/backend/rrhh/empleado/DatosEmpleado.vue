@@ -65,7 +65,7 @@ export default {
       if (empleado.length !== 0) {
         this.empleado = empleado;          
       }
-    });*/
+    });*/    
     if (this.empleado.length !== 0) {
       this.obtenerSucursal();
       this.obtenerDepartamento();
@@ -84,7 +84,7 @@ export default {
       axios
         .get("/rrhh/backend/perfil/obtener-sucursal", {
           params: {
-            sucursal: this.empleado.sucursal
+            sucursal: this.empleado.sucursal_id
           }
         })
         .then(response => {
@@ -96,7 +96,7 @@ export default {
       axios
         .get("/rrhh/backend/perfil/obtener-departamento", {
           params: {
-            departamento: this.empleado.departamento
+            departamento: this.empleado.departamento_id
           }
         })
         .then(response => {
@@ -108,7 +108,7 @@ export default {
       axios
         .get("/rrhh/backend/perfil/obtener-cargo", {
           params: {
-            cargo: this.empleado.cargo
+            cargo: this.empleado.cargo_id
           }
         })
         .then(response => {

@@ -41,6 +41,8 @@ class CreateEmpleadosTable extends Migration
             $table->date('fecha_ingreso');
             $table->string('banco', 100);
             $table->bigInteger('cuenta_bancaria')->unique();
+            $table->string('licencia')->nullable();
+            $table->enum('estatus', ['activo', 'inactivo'])->default('activo');
             $table->timestamps();
 
             $table->foreign('cargo_id')->references('cargo_id')->on('cargos')

@@ -8,7 +8,7 @@ class Empleado extends Model
 {
     protected $table = "empleados";
     protected $primaryKey = "empleado_id";
-    protected $fillable = ['cedula', 'nombre', 'apellido', 'nacionalidad', 'fecha_nacimiento', 'estado_civil', 'fecha_ingreso', 'sexo', 'foto', 'estado', 'ciudad', 'direccion', 'tipo_discapacidad', 'telefono_fijo', 'telefono_movil', 'email', 'tipo_discapacidad', 'sucursal_id', 'departamento_id', 'cargo_id', 'area_id', 'nivel_academico', 'profesion', 'condicion_laboral', 'tipo_horario', 'banco', 'cuenta_bancaria'];
+    protected $fillable = ['cedula', 'nombre', 'apellido', 'nacionalidad', 'fecha_nacimiento', 'estado_civil', 'fecha_ingreso', 'sexo', 'foto', 'estado', 'ciudad', 'direccion', 'tipo_discapacidad', 'telefono_fijo', 'telefono_movil', 'email', 'tipo_discapacidad', 'sucursal_id', 'departamento_id', 'cargo_id', 'area_id', 'nivel_academico', 'profesion', 'condicion_laboral', 'tipo_horario', 'banco', 'cuenta_bancaria', 'licencia'];
 
     public function conceptos()
     {
