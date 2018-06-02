@@ -30,12 +30,12 @@
                   <p>Chequear Boleto</p>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="{{ URL::to('/factura') }}" class="nav-link">
                 <i class="fa fa-reorder nav-icon"></i>
                   <p>Facturacion</p>
               </a>
-            </li>
+            </li> -->
           </ul>
         </li>
         <!-- HASTA AQUI TAQUILLA -->

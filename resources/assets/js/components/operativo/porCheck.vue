@@ -60,7 +60,7 @@
    
     <!-- Modal Registrar -->
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>  
-     <!-- <pre>El modalinfo tiene {{modalInfo.content}}</pre> -->
+      <pre>El modalinfo tiene {{modalInfo.content}}</pre> 
      <div v-if="modalInfo.content != ''">
     <b-form @submit.prevent="addMaletas()">
          
@@ -83,6 +83,7 @@
         <div class="col-sm-4">
             <b-form-input id="equipaje"
                           type="number"
+                          v-on:change=sobrepeso()
                           v-model="form.equipaje">
             </b-form-input>
           </div>
@@ -94,6 +95,7 @@
            <b-input-group append="kgrs">
             <b-form-input id="peso"
                           type="number"
+                          v-on:change=sobrepeso()
                           v-model="form.peso">
             </b-form-input>
            </b-input-group>
@@ -101,16 +103,8 @@
       </div>
       <div class="row"><p></p></div><!--  espacio -->
       <div class="row text-center">
-         <label for="sobrepeso" >Tarifa a pagar por SobrePeso:   </label>
-          <div class="col-sm-4">
-          <b-input-group append="BsS">
-            <b-form-input id="sobrepeso"
-                          type="number"
-                          v-model="form.sobrepeso"
-                          disable>
-            </b-form-input>
-          </b-input-group>
-          </div>
+         <label for="sobrepeso" >Tarifa a pagar por SobrePeso: {{ form.sobrepeso }} BsS   </label>
+
      
     </div>
    <div class="row"><p></p><p></p></div><!--  espacio -->
@@ -168,7 +162,7 @@ export default {
       pageOptions: [ 5, 10, 15 ],
       filter: null,
       modalInfo: { title: '', content: '' },
-      form: {equipaje: '', peso:'', puesto:'', id:''},
+      form: {equipaje: '0', peso:'0', puesto:'', id:'',sobrepeso:'0'},
        puestos: [
         "V-1",
         "V-2",
@@ -240,7 +234,7 @@ export default {
   methods: {
       info (item, index, button) {
       this.modalInfo.content = item; 
-       this.modalInfo.title = "Titulo aqui se va a chequear";     
+       this.modalInfo.title = "Vuelo: "+item.n_vuelo+" Pasajero: "+item.pasajero;     
       this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
    
@@ -284,7 +278,8 @@ export default {
              aeropuerto:this.data[i].aeropuerto_destino
             },
           estatus:this.data[i].estatus,
-          localizador:this.data[i].localizador
+          localizador:this.data[i].localizador,
+          tarifa:this.data[i].tarifa_vuelo
         });
       }
      
@@ -307,6 +302,15 @@ export default {
 
                });
            },
+    sobrepeso(){
+      var precioS=0
+      if(this.form.peso>23){
+        var peso = this.form.peso-23
+        var precio = this.modalInfo.content.tarifa*0.01
+         precioS =peso*precio
+      }
+      this.form.sobrepeso=precioS;
+    },
     chekear(row){
      this.$dialog.confirm('Esta opcion no puede ser revertida')
 	    .then(function () {

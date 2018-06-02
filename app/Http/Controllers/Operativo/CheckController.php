@@ -48,7 +48,7 @@ class CheckController extends Controller
                 $objAUX->sigla_destino=$boletos->vuelo->segmentos[0]->ruta->destino->sigla;
                 $objAUX->aeropuerto_destino=$boletos->vuelo->segmentos[0]->ruta->destino->aeropuerto;
                // $objAUX->duracion=$boletos->vuelo->segmentos[0]->ruta->duracion;
-                //$objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
+                $objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
                 $objAUX->estatus=$boletos->boleto_estado;
                 $objAUX->localizador=$boletos->localizador;
                 array_push($obj,$objAUX);
@@ -81,7 +81,7 @@ class CheckController extends Controller
                     $objAUX->sigla_destino=$boletos->vuelo->segmentos[0]->ruta->destino->sigla;
                     $objAUX->aeropuerto_destino=$boletos->vuelo->segmentos[0]->ruta->destino->aeropuerto;
                    // $objAUX->duracion=$boletos->vuelo->segmentos[0]->ruta->duracion;
-                    //$objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
+                    $objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
                     $objAUX->estatus=$boletos->boleto_estado;
                     $objAUX->localizador=$boletos->localizador;
                     array_push($obj,$objAUX);
@@ -114,7 +114,7 @@ class CheckController extends Controller
                         $objAUX->sigla_destino=$boletos->vuelo->segmentos[0]->ruta->destino->sigla;
                         $objAUX->aeropuerto_destino=$boletos->vuelo->segmentos[0]->ruta->destino->aeropuerto;
                        // $objAUX->duracion=$boletos->vuelo->segmentos[0]->ruta->duracion;
-                        //$objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
+                        $objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
                         $objAUX->estatus=$boletos->boleto_estado;
                         $objAUX->localizador=$boletos->localizador;
                         array_push($obj,$objAUX);

@@ -112,11 +112,11 @@ class PlanificarRutaController extends Controller
       $destino = $sucursal_destino->find($datos->destino['id'])->sigla;
       
       $ruta->sigla =  $origen."-".$destino;
-    
+       
       
 
       $ruta->save();
-      
+    
       return 'La Ruta '.$datos->origen['nombre']." ---> ".$datos->destino['nombre']." Se ha Generado Exitosamente";
     }
    
