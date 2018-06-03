@@ -9,6 +9,7 @@
 		Route::get('/CompraBoleto','Operativo\TaquillaController@CompraBoleto')->name('operativo.CompraBoleto');
 		Route::get('/taquilla/BuscarCedula','Operativo\TaquillaController@BuscarCedula');
 		Route::post('/BoletoVendido', 'Operativo\TaquillaController@BoletoVendido')->name('operativo.BoletoVendido');
+		Route::get('/prueba','Operativo\TaquillaController@imprimir');
 	});
 	//Check
     Route::group(['prefix'=>'check',/* 'middleware' => 'auth' */],function(){
