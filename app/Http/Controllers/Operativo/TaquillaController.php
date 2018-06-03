@@ -14,14 +14,91 @@ use App\Models\online\Factura;
 use App\Models\online\Tarjeta;
 use App\Models\online\Boleto;
 use App\Models\operativo\Cliente;
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\EscposImage;
 use stdClass;
+
+
 
 class TaquillaController extends Controller
 {
 	public function __construct(){
 		Carbon::setLocale('es');
 		date_default_timezone_set('America/Caracas');
-	}
+    }
+    
+    public function imprimir(){
+        try {
+            // Enter the share name for your USB printer here
+            $connector = null;
+            $connector = new WindowsPrintConnector("Tickera");
+            /* Print a "Hello world" receipt" */
+            $printer = new Printer($connector);
+            $printer->feed();
+            $printer -> text("*******************************\n"); 
+            $printer -> text("     __      _______           \n");       
+            $printer -> text("    /\ \    / / ____|   /\     \n");
+            $printer -> text("   /  \ \  / / |       /  \    \n");
+            $printer -> text("  / /\ \ \/ /| |      / /\ \   \n");
+            $printer -> text(" / ____ \  / | |____ / ____ \  \n");
+            $printer -> text("/_/    \_\/   \_____/_/    \_\ \n");
+            $printer -> text("             SENIAT            \n");
+            $printer -> text("          J-410124407          \n"); 
+            $printer -> text("      ALAS DE VENEZUELA C.A    \n"); 
+            $printer -> text("      Maiquetía 1162, Vargas   \n"); 
+            $printer->feed();
+            $printer -> text("            FACTURA          \n"); 
+            $printer -> text("Factura:                12345678\n"); 
+            $printer -> text("Fecha: 02-06-2018 \n" );  
+            $printer -> text("Hora: 17:05 \n");  
+
+            //$printer -> text("Factura:                ".$numero_factura."\n");  //8+8+8+8
+         
+            $printer->feed();            
+            $printer -> text("-------------------------------\n");  
+            $printer->feed();
+            $printer -> text("#1 Boleto (Cumana-CSS) ---- 1.500 BsS \n"); 
+            $printer -> text("#2 Boleto (Cumana-CSS) ---- 1.500 BsS \n"); 
+            $printer -> text("#3 Boleto (Cumana-CSS) ---- 1.500 BsS \n"); 
+            $printer -> text("#4 Servicio Maletas    ----    50 BsS \n"); 
+            $printer -> text("#5 Servicio Maletas    ----    50 BsS \n"); 
+            $printer -> text("#6 Servicio Maletas    ----    50 BsS \n"); 
+            $printer->feed();
+            $printer -> text("-------------------------------\n");
+            $printer->feed();
+
+            $printer -> text("BIG (12%)                   3.960 BsS \n");  
+            $printer -> text("IVA (12%)                     540 BsS \n");
+            $printer->feed();
+            $printer -> text("-------------------------------\n");
+            $printer -> text("TOTAL                       4.500 BsS \n");   
+            $printer -> text("Debito                      4.500 BsS \n");   
+            $printer -> text("Gracias por su compra. Feliz Vuelo\n");   
+            $printer->feed();  
+          
+
+
+
+            $printer->feed();
+                    
+              
+           
+            
+          
+        
+                                      
+          
+          
+            $printer -> cut();
+            
+            /* Close printer */
+            $printer -> close();
+        } catch (Exception $e) {
+            return  "Couldn't print to this printer: " . $e -> getMessage() . "\n";
+        }
+
+    }
 
     public function taquilla(){
     	$sucursales = Sucursal::orderBy('ciudad','ASC')->get();

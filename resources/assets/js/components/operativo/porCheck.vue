@@ -119,7 +119,7 @@
    <div class="row"><p></p><p></p></div><!--  espacio -->
    <div id='search-results' class="col-sm-6">
          <label for="asiento" >Seleccione el Asiento:   </label>
-         <multiselect v-model="form.puesto" :options="puestos" selectLabel="Seleccionar" deselectLabel="Eliminar" selectedLabel="Seleccionado" placeholder="Seleccione el Puesto" label="asiento" track-by="asiento"></multiselect>                 
+         <multiselect v-model="form.puesto" :options="puestos"    :show-labels="false" track-by="asiento"></multiselect>                 
          <!-- <multiselect v-model="value" :options="options" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Pick a value"></multiselect> -->
 
     </div> 
@@ -173,6 +173,8 @@ export default {
       modalInfo: { title: '', content: '' },
       form: {equipaje: '', peso:'', sobrepeso:'', puesto:''},
        puestos: [
+        
+
         "V-1",
         "V-2",
         "V-3"
