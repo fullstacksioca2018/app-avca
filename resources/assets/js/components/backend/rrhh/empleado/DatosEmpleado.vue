@@ -3,7 +3,8 @@
     <transition name="fade" tag="div">
       <div class="media" v-if="empleado.length !== 0">
         <!-- <img class="mr-3 empleado-img img-thumbnail" :src="'http://avca.oo/storage/empleados/' + empleado.foto" :alt="fullName"> -->
-        <img class="mr-3 empleado-img img-thumbnail" :src="ruta +'/storage/empleados/'+ empleado.cedula + '/foto/' + empleado.foto" :alt="fullName">
+        <img class="mr-3 empleado-img img-thumbnail" :src="ruta +'/storage/empleados/'+ empleado.cedula + '/foto/' + empleado.foto" :alt="fullName" v-if="empleado.foto !== ''">
+        <img class="mr-3 empleado-img img-thumbnail" src="/img/rrhh/businessman.png" :alt="fullName" v-else>
         <div class="media-body">  
           <div class="row empleado">
             <div class="col-md-6 empleado-item">

@@ -224,6 +224,15 @@ class NominaController extends Controller
                                 $monto = $calculo_horas['horas_faltantes_nocturnas_feriado'] * $hora_nocturna_feriado;          
                                 $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
                                 break;
+                            case 528:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_diurna_feriado = $hora_diurna * 1.5;
+                                $hora_nocturna_feriado = $hora_diurna_feriado * 1.3;
+                                $calculo_horas = $this->calculoHoras($empleado);
+                                $monto = $calculo_horas['horas_faltantes_nocturnas_feriado'] * $hora_nocturna_feriado;          
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
                         }
                     }
                 }
@@ -284,7 +293,7 @@ class NominaController extends Controller
             'horas_extras_nocturnas_feriado' => $horas_extras_nocturnas_feriado, 
             'horas_faltantes_nocturnas_feriado' => $horas_faltantes_nocturnas_feriado
         ];        
-    }
+    }    
 
     //  Calculo de numero de hijos
     public function calculoNumHijos($empleado)

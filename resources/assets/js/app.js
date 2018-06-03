@@ -42,6 +42,8 @@ Vue.component('Aeronaves',require('./components/operativo/AdministracionAeronave
 
 // Empleado
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
+// Analista de sucursal
+Vue.component('ficha-analista', require('./components/backend/rrhh/analista/FichaEmpleado'));
 
 // Nomina del empleado
 Vue.component('generar-nomina', require('./components/backend/rrhh/nomina/GenerarNomina'));

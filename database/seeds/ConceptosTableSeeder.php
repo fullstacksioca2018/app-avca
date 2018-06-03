@@ -297,10 +297,50 @@ class ConceptosTableSeeder extends Seeder
                     'islr'               => '0'
                 ],
                 [
-                    'tipo_concepto'     => '526',
+                    'tipo_concepto'     => '527',
                 'descripcion'  => 'Horas Faltantes Nocturnas Feriado',
                     'porcentaje'        => null,
                     'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
+                [
+                    'tipo_concepto'     => '528',
+                'descripcion'  => 'Horas Vuelo Piloto',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => 100,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
+                [
+                    'tipo_concepto'     => '529',
+                'descripcion'  => 'Horas Vuelo Copiloto',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => 40,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
+                [
+                    'tipo_concepto'     => '530',
+                'descripcion'  => 'Horas Vuelo Jefe Cabina',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => 30,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0'
+                ],
+                [
+                    'tipo_concepto'     => '531',
+                'descripcion'  => 'Horas Vuelo Sobrecargo',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => 10,                    
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
