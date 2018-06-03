@@ -115569,18 +115569,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -115621,34 +115609,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     info: function info(item, index, button) {
+      var _this2 = this;
+
       this.modalInfo.content = item;
-      //cargar los asientos ya asignados
       var n_v = JSON.stringify(item.n_vuelo);
-      var aaa = [];
-      var ctx = this;
       __WEBPACK_IMPORTED_MODULE_0_axios___default()({
         method: 'post',
         url: '/check/asientosAsignados',
         data: { 'vuelo': n_v }
       }).then(function (response) {
-        // console.log(response.data[0]);
-        aaa = response.data;
-        ctx.opcionesasientos(response.data);
-        // console.log(aaa);
+        _this2.puestos = response.data;
       }).catch(function (err) {
         console.log("error al traer al axios de puestos");
         console.log(err);
       });
 
-      //console.log(aaa)
-
       this.modalInfo.title = "Vuelo: " + item.n_vuelo + " Pasajero: " + item.pasajero;
       this.$root.$emit('bv::show::modal', 'modalInfo', button);
-    },
-    opcionesasientos: function opcionesasientos(data) {
-      console.log("entrando al metodo");
-      console.log(data);
-      this.puestos = data;
     },
     resetModal: function resetModal() {
       this.modalInfo.title = '';
@@ -115696,7 +115673,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     addMaletas: function addMaletas() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.form.id = this.modalInfo.content.id;
       __WEBPACK_IMPORTED_MODULE_0_axios___default()({
@@ -115710,7 +115687,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           duration: 2000
         });
         __WEBPACK_IMPORTED_MODULE_2__event_bus_js__["a" /* EventBus */].$emit('actualizartabla', true);
-        _this2.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+        _this3.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
       }).catch(function (err) {});
     },
     sobrepeso: function sobrepeso() {
@@ -115984,30 +115961,6 @@ var render = function() {
                       }
                     },
                     [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "form-group col-sm-1 " }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-sm-5" }, [
-                          _c("span", [
-                            _vm._v(
-                              "Vuelo: " + _vm._s(_vm.modalInfo.content.n_vuelo)
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-sm-5" }, [
-                          _c("span", [
-                            _vm._v(
-                              " Pasajero: " +
-                                _vm._s(_vm.modalInfo.content.pasajero) +
-                                " "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group col-sm-1 " })
-                      ]),
-                      _vm._v(" "),
                       _c("div", { staticClass: "row" }, [_c("p")]),
                       _vm._v(" "),
                       _c("div", { staticClass: "row text-center" }, [
