@@ -355,9 +355,9 @@
 
 
  <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.4s">
-   <div class="row">
-     <div class="col">
-       <label for="firstName">PASAJERO  {{ ($i+1) }}</label>
+   <div class="form-group row">
+       <label for="firstName" class="col-sm-2 col-form-label">PASAJERO  {{ ($i+1) }}</label>
+       <div class="col-sm-10">
        <select  class="form-control" name="pasajeroHelp[]" id="pasajeroHelp{{ ($i+1)}}" onchange="pasajeroAjax({{ $i+1 }})">
          <option value="0" >Otro</option>
 
@@ -365,7 +365,7 @@
               <option value="{{$pasajero->documento}}" >V {{$pasajero->documento}}, {{$pasajero->primerNombre.' '.$pasajero->apellido}}</option>
           @endforeach
        </select>
-     </div>
+      </div> 
    </div>
               <!-- JODAAAA PASAJEROS NORMALES -->
     <div class="oculta" id="contenedorP{{ ($i+1) }}">    
@@ -459,15 +459,17 @@
         <div class="container pasajero box wow fadeInLeft" data-wow-duration="2.4s">
    
           <input type="hidden" name="tipo_boleto[]" id="tipo_boleto[]" value="{{ "bebe en brazos" }}">
-
-            <label class="mb-3">PASAJERO  {{ ($i+1+$cantidad-$ninosbrazos) }} <span>Bebé en brazos</span>  </label>
+            <div class="form-group row">
+            <label class="col-sm-2 col-form-label">PASAJERO  {{ ($i+1+$cantidad-$ninosbrazos) }} <span>Bebé en brazos</span>  </label>
+            <div class="col-sm-10">
             <select  class="form-control" name="pasajeroHelpN[]" id="pasajeroHelpN{{ ($i+1)}}" onchange="pasajeroAjaxN({{ $i+1 }})">
                 <option value="0" >Otro</option>
                 @foreach ($pasajerosN as $pasajero)
                      <option value="{{$pasajero->documento}}" >V {{$pasajero->documento}}, {{$pasajero->primerNombre.' '.$pasajero->apellido}}</option>
                  @endforeach
               </select>
-
+            </div>
+          </div>
             <div class="oculta" id="contenedorN{{ ($i+1) }}">
             <div class="row">
               <div class="col-md-4 mb-3">
@@ -583,7 +585,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
   </div>
-  <input type="number" class="form-control" name="numero_tarjeta" minlength="18" maxlength="18" id="cc-number" placeholder="">
+  <input type="text" class="form-control" name="numero_tarjeta" minlength="16" maxlength="18" id="creditCardField" placeholder="">
   <div class="invalid-feedback">
                   Requiere el numero de tarjeta
                 </div>
@@ -637,7 +639,7 @@
         </div>
     </div>
 </div> <!-- row.// -->
-<button class="subscribe btn btn-primary" type="submit"> Confirmar </button>
+<button class="subscribe btn btn-primary" on type="submit"> Confirmar </button>
 
 </div> <!-- card-body.// -->
 <!-- </article>  card.// -->

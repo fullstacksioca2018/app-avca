@@ -105,7 +105,7 @@
                                                      </tr>                                        
                                            </table><!--Table body-->
                                           </div>
-<a class="btn btn-md btn-info btncosto" style="margin-left: 75px;" href="{{ URL::to('/online/cliente/ModificarPerfil', Auth::guard('online')->user()->id) }}" class="thbtn"> <strong>Modificar</strong></a>
+<a class="btn btn-md btn-info btncosto"  href="{{ URL::to('/online/cliente/ModificarPerfil', Auth::guard('online')->user()->id) }}" class="thbtn"> <strong>Modificar Perfil</strong></a>
                         </div><!-- ==  Contenido datos del pasajero==-->
      
                   <div class="col-md-2 col-sm-3 order-md-1 order-sm-1">
@@ -113,11 +113,11 @@
                     <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.6s">
                     @if(isset(Auth::guard('online')->user()->avatar))
                           
-                          <img src="/online/img/avatar/{{ Auth::guard('online')->user()->avatar }}" class="img-responsive" style="margin-left: -2px; width:140px; height:120px"  value = "{{ Auth::guard('online')->user()->avatar }}" placeholder="{{ Auth::guard('online')->user()->avatar }}">
+                          <img src="/online/img/avatar/{{ Auth::guard('online')->user()->avatar }}" class="img-responsive" style="margin-left: 10px; width:180px; height:170px"  value = "{{ Auth::guard('online')->user()->avatar }}" placeholder="{{ Auth::guard('online')->user()->avatar }}">
 
                     @else
                           
-                          <img src="{{ asset('online/img/login/login.png') }}" class="img-responsive" style="margin-left: -22px; width:180px; height:170px;">
+                          <img src="{{ asset('online/img/login/login.png') }}" class="img-responsive" style="margin-left: 10px; width:180px; height:170px;">
 
                     @endif
                            <cite class="text-center">Usuario: {{ Auth::guard('online')->user()->name }}</cite>  
@@ -363,7 +363,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
                       </div>
-                      <input type="text" class="form-control" name="numero_tarjeta" id="cc-number" placeholder="" minlength="18" maxlength="18">
+                      <input type="text" class="form-control" name="numero_tarjeta" id="creditCardField" placeholder="" minlength="18" maxlength="18">
                       <div class="invalid-feedback">
                                       Requiere el numero de tarjeta
                                     </div>
@@ -722,7 +722,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
                       </div>
-                      <input type="text" class="form-control" name="numero_tarjeta" id="cc-number" placeholder="" minlength="18" maxlength="18">
+                      <input type="text" class="form-control" name="numero_tarjeta" id="creditCardField" placeholder="" minlength="18" maxlength="18">
                       <div class="invalid-feedback">
                                       Requiere el numero de tarjeta
                                     </div>
@@ -870,7 +870,9 @@
       <br> <br>
 </div>
 </div>
-<br> <br><br> <br>
+</div>
+</div>
+<br> <br>
 <!-- ========================
 AKI EL CIERRE DEL COÑOOOO NO INVENTAR
 ===================================== -->

@@ -1056,7 +1056,7 @@ class ClienteController extends Controller
             $objAUX->estatus=$boletos->boleto_estado;
             $objAUX->localizador=$boletos->localizador;
 
-            return view('/online/componentes/checkin')->with('cliente',$cliente)->with('datos_vuelos',$objAUX);; 
+            return view('/online/componentes/checkinpasajero')->with('cliente',$cliente)->with('datos_vuelos',$objAUX);; 
          }
         
     }

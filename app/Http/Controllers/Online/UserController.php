@@ -108,9 +108,13 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+
+        // dd($request->all());
+
         $cliente = Auth::guard('online')->user()->cliente($request->user_id);
         $user = Auth::guard('online')->user();
 
+        //dd($cliente);
 
         if($cliente==null){
 
@@ -142,7 +146,6 @@ class UserController extends Controller
 
         }else{
 
-            //dd('entro');            
             $cliente = Cliente::find($request->user_id);
             $user = Online::find($request->user_id);
             $user->name  = $request->username;

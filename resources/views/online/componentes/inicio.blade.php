@@ -12,7 +12,7 @@
 <!-- ==============================
       INICIO DEL FORMULARIO COMPRAS
 ================================ -->      
-<div class="card transparente " >
+<div class="card transparente ">
 
 <div class="btn-group align-items-center" role="group" aria-label="Basic example">
   <!-- <button href="#" type="button" class="btn btn-primary btn-lg active"> Sin Retorno</button> -->
