@@ -13,6 +13,9 @@ use App\Models\operativo\Vuelo;
 use App\Models\online\Factura;
 use App\Models\online\Tarjeta;
 use App\Models\online\Boleto;
+use App\Models\Operativo\Maleta;
+use App\Models\Operativo\Asiento;
+
 use stdClass;
 
 class CheckController extends Controller
@@ -47,7 +50,7 @@ class CheckController extends Controller
                 $objAUX->sigla_destino=$boletos->vuelo->segmentos[0]->ruta->destino->sigla;
                 $objAUX->aeropuerto_destino=$boletos->vuelo->segmentos[0]->ruta->destino->aeropuerto;
                // $objAUX->duracion=$boletos->vuelo->segmentos[0]->ruta->duracion;
-                //$objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
+                $objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
                 $objAUX->estatus=$boletos->boleto_estado;
                 $objAUX->localizador=$boletos->localizador;
                 array_push($obj,$objAUX);
@@ -80,7 +83,7 @@ class CheckController extends Controller
                     $objAUX->sigla_destino=$boletos->vuelo->segmentos[0]->ruta->destino->sigla;
                     $objAUX->aeropuerto_destino=$boletos->vuelo->segmentos[0]->ruta->destino->aeropuerto;
                    // $objAUX->duracion=$boletos->vuelo->segmentos[0]->ruta->duracion;
-                    //$objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
+                    $objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
                     $objAUX->estatus=$boletos->boleto_estado;
                     $objAUX->localizador=$boletos->localizador;
                     array_push($obj,$objAUX);
@@ -113,7 +116,7 @@ class CheckController extends Controller
                         $objAUX->sigla_destino=$boletos->vuelo->segmentos[0]->ruta->destino->sigla;
                         $objAUX->aeropuerto_destino=$boletos->vuelo->segmentos[0]->ruta->destino->aeropuerto;
                        // $objAUX->duracion=$boletos->vuelo->segmentos[0]->ruta->duracion;
-                        //$objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
+                        $objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
                         $objAUX->estatus=$boletos->boleto_estado;
                         $objAUX->localizador=$boletos->localizador;
                         array_push($obj,$objAUX);
@@ -128,6 +131,45 @@ class CheckController extends Controller
             $boleto->boleto_estado="Chequeado";
             $boleto->save();
             return "El Boleto ha sido Chequeado";
+        }
+
+        public function addMaletas(Request $datos)
+        {
+           //dd($datos->all());
+           $maleta= new Maleta();
+           $maleta->boleto_id=$datos['id'];
+           $maleta->cantidad=$datos['equipaje'];
+           $maleta->peso=$datos['peso'];
+           $maleta->save();
+
+           $boleto=Boleto::find($datos['id']);
+           $boleto->asiento=$datos['puesto'];
+           $boleto->boleto_estado="Chequeado";
+           $boleto->save();
+           return "Boleto Chequeado Correctamente";
+        }
+
+        public function asignados(Request $vuelos)
+        {
+            $lista_puestos=Asiento::orderBy('id')->get();
+            $vuelo=json_decode($vuelos['vuelo']);
+            $objvuelo=Vuelo::where('n_vuelo','=',$vuelo)->get();
+            $obj=Boleto::select('asiento')->where('vuelo_id','=',$objvuelo[0]->id)->get();
+            $result=array();
+            for($i=0;$i<count($lista_puestos);$i++){
+                
+                $bandera=true;
+                for($j=0;$j<count($obj);$j++){
+                    if($lista_puestos[$i]->puesto==$obj[$j]->asiento){
+                        $bandera=false;
+                       
+                    }
+                }
+                if($bandera){
+                    array_push($result,$lista_puestos[$i]->puesto);
+                }
+            }
+            return $result;
         }
 
 }

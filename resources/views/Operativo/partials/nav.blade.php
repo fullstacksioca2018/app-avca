@@ -21,7 +21,7 @@
             <li class="nav-item has-treeview">
               <a href="{{ URL::to('/taquilla') }}" class="nav-link">
                 <i class="fa fa-circle-o nav-icon"></i>
-                <p>Gestionar Taquilla  <i class="right fa fa-angle-left"></i></p>
+                <p>Gestionar Taquilla</p>
               </a>
             </li>
             <li class="nav-item">
@@ -30,12 +30,12 @@
                   <p>Chequear Boleto</p>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="{{ URL::to('/factura') }}" class="nav-link">
                 <i class="fa fa-reorder nav-icon"></i>
                   <p>Facturacion</p>
               </a>
-            </li>
+            </li> -->
           </ul>
         </li>
         <!-- HASTA AQUI TAQUILLA -->

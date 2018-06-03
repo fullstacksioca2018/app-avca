@@ -58,11 +58,11 @@
       <b-pagination  align="center" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
     </b-col>
    
-    <!-- Modal Actualizar -->
+    <!-- Modal Registrar -->
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>  
-     <!-- <pre>El modalinfo tiene {{modalInfo.content}}</pre> -->
+        <!-- <pre>El modalinfo tiene {{modalInfo.content}}</pre>  --> 
      <div v-if="modalInfo.content != ''">
-    <b-form @submit.prevent="actualizar()">
+    <b-form @submit.prevent="addMaletas()">
          
        <div class="row">
           <div class="form-group col-sm-1 "></div>
@@ -83,7 +83,7 @@
         <div class="col-sm-4">
             <b-form-input id="equipaje"
                           type="number"
-                          required
+                          v-on:change=sobrepeso()
                           v-model="form.equipaje">
             </b-form-input>
           </div>
@@ -95,7 +95,7 @@
            <b-input-group append="kgrs">
             <b-form-input id="peso"
                           type="number"
-                          required
+                          v-on:change=sobrepeso()
                           v-model="form.peso">
             </b-form-input>
            </b-input-group>
@@ -103,27 +103,23 @@
       </div>
       <div class="row"><p></p></div><!--  espacio -->
       <div class="row text-center">
-         <label for="sobrepeso" >Tarifa a pagar por SobrePeso:   </label>
-          <div class="col-sm-4">
-          <b-input-group append="BsS">
-            <b-form-input id="sobrepeso"
-                          type="number"
-                          required
-                          v-model="form.sobrepeso"
-                          disable>
-            </b-form-input>
-          </b-input-group>
-          </div>
+         <label for="sobrepeso" >Tarifa a pagar por SobrePeso: {{ form.sobrepeso }} BsS   </label>
+
      
     </div>
    <div class="row"><p></p><p></p></div><!--  espacio -->
    <div id='search-results' class="col-sm-6">
          <label for="asiento" >Seleccione el Asiento:   </label>
+<<<<<<< HEAD
          <multiselect v-model="form.puesto" :options="puestos"    :show-labels="false" track-by="asiento"></multiselect>                 
          <!-- <multiselect v-model="value" :options="options" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Pick a value"></multiselect> -->
+=======
+          
+         <multiselect v-model="form.puesto" :options="puestos" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione filtro" :preselect-first="false" selectLabel="Seleccionar" deselectLabel="Eliminar" required></multiselect>
+>>>>>>> 43d65029c9e53b5e18dfee496320b5772fd5c140
 
     </div> 
-    <div class="row"><p></p><p></p><pre>Su puesto {{ form.puesto }} !! </pre></div><!--  espacio -->
+    <div class="row"><p></p><p></p></div><!--  espacio -->
       <div class="text-center">
         <b-button type="submit" variant="primary" >Actualizar</b-button>
       </div>
@@ -146,7 +142,10 @@ export default {
   created: function(){
     EventBus.$on('actualizartabla',(event) =>{
       this.Cargadatos(this);
-    });
+     });
+     /* EventBus.$on('actualizarselect',(event) =>{
+      this.CargaMultiselect(this);
+     }); */
     this.Cargadatos(this)
 
   },
@@ -171,6 +170,7 @@ export default {
       pageOptions: [ 5, 10, 15 ],
       filter: null,
       modalInfo: { title: '', content: '' },
+<<<<<<< HEAD
       form: {equipaje: '', peso:'', sobrepeso:'', puesto:''},
        puestos: [
         
@@ -243,15 +243,45 @@ export default {
         {P63:"P-63"}, 
         {V64:"V-64"} */
       ] 
+=======
+      form: {equipaje: '0', peso:'0', puesto:'', id:'',sobrepeso:'0'},
+      puestos: [] 
+>>>>>>> 43d65029c9e53b5e18dfee496320b5772fd5c140
     }
   },
+
+  
   methods: {
       info (item, index, button) {
       this.modalInfo.content = item; 
-       this.modalInfo.title = "Titulo aqui se va a chequear";     
+      //cargar los asientos ya asignados
+      var n_v=JSON.stringify(item.n_vuelo);
+      var aaa=[];
+      var  ctx=this;
+      axios({
+            method: 'post',
+            url: '/check/asientosAsignados',
+            data:{'vuelo':n_v},
+           }).then(function(response){
+            // console.log(response.data[0]);
+             aaa=response.data;
+             ctx.opcionesasientos(response.data);
+          // console.log(aaa);
+           }).catch((err)=>{
+        console.log("error al traer al axios de puestos");
+        console.log(err);
+      });
+       
+        //console.log(aaa)
+    
+      this.modalInfo.title = "Vuelo: "+item.n_vuelo+" Pasajero: "+item.pasajero;     
       this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
-   
+    opcionesasientos (data){
+      console.log("entrando al metodo");
+      console.log(data);
+      this.puestos=data;
+    },
     resetModal () {
       this.modalInfo.title = ''
       this.modalInfo.content = ''
@@ -292,10 +322,38 @@ export default {
              aeropuerto:this.data[i].aeropuerto_destino
             },
           estatus:this.data[i].estatus,
-          localizador:this.data[i].localizador
+          localizador:this.data[i].localizador,
+          tarifa:this.data[i].tarifa_vuelo
         });
       }
      
+    },
+    addMaletas(){
+               this.form.id=this.modalInfo.content.id;
+               axios({
+                method: 'post',
+                url: '/check/maletas',
+                data: this.form,
+               }).then((response)=>{
+                Vue.toasted.show(response.data, {
+                    theme: "primary", 
+	                position: "bottom-right",
+	                duration : 2000
+                });
+                EventBus.$emit('actualizartabla',true);
+                this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+               }).catch((err) =>{
+
+               });
+           },
+    sobrepeso(){
+      var precioS=0
+      if(this.form.peso>23){
+        var peso = this.form.peso-23
+        var precio = this.modalInfo.content.tarifa*0.01
+         precioS =peso*precio
+      }
+      this.form.sobrepeso=precioS;
     },
     chekear(row){
      this.$dialog.confirm('Esta opcion no puede ser revertida')

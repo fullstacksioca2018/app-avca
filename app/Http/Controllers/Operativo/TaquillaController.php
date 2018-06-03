@@ -259,7 +259,7 @@ class TaquillaController extends Controller
          {
              $factura->tarjeta_id = $tarjeta->id;
          }else{
-             $factura->tarjeta_id = 1; // 0 porque no tiene tarjeta asociada.
+             $factura->tarjeta_id = 0; // 0 porque no tiene tarjeta asociada.
          }
          $factura->save();
          
@@ -271,15 +271,19 @@ class TaquillaController extends Controller
        switch ($tipo) {
            case 1:
            $boletos = array();   
-            for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
+           $AuxVuelo = Vuelo::find($request->vuelo); 
+           for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
                 {
                     $Nboleto = new Boleto();
                     if($btn!="reserva")
                     {          
-                    $Nboleto->boleto_estado="Pagado";
+                        $AuxVuelo->boletos_vendidos=$AuxVuelo->boletos_vendidos+1;
+                        $Nboleto->boleto_estado="Pagado";
                     }else{
+                        $AuxVuelo->boletos_vendidos=$AuxVuelo->boletos_reservados+1;
                         $Nboleto->boleto_estado="Reservado";
                     }
+                    $AuxVuelo->save();
                     $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
                     if($request->tipo_boleto[$key]=="adulto")
                         $Nboleto->asiento=$request->asiento[$key];
@@ -301,7 +305,7 @@ class TaquillaController extends Controller
                     $Nboleto->save();
                     array_push($boletos, $Nboleto);
                 }// fin for
-                $AuxVuelo = Vuelo::find($request->vuelo);
+              
                 $segmentos=$AuxVuelo->segmentos;
                     $ruta=$segmentos[0]->ruta;
                     $origen=$segmentos[0]->ruta->origen;
@@ -312,19 +316,29 @@ class TaquillaController extends Controller
                 $objAUX->origen=$origen;
                 $objAUX->destino=$destino;
                 $objAUX->boletos=$boletos;
+                
+                
                 array_push($datos_vuelos, $objAUX);
             break;
             case 2:
             $boletos = array();
+            $AuxVuelo = Vuelo::find($request->vuelo);
+            $AuxVuelo2 = Vuelo::find($request->vuelo_regreso);
             for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
             {
                 $Nboleto = new Boleto();
                 if($btn!="reserva")
-                {  
-                    $Nboleto->boleto_estado="Pagado";
-                }else{
-                    $Nboleto->boleto_estado="Reservado";
-                }
+                    {          
+                        $AuxVuelo->boletos_vendidos=$AuxVuelo->boletos_vendidos+1;
+                        $AuxVuelo2->boletos_vendidos=$AuxVuelo2->boletos_vendidos+1;
+                        $Nboleto->boleto_estado="Pagado";
+                    }else{
+                        $AuxVuelo->boletos_vendidos=$AuxVuelo->boletos_reservados+1;
+                        $AuxVuelo2->boletos_vendidos=$AuxVuelo2->boletos_reservados+1;
+                        $Nboleto->boleto_estado="Reservado";
+                    }
+                    $AuxVuelo->save();
+                    $AuxVuelo2->save();
                 $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
                 if($request->tipo_boleto[$key]=="adulto")
                     $Nboleto->asiento=$request->asiento[$key];
@@ -352,17 +366,17 @@ class TaquillaController extends Controller
                 {
                     $Nboleto = new Boleto();
                     if($btn!="reserva")
-                    {  
+                    {          
+                        $AuxVuelo->boletos_vendidos=$AuxVuelo->boletos_vendidos+1;
+                        $AuxVuelo2->boletos_vendidos=$AuxVuelo2->boletos_vendidos+1;
                         $Nboleto->boleto_estado="Pagado";
                     }else{
+                        $AuxVuelo->boletos_vendidos=$AuxVuelo->boletos_reservados+1;
+                        $AuxVuelo2->boletos_vendidos=$AuxVuelo2->boletos_reservados+1;
                         $Nboleto->boleto_estado="Reservado";
-                    }                   
-                    $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
-                    if($request->tipo_boleto[$key]=="adulto")
-                        $Nboleto->asiento=$request->asiento[$key];
-                    else{
-                        $Nboleto->asiento="null";
                     }
+                    $AuxVuelo->save();
+                    $AuxVuelo2->save();
                     $Nboleto->primerNombre=$request->primerNombre[$key];
                     $Nboleto->segundoNombre = $request->segundoNombre[$key];
                     $Nboleto->tipo_documento=$request->tipo_documento[$key];
@@ -378,7 +392,7 @@ class TaquillaController extends Controller
                     $Nboleto->save();
                     array_push($boletos, $Nboleto);
                 }// fin for
-                $AuxVuelo = Vuelo::find($request->vuelo);
+                
                 $segmentos=$AuxVuelo->segmentos;
                     $ruta=$segmentos[0]->ruta;
                     $origen=$segmentos[0]->ruta->origen;
@@ -390,13 +404,13 @@ class TaquillaController extends Controller
                 $objAUX->destino=$destino;
                 $objAUX->boletos=$boletos;
                 array_push($datos_vuelos, $objAUX);
-                $AuxVuelo = Vuelo::find($request->vuelo_regreso);
-                $segmentos=$AuxVuelo->segmentos;
+               
+                $segmentos=$AuxVuelo2->segmentos;
                     $ruta=$segmentos[0]->ruta;
                     $origen=$segmentos[0]->ruta->origen;
                     $destino=$segmentos[0]->ruta->destino;
                 $objAUX= new stdClass();
-                $objAUX->vuelo=$AuxVuelo;
+                $objAUX->vuelo=$AuxVuelo2;
                 $objAUX->ruta=$ruta;
                 $objAUX->origen=$origen;
                 $objAUX->destino=$destino;
@@ -404,22 +418,25 @@ class TaquillaController extends Controller
                 array_push($datos_vuelos, $objAUX);
             break;
             case 3:
-                //dd($tipo,"vuelos a tomar",$request->vuelo);
-               // dd($request->adultos,$request->ninos);
+            
                $c=0; 
                for($i=0;$i<$request->cantidadV;$i++)
                 { 
                     $boletos = array();
+                    $AuxVuelo = Vuelo::find($request->vuelo[$i]);
                     for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
                     {
                        $c++;
                         $Nboleto = new Boleto();
                         if($btn!="reserva")
-                        {  
+                        {          
+                            $AuxVuelo->boletos_vendidos=$AuxVuelo->boletos_vendidos+1;
                             $Nboleto->boleto_estado="Pagado";
                         }else{
+                            $AuxVuelo->boletos_vendidos=$AuxVuelo->boletos_reservados+1;
                             $Nboleto->boleto_estado="Reservado";
-                        }  
+                        }
+                        $AuxVuelo->save();  
                         $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
                         if($request->tipo_boleto[$key]=="adulto")
                             $Nboleto->asiento=$request->asiento[$key];
@@ -442,8 +459,8 @@ class TaquillaController extends Controller
                         array_push($boletos, $Nboleto);
                     }// fin for interno
                    
-                    $AuxVuelo = Vuelo::find($request->vuelo[$i]);
-                $segmentos=$AuxVuelo->segmentos;
+                   
+                   $segmentos=$AuxVuelo->segmentos;
                     $ruta=$segmentos[0]->ruta;
                     $origen=$segmentos[0]->ruta->origen;
                     $destino=$segmentos[0]->ruta->destino;

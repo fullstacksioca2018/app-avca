@@ -22,12 +22,12 @@ class CreateFacturasTable extends Migration
             $table->integer('adultos_cant');
             $table->integer('ninos_cant')->nullable();
             $table->integer('NinosBrazos_cant')->nullable();
-            $table->integer('tarjeta_id')->unsigned();
+            $table->integer('tarjeta_id')->nullable()->unsigned();
             $table->timestamps();
 
             /*
             |=================
-            |Llaves Foraneas |
+            | Llaves Foraneas |
             |=================
             */
 
