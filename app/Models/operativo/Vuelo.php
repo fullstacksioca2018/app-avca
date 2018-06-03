@@ -12,6 +12,8 @@ class Vuelo extends Model
 		'estado',
 		'fecha_salida',
         'n_vuelo',
+        'boletos_vendidos',
+        'boletos_reservados'
 
     ];
 

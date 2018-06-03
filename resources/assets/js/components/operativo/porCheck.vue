@@ -60,7 +60,7 @@
    
     <!-- Modal Registrar -->
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>  
-      <pre>El modalinfo tiene {{modalInfo.content}}</pre> 
+        <!-- <pre>El modalinfo tiene {{modalInfo.content}}</pre>  --> 
      <div v-if="modalInfo.content != ''">
     <b-form @submit.prevent="addMaletas()">
          
@@ -137,7 +137,10 @@ export default {
   created: function(){
     EventBus.$on('actualizartabla',(event) =>{
       this.Cargadatos(this);
-    });
+     });
+     /* EventBus.$on('actualizarselect',(event) =>{
+      this.CargaMultiselect(this);
+     }); */
     this.Cargadatos(this)
 
   },
@@ -163,81 +166,42 @@ export default {
       filter: null,
       modalInfo: { title: '', content: '' },
       form: {equipaje: '0', peso:'0', puesto:'', id:'',sobrepeso:'0'},
-       puestos: [
-        "V-1",
-        "V-2",
-        "P-3", 
-        "V-4", 
-        "V-5", 
-        "P-6", 
-        "P-7", 
-        "V-8", 
-        "V-9", 
-        "P-10", 
-        "P-11", 
-        "V-12", 
-        "V-13", 
-        "P-14", 
-        "P-15", 
-        "V-16", 
-        "V-17", 
-        "P-18", 
-        "P-19", 
-        "V-20", 
-        "V-21", 
-        "P-22", 
-        "P-23", 
-        "V-24", 
-        "V-25", 
-        "P-26", 
-        "P-27", 
-        "V-28",         
-        "V-29", 
-        "P-30",              
-        "P-31",              
-        "V-32",              
-        "V-33",              
-        "P-34",              
-        "P-35",              
-        "V-36",              
-        "V-37",              
-        "P-38",              
-        "P-39",              
-        "V-40",              
-        "V-41",              
-        "P-42",              
-        "P-43",              
-        "V-44",              
-        "V-45",              
-        "P-46",             
-        "P-47",              
-        "V-48",              
-        "V-49",              
-        "P-50",              
-        "P-51",              
-        "V-52",              
-        "V-53",              
-        "P-54",                             
-        "P-55", 
-        "V-56", 
-        "V-57", 
-        "P-58", 
-        "P-59", 
-        "V-60", 
-        "V-61", 
-        "P-62", 
-        "P-63", 
-        "V-64" 
-      ] 
+      puestos: [] 
     }
   },
+
+  
   methods: {
       info (item, index, button) {
       this.modalInfo.content = item; 
-       this.modalInfo.title = "Vuelo: "+item.n_vuelo+" Pasajero: "+item.pasajero;     
+      //cargar los asientos ya asignados
+      var n_v=JSON.stringify(item.n_vuelo);
+      var aaa=[];
+      var  ctx=this;
+      axios({
+            method: 'post',
+            url: '/check/asientosAsignados',
+            data:{'vuelo':n_v},
+           }).then(function(response){
+            // console.log(response.data[0]);
+             aaa=response.data;
+             ctx.opcionesasientos(response.data);
+          // console.log(aaa);
+           }).catch((err)=>{
+        console.log("error al traer al axios de puestos");
+        console.log(err);
+      });
+       
+        //console.log(aaa)
+    
+      this.modalInfo.title = "Vuelo: "+item.n_vuelo+" Pasajero: "+item.pasajero;     
       this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
-   
+    opcionesasientos (data){
+      console.log("entrando al metodo");
+      console.log(data);
+      this.puestos=data;
+    },
     resetModal () {
       this.modalInfo.title = ''
       this.modalInfo.content = ''
@@ -289,7 +253,7 @@ export default {
                axios({
                 method: 'post',
                 url: '/check/maletas',
-                data: this.form
+                data: this.form,
                }).then((response)=>{
                 Vue.toasted.show(response.data, {
                     theme: "primary", 

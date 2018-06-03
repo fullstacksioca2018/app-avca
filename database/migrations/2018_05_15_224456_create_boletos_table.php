@@ -22,8 +22,7 @@ class CreateBoletosTable extends Migration
             $table->date('fecha_nacimiento');
             $table->string('tipo_documento',50)->nullable();
             $table->string('documento',50);
-            $table->string('detalles_salud',50)->nullable();
-            $table->enum('boleto_estado',['Reservado','Pagado','Chequeado','Cancelado','Temporal'])->default('Pagado');
+            $table->enum('boleto_estado',['Reservado','Pagado','Chequeado','Cancelado','Temporal'])->default('Reservado');
             $table->date('fecha_expiracion')->nullable();
             $table->enum('tipo_boleto',['adulto','niño','bebe en brazos']);
             $table->string('asiento',50);
