@@ -98,13 +98,8 @@
    <div class="row"><p></p><p></p></div><!--  espacio -->
    <div id='search-results' class="col-sm-6">
          <label for="asiento" >Seleccione el Asiento:   </label>
-<<<<<<< HEAD
-         <multiselect v-model="form.puesto" :options="puestos"    :show-labels="false" track-by="asiento"></multiselect>                 
-         <!-- <multiselect v-model="value" :options="options" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Pick a value"></multiselect> -->
-=======
           
          <multiselect v-model="form.puesto" :options="puestos" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione filtro" :preselect-first="false" selectLabel="Seleccionar" deselectLabel="Eliminar" required></multiselect>
->>>>>>> 43d65029c9e53b5e18dfee496320b5772fd5c140
 
     </div> 
     <div class="row"><p></p><p></p></div><!--  espacio -->
@@ -158,83 +153,8 @@ export default {
       pageOptions: [ 5, 10, 15 ],
       filter: null,
       modalInfo: { title: '', content: '' },
-<<<<<<< HEAD
-      form: {equipaje: '', peso:'', sobrepeso:'', puesto:''},
-       puestos: [
-        
-
-        "V-1",
-        "V-2",
-        "V-3"
-        /* {puesto: "V-1"}, 
-        {puesto: "P-2"} */
-        /* {P3:"P-3"}, 
-        {V4:"V-4"}, 
-        {V5:"V-5"}, 
-        {P6:"P-6"}, 
-        {P7:"P-7"}, 
-        {V8:"V-8"}, 
-        {V9:"V-9"}, 
-        {P10:"P-10"}, 
-        {P11:"P-11"}, 
-        {V12:"V-12"}, 
-        {V13:"V-13"}, 
-        {P14:"P-14"}, 
-        {P15:"P-15"}, 
-        {V16:"V-16"}, 
-        {V17:"V-17"}, 
-        {P18:"P-18"}, 
-        {P19:"P-19"}, 
-        {V20:"V-20"}, 
-        {V21:"V-21"}, 
-        {P22:"P-22"}, 
-        {P23:"P-23"}, 
-        {V24:"V-24"}, 
-        {V25:"V-25"}, 
-        {P26:"P-26"}, 
-        {P27:"P-27"}, 
-        {V28:"V-28"},         
-        {V29:"V-29"}, 
-        {P30:"P-30"},              
-        {P31:"P-31"},              
-        {V32:"V-32"},              
-        {V33:"V-33"},              
-        {P34:"P-34"},              
-        {P35:"P-35"},              
-        {V36:"V-36"},              
-        {V37:"V-37"},              
-        {P38:"P-38"},              
-        {P39:"P-39"},              
-        {V40:"V-40"},              
-        {V41:"V-41"},              
-        {P42:"P-42"},              
-        {P43:"P-43"},              
-        {V44:"V-44"},              
-        {V45:"V-45"},              
-        {P46:"P-46"},             
-        {P47:"P-47"},              
-        {V48:"V-48"},              
-        {V49:"V-49"},              
-        {P50:"P-50"},              
-        {P51:"P-51"},              
-        {V52:"V-52"},              
-        {V53:"V-53"},              
-        {P54:"P-54"},                             
-        {P55:"P-55"}, 
-        {V56:"V-56"}, 
-        {V57:"V-57"}, 
-        {P58:"P-58"}, 
-        {P59:"P-59"}, 
-        {V60:"V-60"}, 
-        {V61:"V-61"}, 
-        {P62:"P-62"}, 
-        {P63:"P-63"}, 
-        {V64:"V-64"} */
-      ] 
-=======
       form: {equipaje: '0', peso:'0', puesto:'', id:'',sobrepeso:'0'},
       puestos: [] 
->>>>>>> 43d65029c9e53b5e18dfee496320b5772fd5c140
     }
   },
 

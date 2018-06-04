@@ -28,8 +28,13 @@ class TaquillaController extends Controller
 		date_default_timezone_set('America/Caracas');
     }
     
-    public function imprimir(){
-        try {
+    public function imprimir(Request $datos){
+       $factura=json_decode($datos->get('factura'));
+       $datos_vuelo=json_decode($datos->get('datos_vuelo'));
+       $tipo=json_decode($datos->get('tipo'));
+       dd("tipo",$tipo,"factura:",$factura,"datos de vuelos",$datos_vuelo); 
+
+       try {
             // Enter the share name for your USB printer here
             $connector = null;
             $connector = new WindowsPrintConnector("Tickera");
@@ -189,6 +194,7 @@ class TaquillaController extends Controller
             array_push($edades,$edad);
             array_push($brazo,$Nbrazo);
         }
+        
         switch ($tipo){
            case 1:// solo ida
                  $origen=$request->get('origen_id');
@@ -255,17 +261,23 @@ class TaquillaController extends Controller
          $factura->adultos_cant = $request->adultos;
          $factura->ninos_cant = $request->ninos;
          $factura->NinosBrazos_cant = $request->NinosBrazos_cant;
+         $cliente=Cliente::where("documento","=",$request->documento[0])->get();
+         if(count($cliente))
+         {
+             $user_id=$cliente[0]->user_id;
+         }else{
+            $user_id=1;
+         }
          if($btn!="reserva")
          {
              $factura->tarjeta_id = $tarjeta->id;
          }else{
-             $factura->tarjeta_id = 0; // 0 porque no tiene tarjeta asociada.
+             $factura->tarjeta_id = null; // null porque no tiene tarjeta asociada.
          }
          $factura->save();
          
          // SAVE DATOS DE BOLETOS
          
-        /* $user = Auth::guard('online')->user(); */
        $date = Carbon::now()->addYear(); //2015-01-01 00:00:00
         
        switch ($tipo) {
@@ -298,7 +310,7 @@ class TaquillaController extends Controller
                     $Nboleto->apellido=$request->apellido[$key]; 
                     $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
                     $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];
-                    $Nboleto->user_id=$request->user_id;
+                    $Nboleto->user_id=$user_id;
                     $Nboleto->factura_id=$factura->id;
                     $Nboleto->vuelo_id=$request->vuelo;
                     $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
@@ -353,7 +365,7 @@ class TaquillaController extends Controller
                 $Nboleto->apellido=$request->apellido[$key]; 
                 $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
                 $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];              
-                $Nboleto->user_id=$request->user_id;
+                $Nboleto->user_id=$user_id;
                 $Nboleto->factura_id=$factura->id;
                 $Nboleto->vuelo_id=$request->vuelo;
                 $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
@@ -385,7 +397,7 @@ class TaquillaController extends Controller
                     $Nboleto->apellido=$request->apellido[$key]; 
                     $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
                     $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];              
-                     $Nboleto->user_id=$request->user_id;           
+                     $Nboleto->user_id=$user_id;           
                     $Nboleto->factura_id=$factura->id;
                     $Nboleto->vuelo_id=$request->vuelo_regreso;
                     $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
@@ -451,7 +463,7 @@ class TaquillaController extends Controller
                         $Nboleto->apellido=$request->apellido[$key]; 
                         $Nboleto->tipo_boleto=$request->tipo_boleto[$key];
                         $Nboleto->fecha_nacimiento=$request->fecha_nacimiento[$key];             
-                        $Nboleto->user_id=$request->user_id;
+                        $Nboleto->user_id=$user_id;
                         $Nboleto->factura_id=$factura->id;
                         $Nboleto->vuelo_id=$request->vuelo[$i];
                         $Nboleto->localizador = str_random(3).'-'.random_int(100,999);
@@ -488,7 +500,7 @@ class TaquillaController extends Controller
      public function BuscarCedula(Request $ci)
     {
         $cedula=$ci->get('cedula');
-        $datos=Cliente::where('documento','=',$cedula)->get();
+        $datos=Boleto::where('documento','=',$cedula)->get();
         if(!count($datos)){
             $datos="Cedula No registrada";
         }
