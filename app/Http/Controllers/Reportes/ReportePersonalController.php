@@ -21,7 +21,7 @@ class ReportePersonalController extends Controller
     }
     public function periodos($consulta){
     	$fechas=array();
-    	if($consulta->periodo=='Intervalo'){
+    	if($consulta->periodo=='Intérvalo'){
     		$mesD=DW_Fecha::numeroMes($consulta->mesD);
     		$mesH=DW_Fecha::numeroMes($consulta->mesH);
     		$yearD=$consulta->yearD;
@@ -219,7 +219,7 @@ class ReportePersonalController extends Controller
         $periodos=$this->periodos($consulta); //fechas meses para consulta
         // return $periodos;
         $labels=$this->labelsPeriodos($periodos);
-        if($consulta->tipo!="Busqueda"){
+        if($consulta->tipo!="Búsqueda Avanzada"){
             if($consulta->filtros){
                 if((count($consulta->filtros))>1){
                     for($s=0;$s<count($consulta->sucursalesF);$s++){
@@ -390,7 +390,7 @@ class ReportePersonalController extends Controller
         }
          $obj= new stdClass();
         // return response()->json($consulta->sucursalesF);
-         if(((count($periodos))>1)||((count($consulta->sucursalesF))>1)||((count($consulta->cargosF))>1)||($consulta->tipo=="Busqueda"&&(count($label))>1)){ //GRAFICA BARG
+         if(((count($periodos))>1)||((count($consulta->sucursalesF))>1)||((count($consulta->cargosF))>1)||($consulta->tipo=="Búsqueda Avanzada"&&(count($label))>1)){ //GRAFICA BARG
          $obj->titulo=$titulo;
             $obj->grafico="BarG";
             $obj2= new stdClass();
@@ -403,7 +403,7 @@ class ReportePersonalController extends Controller
         }
         else{ //GRAFICA TORTA PIE
          $acumulador=0;
-            if($consulta->tipo!='Busqueda'){
+            if($consulta->tipo!='Búsqueda Avanzada'){
                 foreach ($data as $key) {
                     $acumulador=$acumulador+$key;
                 }

@@ -115,17 +115,17 @@ class ReporteServiciosController extends Controller
         return  DW_ReporteServicio::VuelosDestino($obj,6,'Ejecutados');
     }
     public function ReporteServicio(Request $consulta){
-    	$label=array();
-    	$labels=array();
+        return response()->json($consulta->all());
+        $label=array();
+        $labels=array();
         $previos=array();
         $data=array();
         $auxdata=array();
         $cont=0;
         $titulo="";
-        // return response()->json($consulta->all());
         $periodos=$this->periodos($consulta); //fechas meses para consulta
        // $labels=$this->labelsPeriodos($periodos);
-        if($consulta->tipo!="Busqueda"){
+        if($consulta->tipo!="Búsqueda Avanzada"){
 			if($consulta->filtros){
                 for ($pp=0; $pp < count($periodos); $pp++) {
                     for($f=0;$f<count($consulta->filtros);$f++){
@@ -210,7 +210,7 @@ class ReporteServiciosController extends Controller
             }
         }
         else{
-        	return "busqueda";
+        	return "búsqueda Avanzada";
         }
     }
 

@@ -20,7 +20,13 @@
         <li class="nav-item has-treeview menu-open">
           <a href="{{ URL::to('/reportes/panel') }}" id="panelnav" class="nav-link">
             <i class="fa  fa-line-chart nav-icon"></i>
-            <p>Reportes y Estadisticas<i class="right"></i></p>
+            <p>Reportes y Estadísticas<i class="right"></i></p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview menu-open">
+          <a href="{{ URL::to('/reportes/pronostico') }}" id="panelpronostico" class="nav-link">
+            <i class="fa  fa-bar-chart nav-icon"></i>
+            <p>Proyección y Pronóstico<i class="right"></i></p>
           </a>
         </li>
       </ul>

@@ -54,6 +54,7 @@ Vue.component('listado-sucursales', require('./components/backend/rrhh/sucursal/
 Vue.component('parametros-nomina', require('./components/backend/rrhh/parametros/ParametrosNomina'));
 
 Vue.component('panel', require('./components/reportes/panel.vue'));
+Vue.component('pronostico', require('./components/reportes/pronostico.vue'));
 Vue.component('dashboard', require('./components/reportes/Dashboard.vue'));
 Vue.component('breadcrumbpersonal', require('./components/reportes/breadcrumbPersonal.vue'));
 

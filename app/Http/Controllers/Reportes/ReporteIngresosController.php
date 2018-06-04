@@ -22,7 +22,7 @@ class ReporteIngresosController extends Controller
     public function periodos($consulta){
     	$fechas=array();        
         switch ($consulta->periodo) {
-            case 'Intervalo':
+            case 'Intérvalo':
                 $mesD=DW_Fecha::numeroMes($consulta->mesD);
                 $mesH=DW_Fecha::numeroMes($consulta->mesH);
                 $desde=Carbon::parse("01-".$mesD."-".$yearD);
@@ -158,13 +158,13 @@ class ReporteIngresosController extends Controller
         $periodos=$this->periodos($consulta); //fechas meses para consulta
         // return response()->json($periodos);
         // $labels=$this->labelsPeriodos($periodos);
-        // if($consulta->tipo!="Busqueda"){
+        // if($consulta->tipo!="Búsqueda Avanzada"){
             if($consulta->filtros){
                 for ($pp=0; $pp < count($periodos); $pp++) {
                     for($f=0;$f<count($consulta->filtros);$f++){
                         switch ($consulta->filtros[$f]) {
                             case 'Ruta':
-                                if($consulta->tipo!="Busqueda"){
+                                if($consulta->tipo!="Búsqueda Avanzada"){
                                     for ($r=0; $r <count($consulta->rutasF) ; $r++) {
                                         $ruta=DW_Ruta::find($consulta->rutasF[$r]);
                                         $labelsAux="Ruta ".$ruta->ruta_id.'. '.$ruta->origen->sigla.'-'.$ruta->destino->sigla;
@@ -181,7 +181,7 @@ class ReporteIngresosController extends Controller
                                 }
                                 break;
                             case 'Origen':
-                                if($consulta->tipo!="Busqueda"){
+                                if($consulta->tipo!="Búsqueda Avanzada"){
                                     for ($o=0; $o <count($consulta->origenesF) ; $o++) {
                                         $origen=DW_Sucursal::buscar($consulta->origenesF[$o]);
                                         $labelsAux="Origen ".$origen->nombre;
@@ -199,7 +199,7 @@ class ReporteIngresosController extends Controller
                                 // return "F Origen";
                                 break;
                             case 'Destino':
-                                if($consulta->tipo!="Busqueda"){
+                                if($consulta->tipo!="Búsqueda Avanzada"){
                                     for ($o=0; $o <count($consulta->destinosF) ; $o++) {
                                         $destino=DW_Sucursal::buscar($consulta->destinosF[$o]);
                                         $labelsAux="Destino ".$destino->nombre;
@@ -231,13 +231,13 @@ class ReporteIngresosController extends Controller
             $datos=$this->formatiarLabelData($previos,$consulta->tipo);
             // return response()->JSON($datos);
             $obj= new stdClass();
-            if(((count($consulta->filtros))>1)||((count($consulta->rutasF))>1)||((count($consulta->origenesF))>1)||((count($consulta->destinosF))>1)||($consulta->tipo=='Busqueda')){ //GRAFICA BARG
+            if(((count($consulta->filtros))>1)||((count($consulta->rutasF))>1)||((count($consulta->origenesF))>1)||((count($consulta->destinosF))>1)||($consulta->tipo=='Búsqueda Avanzada')){ //GRAFICA BARG
                 $obj->titulo="Ingresos";
                 $obj->grafico="Bar";
                 $obj2= new stdClass();
                 $obj2->label=$labels;
                 $obj2->labels=$datos->label2;
-                if($consulta->tipo=='Busqueda'){
+                if($consulta->tipo=='Búsqueda Avanzada'){
                     $obj2->label=$datos->label2;
                     $obj2->labels=[$consulta->textC];
                 }
@@ -259,7 +259,7 @@ class ReporteIngresosController extends Controller
             return response()->json($obj); 
         // }
         // else{
-        //     return "busqueda";
+        //     return "búsqueda Avanzada";
         //     //si es una busqueda
         // }
         return $consulta->all();
@@ -332,7 +332,7 @@ class ReporteIngresosController extends Controller
         $label2=array(); 
         $data=array(); 
         if(count($previos[0])!=0){
-            if($tipo!='Busqueda'){
+            if($tipo!='Búsqueda Avanzada'){
                 $actual=Carbon::parse($previos[0][0]->fecha_ingreso);
                 $desde=Carbon::parse($actual->year."-".$actual->month."-1");
                 $hasta=$desde->copy();
