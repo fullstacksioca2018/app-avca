@@ -104,15 +104,15 @@ class ReportePersonalController extends Controller
                 break;
             case '3':
                 $cargo=DW_Cargo::buscar($cargo);
-                $asistencia=DW_Reporte::CargoAsistencia($periodo,$sucursal);
-                $licencia=DW_Reporte::CargoLicencia($periodo,$sucursal);
+                $asistencia=DW_Reporte::CargoAsistencia($periodo,$cargo);
+                $licencia=DW_Reporte::CargoLicencia($periodo,$cargo);
             //Filtro Cargo
                 break;
             case '4':
                 $cargo=DW_Cargo::buscar($cargo);
                 $sucursal=DW_Sucursal::buscar($sucursal);
-                $asistencia=DW_Reporte::SucursalCargoAsistencia($periodo,$sucursal);
-                $licencia=DW_Reporte::SucursalCargoLicencia($periodo,$sucursal);
+                $asistencia=DW_Reporte::SucursalCargoAsistencia($periodo,$cargo,$sucursal);
+                $licencia=DW_Reporte::SucursalCargoLicencia($periodo,$cargo,$sucursal);
             //Filtro Sucursal y Cargo
                 break;
         }
@@ -308,6 +308,7 @@ class ReportePersonalController extends Controller
                                     array_push($stack, $cont);
                                     $info=$this->consultaPersonal("3",null,$consulta->cargosF[$c],$consulta->parametros[$p],$periodos[0]);
                                     array_push($data, $info);
+                                    // return response()->JSON($info);
                                     //ES GRAFICA PIE 'TORTA'
                                 }
                             }       

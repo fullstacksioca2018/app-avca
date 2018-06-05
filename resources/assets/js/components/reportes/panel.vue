@@ -50,8 +50,8 @@
 							    </b-form-group>
 					    	</div>
 							<!-- <transition name="fade"  mode="in-out"> -->
-					    <div class="form-row" v-show="form.periodo=='Temporada'">
-					    	<div class="col-6" >
+					    <div class="row col-6" v-show="form.periodo=='Temporada'">
+					    	<div class="col-7" >
 					    		 <legend>Temporada</legend>
 					    		 <multiselect v-model="form.temporadas" :options="opcionesT" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Temporada" :preselect-first="false" selectLabel="Seleccionar">
 							    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
@@ -59,7 +59,7 @@
 							    <!-- <b-form-select multiple :select-size="4" v-model="form.temporadas" :options="opcionesT" class="mb-3">
 						    	</b-form-select> -->
 					    	</div>
-					    	<div class="col-4" >
+					    	<div class="col-5" >
 					    		 <legend>Año</legend>
 					    		 <multiselect v-model="form.year" :options="year" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Cargos" :preselect-first="false" selectLabel="Seleccionar">
 							    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>

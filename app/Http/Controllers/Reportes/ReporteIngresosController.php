@@ -59,7 +59,11 @@ class ReporteIngresosController extends Controller
                 break;
             case 'Semana anterior':
                 $actual=Carbon::now();
-                $actual->subWeeks(2);
+                $aux=2;
+                if($actual->dayOfWeekIso==1){
+                    $aux=1;
+                }
+                $actual->subWeeks($aux);
                 while ($actual->dayOfWeekIso!=1) {
                     $actual->addDay();
                 }
