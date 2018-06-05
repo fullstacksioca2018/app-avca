@@ -120,7 +120,7 @@
               <i class="fa fa-user-plus"></i>
             </span>
           </div>
-          <input type="number" id="inputadultos3" min="1" max="5" class="form-control" value="1" name="inputadultos3" onchange="validarN('inputadultos','3')">
+          <input type="number" id="inputadultos3" min="1" max="6" class="form-control" value="1" name="inputadultos3" onchange="validarN('inputadultos','3')">
         </div>
       </div>
       <div class="form-group  col-md-6">

@@ -88,7 +88,7 @@
             <i class="fa fa-user-plus"></i>
           </span>
         </div>
-        <input type="number" id="inputadultos2" min="1" max="5" class="form-control" value="1" name="inputadultos2" onchange="validarN('inputadultos','2')">
+        <input type="number" id="inputadultos2" min="1" max="6" class="form-control" value="1" name="inputadultos2" onchange="validarN('inputadultos','2')">
       </div>
     </div>
            

@@ -24,4 +24,9 @@
 
 		
 	});
+	//factura
+	Route::group(['prefix'=>'factura',/* 'middleware' => 'auth' */],function(){
+		Route::get('/','Operativo\FacturacionController@factura');
+		Route::get('/facturas','Operativo\FacturacionController@facturas');
+	});
 ?>

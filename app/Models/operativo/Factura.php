@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\operativo;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Factura extends Model
@@ -36,5 +36,13 @@ class Factura extends Model
 		
 	}
 
+	public function scopeporpagar($query)
+	{
+		return DB::table('boletos')
+				   ->join('facturas','boletos.factura_id','=','facturas.id')
+				   ->where('boleto_estado','=','reservado')
+				   ->get();
+	}
+	
 
 }
