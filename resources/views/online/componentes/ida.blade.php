@@ -1,13 +1,13 @@
-<input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0">
+<input type="hidden" name="ninosbrazos" id="ninosbrazos1" value="0">
 
 <div class="form-row">
   {{--  SELECT DESDE  --}}
   <div class="col col-md-6">
-    <label for="exampleFormControlSelect1" class="h">Desde:</label>
+    <label for="exampleFormControlSelect1" id="origen_id" class="h">Desde:</label>
     <div class="form-group">
       
-      <select data-placeholder="Ciudad-Aeropuerto" name="origen_id" class="chosen-select impout3" class="form-control impout3" tabindex="2">
-        <option value="#">Cuidad o aeropuerto</option>
+      <select data-placeholder="Ciudad-Aeropuerto" name="origen_id" id="origen_id" class="chosen-select impout3" class="form-control impout3" tabindex="2">
+        <option value="#">Ciudad o aeropuerto</option>
         @foreach ($sucursales as $sucursal)
         <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
         @endforeach
@@ -22,8 +22,8 @@
     <label for="exampleFormControlSelect1" class="h">Hasta:</label>
     <div class="form-group">
       
-      <select data-placeholder="Ciudad-Aeropuerto"  name="destino_id" class="chosen-select impout3" class="form-control impout3" tabindex="2">
-        <option value="#">Cuidad o aeropuerto</option>
+      <select data-placeholder="Ciudad-Aeropuerto"  name="destino_id" id="destino_id" class="chosen-select impout3" class="form-control impout3" tabindex="2">
+        <option value="#">Ciudad o aeropuerto</option>
         @foreach ($sucursales as $sucursal)
         <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
         @endforeach

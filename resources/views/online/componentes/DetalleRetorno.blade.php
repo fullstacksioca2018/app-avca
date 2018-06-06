@@ -1,6 +1,27 @@
 @extends('online.template.main2')
 @section('title','Detalle Vuelo')
+@section('style')
+  <style>
+  #migaDePan a{
+    color:#3c3c3c;
+    font-weight: 800;
+  }
+  #migaDePan .breadcrumb-item.active{
+    color:#fff;
+    
+  }
+  </style>
+@endsection
 @section('content')
+<div class="col-md-12">
+  <nav aria-label="breadcrumb" id="migaDePan">
+    <ol class="breadcrumb bg-primary">
+      <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+      <li class="breadcrumb-item"><a href="#">Selección del vuelo de ida</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Selección del vuelo de retorno</li>
+    </ol>
+  </nav>
+</div>
 
 <script src="{{ asset('online/js/alerta.js') }}"></script>
 
@@ -17,23 +38,9 @@
 <div class="card-salida">
   <div class="row mb-2">
     <div class="col-sm-8">
-   
-      
-<p class="psalida">Has seleccionado la salida de {{ $ida->origen->ciudad }} ({{ $ida->origen->sigla }}) a {{ $ida->destino->ciudad }}({{ $ida->destino->sigla }})
-
-@if (Auth::guest())
-
-    <a class="btn btn-sm btn-primary button-cambiar" href="{{ route('cliente.index2') }}">Cambiar</a>
-        
-@else
-    
-    <a class="btn btn-sm btn-primary button-cambiar" href="{{ URL::to('/online/inicio2') }}">Cambiar</a>
- 
-@endif
 
           <table class="table-detalles2 table-sm ">
           <thead>
-
               <tr class="table-detalles2">
               <th><p class="pthsalida">N°Vuelo:{{ $ida->vuelo->n_vuelo }} - Ida</th>
               <th><p class="pthsalida">Clase Económica</p></th>
@@ -49,15 +56,15 @@
             
               <tr class="table-detalles3">
               <th scope="col" colspan="2"><p class="pthhrs">Hora de Salida: {{ $salida->format('h:i A') }}</p></th>
-             <th scope="col">&nbsp &nbsp &nbsp &nbsp &nbsp<img src="img/reloj.png" height="30px;">&nbsp &nbsp &nbsp</th>
+             <th scope="col">&nbsp &nbsp &nbsp &nbsp &nbsp<img src="{{ asset('online/img/iconos-detalles/reloj.png') }}" height="30px;">&nbsp &nbsp &nbsp</th>
               <th scope="col"><p class="pthhrs">Hora de Llegada: {{ $llegada->format('h:i A') }}</p></th>
 
               </tr> 
 
                 <tr class="table-detalles3">
-              <th scope="col" colspan="2"><p class="pthsiglas3">{{ $ida->origen->sigla }}</p></th>
-             <th scope="col">&nbsp &nbsp &nbsp &nbsp &nbsp<img src="img/avion2.png" height="30px;">&nbsp &nbsp &nbsp</th>
-              <th scope="col"><p class="pthsiglas3">{{ $ida->destino->sigla }}</p></th>
+              <th scope="col" colspan="2"><p class="pthsiglas3">{{ $ida->origen->ciudad }}({{ $ida->origen->sigla }})</p></th>
+             <th scope="col">&nbsp &nbsp &nbsp &nbsp &nbsp<img src="{{ asset('online/img/iconos-detalles/avion2.png') }}" height="30px;">&nbsp &nbsp &nbsp</th>
+              <th scope="col"><p class="pthsiglas3">{{ $ida->destino->ciudad }}({{ $ida->destino->sigla }})</p></th>
 
               </tr> 
           </tbody>
@@ -100,7 +107,7 @@
               <tbody>
                 <tr class="table-detalles2">
                   <th scope="row" class="pthsiglas">{{ $obj->origen->ciudad }} ({{ $obj->origen->sigla }})</th>
-                  <th><img src="img/avion.png" height="30px;">&nbsp &nbsp &nbsp</th>
+                  <th><img src="{{ asset('online/img/iconos-detalles/avion.png') }}" height="30px;">&nbsp &nbsp &nbsp</th>
                   <th class="pthsiglas">{{ $obj->destino->ciudad }} ({{ $obj->destino->sigla }})</th>
                   @if(Auth::guest())
                   <th class="thbtn"> <a class="btn btn-primary" id="login" href="{{ URL::to('/online/cliente/CompraBoleto/'.$obj->cantidad.'/'.$obj->ninosbrazos.'/'.$obj->ruta->tarifa_vuelo.'/'.$ida->vuelo->id.'/') }}" onclick="FunctionVuelo('{{ $obj->vuelo->id }}')">Seleccionar</a></th>
@@ -112,7 +119,7 @@
                 </tr>
                 
                   <th scope="col" class="pthhrs">Salida: {{ $salida->format('h:i A') }}</th>
-                  <th><img src="img/reloj.png" height="30px;">&nbsp &nbsp &nbsp</th>
+                  <th><img src="{{ asset('online/img/iconos-detalles/reloj.png') }}" height="30px;">&nbsp &nbsp &nbsp</th>
                   <th scope="col " class="pthhrs">Llegada: {{ $llegada->format('h:i A') }}</th>
                   
                   
@@ -136,7 +143,7 @@
           <table class="table table-sm">
             <thead>
               <tr class="table-detalles2">
-                <th scope="col" class="pthsalida">N°Vuelo: {{ $obj->vuelo->n_vuelo }} - Sólo ida</th>
+                <th scope="col" class="pthsalida">N°Vuelo: {{ $obj->vuelo->n_vuelo }} - retorno</th>
                 <th scope="col" class="pthsalida">Clase Económica</th>
                 <th scope="col" class="pthsalida">Tiempo Estimado de Vuelo: {{ $hora->format('H') }}h {{ $hora->format('i') }}min</th>
                 <th scope="col" class="pthsalida">ATR-72</th>

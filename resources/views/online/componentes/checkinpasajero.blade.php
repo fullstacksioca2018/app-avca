@@ -5,7 +5,7 @@
   DESDEEEEE AKIIIII COÑOOOOO Con todo y comentario
 ============================-->
 
-<br>
+{{-- <br> --}}
     <div class=" col-md-12 col-lg-12">
 <div class="card border-primary border-bottom-0 mb-3">
   <div class="card-header" id="grad1" id="joder" >
@@ -23,87 +23,6 @@
           <div class="row col-sm-11 col-md-12"> <!-- ==Contenido datos del pasajero==-->
                         <div class="col-md-9 col-sm-9 order-md-2 order-sm-2 mb-1 mt-5 pt-2 box wow fadeInLeft " data-wow-duration="0.6s">
 
-                                          <div class="table-responsive">  
-                                            <!--Table-->
-                                            <h3><strong> Cliente: </strong> </h3>
-                                           <table class="table table-hover text-center">
-                                                <!--Table head-->
-                                                <thead class="mdb-color primary-color">
-                                                    <tr class="text-white">
-                                                     
-                                                     @if(isset($cliente))
-                                                        <th><strong>Nombre: {{ $cliente->nombre }}</strong></th>
-                                                     @else
-                                                        <th><strong>Nombre:</strong></th>      
-                                                     @endif
-                                                                                                            
-                                                     @if(isset($cliente))  
-                                                        <th><strong>Apellido: {{ $cliente->apellido }}</strong></th>
-                                                     @else
-                                                        <th><strong>Apellido:</strong></th>
-                                                     @endif
-                                                      
-                                                     @if(isset($cliente))
-
-                                                        @if($cliente->tipo_documento == 'Venezolano/a')
-                                                          <th><strong>Identificacion: V-{{ $cliente->documento }}</strong></th>        
-                                                        @else
-                                                          <th><strong>Identificacion: P-{{ $cliente->documento }}</strong></th>    
-                                                        @endif
-
-                                                     @else
-                                                        <th><strong>Identificacion:</strong></th>
-                                                     @endif
-
-
-
-                                                    </tr>
-                                                </thead>
-                                                <!--Table head-->
-                                            
-                                                <!--Table body-->
-                                                <tbody>
-                                                    <tr>
-                                                     @if(isset($cliente)) 
-                                                        <th scope="row">Celular: {{ $cliente->telefono_movil }}</th>
-                                                     @else
-                                                        <th scope="row">Celular:</th>
-                                                     @endif
-
-                                                     @if(isset($cliente))
-                                                        <td>Telefono fijo: {{ $cliente->telefono_fijo }}</td>
-                                                     @else
-                                                        <td>Telefono fijo:</td> 
-                                                     @endif
-
-                                                    <td>Correo: {{ Auth::guard('online')->user()->email }}</td>  
-                                                           
-                                                    </tr>
-                                                    <tr>
-                                                      @if(isset($cliente))
-                                                        <th scope="row">Nacionalidad: {{ $cliente->pais }}</th>
-                                                      @else
-                                                        <th scope="row">Nacionalidad:</th>
-                                                      @endif
-
-                                                      @if(isset($cliente))
-                                                        <td>Fecha de nacimiento: {{ $cliente->fecha_nacimiento }}</td>
-                                                      @else
-                                                        <td>Fecha de nacimiento:</td>
-                                                      @endif  
-                                                      
-                                                      @if(isset($cliente))
-                                                       <td>Sexo: {{ $cliente->genero }}</td>
-                                                      @else
-                                                       <td>Sexo:</td>
-                                                      @endif
-
-                                                    </tr>                                        
-                                           </table><!--Table body-->
-                                          </div>
-
-                                          <!- =========================================================TABLA DEL PASAJERO===========================--!>
-                                          <br> <br>
 
                                           <div class="table-responsive">
                                         @if($datos_vuelos->estatus == 'Chequeado')    
@@ -175,24 +94,11 @@
                                                      </tbody>                                        
                                            </table><!--Table body-->
                                           </div>
-                                              <!- =========================================================FIN TABLA DEL PASAJERO===========================--!>
+                                              <!-- =========================================================FIN TABLA DEL PASAJERO=========================== -->
 
                         </div><!-- ==  Contenido datos del pasajero==-->
      
-                  <div class="col-md-2 col-sm-3 order-md-1 order-sm-1">
-             <!--  <h3 class="mb-4 ml-5">Formulario De Perfil</h3> JODAAAA Cliente -->
-                    <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.6s">
-                    @if(isset(Auth::guard('online')->user()->avatar))
-                          
-                          <img src="/online/img/avatar/{{ Auth::guard('online')->user()->avatar }}" class="img-responsive" style="width:180px; height:170px; value = "{{ Auth::guard('online')->user()->avatar }}" placeholder="{{ Auth::guard('online')->user()->avatar }}">
-
-                    @else
-                          
-                          <img src="{{ asset('online/img/login/login.png') }}" class="img-responsive" style="width:180px; height:170px;>
-
-                    @endif
-                           <cite class="text-center">Usuario: {{ Auth::guard('online')->user()->name }}</cite>  
-                    </div>
+                  <div class="col-md-1 col-sm-3 order-md-1 order-sm-1">
                   </div>    
               </div><!--== Fin rowContenido datos del pasajero== -->
 
@@ -221,7 +127,7 @@
               <tbody>
                 <tr class="table-detalles2">
                   <th scope="row" class="pthsiglas">{{ $datos_vuelos->origen }} ({{ $datos_vuelos->sigla_origen }}) </th>
-                  <th><img src="img/avion.png" height="30px;">&nbsp &nbsp &nbsp</th>
+                  <th></th>
                   <th class="pthsiglas"> {{ $datos_vuelos->destino }}({{ $datos_vuelos->sigla_destino }})</th>
                   <th >seleccione su puesto de preferencia</th>
                   
@@ -229,7 +135,7 @@
                 </tr>
                 
                   <th scope="col" class="pthhrs">Salida: {{ $salida->format('h:i A') }}</th>
-                  <th><img src="img/reloj.png" height="30px;">&nbsp &nbsp &nbsp</th>
+                  <th></th>
                   <th scope="col " class="pthhrs">Llegada: {{ $llegada->format('h:i A') }}</th>
                   <th > V(ventana) P(pasillo) Ejemplo: P-2</th>
                   
@@ -340,7 +246,7 @@
        @if($datos_vuelos->estatus == 'Pagado')
          <div class="vermas">
             <a class="btn btn-sm btn-primary btncosto mr-5" data-toggle="collapse" href="#detalles" role="button" aria-expanded="false" aria-controls="#detalles">Detalles del vuelo y equipaje <i class="fa fa-arrow-circle-down"></i></a>
-            <a href="{{ URL::to('/online/cliente/MiPerfil', Auth::guard('online')->user()->id) }}" class="btn btn-md btn-danger btncosto " style="margin-left: 75px;" class="thbtn">cancelar</a>
+            <a href="{{ URL::to('/online/cliente/MiPerfil', Auth::guard('online')->user()->id) }}" class="btn btn-md btn-danger btncosto " style="margin-left: 30px;" class="thbtn">cancelar</a>
             <button type="submit" class="btn btn-md btn-primary btncosto " style="margin-left: 50px;" class="thbtn">Aceptar</button>
           </div> 
 
@@ -348,7 +254,7 @@
 
          <div class="vermas">
             <a class="btn btn-sm btn-primary btncosto mr-5" data-toggle="collapse" href="#detalles" role="button" aria-expanded="false" aria-controls="#detalles">Detalles del vuelo y equipaje <i class="fa fa-arrow-circle-down"></i></a>
-            <a href="{{ URL::to('/online/cliente/MiPerfil', Auth::guard('online')->user()->id) }}" class="btn btn-md btn-primary btncosto " style="margin-left: 75px;" class="thbtn">Aceptar</a>
+            <a href="{{ URL::to('/online/cliente/MiPerfil', Auth::guard('online')->user()->id) }}" class="btn btn-md btn-primary btncosto " style="margin-left: 30px;" class="thbtn">Aceptar</a>
           </div>
 
        @endif
@@ -393,7 +299,8 @@
       <br> <br>
 </div>
 </div>
-<br> <br><br> <br>
+</div>
+{{-- <br> <br> --}}<br> <br>
 <!-- ========================
 AKI EL CIERRE DEL COÑOOOO NO INVENTAR
 ===================================== -->

@@ -19,7 +19,7 @@
      <div class="py-2 text-center box wow flipInX" data-wow-duration="0.8s">
       <img class=" mx-auto img-fluid" src="{{ asset('/online/img/logo.png') }}" width="150px" height="100px">
         <h2>Mi Perfil</h2>
-        <cite class="lead">Viaje con nosotros y llenase de experiencias y diversión.</cite>
+        <cite class="lead">Viaje con nosotros y llenese de experiencias y diversión.</cite>
         
      </div>
     
@@ -105,7 +105,7 @@
                                                      </tr>                                        
                                            </table><!--Table body-->
                                           </div>
-<a class="btn btn-md btn-info btncosto" style="margin-left: 75px;" href="{{ URL::to('/online/cliente/ModificarPerfil', Auth::guard('online')->user()->id) }}" class="thbtn"> <strong>Modificar</strong></a>
+<a class="btn btn-md btn-info btncosto"  href="{{ URL::to('/online/cliente/ModificarPerfil', Auth::guard('online')->user()->id) }}" class="thbtn"> <strong>Modificar Perfil</strong></a>
                         </div><!-- ==  Contenido datos del pasajero==-->
      
                   <div class="col-md-2 col-sm-3 order-md-1 order-sm-1">
@@ -113,11 +113,11 @@
                     <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.6s">
                     @if(isset(Auth::guard('online')->user()->avatar))
                           
-                          <img src="/online/img/avatar/{{ Auth::guard('online')->user()->avatar }}" class="img-responsive" style="margin-left: -2px; width:140px; height:120px"  value = "{{ Auth::guard('online')->user()->avatar }}" placeholder="{{ Auth::guard('online')->user()->avatar }}">
+                          <img src="/online/img/avatar/{{ Auth::guard('online')->user()->avatar }}" class="img-responsive" style="margin-left: 10px; width:180px; height:170px"  value = "{{ Auth::guard('online')->user()->avatar }}" placeholder="{{ Auth::guard('online')->user()->avatar }}">
 
                     @else
                           
-                          <img src="{{ asset('online/img/login/login.png') }}" class="img-responsive" style="margin-left: -22px; width:180px; height:170px;">
+                          <img src="{{ asset('online/img/login/login.png') }}" class="img-responsive" style="margin-left: 10px; width:180px; height:170px;">
 
                     @endif
                            <cite class="text-center">Usuario: {{ Auth::guard('online')->user()->name }}</cite>  
@@ -230,14 +230,16 @@
                @foreach ($boletos as $boleto)
               
                 @php
+                  
                   $salida = Carbon::parse($boleto->fecha_salida);
                   $fecha = Carbon::parse($boleto->fecha_salida);
                   $hora=Carbon::parse($boleto->duracion);
                   $llegada=$salida->copy();
                   $llegada->addHours($hora->hour);
                   $llegada->addMinutes($hora->minute);
+                  $auxCarbon=$salida->subHours(23)->copy();
+                  $actual= Carbon::now();
                 @endphp
-
               <tbody>
                 <tr>
                   <td scope="row">{{ $boleto->pasajero }}</td>
@@ -248,9 +250,13 @@
                     
                   @if($boleto->estatus == 'Pagado')
                       <td> <p class=""> {{ $boleto->estatus }} </p></td>
-                      <td><a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#chequeo{{ $boleto->boleto_id }}"> Check-in</a></td>
+                      <td>
+                      @if($actual->gt($auxCarbon))
+                      <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#todo{{ $boleto->boleto_id }}"> Check-in</a>
+                      @endif
+                      </td>
 
-  <div class="modal fade" id="chequeo{{ $boleto->boleto_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="todo{{ $boleto->boleto_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background: linear-gradient(-40deg,#45cafc,#303f9f 50%, #081e5b)!important">
@@ -301,6 +307,7 @@
 
                   @if($boleto->estatus == 'Chequeado')
                       <td> <p class=""> {{ $boleto->estatus }} </p></td>
+                      <td> </td>
                   
                   @endif
 
@@ -356,7 +363,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
                       </div>
-                      <input type="text" class="form-control" name="numero_tarjeta" id="cc-number" placeholder="" minlength="18" maxlength="18">
+                      <input type="text" class="form-control" name="numero_tarjeta" id="creditCardField" placeholder="" minlength="18" maxlength="18">
                       <div class="invalid-feedback">
                                       Requiere el numero de tarjeta
                                     </div>
@@ -476,6 +483,8 @@
                   $llegada=$salida->copy();
                   $llegada->addHours($hora->hour);
                   $llegada->addMinutes($hora->minute);
+                  $auxCarbon=$salida->subHours(23)->copy();
+                  $actual= Carbon::now();
                 @endphp
                 
               <tbody>
@@ -488,7 +497,12 @@
                     
                   @if($boleto->estatus == 'Pagado')
                       <td> <p class=""> {{ $boleto->estatus }} </p></td>
-                      <td><a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#chequeo{{ $boleto->boleto_id }}"> Check-in</a></td>
+                      
+                      <td>
+                      @if($actual->gt($auxCarbon))
+                      <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#chequeo{{ $boleto->boleto_id }}"> Check-in</a>
+                      @endif
+                      </td>
 
   <div class="modal fade" id="chequeo{{ $boleto->boleto_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -595,7 +609,8 @@
                   <td>{{ $fecha->format('d/m/Y') }}</td>
                   <td>{{ $salida->format('h:i A') }}/{{ $llegada->format('h:i A') }}</td>
                   <td>{{ $boleto->localizador }}</td>
-                  <td>{{ $boleto->estatus }}</td>      
+                  <td>{{ $boleto->estatus }}</td>  
+                  <td></td>    
                 </tr>
              </tbody> 
 
@@ -659,11 +674,11 @@
                     <td> <p class=""> {{ $boleto->estatus }} </p></td>
 
                     <td><a href="#" class="btn btn-primary btn-sm" 
-                        data-toggle="modal" data-target="#exampleModal{{ $boleto->boleto_id }}">Comprar Boleto</a>
+                        data-toggle="modal" data-target="#exampleModalR{{ $boleto->boleto_id }}">Comprar Boleto</a>
                     </td>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal{{ $boleto->boleto_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModalR{{ $boleto->boleto_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -707,7 +722,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
                       </div>
-                      <input type="text" class="form-control" name="numero_tarjeta" id="cc-number" placeholder="" minlength="18" maxlength="18">
+                      <input type="text" class="form-control" name="numero_tarjeta" id="creditCardField" placeholder="" minlength="18" maxlength="18">
                       <div class="invalid-feedback">
                                       Requiere el numero de tarjeta
                                     </div>
@@ -855,7 +870,9 @@
       <br> <br>
 </div>
 </div>
-<br> <br><br> <br>
+</div>
+</div>
+<br> <br>
 <!-- ========================
 AKI EL CIERRE DEL COÑOOOO NO INVENTAR
 ===================================== -->

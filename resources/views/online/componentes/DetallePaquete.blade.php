@@ -1,7 +1,28 @@
 @extends('online.template.main2')
 @section('title','Detalle Vuelo')
+@section('style')
+  <style>
+  #migaDePan a{
+    color:#3c3c3c;
+    font-weight: 800;
+  }
+  #migaDePan .breadcrumb-item.active{
+    color:#fff;
+    
+  }
+  </style>
+@endsection
 @section('content')
 {{-- {{ dd($paquetes) }} --}}
+
+<div class="col-md-12">
+  <nav aria-label="breadcrumb" id="migaDePan">
+    <ol class="breadcrumb bg-primary">
+      <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Selección del vuelo de MultiDestino</li>
+    </ol>
+  </nav>
+</div>
 
 <script src="{{ asset('online/js/alerta.js') }}"></script>
 

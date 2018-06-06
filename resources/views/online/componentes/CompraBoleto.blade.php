@@ -1,6 +1,18 @@
 @extends('online.template.main2')
 @section('title','Detalle Vuelo')
   
+@section('style')
+  <style>
+  #migaDePan a{
+    color:#3c3c3c;
+    font-weight: 800;
+  }
+  #migaDePan .breadcrumb-item.active{
+    color:#fff;
+    
+  }
+  </style>
+@endsection
 @section('content')
     <!--==========================
     Intro Section
@@ -27,11 +39,47 @@
       </div>
 
   <div class="card-body"> <!-- ==EL BOOOODYYYY DEL CARD==-->
+  
+  @if(isset($vuelo))
+
+    <nav aria-label="breadcrumb" id="migaDePan">
+      <ol class="breadcrumb bg-primary">
+        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="#">Selección del vuelo de ida</a></li>
+        <li class="breadcrumb-item"><a href="#">Selección del vuelo de retorno</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Registro de Pasajero</li>
+      </ol>
+    </nav> 
+
+    @elseif(isset($objMultidestinos))
+    
+    <nav aria-label="breadcrumb" id="migaDePan">
+      <ol class="breadcrumb bg-primary">
+        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="#">Selección de paquete de MultiDestino</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Registro de Pasajero</li>
+      </ol>
+    </nav>
+  @else
+   
+   <nav aria-label="breadcrumb" id="migaDePan">
+      <ol class="breadcrumb bg-primary">
+        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="#">Selección del vuelo de ida</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Registro de Pasajero</li>
+      </ol>
+    </nav>
+
+  @endif
+
     <br> <br>
      
   @if(!isset($vuelo))
 
      @if(isset($objMultidestinos))
+    
+
+
      {{-- {{ dd($objMultidestinos) }} --}}
           @php
               $costoP=0;
@@ -303,30 +351,42 @@
             <input type="hidden" name="brazo" id="brazo">
            @for ($i = 0; $i < ($cantidad-$ninosbrazos); $i++)   
 
-            <input type="hidden" name="tipo_boleto[]" id="tipo_boleto" value="{{ "adulto" }}">
-             @if(!isset($vuelo))
-                  @if(isset($objMultidestinos))
-                      <input type="hidden" name="importe_facturado" value="{{ $costoP * ($cantidad-$ninosbrazos)}}">
-                      
-                  @else
-                      <input type="hidden" name="importe_facturado" value="{{ $tarifa_vuelo * ($cantidad-$ninosbrazos)}}">
-
-                  @endif
-            @else
-                <input type="hidden" name="importe_facturado" value="{{ $tarifa_vuelo *2* ($cantidad-$ninosbrazos)}}">
-            
-            @endif 
        
 
 
  <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.4s">
-            <h4 class="mb-3">PASAJERO  {{ ($i+1) }}  </h4>
+   <div class="form-group row">
+       <label for="firstName" class="col-sm-2 col-form-label">PASAJERO  {{ ($i+1) }}</label>
+       <div class="col-sm-10">
+       <select  class="form-control" name="pasajeroHelp[]" id="pasajeroHelp{{ ($i+1)}}" onchange="pasajeroAjax({{ $i+1 }})">
+         <option value="0" >Otro</option>
+
+         @foreach ($pasajeros as $pasajero)
+              <option value="{{$pasajero->documento}}" >V {{$pasajero->documento}}, {{$pasajero->primerNombre.' '.$pasajero->apellido}}</option>
+          @endforeach
+       </select>
+      </div> 
+   </div>
               <!-- JODAAAA PASAJEROS NORMALES -->
-                                        
+    <div class="oculta" id="contenedorP{{ ($i+1) }}">    
+                               
+            <input type="hidden" name="tipo_boleto[]" id="tipo_boleto" value="{{ "adulto" }}">
+            @if(!isset($vuelo))
+                 @if(isset($objMultidestinos))
+                     <input type="hidden" name="importe_facturado" value="{{ $costoP * ($cantidad-$ninosbrazos)}}">
+                     
+                 @else
+                     <input type="hidden" name="importe_facturado" value="{{ $tarifa_vuelo * ($cantidad-$ninosbrazos)}}">
+
+                 @endif
+           @else
+               <input type="hidden" name="importe_facturado" value="{{ $tarifa_vuelo *2* ($cantidad-$ninosbrazos)}}">
+           
+           @endif        
             <div class="row">
               <div class="col-md-4 mb-2" >
                 <label for="firstName">Primer Nombre:</label>
-                <input type="text" class="form-control" name="primerNombre[]" id="firstName¨[]" placeholder="Primer nombre" required="">
+                <input type="text" class="form-control" name="primerNombre[]" id="firstName¨[]" placeholder="Primer nombre">
                 <div class="invalid-feedback">
                   Valide su primer nombre es necesario.
                 </div>
@@ -337,7 +397,7 @@
               </div> 
               <div class=" col col-md-4 mb-3">
                 <label for="lastName">Apellido(s):</label>
-                <input type="text" class="form-control" name="apellido[]" id="lastName[]" placeholder="Apellido(s)"  required="">
+                <input type="text" class="form-control" name="apellido[]" id="lastName[]" placeholder="Apellido(s)" >
                 <div class="invalid-feedback">
                   Valide su primer Apellido es necesario.
                 </div>
@@ -356,7 +416,7 @@
             <option value="Extranjero">P</option>
           </select>
               <span style="width:6%; text-align: center">-</span>
-          <input type="text" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8" required="">
+          <input type="number" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8">
                 <div class="invalid-feedback" >
                   Es necesario.
                 </div>
@@ -378,44 +438,8 @@
             </div>
 
             </div>    
+          </div>
 
-
-            {{-- <div class="row">
-
-              ============= Discapacidad ==================
-
-              <div class="col-md-5 mb-3">
-                <label for="Enfermedad">Discapacidad</label>
-                <select class="custom-select d-block w-100" name="detalles_salud[]" id="Enfermedad[]" required="">
-                  <option value="Ninguna"> Ninguna</option>
-                  <option value="Discapacidad motriz"> Discapacidad motriz</option>
-                  <option value="Discapacidad visual"> Discapacidad visual</option>
-                  <option value="Disminución visual y esquema corporal"> Disminución visual y esquema corporal</option>
-                  <option value="Discapacidad visual">Discapacidad visual</option>
-                  <option value="Disminuidos visuales"> Disminuidos visuales</option>
-                  <option value="Discapacidad auditiva"> Discapacidad auditiva</option>
-                  <option value="Discapacidad mental"> Discapacidad mental</option>
-                  <option value="Parálisis cerebral">Parálisis cerebral</option>
-                </select>
-                <div class="invalid-feedback">
-                  por favor valide su seleccion.
-                </div>
-              </div> 
-              
-              ============= Puesto preferencial ==================
-
-              <div class="col-md-4 mb-3">
-                <label for="Puesto">Puesto preferenciales</label>
-                <select class="custom-select d-block w-100" name="asiento[]" id="Puesto[]" required="">
-                  <option value="Pasillo">Pasillo</option>
-                  <option value="Ventana">Ventana</option>
-                </select>
-                <div class="invalid-feedback">
-                  por favor valide su seleccion.
-                </div>
-              </div>
-            
-            </div> --}}
                 </div>
 <!-- FIN JODAAAA PASAJEROS NORMALES -->
             
@@ -431,17 +455,26 @@
                     
         @for ($i = 0; $i <$ninosbrazos; $i++)
 
+           
         <div class="container pasajero box wow fadeInLeft" data-wow-duration="2.4s">
-  
-
+   
           <input type="hidden" name="tipo_boleto[]" id="tipo_boleto[]" value="{{ "bebe en brazos" }}">
-
-            <h4 class="mb-3">PASAJERO  {{ ($i+1+$cantidad-$ninosbrazos) }} <span>Bebé en brazos</span>  </h4>
-            
+            <div class="form-group row">
+            <label class="col-sm-2 col-form-label">PASAJERO  {{ ($i+1+$cantidad-$ninosbrazos) }} <span>Bebé en brazos</span>  </label>
+            <div class="col-sm-10">
+            <select  class="form-control" name="pasajeroHelpN[]" id="pasajeroHelpN{{ ($i+1)}}" onchange="pasajeroAjaxN({{ $i+1 }})">
+                <option value="0" >Otro</option>
+                @foreach ($pasajerosN as $pasajero)
+                     <option value="{{$pasajero->documento}}" >V {{$pasajero->documento}}, {{$pasajero->primerNombre.' '.$pasajero->apellido}}</option>
+                 @endforeach
+              </select>
+            </div>
+          </div>
+            <div class="oculta" id="contenedorN{{ ($i+1) }}">
             <div class="row">
               <div class="col-md-4 mb-3">
                 <label for="firstName">Primer Nombre:</label>
-                <input type="text" class="form-control" name="primerNombre[]" id="firstName[]" placeholder="Primer nombre" required="">
+                <input type="text" class="form-control" name="primerNombre[]" id="firstName[]" placeholder="Primer nombre">
                 <div class="invalid-feedback">
                   Valide su primer nombre es necesario.
                 </div>
@@ -452,7 +485,7 @@
               </div> 
               <div class=" col col-md-4 mb-3">
                 <label for="lastName">Apellido(s):</label>
-                <input type="text" class="form-control" name="apellido[]" id="lastName[]" placeholder="Apellido(s)" required="">
+                <input type="text" class="form-control" name="apellido[]" id="lastName[]" placeholder="Apellido(s)">
                 <div class="invalid-feedback">
                   Valide su primer Apellido es necesario.
                 </div>
@@ -470,7 +503,7 @@
           <option value="Extranjero">P</option>
           </select>
               <span style="width:6%; text-align: center">-</span>
-          <input type="text" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8" required>
+          <input type="number" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8">
                 <div class="invalid-feedback" >
                   Es necesario.
                 </div>
@@ -496,15 +529,16 @@
 
             </div>
             </div>
+          </div>
       @endfor
 
         <button class="btn btn-primary btn-lg " 
-            data-toggle="modal" data-target="#exampleModal" type="submit">Comprar boletos
+            data-toggle="modal" data-target="#exampleModal" type="button">Comprar boletos
         </button>
         @php
           $url='/online/cliente/BoletoReservado';
         @endphp
-        <button type="button" class="btn btn-danger btn-lg " onclick="document.FormReserva.action='{{ URL::to($url) }}';document.FormReserva.submit();" onkeypress="document.FormReserva.action='{{ URL::to($url) }}';document.FormReserva.submit();">Reservar boleto</button>
+        <button type="button" class="btn btn-secondary btn-lg " onclick="document.FormReserva.action='{{ URL::to($url) }}';document.FormReserva.submit();" onkeypress="document.FormReserva.action='{{ URL::to($url) }}';document.FormReserva.submit();">Reservar boleto</button>
       
 
     </div>
@@ -537,7 +571,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text"><i class="fa fa-user"></i></span>
   </div>
-   <input type="text" class="form-control" name="usernam" id="cc-name" placeholder="" required="">
+   <input type="text" class="form-control" name="usernam" id="cc-name" placeholder="">
                 <small class="text-muted"></small>
                 <div class="invalid-feedback">
                   nombre requerido
@@ -551,7 +585,7 @@
   <div class="input-group-prepend">
     <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
   </div>
-  <input type="text" class="form-control" name="numero_tarjeta" minlength="18" maxlength="18" id="cc-number" placeholder="">
+  <input type="text" class="form-control" name="numero_tarjeta" minlength="16" maxlength="18" id="creditCardField" placeholder="">
   <div class="invalid-feedback">
                   Requiere el numero de tarjeta
                 </div>
@@ -563,7 +597,7 @@
         <div class="form-group">
             <label><span class="hidden-xs">Fecha de Vencimiento</span> </label>
           <div class="form-inline"  id="cc-expiration">
-        <select class="form-control" name="fecha_vencimiento" style="width:45%" required>
+        <select class="form-control" name="fecha_vencimiento" style="width:45%">
           <option>MM</option>
           <option value="01 - Enero">01 - Enero</option>
           <option value="02 - Febrero">02 - Febrero</option>
@@ -579,7 +613,7 @@
           <option value="12 - Diciembre">12 - Diciembre</option>
         </select>
               <span style="width:10%; text-align: center"> / </span>
-              <select class="form-control" style="width:45%" required>
+              <select class="form-control" style="width:45%">
           <option>YY</option>
           <option value="2018">2018</option>
           <option value="2019">2019</option>
@@ -598,14 +632,14 @@
     <div class="col-sm-4">
         <div class="form-group">
             <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-            <input type="password" class="form-control" name="csc" id="cc-cvv" minlength="3" maxlength="3" placeholder="***" required>
+            <input type="password" class="form-control" name="csc" id="cc-cvv" minlength="3" maxlength="3" placeholder="***">
         </div> <!-- form-group.// -->
         <div class="invalid-feedback">
                  es necesario el CVV
         </div>
     </div>
 </div> <!-- row.// -->
-<button class="subscribe btn btn-primary" type="submit"> Confirmar </button>
+<button class="subscribe btn btn-primary" on type="submit"> Confirmar </button>
 
 </div> <!-- card-body.// -->
 <!-- </article>  card.// -->
@@ -629,14 +663,55 @@
 </div>
     </form>
 
+@endsection
+@section('scripts')
 <script type="text/javascript">
-  $(document).ready(function(){
-document.getElementById('nino').value = sessionStorage.getItem('ninos');
+  $( document ).ready(function() {
+    document.getElementById('nino').value = sessionStorage.getItem('ninos');
   document.getElementById('adulto').value = sessionStorage.getItem('adultos');
   document.getElementById('brazo').value = sessionStorage.getItem('brazos');
   document.getElementById('vuelo_id').value = sessionStorage.getItem('vuelo');
-  
-  });
-</script>
+    var pasajeros={{($cantidad-$ninosbrazos)}};
+    for(var i=0;i<pasajeros;i++){
+      var id="pasajeroHelp"+(i+1); 
+      var dato=document.getElementById(id).value;
+      if(dato==0){
+        var id2='#contenedorP'+(i+1);
+        $(id2).removeClass('oculta');
+      }
+    }
 
+    var pasajerosn={{($ninosbrazos)}};
+    for(var i=0;i<pasajerosn;i++){
+      var id="pasajeroHelpN"+(i+1);
+      var dato=document.getElementById(id).value;
+      if(dato==0){
+        var id2='#contenedorN'+(i+1);
+        $(id2).removeClass('oculta');
+      }
+    }
+});
+function pasajeroAjax(pasajero){
+  var id="pasajeroHelp"+pasajero;
+  var dato=document.getElementById(id).value;
+  var id2='#contenedorP'+pasajero;
+  if(dato==0){
+    $(id2).removeClass('oculta');
+  }
+  else{
+    $(id2).addClass('oculta');    
+  }
+}
+function pasajeroAjaxN(pasajero){
+  var id="pasajeroHelpN"+pasajero;
+  var dato=document.getElementById(id).value;
+  var id2='#contenedorN'+pasajero;
+  if(dato==0){
+    $(id2).removeClass('oculta');
+  }
+  else{
+    $(id2).addClass('oculta');    
+  }
+}
+</script>
 @endsection

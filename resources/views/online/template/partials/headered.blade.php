@@ -4,9 +4,8 @@
 <header id="header">
     <div class="container-fluid">
 
-   <div id="logo" class="pull-left"><a href="{{ route('cliente.index1') }}" title="inicio"><img src="{{ asset('online/img/logo.png') }}" height="50" class="d-inline-block align-top" alt="AVCA"></a>
-       
-      </div>
+   <div id="logo" class="pull-left"><a href="{{ route('cliente.index1') }}" title="inicio"><img src="{{ asset('online/img/logo.png') }}" height="50" class="d-inline-block align-top" alt="AVCA"></a> 
+    </div>
 
       <nav id="nav-menu-container" class="navbar navbar-trans navbar-expand-lg justify-content-end">
         <ul class="nav-menu">
