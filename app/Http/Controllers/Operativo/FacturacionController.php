@@ -27,8 +27,24 @@ class FacturacionController extends Controller
     } 
 
     public function facturas(){
-        $factura=Factura::porpagar();
-        return $factura;
+        $facturas=Factura::porpagar();
+        $datos=array();
+        $id=$facturas[0]->factura_id;
+        foreach($facturas as $factura){
+            $obj= new stdClass();
+            $fac=Factura::find($factura->factura_id);
+            $boleto=Boleto::where('factura_id','=',$factura->factura_id)->get();
+            $obj->id=$factura->factura_id;
+            $obj->numero_factura=$fac->numero_factura;
+            $obj->importe_facturado=$fac->importe_facturado;
+            $obj->numero_control=$fac->numero_control;
+            $obj->adultos_cant=$fac->adultos_cant;
+            $obj->ninos_cant=$fac->ninos_cant;
+            $obj->NinosBrazos_cant=$fac->NinosBrazos_cant;
+            $obj->boletos=$boleto;
+            array_push($datos,$obj);
+        }
+        return $datos;
     }
 
 }

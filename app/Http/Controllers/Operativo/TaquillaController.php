@@ -87,13 +87,6 @@ class TaquillaController extends Controller
 
             $printer->feed();
                     
-              
-           
-            
-          
-        
-                                      
-          
           
             $printer -> cut();
             

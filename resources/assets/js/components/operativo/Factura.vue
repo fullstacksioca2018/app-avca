@@ -12,7 +12,14 @@
           </b-input-group>
         </b-form-group>
       </b-col>
-
+      <p></p>
+      <b-col md="6" class="my-1">
+        <b-form-group horizontal label="Por Página" class="mb-0">
+          <b-form-select :options="pageOptions" v-model="perPage" />
+        </b-form-group>
+      </b-col>
+    </b-row>
+n
     <!-- Main table element -->
     <b-table show-empty
              stacked="md"
@@ -26,8 +33,8 @@
              @filtered="onFiltered"
     >
      
-      <template slot="Origen" slot-scope="row">{{row.value.nombre}}</template>
-      <template slot="Destino" slot-scope="row">{{row.value.nombre}}</template>
+       <template slot="localizador" slot-scope="row"><div v-for="boleto in row.value">{{boleto}}</div></template>
+       <template slot="boletos" slot-scope="row"><div v-for="cedula in row.value">{{cedula.documento}}</div></template>
    
       <template slot="actions" slot-scope="row">
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
@@ -49,13 +56,13 @@
       <b-pagination  align="center" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
     </b-col>
 
-    
+     
     <!-- Modal Actualizar -->
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>
     <div v-if="modalInfo.content != ''">
-    <b-form @submit.prevent="actualizar()">
-       <!--    <pre>{{modalInfo.content}}</pre>-->
-       <div class="row">
+   <!--  <b-form @submit.prevent="actualizar()"> -->
+          <pre>{{modalInfo.content}}</pre>
+       <!-- <div class="row">
           <div class="form-group col-sm-1 "></div>
           <div class="col-sm-5">
             <label for="distancia"> <b> Inserte Distancia: </b></label>
@@ -96,17 +103,17 @@
       <div class="form-group col-sm-3 ">
         <span class="help-block"> Segundos </span>
         <b-form-input type="number" min="0" max="60" class="form-control" id="ccyear" v-model="duracionModel.ss"></b-form-input>
-      </div>
+      </div> -->
      
     </div>
       <div class="text-center">
         <b-button type="submit" variant="primary" >Actualizar</b-button>
       </div>
       
-    </b-form>
-    </div>
+    <!-- </b-form>
+    </div> -->
      
-    </b-modal>
+    </b-modal> 
 
   </b-container>
 </template>
@@ -135,7 +142,7 @@ export default {
       
         { key: 'numero_factura',    label: '#',  sortable: true },
         { key: 'localizador',   label: 'Localizador(es)', sortable: true },
-        { key: 'documento', label: 'Cedula(s) ', sortable: true },
+        { key: 'boletos', label: 'Cedula(s) ', sortable: true },
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
       ],
       currentPage: 1,
@@ -180,22 +187,20 @@ export default {
     formatodatos(){
       this.items = [];
       for (var i= 0; i < this.data.length; i++){
+       var localizador=[];
+       for(var j=0; j<this.data[i].boletos.length;j++)
+        {
+          localizador.push(this.data[i].boletos[j].localizador);
+        }
         this.items.push({
-          id: this.data[i].ruta.id,
-          Origen: {
-            id: this.data[i].ruta.origen.id,
-            nombre: this.data[i].ruta.origen.ciudad  
-                    + " (" + this.data[i].ruta.origen.sigla  + ")"
-          },
-          Destino: {
-            id: this.data[i].ruta.destino.id,
-            nombre: this.data[i].ruta.destino.ciudad 
-                     + " (" + this.data[i].ruta.destino.sigla  + ")"
-          },
-          Distancia:this.data[i].ruta.distancia,
-			  	Duracion:this.data[i].ruta.duracion,
-          Tarifa:this.data[i].ruta.tarifa_vuelo,
-          Estado:this.data[i].ruta.estado,
+          id: this.data[i].id,
+          numero_factura:this.data[i].numero_factura,
+          numero_control:this.data[i].numero_control,
+          adultos_cant:this.data[i].adultos_cant,
+          ninos_cant:this.data[i].ninos_cant,
+          NinosBrazos_cant:this.data[i].NinosBrazos_cant,
+          boletos:this.data[i].boletos,
+          localizador:localizador
         });
       }
      

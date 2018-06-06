@@ -117191,6 +117191,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -117210,7 +117217,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
-      fields: [{ key: 'numero_factura', label: '#', sortable: true }, { key: 'localizador', label: 'Localizador(es)', sortable: true }, { key: 'documento', label: 'Cedula(s) ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
+      fields: [{ key: 'numero_factura', label: '#', sortable: true }, { key: 'localizador', label: 'Localizador(es)', sortable: true }, { key: 'boletos', label: 'Cedula(s) ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -117251,20 +117258,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     formatodatos: function formatodatos() {
       this.items = [];
       for (var i = 0; i < this.data.length; i++) {
+        var localizador = [];
+        for (var j = 0; j < this.data[i].boletos.length; j++) {
+          localizador.push(this.data[i].boletos[j].localizador);
+        }
         this.items.push({
-          id: this.data[i].ruta.id,
-          Origen: {
-            id: this.data[i].ruta.origen.id,
-            nombre: this.data[i].ruta.origen.ciudad + " (" + this.data[i].ruta.origen.sigla + ")"
-          },
-          Destino: {
-            id: this.data[i].ruta.destino.id,
-            nombre: this.data[i].ruta.destino.ciudad + " (" + this.data[i].ruta.destino.sigla + ")"
-          },
-          Distancia: this.data[i].ruta.distancia,
-          Duracion: this.data[i].ruta.duracion,
-          Tarifa: this.data[i].ruta.tarifa_vuelo,
-          Estado: this.data[i].ruta.estado
+          id: this.data[i].id,
+          numero_factura: this.data[i].numero_factura,
+          numero_control: this.data[i].numero_control,
+          adultos_cant: this.data[i].adultos_cant,
+          ninos_cant: this.data[i].ninos_cant,
+          NinosBrazos_cant: this.data[i].NinosBrazos_cant,
+          boletos: this.data[i].boletos,
+          localizador: localizador
         });
       }
     }
@@ -117275,7 +117281,254 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function(){},staticRenderFns:[]}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Filtro" }
+                },
+                [
+                  _c(
+                    "b-input-group",
+                    [
+                      _c("b-form-input", {
+                        attrs: { placeholder: "Escriba para buscar" },
+                        model: {
+                          value: _vm.filter,
+                          callback: function($$v) {
+                            _vm.filter = $$v
+                          },
+                          expression: "filter"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-input-group-append",
+                        [
+                          _c(
+                            "b-btn",
+                            {
+                              attrs: { disabled: !_vm.filter },
+                              on: {
+                                click: function($event) {
+                                  _vm.filter = ""
+                                }
+                              }
+                            },
+                            [_vm._v("Limpiar")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("p"),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { staticClass: "my-1", attrs: { md: "6" } },
+            [
+              _c(
+                "b-form-group",
+                {
+                  staticClass: "mb-0",
+                  attrs: { horizontal: "", label: "Por Página" }
+                },
+                [
+                  _c("b-form-select", {
+                    attrs: { options: _vm.pageOptions },
+                    model: {
+                      value: _vm.perPage,
+                      callback: function($$v) {
+                        _vm.perPage = $$v
+                      },
+                      expression: "perPage"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v("\nn\n    "),
+      _vm._v(" "),
+      _c("b-table", {
+        attrs: {
+          "show-empty": "",
+          stacked: "md",
+          items: _vm.items,
+          fields: _vm.fields,
+          "current-page": _vm.currentPage,
+          "per-page": _vm.perPage,
+          filter: _vm.filter,
+          "sort-by": _vm.sortBy,
+          "sort-desc": _vm.sortDesc
+        },
+        on: {
+          "update:sortBy": function($event) {
+            _vm.sortBy = $event
+          },
+          "update:sortDesc": function($event) {
+            _vm.sortDesc = $event
+          },
+          filtered: _vm.onFiltered
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "localizador",
+            fn: function(row) {
+              return _vm._l(row.value, function(boleto) {
+                return _c("div", [_vm._v(_vm._s(boleto))])
+              })
+            }
+          },
+          {
+            key: "boletos",
+            fn: function(row) {
+              return _vm._l(row.value, function(cedula) {
+                return _c("div", [_vm._v(_vm._s(cedula.documento))])
+              })
+            }
+          },
+          {
+            key: "actions",
+            fn: function(row) {
+              return [
+                _c(
+                  "b-input-group",
+                  [
+                    _c(
+                      "b-button",
+                      {
+                        staticClass: "mr-1",
+                        attrs: { size: "sm", variant: "primary" },
+                        on: {
+                          click: function($event) {
+                            $event.stopPropagation()
+                            _vm.info(
+                              row.item,
+                              row.item,
+                              row.index,
+                              $event.target
+                            )
+                          }
+                        }
+                      },
+                      [_vm._v("\n          Pagar\n        ")]
+                    )
+                  ],
+                  1
+                )
+              ]
+            }
+          },
+          {
+            key: "row-details",
+            fn: function(row) {
+              return [
+                _c("b-card", [
+                  _c(
+                    "ul",
+                    _vm._l(row.item, function(value, key) {
+                      return _c("li", { key: key }, [
+                        _vm._v(_vm._s(key) + ": " + _vm._s(value))
+                      ])
+                    })
+                  )
+                ])
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "b-col",
+        { staticClass: "col-md-12 " },
+        [
+          _c("b-pagination", {
+            staticClass: "my-0",
+            attrs: {
+              align: "center",
+              "total-rows": _vm.totalRows,
+              "per-page": _vm.perPage
+            },
+            model: {
+              value: _vm.currentPage,
+              callback: function($$v) {
+                _vm.currentPage = $$v
+              },
+              expression: "currentPage"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          ref: "myModalRef",
+          attrs: {
+            id: "modalInfo",
+            title: _vm.modalInfo.title,
+            "hide-footer": ""
+          },
+          on: { hide: _vm.resetModal }
+        },
+        [
+          _vm.modalInfo.content != ""
+            ? _c("div", [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])])
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-center" },
+            [
+              _c(
+                "b-button",
+                { attrs: { type: "submit", variant: "primary" } },
+                [_vm._v("Actualizar")]
+              )
+            ],
+            1
+          )
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
