@@ -15,6 +15,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "~5.0",
+        "mike42/escpos-php": "^2.0",
         "nesbot/carbon": "^1.27",
         "uxweb/sweet-alert": "^1.4"
     },

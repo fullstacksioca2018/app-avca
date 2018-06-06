@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d0ba0350ddb44752611907b1d237b6b",
+    "content-hash": "430ca7194bc8a123c35985a98d0a2a92",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1374,6 +1374,7 @@
             "time": "2018-05-07T08:44:23+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "league/oauth1-client",
             "version": "1.7.0",
             "source": {
@@ -1405,6 +1406,39 @@
             "autoload": {
                 "psr-4": {
                     "League\\OAuth1\\": "src/"
+=======
+            "name": "mike42/escpos-php",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mike42/escpos-php.git",
+                "reference": "71e99104e39982cfd76de31256df466bd9156f61"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mike42/escpos-php/zipball/71e99104e39982cfd76de31256df466bd9156f61",
+                "reference": "71e99104e39982cfd76de31256df466bd9156f61",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^5.3",
+                "phpunit/phpunit": "^4.8",
+                "squizlabs/php_codesniffer": "^3.2"
+            },
+            "suggest": {
+                "ext-gd": "Used for image printing if present.",
+                "ext-imagick": "Will be used for image printing if present. Required for PDF printing or use of custom fonts.",
+                "guzzlehttp/guzzle": "Allows the use of the ApiConnector to send print jobs over HTTP."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mike42\\": "src/Mike42"
+>>>>>>> OperativoIntegrado
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1413,6 +1447,7 @@
             ],
             "authors": [
                 {
+<<<<<<< HEAD
                     "name": "Ben Corlett",
                     "email": "bencorlett@me.com",
                     "homepage": "http://www.webcomm.com.au",
@@ -1435,6 +1470,22 @@
                 "twitter"
             ],
             "time": "2016-08-17T00:36:58+00:00"
+=======
+                    "name": "Michael Billington",
+                    "email": "michael.billington@gmail.com"
+                }
+            ],
+            "description": "PHP receipt printer library for use with ESC/POS-compatible thermal and impact printers",
+            "homepage": "https://github.com/mike42/escpos-php",
+            "keywords": [
+                "ESC-POS",
+                "driver",
+                "escpos",
+                "print",
+                "receipt"
+            ],
+            "time": "2018-03-17T04:29:19+00:00"
+>>>>>>> OperativoIntegrado
         },
         {
             "name": "monolog/monolog",
