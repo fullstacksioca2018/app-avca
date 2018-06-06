@@ -5,6 +5,11 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
     // Dashboard
     Route::get('admin', 'rrhh\BackendController@dashboard')->name('dashboard');
 
+    // Reportes
+    Route::get('rrhh/reportes', function () {
+        return view('rrhh.backend.reportes.reporte');
+    })->name('reportes.rrhh');
+
     // Vacantes
     Route::group(['prefix' => 'vacante'], function () {
       Route::get('registrar', 'rrhh\VacanteController@create')->name('vacante.create');

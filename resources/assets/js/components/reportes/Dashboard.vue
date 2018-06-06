@@ -4,7 +4,7 @@
   <div v-show="GraficaP==null">
     <div class="card">
       <div class="card-header text-center">
-          <strong>Vuelos <p class="font-weight-light" style="    display: initial;">Del 15 Mayo al 31 de Mayo</p></strong>
+          <strong>Vuelos <p class="font-weight-light" style="    display: initial;">Del 1 Junio al 15 de Junio</p></strong>
       </div>
     </div>
     <div class="container-fluid">
@@ -338,8 +338,8 @@
         let loader = this.$loading.show();
           var myDate = new Date();
           var auxI="2018-05-15";
-          var auxF="2018-05-"+myDate.getDate();
-          var titulo="Ingresos Del 15 al "+myDate.getDate()+" de Mayo";
+          var auxF="2018-06-"+myDate.getDate();
+          var titulo="Ingresos Del 15 de Mayo al "+myDate.getDate()+" al 1 Junio";
           this.grafica5[0].titulo=titulo
           axios({
                 method: 'get',

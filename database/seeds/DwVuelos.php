@@ -117,7 +117,7 @@ class DwVuelos extends Seeder
         for ($i=0; $i < 12; $i++) { 
             $ruta_id=random_int(1, 20);
             $aerolinea="AVCA";
-            $day=16;
+            $day=31;
             $mont=5;
             $year=2018;
             $fecha_creacion=$year."-".$mont."-".$day;
@@ -134,9 +134,9 @@ class DwVuelos extends Seeder
 
          for ($i=0; $i < 123; $i++) {
             $ruta_id=random_int(1, 20);
-            $day=rand(18, 31);
+            $day=rand(1, 15);
             $aerolinea="AVCA";
-            $mont=5;
+            $mont=6;
             $year=2018;
             $fecha_creacion=$year."-".($mont-2)."-".$day;
             $salida=$year."-".$mont."-".$day." 11:00:00";
@@ -152,7 +152,7 @@ class DwVuelos extends Seeder
 
         for ($i=0; $i < 3; $i++) { 
             $ruta_id=random_int(1, 20);
-            $day=rand(15, 17);
+            $day=rand(15, 31);
             $aerolinea="AVCA";
             $mont=5;
             $year=2018;

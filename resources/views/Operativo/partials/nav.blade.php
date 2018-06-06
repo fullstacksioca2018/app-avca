@@ -91,7 +91,7 @@
        <!--  FINAL DE Mantenimiento  -->
        <!-- INICIO DE REPORTES Y ESTADISTICAS  -->
         <li class="nav-item">
-          <a href="{{ URL::to('/reportes') }}" class="nav-link">
+          <a href="{{ URL::to('/reporte/operativo') }}" class="nav-link">
             <i class="nav-icon fa fa-bar-chart"></i>
             <p>
               Reportes y estadísticas
