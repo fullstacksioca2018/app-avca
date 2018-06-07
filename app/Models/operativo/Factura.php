@@ -36,15 +36,7 @@ class Factura extends Model
 		
 	}
 
-/* public function scopeporpagar($query)
-	{
-		return DB::table('facturas')
-				   ->select('facturas.id')
-		           ->join('boletos','boletos.factura_id','=','facturas.id')
-				   ->where('boletos.boleto_estado','=','reservado')
-				   ->GroupBy('facturas.id')
-				   ->get();
-	}  */
+
  	public function scopeporpagar($query)
 	{
 		return DB::table('boletos')
@@ -55,12 +47,3 @@ class Factura extends Model
 	} 
 
 }
-/* select 
-facturas.numero_factura
-
-  
-FROM
- boletos join (facturas) on (boletos.factura_id = facturas.id and boletos.boleto_estado = 'reservado')
-
-GROUP BY facturas.numero_factura ASC
- */

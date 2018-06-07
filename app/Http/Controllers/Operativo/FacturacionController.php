@@ -29,7 +29,7 @@ class FacturacionController extends Controller
     public function facturas(){
         $facturas=Factura::porpagar();
         $datos=array();
-        $id=$facturas[0]->factura_id;
+       
         foreach($facturas as $factura){
             $obj= new stdClass();
             $fac=Factura::find($factura->factura_id);
@@ -42,10 +42,39 @@ class FacturacionController extends Controller
             $obj->ninos_cant=$fac->ninos_cant;
             $obj->NinosBrazos_cant=$fac->NinosBrazos_cant;
             $obj->boletos=$boleto;
+            $vuelos=Boleto::select('vuelo_id')->where('factura_id','=',$factura->factura_id)->GroupBy('vuelo_id')->get();
+            $datosV=array();
+            foreach($vuelos as $vuelo)
+            {
+                $auxiliar=new stdClass();
+                $objAux=Vuelo::find($vuelo)->first();
+              //  dd($objAux->segmentos);
+                $objAux->segmentos[0]->ruta->origen;
+                $objAux->segmentos[0]->ruta->destino;
+                array_push($datosV,$objAux);
+            }
+            $obj->vuelos=$datosV;
             array_push($datos,$obj);
         }
+       // dd($datos);
         return $datos;
     }
+
+    public function pagar (Request $data){
+        
+         $tarjeta = new Tarjeta();
+         $tarjeta->titular = $data['nombre'];
+         $tarjeta->numero_tarjeta = $data['referencia'];
+         $tarjeta->fecha_vencimiento = $data['tipo']." ".$data['tarjeta'];
+         $tarjeta->save();
+         $boletos=Boleto::where('factura_id','=',$data['id'])->get();
+
+         foreach($boletos as $boleto){
+             $boleto->boleto_estado="Pagado";
+             $boleto->save();
+         }
+        return "Factura Pagada Correctamente";
+        }
 
 }
 ?>

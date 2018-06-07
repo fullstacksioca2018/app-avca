@@ -19,7 +19,6 @@
         </b-form-group>
       </b-col>
     </b-row>
-n
     <!-- Main table element -->
     <b-table show-empty
              stacked="md"
@@ -28,8 +27,6 @@ n
              :current-page="currentPage"
              :per-page="perPage"
              :filter="filter"
-             :sort-by.sync="sortBy"
-             :sort-desc.sync="sortDesc"
              @filtered="onFiltered"
     >
      
@@ -60,58 +57,96 @@ n
     <!-- Modal Actualizar -->
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>
     <div v-if="modalInfo.content != ''">
-   <!--  <b-form @submit.prevent="actualizar()"> -->
-          <pre>{{modalInfo.content}}</pre>
-       <!-- <div class="row">
-          <div class="form-group col-sm-1 "></div>
-          <div class="col-sm-5">
-            <label for="distancia"> <b> Inserte Distancia: </b></label>
-            <b-form-input id="distancia"
-                      type="text"
-                      required
-                      v-model="modalInfo.content.Distancia"
-                      placeholder="Inserte Distancia">
-            </b-form-input>
-          </div>
-          
-         <div class="col-sm-5">
-           <label for="distancia"> <b> Inserte Tarifa: </b></label>
-            <b-form-input id="tarifa"
-                          type="text"
-                          required
-                          v-model="modalInfo.content.Tarifa"
-                          placeholder="Inserte  Tarifa">
-            </b-form-input>
-          </div>
-           <div class="form-group col-sm-1 "></div>
-        </div>
-      <div class="row"><p></p></div>
-      <div class="row text-center"><div class="col-sm-12 " ><label for="duracion" class="text-center"> <b> Tiempo de Vuelo: </b> </label></div></div>   
-      <div class="row col-sm-12 " id="duracion">
-      <div class="form-group col-sm-2 "></div>
-      <div class="col-sm-3 ">
-      <span class="help-block"> Horas </span>
-      <b-form-input type="number" min="0" max="24" class="form-control" id="ccyear" v-model="duracionModel.HH"></b-form-input> 
-      
-      </div>
-     
-      <div class="form-group col-sm-3 ">
-        <span class="help-block"> Minutos </span>
-        <b-form-input type="number" min="0" max="60" class="form-control" id="ccyear" v-model="duracionModel.mm"></b-form-input>
-      </div>
+     <b-form @submit.prevent="actualizar()"> 
+         <!--  <pre>{{modalInfo.content}}</pre> -->
        
-      <div class="form-group col-sm-3 ">
-        <span class="help-block"> Segundos </span>
-        <b-form-input type="number" min="0" max="60" class="form-control" id="ccyear" v-model="duracionModel.ss"></b-form-input>
-      </div> -->
+       <div class="form-group">
+      Vuelos:
+      <div v-for="vuelo in modalInfo.content.vuelos">
+       {{vuelo.n_vuelo }} || {{vuelo.segmentos[0].ruta.sigla}}
+       </div>
+       <hr>
+       Pasajeros:
+      <div v-for="pasajero in modalInfo.content.boletos">
+        {{pasajero.primerNombre}} {{pasajero.apellido}}
+       </div>
+        <hr>
+        Total a Pagar: {{modalInfo.content.importe_facturado}}
+       </div>
      
-    </div>
-      <div class="text-center">
-        <b-button type="submit" variant="primary" >Actualizar</b-button>
-      </div>
+    
       
-    <!-- </b-form>
-    </div> -->
+      <div class="form-group">
+          <label for="username">Nombre</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-user"></i></span>
+            </div>
+            <b-form-input type="text"
+                          v-model="compra.nombre" 
+                          class="form-control"    
+                          name="usernam" id="cc-name" 
+                          autofocus 
+                          required>
+            </b-form-input>
+            <small class="text-muted"></small>
+            <div class="invalid-feedback">nombre requerido</div>
+          </div> <!-- input-group.// -->
+        </div> <!-- form-group.// -->
+        
+        
+        <div class="form-group">
+          <label for="cardNumber">Numero de Referencia</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+            </div>
+            <b-form-input type="number" 
+                           class="form-control"  
+                           name="numero_tarjeta" 
+                           id="cc-number"  
+                           autocomplete="off"
+                           required
+                           v-model="compra.referencia">
+            </b-form-input>
+            <div class="invalid-feedback">Requiere el numero de referencia</div>
+          </div> <!-- input-group.// -->
+        </div> <!-- form-group.// -->
+        <div class="row">
+          <div class="col-sm-7">
+            <div class="form-group">
+              <label><span class="hidden-xs">Tipo de Pago</span> </label>
+              <div class="form-inline"  id="cc-expiration">
+                <b-form-select class="form-control" 
+                               name="tipo_pago"
+                               required
+                               v-on:change="cambiarestado()"
+                               v-model="compra.tipo">
+                  <option selected>Débito</option>
+                  <option>Crédito</option>
+                </b-form-select>
+                <label><span class="hidden-xs">Tipo de Tarjeta</span> </label>
+                <b-form-select class="form-control"
+                               id="tipo_tarjeta"
+                               required
+                               :options="tarjetas"
+                               v-model="compra.tarjeta">
+                  <!-- <option>MAESTRO</option>
+                  <option>VISA</option>
+                  <option>MASTERCARD</option>
+                  <option>AMERICAM EXPRESS</option> -->
+                </b-form-select>
+              </div>
+              <div class="invalid-feedback">requiere la fecha de Vencimiento</div>
+            </div>
+          </div>
+        </div> <!-- row.// -->
+      <div class="text-center">
+        <b-button type="submit" variant="primary" >Pagar Factura</b-button>
+      </div>
+     </b-form>
+     </div>
+   <!--  </div> -->
      
     </b-modal> 
 
@@ -138,6 +173,7 @@ export default {
     return {
       items: null,
       data: null,
+      compra: {id:'', referencia:'', tipo:'Debito', tarjeta:''},
       fields: [
       
         { key: 'numero_factura',    label: '#',  sortable: true },
@@ -151,6 +187,8 @@ export default {
       pageOptions: [ 5, 10, 15 ],
       filter: null,
       modalInfo: { title: '', content: '' },
+      tipo: ['Debito', 'Credito'],
+      tarjetas: []
     }
   },
   computed: {
@@ -159,10 +197,18 @@ export default {
   methods: {
     info (item, index, button) {
       this.modalInfo.content = item;
-      this.modalInfo.title = "aqui va el titulo";
+      this.modalInfo.title = "Factura #"+item.numero_factura;
       
       this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
+
+    cambiarestado(){
+      alert("ha cambiado el estado del select a"+this.compra.tipo)
+      /* if(this.compra.tipo==)
+      {
+
+      } */
+    },  
    
     resetModal () {
       this.modalInfo.title = ''
@@ -195,16 +241,42 @@ export default {
         this.items.push({
           id: this.data[i].id,
           numero_factura:this.data[i].numero_factura,
+          importe_facturado:this.data[i].importe_facturado,
           numero_control:this.data[i].numero_control,
           adultos_cant:this.data[i].adultos_cant,
           ninos_cant:this.data[i].ninos_cant,
           NinosBrazos_cant:this.data[i].NinosBrazos_cant,
           boletos:this.data[i].boletos,
+          vuelos:this.data[i].vuelos,
           localizador:localizador
         });
       }
      
     },
+    actualizar(){
+               this.compra.id=this.modalInfo.content.id;
+               axios({
+                method: 'post',
+                url: '/factura/pagar',
+                data: this.compra
+               }).then((response)=>{
+                console.log(response.data);
+                Vue.toasted.show(response.data, {
+                    theme: "primary", 
+	                position: "bottom-right",
+	                duration : 2000
+                });
+                EventBus.$emit('actualizartabla',true);
+                  this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+               }).catch((err) =>{
+                 console.log(err);
+                Vue.toasted.show("Error al cargar los datos"+err, {
+                    theme: "primary", 
+	                position: "bottom-right",
+	                duration : 2000
+                });
+               });
+           }
   }
 }
 </script>

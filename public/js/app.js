@@ -105255,8 +105255,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       sortBy: null,
       sortDesc: false,
       filter: null,
-      modalInfo: { title: '', content: '' },
-      estados: ['activo', 'inactivo']
+      modalInfo: { title: '', content: '' }
     };
   },
 
@@ -117198,6 +117197,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -117217,13 +117251,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: null,
       data: null,
+      compra: { id: '', referencia: '', tipo: 'Debito', tarjeta: '' },
       fields: [{ key: 'numero_factura', label: '#', sortable: true }, { key: 'localizador', label: 'Localizador(es)', sortable: true }, { key: 'boletos', label: 'Cedula(s) ', sortable: true }, { key: 'actions', label: ' - ', 'class': 'text-center' }],
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
       pageOptions: [5, 10, 15],
       filter: null,
-      modalInfo: { title: '', content: '' }
+      modalInfo: { title: '', content: '' },
+      tipo: ['Debito', 'Credito'],
+      tarjetas: []
     };
   },
 
@@ -117231,9 +117268,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     info: function info(item, index, button) {
       this.modalInfo.content = item;
-      this.modalInfo.title = "aqui va el titulo";
+      this.modalInfo.title = "Factura #" + item.numero_factura;
 
       this.$root.$emit('bv::show::modal', 'modalInfo', button);
+    },
+    cambiarestado: function cambiarestado() {
+      alert("ha cambiado el estado del select a" + this.compra.tipo);
+      /* if(this.compra.tipo==)
+      {
+        } */
     },
     resetModal: function resetModal() {
       this.modalInfo.title = '';
@@ -117265,14 +117308,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.items.push({
           id: this.data[i].id,
           numero_factura: this.data[i].numero_factura,
+          importe_facturado: this.data[i].importe_facturado,
           numero_control: this.data[i].numero_control,
           adultos_cant: this.data[i].adultos_cant,
           ninos_cant: this.data[i].ninos_cant,
           NinosBrazos_cant: this.data[i].NinosBrazos_cant,
           boletos: this.data[i].boletos,
+          vuelos: this.data[i].vuelos,
           localizador: localizador
         });
       }
+    },
+    actualizar: function actualizar() {
+      var _this2 = this;
+
+      this.compra.id = this.modalInfo.content.id;
+      __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'post',
+        url: '/factura/pagar',
+        data: this.compra
+      }).then(function (response) {
+        console.log(response.data);
+        Vue.toasted.show(response.data, {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+        __WEBPACK_IMPORTED_MODULE_1__event_bus_js__["a" /* EventBus */].$emit('actualizartabla', true);
+        _this2.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+      }).catch(function (err) {
+        console.log(err);
+        Vue.toasted.show("Error al cargar los datos" + err, {
+          theme: "primary",
+          position: "bottom-right",
+          duration: 2000
+        });
+      });
     }
   }
 });
@@ -117377,7 +117448,6 @@ var render = function() {
         ],
         1
       ),
-      _vm._v("\nn\n    "),
       _vm._v(" "),
       _c("b-table", {
         attrs: {
@@ -117387,19 +117457,9 @@ var render = function() {
           fields: _vm.fields,
           "current-page": _vm.currentPage,
           "per-page": _vm.perPage,
-          filter: _vm.filter,
-          "sort-by": _vm.sortBy,
-          "sort-desc": _vm.sortDesc
+          filter: _vm.filter
         },
-        on: {
-          "update:sortBy": function($event) {
-            _vm.sortBy = $event
-          },
-          "update:sortDesc": function($event) {
-            _vm.sortDesc = $event
-          },
-          filtered: _vm.onFiltered
-        },
+        on: { filtered: _vm.onFiltered },
         scopedSlots: _vm._u([
           {
             key: "localizador",
@@ -117441,7 +117501,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("\n          Pagar\n        ")]
+                      [_vm._v("\n        Pagar\n      ")]
                     )
                   ],
                   1
@@ -117505,21 +117565,240 @@ var render = function() {
         },
         [
           _vm.modalInfo.content != ""
-            ? _c("div", [_c("pre", [_vm._v(_vm._s(_vm.modalInfo.content))])])
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "text-center" },
-            [
-              _c(
-                "b-button",
-                { attrs: { type: "submit", variant: "primary" } },
-                [_vm._v("Actualizar")]
+            ? _c(
+                "div",
+                [
+                  _c(
+                    "b-form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.actualizar()
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _vm._v("\n    Vuelos:\n    "),
+                          _vm._l(_vm.modalInfo.content.vuelos, function(vuelo) {
+                            return _c("div", [
+                              _vm._v(
+                                "\n     " +
+                                  _vm._s(vuelo.n_vuelo) +
+                                  " || " +
+                                  _vm._s(vuelo.segmentos[0].ruta.sigla) +
+                                  "\n     "
+                              )
+                            ])
+                          }),
+                          _vm._v(" "),
+                          _c("hr"),
+                          _vm._v("\n     Pasajeros:\n    "),
+                          _vm._l(_vm.modalInfo.content.boletos, function(
+                            pasajero
+                          ) {
+                            return _c("div", [
+                              _vm._v(
+                                "\n      " +
+                                  _vm._s(pasajero.primerNombre) +
+                                  " " +
+                                  _vm._s(pasajero.apellido) +
+                                  "\n     "
+                              )
+                            ])
+                          }),
+                          _vm._v(" "),
+                          _c("hr"),
+                          _vm._v(
+                            "\n      Total a Pagar: " +
+                              _vm._s(_vm.modalInfo.content.importe_facturado) +
+                              "\n     "
+                          )
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "username" } }, [
+                          _vm._v("Nombre")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "input-group" },
+                          [
+                            _c("div", { staticClass: "input-group-prepend" }, [
+                              _c("span", { staticClass: "input-group-text" }, [
+                                _c("i", { staticClass: "fa fa-user" })
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("b-form-input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "usernam",
+                                id: "cc-name",
+                                autofocus: "",
+                                required: ""
+                              },
+                              model: {
+                                value: _vm.compra.nombre,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.compra, "nombre", $$v)
+                                },
+                                expression: "compra.nombre"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "text-muted" }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "invalid-feedback" }, [
+                              _vm._v("nombre requerido")
+                            ])
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "cardNumber" } }, [
+                          _vm._v("Numero de Referencia")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "input-group" },
+                          [
+                            _c("div", { staticClass: "input-group-prepend" }, [
+                              _c("span", { staticClass: "input-group-text" }, [
+                                _c("i", { staticClass: "fa fa-credit-card" })
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("b-form-input", {
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "number",
+                                name: "numero_tarjeta",
+                                id: "cc-number",
+                                autocomplete: "off",
+                                required: ""
+                              },
+                              model: {
+                                value: _vm.compra.referencia,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.compra, "referencia", $$v)
+                                },
+                                expression: "compra.referencia"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "invalid-feedback" }, [
+                              _vm._v("Requiere el numero de referencia")
+                            ])
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-sm-7" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", [
+                              _c("span", { staticClass: "hidden-xs" }, [
+                                _vm._v("Tipo de Pago")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "form-inline",
+                                attrs: { id: "cc-expiration" }
+                              },
+                              [
+                                _c(
+                                  "b-form-select",
+                                  {
+                                    staticClass: "form-control",
+                                    attrs: { name: "tipo_pago", required: "" },
+                                    on: {
+                                      change: function($event) {
+                                        _vm.cambiarestado()
+                                      }
+                                    },
+                                    model: {
+                                      value: _vm.compra.tipo,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.compra, "tipo", $$v)
+                                      },
+                                      expression: "compra.tipo"
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { selected: "" } }, [
+                                      _vm._v("Débito")
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("option", [_vm._v("Crédito")])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("label", [
+                                  _c("span", { staticClass: "hidden-xs" }, [
+                                    _vm._v("Tipo de Tarjeta")
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("b-form-select", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    id: "tipo_tarjeta",
+                                    required: "",
+                                    options: _vm.tarjetas
+                                  },
+                                  model: {
+                                    value: _vm.compra.tarjeta,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.compra, "tarjeta", $$v)
+                                    },
+                                    expression: "compra.tarjeta"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "invalid-feedback" }, [
+                              _vm._v("requiere la fecha de Vencimiento")
+                            ])
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "text-center" },
+                        [
+                          _c(
+                            "b-button",
+                            { attrs: { type: "submit", variant: "primary" } },
+                            [_vm._v("Pagar Factura")]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
+            : _vm._e()
         ]
       )
     ],
