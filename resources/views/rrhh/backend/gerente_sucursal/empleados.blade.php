@@ -37,11 +37,8 @@
                             <td>{{ $empleado->cedula }}</td>
                             <td>{{ $empleado->fullname }}</td>                            
                             <td>{{ $empleado->obtenerCargo()->titulo }}</td>
-                            <td class="text-center">
-                                <a href="#" class="mr-2">
-                                    <i class="fa fa-refresh"></i>
-                                </a>
-                                <a href="#">
+                            <td class="text-center">                                
+                                <a href="{{ route('dashboard.empleado', ['empleado' => $empleado->empleado_id]) }}" class="btn btn-info">
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </td>

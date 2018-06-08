@@ -6,4 +6,6 @@ Route::group(['prefix' => 'sucursal', 'namespace' => 'rrhh'], function () {
     Route::get('calendario-feriado/{sucursal}', 'EmpleadoController@CalendarioFeriado')->name('calendario.feriado');
     Route::post('agregar-evento-calendario', 'EmpleadoController@guardarEventoCalendario')->name('calendar.store');
     Route::post('editar-evento-calendario', 'EmpleadoController@editarEventoCalendario')->name('calendar.edit');    
+    Route::get('obtener-grupos', 'GerenteSucursalController@obtenerGrupos');
+    Route::get('actualizar-grupo/{grupo}', 'GerenteSucursalController@actualizarGrupo');
 });

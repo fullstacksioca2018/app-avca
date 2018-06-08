@@ -7,7 +7,7 @@
           <thead>
             <tr>
               <th>Fecha</th>
-              <th>Nombre y Apellido (<b>{{ estatusAnterior }}</b>)</th>
+              <th>Nombre y Apellido</th>
               <th v-if="estatusAnterior === 'registrados'">Curriculum</th>
               <th v-if="estatusAnterior === 'verificados'">Requisitos</th>
               <th v-if="estatusAnterior === 'convocados'">Entrevista</th>

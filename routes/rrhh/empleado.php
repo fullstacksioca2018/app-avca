@@ -3,7 +3,7 @@
 Route::group(['prefix' => 'empleado', 'namespace' => 'rrhh'], function () {
     // Dashboard
     Route::get('panel', 'EmpleadoController@dashboard')->name('dashboard');
-    Route::get('panel-empleado/{section?}', 'EmpleadoController@dashboardEmpleado')->name('dashboard.empleado');
+    Route::get('panel-empleado/{empleado?}/{section?}', 'EmpleadoController@dashboardEmpleado')->name('dashboard.empleado');
     Route::put('actualizar-ficha/{empleado}', 'EmpleadoController@actualizarEmpleado')->name('empleado.actualizar-ficha');
 
     // Para imprimir

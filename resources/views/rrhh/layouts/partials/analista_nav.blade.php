@@ -38,7 +38,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('empleado.profile') }}" class="{{ request()->routeIs('empleado.profile') ? 'nav-link active' : 'nav-link' }}">
+          <a href="{{ route('analista.empleados') }}" class="{{ request()->routeIs('analista.empleados') ? 'nav-link active' : 'nav-link' }}">
             <i class="fa fa-user-secret nav-icon"></i>
             <p>Empleados</p>
           </a>

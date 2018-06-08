@@ -32,16 +32,26 @@ class EmpleadoController extends Controller
         }
     }
 
-    public function dashboardEmpleado(Request $request, $section = null)
-    {
-        $empleado = DB::table('empleados')
-            ->join('sucursales', 'sucursales.sucursal_id', '=', 'empleados.sucursal_id')
-            ->join('cargos', 'cargos.cargo_id', '=', 'empleados.cargo_id')
-            ->join('departamentos', 'departamentos.departamento_id', '=', 'empleados.departamento_id')
-            //->join('profesiones', 'profesiones.profesion_id', '=', 'empleados.profesion')
-            ->select('empleados.*', 'sucursales.nombre as nombre_sucursal', 'cargos.titulo as nombre_cargo', 'departamentos.descripcion')
-            ->where('empleados.empleado_id', '=', auth()->user()->id)
-            ->first();
+    public function dashboardEmpleado(Request $request, $empleado = null, $section = null)
+    {       
+        if ($empleado == null) {            
+            $empleado = DB::table('empleados')
+                ->join('sucursales', 'sucursales.sucursal_id', '=', 'empleados.sucursal_id')
+                ->join('cargos', 'cargos.cargo_id', '=', 'empleados.cargo_id')
+                ->join('departamentos', 'departamentos.departamento_id', '=', 'empleados.departamento_id')            
+                ->select('empleados.*', 'sucursales.nombre as nombre_sucursal', 'cargos.titulo as nombre_cargo', 'departamentos.descripcion')
+                ->where('empleados.empleado_id', '=', auth()->user()->id)
+                ->first();
+        } else {
+            $empleado = DB::table('empleados')
+                ->join('sucursales', 'sucursales.sucursal_id', '=', 'empleados.sucursal_id')
+                ->join('cargos', 'cargos.cargo_id', '=', 'empleados.cargo_id')
+                ->join('departamentos', 'departamentos.departamento_id', '=', 'empleados.departamento_id')            
+                ->select('empleados.*', 'sucursales.nombre as nombre_sucursal', 'cargos.titulo as nombre_cargo', 'departamentos.descripcion')
+                ->where('empleados.empleado_id', '=', $empleado)
+                ->first();            
+        }
+        
 
         if ($section == null || $section == 0) {
             $section = 0;
