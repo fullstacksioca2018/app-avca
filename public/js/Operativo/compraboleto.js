@@ -25,6 +25,7 @@
                             position: "bottom-right",
                             duration: 2000 
                         });
+                        
                         $("#firstName0").val(response[0].nombre);
                         $("#lastName0").val(response[0].apellido);
                         $("#tipo_documento0").val(response[0].tipo_documento);
