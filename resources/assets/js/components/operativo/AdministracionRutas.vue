@@ -193,7 +193,6 @@ export default {
       sortDesc: false,
       filter: null,
       modalInfo: { title: '', content: '' },
-      estados:['activo','inactivo']
     }
   },
   computed: {

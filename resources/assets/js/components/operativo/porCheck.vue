@@ -63,19 +63,7 @@
         <!-- <pre>El modalinfo tiene {{modalInfo.content}}</pre>  --> 
      <div v-if="modalInfo.content != ''">
     <b-form @submit.prevent="addMaletas()">
-         
-       <div class="row">
-          <div class="form-group col-sm-1 "></div>
-          <div class="col-sm-5">
-            <span>Vuelo: {{ modalInfo.content.n_vuelo }}</span>
-          </div>
-          
-         <div class="col-sm-5">
-          <span> Pasajero: {{ modalInfo.content.pasajero }} </span>
-          </div>
-           <div class="form-group col-sm-1 "></div>
-        </div>
-        <!--  fin row de info de vuelo y pasajero  -->
+        
       <div class="row"><p></p></div><!--  espacio -->
       
       <div class="row text-center">
@@ -109,7 +97,8 @@
     </div>
    <div class="row"><p></p><p></p></div><!--  espacio -->
    <div id='search-results' class="col-sm-6">
-         <label for="asiento" >Seleccione el Asiento:   </label>         
+         <label for="asiento" >Seleccione el Asiento:   </label>
+          
          <multiselect v-model="form.puesto" :options="puestos" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione filtro" :preselect-first="false" selectLabel="Seleccionar" deselectLabel="Eliminar" required></multiselect>
 
     </div> 
@@ -175,33 +164,20 @@ export default {
   methods: {
       info (item, index, button) {
       this.modalInfo.content = item; 
-      //cargar los asientos ya asignados
       var n_v=JSON.stringify(item.n_vuelo);
-      var aaa=[];
-      var  ctx=this;
       axios({
             method: 'post',
             url: '/check/asientosAsignados',
             data:{'vuelo':n_v},
-           }).then((response)=>{
-            // console.log(response.data[0]);
-             aaa=response.data;
-             ctx.opcionesasientos(response.data);
-          // console.log(aaa);
+           }).then((response) => {
+             this.puestos=response.data;
            }).catch((err)=>{
         console.log("error al traer al axios de puestos");
         console.log(err);
       });
-       
-        //console.log(aaa)
     
       this.modalInfo.title = "Vuelo: "+item.n_vuelo+" Pasajero: "+item.pasajero;     
       this.$root.$emit('bv::show::modal', 'modalInfo', button)
-    },
-    opcionesasientos (data){
-      console.log("entrando al metodo");
-      console.log(data);
-      this.puestos=data;
     },
     resetModal () {
       this.modalInfo.title = ''

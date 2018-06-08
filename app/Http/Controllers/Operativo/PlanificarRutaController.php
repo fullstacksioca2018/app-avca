@@ -20,7 +20,7 @@ class PlanificarRutaController extends Controller
     
     public function rutas(){
        $obj = array();
-      //$sucursales= Sucursal::orderBy('nombre','ASC')->get();
+     
       $rutas= Ruta::orderBy('id')->get();
       foreach($rutas as $ruta){
         $objAux = new stdClass();
