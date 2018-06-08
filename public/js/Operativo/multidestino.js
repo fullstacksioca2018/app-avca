@@ -489,13 +489,13 @@ function mostrar_resultados(response,tipo,algo){
 		
 		for (var i=0; i<response.length;i++)
 			{
-				if(response[i].estado=="abierto")
+				var resul=parseInt(response[i].boletos)-parseInt(response[i].boletos_vendidos)-parseInt(response[i].boletos_reservados);
+				if(response[i].estado=="abierto" && resul>0)
 				{
 					
 					html+="<tr >";
 					html+="<th>Vuelo: </th>";
 					html+="<th>"+response[i].n_vuelo+"</th>";
-					var resul=parseInt(response[i].boletos)-parseInt(response[i].boletos_vendidos)-parseInt(response[i].boletos_reservados);
 					html+="<th>Boletos: "+resul+"</th>";
 					html+="<th>"+response[i].tarifa+" BsS <input type='hidden' id='precios"+tipo+response[i].n_vuelo+"' name='precios"+tipo+response[i].n_vuelo+"' value='"+response[i].tarifa+"'></th>";
 					html+="</tr>";

@@ -160,7 +160,6 @@ class TaquillaController extends Controller
             array_push($vuelos,$vuelosAux);
             }//fin foreach de rutas
         
-  
          echo json_encode($vuelos);
          return;
        
@@ -187,26 +186,47 @@ class TaquillaController extends Controller
             array_push($edades,$edad);
             array_push($brazo,$Nbrazo);
         }
-        
+        $vueloss= new stdClass();
+        $dv=array();
         switch ($tipo){
            case 1:// solo ida
                  $origen=$request->get('origen_id');
+                 $ori=Sucursal::find($origen);
                  $destino=$request->get('destino_id');
+                 $des=Sucursal::find($destino);
                  $fecha=$request->get('fecha_salida');
                  $precio=$request->get('tarifasoloida');
                  $n_vuelo=$request->get('vuelo');
-                 return view('Operativo.Taquilla.Compra.CompraBoleto')->with('vuelo',$n_vuelo)->with('tipo',$tipo)->with('origen',$origen)->with('destino',$destino)->with('fecha',$fecha)->with('tarifa',$precio)->with('adultos',$adultos)->with('ninos',$ninos)->with('edades',$edades)->with('brazo',$brazo);
+                 $vue=Vuelo::find($n_vuelo);
+                 $vueloss->origen=$ori;
+                 $vueloss->destino=$des;
+                 $vueloss->vuelo=$vue;
+                 return view('Operativo.Taquilla.Compra.CompraBoleto')->with('dv',$vueloss)->with('vuelo',$n_vuelo)->with('tipo',$tipo)->with('origen',$origen)->with('destino',$destino)->with('fecha',$fecha)->with('tarifa',$precio)->with('adultos',$adultos)->with('ninos',$ninos)->with('edades',$edades)->with('brazo',$brazo);
                  break;
             case 2: //ida y vuelta
                 $origen=$request->get('origen_id_retorno');
+                $ori=Sucursal::find($origen);
                 $destino=$request->get('destino_id_retorno');
+                $des=Sucursal::find($destino);
                 $fecha=$request->get('fecha_salida2');
                 $fecha_regreso=$request->get('fecha_regreso');
                 $precio1=$request->get('tarifaida');
                 $precio2=$request->get('tarifaregreso');
                 $n_vuelo=$request->get('vuelo');
                 $n_vueloR=$request->get('vuelo_regreso');
-                return view('Operativo.Taquilla.Compra.CompraBoleto')->with('vuelo',$n_vuelo)->with('vuelo_regreso',$n_vueloR)->with('tipo',$tipo)->with('origen',$origen)->with('destino',$destino)->with('fecha',$fecha)->with('fecha_regreso',$fecha_regreso)->with('tarifa',$precio1)->with('tarifa_regreso',$precio2)->with('adultos',$adultos)->with('ninos',$ninos)->with('edades',$edades)->with('brazo',$brazo);
+                $vue=Vuelo::find($n_vuelo);
+                $vue2=Vuelo::find($n_vueloR);
+                 $vueloss->origen=$ori;
+                 $vueloss->destino=$des;
+                 $vueloss->vuelo=$vue;
+                 array_push($dv,$vueloss);
+                 $vueloss=new stdClass();
+                 $vueloss->origen=$des;
+                 $vueloss->destino=$ori;
+                 $vueloss->vuelo=$vue2;
+                 array_push($dv,$vueloss);
+                
+                return view('Operativo.Taquilla.Compra.CompraBoleto')->with('dv',$dv)->with('vuelo',$n_vuelo)->with('vuelo_regreso',$n_vueloR)->with('tipo',$tipo)->with('origen',$origen)->with('destino',$destino)->with('fecha',$fecha)->with('fecha_regreso',$fecha_regreso)->with('tarifa',$precio1)->with('tarifa_regreso',$precio2)->with('adultos',$adultos)->with('ninos',$ninos)->with('edades',$edades)->with('brazo',$brazo);
                 break;
             case 3: //multidestino
             $cantidadV=$request->get('cantidadV');
@@ -215,7 +235,18 @@ class TaquillaController extends Controller
                 $fecha=$request->fecha_salida;
                 $precios=$request->tarifamultidestino;
                 $vuelos=$request->vuelo_;
-                return view('Operativo.Taquilla.Compra.CompraBoleto')->with('vuelos',$vuelos)->with('tarifas_multidestino',$precios)->with('tipo',$tipo)->with('cantidadV',$cantidadV)->with('origen',$origen)->with('destino',$destino)->with('fecha',$fecha)->with('adultos',$adultos)->with('ninos',$ninos)->with('edades',$edades)->with('brazo',$brazo);
+                for($i;$i<$cantidadV;$i++)
+                {
+                 $ori=Sucursal::find($origen[$i]);
+                 $des=Sucursal::find($destino[$i]);
+                 $vue=Vuelo::find($vuelos[$i]);
+                 $vueloss=new stdClass();
+                 $vueloss->origen=$ori;
+                 $vueloss->destino=$des;
+                 $vueloss->vuelo=$vue;
+                 array_push($dv,$vueloss);
+                }
+                return view('Operativo.Taquilla.Compra.CompraBoleto')->with('dv',$dv)->with('vuelos',$vuelos)->with('tarifas_multidestino',$precios)->with('tipo',$tipo)->with('cantidadV',$cantidadV)->with('origen',$origen)->with('destino',$destino)->with('fecha',$fecha)->with('adultos',$adultos)->with('ninos',$ninos)->with('edades',$edades)->with('brazo',$brazo)->with('cantidadV',$cantidadV);
                 break;
        }//fin switch
     }

@@ -89,9 +89,7 @@ class PlanificarRutaController extends Controller
   public function crearuta(Request $datos){
 
     $ruta = new Ruta();
-  
-    // return  $datos->all();
-    // return count($ruta->Buscador($datos->origen['id'],$datos->destino['id'])->get());
+
   
     if(count($ruta->Buscador($datos->origen['id'],$datos->destino['id'])->get())){
       

@@ -46,9 +46,7 @@ class FacturacionController extends Controller
             $datosV=array();
             foreach($vuelos as $vuelo)
             {
-                $auxiliar=new stdClass();
                 $objAux=Vuelo::find($vuelo)->first();
-              //  dd($objAux->segmentos);
                 $objAux->segmentos[0]->ruta->origen;
                 $objAux->segmentos[0]->ruta->destino;
                 array_push($datosV,$objAux);
@@ -75,6 +73,28 @@ class FacturacionController extends Controller
          }
         return "Factura Pagada Correctamente";
         }
+ 
+        //=====LLEGADA DE AVIONES===
+    public function llegada()
+    {
+        //codigo de llegada
+        return view('Operativo.Taquilla.LLegada');
+    }
+
+    public function llegadas()
+    {
+      //$fecha=Carbon::now()->format('Y-m-d');
+     $fecha="2018-06-15";
+     $vuelos=Vuelo::whereDate('fecha_salida','=',$fecha)->get(); 
+     $datosV=array();
+     foreach($vuelos as $objAux)
+     {
+         $objAux->segmentos[0]->ruta->origen;
+         $objAux->segmentos[0]->ruta->destino;
+         array_push($datosV,$objAux) ;
+     }
+    return $datosV;
+    }
 
 }
 ?>

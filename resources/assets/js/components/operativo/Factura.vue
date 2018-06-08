@@ -60,87 +60,85 @@
      <b-form @submit.prevent="actualizar()"> 
          <!--  <pre>{{modalInfo.content}}</pre> -->
        
-       <div class="form-group">
-      Vuelos:
+       <div class="row col-sm-12">
+         <div class="col-sm-5">
+         <div class="card-body">
+          Vuelos:
       <div v-for="vuelo in modalInfo.content.vuelos">
        {{vuelo.n_vuelo }} || {{vuelo.segmentos[0].ruta.sigla}}
+         </div>
        </div>
-       <hr>
+         </div>
+          
+       
+      <div class="col-sm-5">
+        <div class="card-body">
        Pasajeros:
       <div v-for="pasajero in modalInfo.content.boletos">
         {{pasajero.primerNombre}} {{pasajero.apellido}}
        </div>
-        <hr>
-        Total a Pagar: {{modalInfo.content.importe_facturado}}
-       </div>
-     
+        </div>
+      </div>
+      </div>
+          <hr>
+        
+        <div class="row col-sm-12">
+        
+         <div class="input-group text-center">
+         <strong> Total a Pagar:</strong> &nbsp   {{modalInfo.content.importe_facturado}}
+         </div>
+        </div>
+          
+         <hr>
     
-      
-      <div class="form-group">
-          <label for="username">Nombre</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
+         <div class="row"><p></p></div>
+         <div class="row col-sm-10 offset-1">
+           <div class="col-sm-5">
+             <span class="help-block">Nombre</span>
+               <div class="input-group">
+            <!-- <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-user"></i></span>
-            </div>
-            <b-form-input type="text"
-                          v-model="compra.nombre" 
-                          class="form-control"    
-                          name="usernam" id="cc-name" 
-                          autofocus 
-                          required>
-            </b-form-input>
-            <small class="text-muted"></small>
-            <div class="invalid-feedback">nombre requerido</div>
+            </div> -->
+            <b-form-input type="text" v-model="compra.nombre" class="form-control" autofocus required></b-form-input>            
           </div> <!-- input-group.// -->
-        </div> <!-- form-group.// -->
+           </div>
         
-        
-        <div class="form-group">
-          <label for="cardNumber">Numero de Referencia</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
+          <div class="col-sm-5">
+             <span class="help-block">N° Confirmacion</span>
+               <div class="input-group">
+            <!-- <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
-            </div>
-            <b-form-input type="number" 
-                           class="form-control"  
-                           name="numero_tarjeta" 
-                           id="cc-number"  
-                           autocomplete="off"
-                           required
-                           v-model="compra.referencia">
-            </b-form-input>
-            <div class="invalid-feedback">Requiere el numero de referencia</div>
+            </div> -->
+            <b-form-input type="number" class="form-control" autocomplete="off" required v-model="compra.referencia"></b-form-input>
           </div> <!-- input-group.// -->
-        </div> <!-- form-group.// -->
-        <div class="row">
-          <div class="col-sm-7">
-            <div class="form-group">
-              <label><span class="hidden-xs">Tipo de Pago</span> </label>
-              <div class="form-inline"  id="cc-expiration">
-                <b-form-select class="form-control" 
-                               name="tipo_pago"
-                               required
-                               v-on:change="cambiarestado()"
-                               v-model="compra.tipo">
-                  <option selected>Débito</option>
-                  <option>Crédito</option>
-                </b-form-select>
-                <label><span class="hidden-xs">Tipo de Tarjeta</span> </label>
-                <b-form-select class="form-control"
-                               id="tipo_tarjeta"
-                               required
-                               :options="tarjetas"
-                               v-model="compra.tarjeta">
-                  <!-- <option>MAESTRO</option>
-                  <option>VISA</option>
-                  <option>MASTERCARD</option>
-                  <option>AMERICAM EXPRESS</option> -->
-                </b-form-select>
-              </div>
-              <div class="invalid-feedback">requiere la fecha de Vencimiento</div>
-            </div>
-          </div>
-        </div> <!-- row.// -->
+           </div>
+        
+         </div> <!-- fin row -->
+
+         <div class="row"><p></p></div>
+         <div class="row col-sm-10 offset-1">
+           <div class="col-sm-5">
+             <span class="help-block">Tipo de Pago</span>
+               <div class="input-group">
+            <!-- <div class="input-group-prepend">
+               <span class="input-group-text"> <i class="fa fa-payment"></i></span>
+            </div> -->
+                <b-form-select class="form-control" name="tipo_pago" :options="tipo" required v-on:change="cambiarestado()" v-model="compra.tipo"></b-form-select>
+          </div> <!-- input-group.// -->
+           </div>
+        
+          <div class="col-sm-5">
+             <span class="help-block">Tarjeta</span>
+               <div class="input-group">
+           <!--  <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+            </div> -->
+                <b-form-select class="form-control" required :options="tarjetas" v-model="compra.tarjeta"></b-form-select>
+          </div> <!-- input-group.// -->
+           </div>
+        
+         </div> <!-- fin row -->  
+         <div class="row"><p></p></div>  
       <div class="text-center">
         <b-button type="submit" variant="primary" >Pagar Factura</b-button>
       </div>
@@ -173,7 +171,7 @@ export default {
     return {
       items: null,
       data: null,
-      compra: {id:'', referencia:'', tipo:'Debito', tarjeta:''},
+      compra: {id:'', referencia:'', tipo:'', tarjeta:''},
       fields: [
       
         { key: 'numero_factura',    label: '#',  sortable: true },
@@ -187,8 +185,8 @@ export default {
       pageOptions: [ 5, 10, 15 ],
       filter: null,
       modalInfo: { title: '', content: '' },
-      tipo: ['Debito', 'Credito'],
-      tarjetas: []
+      tipo: ['Débito', 'Crédito'],
+      tarjetas: ['Maestro']
     }
   },
   computed: {
@@ -198,16 +196,23 @@ export default {
     info (item, index, button) {
       this.modalInfo.content = item;
       this.modalInfo.title = "Factura #"+item.numero_factura;
-      
+      this.compra.tipo="Débito";
+      this.compra.tarjeta="Maestro";
       this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
 
     cambiarestado(){
-      alert("ha cambiado el estado del select a"+this.compra.tipo)
-      /* if(this.compra.tipo==)
+      //alert("ha cambiado el estado del select a"+this.compra.tipo)
+       if(this.compra.tipo=="Débito")
       {
-
-      } */
+        this.tarjetas=['Visa','Mastercard','American Express'];
+        this.compra.tarjeta='Visa';
+      }
+      else{
+        this.tarjetas=['Maestro'];
+        this.compra.tarjeta='Maestro';
+        
+      }
     },  
    
     resetModal () {
@@ -266,6 +271,10 @@ export default {
 	                position: "bottom-right",
 	                duration : 2000
                 });
+                this.compra.id='';
+                this.compra.referencia='';
+                this.compra.tipo='';
+                this.compra.tarjeta='';
                 EventBus.$emit('actualizartabla',true);
                   this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
                }).catch((err) =>{
