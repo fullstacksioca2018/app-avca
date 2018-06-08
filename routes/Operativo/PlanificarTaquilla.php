@@ -30,4 +30,9 @@
 		Route::get('/facturas','Operativo\FacturacionController@facturas');
 		Route::post('/pagar','Operativo\FacturacionController@pagar');
 	});
+	//llegada de aviones
+Route::group(['prefix'=>'llegada',/* 'middleware' => 'auth' */],function(){
+	Route::get('/','Operativo\FacturacionController@llegada');
+	Route::get('/llegadas','Operativo\FacturacionController@llegadas');
+});
 ?>

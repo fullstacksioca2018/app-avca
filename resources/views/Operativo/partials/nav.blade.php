@@ -36,6 +36,12 @@
                   <p>Facturacion</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ URL::to('/llegada') }}" class="nav-link">
+                <i class="fa fa-map-marker nav-icon"></i>
+                <p>Llegada de Vuelos</p>
+              </a>
+            </li>
           </ul>
         </li>
         <!-- HASTA AQUI TAQUILLA -->
@@ -84,12 +90,12 @@
                 <p>Planificar Aeronave</p>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="{{ URL::to('/sucursales') }}" class="nav-link">
                 <i class="fa fa-map-marker nav-icon"></i>
                 <p>Planificar Sucursales</p>
               </a>
-            </li>
+            </li> -->
           </ul>
         </li>
        <!--  FINAL DE Mantenimiento  -->

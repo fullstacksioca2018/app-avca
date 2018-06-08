@@ -60,7 +60,7 @@
    
     <!-- Modal Registrar -->
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>  
-        <!-- <pre>El modalinfo tiene {{modalInfo.content}}</pre>  --> 
+      
      <div v-if="modalInfo.content != ''">
     <b-form @submit.prevent="addMaletas()">
         
@@ -71,6 +71,8 @@
         <div class="col-sm-4">
             <b-form-input id="equipaje"
                           type="number"
+                          min="0"
+                          max="4"
                           v-on:change=sobrepeso()
                           v-model="form.equipaje">
             </b-form-input>
@@ -83,6 +85,8 @@
            <b-input-group append="kgrs">
             <b-form-input id="peso"
                           type="number"
+                          min="0"
+                          max="25"
                           v-on:change=sobrepeso()
                           v-model="form.peso">
             </b-form-input>
@@ -126,9 +130,6 @@ export default {
     EventBus.$on('actualizartabla',(event) =>{
       this.Cargadatos(this);
      });
-     /* EventBus.$on('actualizarselect',(event) =>{
-      this.CargaMultiselect(this);
-     }); */
     this.Cargadatos(this)
 
   },
@@ -245,6 +246,12 @@ export default {
            },
     sobrepeso(){
       var precioS=0
+      if(this.form.peso>25){
+        this.form.peso=25;
+      }
+      if(this.form.equipaje>4){
+        this.form.equipaje=4;
+      }
       if(this.form.peso>23){
         var peso = this.form.peso-23
         var precio = this.modalInfo.content.tarifa*0.01

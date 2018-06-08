@@ -48,6 +48,9 @@ Vue.component('Chequeados',require('./components/operativo/chequeados.vue'));
 Vue.component('CheckTodos',require('./components/operativo/checkTodos.vue'));
 //Factura
 Vue.component('Factura',require('./components/operativo/Factura.vue'));
+//Llegada
+Vue.component('Llegada',require('./components/operativo/Llegada.vue'));
+
 // Empleado
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
 
