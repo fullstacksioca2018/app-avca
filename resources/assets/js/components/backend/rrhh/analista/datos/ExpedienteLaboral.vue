@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="col-12">
     <button type="button" class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#expedienteModal">
       <i class="fas fa-file-alt"> </i>  Agregar Nuevo Oficio
     </button>

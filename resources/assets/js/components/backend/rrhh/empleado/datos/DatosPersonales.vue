@@ -5,13 +5,13 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="nombre">Nombre</label>
-            <div class="form-control disabled">{{ empleado.nombre }}</div>
+            <input type="text" name="nombre" id="nombre" class="form-control" :value="empleado.nombre">            
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label for="apellido">Apellido</label>
-            <div class="form-control disabled">{{ empleado.apellido }}</div>
+            <input type="text" name="apellido" id="apellido" class="form-control" :value="empleado.apellido">
           </div>
         </div>
         <div class="col-md-6">
@@ -26,31 +26,46 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="estado_civil">Estado civil</label>
-            <div class="form-control disabled">{{ empleado.estado_civil }}</div>
+            <select name="estado_civil" id="estado_civil" class="form-control">
+              <option :value="ec" v-for="ec in estadoCivil" :key="ec.id" :selected="ec === empleado.estado_civil">{{ ec }}</option>              
+            </select>            
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label for="fecha_nacimiento">Fecha de nacimiento</label>
-            <div class="form-control disabled">{{ empleado.fecha_nacimiento }}</div>
+            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" :value="empleado.fecha_nacimiento">
           </div>
         </div>
         <div class="col-md-6">
-          <p class="mb-2">Sexo</p>
-          <div class="form-control disabled">{{ empleado.sexo === 'f' ? 'Femenino' : 'Masculino' }}</div>
+          <p class="mb-2">Sexo</p>          
+          <label class="mr-2">
+            <input type="radio" name="sexo" id="sexo" :value="empleado.sexo" :checked="empleado.sexo === 'f'"> F
+          </label>
+          <label>
+            <input type="radio" name="sexo" id="sexo" :value="empleado.sexo" :checked="empleado.sexo === 'm'"> M
+          </label>          
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <div class="form-group">
             <label for="nivel_academico">Nivel académico</label>
-            <div class="form-control disabled">{{ empleado.nivel_academico }}</div>
+            <input type="text" name="nivel_academico" id="nivel_academico" class="form-control" :value="empleado.nivel_academico">            
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label for="profesion">Profesión</label>
-            <div class="form-control disabled">{{ profession }}</div>
+            <label for="profesion">Profesión</label>            
+            <select name="profesion" id="profesion" class="form-control">              
+              <option 
+                :value="profesion.profesion_id" 
+                v-for="profesion in profesiones" 
+                :key="profesion.id"
+                :selected="profesion.profesion_id == empleado.profesion">
+                {{ profesion.titulo }}
+              </option>
+            </select>
           </div>
         </div>
       </div>
@@ -58,19 +73,24 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="estado">Estado</label>
-            <div class="form-control disabled">{{ empleado.estado }}</div>
+            <select name="estado" id="estado" class="form-control" v-model="estado" @change="obtenerCiudades">    
+              <option :value="estado.estado" v-for="estado in estados" :key="estado.id" :selected="estado.estado == empleado.estado">{{ estado.estado }}</option>
+            </select>
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label for="ciudad">Ciudad</label>
-            <div class="form-control disabled">{{ empleado.ciudad }}</div>
+            <select name="ciudad" id="ciudad" class="form-control">
+              <option value="" selected="selected">Seleccione</option>
+              <option :value="ciudad" v-for="ciudad in ciudadesFiltradas" :key="ciudad.id" :selected="ciudad == empleado.ciudad">{{ ciudad }}</option>
+            </select>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <label for="direccion">Dirección</label>
-            <div class="form-control disabled">{{ empleado.direccion }}</div>
+            <input type="text" name="direccion" id="direccion" class="form-control" :value="empleado.direccion">   
           </div>
         </div>
       </div>      
@@ -91,7 +111,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="email">Correo electrónico</label>
-            <div class="form-control disabled">{{ empleado.email }}</div>
+            <input type="email" name="email" id="email" class="form-control" :value="empleado.email">   
           </div>
         </div>
       </div>
@@ -106,9 +126,7 @@
   </div>
 </template>
 
-<script>
-  import VueSweetalert2 from 'vue-sweetalert2';
-  Vue.use(VueSweetalert2);
+<script>  
 
   export default {
     name: "DatosPersonales",
@@ -187,11 +205,11 @@
         })
           .then((response) => {
             this.profesiones = response.data;
-            this.profesiones.forEach(profesion => {              
+            /* this.profesiones.forEach(profesion => {              
               if (profesion.profesion_id == this.empleado.profesion) {
                 this.profession = profesion.titulo                
               }
-            })
+            }) */
           });
       },
       obtenerEstados() {        

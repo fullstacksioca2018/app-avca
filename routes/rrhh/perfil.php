@@ -6,7 +6,7 @@ Route::group(['prefix' => 'perfil'], function () {
     Route::get('obtener-sucursal', 'rrhh\EmpleadoController@obtenerSucursal');
     Route::get('obtener-departamento', 'rrhh\EmpleadoController@obtenerDepartamento');
     Route::get('obtener-cargo', 'rrhh\EmpleadoController@obtenerCargo');
-    Route::post('actualizar-empleado', 'rrhh\EmpleadoController@actualizarEmpleado')->name('empleado.update');
+    Route::post('actualizar-empleado', 'rrhh\EmpleadoController@actualizarEmpleadoSucursal')->name('empleado.update');
     Route::get('obtener-carga-familiar', 'rrhh\EmpleadoController@obtenerCargaFamiliar');
     Route::post('agregar-carga-familiar', 'rrhh\EmpleadoController@agregarCargaFamiliar');
     Route::put('actualizar-estatus/{id}', 'rrhh\EmpleadoController@actualizarEstatus');

@@ -94,13 +94,18 @@
       @endrole
 
       {{-- Analista Menu --}}
-      @role('analista.area')
+      {{--  @role('analista.area')
       @include('rrhh.layouts.partials.nav')
-      @endrole
+      @endrole  --}}
 
       {{-- Gerente de sucursal Menu --}}
       @role('gerente.sucursal')
       @include('rrhh.layouts.partials.sucursal_nav')
+      @endrole
+
+      {{-- Analista de area --}}
+      @role('analista.area')
+      @include('rrhh.layouts.partials.analista_nav')
       @endrole
 
     </div>

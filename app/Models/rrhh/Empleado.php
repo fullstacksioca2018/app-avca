@@ -15,6 +15,11 @@ class Empleado extends Model
         return $this->belongsToMany('App\Models\rrhh\Concepto', 'concepto_empleado', 'empleado_id', 'concepto_id');
     }
 
+    public function vouchers()
+    {
+        return $this->belongsToMany('App\Models\rrhh\Voucher', 'vouchers', 'voucher_id', 'empleado_id');
+    }
+
     public function obtenerProfesion()
     {        
         $profesion = Profesion::where('profesion_id', $this->profesion)->first();        

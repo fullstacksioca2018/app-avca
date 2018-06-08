@@ -2,8 +2,8 @@
 
 // Rutas para el backend del módulo de Recursos Humanos de AVCA
 Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
-    // Dashboard
-    Route::get('admin', 'rrhh\BackendController@dashboard')->name('dashboard');
+
+    require (__DIR__ . '/empleado.php');
 
     // Vacantes
     Route::group(['prefix' => 'vacante'], function () {
@@ -34,6 +34,9 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
 
     // Gerente de sucursal
     require(__DIR__ . '/gerente_sucursal.php');
+
+    // Analista de area
+    require(__DIR__ . '/analista_area.php');
 
     // Consultas AJAX
     Route::get('obtener-sucursales', 'rrhh\EmpleadoController@obtenerSucursales');

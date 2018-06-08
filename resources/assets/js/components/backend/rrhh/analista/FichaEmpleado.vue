@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="row py-5">
-          <div>
+          <div class="col-12">
             <!-- Menu de acciones para el empleado -->
             <acciones-empleado :ruta="ruta" :empleado="empleado" />
           </div>
