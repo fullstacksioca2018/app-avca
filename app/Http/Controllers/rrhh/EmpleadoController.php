@@ -253,7 +253,7 @@ class EmpleadoController extends Controller
 
     public function obtenerConceptos()
     {
-        $conceptos = Concepto::all();
+        $conceptos = Concepto::orderBy('tipo_concepto', 'ASC')->get();
 
         return response()->json($conceptos);
     }

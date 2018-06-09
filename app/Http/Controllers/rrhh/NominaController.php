@@ -16,9 +16,23 @@ use App\Models\rrhh\TabuladorSalarial;
 
 class NominaController extends Controller
 {
+    public function empleados()
+    {
+        // Filtro los empleados por area
+        $empleados = Empleado::where([
+            ['estatus', 'activo'],            
+        ])->paginate();
+        return view('rrhh.backend.nomina.empleados', compact('empleados'));
+    }
+
     public function generarNominas()
     {
         return view('rrhh.backend.nomina.generate');
+    }
+
+    public function verNominasGeneradas()
+    {
+        return view('rrhh.backend.nomina.nominas_generadas');
     }
 
     public function obtenerNominas()
@@ -239,7 +253,7 @@ class NominaController extends Controller
             }
         }
         // Elimina la tabla pivote concepto-nomina
-        $nomina->conceptos()->detach($conceptos);
+        //$nomina->conceptos()->detach($conceptos);
 
         return response()->json('success');
 
@@ -342,5 +356,23 @@ class NominaController extends Controller
                     ->get();
 
         return response()->json($vouchers);
+    }
+
+    // Obtener los conceptos por mes
+    public function conceptosPorMes(Request $request)
+    {                
+        $nomina = $request->nomina != null ? $request->nomina : 1;
+        
+        $nomina = Nomina::findOrFail($nomina);
+
+        $conceptos_nomina = [];
+
+        foreach ($nomina->conceptos as $concepto) {
+            if ($concepto->pivot->created_at->month == $request->mes) {                
+                $conceptos_nomina[] = $concepto;
+            }
+        }
+
+        return collect($conceptos_nomina)->toJson();
     }
 }

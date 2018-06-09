@@ -52,6 +52,7 @@ Vue.component('ficha-analista', require('./components/backend/rrhh/analista/Fich
 // Nomina del empleado
 Vue.component('generar-nomina', require('./components/backend/rrhh/nomina/GenerarNomina'));
 Vue.component('consultar-nomina', require('./components/backend/rrhh/nomina/ConsultarNomina'));
+Vue.component('nominas-generadas', require('./components/backend/rrhh/nomina/NominasGeneradas'));
 
 // Sucursal
 Vue.component('listado-sucursales', require('./components/backend/rrhh/sucursal/ListadoSucursal'));

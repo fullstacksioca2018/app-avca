@@ -40,23 +40,28 @@
                                     <i class="fa fa-user"></i> Datos personales
                                 </a>
                             </li>
+                            @endif
+                            @if(auth()->user()->isRole('empleado') || auth()->user()->isRole('analista.nomina'))
                             <li class="nav-item">
                                 <a class="{{ $section == 1 ? 'nav-link active' : 'nav-link' }}" href="{{ route('dashboard.empleado', ['empleado' => $empleado->empleado_id, 'section' => 1]) }}">
                                     <i class="fa fa-vcard"></i> Voucher de pago
                                 </a>
-                            </li>
+                            </li>                            
                             <li class="nav-item">
                                 <a class="{{ $section == 2 ? 'nav-link active' : 'nav-link' }}" href="{{ route('dashboard.empleado', ['empleado' => $empleado->empleado_id, 'section' => 2]) }}">
                                     <i class="fa fa-users"></i> Carga familiar
                                 </a>
                             </li>
+                            @endif
+                            @if (auth()->user()->isRole('empleado'))
                             <li class="nav-item">
                                 <a class="{{ $section == 3 ? 'nav-link active' : 'nav-link' }}" href="{{ route('dashboard.empleado', ['empleado' => $empleado->empleado_id, 'section' => 3]) }}">
                                     <i class="fa fa-file-text"></i> Constancia de trabajo
                                 </a>
                             </li>
+                            @endif
 
-                            @elseif(auth()->user()->isRole('analista.area'))
+                            @if(auth()->user()->isRole('analista.area'))
                             <li class="nav-item">
                                 @if (isset($section) ? $section : $section = 0) @endif
                                 <a class="{{ $section == 0 ? 'nav-link active' : 'nav-link' }}" href="{{ route('dashboard.empleado', ['empleado' => $empleado->empleado_id, 'section' => 0]) }}">
@@ -110,7 +115,7 @@
                         @elseif($section == 0 && auth()->user()->isRole('gerente.sucursal'))
                             <asignar-grupo :empleado="{{ json_encode($empleado) }}"></asignar-grupo>
                         @endif
-                        @if($section == 1 && auth()->user()->isRole('empleado'))
+                        @if($section == 1 && (auth()->user()->isRole('empleado') || auth()->user()->isRole('analista.nomina')))
                             <div class="row">
                                 @include('rrhh.backend.empleado.datos.voucher-pago', ['empleado' => $empleado])
                             </div>
@@ -123,7 +128,7 @@
                         @elseif($section == 1 && auth()->user()->isRole('gerente.sucursal'))
                             <expediente-laboral :empleado="{{ json_encode($empleado) }}" ruta=""></expediente-laboral>
                         @endif
-                        @if($section == 2 && auth()->user()->isRole('empleado'))
+                        @if($section == 2 && (auth()->user()->isRole('empleado') || auth()->user()->isRole('analista.nomina')))
                             <div class="row">
                                 @include('rrhh.backend.empleado.datos.carga-familiar', ['empleado' => $empleado])
                             </div>
