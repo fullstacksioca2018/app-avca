@@ -4,6 +4,7 @@ namespace App\Models\reporte;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
     
 class DW_ReporteServicio extends Model
 {
@@ -22,9 +23,23 @@ class DW_ReporteServicio extends Model
 
     //vuelos destino segun estado 
     public function scopeVuelosDestino($query,$periodo,$destino,$filtroV){
+        $actual2=Carbon::now();
+        $mes2=$actual2->month;
+        $year2=$actual2->year;
+        $day=$actual2->day;
         switch ($filtroV){
             case 'Abiertos':
-                // return $periodo->desde."-".$periodo->hasta;
+                if($periodo->desde==$periodo->hasta){
+                    $fechaincio=$actual2->toDateString();
+                    if($actual2->day<15){ 
+                        $fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                    else{
+                        $fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+                    }
+                    $periodo->desde=Carbon::parse($fechaincio);
+                    $periodo->hasta=Carbon::parse($fechafin);
+                }
                 return DB::table('DwVuelos')
                     ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
                     ->where('DwRutas.destino_id',$destino)
@@ -34,6 +49,18 @@ class DW_ReporteServicio extends Model
                     ->count();
                 break;
             case 'Cancelados':
+                if($periodo->desde==$periodo->hasta){
+                    if($actual2->day<15){ 
+                        $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                        $fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                    else{
+                        $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                        $fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+                    }
+                    $periodo->desde=Carbon::parse($fechaincio);
+                    $periodo->hasta=Carbon::parse($fechafin);
+                }
                 return DB::table('DwVuelos')
                     ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
                     ->where('DwRutas.destino_id',$destino)
@@ -43,6 +70,17 @@ class DW_ReporteServicio extends Model
                     ->count();
             break;
             case 'Demorados':
+                if($periodo->desde==$periodo->hasta){
+                    if($actual2->day<15){ 
+                        $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                    }
+                    else{
+                        $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                    $fechafin=$actual2->toDateTimeString();
+                    $periodo->desde=Carbon::parse($fechaincio);
+                    $periodo->hasta=Carbon::parse($fechafin);
+                }
                 return DB::table('DwDemorados')
                     ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwDemorados.vuelo_id')
                     ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
@@ -52,6 +90,17 @@ class DW_ReporteServicio extends Model
                     ->count();
             break;
             case 'Ejecutados':
+                if($periodo->desde==$periodo->hasta){
+                    if($actual2->day<15){ 
+                        $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                    }
+                    else{
+                        $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                    $fechafin=$actual2->toDateTimeString();
+                    $periodo->desde=Carbon::parse($fechaincio);
+                    $periodo->hasta=Carbon::parse($fechafin);
+                }
                 return DB::table('DwVuelos')
                     ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
                     ->where('DwRutas.destino_id',$destino)
@@ -78,9 +127,24 @@ class DW_ReporteServicio extends Model
     }
     //vuelos origen segun estado 
     public function scopeVuelosOrigen($query,$periodo,$origen,$filtroV){
+        $actual2=Carbon::now();
+        $mes2=$actual2->month;
+        $year2=$actual2->year;
+        $day=$actual2->day;
         switch ($filtroV){
             case 'Abiertos':
-                // return $periodo->desde."-".$periodo->hasta;
+                if($periodo->desde==$periodo->hasta){
+                    $fechaincio=$actual2->toDateString();
+                    if($actual2->day<15){ 
+                        $fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                    else{
+                        $fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+                    }
+                    $periodo->desde=Carbon::parse($fechaincio);
+                    $periodo->hasta=Carbon::parse($fechafin);
+                    // return $periodo->desde."-".$periodo->hasta;
+                }
                 return DB::table('DwVuelos')
                     ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
                     ->where('DwRutas.origen_id',$origen)
@@ -90,6 +154,18 @@ class DW_ReporteServicio extends Model
                     ->count();
                 break;
             case 'Cancelados':
+                if($periodo->desde==$periodo->hasta){
+                    if($actual2->day<15){ 
+                        $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                        $fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                    else{
+                        $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                        $fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+                    }
+                    $periodo->desde=Carbon::parse($fechaincio);
+                    $periodo->hasta=Carbon::parse($fechafin);
+                }
                 return DB::table('DwVuelos')
                     ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
                     ->where('DwRutas.origen_id',$origen)
@@ -99,6 +175,14 @@ class DW_ReporteServicio extends Model
                     ->count();
             break;
             case 'Demorados':
+                if($periodo->desde==$periodo->hasta){
+                    if($actual2->day<15){ 
+                        $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                    }
+                    else{
+                        $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                }
                 return DB::table('DwDemorados')
                     ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwDemorados.vuelo_id')
                     ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
@@ -108,6 +192,14 @@ class DW_ReporteServicio extends Model
                     ->count();
             break;
             case 'Ejecutados':
+                if($periodo->desde==$periodo->hasta){
+                    if($actual2->day<15){ 
+                        $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                    }
+                    else{
+                        $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                }
                 return DB::table('DwVuelos')
                     ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
                     ->where('DwRutas.origen_id',$origen)
@@ -167,8 +259,23 @@ class DW_ReporteServicio extends Model
                 ['DwRutas.origen_id', '=', $ruta->destino_id],
             ])->get();
         if(count($ruta2)==1){
+            $actual2=Carbon::now();
+            $mes2=$actual2->month;
+            $year2=$actual2->year;
+            $day=$actual2->day;
             switch ($filtroV){
                 case 'Abiertos':
+                    if($periodo->desde==$periodo->hasta){
+                        $fechaincio=$actual2->toDateString();
+                        if($actual2->day<15){ 
+                            $fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                        }
+                        else{
+                            $fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+                        }
+                        $periodo->desde=Carbon::parse($fechaincio);
+                        $periodo->hasta=Carbon::parse($fechafin);
+                    }
                     // return $periodo->desde."-".$periodo->hasta;
                     return DB::table('DwVuelos')
                         ->where('DwVuelos.ruta_id',$ruta_id)
@@ -178,6 +285,18 @@ class DW_ReporteServicio extends Model
                         ->count();
                     break;
                 case 'Cancelados':
+                    if($periodo->desde==$periodo->hasta){
+                        if($actual2->day<15){ 
+                            $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                            $fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                        }
+                        else{
+                            $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                            $fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+                        }
+                        $periodo->desde=Carbon::parse($fechaincio);
+                        $periodo->hasta=Carbon::parse($fechafin);
+                    }
                     return DB::table('DwVuelos')
                         ->where('DwVuelos.ruta_id',$ruta_id)
                         ->where('DwVuelos.estado','cancelado')
@@ -186,6 +305,14 @@ class DW_ReporteServicio extends Model
                         ->count();
                 break;
                 case 'Demorados':
+                    if($periodo->desde==$periodo->hasta){
+                        if($actual2->day<15){ 
+                            $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                        }
+                        else{
+                            $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                        }
+                    }
                     return DB::table('DwDemorados')
                         ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwDemorados.vuelo_id')
                         ->where('DwVuelos.ruta_id',$ruta_id)
@@ -194,6 +321,14 @@ class DW_ReporteServicio extends Model
                         ->count();
                 break;
                 case 'Ejecutados':
+                    if($periodo->desde==$periodo->hasta){
+                        if($actual2->day<15){ 
+                            $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                        }
+                        else{
+                            $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                        }
+                    }
                     return DB::table('DwVuelos')
                         ->where('DwVuelos.ruta_id',$ruta_id)
                         ->where('DwVuelos.estado','ejecutado')
@@ -204,8 +339,23 @@ class DW_ReporteServicio extends Model
             }
         }
         else{
+            $actual2=Carbon::now();
+            $mes2=$actual2->month;
+            $year2=$actual2->year;
+            $day=$actual2->day;
             switch ($filtroV){
                 case 'Abiertos':
+                    if($periodo->desde==$periodo->hasta){
+                        $fechaincio=$actual2->toDateString();
+                        if($actual2->day<15){ 
+                            $fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                        }
+                        else{
+                            $fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+                        }
+                        $periodo->desde=Carbon::parse($fechaincio);
+                        $periodo->hasta=Carbon::parse($fechafin);
+                    }
                     // return $periodo->desde."-".$periodo->hasta;
                     return DB::table('DwVuelos')
                         ->where('DwVuelos.ruta_id',$ruta2[0])
@@ -216,6 +366,18 @@ class DW_ReporteServicio extends Model
                         ->count();
                     break;
                 case 'Cancelados':
+                    if($periodo->desde==$periodo->hasta){
+                        if($actual2->day<15){ 
+                            $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                            $fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                        }
+                        else{
+                            $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                            $fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+                        }
+                        $periodo->desde=Carbon::parse($fechaincio);
+                        $periodo->hasta=Carbon::parse($fechafin);
+                    }
                     return DB::table('DwVuelos')
                         ->where('DwVuelos.ruta_id',$ruta2[0])
                         ->orWhere('DwVuelos.ruta_id',$ruta2[1])
@@ -225,6 +387,14 @@ class DW_ReporteServicio extends Model
                         ->count();
                 break;
                 case 'Demorados':
+                    if($periodo->desde==$periodo->hasta){
+                        if($actual2->day<15){ 
+                            $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                        }
+                        else{
+                            $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                        }
+                    }
                     return DB::table('DwDemorados')
                         ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwDemorados.vuelo_id')
                         ->where('DwVuelos.ruta_id',$ruta2[0])
@@ -234,6 +404,14 @@ class DW_ReporteServicio extends Model
                         ->count();
                 break;
                 case 'Ejecutados':
+                    if($periodo->desde==$periodo->hasta){
+                        if($actual2->day<15){ 
+                            $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                        }
+                        else{
+                            $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                        }
+                    }
                     return DB::table('DwVuelos')
                         ->where('DwVuelos.ruta_id',$ruta2[0])
                         ->orWhere('DwVuelos.ruta_id',$ruta2[1])
@@ -581,8 +759,23 @@ class DW_ReporteServicio extends Model
     }
 
     public function scopeVuelosEstado($query, $periodo, $filtroV){
-        switch ($filtroV){
+            $actual2=Carbon::now();
+            $mes2=$actual2->month;
+            $year2=$actual2->year;
+            $day=$actual2->day;
+            switch ($filtroV){
             case 'Abiertos':
+                if($periodo->desde==$periodo->hasta){
+                    $fechaincio=$actual2->toDateString();
+                    if($actual2->day<15){ 
+                        $fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                    else{
+                        $fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+                    }
+                    $periodo->desde=Carbon::parse($fechaincio);
+                    $periodo->hasta=Carbon::parse($fechafin);
+                }
                 // return $periodo->desde."-".$periodo->hasta;
                 return DB::table('DwVuelos')
                     ->whereDate('DwVuelos.fecha_creacion','>=',$periodo->desde)
@@ -591,6 +784,18 @@ class DW_ReporteServicio extends Model
                     ->count();
                 break;
             case 'Cancelados':
+                if($periodo->desde==$periodo->hasta){
+                    if($actual2->day<15){ 
+                        $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                        $fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                    else{
+                        $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                        $fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+                    }
+                    $periodo->desde=Carbon::parse($fechaincio);
+                    $periodo->hasta=Carbon::parse($fechafin);
+                }
                 return DB::table('DwVuelos')
                     ->where('DwVuelos.estado','cancelado')
                     ->whereDate('DwVuelos.fecha_cambio_estado','>=',$periodo->desde)
@@ -598,6 +803,14 @@ class DW_ReporteServicio extends Model
                     ->count();
             break;
             case 'Demorados':
+                if($periodo->desde==$periodo->hasta){
+                    if($actual2->day<15){ 
+                        $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                    }
+                    else{
+                        $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                }
                 return DB::table('DwDemorados')
                     ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwDemorados.vuelo_id')
                     ->whereDate('DwVuelos.fecha_cambio_estado','>=',$periodo->desde)
@@ -605,6 +818,14 @@ class DW_ReporteServicio extends Model
                     ->count();
             break;
             case 'Ejecutados':
+                if($periodo->desde==$periodo->hasta){
+                    if($actual2->day<15){ 
+                        $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
+                    }
+                    else{
+                        $fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
+                    }
+                }
                 return DB::table('DwVuelos')
                     ->where('DwVuelos.estado','ejecutado')
                     ->whereDate('DwVuelos.salida','>=',$periodo->desde)

@@ -19,13 +19,24 @@ Route::group(['prefix' => 'reportes'], function() {
     Route::post('/api/reporte/Servicios','Reportes\ReporteServiciosController@ReporteServicio')->name('reportes.reporte.Servicios');
 
     // Route::get('/api/prueba','Reportes\PanelController@prueba')->name('reportes.prueba');
-     Route::get('/api/prueba','Reportes\ReporteServiciosController@prueba')->name('reportes.prueba');
+     // Route::get('/api/prueba','Reportes\ReporteServiciosController@prueba')->name('reportes.prueba');
      // Route::get('/api/prueba','Reportes\ReporteIngresosController@prueba')->name('reportes.prueba');
      // 
      // 
      
      Route::get('/api/pronostico','Reportes\PronosticoController@PROMEDIOMOVILDOBLE')->name('reportes.pronostico');
+     
+     Route::get('/api/prueba','Reportes\PronosticoController@prueba')->name('reportes.prueba');
+     
 
+
+     Route::post('/api/pronostico/Vuelos','Reportes\PronosticoVuelosController@PanelPronosticar')->name('pronostico.vuelos');
+
+     Route::post('/api/pronostico/Pasajeros','Reportes\PronosticoPasajerosController@PanelPronosticar')->name('pronostico.pasajeros');
+     Route::get('/api/pronostico/Pasajeros','Reportes\PronosticoPasajerosController@prueba')->name('pronostico.pasajeros');
+
+     Route::post('/api/pronostico/Ingresos','Reportes\PronosticoIngresosController@PanelPronosticar')->name('pronostico.ingresos');
+     
 
 });
 

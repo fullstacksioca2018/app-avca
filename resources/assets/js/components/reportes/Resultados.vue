@@ -2,9 +2,7 @@
 	<div class="container">
 		<div class="list-container">
 			<div v-for="(item, key) in graficas">
-				<template slot="title">
 		          <strong >{{ item.titulo }}</strong>
-		        </template>
 		        <div v-if="item.grafica=='Torta'">
 					<div class="Chart">
 				      <h1 style="text-align:center;">{{ item.titulo }}</h1>

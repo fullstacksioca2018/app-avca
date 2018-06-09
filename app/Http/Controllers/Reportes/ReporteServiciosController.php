@@ -504,7 +504,7 @@ class ReporteServiciosController extends Controller
                                         array_push($label, $auxlabel);
                                         array_push($stack, $cont);
                                         $info=$this->consultaVuelos($periodos[0],$consulta->filtrosV[$fv]);
-                                        //return $info;
+                                       // return response()->JSON($info);
                                         $dataAux=array();
                                         array_push($dataAux, $info);
                                         array_push($data, $dataAux);

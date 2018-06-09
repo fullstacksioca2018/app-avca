@@ -978,6 +978,9 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 		margin-right: 0px !important;
 		margin-left: 0px !important;
 	}
+	#panel > div > div.row > div> label,#panel > div > div.row > div > div > label{
+		font-weight: 700;
+	}
 
 	.btn-center{
 		display: block;
