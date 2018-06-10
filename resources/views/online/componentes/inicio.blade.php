@@ -5,6 +5,39 @@
     Intro Section
   ============================-->
 
+
+@if(Auth::guest())
+              
+     {{-- Nada para poner --}}
+
+  @else
+           
+  @if(Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id) == null)
+
+      <script>
+        Push.create("Notificación",{
+          body:"complete su perfil para una mejor experiencia",
+          icon:"{{ asset('online/img/favicon.png') }}",
+          timeout:10000,
+          onClick: function()
+          {
+            window.location = "{{ URL::to('/online/cliente/ModificarPerfil', Auth::guard('online')->user()->id) }}"
+            this.close();
+          } /* Fin de function */
+        });
+      </script>    
+
+   @else
+              
+    {{-- Nada para poner --}}
+
+  @endif
+
+@endif
+
+
+
+
   <section id="intro">
 
     <div class="intro-content">

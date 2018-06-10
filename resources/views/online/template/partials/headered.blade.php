@@ -14,14 +14,14 @@
           <li><i class="fa fa-globe"></i><a href="#portfolio">Destinos</a></li>
           <li class="menu-has-children"><i class="fa fa-briefcase"></i></i><a href="">Guía al Pasajero</a>
             <ul>
-            
+
             @if (Auth::guest())
 
               <li><a href="{{ route('cliente.equipaje') }}">Equipaje</a></li>
               <li><a href="{{ route('cliente.documentacion') }}">Documentación</a></li>
 
             @else
-              
+
               <li><a href="{{ URL::to('/online/cliente/equipaje') }}">Equipaje</a></li>
               <li><a href="{{ URL::to('/online/cliente/documentacion') }}">Documentación</a></li>
             
@@ -40,8 +40,6 @@
             </ul>
           </li>
           @else
-
-
 
           <li><i></i><a href="#" data-toggle="modal" data-target="#Checkin"> Check-in</a></li>
           {{-- <li><i></i><a href=" {{ URL::to('/online/cliente/ConsultarBoleto') }}"> Mis Boletos</a></li> --}}
@@ -64,6 +62,27 @@
             </ul>
           </li>
           @endif
+
+          @if(Auth::guest())
+              
+            {{-- Nada para poner --}}
+
+          @else
+           
+           @if(Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id) == null)
+
+              <li><a href="{{ URL::to('/online/cliente/ModificarPerfil', Auth::guard('online')->user()->id) }}" data-toggle="tooltip" data-placement="top" title="No olvides completar su perfil"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+
+           @else
+              
+              {{-- Nada para poner --}}
+
+           @endif
+
+          @endif
+            
+            
+
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>

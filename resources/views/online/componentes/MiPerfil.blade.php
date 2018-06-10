@@ -12,23 +12,14 @@
      DESDEEEEE AKIIIII COÑOOOOO Con todo y comentario
     ============================-->
 
+
 <br>
     <div class=" col-md-12 col-lg-12">
-<div class="card border-primary border-bottom-0 mb-3">
-  <div class="card-header" id="grad1" id="joder" >
-     <div class="py-2 text-center box wow flipInX" data-wow-duration="0.8s">
-      <img class=" mx-auto img-fluid" src="{{ asset('/online/img/logo.png') }}" width="150px" height="100px">
-        <h2>Mi Perfil</h2>
-        <cite class="lead">Viaje con nosotros y llenese de experiencias y diversión.</cite>
-        
-     </div>
-    
-  </div>
 
-  <div class="card-body"> <!-- ==EL BOOOODYYYY DEL CARD==-->
-    
+    <!-- ==Inicio contenido ==-->
           <div class="row col-sm-11 col-md-12"> <!-- ==Contenido datos del pasajero==-->
-                        <div class="col-md-9 col-sm-9 order-md-2 order-sm-2 mb-1 mt-5 pt-2 box wow fadeInLeft " data-wow-duration="0.6s">
+                        <div class="col-md-9 col-sm-9 order-md-2 order-sm-2 mb-1 mt-1 pt-1 box wow fadeInLeft " data-wow-duration="0.6s">
+                          <h3 class="mb-4 ml-5">Perfil De Usuario</h3>
 
                                           <div class="table-responsive">  
                                             <!--Table-->
@@ -125,7 +116,7 @@
                   </div>    
               </div><!--== Fin rowContenido datos del pasajero== -->
 
-          <hr class="mb-4">
+          <hr class="mb-5 col-11"> 
 
                 
             <!--CONTAINER DETALLES DEL RETORNO-->
@@ -870,9 +861,7 @@
       <br> <br>
 </div>
 </div>
-</div>
-</div>
-<br> <br>
+<br> <br><br> <br>
 <!-- ========================
 AKI EL CIERRE DEL COÑOOOO NO INVENTAR
 ===================================== -->

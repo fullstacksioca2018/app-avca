@@ -41,7 +41,7 @@
                           </div>
                   
                           <div class="form-group">
-                              <div class="col-md-6 col-md-offset-4">
+                              <div class="col-md-7s col-md-offset-4">
                                   <div class="checkbox">
                                       <label>
                                           <input type="checkbox" name="remember"> 
@@ -55,12 +55,6 @@
                               <div class="text-center">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal"> <strong>Cancelar </strong></button>
                                   <button type="submit" class="btn" style="background: rgba(8, 30, 91, 1)"> <strong> Iniciar </strong> </button>
-
-                                  <br>
-                  
-                                  <a class="btn btn-link" href="#">
-                                      ¿Olvidaste tu contraseña?
-                                  </a>
                               </div>
                           </div>
                   </form>

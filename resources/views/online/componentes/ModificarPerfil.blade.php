@@ -21,11 +21,11 @@
 <br>
     <div class=" col-md-12 col-lg-12">
 <div class="card border-primary border-bottom-0 mb-3">
-  <div class="card-header" id="grad1" id="joder" >
+  <div class="card-header" id="grad1" id="joder" style=" height: 210px;">
      <div class="py-2 text-center box wow flipInX" data-wow-duration="0.8s">
       <img class=" mx-auto img-fluid" src="{{ asset('online/img/logo.png') }}" width="150px" height="100px">
         <h2>Edite su perfil</h2>
-        <cite class="lead">Viaje con nosotos y llenese de experiencias y diverción.</cite>
+        <cite class="lead">Viaje con nosotos y llenese de experiencias y diversión.</cite>
         
         
      </div>
@@ -80,7 +80,7 @@
     <label for="inputusername" class="col-sm-2 col-form-label">Nombre de usuario</label>
     <div class="col-sm-10">
       <input type="text" class="form-control impoutperfil" name="username" id="inputusername" value="{{ Auth::guard('online')->user()->name }}">
-    <i class="fa fa-envelope-o icoconsul"></i>
+    <i class="fa fa-user icoconsul"></i>
     </div>    
     <div class="invalid-feedback">
                   Valide su Correo es necesario.
@@ -139,7 +139,7 @@
   </div>
 
   <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-3 col-form-label">Documentacion</label>
+    <label for="inputPassword3" class="col-sm-3 col-form-label">Documentación</label>
      <div class="form-inline col-sm-9">
             <select class="form-control" name="tipo_documento" style="width:25%">
           <option value="Venezolano/a">V</option>
@@ -163,7 +163,7 @@
   </div>
 
   <div class="form-group row">
-    <label for="inputcodigopostal" class="col-sm-3 col-form-label">Codigo Postal</label>
+    <label for="inputcodigopostal" class="col-sm-3 col-form-label">Código Postal</label>
     <div class="col-sm-9">
       
     @if(isset($cliente))  
@@ -184,7 +184,7 @@
   </div>
 
   <div class="form-group row">
-    <label for="inputdireccion" class="col-sm-2 col-form-label">Direccion</label>
+    <label for="inputdireccion" class="col-sm-2 col-form-label">Dirección</label>
     <div class="col-sm-10">
     
     @if(isset($cliente))
@@ -276,7 +276,7 @@
 
 
   <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Pais</label>
+    <label for="inputPassword3" class="col-sm-2 col-form-label">País</label>
     <div class="col-sm-10">
       <select data-placeholder="Ciudad-Aeropuerto" name="pais" class="chosen-select impoutperfil2" class="form-control impout3" tabindex="2" required>
               
@@ -286,7 +286,7 @@
                 
               @else
                 
-                <option required>Pais</option>  
+                <option required>País</option>  
                 
               @endif
 

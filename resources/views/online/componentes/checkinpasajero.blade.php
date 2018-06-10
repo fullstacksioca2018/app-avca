@@ -8,10 +8,10 @@
 {{-- <br> --}}
     <div class=" col-md-12 col-lg-12">
 <div class="card border-primary border-bottom-0 mb-3">
-  <div class="card-header" id="grad1" id="joder" >
+  <div class="card-header" id="grad1" id="joder" style=" height: 96px;" >
      <div class="py-2 text-center box wow flipInX" data-wow-duration="0.8s">
-      <img class=" mx-auto img-fluid" src="{{ asset('/online/img/logo.png') }}""  width="150px" height="100px">
-        <h2>A Un Click de Realizar sus sueños</h2>
+      <!-- <img class=" mx-auto img-fluid" src="{{ asset('/online/img/logo.png') }}""  width="100px" height="80px"> -->
+        <h5 class="pt-2"> <b> A Un Click de Realizar sus sueños </b></h5>
         <cite class="lead">Felicidades se encuentra a pocas horas de llenarse de experiencias y diversión.</cite>
         
      </div>
@@ -21,7 +21,7 @@
   <div class="card-body"> <!-- ==EL BOOOODYYYY DEL CARD==-->
     
           <div class="row col-sm-11 col-md-12"> <!-- ==Contenido datos del pasajero==-->
-                        <div class="col-md-9 col-sm-9 order-md-2 order-sm-2 mb-1 mt-5 pt-2 box wow fadeInLeft " data-wow-duration="0.6s">
+                        <div class="col-md-9 col-sm-9 order-md-2 order-sm-2 mb-1 mt-2 pt-1 box wow fadeInLeft " data-wow-duration="0.6s">
 
 
                                           <div class="table-responsive">
