@@ -147,7 +147,7 @@ export default {
         { key: 'pasajero', label: 'Nombre Pasajero ', sortable: true},
         { key: 'localizador',   label: 'Localizador de Boleto', sortable: true },
         { key: 'actions',   label: ' - ', 'class' : 'text-center' },
-        { key: 'estatus',   label: ' - ', 'class' : 'hidden' }
+      
         
       ],
       currentPage: 1,

@@ -186,7 +186,7 @@
                     </b-tabs>
                     <div class=" col-sm-12 " >
                         <b-button type="submit" variant="primary">Guardar Vuelo</b-button>
-                        <b-button type="reset" variant="danger">Limpiar</b-button>                                    
+                        <b-button type="reset" variant="secondary">Limpiar</b-button>                                    
                     </div>
             </div> <!-- cierre del v-if -->
         </div>
@@ -334,12 +334,7 @@ export default {
                     console.log(this.data);
                     this.formatodatos();
                     
-                    
-                    Vue.toasted.show(response.data, {
-                        theme: "primary", 
-	                    position: "bottom-right",
-	                    duration : 2000
-                    }); 
+                
                     //this.$refs.myModalRef.hide();
                 }).catch((err)=>{
                     Vue.toasted.show('Ha ocurrido un error', {

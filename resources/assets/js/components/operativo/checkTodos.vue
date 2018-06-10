@@ -43,6 +43,9 @@
           <b-button size="sm" disabled="disabled" variant="primary">
             Chequeado
           </b-button>
+           <b-button size="sm"  variant="secundary" @click.stop="imprimir(row)">
+            Imprimir
+          </b-button>
         </div>
         </b-input-group>
       </template>
@@ -63,7 +66,8 @@
 <script>
 
 import axios  from 'axios';
-import {EventBus} from './event-bus.js'
+import {EventBus} from './event-bus.js';
+import jsPDF from 'jsPDF';
 
 
 export default {
@@ -95,7 +99,15 @@ export default {
     }
   },
   methods: {
-      info (item, index, button) {
+    
+    imprimir(row){
+       let pdfName = 'test'; 
+    var doc = new jsPDF();
+    doc.text("Hello World", 10, 10);
+    doc.save(pdfName + '.pdf');
+    },
+
+    info (item, index, button) {
       this.modalInfo.content = item;      
       this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
