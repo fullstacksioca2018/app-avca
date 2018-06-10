@@ -34,6 +34,8 @@ Route::group(['prefix' => 'reportes'], function() {
 
      Route::post('/api/pronostico/Pasajeros','Reportes\PronosticoPasajerosController@PanelPronosticar')->name('pronostico.pasajeros');
      Route::get('/api/pronostico/Pasajeros','Reportes\PronosticoPasajerosController@prueba')->name('pronostico.pasajeros');
+     Route::get('/api/pronostico/Ingresos','Reportes\PronosticoIngresosController@prueba')->name('pronostico.ingresos.p');
+     Route::get('/api/pronostico/Vuelos','Reportes\PronosticoVuelosController@prueba')->name('pronostico.vuelos.p');
 
      Route::post('/api/pronostico/Ingresos','Reportes\PronosticoIngresosController@PanelPronosticar')->name('pronostico.ingresos');
      
