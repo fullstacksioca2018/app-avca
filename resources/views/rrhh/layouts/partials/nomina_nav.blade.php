@@ -4,7 +4,7 @@
             <a href="#" class="nav-link active">
                 <i class="nav-icon fa fa-cogs"></i>
                 <p>
-                    Analista de área
+                    Analista de nómina
                     <i class="right fa fa-angle-down"></i>
                 </p>
             </a>

@@ -70,7 +70,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="{{ $section == 1 ? 'nav-link active' : 'nav-link' }}" href="{{ route('dashboard.empleado', ['empleado' => $empleado->empleado_id, 'section' => 1]) }}">
-                                    <i class="fa fa-money"></i> Asignaciones/Deducciones
+                                    <i class="fa fa-money"></i> Conceptos laborales
                                 </a>
                             </li>
                             <li class="nav-item">

@@ -353,6 +353,7 @@ class NominaController extends Controller
 
         $vouchers = Voucher::whereMonth('fecha', $request->fecha)
                     ->where('nomina_id', $request->nomina)
+                    ->orderBy('concepto_id', 'ASC')
                     ->get();
 
         return response()->json($vouchers);
