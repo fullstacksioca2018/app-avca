@@ -72,7 +72,22 @@ class FacturacionController extends Controller
              $boleto->save();
          }
         return "Factura Pagada Correctamente";
+    }
+
+    public function cancelar (Request $data){
+        $datos=$data->all();
+        //dd($datos['boletos'][0]['id']);
+        
+        foreach($datos['boletos'] as $boleto){
+            $bole=Boleto::find($boleto['id']);
+            $vuelo=Vuelo::find($bole->vuelo_id);
+            $bole->boleto_estado="Cancelado";
+            $vuelo->boletos_reservados=$vuelo->boletos_reservados-1;
+            $bole->save();
+            $vuelo->save();
         }
+        return "Factura Cancelada ";
+    }
  
         //=====LLEGADA DE AVIONES===
     public function llegada()
@@ -94,6 +109,18 @@ class FacturacionController extends Controller
          array_push($datosV,$objAux) ;
      }
     return $datosV;
+    }
+    
+    public function llego(Request $data){
+        $datos=json_decode($data['datos']);
+        $vuelo=Vuelo::find($datos->id);
+        $fecha=Carbon::now()->format('Y-m-d');
+        $vuelo->fecha_llegada=$fecha." ".$datos->HH.":".$datos->mm.":".$datos->ss;
+        $vuelo->observaciones=$datos->area;
+        $vuelo->estado='finalizdo';
+        $vuelo->save();
+        return "ok";
+        //$vuelo->fecha
     }
 
 }

@@ -39,6 +39,9 @@
         <b-button size="sm" @click.stop="info(row.item,row.item, row.index, $event.target)" class="mr-1" variant="primary">
           Pagar
         </b-button>
+        <b-button size="sm" @click.stop="cancelar(row.item,row.item, row.index, $event.target)" class="mr-1" variant="secundary">
+          Cancelar 
+        </b-button>
         </b-input-group>
       </template>
       <template slot="row-details" slot-scope="row">
@@ -96,9 +99,6 @@
            <div class="col-sm-5">
              <span class="help-block">Nombre</span>
                <div class="input-group">
-            <!-- <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-user"></i></span>
-            </div> -->
             <b-form-input type="text" v-model="compra.nombre" class="form-control" autofocus required></b-form-input>            
           </div> <!-- input-group.// -->
            </div>
@@ -106,9 +106,6 @@
           <div class="col-sm-5">
              <span class="help-block">N° Confirmacion</span>
                <div class="input-group">
-            <!-- <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
-            </div> -->
             <b-form-input type="number" class="form-control" autocomplete="off" required v-model="compra.referencia"></b-form-input>
           </div> <!-- input-group.// -->
            </div>
@@ -120,9 +117,6 @@
            <div class="col-sm-5">
              <span class="help-block">Tipo de Pago</span>
                <div class="input-group">
-            <!-- <div class="input-group-prepend">
-               <span class="input-group-text"> <i class="fa fa-payment"></i></span>
-            </div> -->
                 <b-form-select class="form-control" name="tipo_pago" :options="tipo" required v-on:change="cambiarestado()" v-model="compra.tipo"></b-form-select>
           </div> <!-- input-group.// -->
            </div>
@@ -130,9 +124,7 @@
           <div class="col-sm-5">
              <span class="help-block">Tarjeta</span>
                <div class="input-group">
-           <!--  <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
-            </div> -->
+        
                 <b-form-select class="form-control" required :options="tarjetas" v-model="compra.tarjeta"></b-form-select>
           </div> <!-- input-group.// -->
            </div>
@@ -177,7 +169,7 @@ export default {
         { key: 'numero_factura',    label: '#',  sortable: true },
         { key: 'localizador',   label: 'Localizador(es)', sortable: true },
         { key: 'boletos', label: 'Cedula(s) ', sortable: true },
-        { key: 'actions',   label: ' - ', 'class' : 'text-center' }
+        { key: 'actions',   label: '  ', 'class' : 'text-center' }
       ],
       currentPage: 1,
       perPage: 5,
@@ -214,6 +206,31 @@ export default {
         
       }
     },  
+    cancelar(item, index, button){
+       this.$dialog.confirm('Esta opcion no puede ser revertida')
+       .then(function(){
+          axios({
+                method: 'post',
+                url: '/factura/cancelar',
+                data: item
+                
+               }).then((response)=>{
+                console.log(response.data);
+                Vue.toasted.show(response.data, {
+                    theme: "primary", 
+	                position: "bottom-right",
+	                duration : 2000
+                });
+                EventBus.$emit('actualizartabla',true);
+                  this.$root.$emit('bv::hide::modal', 'agregar', '#app');
+               }).catch((err) =>{
+
+               });
+       })
+       .catch(function(){
+          console.log('Cancelar esta Operacion')
+       })
+    },
    
     resetModal () {
       this.modalInfo.title = ''

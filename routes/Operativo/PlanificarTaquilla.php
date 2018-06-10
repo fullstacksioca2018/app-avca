@@ -29,10 +29,12 @@
 		Route::get('/','Operativo\FacturacionController@factura');
 		Route::get('/facturas','Operativo\FacturacionController@facturas');
 		Route::post('/pagar','Operativo\FacturacionController@pagar');
+		Route::post('/cancelar','Operativo\FacturacionController@cancelar');
 	});
 	//llegada de aviones
 Route::group(['prefix'=>'llegada',/* 'middleware' => 'auth' */],function(){
 	Route::get('/','Operativo\FacturacionController@llegada');
 	Route::get('/llegadas','Operativo\FacturacionController@llegadas');
+	Route::post('/llego','Operativo\FacturacionController@llego');
 });
 ?>
