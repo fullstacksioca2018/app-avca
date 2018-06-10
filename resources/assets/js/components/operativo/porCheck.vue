@@ -146,7 +146,9 @@ export default {
         { key: 'cedula', label: 'Cedula ', sortable: true},
         { key: 'pasajero', label: 'Nombre Pasajero ', sortable: true},
         { key: 'localizador',   label: 'Localizador de Boleto', sortable: true },
-        { key: 'actions',   label: ' - ', 'class' : 'text-center' }
+        { key: 'actions',   label: ' - ', 'class' : 'text-center' },
+        { key: 'estatus',   label: ' - ', 'class' : 'hidden' }
+        
       ],
       currentPage: 1,
       perPage: 5,

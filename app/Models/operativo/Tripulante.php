@@ -59,16 +59,16 @@ class Tripulante extends Model
                             WHERE tripulantes.id='$id'  AND vuelos.estado!='cancelado'");
     }
 
-    public function scopeHorasPlanificadas($query, $id, $inicio, $final){ 
-        return DB::select("SELECT SUM(rutas.duracion) as horas
+    public function scopeHorasPlanificadas($query, $id, $inicio, $final){ // 1 - Jesus , 01-06-2018 / 31-06-2018
+        return DB::select("SELECT rutas.duracion as horas
                            FROM tripulantes 
                            JOIN tripulante_vuelo ON tripulantes.id=tripulante_vuelo.tripulante_id 
                            JOIN vuelos ON tripulante_vuelo.vuelo_id=vuelos.id 
-                           JOIN piernas ON vuelos.id=piernas.vuelo_id 
+                           JOIN segmentos ON vuelos.id=segmentos.vuelo_id 
                            JOIN rutas ON piernas.ruta_id=rutas.id 
                            WHERE tripulantes.id='$id' AND 
-                                 vuelos.salida>'$inicio' AND 
-                                 vuelos.salida<'$final' AND 
+                                 vuelos.fecha_salida>'$inicio' AND 
+                                 vuelos.fecha_salida<'$final' AND 
                                  vuelos.estado!='cancelado'");
     }
 
