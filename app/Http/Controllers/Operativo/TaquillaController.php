@@ -308,6 +308,7 @@ class TaquillaController extends Controller
            case 1:
            $boletos = array();   
            $AuxVuelo = Vuelo::find($request->vuelo); 
+          // dd("vendiendo boleto con btn",$btn,"vuelo: ",$AuxVuelo);
            for($key = 0; $key < ($request->adultos+$request->ninos); $key++)
                 {
                     $Nboleto = new Boleto();
@@ -316,10 +317,11 @@ class TaquillaController extends Controller
                         $AuxVuelo->boletos_vendidos=$AuxVuelo->boletos_vendidos+1;
                         $Nboleto->boleto_estado="Pagado";
                     }else{
-                        $AuxVuelo->boletos_vendidos=$AuxVuelo->boletos_reservados+1;
+                        $AuxVuelo->boletos_reservados=$AuxVuelo->boletos_reservados+1;
                         $Nboleto->boleto_estado="Reservado";
                     }
                     $AuxVuelo->save();
+
                     $Nboleto->fecha_expiracion=($date->year."-".$date->month."-".$date->day);
                     if($request->tipo_boleto[$key]=="adulto")
                         $Nboleto->asiento=$request->asiento[$key];

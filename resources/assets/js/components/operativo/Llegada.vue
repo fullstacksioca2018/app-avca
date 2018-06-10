@@ -30,8 +30,7 @@
              :filter="filter"
              @filtered="onFiltered">
      
-      <template slot="Origen" slot-scope="row">{{row.value.nombre}} [{{row.value.sigla}}]</template>
-      <template slot="Destino" slot-scope="row">{{row.value.nombre}} [{{row.value.sigla}}]</template> 
+      <template slot="Ruta" slot-scope="row"> [{{row.value.Origen.sigla}}] - [{{row.value.Destino.sigla}}]</template>
    
       <template slot="actions" slot-scope="row">
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
@@ -39,18 +38,6 @@
         <b-button size="sm" @click.stop="info(row.item,row.item, row.index, $event.target)" class="mr-1" variant="primary">
           Modificar
         </b-button>
-       <!--  <div v-if="row.item.Estado == 'activo'">
-          <b-button size="sm" @click.stop="Deshabilitar(row)">
-            
-            Desabilitar
-          </b-button>
-        </div>
-        <div v-else>
-          <b-button size="sm" @click.stop="Habilitar(row)" variant="success">
-            
-            Habilitar
-          </b-button>
-        </div> -->
         </b-input-group>
       </template>
       <template slot="row-details" slot-scope="row">
@@ -70,32 +57,9 @@
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>
     <div v-if="modalInfo.content != ''">
     <b-form @submit.prevent="actualizar()">
-       <!--    <pre>{{modalInfo.content}}</pre>-->
-      <!--  <div class="row">
-          <div class="form-group col-sm-1 "></div>
-          <div class="col-sm-5">
-            <label for="distancia"> <b> Inserte Distancia: </b></label>
-            <b-form-input id="distancia"
-                      type="text"
-                      required
-                      v-model="modalInfo.content.Distancia"
-                      placeholder="Inserte Distancia">
-            </b-form-input>
-          </div>
-          
-         <div class="col-sm-5">
-           <label for="distancia"> <b> Inserte Tarifa: </b></label>
-            <b-form-input id="tarifa"
-                          type="text"
-                          required
-                          v-model="modalInfo.content.Tarifa"
-                          placeholder="Inserte  Tarifa">
-            </b-form-input>
-          </div>
-           <div class="form-group col-sm-1 "></div>
-        </div>
-      <div class="row"><p></p></div>
-      <div class="row text-center"><div class="col-sm-12 " ><label for="duracion" class="text-center"> <b> Tiempo de Vuelo: </b> </label></div></div>   
+          <!--  <pre>{{modalInfo.content}}</pre> -->
+       <div class="row"><p></p></div>
+      <div class="row text-center"><div class="col-sm-12 " ><label for="duracion" class="text-center"> <b> Registre Hora de Legada del Vuelo: </b> </label></div></div>   
       <div class="row col-sm-12 " id="duracion">
       <div class="form-group col-sm-2 "></div>
       <div class="col-sm-3 ">
@@ -113,11 +77,24 @@
         <span class="help-block"> Segundos </span>
         <b-form-input type="number" min="0" max="60" class="form-control" id="ccyear" v-model="duracionModel.ss"></b-form-input>
       </div>
+      <div class="row"><p></p></div>
+      <div class="row text-center"><div class="col-sm-8 offset-2 " ></div></div>
+      <div class="row col-sm-8 offset-2 ">
+        <label for="observaciones" class="text-center"> <b> Registre Observaciones del Vuelo: </b> </label>
+        <b-form-textarea id="observaciones"
+                         :rows="3"
+                         :max-rows="6"
+                          required
+                          v-model="duracionModel.area"
+                          placeholder="Observaciones...">
+            </b-form-textarea>
+      </div>
      
     </div>
+    <div class="row"><p></p></div>
       <div class="text-center">
         <b-button type="submit" variant="primary" >Actualizar</b-button>
-      </div> -->
+      </div> 
       
     </b-form>
     </div>
@@ -131,12 +108,13 @@
 <script>
 
 import axios  from 'axios';
+import moment,{ now } from 'moment';
 import {EventBus} from './event-bus.js'
 
 
 export default {
   components: {
-    
+    moment
   },
   created: function(){
     EventBus.$on('actualizartabla',(event) =>{
@@ -151,19 +129,21 @@ export default {
       data: null,
       fields: [
       
-        { key: 'Origen',    label: 'Sucursal de Origen',  sortable: true },
-        { key: 'Destino',   label: 'Sucursal de Destino', sortable: true },
+        { key: 'Ruta',    label: 'Origen - Destino',  sortable: true },
         { key: 'Fecha',     label: 'Fecha', sortable: true },
-        { key: 'Duracion',  label: 'Duracion ',  sortable: true },
-        { key: 'Hora'  ,    label: 'Hora de Salida ', sortable: true },
+        { key: 'Hora'  ,    label: 'Hora Salida ', sortable: true },
+        { key: 'Duracion',  label: 'Duracion',  sortable: true },
+        { key: 'Llegada',   label: 'Llegada ', sortable: true },        
         { key: 'Estado',    label: 'Estatus', sortable: true},
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
       ],
-      /* duracionModel: {
+      duracionModel: {
         HH : '',
         mm : '',
-        ss : ''
-      }, */
+        ss : '',
+        area: '',
+        id: ''
+      },
       currentPage: 1,
       perPage: 5,
       totalRows: 0,
@@ -177,8 +157,9 @@ export default {
   methods: {
     info (item, index, button) {
       this.modalInfo.content = item;
-      this.modalInfo.title = item.Origen.nombre + " - " + item.Destino.nombre;
-      var elementos = item.Duracion.split(':')
+      this.modalInfo.title = item.n_vuelo+"   "+item.Fecha+" - "+item.Hora;
+      var fecha = item.Llegada.split(' ');
+      var elementos = fecha[1].split(':');
      
       this.duracionModel.HH = elementos[0]
       this.duracionModel.mm = elementos[1]
@@ -209,50 +190,88 @@ export default {
     },
     formatodatos(){
       this.items = [];
+      //var now = moment().format('d-m-YYYY');
       for (var i= 0; i < this.data.length; i++){
+        var elementos=this.data[i].fecha_salida.split(' ');
+        // parseando hora de salida y la duracion para calcular la hora de llegada
+        var fecha = moment(elementos[0]).format('DD-MM-YYYY');
+        var hora=elementos[1].split(':');
+        var HH=parseInt(hora[0]);
+        var mm=parseInt(hora[1]);
+        var ss=parseInt(hora[2]);
+        var duracion2=this.data[i].segmentos[0].ruta.duracion.split(':');
+        var HH2=parseInt(duracion2[0]);
+        var mm2=parseInt(duracion2[1]);
+        var ss2=parseInt(duracion2[2]);
+        //empezar a sumar las dos horas para 
+        var HH3=HH+HH2;
+        var mm3=mm+mm2;
+        var ss3=ss+ss2;
+        //comprar las sumas si ss >59 colocar en 0 y asi sucesivamente.
+        while(ss3>59)//segundos
+        {
+          ss3=ss3-60;
+          mm3=mm3+1;
+
+        }
+        if(ss3<10){ss3="0"+ss3}
+    
+        while(mm3>59)//minutos
+        {
+          mm3=mm3-60;
+          HH3=HH3+1;
+
+        }
+        if(mm3<10){mm3="0"+mm3}
+          
+        while(HH3>59)//Horas
+        {
+          HH3=HH3-60;
+          fecha = moment(elementos[0]).add(1,'days').format('DD-MM-YYYY');
+        }
+        if(HH3<10){HH3="0"+HH3} 
+        
         this.items.push({
           id: this.data[i].id,
           n_vuelo: this.data[i].n_vuelo,
           estado: this.data[i].estado,
-          Fecha: this.data[i].fecha_salida,
+          Fecha: moment(elementos[0]).format('DD-MM-YYYY'),
+          Llegada:fecha+" "+HH3+":"+mm3+":"+ss3, 
+          Hora: elementos[1],
+          Estado: this.data[i].estado,
+          Duracion: this.data[i].segmentos[0].ruta.duracion,
           boletos: this.data[i].n_boletos,
           vendidos: this.data[i].boletos_vendidos,
           reservados: this.data[i].boletos_reservados,
           aeronave: this.data[i].segmentos[0].aeronave_id,
-           Origen: {
-              id: this.data[i].segmentos[0].ruta.origen.sucursal_id,
-              nombre: this.data[i].segmentos[0].ruta.origen.nombre,
-              sigla: this.data[i].segmentos[0].ruta.origen.sigla,
-              ciudad: this.data[i].segmentos[0].ruta.origen.ciudad
-          }, 
-          Destino: {
-              id: this.data[i].segmentos[0].ruta.destino.sucursal_id,
-              nombre: this.data[i].segmentos[0].ruta.destino.nombre,
-              sigla: this.data[i].segmentos[0].ruta.destino.sigla,
-              ciudad: this.data[i].segmentos[0].ruta.destino.ciudad
+          Ruta:{
+                 Origen: {
+                      id: this.data[i].segmentos[0].ruta.origen.sucursal_id,
+                      nombre: this.data[i].segmentos[0].ruta.origen.nombre,
+                      sigla: this.data[i].segmentos[0].ruta.origen.sigla,
+                      ciudad: this.data[i].segmentos[0].ruta.origen.ciudad
+                  }, 
+                  Destino: {
+                      id: this.data[i].segmentos[0].ruta.destino.sucursal_id,
+                      nombre: this.data[i].segmentos[0].ruta.destino.nombre,
+                      sigla: this.data[i].segmentos[0].ruta.destino.sigla,
+                      ciudad: this.data[i].segmentos[0].ruta.destino.ciudad
+                  }
           }
-
         });
       }
      
     },
     actualizar(){
-      this.modalInfo.content.Duracion=this.duracionModel.HH+':'+ this.duracionModel.mm+':'+ this.duracionModel.ss;
+      this.duracionModel.id=this.modalInfo.content.id;
+      var datos= JSON.stringify(this.duracionModel);
       axios({
         method: 'post',
-        url: '/rutas/rutas',
-        data: {
-          id: this.modalInfo.content.id,
-          Origen: this.modalInfo.content.Origen,
-          Destino: this.modalInfo.content.Destino,
-          Distancia: this.modalInfo.content.Distancia,
-          Tarifa: this.modalInfo.content.Tarifa,
-          Estado: this.modalInfo.content.Estado,
-          Duracion:  this.modalInfo.content.Duracion      
-        }
+        url: '/llegada/llego',
+        data: { 'datos': datos}
       }).then((response) =>{
         console.log(response.data);
-       Vue.toasted.show('Se ha guardado existosamente la informacion', {
+       Vue.toasted.show('El vuelo ha llegado exitosamente', {
            theme: "primary", 
 	       position: "bottom-right",
 	        duration : 2000
