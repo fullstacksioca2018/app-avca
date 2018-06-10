@@ -65,6 +65,14 @@ class Vuelo extends Model
         return DB::update('update vuelos set estado = ? where n_boletos > (boletos_vendidos + boletos_reservados) and estado = ?', ['abierto','cerrado']);
     }
 
+    public function scopeVuelosSemanales($query,$fecha_inicio, $fecha_final){
+       return $query->where([
+            ['vuelos.fecha_salida','>',$fecha_inicio],
+            ['vuelos.fecha_salida','<',$fecha_final],
+            ['vuelos.estado','=','abierto']]
+        )->get();
+    }
+
 
    
 }

@@ -120,6 +120,28 @@ class TaquillaController extends Controller
 		
     }
 
+    public function DetalleVuelo(Request $datos){
+     
+        $vuelos = new Vuelo();
+        $fecha_semana_inicial = Carbon::now();
+        $fecha_semana_final=Carbon::now()->addWeeks(1);
+        $vuelos = $vuelos->VuelosSemanales($fecha_semana_inicial, $fecha_semana_final);
+        foreach ($vuelos as $vuelo) {
+            $vuelo->segmentos;
+            foreach ($vuelo->segmentos as $segmento) {
+                $segmento->ruta->origen;
+                $segmento->ruta->destino;
+              
+            }
+        
+        }
+        return $vuelos;
+     
+      
+
+       
+    }
+
     public function DetalleVuelo2(Request $datos){
          
         $origen = $datos->all();
