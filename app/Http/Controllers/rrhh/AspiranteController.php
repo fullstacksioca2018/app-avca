@@ -25,7 +25,7 @@ class AspiranteController extends Controller
             ->join('areas', 'cargos.area_id','=','areas.area_id')
 
             ->select('cargos.titulo','sucursales.nombre','vacantes.*','areas.nombre as nombre_a')
-            ->where('areas.slug','=','administrativa')->get();
+            ->where('areas.slug','=','tripulacion')->get();
 
         return view('rrhh.backend.captacion.seleccion.areas-list', compact('vacantes'));
     }

@@ -70,12 +70,16 @@ class FrontendController extends Controller
         $aspirante = new Aspirante($request->all());
 
         $aspirante->curriculum = $request->file('curriculum')->getClientOriginalName();
-        if ($aspirante->save()) {
-            // Almaceno el pdf subido
-            if ($request->hasFile('curriculum')) {
-                Storage::put('aspirantes', $request->curriculum);
-            }
+        if ($request->hasFile('curriculum')) {
+            // Registramos al aspirante
+            $aspirante->curriculum = $request->file('curriculum')->hashName();
+            $aspirante->save();
+
+            Storage::disk('public')->put('aspirantes/', $request->file('curriculum'));
+        } else {
+            return redirect()->back()->with('error', 'Ha ocurrido un error. Intente nuevamente');
         }
+
 
         alert()->success('Registro exitoso', 'Solicitud registrada')->autoclose(3000);
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\rrhh;
 
+use App\Models\rrhh\Area;
 use Carbon\Carbon;
 use App\Models\rrhh\Cargo;
 use App\Models\rrhh\Voucher;
@@ -84,16 +85,6 @@ class EmpleadoController extends Controller
         return $datos_personales;
     }
 
-    /* public function voucherPago($empleado_id, $mes = null)
-    {        
-        $voucher = Voucher::select('*')
-            ->where('empleado_id', $empleado_id)
-            ->whereMonth('fecha', Carbon::now()->month)
-            ->get();
-
-        return $voucher;
-    } */
-
     /**
      * Obtiene los datos familiares y los pasa por ajax
      */
@@ -154,12 +145,6 @@ class EmpleadoController extends Controller
     public function actualizarEmpleado(UpdateEmpleadoRequest $request, Empleado $empleado)
     {
         if ($request->hasFile('foto')) {
-
-            // Borrando la foto anterior
-            /*if(file_exists(public_path('storage/empleados/' . $empleado->cedula . '/foto/', $empleado->foto))) {
-                //unlink(public_path('storage/empleados/' . $empleado->cedula . '/foto/', $empleado->foto));
-                Storage::disk('local')->delete('empleados/' . $request->cedula . '/foto/', $empleado->foto);
-            }*/
 
             // Actualizando el registro
             $empleado->update($request->all());
@@ -251,6 +236,27 @@ class EmpleadoController extends Controller
         return response()->json($cargo);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function obtenerSucursales()
+    {
+        $data = Sucursal::all();
+        return response()->json($data);
+    }
+
+    public function obtenerAreas()
+    {
+        $data = Area::all();
+        return response()->json($data);
+    }
+
+    public function obtenerCargos($area_id)
+    {
+        $data = Cargo::where('area_id', $area_id)->get();
+        return response()->json($data);
+    }
+
     public function obtenerConceptos()
     {
         $conceptos = Concepto::orderBy('tipo_concepto', 'ASC')->get();
@@ -284,6 +290,27 @@ class EmpleadoController extends Controller
         ])->get();
 
         return view('rrhh.backend.gerente_sucursal.empleados', compact('sucursal', 'empleados'));
+    }
+
+    /**
+     * Muestra el listado de empleados por sucursal que hayan asistido en el dia
+     */
+    public function empleadosPorSucursalAsistentes(Sucursal $sucursal)
+    {
+        $empleados = DB::table('empleados')
+            ->join('asistencias', 'empleados.empleado_id', '=', 'asistencias.empleado_id')
+            ->join('sucursales', 'empleados.sucursal_id', '=', 'sucursales.sucursal_id')
+            ->join('grupos', 'empleados.grupo_id', '=', 'grupos.id')
+            ->join('cargos', 'empleados.cargo_id', '=', 'cargos.cargo_id')
+            ->where([
+                ['asistencias.h_entrada', '<>', null],
+                ['asistencias.fecha', '=', Carbon::now()->format('Y-m-d')],
+                ['sucursales.sucursal_id', $sucursal->sucursal_id]
+            ])
+            ->select('empleados.*', 'grupos.nombre as nombre_grupo', 'cargos.titulo as titulo_cargo', 'asistencias.h_entrada')
+            ->get();
+
+        return view('rrhh.backend.gerente_sucursal.empleados-asistentes', compact('sucursal', 'empleados'));
     }
 
     // Carga familiar
