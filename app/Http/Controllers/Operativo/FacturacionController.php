@@ -20,6 +20,27 @@ use stdClass;
 
 class FacturacionController extends Controller
 {
+    public function __construct(){
+        Carbon::setLocale('es');
+        date_default_timezone_set('America/Caracas');
+        $vuelos= new Vuelo();
+        //busco todos los destinos programados de la fecha actual en adelante
+        $actual = Carbon::now();
+        $actual2=Carbon::now();
+        $actual2->subHours(2); //agg 1hra para buscar y actualizar los vuelos que ya estan cerrados
+        $vuelos->VuelosRetrasados($actual2->toDateTimeString());
+        $actual2=Carbon::now();
+        $actual2->subHours(6); 
+        
+        $vuelos->VuelosCerrados($actual2->toDateTimeString());
+        // Disponibilidad de Boletos
+        $vuelos->BoletosAgotados();
+        $vuelos->BoletosDisponible();
+
+
+       
+    }
+    
     public function factura(){
          
         return view('Operativo.Taquilla.Factura');

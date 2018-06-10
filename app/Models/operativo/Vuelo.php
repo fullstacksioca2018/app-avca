@@ -2,6 +2,7 @@
 
 namespace App\Models\operativo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Vuelo extends Model
 {
@@ -57,4 +58,13 @@ class Vuelo extends Model
         $vuelo->save();
     }
 
+    public function scopeBoletosAgotados($query){     
+        return DB::update('update vuelos set estado = ? where n_boletos <= (boletos_vendidos + boletos_reservados) and estado = ?', ['cerrado','abierto']);
+    }
+    public function scopeBoletosDisponible($query){     
+        return DB::update('update vuelos set estado = ? where n_boletos > (boletos_vendidos + boletos_reservados) and estado = ?', ['abierto','cerrado']);
+    }
+
+
+   
 }

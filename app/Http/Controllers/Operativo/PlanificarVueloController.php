@@ -27,7 +27,14 @@ class PlanificarVueloController extends Controller
         $vuelos->VuelosRetrasados($actual2->toDateTimeString());
         $actual2=Carbon::now();
         $actual2->subHours(6); 
+        
         $vuelos->VuelosCerrados($actual2->toDateTimeString());
+        // Disponibilidad de Boletos
+        $vuelos->BoletosAgotados();
+        $vuelos->BoletosDisponible();
+
+
+       
     }
 
     public function ejecutar(Request $datos){
