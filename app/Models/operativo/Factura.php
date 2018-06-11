@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\operativo;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Factura extends Model
@@ -25,16 +25,25 @@ class Factura extends Model
 	public function boletos()
 	{
 
-		return hasMany('App\Boleto');
+		return hasMany('App\Models\operativo\Boleto');
 		
 	}
 
 	public function tarjeta()
 	{
 
-		return belongsTo('App\tarjeta');
+		return belongsTo('App\Models\operativo\Tarjeta');
 		
 	}
 
+
+ 	public function scopeporpagar($query)
+	{
+		return DB::table('boletos')
+				   ->select('factura_id')
+				   ->where('boleto_estado','=','reservado')
+				   ->GroupBy('factura_id')
+				   ->get();
+	} 
 
 }

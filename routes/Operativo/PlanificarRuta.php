@@ -12,14 +12,8 @@
         
     });
 
-    Route::group(['prefix'=>'sucursales', /* 'middleware' => 'auth' */], function(){
-
-        Route::get('/all','Operativo\PlanificarRutaController@obtenerruta');
-        Route::post('/','Operativo\PlanificarRutaController@crearuta');
-        Route::get('/','Operativo\PlanificarRutaController@prueba');
-      
     
-        
-    });
+
+    
 
 ?>

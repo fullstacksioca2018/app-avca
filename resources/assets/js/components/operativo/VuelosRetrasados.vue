@@ -54,17 +54,8 @@
         <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1" variant="primary">
           Ver
         </b-button>
-        <div v-if="row.item.Estado == 'abierto'">
-          <b-button size="sm" @click.stop="Deshabilitar(row)">
-            Cancelar
-          </b-button>
-        </div>
-        <div v-else>
-          <b-button size="sm" @click.stop="Habilitar(row)" variant="success">
-            
-            Habilitar
-          </b-button>
-        </div>
+      
+       
         </b-input-group>
       </template>
       <template slot="row-details" slot-scope="row">

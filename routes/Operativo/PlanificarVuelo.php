@@ -9,10 +9,13 @@
         Route::get('/disponibilidad','Operativo\PlanificarVueloController@prueba'); 
         Route::post('/crear','Operativo\PlanificarVueloController@crear');
         Route::get('/crear','Operativo\PlanificarVueloController@creart');
+        Route::post('/ejecutar','Operativo\PlanificarVueloController@ejecutar');
+        Route::post('/cancelar','Operativo\PlanificarVueloController@cancelar');
+        
 
         
     });
-
+   
    
 
 ?>

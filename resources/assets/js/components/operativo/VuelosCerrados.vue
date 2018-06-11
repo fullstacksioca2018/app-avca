@@ -26,7 +26,7 @@
         </b-form-group>
       </b-col>
       <b-col md="6" class="my-1">
-         <b-btn v-b-modal.agregar variant="primary">Agregar Nuevo Vuelo</b-btn>
+         
       </b-col>
       <b-col md="6" class="my-1">
         <b-form-group horizontal label="Per page" class="mb-0">
@@ -54,17 +54,7 @@
         <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1" variant="primary">
           Ver
         </b-button>
-        <div v-if="row.item.Estado == 'abierto'">
-          <b-button size="sm" @click.stop="Deshabilitar(row)">
-            Cancelar
-          </b-button>
-        </div>
-        <div v-else>
-          <b-button size="sm" @click.stop="Habilitar(row)" variant="success">
-            
-            Habilitar
-          </b-button>
-        </div>
+        
         </b-input-group>
       </template>
       <template slot="row-details" slot-scope="row">

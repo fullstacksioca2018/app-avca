@@ -51,20 +51,22 @@
       <template slot="actions" slot-scope="row">
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
         <b-input-group>
-        <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1" variant="primary">
+       
+        <b-button size="sm" @click.stop="ejecutar(row.item, row.index, $event.target)" class="mr-1" variant="primary">
+          Ejecutar
+        </b-button>
+         <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1" variant="secundary">
           Ver
+        </b-button>
+        <b-button size="sm" @click.stop="cancelar(row.item, row.index, $event.target)" class="mr-1" variant="secundary">
+          Cancelar
         </b-button>
         <div v-if="row.item.Estado == 'abierto'">
          <!--  <b-button size="sm" @click.stop="Deshabilitar(row)">
             Cancelar
           </b-button> -->
         </div>
-        <div v-else>
-          <b-button size="sm" @click.stop="Habilitar(row)" variant="success">
-            
-            Habilitar
-          </b-button>
-        </div>
+       
         </b-input-group>
       </template>
       <template slot="row-details" slot-scope="row">
@@ -161,7 +163,7 @@ export default {
         { key: 'Fecha', label: 'Fecha ', sortable: true },
         { key: 'Hora',  label: 'Hora ',  sortable: true },
         { key: 'Estado',    label: 'Status ', sortable: true },
-        { key: 'actions',   label: ' - ', 'class' : 'text-center' }
+        { key: 'actions',   label: ' '}
       ],      
       currentPage: 1,
       perPage: 5,
@@ -194,6 +196,56 @@ export default {
     }
   },
   methods: {
+    cancelar(item, index, button){
+       this.$dialog.confirm('Esta opcion no puede ser revertida')
+       .then(function(){
+          axios({
+                method: 'post',
+                url: '/vuelos/cancelar',
+                data: item
+                
+               }).then((response)=>{
+             
+                Vue.toasted.show(response.data, {
+                    theme: "primary", 
+	                position: "bottom-right",
+	                duration : 2000
+                });
+                EventBus.$emit('actualizartabla',true);
+                  this.$root.$emit('bv::hide::modal', 'agregar', '#app');
+               }).catch((err) =>{
+
+               });
+       })
+       .catch(function(){
+          console.log('Cancelar esta Operacion')
+       })
+    },
+    ejecutar (item, index, button){
+      this.$dialog.confirm('Esta opcion no puede ser revertida')
+	    .then(function () {
+		    axios({
+                method: 'post',
+                url: '/vuelos/ejecutar',
+                data: item
+                
+               }).then((response)=>{
+             
+                Vue.toasted.show(response.data, {
+                    theme: "primary", 
+	                position: "bottom-right",
+	                duration : 2000
+                });
+                EventBus.$emit('actualizartabla',true);
+                  this.$root.$emit('bv::hide::modal', 'agregar', '#app');
+               }).catch((err) =>{
+
+               });
+	    })
+	      .catch(function () {
+		    console.log('Cancelar esta Operacion')
+	    });
+    },
     info (item, index, button) {
       this.modalInfo.content = item;
       this.modalInfo.title = "Datos del Vuelo: " + item.N_Vuelo;
@@ -247,6 +299,7 @@ export default {
             var fecha = this.data[i].vuelo.fecha_salida.split(" ")[0];
             var hora = this.data[i].vuelo.fecha_salida.split(" ")[1];
             this.items.push({
+              id: this.data[i].vuelo.id,
               N_Vuelo: this.data[i].vuelo.n_vuelo,
               Ruta: rutas,
               Fecha: fecha,
@@ -363,3 +416,15 @@ export default {
 
 
 
+<style>
+.dg-content {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size:20px;
+ }
+.dg-btn--ok {
+  color: white;
+  border-color: red;
+  background-color: red
+}
+</style>

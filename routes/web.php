@@ -81,6 +81,7 @@ require 'Operativo\PlanificarVuelo.php';
 <<<<<<< HEAD
 =======
 require 'Operativo\PlanificarAeronave.php';
+require 'Operativo\PlanificarSucursal.php';
 Route::get('/reportes', function () {
     return view('reportes.PanelConsulta');
 });

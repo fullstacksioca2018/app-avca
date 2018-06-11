@@ -7,12 +7,33 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Operativo\Ruta;
 use App\Models\Operativo\Sucursal;
+use App\Models\Operativo\Vuelo;
+use Carbon\Carbon;
 
 
 use stdClass;
 
 class PlanificarRutaController extends Controller
 {
+    
+  public function __construct(){
+    Carbon::setLocale('es');
+    date_default_timezone_set('America/Caracas');
+    $vuelos= new Vuelo();
+    //busco todos los destinos programados de la fecha actual en adelante
+    $actual = Carbon::now();
+    $actual2=Carbon::now();
+    $actual2->subHours(2); //agg 1hra para buscar y actualizar los vuelos que ya estan cerrados
+    $vuelos->VuelosRetrasados($actual2->toDateTimeString());
+    $actual2=Carbon::now();
+    $actual2->subHours(6); 
+    
+    $vuelos->VuelosCerrados($actual2->toDateTimeString());
+    // Disponibilidad de Boletos
+    $vuelos->BoletosAgotados();
+    $vuelos->BoletosDisponible();
+  }
+
     //Mostrar Ruta
     public function ruta(){
       return view('Operativo.Ruta.ruta');
@@ -20,7 +41,7 @@ class PlanificarRutaController extends Controller
     
     public function rutas(){
        $obj = array();
-      //$sucursales= Sucursal::orderBy('nombre','ASC')->get();
+     
       $rutas= Ruta::orderBy('id')->get();
       foreach($rutas as $ruta){
         $objAux = new stdClass();
@@ -89,9 +110,7 @@ class PlanificarRutaController extends Controller
   public function crearuta(Request $datos){
 
     $ruta = new Ruta();
-  
-    // return  $datos->all();
-    // return count($ruta->Buscador($datos->origen['id'],$datos->destino['id'])->get());
+
   
     if(count($ruta->Buscador($datos->origen['id'],$datos->destino['id'])->get())){
       
@@ -112,28 +131,17 @@ class PlanificarRutaController extends Controller
       $destino = $sucursal_destino->find($datos->destino['id'])->sigla;
       
       $ruta->sigla =  $origen."-".$destino;
-    
+       
       
 
       $ruta->save();
-      
+    
       return 'La Ruta '.$datos->origen['nombre']." ---> ".$datos->destino['nombre']." Se ha Generado Exitosamente";
     }
    
    
   }
 
-  public function prueba(){
-    $ruta = new Ruta();
-    
-    $ruta->origen_id=1;
-    $ruta->destino_id=2;
-    $ruta->distancia=500;
-    $ruta->duracion="00:00:00";
-    $ruta->tarifa_vuelo=7000;    
-    $ruta->estado="activo";
-    $ruta->
-    $ruta->save();
-  }
+  
 }
    

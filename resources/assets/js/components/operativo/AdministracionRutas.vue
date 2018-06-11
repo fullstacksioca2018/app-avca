@@ -193,7 +193,6 @@ export default {
       sortDesc: false,
       filter: null,
       modalInfo: { title: '', content: '' },
-      estados:['activo','inactivo']
     }
   },
   computed: {
@@ -244,12 +243,12 @@ export default {
           id: this.data[i].ruta.id,
           Origen: {
             id: this.data[i].ruta.origen.id,
-            nombre: this.data[i].ruta.origen.nombre 
+            nombre: this.data[i].ruta.origen.ciudad  
                     + " (" + this.data[i].ruta.origen.sigla  + ")"
           },
           Destino: {
             id: this.data[i].ruta.destino.id,
-            nombre: this.data[i].ruta.destino.nombre
+            nombre: this.data[i].ruta.destino.ciudad 
                      + " (" + this.data[i].ruta.destino.sigla  + ")"
           },
           Distancia:this.data[i].ruta.distancia,
@@ -268,7 +267,7 @@ export default {
         data: {
           id: this.modalInfo.content.id,
           Origen: this.modalInfo.content.Origen,
-          Destino: this.modalInfo.content.Origen,
+          Destino: this.modalInfo.content.Destino,
           Distancia: this.modalInfo.content.Distancia,
           Tarifa: this.modalInfo.content.Tarifa,
           Estado: this.modalInfo.content.Estado,
