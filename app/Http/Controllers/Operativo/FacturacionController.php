@@ -16,6 +16,10 @@ use App\Models\online\Boleto;
 use App\Models\Operativo\Maleta;
 use App\Models\Operativo\Asiento;
 
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\EscposImage;
+
 use stdClass;
 
 class FacturacionController extends Controller
@@ -80,34 +84,79 @@ class FacturacionController extends Controller
     }
 
     public function pagar (Request $data){
-        
-         $tarjeta = new Tarjeta();
-         $tarjeta->titular = $data['nombre'];
-         $tarjeta->numero_tarjeta = $data['referencia'];
-         $tarjeta->fecha_vencimiento = $data['tipo']." ".$data['tarjeta'];
-         $tarjeta->save();
-         $boletos=Boleto::where('factura_id','=',$data['id'])->get();
-
-         foreach($boletos as $boleto){
-             $boleto->boleto_estado="Pagado";
-             $boleto->save();
-         }
-        return "Factura Pagada Correctamente";
-    }
-
-    public function cancelar (Request $data){
-        $datos=$data->all();
-        //dd($datos['boletos'][0]['id']);
-        
-        foreach($datos['boletos'] as $boleto){
-            $bole=Boleto::find($boleto['id']);
-            $vuelo=Vuelo::find($bole->vuelo_id);
-            $bole->boleto_estado="Cancelado";
-            $vuelo->boletos_reservados=$vuelo->boletos_reservados-1;
-            $bole->save();
-            $vuelo->save();
-        }
-        return "Factura Cancelada ";
+        if(isset($data['nombre'])){
+            $tarjeta = new Tarjeta();
+            $tarjeta->titular = $data['nombre'];
+            $tarjeta->numero_tarjeta = $data['referencia'];
+            $tarjeta->fecha_vencimiento = $data['tipo']." ".$data['tarjeta'];
+            $tarjeta->save();
+           }
+            $boletos=Boleto::where('factura_id','=',$data['id'])->get();
+            
+           
+           
+          
+            $factura =Factura::find($data['id']);   
+             
+            
+            try {
+                // Enter the share name for your USB printer here
+                $connector = null;
+                $connector = new WindowsPrintConnector("Tickera");
+                /* Print a "Hello world" receipt" */
+                $printer = new Printer($connector);
+                $printer->feed();
+                $printer -> text("*******************************\n"); 
+                $printer -> text("     __      _______           \n");       
+                $printer -> text("    /\ \    / / ____|   /\     \n");
+                $printer -> text("   /  \ \  / / |       /  \    \n");
+                $printer -> text("  / /\ \ \/ /| |      / /\ \   \n");
+                $printer -> text(" / ____ \  / | |____ / ____ \  \n");
+                $printer -> text("/_/    \_\/   \_____/_/    \_\ \n");
+                $printer -> text("             SENIAT            \n");
+                $printer -> text("          J-410124407          \n"); 
+                $printer -> text("      ALAS DE VENEZUELA C.A    \n"); 
+                $printer -> text("      Maiquetía 1162, Vargas   \n"); 
+                $printer->feed();
+                $printer -> text("            FACTURA          \n"); 
+                $printer -> text("Factura:                ".$factura->numero_factura."\n"); 
+                $printer -> text("Fecha: ".$factura->fecha." \n" );  
+                $printer -> text("Hora: ".Carbon::now()->toTimeString()." \n");    
+             
+                $printer->feed();            
+                $printer -> text("-------------------------------\n");  
+                $printer->feed();
+                $i = 1;
+                foreach($boletos as $boleto){
+                    $printer -> text("Boleto: [".$i."] \n");
+                    $printer -> text("Identificacion: ".$boleto->documento." \n");
+                    $printer -> text("Localizador: ".$boleto->localizador." \n");
+                    $printer -> text("Nro Vuelo: ".$boleto->vuelo->n_vuelo." (".$boleto->vuelo->segmentos[0]->ruta->origen->sigla."-".$boleto->vuelo->segmentos[0]->ruta->destino->sigla.") \n");                
+                    $printer -> text("Costo: ".$boleto->vuelo->segmentos[0]->ruta->tarifa_vuelo." BsS \n");
+                    $printer -> text("-------------------------------\n");  
+                 
+                   // $boleto->boleto_estado="Pagado";               
+                   // $boleto->save();
+                    $i++;
+                } 
+                $printer -> text("Importe Facturado: ".$factura->importe_facturado." BsS \n");
+                $printer -> text("     Gracias por su compra.   \n");
+                $printer -> text("          Feliz Viaje          \n");
+                 
+                $printer->feed(); 
+                $printer->feed(); 
+                $printer->feed(); 
+               
+                $printer->feed(); 
+                $printer -> cut();             
+                /* Close printer */
+                $printer -> close();
+     
+            } catch (Exception $e) {
+                return  "Couldn't print to this printer: " . $e -> getMessage() . "\n";
+            }
+    
+            return "Factura Pagada Correctamente";
     }
  
         //=====LLEGADA DE AVIONES===
