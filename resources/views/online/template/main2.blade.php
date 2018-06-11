@@ -96,6 +96,7 @@
 <script src="{{ asset('online/js/jspersonal.js') }}"></script>
 <script src="{{ asset('online/js/formulario.js') }}"></script>
 <script src="{{ asset('online/js/multidestino.js') }}"></script>
+<script src="{{ asset('online/js/TarjetaCredito.js') }}"></script>
 
 <!--Lo del Select niños en brazos y esas cosas Main JS -->
 
@@ -112,7 +113,7 @@
   @include('online.template.partials.ModalLogin') 
   @include('online.template.partials.ModalRegister')
   @include('online.template.partials.ModalCheckin')
-  @include('online.template.partials.header')
+  @include('online.template.partials.headered')
   @include('online.template.partials.erros')
   @include('flash::message')
   @yield('content')
@@ -126,6 +127,8 @@
     display: none;
   }
 </style>
+@yield('scripts')
+
   <script>
     $('div.alert').delay(5000).fadeOut(350);
   </script>

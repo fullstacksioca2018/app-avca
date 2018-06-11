@@ -79,6 +79,7 @@ Route::group(['prefix' => 'online'], function () {
   Route::get('/password/reset', 'OnlineAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'OnlineAuth\ResetPasswordController@showResetForm');
 });
+require 'AdministradorOnline.php';
 
 
 
@@ -97,3 +98,6 @@ Route::get('auth/{provider}/callback', 'OnlineAuth\SocialAuthController@handlePr
 require 'Operativo\PlanificarAeronave.php';
 require 'Operativo\PlanificarSucursal.php';
 
+Route::get('reporte/operativo', function () {
+        return view('Operativo.reportes.reporte');
+    })->name('reportes.operativo');

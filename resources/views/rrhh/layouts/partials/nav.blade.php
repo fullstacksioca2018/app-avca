@@ -125,7 +125,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{ route('reportes.rrhh') }}" class="{{ request()->routeIs('reportes.rrhh') ? 'nav-link active' : 'nav-link' }}">
             <i class="nav-icon fa fa-bar-chart"></i>
             <p>
               Reportes y estadísticas

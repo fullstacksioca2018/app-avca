@@ -15,16 +15,14 @@
 					    </b-form-group>
 					    <!-- Parametros-->
 					    <div class="row">
-					    <div class="col-6">
-					    	<div class="row">
-					    	<div class="col-6">
-								<b-form-group :label="'Parametros '+ tipo">
+					    	<div class="col-3">
+								<b-form-group label="Parámetros">
 							      <b-form-checkbox-group stacked v-model="form.parametros" name="flavour2" :options="parametros" :state="stateParametros">
 							      </b-form-checkbox-group>
 							    </b-form-group>
 					    	</div>
 					    	<!-- Lapso de Tiempo -->
-					    	<div class="col-6" v-if="form.consulta!='Personal'">
+					    	<div class="col-3" v-if="form.consulta!='Personal'">
 							     <b-form-group label="Fecha">
 							      <b-form-radio-group v-model="form.periodo"
 							                          :options="optionsP"
@@ -33,7 +31,7 @@
 							      </b-form-radio-group>
 							    </b-form-group>
 					    	</div>
-					    	<div class="col-6" v-if="form.consulta=='Personal'&&form.tipo!='Busqueda'">
+					    	<div class="col-3" v-if="form.consulta=='Personal'&&form.tipo!='Búsqueda Avanzada'">
 							     <b-form-group label="Fecha">
 							      <b-form-radio-group v-model="form.periodo"
 							                          :options="optionsPP"
@@ -42,7 +40,7 @@
 							      </b-form-radio-group>
 							    </b-form-group>
 					    	</div>
-					    	<div class="col-6" v-if="form.consulta=='Personal'&&form.tipo=='Busqueda'">
+					    	<div class="col-3" v-if="form.consulta=='Personal'&&form.tipo=='Búsqueda Avanzada'">
 							     <b-form-group label="Fecha">
 							      <b-form-radio-group v-model="form.periodo"
 							                          :options="optionsPPB"
@@ -51,9 +49,9 @@
 							      </b-form-radio-group>
 							    </b-form-group>
 					    	</div>
-					    </div>
-					    	<div class="form-row" v-if="form.periodo=='Temporada'">
-					    	<div class="col-6" >
+							<!-- <transition name="fade"  mode="in-out"> -->
+					    <div class="row col-6" v-show="form.periodo=='Temporada'">
+					    	<div class="col-7" >
 					    		 <legend>Temporada</legend>
 					    		 <multiselect v-model="form.temporadas" :options="opcionesT" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Temporada" :preselect-first="false" selectLabel="Seleccionar">
 							    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
@@ -61,17 +59,20 @@
 							    <!-- <b-form-select multiple :select-size="4" v-model="form.temporadas" :options="opcionesT" class="mb-3">
 						    	</b-form-select> -->
 					    	</div>
-					    	<div class="col-4" >
+					    	<div class="col-5" >
 					    		 <legend>Año</legend>
 					    		 <multiselect v-model="form.year" :options="year" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Cargos" :preselect-first="false" selectLabel="Seleccionar">
 							    	<template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
 								</multiselect>
-							    <!-- <b-form-select multiple :select-size="4" v-model="form.year" :options="year" class="mb-3"> -->
-						    	</b-form-select>
+							    <!-- <b-form-select multiple :select-size="4" v-model="form.year" :options="year" class="mb-3"> 
+						    	</b-form-select>-->
 					    	</div>
 						</div>
-					    	<div class="row" v-if="form.periodo=='Personalizado'&&form.consulta!='Personal'">
-					    		<div class="col-md-6">
+					<!-- </transition>
+							<transition name="fade"  mode="in-out"> -->
+					    	<div v-show="form.periodo=='Personalizado'&&form.consulta!='Personal'">
+					    		<label for="fecha_ingreso">Fecha Personalizada</label>
+					    		<div class="col-md-12">
 					              <label for="fecha_ingreso">Desde</label>
 					              <div class="input-group">
 					              	<b-form-input v-model="form.desde" type="date">
@@ -83,7 +84,7 @@
 					                </div>
 					              </div>
 					            </div>
-					            <div class="col-md-6">
+					            <div class="col-md-12">
 					              <label for="fecha_ingreso">Hasta</label>
 					              <div class="input-group">
 					                <b-form-input v-model="form.hasta" type="date">
@@ -96,10 +97,10 @@
 					              </div>
 					            </div>
 					        </div>
-					        <div v-if="form.periodo=='Intervalo'">
-					        	<br>
+					   <!--  </transition>
+							<transition name="fade"  mode="in-out"> -->
+					        <div class="col" v-show="form.periodo=='Intérvalo'">
 					            <label for="fecha_ingreso">Fecha Personalizada</label>
-					        	<br>
 					        	<div class="row">
 						        	<div class="col-md-5">
 						              <label for="fecha_ingreso">Desde</label>
@@ -147,11 +148,11 @@
 						            </div>
 					        	</div>
 					        <!-- </div> -->
-					    </div><br>
-					    <div v-if="form.periodo=='Personalizado'&&form.consulta=='Personal'">
-					        	<br>
+					    </div>
+					<!-- </transition>
+							<transition name="fade"  mode="in-out"> -->
+					    <div class="col" v-show="form.periodo=='Personalizado'&&form.consulta=='Personal'">
 					            <label for="fecha_ingreso">Fecha Personalizada</label>
-					        	<br>
 					        	<div class="row">
 						        	<div class="col-md-5">
 						              <label for="fecha_ingreso">Mes\Año</label>
@@ -175,19 +176,11 @@
 						              </div>
 						            </div>
 					        	</div>
-					    </div><br>
-					    <div class="row">
-				          <div class="col-12">
-				            <div class="form-group">
-				              <button type="submit" class="btn btn-success" @click="generar2()">
-				                <i class="fa fa-check"></i>Generar
-				              </button>
-				            </div>
-				          </div>
-				        </div>
 					    </div>
+					<!-- </transition> -->
+					</div>
 						    <!-- Filtros -->
-						    <div class="col-6">
+						    <div class="col-12">
 						    	<b-form-group>
 							      <b-form-radio-group id="btnradios1"
 							                          buttons
@@ -195,13 +188,14 @@
 							                          :options="tiposC"
 							                          name="radiosBtnDefault" />
 							    </b-form-group>
-							    <div v-if="form.tipo=='Busqueda'" id="Busqueda" class="row marginCero">
+							<!-- <transition name="fade"  mode="in-out"> -->
+							    <div v-if="form.tipo=='Búsqueda Avanzada'" id="Busqueda" class="row marginCero col-9">
 									<legend class="typo__label">Condición: [{{ form.textC }}]</legend>
 									  <multiselect v-model="form.busqueda" :options="busqueda" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione filtro" :preselect-first="false" selectLabel="Seleccionar" class="col-5 sinpadding">
 									    <template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
 									  </multiselect>
 									  <div v-if="form.busqueda=='Mayor que'||form.busqueda=='Menor que'" class="col-4 sinpadding">
-										  <multiselect v-model="form.busquedaMonto" :options="busquedaMonto" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" :preselect-first="false" selectLabel="Seleccionar" placeholder="Parametro">
+										  <multiselect v-model="form.busquedaMonto" :options="busquedaMonto" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" :preselect-first="false" selectLabel="Seleccionar" placeholder="Parámetro">
 										    <template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
 										  </multiselect>
 									  </div>
@@ -209,15 +203,16 @@
 									    <template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
 									  </multiselect>
 								</div>
+							<!-- </transition> -->
 						    	<div v-if="filtros!=null">
 						    		 <div>
-										  <legend class="typo__label">Otros Filtros</legend>
+										  <legend class="typo__label">Filtros</legend>
 										  <multiselect v-model="form.filtros" :options="filtros" :multiple="true" :close-on-select="false" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione filtro" :preselect-first="false" selectLabel="Seleccionar">
 										    <template slot="tag" slot-scope="props"><span class="custom__tag multiselect__tag"><span>{{ props.option }}</span><span class="custom__remove" @click="props.remove(props.option)"><i class="fa fa-times-circle"></i></span></span></template>
 										  </multiselect>
 									</div>
 						    	</div>
-							    <div v-if="form.filtros!=null&&form.tipo!='Busqueda'">
+							    <div v-if="form.filtros!=null&&form.tipo!='Búsqueda Avanzada'">
 							    	<!-- <div class="form-row"> -->
 							    	<div v-for="filtroA in form.filtros">
 								    	<b-form-group :label="filtroA">
@@ -258,11 +253,16 @@
 									</div>
 						    	</div>
 							</div>
+					    <div class="container m-auto">
+				              <button type="submit" class="btn btn-success btn-lg btn-center" @click="generar2()">
+				                <i class="fa fa-check"></i>Generar
+				              </button>
+				        </div>
+					    </div>
 					    </div>
 				    	
 				    </div>
 			</div>
-		</div>
 		<div class="card" v-if="!loading">
 	    	<div class="card-block">
 				<div v-show="graficas.length>=1">
@@ -322,7 +322,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 					destinosF:[],
 					rutasF:[]
 				},
-				tiposC:["Consulta","Busqueda"],
+				tiposC:['Consulta','Búsqueda Avanzada'],
 				filtrosPjr:null,
 				P:[
 					'Bebe','Niños','Adolecente','Adulto','Discapacitado'
@@ -347,7 +347,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 				],
 				parametrosS:['Vuelos','Pasajeros'
 				],
-				optionsPP:['Mes anterior','Personalizado','Intervalo'
+				optionsPP:['Mes anterior','Personalizado','Intérvalo'
 				],
 				optionsPPB:['Mes anterior','Personalizado'
 				],
@@ -435,7 +435,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 				this.Dashboard();
 			},
 			'form.tipo': function(){
-				if(this.form.tipo=='Busqueda'){
+				if(this.form.tipo=='Búsqueda Avanzada'){
 					if(this.form.filtros.length==0){
 						if(this.form.consulta=='Personal'){
 							this.form.filtros.push("Sucursal");
@@ -536,7 +536,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 							this.tipos=['Personal'],
 							this.form.consulta='Personal'
 							break;
-						case "Gerente Sucursales":
+						case "Gerente de Sucursales":
 							this.tipos=['Ingresos','Servicios'],
 							this.form.consulta='Ingresos'
 							break;
@@ -679,7 +679,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 		        this.height += 10
 		      },
 		     validarGG(){
-		     	if(this.form.filtros.length>=1&&this.form.tipo!='Busqueda'){
+		     	if(this.form.filtros.length>=1&&this.form.tipo!='Búsqueda Avanzada'){
 		     		for (var i = 0; i < this.form.filtros.length; i++) {
 		     			if(!(this.form.datosf[this.form.filtros[i]])){
 		     				var text="Ingrese "+this.form.filtros[i]+" para filtrar";
@@ -704,7 +704,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 		     			
 		     		}
 		     	}
-		     	if(this.form.parametros.length==0&&(this.form.consulta!='Ingresos'||(this.form.consulta=='Ingresos'&&this.form.tipo=='Busqueda'))){
+		     	if(this.form.parametros.length==0&&(this.form.consulta!='Ingresos'||(this.form.consulta=='Ingresos'&&this.form.tipo=='Búsqueda Avanzada'))){
 		     		Vue.toasted.show("Debe seleccionar los parametros para la consulta", {
                         theme: "primary", 
 	                    position: "bottom-right",  
@@ -716,6 +716,9 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 		     },
 			generar2(){
                // console.log(this.form.datosf)
+               // Plan B
+              // if(this.form.consulta!='Servicios'){
+              if(true){
         	let loader = this.$loading.show();
                // this.loading=true;
                this.cargarFiltros();
@@ -748,6 +751,9 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
             		loader.hide();
                		this.loading=false;
                }
+           		}else{
+           			this.generar();
+           		}
 			},
 			generar(){
 				var titulo="";
@@ -972,7 +978,45 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 		margin-right: 0px !important;
 		margin-left: 0px !important;
 	}
+
+	.btn-center{
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 	#flex-Perso .input-group{
 		flex-wrap: inherit;
 	}
+	#panel > div > div > div.col > label{
+		font-weight: 700;
+	}
+	#flex-Perso > div{
+		margin-top: 6px;
+	}
+
+	.fade-enter-active {
+	  transition: all 1s cubic-bezier(.2, 0.3, 0.4, .1);
+	}
+	.fade-leave-active {
+	  transition: all 0.1s;
+	}
+	.fade-enter, .fade-leave-to {
+	  transform: translateX(5px);
+	  opacity: 0;
+	}
+
+
+	.fade-button-enter-active {
+	  transition: all .1s ease;
+	}
+	.fade-button-leave-active {
+	  transition: all .6s cubic-bezier(.1, 0.2, 0.2, .1);
+	}
+	.fade-button-enter, .fade-button-leave-to {
+	  transform: translateX(2px);
+	  opacity: 0;
+	}
+
 </style>

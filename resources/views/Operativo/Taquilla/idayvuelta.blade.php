@@ -4,7 +4,7 @@
                     <label id="origen_label" for="origen_id">Ciudad de Origen</label>
                     <div class="form-group">
                       <select data-placeholder="Ciudad-Aeropuerto" id="origen_id_retorno" name="origen_id" class="  fa-map-markerform-control chosen-select ">
-                          <option value="#">Cuidad o aeropuerto</option>
+                          <option value="#">Ciudad o aeropuerto</option>
                           @foreach ($sucursales as $sucursal)
                             <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
                           @endforeach
@@ -88,7 +88,7 @@
             <i class="fa fa-user-plus"></i>
           </span>
         </div>
-        <input type="number" id="inputadultos2" min="1" max="5" class="form-control" value="1" name="inputadultos2" onchange="validarN('inputadultos','2')">
+        <input type="number" id="inputadultos2" min="1" max="6" class="form-control" value="1" name="inputadultos2" onchange="validarN('inputadultos','2')">
       </div>
     </div>
            

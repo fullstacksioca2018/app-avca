@@ -50,8 +50,9 @@
 
     @endforeach
     <tr class="table-detalles">
-      <th class="thresumen">Cantidad pasajeros: {{ $factura->ninos_cant + $factura->adultos_cant }}</th>
       <th class="thresumen">Costo Total: {{ $factura->importe_facturado }}</th>
+      <th class="thresumen2"></th>
+      <th class="thresumen2"></th>
       <th class="thresumen2"></th>
       <th class="thresumen2"></th>
       <th></th>

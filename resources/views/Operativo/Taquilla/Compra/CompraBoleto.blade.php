@@ -95,7 +95,6 @@
               <input type="hidden" form="myForm" name="tipo" id="tipo" value="{{ $tipo }}">
               <input type="hidden" form="myForm" name="adultos" id="adultos" value="{{ $adultos }}">
               <input type="hidden" form="myForm" name="ninos" id="ninos" value="{{ $ninos }}" >
-              <input type="hidden" form="myForm" name="user_id" id="user_id" value="" >
               @if($tipo==1)
               <input type="hidden" form="myForm" name="importe_facturado" value="{{ $tarifa * ($adultos+($ninos-$Contbrazo))}}">
               <input type="hidden" form="myForm" name="vuelo" id="vuelo" value="{{ $vuelo }}">
@@ -119,9 +118,9 @@
                 <div class="row">
                   <h4 class="mb-3">PASAJERO  {{ ($i+1) }}</h4>&nbsp;&nbsp;&nbsp; <!-- ADULTOS -- LOS NIÑOS Y BEBES EN ASIENTO SE CUENTAN COMO ADULTOS Y PAGAN -->
                       <div class="form-group">
-                     <input type="text" id="Buscarci" name="Buscarci" placeholder="Cedula..."> 
-                          <button type="button" class="btn btn-primary" id="btnbuscar">
-                        <i class="fa fa-search"></i>Buscar</button>
+                     <input type="text" id="Buscarci{{$i}}" name="Buscarci" placeholder="Cedula..."> 
+                          <button type="button" class="btn btn-primary" id="btnbuscar{{$i}}" onClick="BuscarCedula({{$i}})")>
+                        <i class="fa fa-search"></i></button>
                     </div>
                   
                   </div>
@@ -133,6 +132,10 @@
                     <input type="text" form="myForm" class="form-control" name="primerNombre[]" id="firstName{{$i}}" placeholder="Nombre" required>
                     <div class="invalid-feedback">Valide su primer nombre es necesario.</div>
                   </div> 
+                  <div class="col-md-4 mb-3">
+                <label for="lastName">Segundo Nombre:</label>
+                <input type="text" class="form-control" name="segundoNombre[]" id="segundoName{{$i}}" placeholder="Segundo nombre">                
+              </div> 
               <div class=" col col-md-4 mb-3">
                 <label for="lastName">Apellido(s):</label>
                 <input type="text" form="myForm" class="form-control" name="apellido[]" id="lastName{{$i}}" placeholder="Apellido"  required>

@@ -1,7 +1,28 @@
 @extends('online.template.main2')
 @section('title','Detalle Vuelo')
 
+@section('style')
+  <style>
+  #migaDePan a{
+    color:#3c3c3c;
+    font-weight: 800;
+  }
+  #migaDePan .breadcrumb-item.active{
+    color:#fff;
+    
+  }
+  </style>
+@endsection
 @section('content')
+
+<div class="col-md-12">
+<nav aria-label="breadcrumb" id="migaDePan">
+  <ol class="breadcrumb bg-primary">
+    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Selección del vuelo de ida</li>
+  </ol>
+</nav>
+</div>
 
 <!--CONTAINER DETALLES DEL RETORNO-->
 
@@ -36,7 +57,7 @@
               <tbody>
                 <tr class="table-detalles2">
                   <th scope="row" class="pthsiglas">{{ $obj->origen->ciudad }} ({{ $obj->origen->sigla }})</th>
-                  <th><img src="img/avion.png" height="30px;">&nbsp &nbsp &nbsp</th>
+                  <th><img src="{{ asset('online/img/iconos-detalles/avion.png') }}" height="30px;">&nbsp &nbsp &nbsp</th>
                   <th class="pthsiglas"> {{ $obj->destino->ciudad }} ({{ $obj->destino->sigla }})</th>
                   <th class="thbtn"> 
                     @if((!isset($retorno))&&(!isset($objMultidestinos)))
@@ -93,7 +114,7 @@
                 </tr>
                 
                   <th scope="col" class="pthhrs">Salida: {{ $salida->format('h:i A') }}</th>
-                  <th><img src="img/reloj.png" height="30px;">&nbsp &nbsp &nbsp</th>
+                  <th><img src="{{ asset('online/img/iconos-detalles/reloj.png') }}" height="30px;">&nbsp &nbsp &nbsp</th>
                   <th scope="col " class="pthhrs">Llegada: {{ $llegada->format('h:i A') }}</th>
                   
                   
@@ -115,7 +136,7 @@
           <table class="table table-sm">
             <thead>
               <tr class="table-detalles2">
-                <th scope="col" class="pthsalida">N°Vuelo: {{ $obj->vuelo->n_vuelo }} - Sólo ida</th>
+                <th scope="col" class="pthsalida">N°Vuelo: {{ $obj->vuelo->n_vuelo }} - ida</th>
                 <th scope="col" class="pthsalida">Clase Económica</th>
                 <th scope="col" class="pthsalida">Tiempo Estimado de Vuelo: {{ $hora->format('H') }}h {{ $hora->format('i') }}min</th>
                 <th scope="col" class="pthsalida">ATR-72</th>

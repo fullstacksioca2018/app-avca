@@ -8,6 +8,9 @@ $(document).ready(function(){
     case '/reportes/panel':
       $('#panelnav').addClass('active');
       break;
+    case '/reportes/pronostico':
+      $('#panelpronostico').addClass('active');
+      break;
   }
 
 });

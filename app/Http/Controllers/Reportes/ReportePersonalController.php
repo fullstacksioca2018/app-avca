@@ -21,7 +21,7 @@ class ReportePersonalController extends Controller
     }
     public function periodos($consulta){
     	$fechas=array();
-    	if($consulta->periodo=='Intervalo'){
+    	if($consulta->periodo=='Intérvalo'){
     		$mesD=DW_Fecha::numeroMes($consulta->mesD);
     		$mesH=DW_Fecha::numeroMes($consulta->mesH);
     		$yearD=$consulta->yearD;
@@ -51,10 +51,10 @@ class ReportePersonalController extends Controller
 				array_push($fechas, $auxfecha->fecha_id);
 				return $fechas;
 	    	}else{
-	        	$actual=Carbon::now();
-	        	$actual->subMonth();
-				$auxfecha=DW_Fecha::buscar($actual->year,$actual->month);
-				array_push($fechas, $auxfecha->fecha_id);
+                $actual=Carbon::now();
+                $actual->subMonth();
+                $auxfecha=DW_Fecha::buscar($actual->year,$actual->month);
+                array_push($fechas, $auxfecha->fecha_id);
 				return $fechas;
     		}
     	}
@@ -104,15 +104,15 @@ class ReportePersonalController extends Controller
                 break;
             case '3':
                 $cargo=DW_Cargo::buscar($cargo);
-                $asistencia=DW_Reporte::CargoAsistencia($periodo,$sucursal);
-                $licencia=DW_Reporte::CargoLicencia($periodo,$sucursal);
+                $asistencia=DW_Reporte::CargoAsistencia($periodo,$cargo);
+                $licencia=DW_Reporte::CargoLicencia($periodo,$cargo);
             //Filtro Cargo
                 break;
             case '4':
                 $cargo=DW_Cargo::buscar($cargo);
                 $sucursal=DW_Sucursal::buscar($sucursal);
-                $asistencia=DW_Reporte::SucursalCargoAsistencia($periodo,$sucursal);
-                $licencia=DW_Reporte::SucursalCargoLicencia($periodo,$sucursal);
+                $asistencia=DW_Reporte::SucursalCargoAsistencia($periodo,$cargo,$sucursal);
+                $licencia=DW_Reporte::SucursalCargoLicencia($periodo,$cargo,$sucursal);
             //Filtro Sucursal y Cargo
                 break;
         }
@@ -216,10 +216,10 @@ class ReportePersonalController extends Controller
         $auxdata=array();
         $cont=0;
         $titulo="";
-
         $periodos=$this->periodos($consulta); //fechas meses para consulta
+        // return $periodos;
         $labels=$this->labelsPeriodos($periodos);
-        if($consulta->tipo!="Busqueda"){
+        if($consulta->tipo!="Búsqueda Avanzada"){
             if($consulta->filtros){
                 if((count($consulta->filtros))>1){
                     for($s=0;$s<count($consulta->sucursalesF);$s++){
@@ -308,6 +308,7 @@ class ReportePersonalController extends Controller
                                     array_push($stack, $cont);
                                     $info=$this->consultaPersonal("3",null,$consulta->cargosF[$c],$consulta->parametros[$p],$periodos[0]);
                                     array_push($data, $info);
+                                    // return response()->JSON($info);
                                     //ES GRAFICA PIE 'TORTA'
                                 }
                             }       
@@ -390,7 +391,7 @@ class ReportePersonalController extends Controller
         }
          $obj= new stdClass();
         // return response()->json($consulta->sucursalesF);
-         if(((count($periodos))>1)||((count($consulta->sucursalesF))>1)||((count($consulta->cargosF))>1)||($consulta->tipo=="Busqueda"&&(count($label))>1)){ //GRAFICA BARG
+         if(((count($periodos))>1)||((count($consulta->sucursalesF))>1)||((count($consulta->cargosF))>1)||($consulta->tipo=="Búsqueda Avanzada"&&(count($label))>1)){ //GRAFICA BARG
          $obj->titulo=$titulo;
             $obj->grafico="BarG";
             $obj2= new stdClass();
@@ -403,7 +404,7 @@ class ReportePersonalController extends Controller
         }
         else{ //GRAFICA TORTA PIE
          $acumulador=0;
-            if($consulta->tipo!='Busqueda'){
+            if($consulta->tipo!='Búsqueda Avanzada'){
                 foreach ($data as $key) {
                     $acumulador=$acumulador+$key;
                 }

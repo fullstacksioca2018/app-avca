@@ -14,6 +14,9 @@
                   <div class="table-detalles">
                     <img src="{{ asset('online/img/logo.png') }}" height="40" class="d-inline-block align-right" alt="AVCA">
                   </div>Detalles del Vuelo 
+                  <input type="hidden" id="datos_vuelo" value="{{ json_encode($datos_vuelo) }}">
+                  <input type="hidden" id="factura" value="{{json_encode($factura) }}">
+                  <input type="hidden" id="tipo" value="{{ $tipo }}">
                 </th>
               </thead>
               @foreach ($datos_vuelo as $dato_vuelo)
@@ -56,7 +59,7 @@
               </tr>
               <tr>
               @if($btn!="reserva")  
-              <th class="thresumen">Nro de Factura: {{ $factura->numero_factura}} <a href="imprimirfactura.php?id='{{ $factura->id}}'">Imprimir</a> </th>
+              <th class="thresumen">Nro de Factura: {{ $factura->numero_factura}} <a class="btn btn-primary" id="imprimir" href="#">Imprimir</a> </th>
              @endif
              @if($btn=="reserva")
              <th class="thresumen">Nro de Factura: {{ $factura->numero_factura}} -- Boleto(s) Reservado(s)  </th>
@@ -78,4 +81,44 @@
   <link href="{{ asset('online/css/estilocompras.css') }}" rel="stylesheet">
 @endpush
 
+@push('scripts')
+<script>
+$(document).ready(function () {
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+ $("#imprimir").click(function(){
+   var factura=[];
+   var datos_vuelo=[];
+   var tipo='';
+   factura=$("#factura").val();
+   datos_vuelo=$("#datos_vuelo").val();
+   tipo=$("#tipo").val();
+   
+   $.ajax({  
+		url:'taquilla/imprimir',
+		data:{"datos_vuelo":datos_vuelo,"factura":factura,"tipo":tipo},
+		type:'post',
+		dataType: 'json',
+		success: function (response){
+			Vue.toasted.show(response.data, {
+			theme: "primary",
+			position: "bottom-right",
+			duration: 2000
+		});
+		}
+	 }).fail( function( jqXHR, textStatus, errorThrown ) {
+		Vue.toasted.show('Conexion Perdida con el servidor '+jqXHR.status, {
+			theme: "primary",
+			position: "bottom-right",
+			duration: 2000
+		});
+	}); 
+  });//fin funcion imprimir
+
+}); //final document ready 
+</script>
+@endpush
 @endsection

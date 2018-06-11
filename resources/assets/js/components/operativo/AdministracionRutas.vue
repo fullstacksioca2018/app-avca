@@ -268,7 +268,7 @@ export default {
         data: {
           id: this.modalInfo.content.id,
           Origen: this.modalInfo.content.Origen,
-          Destino: this.modalInfo.content.Origen,
+          Destino: this.modalInfo.content.Destino,
           Distancia: this.modalInfo.content.Distancia,
           Tarifa: this.modalInfo.content.Tarifa,
           Estado: this.modalInfo.content.Estado,
