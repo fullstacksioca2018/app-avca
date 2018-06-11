@@ -6,7 +6,7 @@
                       <select data-placeholder="Ciudad-Aeropuerto" id="origen_id" name="origen_id" class="  fa-map-markerform-control chosen-select ">
                           <option value="#">Ciudad o aeropuerto</option>
                           @foreach ($sucursales as $sucursal)
-                            <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+                            <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->nombre }}</option>
                           @endforeach
                         </select>
                       </div>
@@ -17,7 +17,7 @@
                          <select data-placeholder="Ciudad-Aeropuerto" id="destino_id" name="destino_id" class="form-control chosen-select ">
                       <option value="#">Cuidad o aeropuerto</option>
                       @foreach ($sucursales as $sucursal)
-                      <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+                      <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->nombre }}</option>
                       @endforeach
                     </select>
                       </div>

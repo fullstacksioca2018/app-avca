@@ -36,3 +36,18 @@ function BuscarCedula(i){
             });
         }); //fin ajax 
 }//fin function
+
+function cambiartarjeta()
+{
+    
+    if($("#tipo_pago").val()=='Crédito')
+    {
+        $("#tipo_tarjeta").empty();
+        $("#tipo_tarjeta").append("<option>Mastercard</option><option>Visa</option><option>American Express</option>");  
+    }
+    else{
+        $("#tipo_tarjeta").empty();
+        $("#tipo_tarjeta").append("<option>Maestro</option>");
+        
+    }
+}

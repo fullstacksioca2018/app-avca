@@ -62,8 +62,28 @@
             <div class="form-group text-center" v-if="oculto"> <!-- AQUI VA EL V-IF DE VERIFICACION -->
                 <!-- AQUI VAN LAS PESTANAS PARA CARGAR LA TRIPULACION -->
                     <b-tabs pills card >
-
-                        <b-tab title=" Piloto" active>
+                        <b-tab title="Aeronave" active>
+                            <b-form-radio-group id="jefecabina" v-model="form.aeronave" name="aeronave" required>
+                            <table class="table table-hover table-striped"> 
+                                <thead>
+                                    <th> Aeronave </th>
+                                    <th> Modelo </th>
+                                    <th> Horas de Vuelo</th>
+                                    <th> Asignar </th>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="aeronave in this.items5"> 
+                                        <td> {{aeronave.matricula}} </td>
+                                        <td> {{aeronave.modelo}} </td>
+                                        <td> {{sumar(aeronave.aehm)}} </td>                                      
+                                       <td><b-form-radio  :value="aeronave.id">Seleccionar</b-form-radio ></td>
+                                    </tr>
+                                    <br/>
+                                </tbody>
+                            </table>
+                            </b-form-radio-group>
+                        </b-tab>
+                        <b-tab title=" Piloto">
                             <b-form-radio-group id="piloto" v-model="form.piloto" name="piloto" required>
                                 <table class="table table-hover table-striped"> 
                                     <thead>
@@ -163,31 +183,10 @@
                             </b-form-checkbox-group>
                             
                         </b-tab>   
-                        <b-tab title="Aeronave">
-                            <b-form-radio-group id="jefecabina" v-model="form.aeronave" name="aeronave" required>
-                            <table class="table table-hover table-striped"> 
-                                <thead>
-                                    <th> Aeronave </th>
-                                    <th> Modelo </th>
-                                    <th> Horas de Vuelo</th>
-                                    <th> Asignar </th>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="aeronave in this.items5"> 
-                                        <td> {{aeronave.matricula}} </td>
-                                        <td> {{aeronave.modelo}} </td>
-                                        <td> {{sumar(aeronave.aehm)}} </td>                                      
-                                       <td><b-form-radio  :value="aeronave.id">Seleccionar</b-form-radio ></td>
-                                    </tr>
-                                    <br/>
-                                </tbody>
-                            </table>
-                            </b-form-radio-group>
-                        </b-tab>
                     </b-tabs>
                     <div class=" col-sm-12 " >
                         <b-button type="submit" variant="primary">Guardar Vuelo</b-button>
-                        <b-button type="reset" variant="danger">Limpiar</b-button>                                    
+                        <b-button type="reset" variant="secondary">Limpiar</b-button>                                    
                     </div>
             </div> <!-- cierre del v-if -->
         </div>
@@ -335,12 +334,7 @@ export default {
                     console.log(this.data);
                     this.formatodatos();
                     
-                    
-                    Vue.toasted.show(response.data, {
-                        theme: "primary", 
-	                    position: "bottom-right",
-	                    duration : 2000
-                    }); 
+                
                     //this.$refs.myModalRef.hide();
                 }).catch((err)=>{
                     Vue.toasted.show('Ha ocurrido un error', {

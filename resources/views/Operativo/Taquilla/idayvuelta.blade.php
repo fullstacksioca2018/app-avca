@@ -3,10 +3,10 @@
                   <div class="col-md-6 col-form-label" >
                     <label id="origen_label" for="origen_id">Ciudad de Origen</label>
                     <div class="form-group">
-                      <select data-placeholder="Ciudad-Aeropuerto" id="origen_id_retorno" name="origen_id" class="  fa-map-markerform-control chosen-select ">
+                      <select data-placeholder="Ciudad-Aeropuerto" id="origen_id_retorno" name="origen_id_retorno" class="  fa-map-markerform-control chosen-select ">
                           <option value="#">Ciudad o aeropuerto</option>
                           @foreach ($sucursales as $sucursal)
-                            <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+                            <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->nombre }}</option>
                           @endforeach
                         </select>
                       </div>
@@ -15,11 +15,11 @@
                     <div class="col-md-6 col-form-label" >
                       <label id="destino_label" for="destino_id">Ciudad de Destino</label>
                       <div class="input-group">
-                         <select data-placeholder="Ciudad-Aeropuerto" id="destino_id_retorno" name="destino_id" class="form-control chosen-select ">
+                         <select data-placeholder="Ciudad-Aeropuerto" id="destino_id_retorno" name="destino_id_retorno" class="form-control chosen-select ">
                       <option value="#">Cuidad o aeropuerto</option>
                       @foreach ($sucursales as $sucursal)
                         
-                          <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
+                          <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->nombre }}</option>
                         
                       @endforeach
                     </select>

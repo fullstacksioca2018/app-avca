@@ -29,15 +29,15 @@
             <div class="container kieto">
               <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Precio: </span>
-                @if($tipo==1)
+                  @if($tipo==1)
                 <span class="badge badge-primary badge-pill">{{ ($adultos + $ninos) - $Contbrazo }} Boleto(s)</span>
-                @endif 
-                @if($tipo==2)
+                 @endif 
+                 @if($tipo==2)
                 <span class="badge badge-primary badge-pill">{{ (($adultos + $ninos) - $Contbrazo)*2 }} Boleto(s)</span>
-                @endif
-                @if($tipo==3)
+                 @endif
+                  @if($tipo==3)
                 <span class="badge badge-primary badge-pill">{{ ($adultos + $ninos) - $Contbrazo }} Boleto(s) </span>
-                @endif
+                 @endif
               </h4>
               <ul class="list-group mb-3">
                 <!-- MOSTRAR LAS TASAS PARA CADA PASAJERO -->
@@ -52,41 +52,101 @@
                             </a>
                           </h5>
                           <div id="collapseThree{{ ($i+1) }}" class="collapse mt-1 ml-1" aria-labelledby="headingThree" data-parent="#accordion">
-                            <h6 class="my-0">Vuelo: <span class="text-muted der">Bs </span></h6>
-                            <h6 class="my-0">Cargos:<span class="text-muted der">Bs </span></h6>
-                            <h6 class="my-0">Impuesto:<span class="text-muted der1">Bs </span></h6>
+                            <h6 class="my-0">Vuelo: <span class="text-muted der">BsS </span></h6>
+                            <h6 class="my-0">Cargos:<span class="text-muted der">BsS </span></h6>
+                            <h6 class="my-0">Impuesto:<span class="text-muted der1">BsS </span></h6>
                           </div>
                         </div>
                       </h6>
                       <br>
                     </div>
-                    @if($tipo==1)
-                    <span class="text-muted">{{ $tarifa }}Bs</span>
-                    @endif
-                    @if($tipo==2)
-                    <span class="text-muted">{{ $tarifa+$tarifa_regreso }}Bs</span>
-                    @endif
-                    @if($tipo==3)
-                    <span class="text-muted">{{ $tarifaT }}Bs</span>
-                    @endif
-
+                      @if($tipo==1)
+                      <span class="text-muted">{{ $tarifa }}BsS</span>
+                      @endif
+                      @if($tipo==2)
+                      <span class="text-muted">{{ $tarifa+$tarifa_regreso }}BsS</span>
+                      @endif
+                      @if($tipo==3)
+                      <span class="text-muted">{{ $tarifaT }}BsS</span>
+                      @endif
                   </li>
                 @endfor <!-- FIN TASAS -->
                 <li class="list-group-item d-flex justify-content-between border-primary">
-                  <span>Total a PagarBs</span>
+                  <span>Total a Pagar: </span>
                   @if($tipo==1)
-                  <strong>{{ $tarifa * ($adultos+($ninos-$Contbrazo))}} Bs</strong>
+                  <strong>{{ $tarifa * ($adultos+($ninos-$Contbrazo))}} BsS</strong>
                   @endif
                   @if($tipo==2)
-                  <strong>{{ ($tarifa+$tarifa_regreso) * ($adultos+($ninos-$Contbrazo))}} Bs</strong>
+                  <strong>{{ ($tarifa+$tarifa_regreso) * ($adultos+($ninos-$Contbrazo))}} BsS</strong>
                   @endif
                   @if($tipo==3)
-                  <strong>{{ $tarifaT * ($adultos+($ninos-$Contbrazo))}} Bs</strong>
+                  <strong>{{ $tarifaT * ($adultos+($ninos-$Contbrazo))}} BsS</strong>
                   @endif
                 </li>
               </ul>
             </div>
+            <!--iNICIO DE DATOS DE LOS VUELOS -->
+          <div class="col-md-12 order-md-6 mb-9 box wow bounceInUp" data-wow-duration="3.4s">
+            <!-- <h3 class="mb-7 ml-7">Datos de Vuelos</h3> -->
+              <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.4s">
+              @if($tipo==1)
+                <div class="form-control">
+                  <strong> Vuelo:</strong> {{$dv->vuelo->n_vuelo}} 
+                <br>
+                 <strong> Origen:</strong>  {{$dv->origen->ciudad}} - [{{$dv->origen->sigla}}]
+                <br>
+                  <strong>Destino:</strong> {{$dv->destino->ciudad}} - [{{$dv->destino->sigla}}]
+                <br>
+                  {{$dv->vuelo->fecha_salida}}
+                </div>
+                
+              @endif
+
+              @if($tipo==2)
+              <div class="form-control">
+                  <strong> Vuelo de Ida:</strong> {{$dv[0]->vuelo->n_vuelo}} 
+                <br>
+                 <strong> Origen:</strong>  {{$dv[0]->origen->ciudad}} - [{{$dv[0]->origen->sigla}}]
+                <br>
+                  <strong>Destino:</strong> {{$dv[0]->destino->ciudad}} - [{{$dv[0]->destino->sigla}}]
+                <br>
+                  {{$dv[0]->vuelo->fecha_salida}}
+                </div>
+                <hr>
+                <div class="form-control">
+                    <strong> Vuelo de Regreso:</strong> {{$dv[1]->vuelo->n_vuelo}} 
+                  <br>
+                   <strong> Origen:</strong>  {{$dv[1]->origen->ciudad}} - [{{$dv[1]->origen->sigla}}]
+                  <br>
+                    <strong>Destino:</strong> {{$dv[1]->destino->ciudad}} - [{{$dv[1]->destino->sigla}}]
+                  <br>
+                    {{$dv[1]->vuelo->fecha_salida}}
+                  </div>
+               @endif
+
+              @if($tipo==3)
+                @for($i=0;$i<$cantidadV;$i++)
+                <div class="form-control">
+                    <strong>Segmento {{$i+1}}:</strong> {{$dv[$i]->vuelo->n_vuelo}} 
+                  <br>
+                   <strong> Origen:</strong>  {{$dv[$i]->origen->ciudad}} - [{{$dv[$i]->origen->sigla}}]
+                  <br>
+                    <strong>Destino:</strong> {{$dv[$i]->destino->ciudad}} - [{{$dv[$i]->destino->sigla}}]
+                  <br>
+                    {{$dv[$i]->vuelo->fecha_salida}}
+                </div>
+                  <hr>
+                @endfor             
+              @endif
+              
+              
+              </div>         
           </div>
+          <!-- FIN  DATOS VUELOS -->
+          </div>
+          
+
+          <!- COMIENZO DE FORMULARIOS ->
           <div class="col-md-7 order-md-1">
             <h3 class="mb-4 ml-5">Formulario de Boletos</h3>
             <!-- FORMULARIOS DE COMPRA -->
@@ -268,27 +328,28 @@
             <div class="invalid-feedback">Requiere el numero de referencia</div>
           </div> <!-- input-group.// -->
         </div> <!-- form-group.// -->
-        <div class="row">
-          <div class="col-sm-7">
+       
+       
+       
+       
+        <div class="row col-sm-10 offset-1">
+          <div class="col-sm-5">
             <div class="form-group">
-              <label><span class="hidden-xs">Tipo de Pago</span> </label>
-              <div class="form-inline"  id="cc-expiration">
-                <select class="form-control" name="tipo_pago" form="myForm">
+              <label>Tipo de Pago </label>
+                <select class="form-control" name="tipo_pago" id="tipo_pago" form="myForm" onchange="cambiartarjeta()">
                   <option>Débito</option>
                   <option>Crédito</option>
                 </select>
-                <label><span class="hidden-xs">Tipo de Tarjeta</span> </label>
-                <select class="form-control"  id="tipo_tarjeta">
-                  <option>MAESTRO</option>
-                  <option>VISA</option>
-                  <option>MASTERCARD</option>
-                  <option>AMERICAM EXPRESS</option>
-                  
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="form-group">   
+               <label>Tipo de Tarjeta </label>
+                <select class="form-control" name="tipo_tarjeta"  id="tipo_tarjeta">
+                  <option>Mestro</option>
                 </select>
               </div>
-              <div class="invalid-feedback">requiere la fecha de Vencimiento</div>
             </div>
-          </div>
         </div> <!-- row.// -->
         <button class="subscribe btn btn-primary" type="submit" form="myForm" id="pagar" name="pagar"> Registrar Pago  </button>
       </div> <!-- card-body.// -->
