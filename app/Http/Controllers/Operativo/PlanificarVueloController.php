@@ -186,7 +186,7 @@ class PlanificarVueloController extends Controller
 
        
         
-        $pilotos=$personal->Disponibilidad('piloto',$antes,$despues);
+        $pilotos=$personal->Disponibilidad('Piloto',$antes,$despues);
         
         $pihe= array(); //HORAS DE EXPERIENCIA DEL PILOTO
         $pihp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
@@ -199,7 +199,7 @@ class PlanificarVueloController extends Controller
         $data['piloto'] = $pilotos;
        
         
-        $copilotos=$personal->Disponibilidad("copiloto",$antes,$despues);
+        $copilotos=$personal->Disponibilidad("Copiloto",$antes,$despues);
         $copihe= array(); //HORAS DE EXPERIENCIA DEL COPILOTO
         $copihp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
         foreach ($copilotos as $copiloto) {
@@ -210,7 +210,7 @@ class PlanificarVueloController extends Controller
         $data['copiloto'] = $copilotos;
 
       
-        $sobrecargos=$personal->Disponibilidad("sobrecargo",$antes,$despues);
+        $sobrecargos=$personal->Disponibilidad("Sobrecargo",$antes,$despues);
         $sohe= array(); //HORAS DE EXPERIENCIA DEL SOBRECARGO
         $sohp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
         $i = 0;
@@ -222,7 +222,7 @@ class PlanificarVueloController extends Controller
         }
         $data['sobrecargo'] = $sobrecargos;
 
-        $jefacs=$personal->Disponibilidad("jefe de cabina",$antes,$despues);
+        $jefacs=$personal->Disponibilidad("Jefe de Cabina",$antes,$despues);
         $jche= array(); //HORAS DE EXPERIENCIA DEL JEFA DE CABINA
         $jchp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
         foreach ($jefacs as $jefac) {
@@ -294,7 +294,7 @@ class PlanificarVueloController extends Controller
 
        
         
-        $pilotos=$personal->Disponibilidad('piloto',$antes,$despues);
+        $pilotos=$personal->Disponibilidad('Piloto',$antes,$despues);
         
         $pihe= array(); //HORAS DE EXPERIENCIA DEL PILOTO
         $pihp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
@@ -307,7 +307,7 @@ class PlanificarVueloController extends Controller
         $data['piloto'] = $pilotos;
        
         
-        $copilotos=$personal->Disponibilidad("copiloto",$antes,$despues);
+        $copilotos=$personal->Disponibilidad("Copiloto",$antes,$despues);
         $copihe= array(); //HORAS DE EXPERIENCIA DEL COPILOTO
         $copihp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
         foreach ($copilotos as $copiloto) {
@@ -318,7 +318,7 @@ class PlanificarVueloController extends Controller
         $data['copiloto'] = $copilotos;
 
       
-        $sobrecargos=$personal->Disponibilidad("sobrecargo",$antes,$despues);
+        $sobrecargos=$personal->Disponibilidad("Sobrecargo",$antes,$despues);
         $sohe= array(); //HORAS DE EXPERIENCIA DEL SOBRECARGO
         $sohp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
         $i = 0;
@@ -330,7 +330,7 @@ class PlanificarVueloController extends Controller
         }
         $data['sobrecargo'] = $sobrecargos;
 
-        $jefacs=$personal->Disponibilidad("jefe de cabina",$antes,$despues);
+        $jefacs=$personal->Disponibilidad("Jefe de Cabina",$antes,$despues);
         $jche= array(); //HORAS DE EXPERIENCIA DEL JEFA DE CABINA
         $jchp= array(); //HORAS PLANIFICAS PARA LA QUINCENA
         foreach ($jefacs as $jefac) {

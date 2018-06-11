@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SegmentoSeeder::class);
 
         //SEEDER MODULO REPORTE
-        /* $this->call(DwSucursales::class);
+         $this->call(DwSucursales::class);
         $this->call(DwPasajeros::class);
         $this->call(DwRutas::class);
         $this->call(DwVuelos::class);
@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DwEmpleados::class);
         $this->call(DwIngresosSeeder::class);
         $this->call(DwAsistenciasSeeder::class);
-        $this->call(DwTemporadas::class); */
+        $this->call(DwTemporadas::class); 
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

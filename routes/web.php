@@ -88,17 +88,9 @@ require 'AdministradorOnline.php';
 require 'Operativo\PlanificarRuta.php';
 require 'Operativo\PlanificarTaquilla.php';
 require 'Operativo\PlanificarVuelo.php';
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-require 'Operativo\PlanificarAeronave.php';
-require 'Operativo\PlanificarSucursal.php';
-Route::get('/reportes', function () {
-    return view('reportes.PanelConsulta');
-});
->>>>>>> 3ef432549dcb1290ec64f4e0e1c16e4e7be2bc41
->>>>>>> OperativoIntegrado
+
+
+
 
 
 require 'Reporte\api.php';
@@ -110,6 +102,10 @@ Route::get('auth/{provider}', 'OnlineAuth\SocialAuthController@redirectToProvide
 Route::get('auth/{provider}/callback', 'OnlineAuth\SocialAuthController@handleProviderCallback');
 require 'Operativo\PlanificarAeronave.php';
 require 'Operativo\PlanificarSucursal.php';
+
+Route::get('/reportes', function () {
+    return view('reportes.PanelConsulta');
+});
 
 Route::get('reporte/operativo', function () {
         return view('Operativo.reportes.reporte');

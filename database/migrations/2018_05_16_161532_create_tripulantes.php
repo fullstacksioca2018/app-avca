@@ -19,7 +19,7 @@ class CreateTripulantes extends Migration
             $table->enum('rango', ['piloto', 'copiloto', 'jefe de cabina', 'sobrecargo'])->nullable();	
             $table->string('licencia',255);
             $table->integer('personal_id')->unsigned();
-            $table->foreign('personal_id')->references('id')->on('empleados')->onDelete('cascade');
+            $table->foreign('personal_id')->references('empleado_id')->on('empleados')->onDelete('cascade');
             $table->timestamps();
         });
     }
