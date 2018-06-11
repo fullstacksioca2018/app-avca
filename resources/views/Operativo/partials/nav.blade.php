@@ -99,14 +99,34 @@
           </ul>
         </li>
        <!--  FINAL DE Mantenimiento  -->
-       <!-- INICIO DE REPORTES Y ESTADISTICAS  -->
-        <li class="nav-item">
-          <a href="{{ URL::to('/reportes') }}" class="nav-link">
+       <!-- INICIO DE REPORTES Y ESTADISTICAS  -->      
+
+
+        <li class="nav-item has-treeview">
+          <a  class="nav-link">
             <i class="nav-icon fa fa-bar-chart"></i>
-            <p>
-              Reportes y estadísticas
-            </p>
+            <p>Reportes y estadísticas<i class="right fa fa-angle-left"></i></p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ URL::to('/operativo/reportes/boletos') }}" class="nav-link">
+                <i class="fa fa-ticket"></i>
+                <p>Boletos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ URL::to('/reportes/') }}" class="nav-link">
+                <i class="fa fa-area-chart"></i>
+                <p>Estadísticas</p>
+              </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a href="{{ URL::to('/sucursales') }}" class="nav-link">
+                <i class="fa fa-map-marker nav-icon"></i>
+                <p>Planificar Sucursales</p>
+              </a>
+            </li> -->
+          </ul>
         </li>
         <!-- FINAL DE REPORTES Y ESTADISTICAS  -->
       </ul>

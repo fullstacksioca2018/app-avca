@@ -14,10 +14,10 @@
                   <div class="table-detalles">
                     <img src="{{ asset('online/img/logo.png') }}" height="40" class="d-inline-block align-right" alt="AVCA">
                   </div>Detalles del Vuelo 
-                  <input type="hidden" id="datos_vuelo" value="{{ json_encode($datos_vuelo) }}">
-                  <input type="hidden" id="factura" value="{{json_encode($factura) }}">
-                  <input type="hidden" id="tipo" value="{{ $tipo }}">
-                </th>
+                 <!--  <input type="hidden" id="datos_vuelo" value="{{ json_encode($datos_vuelo) }}"> -->
+                  <input type="hidden" id="factura" value="{{$factura->id }}">
+<!--                   <input type="hidden" id="tipo" value="{{ $tipo }}">
+ -->                </th>
               </thead>
               @foreach ($datos_vuelo as $dato_vuelo)
                 @php 
@@ -91,17 +91,17 @@ $(document).ready(function () {
 });
  $("#imprimir").click(function(){
    var factura=[];
-   var datos_vuelo=[];
-   var tipo='';
+   //var datos_vuelo=[];
+   //var tipo='';
    factura=$("#factura").val();
-   datos_vuelo=$("#datos_vuelo").val();
-   tipo=$("#tipo").val();
+   //datos_vuelo=$("#datos_vuelo").val();
+   //tipo=$("#tipo").val();
    
    $.ajax({  
-		url:'taquilla/imprimir',
-		data:{"datos_vuelo":datos_vuelo,"factura":factura,"tipo":tipo},
+		url:'/factura/pagar',
+		data:{"id":factura},
 		type:'post',
-		dataType: 'json',
+	//	dataType: 'json',
 		success: function (response){
 			Vue.toasted.show(response.data, {
 			theme: "primary",

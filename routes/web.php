@@ -80,6 +80,7 @@ require 'Operativo\PlanificarTaquilla.php';
 require 'Operativo\PlanificarVuelo.php';
 require 'Operativo\PlanificarAeronave.php';
 require 'Operativo\PlanificarSucursal.php';
+require 'Operativo\ReporteBoletos.php';
 Route::get('/reportes', function () {
     return view('reportes.PanelConsulta');
 });

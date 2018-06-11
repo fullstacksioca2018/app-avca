@@ -61,7 +61,7 @@
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>
     <div v-if="modalInfo.content != ''">
      <b-form @submit.prevent="actualizar()"> 
-         <!--  <pre>{{modalInfo.content}}</pre> -->
+           <!-- <pre>{{modalInfo.content}}</pre> --> 
        
        <div class="row col-sm-12">
          <div class="col-sm-5">
