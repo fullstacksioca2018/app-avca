@@ -124,14 +124,14 @@
             </li>
           </ul>
         </li>
-        {{--<li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item">
+          <a href="{{ route('reportes.rrhh') }}" class="{{ request()->routeIs('reportes.rrhh') ? 'nav-link active' : 'nav-link' }}">
             <i class="nav-icon fa fa-bar-chart"></i>
             <p>
               Reportes y estadísticas
             </p>
           </a>
-        </li>--}}
+        </li>
 
         {{--  Opcion para el gerente de la sucursal  --}}
         <li class="nav-item">

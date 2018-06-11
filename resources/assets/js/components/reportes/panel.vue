@@ -6,6 +6,7 @@
 				<div id="panel">
 				    <div class="container" style="width: 95%; padding-top: 40px;">
 						<!-- Tipo de Consulta -->
+					<div v-if="tipos.length!=1">
 						<b-form-group>
 					      <b-form-radio-group id="btnradios1"
 					                          buttons
@@ -13,6 +14,7 @@
 					                          :options="tipos"
 					                          name="radiosBtnDefault" />
 					    </b-form-group>
+					</div>
 					    <!-- Parametros-->
 					    <div class="row">
 					    	<div class="col-3">

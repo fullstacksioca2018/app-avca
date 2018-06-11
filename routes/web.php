@@ -107,3 +107,6 @@ require 'Operativo\PlanificarSucursal.php';
 Route::get('reporte/operativo', function () {
         return view('Operativo.reportes.reporte');
     })->name('reportes.operativo');
+    Route::get('reporte/rrhh', function () {
+        return view('rrhh.backend.reportes.reporte');
+    })->name('reportes.rrhh');
