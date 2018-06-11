@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,9 +53,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Right navbar links | Notifications | User info -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
-      @include('rrhh.layouts.partials.messages')
+      {{--@include('rrhh.layouts.partials.messages')--}}
       <!-- Notifications Dropdown Menu -->
-      @include ('rrhh.layouts.partials.notifications')
+      {{--@include ('rrhh.layouts.partials.notifications')--}}
       <!-- Profile Dropdown Menu -->
       @include('rrhh.layouts.partials.profile')
     </ul>
@@ -97,9 +93,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
       @include('rrhh.layouts.partials.nav')
       @endrole
 
-      {{-- Analista Menu --}}
+      {{-- Gerente de sucursal Menu --}}
+      @role('gerente.sucursal')
+      @include('rrhh.layouts.partials.sucursal_nav')
+      @endrole
+
+      {{-- Analista de area --}}
       @role('analista.area')
-      @include('rrhh.layouts.partials.nav')
+      @include('rrhh.layouts.partials.analista_nav')
+      @endrole
+
+      {{-- Analista de nómina --}}
+      @role('analista.nomina')
+      @include('rrhh.layouts.partials.nomina_nav')
       @endrole
     </div>
     <!-- /.sidebar -->

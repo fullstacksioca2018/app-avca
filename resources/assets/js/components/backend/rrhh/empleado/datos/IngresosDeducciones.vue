@@ -4,28 +4,40 @@
       <div class="row form-group">
         <div class="col-md-6">
           <h4>Asignaciones</h4>
-          <div
-              class="custom-control custom-checkbox"
-              v-for="concepto in conceptos"
-              :key="concepto.id"
-              v-if="concepto.tipo_concepto.charAt(0) !== '5'"
-          >
-            <input type="checkbox" name="asignaciones[]" :id="slugify(concepto.descripcion)" class="custom-control-input" :value="concepto.concepto_id">
-            <label class="custom-control-label" :for="slugify(concepto.descripcion)">{{ concepto.tipo_concepto }} {{ concepto.descripcion }}</label>
-          </div>
+          <label
+            :for="slugify(concepto.descripcion)"
+            v-for="concepto in conceptos"
+            :key="concepto.id"
+            v-if="concepto.tipo_concepto.charAt(0) !== '5'"
+            class="d-block">
+            <input
+              type="checkbox"
+              name="asignaciones[]"
+              :id="slugify(concepto.descripcion)"
+              :value="concepto.concepto_id"
+              :checked="concepto.estatus !== null"
+            >
+            {{ concepto.tipo_concepto }} {{ concepto.descripcion }}
+          </label>
         </div>
 
         <div class="form-group">
           <h4>Deducciones</h4>
-          <div
-              class="custom-control custom-checkbox"
-              v-for="concepto in conceptos"
-              :key="concepto.id"
-              v-if="concepto.tipo_concepto.charAt(0) === '5'"
-          >
-            <input type="checkbox" name="deducciones[]" :id="slugify(concepto.descripcion)" class="custom-control-input" :value="concepto.concepto_id">
-            <label class="custom-control-label" :for="slugify(concepto.descripcion)">{{ concepto.tipo_concepto }} {{ concepto.descripcion }}</label>
-          </div>
+          <label
+            :for="slugify(concepto.descripcion)"
+            v-for="concepto in conceptos"
+            :key="concepto.id"
+            v-if="concepto.tipo_concepto.charAt(0) === '5'"
+            class="d-block">
+            <input
+              type="checkbox"
+              name="deducciones[]"
+              :id="slugify(concepto.descripcion)"
+              :value="concepto.concepto_id"
+              :checked="concepto.estatus !== null"
+            >
+            {{ concepto.tipo_concepto }} {{ concepto.descripcion }}
+          </label>
         </div>
       </div>
       <div class="row form-group">

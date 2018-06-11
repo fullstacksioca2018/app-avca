@@ -13,31 +13,43 @@
         </div>
         <div class="col-md-4 offset-md-1">
           <div class="form-group">
-            <h4>Asignaciones</h4>
-            <div
-                class="custom-control custom-checkbox"
-                v-for="concepto in conceptos"
-                :key="concepto.id"
-                v-if="concepto.tipo_concepto.charAt(0) !== '5'"
-            >
-              <input type="checkbox" name="asignaciones[]" :id="slugify(concepto.descripcion)" class="custom-control-input" :value="concepto.concepto_id" v-model="chkConceptos">
-              <label class="custom-control-label" :for="slugify(concepto.descripcion)">{{ concepto.tipo_concepto }} {{ concepto.descripcion }}</label>
-            </div>
+            <h4>Asignaciones</h4>            
+            <label 
+              :for="slugify(concepto.descripcion)"
+              v-for="concepto in conceptos"
+              :key="concepto.id"
+              v-if="concepto.tipo_concepto.charAt(0) !== '5'"
+              class="d-block">              
+              <input 
+                type="checkbox" 
+                name="asignaciones[]" 
+                :id="slugify(concepto.descripcion)"
+                :value="concepto.concepto_id"                 
+                :checked="concepto.estatus == 1"
+              >
+              {{ concepto.tipo_concepto }} {{ concepto.descripcion }}
+            </label>            
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="form-group">
             <h4>Deducciones</h4>
-            <div
-                class="custom-control custom-checkbox"
-                v-for="concepto in conceptos"
-                :key="concepto.id"
-                v-if="concepto.tipo_concepto.charAt(0) === '5'"
-            >
-              <input type="checkbox" name="deducciones[]" :id="slugify(concepto.descripcion)" class="custom-control-input" :value="concepto.concepto_id" v-model="chkConceptos">
-              <label class="custom-control-label" :for="slugify(concepto.descripcion)">{{ concepto.tipo_concepto }} {{ concepto.descripcion }}</label>
-            </div>
+            <label 
+              :for="slugify(concepto.descripcion)"
+              v-for="concepto in conceptos"
+              :key="concepto.id"
+              v-if="concepto.tipo_concepto.charAt(0) === '5'"
+              class="d-block">
+              <input 
+                type="checkbox" 
+                name="deducciones[]" 
+                :id="slugify(concepto.descripcion)"
+                :value="concepto.concepto_id"                 
+                :checked="concepto.estatus == 1"
+              >
+              {{ concepto.tipo_concepto }} {{ concepto.descripcion }}
+            </label>     
           </div>
         </div>
       </div>
@@ -70,6 +82,7 @@
       procesarNomina() {
         let frmNomina = document.getElementById('frmNomina');
         let formData = new FormData(frmNomina);
+        let loader = this.$loading.show();
         axios.post('/rrhh/backend/nomina/procesar-nomina', formData)
           .then(response => {
             console.log(response.data);
@@ -81,6 +94,7 @@
               title: 'Nómina generada exitosamente',
               showConfirmButton: true,
             });
+            loader.hide();
           })
           .catch(error => {
             console.log(error);

@@ -12,6 +12,6 @@ class Nomina extends Model
 
     public function conceptos()
     {
-        return $this->belongsToMany('App\Models\rrhh\Concepto', 'concepto_nomina', 'nomina_id', 'concepto_id');
+        return $this->belongsToMany('App\Models\rrhh\Concepto', 'concepto_nomina', 'nomina_id', 'concepto_id')->withTimestamps();
     }
 }

@@ -9,7 +9,7 @@
               <div class="media-body">
                 <h5 class="mt-0">Misión</h5>
                 <p>
-                  Optimizar los recursos humanos de AVCA a traves de la selección y evaluación del personal, contribuyendo así a la mejora de su productividad y competitividad.
+                  Optimizar los recursos humanos de AVCA a través de la selección y evaluación del personal, contribuyendo así a la mejora de su productividad y competitividad.
                 </p>                
               </div>
             </div>
@@ -37,9 +37,9 @@
                 <div class="media-body">
                   <h5 class="mt-0">Objetivos</h5>
                   <ul class="about__objetives m-0 p-0">
-                    <li>Cubrir los nuevos cargos o las vacantes existentes dentro de la Institución, seleccionando el personal idoneo y cumpliendo con los procesos establecidos.</li>
-                    <li>Fortalecer y mejorar el clima laboral dentro de la Institución, potenciando el trabajo en equipo, la participación y la comunicación efectiva.</li>
-                    <li>Otorgar de manera efectiva, oportuna y eficiente los beneficios al personal de la Institución.</li>              
+                    <li>Cubrir los nuevos cargos o las vacantes existentes dentro de la Empresa, seleccionando el personal idóneo y cumpliendo con los procesos establecidos.</li>
+                    <li>Fortalecer y mejorar el clima laboral dentro de la Empresa, potenciando el trabajo en equipo, la participación y la comunicación efectiva.</li>
+                    <li>Otorgar de manera efectiva, oportuna y eficiente los beneficios al personal de la Empresa.</li>
                   </ul>         
                 </div>
               </div>
@@ -47,9 +47,9 @@
           </div>
           <div class="col-6 pt-4">
             <ul class="about__objetives">
-              <li>Aumentar la productividad del capital humano dentro de la Institución, a traves de acciones que permitan el desarrollo y crecimiento profesional y personal de los colaboradores.</li>
+              <li>Aumentar la productividad del capital humano dentro de la Empresa, a traves de acciones que permitan el desarrollo y crecimiento profesional y personal de los colaboradores.</li>
               <li>Innovar e implementar nuevos procesos dentro de la Gerencia de Recursos Humanos, que permitan fortalecer la relación con su personal y generar sentido de pertenencia.</li>
-              <li>Velar por el bienestar del personal de la Institución motivando el cumplimiento de la normativa legal vigente.</li>
+              <li>Velar por el bienestar del personal de la Empresa motivando el cumplimiento de la normativa legal vigente.</li>
             </ul>
           </div>
         </div>

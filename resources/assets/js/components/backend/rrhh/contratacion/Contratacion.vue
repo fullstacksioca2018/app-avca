@@ -208,15 +208,22 @@
                   </select>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label for="cargo">Cargo</label>
                   <div class="form-control">{{ cargo.titulo }}</div>
                   <input type="hidden" name="cargo_id" :value="cargo.cargo_id">
                   <!-- Guardando el area -->
                   <input type="hidden" name="area_id" :value="cargo.area_id">
+                  <input type="hidden" name="nombre_cargo" :value="cargo.titulo">
                 </div>
-              </div>              
+              </div>
+              <div class="col-md-2">                
+                <div class="form-group" v-if="cargo.area_id === 6 && cargo.titulo !== 'Analista de Talento Humano Área Tripulación'">
+                  <label for="licencia">Licencia</label>
+                  <input type="text" name="licencia" id="licencia" class="form-control" placeholder="Licencia del tripulante">
+                </div>
+              </div>
             </div>
             <div class="row">
               <div class="col-md-2">

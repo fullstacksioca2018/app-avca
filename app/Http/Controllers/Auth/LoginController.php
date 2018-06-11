@@ -31,7 +31,7 @@ class LoginController extends Controller
      * @var string
      */
     //protected $redirectTo = '/home';
-    protected $redirectTo = '/rrhh/backend/admin';
+    protected $redirectTo = '/rrhh/backend/empleado/panel';
     // protected $redirectTo = '/dashboard';
 
     /**
@@ -55,8 +55,8 @@ class LoginController extends Controller
         $auxURL;
         switch (Auth::user()->modulo) {
             case 'rrhh':
-                $auxURL='/rrhh/backend/admin';
-                $this->redirectTo='/rrhh/backend/admin';
+                $auxURL='/rrhh/backend/empleado/panel';
+                $this->redirectTo='/rrhh/backend/empleado/panel';
                 break;
             case 'online':
                 $auxURL='/online/inicio';
