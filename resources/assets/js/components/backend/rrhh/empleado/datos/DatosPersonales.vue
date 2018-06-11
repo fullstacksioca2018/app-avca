@@ -5,7 +5,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre" class="form-control" :value="empleado.nombre">
+            <input type="text" name="nombre" id="nombre" class="form-control" :value="empleado.nombre">            
           </div>
         </div>
         <div class="col-md-3">
@@ -27,50 +27,44 @@
           <div class="form-group">
             <label for="estado_civil">Estado civil</label>
             <select name="estado_civil" id="estado_civil" class="form-control">
-              <option :value="ec" v-for="ec in estadoCivil" :key="ec.id" :selected="ec === empleado.estado_civil">{{ ec }}</option>
-            </select>
+              <option :value="ec" v-for="ec in estadoCivil" :key="ec.id" :selected="ec === empleado.estado_civil">{{ ec }}</option>              
+            </select>            
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
             <label for="fecha_nacimiento">Fecha de nacimiento</label>
-            <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" :value="empleado.fecha_nacimiento">
+            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" :value="empleado.fecha_nacimiento">
           </div>
         </div>
         <div class="col-md-6">
-          <p class="mb-2">Sexo</p>
-          <label class="mr-3">
-            <input type="radio" name="sexo" value="f" :checked="empleado.sexo === 'f'"> F
+          <p class="mb-2">Sexo</p>          
+          <label class="mr-2">
+            <input type="radio" name="sexo" id="sexo" :value="empleado.sexo" :checked="empleado.sexo === 'f'"> F
           </label>
           <label>
-            <input type="radio" name="sexo" value="m" :checked="empleado.sexo === 'm'"> M
-          </label>
+            <input type="radio" name="sexo" id="sexo" :value="empleado.sexo" :checked="empleado.sexo === 'm'"> M
+          </label>          
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <div class="form-group">
             <label for="nivel_academico">Nivel académico</label>
-            <select name="nivel_academico" id="nivel_academico" class="form-control" @change="obtenerProfesiones">
-              <option
-                  :value="na"
-                  v-for="na in nivelAcademico"
-                  :selected="na === empleado.nivel_academico"
-                  :key="na.id">{{ na }}
-              </option>
-            </select>
+            <input type="text" name="nivel_academico" id="nivel_academico" class="form-control" :value="empleado.nivel_academico">            
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label for="profesion">Profesión</label>
-            <select name="profesion" id="profesion" class="form-control">
-              <option
-                  :value="profesion.profesion_id"
-                  v-for="profesion in profesiones"
-                  :selected="profesion.profesion_id == empleado.profesion"
-                  :key="profesion.id"
-              >{{ profesion.titulo }}</option>
+            <label for="profesion">Profesión</label>            
+            <select name="profesion" id="profesion" class="form-control">              
+              <option 
+                :value="profesion.profesion_id" 
+                v-for="profesion in profesiones" 
+                :key="profesion.id"
+                :selected="profesion.profesion_id == empleado.profesion">
+                {{ profesion.titulo }}
+              </option>
             </select>
           </div>
         </div>
@@ -79,12 +73,8 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="estado">Estado</label>
-            <select name="estado" id="estado" class="form-control" v-model="estado" @change="obtenerCiudades">
-              <option
-                  :value="estado.estado"
-                  v-for="estado in estados"
-                  :key="estado.id">{{ estado.estado }}
-              </option>
+            <select name="estado" id="estado" class="form-control" v-model="estado" @change="obtenerCiudades">    
+              <option :value="estado.estado" v-for="estado in estados" :key="estado.id" :selected="estado.estado == empleado.estado">{{ estado.estado }}</option>
             </select>
           </div>
         </div>
@@ -92,44 +82,18 @@
           <div class="form-group">
             <label for="ciudad">Ciudad</label>
             <select name="ciudad" id="ciudad" class="form-control">
-              <option
-                  :value="ciudad"
-                  v-for="ciudad in ciudadesFiltradas"
-                  :selected="ciudad === empleado.ciudad"
-                  :key="ciudad.id">{{ ciudad }}
-              </option>
+              <option value="" selected="selected">Seleccione</option>
+              <option :value="ciudad" v-for="ciudad in ciudadesFiltradas" :key="ciudad.id" :selected="ciudad == empleado.ciudad">{{ ciudad }}</option>
             </select>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <label for="direccion">Dirección</label>
-            <input type="text" name="direccion" id="direccion" class="form-control" :value="empleado.direccion">
+            <input type="text" name="direccion" id="direccion" class="form-control" :value="empleado.direccion">   
           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <p>¿Posee alguna discapacidad?</p>
-            <label class="mr-3">
-              <input type="radio" name="discapacidad" value="si" v-model="discapacidad"> Si
-            </label>
-            <label>
-              <input type="radio" name="discapacidad" value="no" v-model="discapacidad"> No
-            </label>
-          </div>
-        </div>
-        <div class="col-md-5">
-          <div class="form-group">
-            <label for="tipo_discapacidad">Tipo de discapacidad</label>
-            <select name="tipo_discapacidad" id="tipo_discapacidad" class="form-control" :disabled="toggleDiscapacidad">
-              <option :value="td" v-for="td in tipoDiscapacidad" :key="td.id" :selected="td===empleado.tipo_discapacidad">{{ td }}</option>
-            </select>
-          </div>
-        </div>
-      </div>
+      </div>      
 
       <div class="row">
         <div class="col-md-3">
@@ -147,7 +111,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="email">Correo electrónico</label>
-            <input type="tel" name="email" id="email" :value="empleado.email" class="form-control">
+            <input type="email" name="email" id="email" class="form-control" :value="empleado.email">   
           </div>
         </div>
       </div>
@@ -162,9 +126,7 @@
   </div>
 </template>
 
-<script>
-  import VueSweetalert2 from 'vue-sweetalert2';
-  Vue.use(VueSweetalert2);
+<script>  
 
   export default {
     name: "DatosPersonales",
@@ -188,6 +150,7 @@
         ],
         nivel_academico: '',
         profesiones: [],
+        profession: '',
         estados: [],
         estado: this.empleado.estado,
         ciudadesFiltradas: [],
@@ -202,7 +165,7 @@
     },
     mounted() {
       this.obtenerProfesiones();
-      this.obtenerEstados();
+      this.obtenerEstados();      
     },
     methods: {
       actualizarEmpleado() {
@@ -242,17 +205,22 @@
         })
           .then((response) => {
             this.profesiones = response.data;
+            /* this.profesiones.forEach(profesion => {              
+              if (profesion.profesion_id == this.empleado.profesion) {
+                this.profession = profesion.titulo                
+              }
+            }) */
           });
       },
-      obtenerEstados() {
+      obtenerEstados() {        
         axios.get('/rrhh/backend/contratacion/obtener-estados')
           .then((response) => {
             this.estados = response.data;
             this.obtenerCiudades();
           });
       },
-      obtenerCiudades() {
-        let ciudades = this.estados.filter(estado => estado.estado === this.estado);
+      obtenerCiudades() {        
+        let ciudades = this.estados.filter(estado => estado.estado === this.estadoCapital);
         if (typeof (ciudades[0].ciudades) !== 'undefined') {
           this.ciudadesFiltradas = ciudades[0].ciudades;
         } else {
@@ -264,6 +232,10 @@
       toggleDiscapacidad: function() {
         if (this.discapacidad === 'si') return false;
         else return true;
+      },
+      estadoCapital: function () {        
+        this.estado = this.estado.toString()
+        return this.estado.charAt(0).toUpperCase() + this.estado.slice(1)
       }
     },
   }
@@ -272,5 +244,11 @@
 <style scoped>
   .empleado-img {
     max-width: 15%;
+  }
+  .disabled {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    opacity: 0.65;
   }
 </style>

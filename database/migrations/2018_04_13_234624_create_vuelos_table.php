@@ -16,8 +16,9 @@ class CreateVuelosTable extends Migration
         Schema::create('vuelos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('n_vuelo',20);
-            $table->enum('estado',['abierto','cancelado','ejecutado','retrasado','cerrado'])->default('abierto');
+            $table->enum('estado',['abierto','cancelado','ejecutado','retrasado','cerrado','chequeando','finalizado'])->default('abierto');
             $table->datetime('fecha_salida');
+            $table->integer('n_boletos')->default('64');
             $table->integer('boletos_vendidos')->default('0');
             $table->integer('boletos_reservados')->default('0');
             $table->timestamps();

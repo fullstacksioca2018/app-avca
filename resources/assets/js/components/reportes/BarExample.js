@@ -23,7 +23,7 @@ export default {
       console.log(this.datosN);
       this.renderChart({
         labels: this.datosN.labels,
-        datasets: this.datasets
+        datasets: this.datasets,
       }, {responsive: true, maintainAspectRatio: false,
         tooltips: {
             bodyFontSize: 18

@@ -1,6 +1,6 @@
 <section class="recruitment py-5" id="selection">
   <div class="container">
-    <h2 class="rrhh__title rrhh__title--about">Proceso de captación de personal</h2>
+    <h2 class="rrhh__title rrhh__title--about">Información del proceso de captación de personal</h2>
     <div class="card-deck">
       <div class="card">
         <img class="card-img-top" src="{{ asset('img/rrhh/reclutamiento.jpeg') }}" alt="Reclutamiento">
@@ -13,7 +13,7 @@
         <img class="card-img-top" src="{{ asset('img/rrhh/seleccion.jpeg') }}" alt="Selección">
         <div class="card-body">
           <h4 class="card-title text-center">Selección</h4>
-          <p class="card-text">Consiste en una serie de pasos específicos que se emplean para decidir que solicitantes deben ser contratados, permitiendo la selección efectiva de los candidatos idóneos para ocupar los cargos vacantes existentes dentro de la empresa.</p>
+          <p class="card-text">Consiste en una serie de pasos específicos que se emplean para decidir qué solicitantes deben ser contratados, permitiendo la selección efectiva de los candidatos idóneos para ocupar los cargos vacantes existentes dentro de la empresa.</p>
         </div>
       </div>
       <div class="card">

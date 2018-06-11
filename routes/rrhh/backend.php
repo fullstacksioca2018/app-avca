@@ -1,8 +1,15 @@
 <?php
 
-// Rutas para el frontend del módulo de Recursos Humanos de AVCA
+// Rutas para el backend del módulo de Recursos Humanos de AVCA
 Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
-    Route::get('admin', 'rrhh\BackendController@dashboard')->name('dashboard');
+
+    require (__DIR__ . '/empleado.php');
+
+    // Reportes
+    Route::get('rrhh/reportes', function () {
+        return view('rrhh.backend.reportes.reporte');
+    })->name('reportes.rrhh');
+
     // Vacantes
     Route::group(['prefix' => 'vacante'], function () {
       Route::get('registrar', 'rrhh\VacanteController@create')->name('vacante.create');
@@ -10,50 +17,31 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
     });
 
     // Cargos
-    Route::group(['prefix' => 'cargo'], function() {
-        Route::get('listar-cargos', 'rrhh\CargoController@list')->name('cargo.list');
-        Route::get('crear-cargo', 'rrhh\CargoController@create')->name('cargo.create');
-        Route::post('registrar-cargo', 'rrhh\CargoController@store')->name('cargo.store');
-        Route::get('editar-cargo/{id}', 'rrhh\CargoController@edit')->name('cargo.edit');
-        Route::post('actualizar-cargo/{id}', 'rrhh\CargoController@update')->name('cargo.update');
-    });
+    require (__DIR__ . '/cargos.php');
 
-    // Seleccion
-    Route::group(['prefix' => 'seleccion'], function () {
-        Route::get('seleccion', 'rrhh\SeleccionController@index')->name('seleccion.list');
-    });
+    // Seleccion de aspirantes
+    require (__DIR__ . '/aspirantes.php');
 
-    // Datos del empleado
-    Route::group(['prefix' => 'perfil'], function () {
-        Route::get('perfil-empleado', 'rrhh\EmpleadoController@index')->name('empleado.profile');
-        Route::post('datos-empleado', 'rrhh\EmpleadoController@obtenerEmpleado')->name('empleado.info');
-        Route::get('obtener-sucursal', 'rrhh\EmpleadoController@obtenerSucursal');
-        Route::get('obtener-departamento', 'rrhh\EmpleadoController@obtenerDepartamento');
-        Route::get('obtener-cargo', 'rrhh\EmpleadoController@obtenerCargo');
-        Route::post('actualizar-empleado', 'rrhh\EmpleadoController@actualizarEmpleado')->name('empleado.update');
-        Route::get('obtener-carga-familiar', 'rrhh\EmpleadoController@obtenerCargaFamiliar');
-        Route::post('agregar-carga-familiar', 'rrhh\EmpleadoController@agregarCargaFamiliar');
-        Route::put('actualizar-estatus/{id}', 'rrhh\EmpleadoController@actualizarEstatus');
-        Route::get('obtener-conceptos', 'rrhh\EmpleadoController@obtenerConceptos');
-        Route::post('guardar-ingresos-deducciones', 'rrhh\EmpleadoController@guardarIngresosDeducciones');
-        Route::get('obtener-expedientes/{empleado}', 'rrhh\ExpedienteController@obtenerExpedientes');
-        Route::post('guardar-expediente', 'rrhh\ExpedienteController@guardarExpediente');
-    });
+    // Datos del empleado || Perfil
+    require (__DIR__ . '/perfil.php');    
 
     // Contratacion
-    Route::group(['prefix' => 'contratacion'], function () {
-        Route::get('contratacion', 'rrhh\ContratacionController@formContratacion')->name('contratacion.form');
-        Route::post('contratacion', 'rrhh\ContratacionController@procesarContratacion')->name('contratacion.form');
-        Route::get('obtener-aspirante-info/{id}', 'rrhh\ContratacionController@obtenerAspiranteInfo');
-        Route::get('obtener-estados', 'rrhh\ContratacionController@obtenerEstados');
-        Route::get('obtener-profesiones', 'rrhh\ContratacionController@obtenerProfesiones');
-        Route::get('obtener-departamentos', 'rrhh\ContratacionController@obtenerDepartamentos');
-        Route::get('obtener-profesiones/{nivel_academico}', 'rrhh\ContratacionController@obtenerProfesiones');
-        Route::get('obtener-sucursales', 'rrhh\ContratacionController@obtenerSucursales');
-        Route::get('obtener-cargos', 'rrhh\ContratacionController@obtenerCargos');
-        Route::get('obtener-tabulador', 'rrhh\ContratacionController@obtenerTabuladorSalarial');
-        Route::get('obtener-bancos', 'rrhh\ContratacionController@obtenerBancos');
-    });
+    require(__DIR__ . '/contratacion.php');
+
+    //  Nóminas
+    require(__DIR__ . '/nomina.php');
+
+    // Mantenimiento
+    require(__DIR__ . '/mantenimiento.php');
+
+    // Asistencia
+    require (__DIR__ . '/asistencia.php');
+
+    // Gerente de sucursal
+    require(__DIR__ . '/gerente_sucursal.php');
+
+    // Analista de area
+    require(__DIR__ . '/analista_area.php');
 
     // Consultas AJAX
     Route::get('obtener-sucursales', 'rrhh\EmpleadoController@obtenerSucursales');
@@ -67,4 +55,10 @@ Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function() {
     Route::get('obtener-datos-entrevista/{aspirante}', 'rrhh\SeleccionController@obtenerDatosEntrevista');
 
     Route::get('obtener-aspirantes/{cedula}', 'rrhh\BusquedaController@obtenerAspirantesPorCedula');
+
+    // Roles
+    require(__DIR__ . '/roles.php');
+
+    // Usuarios
+    require(__DIR__ . '/users.php');    
 });

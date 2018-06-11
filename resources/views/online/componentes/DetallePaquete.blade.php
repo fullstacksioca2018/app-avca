@@ -1,16 +1,40 @@
 @extends('online.template.main2')
 @section('title','Detalle Vuelo')
+@section('style')
+  <style>
+  #migaDePan a{
+    color:#3c3c3c;
+    font-weight: 800;
+  }
+  #migaDePan .breadcrumb-item.active{
+    color:#fff;
+    
+  }
+  </style>
+@endsection
 @section('content')
 {{-- {{ dd($paquetes) }} --}}
 
+<div class="col-md-12">
+  <nav aria-label="breadcrumb" id="migaDePan">
+    <ol class="breadcrumb bg-primary">
+      <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Selección del vuelo de MultiDestino</li>
+    </ol>
+  </nav>
+</div>
+
+<script src="{{ asset('online/js/alerta.js') }}"></script>
+
  <div class="container-detalles">
+          <div class="titulo_detalles"><b>Selecciona tu boleto de multidestino</b></div>
           <h2 class="pdetalles"><b>Los precios son por persona, por viaje e incluyen todos los impuestos y cargos; sin embargo, no incluyen los cargos de equipaje</b></h2>
 @php
 	$contadorP=1;
 @endphp
     @foreach ($paquetes as $paquete)
 	
-	<form action="{{  URL::to('/online/cliente/DetalleMultidestino') }}" method="get" accept-charset="utf-8">
+	<form action="{{  URL::to('/online/cliente/DetalleMultidestino2') }}" method="get" accept-charset="utf-8">
 		
 		{{ csrf_field() }} 
 
@@ -70,7 +94,13 @@
           <input type="hidden" name="ninos" value="{{ $ObjVuelo->ninos }}">
           <input type="hidden" name="adultos" value="{{ $ObjVuelo->adultos }}">
           <input type="hidden" name="ninosbrazos" value="{{ $ObjVuelo->ninosbrazos}}">
+
+        @if(Auth::guest())
+          <button id="login" class="btn btn-md btn-primary">Seleccionar</button>
+        @else
           <button type="submit" class="btn btn-md btn-primary">Seleccionar</button>
+        @endif
+          
         
       </div> <!--fin col-md-4-->
    </div><!--row sm-4-->

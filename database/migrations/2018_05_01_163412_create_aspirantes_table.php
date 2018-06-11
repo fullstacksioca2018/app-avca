@@ -26,7 +26,9 @@ class CreateAspirantesTable extends Migration
             $table->string('telefono_fijo',50);
             $table->string('curriculum');
             $table->integer('vacante_id')->unsigned();
+            $table->integer('cargo_id')->unsigned();
             $table->foreign('vacante_id')->references('vacante_id')->on('vacantes');
+            $table->foreign('cargo_id')->references('cargo_id')->on('cargos');
             $table->timestamps();
         });
     }

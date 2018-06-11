@@ -17,7 +17,7 @@
 
 <script type="text/javascript">
 export default {
-	props:['datos','ind','titulo'],
+	props:['datos','ind','titulo','color'],
 	data(){
 		return{
 			activo:false

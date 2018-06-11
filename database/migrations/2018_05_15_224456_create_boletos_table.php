@@ -16,7 +16,7 @@ class CreateBoletosTable extends Migration
         Schema::create('boletos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('primerNombre',50);
-            $table->string('segundoNombre',50);
+            $table->string('segundoNombre',50)->nullable();
             $table->string('apellido',50);
             $table->enum('genero',['masculino','femenino']);
             $table->date('fecha_nacimiento');
@@ -25,10 +25,10 @@ class CreateBoletosTable extends Migration
             $table->enum('boleto_estado',['Reservado','Pagado','Chequeado','Cancelado','Temporal'])->default('Reservado');
             $table->date('fecha_expiracion')->nullable();
             $table->enum('tipo_boleto',['adulto','niño','bebe en brazos']);
-            $table->string('asiento',50);
+            $table->string('asiento',50)->nullable();
             $table->boolean('checkin')->default(false);
             $table->string('localizador',50);
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->integer('factura_id')->unsigned()->nullable();
             $table->integer('vuelo_id')->unsigned();
             

@@ -5,6 +5,39 @@
     Intro Section
   ============================-->
 
+
+@if(Auth::guest())
+              
+     {{-- Nada para poner --}}
+
+  @else
+           
+  @if(Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id) == null)
+
+      <script>
+        Push.create("Notificación",{
+          body:"complete su perfil para una mejor experiencia",
+          icon:"{{ asset('online/img/favicon.png') }}",
+          timeout:10000,
+          onClick: function()
+          {
+            window.location = "{{ URL::to('/online/cliente/ModificarPerfil', Auth::guard('online')->user()->id) }}"
+            this.close();
+          } /* Fin de function */
+        });
+      </script>    
+
+   @else
+              
+    {{-- Nada para poner --}}
+
+  @endif
+
+@endif
+
+
+
+
   <section id="intro">
 
     <div class="intro-content">
@@ -12,19 +45,19 @@
 <!-- ==============================
       INICIO DEL FORMULARIO COMPRAS
 ================================ -->      
-<div class="card transparente " >
+<div class="card transparente ">
 
 <div class="btn-group align-items-center" role="group" aria-label="Basic example">
   <!-- <button href="#" type="button" class="btn btn-primary btn-lg active"> Sin Retorno</button> -->
 
   @if(Auth::guest())
-    <a href="{{ route('cliente.index1') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">solo ida</a>
-    <a href="{{ route('cliente.index2') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">ida y vuelta</a>
-    <a href="{{ route('cliente.index3') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">multi-destino</a>
+    <a href="#" id="btsoloida" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">solo ida</a>
+    <a href="#" id="btidayvuelta" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">ida y vuelta</a>
+    <a href="#" id="btmultidestino" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">multi-destino</a>
   @else
-    <a href="{{ URL::to('/online/inicio') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">solo ida</a>
-    <a href="{{ URL::to('/online/inicio2') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">ida y vuelta</a>
-    <a href="{{ URL::to('/online/inicio3') }}" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">multi-destino</a>
+    <a href="#" id="btsoloida" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">solo ida</a>
+    <a href="#" id="btidayvuelta" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">ida y vuelta</a>
+    <a href="#" id="btmultidestino" class="btn btn-elegant btn-lg" role="button" aria-pressed="true">multi-destino</a>
   @endif
   
   
@@ -38,98 +71,49 @@
       <div class="row">
         <div class="col-md-8 offset-md-2">
         
-          @if (Auth::guest())
-            {!! Form::open(['route' => ['cliente.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction()']) !!}
-          @else
-            <form method="get" onsubmit="myFunction()" action="{{ URL::to('/online/cliente/DetalleVuelo') }}">
+        
+         <div id="soloida"> 
+            @if (Auth::guest())
+              {!! Form::open(['route' => ['cliente.DetalleVuelo'], 'method' => 'GET', 'onsubmit' => 'myFunction(1)']) !!}
+                  @include('online.componentes.ida')
+              {!! Form::close() !!}
+            @else
+              <form method="get" onsubmit="myFunction(1)" action="{{ URL::to('/online/cliente/DetalleVuelo') }}">
+                  @include('online.componentes.ida')      
+              </form>
             @endif
-              <input type="hidden" name="ninosbrazos" id="ninosbrazos" value="0"> 
-              
-              <div class="form-row">
-                {{--  SELECT DESDE  --}}
-                <div class="col col-md-6">
-                  <label for="exampleFormControlSelect1" class="h">Desde:</label>
-                  <div class="form-group">         
                 
-                    <select data-placeholder="Ciudad-Aeropuerto" name="origen_id" class="chosen-select impout3" class="form-control impout3" tabindex="2">
-                      <option value="#">Cuidad o aeropuerto</option>
-                      @foreach ($sucursales as $sucursal)
-                            <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
-                      @endforeach
-                    </select>
-                    <i class="fa fa-map-marker prefix icociudad2"></i>
-                    
-                  </div>  
-                </div>  
+         </div>
+
+         <div id="idayvuelta">
+
+            @if(Auth::guest())
+              <form method="get" action="{{ URL::to('/cliente/DetalleRetorno') }}" onsubmit="myFunction(2)">
+                  @include('online.componentes.retorno');
+              </form>
+            @else
+              <form method="get" action="{{ URL::to('/online/cliente/DetalleRetorno') }}" onsubmit="myFunction(2)">
+                  @include('online.componentes.retorno');
+              </form>
+            @endif
+            
+         </div>
+
+         <div id="multidestino">
             
 
-                {{--  SELECT HASTA  --}}
-                <div class="col-md-6">
-                  <label for="exampleFormControlSelect1" class="h">Hasta:</label>
-                  <div class="form-group">         
-                
-                    <select data-placeholder="Ciudad-Aeropuerto"  name="destino_id" class="chosen-select impout3" class="form-control impout3" tabindex="2"> 
-                      <option value="#">Cuidad o aeropuerto</option>
-                      @foreach ($sucursales as $sucursal)
-                            <option value="{{ $sucursal->sucursal_id }}">{{ $sucursal->ciudad }}, {{ $sucursal->pais }} ({{ $sucursal->sigla }}),  {{ $sucursal->aeropuerto }}</option>
-                      @endforeach
-                    </select>
-                    <i class="fa fa-map-marker prefix icociudad2"></i>
-                  </div>  
-                </div>
+            @if(Auth::guest())
+              <form method="get" action="{{ URL::to('/cliente/DetalleMultidestino') }}" onsubmit="myFunction(3)">
+                @include('online.componentes.multidestino');
+              </form>
+            @else
+              <form method="get" action="{{ URL::to('/online/cliente/DetalleMultidestino') }}" onsubmit="myFunction(3)">
+                @include('online.componentes.multidestino')
+              </form>
+            @endif
 
-              </div> <!-- fin de form-row -->
+         </div> 
 
-              <!-- Grd row -->
-
-              <!-- ======================
-                  FIN DESDE / HASTA
-                ======================= -->
-
-              <!-- ======================
-                  INICIO DEL Calendario
-                ======================= -->
-
-              <div class="form-row">
-
-                  <div class="col-md-4">
-                    <label for="coñooo" class="h">Fecha ida:</label>
-                    <input type="date" name="fecha_salida" class="form-control impout3" placeholder="DD/MM/YYY">
-                    <i class="fa fa-calendar prefix icocalendario"></i>
-                  </div>
-
-                  <div class="col col-md-1 col-lg-1">
-                    <label for="exampleFormControlSelect1" class="h">Adultos:</label>
-                    <div class="form-group">
-                      <input type="number" id="inputadultos" min="1" max="5" class="form-control" value="1" name="adultos" onchange="validarN('inputadultos')">
-                    </div>
-                  </div>
-
-                  <div class="col col-md-1 col-lg-1">
-                    <label for="exampleFormControlSelect1" class="h">Niños:</label>
-                    <div class="form-group">
-                      <input type="number" id="inputninos" min="0" max="5" class="form-control" value="0" name="ninos" onchange="validarN('inputninos')">
-                    </div>
-                  </div>
-
-              </div>
-
-              <!-- ======================
-                FIN DEL Calendario
-              ======================= -->
-
-              {{-- ====================================== 
-                              Contador de personas
-                  ====================================== --}}              
-              <div id="contenedorPersonas" 
-              </div>              
-
-              {{--  Boton de envio  --}}
-              <div class="form-row">
-                <input type="submit" value="BUSCAR" class="btn btn-primary">
-              </div>        
-
-            {!! Form::close() !!} 
             <!-- ======================
             FIN DEL Form
             ======================= -->
@@ -145,7 +129,7 @@
       ==============================-->
 
 
-    </div>
+    
 
     <div id="intro-carousel" class="owl-carousel" >
       <div class="item" style="background-image: url('{{ asset('online/img/intro-carousel/1.jpg') }} ');"></div>
@@ -232,7 +216,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
             <div class="portfolio-wrap">
               <figure>
-                <img src="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" class="img-fluid" alt="">
+                <img src="{{ asset('online/img/portfolio/barcelona/barcelona3.jpg') }}" class="img-fluid" alt="">
 
                 <a href="{{ asset('online/img/portfolio/barcelona/barcelona1.jpg') }}" data-lightbox="portfolio" data-title="La Casa Fuerte, Barcelona - Estado Anzoategui" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
 
@@ -284,7 +268,16 @@
 
                 <a href="{{ asset('online/img/portfolio/cumana/cumana3.jpg') }}" class="link-preview" data-lightbox="portfolio" data-title="Monumento, Cumaná - Estado Sucre" title="Preview"><i class="ion ion-eye"></i></a>
 
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                @if (Auth::guest())
+
+                <a href="{{ route('destino.cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+
+              @else
+                
+                <a href="{{ URL::to('/online/destino/cumana') }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+
+              @endif
+              
               </figure>
 
               <div class="portfolio-info">
@@ -361,7 +354,6 @@
           </div>
 
         </div>
-          <h6 class="float-md-right"><a href="#"><b>+DESTINOS</b></a></h6>
       </div>
 
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

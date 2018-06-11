@@ -5,6 +5,8 @@ namespace App;
 use App\Notifications\OnlineResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
+
 
 class Online extends Authenticatable
 {
@@ -16,7 +18,7 @@ class Online extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id','name', 'email', 'password', 'avatar'
     ];
 
     /**
@@ -37,5 +39,33 @@ class Online extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new OnlineResetPassword($token));
+    }
+
+    public function cliente($id){
+        return DB::Table('clientes')->where('user_id',$id)->first();
+    }
+
+    public function boletos($id){
+        return DB::Table('boletos')
+            ->select('boletos.*')
+            ->where('user_id',$id)
+            ->join('vuelos','vuelos.id','boletos.vuelo_id')
+            ->orderBy('vuelos.fecha_salida')
+            ->get();
+    }
+
+    public function pasajeros($id){
+        return DB::Table('boletos')
+            ->where('user_id',$id)
+            ->where('tipo_boleto','adulto')
+            ->groupBy('boletos.documento')
+            ->get();
+    }
+    public function pasajerosN($id){
+        return DB::Table('boletos')
+            ->where('user_id',$id)
+            ->where('tipo_boleto','bebe en brazos')
+            ->groupBy('boletos.documento')
+            ->get();
     }
 }

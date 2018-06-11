@@ -12,11 +12,13 @@ class AreasTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('areas')->truncate();
+        /*DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        DB::table('areas')->truncate();*/
 
         DB::table('areas')->insert([
             [
-                'nombre' => 'administrativa',
+                'nombre' => 'Administrativa',
                 'slug' => 'administrativa',
                 'foto' => '/rrhh/areas/administrativa.jpeg'
             ],
@@ -26,7 +28,7 @@ class AreasTableSeeder extends Seeder
                 'foto' => '/rrhh/areas/apoyo-logistico.jpg'
             ],
             [
-                'nombre' => 'operativo',
+                'nombre' => 'Operativo',
                 'slug' => 'operativo',
                 'foto' => '/rrhh/areas/operativo.jpeg'
             ],
@@ -48,6 +50,6 @@ class AreasTableSeeder extends Seeder
         ]);
 
         //enable foreign key check for this connection before running seeders
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

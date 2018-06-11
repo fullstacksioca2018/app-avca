@@ -15,6 +15,7 @@
 		Route::post('/pagar','Operativo\FacturacionController@pagar');
 	});
 	//Check
+<<<<<<< HEAD
     Route::group(['prefix'=>'check',/* 'middleware' => 'auth' */],function(){
 		Route::get('/','Operativo\CheckController@check');
 		Route::get('/check','Operativo\CheckController@checks');
@@ -29,6 +30,23 @@
 		Route::get('/','Operativo\FacturacionController@factura');
 		Route::get('/facturas','Operativo\FacturacionController@facturas');
 		Route::post('/cancelar','Operativo\FacturacionController@cancelar');
+=======
+Route::group(['prefix'=>'check',/* 'middleware' => 'auth' */],function(){
+	Route::get('/','Operativo\CheckController@check');
+	Route::get('/check','Operativo\CheckController@checks');
+	Route::get('/chequeados','Operativo\CheckController@chequeados');
+	Route::get('/todos','Operativo\CheckController@todos');
+	Route::post('/check/chekear','Operativo\CheckController@checkearBoleto');
+	Route::post('/maletas','Operativo\CheckController@addMaletas');
+	Route::post('/asientosAsignados','Operativo\CheckController@asignados');
+});
+//factura
+Route::group(['prefix'=>'factura',/* 'middleware' => 'auth' */],function(){
+	Route::get('/','Operativo\FacturacionController@factura');
+	Route::get('/facturas','Operativo\FacturacionController@facturas');
+	Route::post('/cancelar','Operativo\FacturacionController@cancelar');
+	Route::post('/pagar','Operativo\FacturacionController@pagar');
+>>>>>>> master
 	});
 	//llegada de aviones
 	Route::group(['prefix'=>'llegada',/* 'middleware' => 'auth' */],function(){
