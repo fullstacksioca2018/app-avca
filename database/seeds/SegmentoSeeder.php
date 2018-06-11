@@ -21,16 +21,24 @@ class SegmentoSeeder extends Seeder
             'vuelo_id' => ($i+1),
         ]);}*/
 
+       
+
           DB::table('segmentos')->insert([
             'aeronave_id' => '2',
-            'ruta_id' => '22',
+            'ruta_id' => '21',
             'vuelo_id' => '1',
         ]);
 
          DB::table('segmentos')->insert([
             'aeronave_id' => '2',
-            'ruta_id' => '23',
+            'ruta_id' => '22',
             'vuelo_id' => '2',
+        ]);
+
+        DB::table('segmentos')->insert([
+            'aeronave_id' => '2',
+            'ruta_id' => '23',
+            'vuelo_id' => '3',
         ]);
 
     }

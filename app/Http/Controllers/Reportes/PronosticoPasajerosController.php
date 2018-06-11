@@ -65,8 +65,8 @@ class PronosticoPasajerosController extends Controller
                                     array_push($stack, $cont);
                         			array_push($data, $dataAux);
 	    					}
+							$cont++;
 	    				}
-	    				$cont++;
 	    				break;
 	    			case 'Destino':
 	    				$auxBanderaFiltro=true;
@@ -104,8 +104,8 @@ class PronosticoPasajerosController extends Controller
                                     array_push($stack, $cont);
                         			array_push($data, $dataAux);
 	    					}
+							$cont++;
 	    				}
-	    				$cont++;
 	    				break;
 	    			case 'Ruta':
 	    				$auxBanderaFiltro=true;
@@ -147,8 +147,8 @@ class PronosticoPasajerosController extends Controller
                                     array_push($stack, $cont);
                         			array_push($data, $dataAux);
 	    					}
+							$cont++;
 	    				}
-	    				$cont++;
 	    				break;
 	    		}
 	    	}
@@ -161,27 +161,27 @@ class PronosticoPasajerosController extends Controller
             array_push($stack, $cont);
 			array_push($data, $dataAux);
 	    }
-	    if(!$auxBanderaFiltro&&((count($consulta->filtros))>=1)){//solo filtros de persona
+		if(!$auxBanderaFiltro&&((count($consulta->filtros))>=1)){//solo filtros de persona
 	    	for ($fp=0; $fp < count($consulta->filtrosP) ; $fp++) { 
 				switch ($consulta->filtrosP[$fp]) {
 					case 'Edad':
-						for($fpe=0;$fpe<$consulta->edadesF;$fpe++){
+						for($fpe=0;$fpe<count($consulta->edadesF);$fpe++){
                 			$labelsAux="Pasajeros ".$consulta->edadesF[$fpe];
                 			$dataAux=$this->ConsultaPronosticoPasajerosEdad($consulta->edadesF[$fpe]);
-                			array_push($label, $labelsAux);
+							array_push($label, $labelsAux);
                             array_push($stack, $cont);
                 			array_push($data, $dataAux);
 	    					$cont++;
 						}
 						break;
 					case 'Genero':
-						for($fpg=0;$fpg<$consulta->generosF;$fpg++){
+						for($fpg=0;$fpg<count($consulta->generosF);$fpg++){
                 			$labelsAux="Pasajeros ".$consulta->generosF[$fpg];
                 			$dataAux=$this->ConsultaPronosticoPasajerosGenero($consulta->generosF[$fpg]);
                 			array_push($label, $labelsAux);
                             array_push($stack, $cont);
                 			array_push($data, $dataAux);
-	    					$cont++;
+							$cont++;
 						}
 						break;
 				}

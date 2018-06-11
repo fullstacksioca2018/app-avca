@@ -103,9 +103,6 @@ Route::get('auth/{provider}/callback', 'OnlineAuth\SocialAuthController@handlePr
 require 'Operativo\PlanificarAeronave.php';
 require 'Operativo\PlanificarSucursal.php';
 
-Route::get('/reportes', function () {
-    return view('reportes.PanelConsulta');
-});
 
 Route::get('reporte/operativo', function () {
         return view('Operativo.reportes.reporte');

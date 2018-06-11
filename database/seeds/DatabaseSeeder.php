@@ -48,6 +48,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AeronaveSeeder::class);
         $this->call(RutaSeeder::class);
         $this->call(SegmentoSeeder::class);
+        $this->call(OnlineSeeder::class);
+        $this->call(asientosSeeder::class);
 
         //SEEDER MODULO REPORTE
          $this->call(DwSucursales::class);

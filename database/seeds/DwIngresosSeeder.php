@@ -26,7 +26,7 @@ class DwIngresosSeeder extends Seeder
 	        ]);
             $ind=rand(1, 5);
             for ($boleto=0; $boleto <$ind ; $boleto++) { 
-                $pasajero=rand(1, 200);
+                $pasajero=rand(1, 1000);
                 $vuelo_id=rand(1, 1138);
                 DB::table('DwBoletos')->insert([
                     [
@@ -54,7 +54,7 @@ class DwIngresosSeeder extends Seeder
             ]);
             $ind=rand(1, 5);
             for ($boleto=0; $boleto <$ind ; $boleto++) { 
-                $pasajero=rand(1, 200);
+                $pasajero=rand(1, 1000);
                 $vuelo_id=rand(1, 1138);
                 DB::table('DwBoletos')->insert([
                     [
@@ -82,7 +82,7 @@ class DwIngresosSeeder extends Seeder
             ]);
             $ind=rand(1, 5);
             for ($boleto=0; $boleto <$ind ; $boleto++) { 
-                $pasajero=rand(1, 200);
+                $pasajero=rand(1, 1000);
                 $vuelo_id=rand(1, 1138);
                 DB::table('DwBoletos')->insert([
                     [

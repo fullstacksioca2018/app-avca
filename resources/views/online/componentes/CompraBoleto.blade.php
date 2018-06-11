@@ -353,7 +353,6 @@
 @for ($i = 0; $i < ($cantidad-$ninosbrazos); $i++)   
 
 {{--===============================================================================--}}
-    
 @if((Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id))&&($i==0))
 
  <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.4s">
@@ -477,10 +476,9 @@
 
  @if((Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id)==null)&&($i==0))
 
-
     <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.4s">
    <div class="form-group row">
-       <label for="firstName" class="{{-- col-sm-2 col-form-label --}}">PASAJERO  {{ ($i+1) }}</label>
+       <label for="firstName" class="{{-- col-sm-2 col-form-label --}}">PASAJERO {{ ($i+1) }}</label>
        {{-- <div class="col-sm-10">
        <select  class="form-control" name="pasajeroHelp[]" id="pasajeroHelp{{ ($i+1)}}" onchange="pasajeroAjax({{ $i+1 }})">
          <option value="0" >Seleccionar otro</option>
@@ -574,8 +572,8 @@
  @endif
 
 {{--========================================Fin Segundo if=========================================--}}
-
-@if((Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id)==null)||($i!=0))
+<!-- cambie el or || por and && -->
+@if((Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id)==null)&&($i!=0))
 
 
     <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.4s">

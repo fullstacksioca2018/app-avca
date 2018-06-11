@@ -35,8 +35,8 @@ class PronosticoIngresosController extends Controller
                     			array_push($label, $labelsAux);
                                 array_push($stack, $cont);
                     			array_push($data, $dataAux);
+							$cont++;
 	    				}
-	    				$cont++;
 	    				break;
 	    			case 'Destino':
 	    				for ($d=0; $d < count($consulta->destinosF) ; $d++) { 
@@ -46,8 +46,8 @@ class PronosticoIngresosController extends Controller
                 			array_push($label, $labelsAux);
                             array_push($stack, $cont);
                 			array_push($data, $dataAux);
+							$cont++;
 	    				}
-	    				$cont++;
 	    				break;
 	    			case 'Ruta':
 	    				$auxBanderaFiltro=true;
@@ -61,8 +61,8 @@ class PronosticoIngresosController extends Controller
                 			array_push($label, $labelsAux);
                             array_push($stack, $cont);
                 			array_push($data, $dataAux);
+							$cont++;
 	    				}
-	    				$cont++;
 	    				break;
 	    		}
 	    	}
