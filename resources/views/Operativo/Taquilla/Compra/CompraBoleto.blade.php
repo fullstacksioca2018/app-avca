@@ -324,7 +324,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
             </div>
-            <input type="number" class="form-control" form="myForm" name="numero_tarjeta" id="cc-number"  autocomplete="off" >
+            <input type="number" class="form-control" form="myForm" name="numero_tarjeta" id="cc-number"  autocomplete="off" minlength="4" maxlength="8" >
             <div class="invalid-feedback">Requiere el numero de referencia</div>
           </div> <!-- input-group.// -->
         </div> <!-- form-group.// -->

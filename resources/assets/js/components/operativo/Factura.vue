@@ -194,7 +194,6 @@ export default {
     },
 
     cambiarestado(){
-      //alert("ha cambiado el estado del select a"+this.compra.tipo)
        if(this.compra.tipo=="Débito")
       {
         this.tarjetas=['Visa','Mastercard','American Express'];
