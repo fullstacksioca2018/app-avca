@@ -16,10 +16,10 @@ class CreateTripulantes extends Migration
         Schema::create('tripulantes', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->enum('rango', ['piloto', 'copiloto', 'jefe de cabina', 'sobrecargo']);	
+            $table->enum('rango', ['piloto', 'copiloto', 'jefe de cabina', 'sobrecargo'])->nullable();	
             $table->string('licencia',255);
             $table->integer('personal_id')->unsigned();
-            $table->foreign('personal_id')->references('id')->on('empleados2')->onDelete('cascade');
+            $table->foreign('personal_id')->references('id')->on('empleados')->onDelete('cascade');
             $table->timestamps();
         });
     }
