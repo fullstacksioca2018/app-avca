@@ -90,6 +90,8 @@
 </script>
 <!--Lo del Select de la busqueda para las compra boleto -->
 
+{{-- Plugins de notificaciones --}}
+<script src="{{ asset('online/plugins/lib/push/bin/push.min.js') }} "></script>
 
 <!--Lo del Select niños en brazos y esas cosas Main JS-->
 <script src="{{ asset('online/js/prueba.js') }}"></script>
@@ -97,6 +99,7 @@
 <script src="{{ asset('online/js/formulario.js') }}"></script>
 <script src="{{ asset('online/js/multidestino.js') }}"></script>
 <script src="{{ asset('online/js/TarjetaCredito.js') }}"></script>
+<script src="{{ asset('online/js/AvisoRegistrarPerfil.js') }}"></script>
 
 <!--Lo del Select niños en brazos y esas cosas Main JS -->
 

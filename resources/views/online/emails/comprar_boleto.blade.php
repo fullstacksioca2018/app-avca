@@ -29,14 +29,16 @@
       <td class="thresumen">Costo: {{ $dato_vuelo->ruta->tarifa_vuelo }}</td>
     </tr>
 
-      @foreach ($boletos as $boleto)
+      @for($i = 0; $i < $factura->ninos_cant + $factura->adultos_cant; $i++)
         <tr>
 
-          <th class="thresumen">Pasajero: {{ $boleto->primerNombre }} {{ $boleto->apellido }}</th>
-          <th class="thresumen">Localizador: {{ $boleto->localizador }} </th>
+          <th class="thresumen">Pasajero: {{ $boletos[$i]->primerNombre }} {{ $boletos[$i]->apellido }}</th>
+
+          <th class="thresumen">Localizador: {{ $boletos[$i]->localizador }} </th>
 
         </tr>
-      @endforeach
+            
+      @endfor
     
 
     @endforeach

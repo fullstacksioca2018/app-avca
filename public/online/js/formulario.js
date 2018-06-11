@@ -40,7 +40,7 @@ function ComBoleto(){
 
 function BoletoReservado(){
 	//alert(sessionStorage.getItem('ninos'));
-	alert('estoy aqui');
+	//alert('estoy aqui');
 	document.getElementById('ReservaNino').value = sessionStorage.getItem('ninos');
 	document.getElementById('ReservaAdulto').value = sessionStorage.getItem('adultos');
 	document.getElementById('ReservaBrazo').value = sessionStorage.getItem('brazos');

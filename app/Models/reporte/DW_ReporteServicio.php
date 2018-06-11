@@ -43,8 +43,9 @@ class DW_ReporteServicio extends Model
                 return DB::table('DwVuelos')
                     ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
                     ->where('DwRutas.destino_id',$destino)
-    				->whereDate('salida','>=',$periodo->desde)
-    				->whereDate('salida','<=',$periodo->hasta)
+                    ->whereDate('DwVuelos.fecha_creacion','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.fecha_creacion','<=',$periodo->hasta)
+                    ->whereDate('DwVuelos.salida','>=',$periodo->hasta)
                     ->count();
                 break;
             case 'Cancelado':
@@ -147,8 +148,9 @@ class DW_ReporteServicio extends Model
                 return DB::table('DwVuelos')
                     ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
                     ->where('DwRutas.origen_id',$origen)
-    				->whereDate('salida','>=',$periodo->desde)
-    				->whereDate('salida','<=',$periodo->hasta)
+                    ->whereDate('DwVuelos.fecha_creacion','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.fecha_creacion','<=',$periodo->hasta)
+                    ->whereDate('DwVuelos.salida','>=',$periodo->hasta)
                     ->count();
                 break;
             case 'Cancelado':
@@ -277,8 +279,9 @@ class DW_ReporteServicio extends Model
                     // return $periodo->desde."-".$periodo->hasta;
                     return DB::table('DwVuelos')
                         ->where('DwVuelos.ruta_id',$ruta_id)
-                        ->whereDate('salida','>=',$periodo->desde)
-                        ->whereDate('salida','<=',$periodo->hasta)
+                        ->whereDate('DwVuelos.fecha_creacion','>=',$periodo->desde)
+                        ->whereDate('DwVuelos.fecha_creacion','<=',$periodo->hasta)
+                        ->whereDate('DwVuelos.salida','>=',$periodo->hasta)
                         ->count();
                     break;
                 case 'Cancelado':
@@ -357,8 +360,9 @@ class DW_ReporteServicio extends Model
                     return DB::table('DwVuelos')
                         ->where('DwVuelos.ruta_id',$ruta2[0])
                         ->orWhere('DwVuelos.ruta_id',$ruta2[1])
-                        ->whereDate('salida','>=',$periodo->desde)
-                        ->whereDate('salida','<=',$periodo->hasta)
+                        ->whereDate('DwVuelos.fecha_creacion','>=',$periodo->desde)
+                        ->whereDate('DwVuelos.fecha_creacion','<=',$periodo->hasta)
+                        ->whereDate('DwVuelos.salida','>=',$periodo->hasta)
                         ->count();
                     break;
                 case 'Cancelado':
@@ -774,8 +778,9 @@ class DW_ReporteServicio extends Model
                 }
                 // return $periodo->desde."-".$periodo->hasta;
                 return DB::table('DwVuelos')
-                    ->whereDate('salida','>=',$periodo->desde)
-                    ->whereDate('salida','<=',$periodo->hasta)
+                    ->whereDate('DwVuelos.fecha_creacion','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.fecha_creacion','<=',$periodo->hasta)
+                    ->whereDate('DwVuelos.salida','>=',$periodo->hasta)
                     ->count();
                 break;
             case 'Cancelado':

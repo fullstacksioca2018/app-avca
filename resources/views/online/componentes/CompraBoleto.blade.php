@@ -28,7 +28,7 @@
 
     <div class="container col-md-12 col-lg-12">
 <div class="card border-primary border-bottom-0 mb-3">
-      <div class="card-header view overlay" id="grad1" id="joder" >
+      <div class="card-header view overlay" id="grad1" id="joder" style=" height: 220px;">
         <div class="py-2 text-center box wow flipInX" data-wow-duration="0.8s">
           <img class=" mx-auto img-fluid" src="{{ asset('online/img/logo.png') }}" width="150px" height="100px">
           <h2>ESTA A UN SOLO PASO DE VIAJAR</h2>
@@ -114,11 +114,11 @@
                 </h5>
 
                  <div id="collapseThree{{ ($i+1) }}" class="collapse mt-1 ml-1" aria-labelledby="headingThree" data-parent="#accordion">    
-                    <h6 class="my-0">Vuelo: <span class="text-muted der">Bs </span></h6>
+                    <h6 class="my-0">Vuelo: <span class="text-muted der">BsS </span></h6>
                             
-                    <h6 class="my-0">Cargos:<span class="text-muted der">Bs </span></h6>
+                    <h6 class="my-0">Cargos:<span class="text-muted der">BsS </span></h6>
 
-                    <h6 class="my-0">Impuesto:<span class="text-muted der1">Bs </span></h6>  
+                    <h6 class="my-0">Impuesto:<span class="text-muted der1">BsS </span></h6>  
 
                 </div> 
                 </div>   
@@ -126,7 +126,7 @@
                 <br>
               
                    </div>
-                 <span class="text-muted">{{ $costoP }}Bs</span>  
+                 <span class="text-muted">{{ $costoP }}BsS</span>  
 
 
               </li>
@@ -143,22 +143,22 @@
                         </a>
                       </h5>  
                        <div id="collapseThree{{ ($i+1+$cantidad-$ninosbrazos) }}" class="collapse mt-1 ml-1" aria-labelledby="headingThree" data-parent="#accordion">    
-                         <h6 class="my-0">Vuelo: <span class="text-muted der">0Bs</span></h6>
+                         <h6 class="my-0">Vuelo: <span class="text-muted der">0BsS</span></h6>
                                 
-                         <h6 class="my-0">Cargos:<span class="text-muted der">0Bs </span></h6>
+                         <h6 class="my-0">Cargos:<span class="text-muted der">0BsS</span></h6>
 
-                         <h6 class="my-0">Impuesto:<span class="text-muted der1">0Bs </span></h6>   
+                         <h6 class="my-0">Impuesto:<span class="text-muted der1">0BsS</span></h6>   
                         </div> 
                   </div> 
                 </h6>
               </div>
-              <span class="text-muted">0Bs</span>
+              <span class="text-muted">0BsS</span>
             </li>
            @endfor 
 
             <li class="list-group-item d-flex justify-content-between border-primary">
-              <span>Total a PagarBs</span>
-              <strong>{{ $costoP * ($cantidad-$ninosbrazos)}}Bs</strong>
+              <span>Total a Pagar</span>
+              <strong>{{ $costoP * ($cantidad-$ninosbrazos)}}BsS</strong>
             </li>
           </ul>
           </div>
@@ -186,17 +186,17 @@
         </a>
       </h5>  
        <div id="collapseThree{{ ($i+1) }}" class="collapse mt-1 ml-1" aria-labelledby="headingThree" data-parent="#accordion">    
-         <h6 class="my-0">Vuelo: <span class="text-muted der">0Bs</span></h6>
+         <h6 class="my-0">Vuelo: <span class="text-muted der">0BsS</span></h6>
                 
-         <h6 class="my-0">Cargos:<span class="text-muted der">0Bs </span></h6>
+         <h6 class="my-0">Cargos:<span class="text-muted der">0BsS </span></h6>
 
-         <h6 class="my-0">Impuesto:<span class="text-muted der1">0Bs </span></h6>   
+         <h6 class="my-0">Impuesto:<span class="text-muted der1">0BsS</span></h6>   
         </div> 
       </div> 
 
         </h6>
                   </div>
-                <span class="text-muted">{{ $tarifa_vuelo }}Bs</span>
+                <span class="text-muted">{{ $tarifa_vuelo }}BsS</span>
               </li>
       @endfor
 
@@ -211,23 +211,23 @@
                         </a>
                       </h5>  
                        <div id="collapseThree{{ ($i+1+$cantidad-$ninosbrazos) }}" class="collapse mt-1 ml-1" aria-labelledby="headingThree" data-parent="#accordion">    
-                         <h6 class="my-0">Vuelo: <span class="text-muted der">0Bs</span></h6>
+                         <h6 class="my-0">Vuelo: <span class="text-muted der">0BsS</span></h6>
                                 
-                         <h6 class="my-0">Cargos:<span class="text-muted der">0Bs </span></h6>
+                         <h6 class="my-0">Cargos:<span class="text-muted der">0BsS</span></h6>
 
-                         <h6 class="my-0">Impuesto:<span class="text-muted der1">0Bs </span></h6>   
+                         <h6 class="my-0">Impuesto:<span class="text-muted der1">0BsS</span></h6>   
                         </div> 
                   </div> 
                 </h6>
               </div>
-              <span class="text-muted">0Bs</span>
+              <span class="text-muted">0BsS</span>
 
             </li>
             @endfor
 
             <li class="list-group-item d-flex justify-content-between">
-              <span>Total a PagarBs</span>
-              <strong>{{ $tarifa_vuelo * ($cantidad-$ninosbrazos)}}Bs</strong>
+              <span>Total a Pagar</span>
+              <strong>{{ $tarifa_vuelo * ($cantidad-$ninosbrazos)}}BsS</strong>
             </li>
           </ul>
         </div>
@@ -259,16 +259,16 @@
                         </a>
                       </h5>  
                        <div id="collapseThree{{ ($i+1+$cantidad-$ninosbrazos) }}" class="collapse mt-1 ml-1" aria-labelledby="headingThree" data-parent="#accordion">    
-                         <h6 class="my-0">Vuelo: <span class="text-muted der">0Bs</span></h6>
+                         <h6 class="my-0">Vuelo: <span class="text-muted der">0BsS</span></h6>
                                 
-                         <h6 class="my-0">Cargos:<span class="text-muted der">0Bs </span></h6>
+                         <h6 class="my-0">Cargos:<span class="text-muted der">0BsS </span></h6>
 
-                         <h6 class="my-0">Impuesto:<span class="text-muted der1">0Bs </span></h6>   
+                         <h6 class="my-0">Impuesto:<span class="text-muted der1">0BsS </span></h6>   
                         </div> 
                   </div> 
                       </h6>
                   </div>
-                <span class="text-muted">{{ $tarifa_vuelo*2 }}Bs</span>
+                <span class="text-muted">{{ $tarifa_vuelo*2 }}BsS</span>
               </li>
 
             @endfor
@@ -284,22 +284,22 @@
                         </a>
                       </h5>  
                        <div id="collapseThree{{ ($i+1+$cantidad-$ninosbrazos) }}" class="collapse mt-1 ml-1" aria-labelledby="headingThree" data-parent="#accordion">    
-                         <h6 class="my-0">Vuelo: <span class="text-muted der">0Bs</span></h6>
+                         <h6 class="my-0">Vuelo: <span class="text-muted der">0BsS</span></h6>
                                 
-                         <h6 class="my-0">Cargos:<span class="text-muted der">0Bs </span></h6>
+                         <h6 class="my-0">Cargos:<span class="text-muted der">0BsS</span></h6>
 
-                         <h6 class="my-0">Impuesto:<span class="text-muted der1">0Bs </span></h6>   
+                         <h6 class="my-0">Impuesto:<span class="text-muted der1">0BsS</span></h6>   
                         </div> 
                   </div> 
                 </h6>
               </div>
-              <span class="text-muted">0Bs</span>
+              <span class="text-muted">0BsS</span>
             </li>
             @endfor
 
             <li class="list-group-item d-flex justify-content-between">
-              <span>Total a PagarBs</span>
-              <strong>{{ $tarifa_vuelo * ($cantidad-$ninosbrazos)*2}}Bs</strong>
+              <span>Total a Pagar</span>
+              <strong>{{ $tarifa_vuelo * ($cantidad-$ninosbrazos)*2}}BsS</strong>
             </li>
           </ul>
         </div>
@@ -349,15 +349,239 @@
             <input type="hidden" name="nino" id="nino">
             <input type="hidden" name="adulto" id="adulto">
             <input type="hidden" name="brazo" id="brazo">
-           @for ($i = 0; $i < ($cantidad-$ninosbrazos); $i++)   
 
-       
+@for ($i = 0; $i < ($cantidad-$ninosbrazos); $i++)   
 
+{{--===============================================================================--}}
+    
+@if((Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id))&&($i==0))
 
  <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.4s">
    <div class="form-group row">
-       <label for="firstName" class="col-sm-2 col-form-label">PASAJERO  {{ ($i+1) }}</label>
-       <div class="col-sm-10">
+       <label for="firstName" {{-- class="col-sm-2 col-form-label" --}}>PASAJERO  {{ ($i+1) }}</label>
+       {{-- <div class="col-sm-10">
+       <select  class="form-control" name="pasajeroHelp[]" id="pasajeroHelp{{ ($i+1)}}" onchange="pasajeroAjax({{ $i+1 }})">
+         <option value="0" >Seleccionar otro</option>
+
+         @foreach ($pasajeros as $pasajero)
+              <option value="{{$pasajero->documento}}" >V {{$pasajero->documento}}, {{$pasajero->primerNombre.' '.$pasajero->apellido}}</option>
+          @endforeach
+       </select>
+      </div>  --}}
+   </div>
+              <!-- JODAAAA PASAJEROS NORMALES -->
+    {{-- <div class="oculta" id="contenedorP{{ ($i+1) }}"> --}}    
+                               
+            <input type="hidden" name="tipo_boleto[]" id="tipo_boleto" value="{{ "adulto" }}">
+            @if(!isset($vuelo))
+                 @if(isset($objMultidestinos))
+                     <input type="hidden" name="importe_facturado" value="{{ $costoP * ($cantidad-$ninosbrazos)}}">
+                     
+                 @else
+                     <input type="hidden" name="importe_facturado" value="{{ $tarifa_vuelo * ($cantidad-$ninosbrazos)}}">
+
+                 @endif
+           @else
+               <input type="hidden" name="importe_facturado" value="{{ $tarifa_vuelo *2* ($cantidad-$ninosbrazos)}}">
+           
+           @endif     
+
+            <div class="row">
+              <div class="col-md-4 mb-2" >
+                <label for="firstName">Primer Nombre:</label>
+                <input type="text" class="form-control" name="primerNombre[]" id="firstName[]" placeholder="Primer nombre" value="{{ Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id)->nombre }}">
+                <div class="invalid-feedback">
+                  Valide su primer nombre es necesario.
+                </div>
+              </div>
+               <div class="col-md-4 mb-3">
+                <label for="lastName">Segundo Nombre:</label>
+                <input type="text" class="form-control" name="segundoNombre[]" id="lastNameÑ[]" placeholder="Segundo nombre">                
+              </div> 
+              <div class=" col col-md-4 mb-3">
+                <label for="lastName">Apellido(s):</label>
+                <input type="text" class="form-control" name="apellido[]" id="lastName[]" placeholder="Apellido(s)" value="{{ Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id)->apellido }}">
+                <div class="invalid-feedback">
+                  Valide su primer Apellido es necesario.
+                </div>
+              </div>
+            </div>
+            
+
+          <div class="row">
+
+              <div class="col-md-5 mb-3">
+          <div class="form-group">
+            <label for="documento[]"><span class="hidden-xs">Documentacion:</span> </label>
+          <div class="form-inline">
+          <select class="form-control" name="tipo_documento[]" style="width:25%" >
+            
+            @if(Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id)->tipo_documento == 'Venezolano/a')
+
+              <option value="Venezolano/a">V</option>
+              <option value="Extranjero">P</option>
+
+            @else
+              
+              <option value="Extranjero">P</option>
+              <option value="Venezolano/a">V</option>
+
+            @endif
+
+          </select>
+              <span style="width:6%; text-align: center">-</span>
+          <input type="text" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8" value="{{ Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id)->documento }}">
+                <div class="invalid-feedback" >
+                  Es necesario.
+                </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="col-md-4 ">
+              <label for="coñooo">Fecha de nacimiento:</label>
+              <input type="date" name="fecha_nacimiento[]" class="form-control impout3" value="{{ Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id)->fecha_nacimiento }}">
+              <i class="fa fa-calendar prefix icocalendario3"></i>
+            </div>
+              <div class=" col col-md-2 mb-2">
+              <label for="genero[]">Sexo:</label>
+                <select name="genero[]" class="form-control">
+                
+                @if(Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id)->genero == 'masculino')
+                    
+                    <option value="masculino">M</option>
+                    <option value="femenino">F</option>
+
+                @else
+                    
+                    <option value="femenino">F</option>
+                    <option value="masculino">M</option>
+                @endif
+
+                  
+                  
+                </select>
+            </div>
+            </div>    
+          {{-- </div> --}}
+
+    </div>
+<!-- FIN JODAAAA PASAJEROS NORMALES -->
+            
+            <hr class="mb-4">   
+
+  
+ @endif     
+
+{{--=====================================================FIN de primer if===================================================--}}
+
+ @if((Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id)==null)&&($i==0))
+
+
+    <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.4s">
+   <div class="form-group row">
+       <label for="firstName" class="{{-- col-sm-2 col-form-label --}}">PASAJERO  {{ ($i+1) }}</label>
+       {{-- <div class="col-sm-10">
+       <select  class="form-control" name="pasajeroHelp[]" id="pasajeroHelp{{ ($i+1)}}" onchange="pasajeroAjax({{ $i+1 }})">
+         <option value="0" >Seleccionar otro</option>
+
+         @foreach ($pasajeros as $pasajero)
+              <option value="{{$pasajero->documento}}" >V {{$pasajero->documento}}, {{$pasajero->primerNombre.' '.$pasajero->apellido}}</option>
+          @endforeach
+       </select>
+      </div>  --}}
+   </div>
+              <!-- JODAAAA PASAJEROS NORMALES -->
+    {{-- <div class="oculta" id="contenedorP{{ ($i+1) }}"> --}}    
+                               
+            <input type="hidden" name="tipo_boleto[]" id="tipo_boleto" value="{{ "adulto" }}">
+            @if(!isset($vuelo))
+                 @if(isset($objMultidestinos))
+                     <input type="hidden" name="importe_facturado" value="{{ $costoP * ($cantidad-$ninosbrazos)}}">
+                     
+                 @else
+                     <input type="hidden" name="importe_facturado" value="{{ $tarifa_vuelo * ($cantidad-$ninosbrazos)}}">
+
+                 @endif
+           @else
+               <input type="hidden" name="importe_facturado" value="{{ $tarifa_vuelo *2* ($cantidad-$ninosbrazos)}}">
+           
+           @endif     
+
+            <div class="row">
+              <div class="col-md-4 mb-2" >
+                <label for="firstName">Primer Nombre:</label>
+                <input type="text" class="form-control" name="primerNombre[]" id="firstName¨[]" placeholder="Primer nombre">
+                <div class="invalid-feedback">
+                  Valide su primer nombre es necesario.
+                </div>
+              </div>
+               <div class="col-md-4 mb-3">
+                <label for="lastName">Segundo Nombre:</label>
+                <input type="text" class="form-control" name="segundoNombre[]" id="lastNameÑ[]" placeholder="Segundo nombre">                
+              </div> 
+              <div class=" col col-md-4 mb-3">
+                <label for="lastName">Apellido(s):</label>
+                <input type="text" class="form-control" name="apellido[]" id="lastName[]" placeholder="Apellido(s)">
+                <div class="invalid-feedback">
+                  Valide su primer Apellido es necesario.
+                </div>
+              </div>
+            </div>
+            
+
+          <div class="row">
+
+              <div class="col-md-5 mb-3">
+          <div class="form-group">
+            <label for="documento[]"><span class="hidden-xs">Documentacion:</span> </label>
+          <div class="form-inline">
+          <select class="form-control" name="tipo_documento[]" style="width:25%" >
+            <option value="Venezolano/a">V</option>
+            <option value="Extranjero">P</option>
+          </select>
+              <span style="width:6%; text-align: center">-</span>
+          <input type="text" class="form-control" style="width:65%" name="documento[]" id="documento[]" placeholder="***********" minlength="5" maxlength="8">
+                <div class="invalid-feedback" >
+                  Es necesario.
+                </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="col-md-4 ">
+              <label for="coñooo">Fecha de nacimiento:</label>
+              <input type="date" name="fecha_nacimiento[]" class="form-control impout3">
+              <i class="fa fa-calendar prefix icocalendario3"></i>
+            </div>
+              <div class=" col col-md-2 mb-2">
+              <label for="genero[]">Sexo:</label>
+                <select name="genero[]" class="form-control">
+                  <option value="masculino">M</option>
+                  <option value="femenino">F</option>
+                </select>
+            </div>
+
+            </div>    
+          {{-- </div> --}}
+
+    </div>
+<!-- FIN JODAAAA PASAJEROS NORMALES -->
+            
+            <hr class="mb-4">
+
+
+ @endif
+
+{{--========================================Fin Segundo if=========================================--}}
+
+@if((Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id)==null)||($i!=0))
+
+
+    <div class="container pasajero box wow fadeInLeft" data-wow-duration="1.4s">
+   <div class="form-group row">
+       <label for="firstName" {{-- class="col-sm-2 col-form-label" --}}>PASAJERO  {{ ($i+1) }}</label>
+       {{-- <div class="col-sm-10">
        <select  class="form-control" name="pasajeroHelp[]" id="pasajeroHelp{{ ($i+1)}}" onchange="pasajeroAjax({{ $i+1 }})">
          <option value="0" >Otro</option>
 
@@ -365,10 +589,10 @@
               <option value="{{$pasajero->documento}}" >V {{$pasajero->documento}}, {{$pasajero->primerNombre.' '.$pasajero->apellido}}</option>
           @endforeach
        </select>
-      </div> 
+      </div>  --}}
    </div>
               <!-- JODAAAA PASAJEROS NORMALES -->
-    <div class="oculta" id="contenedorP{{ ($i+1) }}">    
+    {{-- <div class="oculta" id="contenedorP{{ ($i+1) }}">  --}}   
                                
             <input type="hidden" name="tipo_boleto[]" id="tipo_boleto" value="{{ "adulto" }}">
             @if(!isset($vuelo))
@@ -438,14 +662,19 @@
             </div>
 
             </div>    
-          </div>
+          {{-- </div> --}}
 
                 </div>
 <!-- FIN JODAAAA PASAJEROS NORMALES -->
             
-            <hr class="mb-4">           
-            
-         
+            <hr class="mb-4"> 
+
+
+ @endif
+
+{{--========================================Fin Tercer if=========================================--}}
+
+
          @endfor  {{--===== FIN DE FOR =====--}}
           
 
@@ -460,17 +689,17 @@
    
           <input type="hidden" name="tipo_boleto[]" id="tipo_boleto[]" value="{{ "bebe en brazos" }}">
             <div class="form-group row">
-            <label class="col-sm-2 col-form-label">PASAJERO  {{ ($i+1+$cantidad-$ninosbrazos) }} <span>Bebé en brazos</span>  </label>
-            <div class="col-sm-10">
+            <label {{-- class="col-sm-2 col-form-label" --}}>PASAJERO  {{ ($i+1+$cantidad-$ninosbrazos) }} <span>Bebé en brazos</span>  </label>
+            {{-- <div class="col-sm-10">
             <select  class="form-control" name="pasajeroHelpN[]" id="pasajeroHelpN{{ ($i+1)}}" onchange="pasajeroAjaxN({{ $i+1 }})">
                 <option value="0" >Otro</option>
                 @foreach ($pasajerosN as $pasajero)
                      <option value="{{$pasajero->documento}}" >V {{$pasajero->documento}}, {{$pasajero->primerNombre.' '.$pasajero->apellido}}</option>
                  @endforeach
               </select>
-            </div>
+            </div> --}}
           </div>
-            <div class="oculta" id="contenedorN{{ ($i+1) }}">
+            {{-- <div class="oculta" id="contenedorN{{ ($i+1) }}"> --}}
             <div class="row">
               <div class="col-md-4 mb-3">
                 <label for="firstName">Primer Nombre:</label>
@@ -528,7 +757,7 @@
             </div>
 
             </div>
-            </div>
+            {{-- </div> --}}
           </div>
       @endfor
 
@@ -539,7 +768,7 @@
           $url='/online/cliente/BoletoReservado';
         @endphp
         <button type="button" class="btn btn-secondary btn-lg " onclick="document.FormReserva.action='{{ URL::to($url) }}';document.FormReserva.submit();" onkeypress="document.FormReserva.action='{{ URL::to($url) }}';document.FormReserva.submit();">Reservar boleto</button>
-      
+        
 
     </div>
             

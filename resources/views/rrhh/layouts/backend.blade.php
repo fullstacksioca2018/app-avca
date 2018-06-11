@@ -87,7 +87,7 @@
       @role('admin')
       @include('rrhh.layouts.partials.admin_nav')
       @endrole
-  
+
       {{-- Gerente Menu --}}
       @role('gerente')
       @include('rrhh.layouts.partials.nav')
@@ -107,6 +107,7 @@
       @role('analista.nomina')
       @include('rrhh.layouts.partials.nomina_nav')
       @endrole
+
     </div>
     <!-- /.sidebar -->
   </aside>
