@@ -354,7 +354,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
                       </div>
-                      <input type="text" class="form-control" name="numero_tarjeta" id="creditCardField" placeholder="" minlength="18" maxlength="18">
+                      <input type="text" class="form-control" name="numero_tarjeta" id="creditCardField" placeholder="" minlength="16" maxlength="16">
                       <div class="invalid-feedback">
                                       Requiere el numero de tarjeta
                                     </div>
@@ -713,7 +713,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
                       </div>
-                      <input type="text" class="form-control" name="numero_tarjeta" id="creditCardField" placeholder="" minlength="18" maxlength="18">
+                      <input type="text" class="form-control" name="numero_tarjeta" id="creditCardField" placeholder="" minlength="16" maxlength="16">
                       <div class="invalid-feedback">
                                       Requiere el numero de tarjeta
                                     </div>
