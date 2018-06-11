@@ -73,6 +73,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 				form:{
 					parametros:[],
 					filtros:[],
+					filtrosP:[],
 					datosf:[],
 					edadesF:[],
 					generosF:[],
@@ -116,8 +117,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
         },
 		methods:{
 			validarGG(){
-				console.log(this.form.filtros)
-				if(this.form.parametros.length>=1){
+				if(this.form.parametros.length==1){
 					if(this.form.filtros.length>=1){
 						for (var i = 0; i < this.form.filtros.length; i++) {
 			     			if(!(this.form.datosf[this.form.filtros[i]])){
@@ -154,33 +154,52 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 				}
 				return true;
 			},
+			cargarFiltros(){
+				this.form.filtrosP=[];
+				if(this.form.datosf["Origen"]){
+					this.form.origenesF=this.form.datosf['Origen'];
+				}
+				if(this.form.datosf["Destino"]){
+					this.form.destinosF=this.form.datosf['Destino'];
+				}
+				if(this.form.datosf["Ruta"]){
+					this.form.rutasF=this.form.datosf['Ruta'];
+				}
+				if(this.form.datosf["Edad"]){
+					this.form.filtrosP.push('Edad');
+					this.form.edadesF=this.form.datosf['Edad'];
+				}
+				if(this.form.datosf["Genero"]){
+					this.form.filtrosP.push('Genero');
+					this.form.generosF=this.form.datosf['Genero'];
+				}
+			},
 			pronosticar(){
 				this.graficas=[];
 				if(this.validarGG()){
-					// this.loading=true;
-	    //     		let loader = this.$loading.show();
-					// axios({
-		   //              method: 'get',
-		   //              url: '/reportes/api/ingresos/pronostico'
-		   //          }).then((response) =>{
-					// 	this.loading=false;
-	    //         		loader.hide();
-					// 	var datos={labels:response.data.labels,label:["AVCA"],data:[response.data.data]}
-					// 		this.graficas.push({
-					// 		"titulo":"Pronostico De Ingresos",
-					// 		"grafica":"Bar",
-					// 		"datos":datos
-					// 	});
-					// 	console.log(response.data)
-		   //          }).catch((err)=>{
-	    //         		loader.hide();
-		   //              Vue.toasted.show('Ha ocurrido un error', {
-		   //                  theme: "primary", 
-		   //                position: "bottom-right",  
-		   //                duration : 2000
-		   //              });
-		   //              console.log(err);
-		   //          });	
+					let url="/reportes/api/pronostico/"+this.form.parametros[0];
+               		this.cargarFiltros();
+					console.log(url)
+					this.loading=true;
+	        		let loader = this.$loading.show();
+	        		axios.post(url,this.form).then((response)=>{
+						console.log(response.data)
+	        			this.loading=false;
+	            		loader.hide();
+						this.graficas.push({
+	  						"titulo":response.data.titulo.toUpperCase(),
+	  						"grafica":response.data.grafico,
+	  						"datos":response.data.datos
+	  					});
+	        		}).catch((err)=>{
+	            		loader.hide();
+		                Vue.toasted.show('Ha ocurrido un error', {
+		                    theme: "primary", 
+		                  position: "bottom-right",  
+		                  duration : 2000
+		                });
+		                console.log(err);
+		            });	
 				}
 			},
 			CargarSucursales(){
@@ -246,6 +265,15 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 						// statements_1
 						break;
 				}
+			},
+			LimpiarFiltros(){
+				if(this.form.parametros[0]=='Vuelos'||this.form.parametros[0]=='Ingresos'){
+					for(var i=0; i<this.form.filtros.length;i++){
+						if(this.form.filtros[i]=='Genero'||this.form.filtros[i]=='Edad'){
+							this.form.filtros.splice(i,1);
+						}
+					}
+				}
 			}
         },
         watch:{
@@ -256,6 +284,7 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 					this.form.parametros.splice(1,1);
 				}
 				this.ActualizarFiltros();
+				this.LimpiarFiltros();
 			},
         }
 	}

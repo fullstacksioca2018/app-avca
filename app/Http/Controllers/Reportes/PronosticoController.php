@@ -132,4 +132,78 @@ class PronosticoController extends Controller
                 break;
         }
     }
+//datos es la muestra p periodos a pronosticar y l longitud de estacionalidad
+//-99999 para identificar indefinido
+    public function HoltWinters($datos,$p=4,$l=4){
+        if(count($datos)<$l)
+        $l=count($datos); //validacion para que la longitud no sea mas grande que la muestra
+        $alfa=0.1;
+        $beta=0.2;
+        $gamma=0.7;
+        for ($i=0; $i <($l-1) ; $i++) { 
+            array_unshift($datos, -99999);
+        }
+        $At=array(); //Valor Atenuado del periodo t
+        $Tt=array(); //Estimación de la tendencia del periodo t
+        $St=array(); //Estimación de la estabilidad del periodo t
+        $Ytp=array(); //pronostico del periodo t
+        $resultados=array();  //solo los pronosticos de p
+
+        //Inicializo $St
+        for ($i=0; $i <($l-1) ; $i++) { 
+            array_push($St, 1);
+            array_push($At, -99999);
+            array_push($Tt, -99999);
+            array_push($Ytp, -99999);
+        }
+        array_push($Ytp, -99999);
+        array_push($At, $datos[$l-1]);
+        array_push($Tt, 0);
+        array_push($St, 1);
+
+
+        for($i=$l;$i<(2*$l-1);$i++){
+            $ValorAtenuadot=$alfa*($datos[$i]/$St[$i-$l])+(1-$alfa)*($At[$i-1]+$Tt[$i-1]);
+            array_push($At, $ValorAtenuadot);
+            $EstimacionTendencia=$beta*($At[$i]-$At[$i-1])+(1-$beta)*$Tt[$i-1];
+            array_push($Tt, $EstimacionTendencia);
+        }
+        for($i=$l;$i<(2*$l-1);$i++){
+            $EstimacionEstabilidad=$gamma*($datos[$i]/$At[$i])+(1-$gamma)*$St[$i-$l];
+            array_push($St, $EstimacionEstabilidad);
+        }
+
+        for($i=(2*$l-2);$i<(count($datos)-1);$i++){
+            $EstimacionEstabilidad=$gamma*($datos[$i]/$At[$i])+(1-$gamma)*$St[$i-$l];
+            array_push($St, $EstimacionEstabilidad);
+            $ValorAtenuadot=$alfa*($datos[$i]/$St[$i-$l])+(1-$alfa)*($At[$i-1]+$Tt[$i-1]);
+            array_push($At, $ValorAtenuadot);
+            $EstimacionTendencia=$beta*($At[$i]-$At[$i-1])+(1-$beta)*$Tt[$i-1];
+            array_push($Tt, $EstimacionTendencia);
+        }
+
+        for($i=$l;$i<(count($datos)+1);$i++){
+            $Pronostico=($At[$i-1]+1*$Tt[$i-1])*$St[$i-1-$l+1];
+            array_push($Ytp, $Pronostico);
+        }
+        array_push($resultados, $Ytp[(count($Ytp)-1)]);
+        $contP=2;
+        for ($i=(count($datos)+1); $i < (count($datos)+$l); $i++) { 
+            $Pronostico=($At[(count($At)-1)]+$contP*$Tt[(count($Tt)-1)])*$St[(count($datos)+1)-2-$l+$contP];
+            $contP++;
+            array_push($resultados, $Pronostico);
+        }
+        return $resultados;
+    }
+
+    public function prueba(){
+        // $meses=[1,2,3,4,5,6,7,8,9,10,11,12];
+        // $ingresos=DW_Ingreso::IngresosFechaMes($meses,"2017");
+        // $datos = array();
+        // foreach ($ingresos as $key => $ingreso) {
+        //     array_push($datos, $ingreso->total);
+        // }
+        $datos=[77,105,89,135,100,125,115,155,120,145,135,170];
+        return response()->JSON($this->HoltWinters($datos));
+    }
 }

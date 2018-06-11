@@ -25,7 +25,20 @@ Route::group(['prefix' => 'reportes'], function() {
      // 
      
      Route::get('/api/pronostico','Reportes\PronosticoController@PROMEDIOMOVILDOBLE')->name('reportes.pronostico');
+     
+     // Route::get('/api/prueba','Reportes\PronosticoController@prueba')->name('reportes.prueba');
+     
 
+
+     Route::post('/api/pronostico/Vuelos','Reportes\PronosticoVuelosController@PanelPronosticar')->name('pronostico.vuelos');
+
+     Route::post('/api/pronostico/Pasajeros','Reportes\PronosticoPasajerosController@PanelPronosticar')->name('pronostico.pasajeros');
+     Route::get('/api/pronostico/Pasajeros','Reportes\PronosticoPasajerosController@prueba')->name('pronostico.pasajeros');
+     Route::get('/api/pronostico/Ingresos','Reportes\PronosticoIngresosController@prueba')->name('pronostico.ingresos.p');
+     Route::get('/api/pronostico/Vuelos','Reportes\PronosticoVuelosController@prueba')->name('pronostico.vuelos.p');
+
+     Route::post('/api/pronostico/Ingresos','Reportes\PronosticoIngresosController@PanelPronosticar')->name('pronostico.ingresos');
+     
 
 });
 

@@ -4,6 +4,7 @@ namespace App\Models\reporte;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\reporte\DW_Ruta;
 
 class DW_Ingreso extends Model
 {
@@ -36,5 +37,88 @@ class DW_Ingreso extends Model
 	            ->first());
 		}
 		return $array; 
+	}
+
+	public function scopeOrigenMuestra($query, $origen){
+		 $result =array();
+		 $datos= DB::table('dwingresos')
+            ->select( DB::raw('SUM(dwingresos.monto) as total'),DB::raw('MONTH(dwingresos.fecha_ingreso) month,YEAR(dwingresos.fecha_ingreso) year'))
+            ->join('DwBoletos', 'DwBoletos.ingreso_id', '=', 'dwingresos.ingreso_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->where('DwRutas.origen_id',$origen)
+            ->groupBy('month','year')
+            ->get();
+        foreach ($datos as $key => $data) {
+			array_push($result, $data->total);
+		}
+		return $result;
+
+	}
+	public function scopeDestinoMuestra($query,$destino){
+		$result =array();
+		$datos= DB::table('dwingresos')
+            ->select( DB::raw('SUM(dwingresos.monto) as total'), DB::raw('MONTH(dwingresos.fecha_ingreso) month,YEAR(dwingresos.fecha_ingreso) year'))
+            ->join('DwBoletos', 'DwBoletos.ingreso_id', '=', 'dwingresos.ingreso_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->where('DwRutas.destino_id',$destino)
+            ->groupBy('month','year')
+            ->get();
+        foreach ($datos as $key => $data) {
+			array_push($result, $data->total);
+		}
+		return $result;
+	}
+	public function scopeRutaMuestra($query,$ruta_id){
+    	$ruta=DW_Ruta::find($ruta_id);
+		$ruta2=DB::table('DwRutas')
+            ->select('ruta_id')
+            ->where([
+                ['DwRutas.origen_id', '=', $ruta->origen_id],
+                ['DwRutas.destino_id', '=', $ruta->destino_id],
+            ])
+            ->orWhere([
+                ['DwRutas.destino_id', '=', $ruta->origen_id],
+                ['DwRutas.origen_id', '=', $ruta->destino_id],
+            ])->get();
+        if(count($ruta2)==1){
+            $result =array();
+            $datos= DB::table('dwingresos')
+        		->select( DB::raw('SUM(dwingresos.monto) as total'),DB::raw('MONTH(dwingresos.fecha_ingreso) month,YEAR(dwingresos.fecha_ingreso) year'))
+                ->join('DwBoletos', 'DwBoletos.ingreso_id', '=', 'dwingresos.ingreso_id')
+                ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                ->where('DwRutas.ruta_id',$ruta_id)
+                ->groupBy('month','year')
+                ->get();
+        }
+        else{
+            $result =array();
+            $datos= DB::table('dwingresos')
+                ->select( DB::raw('SUM(dwingresos.monto) as total'),DB::raw('MONTH(dwingresos.fecha_ingreso) month,YEAR(dwingresos.fecha_ingreso) year'))
+                ->join('DwBoletos', 'DwBoletos.ingreso_id', '=', 'dwingresos.ingreso_id')
+                ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                ->where('DwRutas.ruta_id',$ruta2[0])
+                ->orWhere('DwRutas.ruta_id',$ruta2[1])
+                ->groupBy('month','year')
+                ->get();
+        }
+        foreach ($datos as $key => $data) {
+			array_push($result, $data->total);
+		}
+		return $result;
+	}
+	public function scopeMuestra($query){
+		$result =array();
+		$datos= DB::table('dwingresos')
+            ->select( DB::raw('SUM(dwingresos.monto) as total'), DB::raw('MONTH(dwingresos.fecha_ingreso) month,YEAR(dwingresos.fecha_ingreso) year'))
+            ->groupBy('month','year')
+            ->get();
+        foreach ($datos as $key => $data) {
+			array_push($result, $data->total);
+		}
+		return $result;
 	}
 }
