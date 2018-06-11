@@ -120,7 +120,7 @@ class TaquillaController extends Controller
 		
     }
 
-    public function DetalleVuelo(Request $datos){
+    public function DetalleVuelo(){
      
         $vuelos = new Vuelo();
         $fecha_semana_inicial = Carbon::now();

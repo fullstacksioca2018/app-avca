@@ -50,6 +50,8 @@ Vue.component('CheckTodos',require('./components/operativo/checkTodos.vue'));
 Vue.component('Factura',require('./components/operativo/Factura.vue'));
 //Llegada
 Vue.component('Llegada',require('./components/operativo/Llegada.vue'));
+//VuelosSemanales
+Vue.component('vuelossemana',require('./components/operativo/VuelosSemanales.vue'));
 
 // Empleado
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));

@@ -36,7 +36,7 @@
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
         <b-input-group>
         <b-button size="sm" @click.stop="info(row.item,row.item, row.index, $event.target)" class="mr-1" variant="primary">
-          Modificar
+          Registrar LLegada
         </b-button>
         </b-input-group>
       </template>
@@ -134,8 +134,7 @@ export default {
         { key: 'Hora'  ,    label: 'Hora Salida ', sortable: true },
         { key: 'Duracion',  label: 'Duracion',  sortable: true },
         { key: 'Llegada',   label: 'Llegada ', sortable: true },        
-        { key: 'Estado',    label: 'Estatus', sortable: true},
-        { key: 'actions',   label: ' - ', 'class' : 'text-center' }
+        { key: 'actions',   label: ' ', 'class' : 'text-center' }
       ],
       duracionModel: {
         HH : '',
@@ -190,7 +189,6 @@ export default {
     },
     formatodatos(){
       this.items = [];
-      //var now = moment().format('d-m-YYYY');
       for (var i= 0; i < this.data.length; i++){
         var elementos=this.data[i].fecha_salida.split(' ');
         // parseando hora de salida y la duracion para calcular la hora de llegada
@@ -230,7 +228,7 @@ export default {
           fecha = moment(elementos[0]).add(1,'days').format('DD-MM-YYYY');
         }
         if(HH3<10){HH3="0"+HH3} 
-        
+        if(this.data[i].estado=="ejecutado"){
         this.items.push({
           id: this.data[i].id,
           n_vuelo: this.data[i].n_vuelo,
@@ -259,6 +257,7 @@ export default {
                   }
           }
         });
+        }//fin if
       }
      
     },
@@ -278,7 +277,7 @@ export default {
        });
        //this.$refs.myModalRef.hide();
        this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
-
+      EventBus.$emit('actualizartabla',true);
       }).catch((err)=>{
         console.log(err);
          Vue.toasted.show('Ha ocurrido un error', {
