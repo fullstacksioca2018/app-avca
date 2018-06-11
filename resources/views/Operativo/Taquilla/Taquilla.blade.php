@@ -86,6 +86,7 @@
                     <div id="resultados_vuelo_2"></div>
                     <div id="resultados_vuelo_3"></div>
                     <div id="resultados_vuelo_4"></div>
+                    <vuelossemana></vuelosvemana>
                  </div> 
                 </div>  
             </div>
@@ -93,7 +94,11 @@
       </div>
     </div>
 
-@push('styles')
+@push('styles')} 
+<link href="{{ asset('online/css/estilomod.css') }}" rel="stylesheet">
+  <link href="{{ asset('online/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('online/css/destinos.css') }}" rel="stylesheet">
+  <link href="{{ asset('online/css/estilocompras.css') }}" rel="stylesheet">
 <link href="{{asset('css/chosen.css')}}" rel="stylesheet">
 <link href="{{asset('css/bootstrap-chosen.css')}}" rel="stylesheet">
 <style type="text/css">

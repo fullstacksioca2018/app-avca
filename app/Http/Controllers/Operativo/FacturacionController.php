@@ -184,8 +184,8 @@ class FacturacionController extends Controller
 
     public function llegadas()
     {
-      //$fecha=Carbon::now()->format('Y-m-d');
-     $fecha="2018-06-15";
+      $fecha=Carbon::now()->format('Y-m-d');
+     //$fecha="2018-06-15";
      $vuelos=Vuelo::whereDate('fecha_salida','=',$fecha)->get(); 
      $datosV=array();
      foreach($vuelos as $objAux)
@@ -203,7 +203,7 @@ class FacturacionController extends Controller
         $fecha=Carbon::now()->format('Y-m-d');
         $vuelo->fecha_llegada=$fecha." ".$datos->HH.":".$datos->mm.":".$datos->ss;
         $vuelo->observaciones=$datos->area;
-        $vuelo->estado='finalizdo';
+        $vuelo->estado='finalizado';
         $vuelo->save();
         return "ok";
         //$vuelo->fecha
