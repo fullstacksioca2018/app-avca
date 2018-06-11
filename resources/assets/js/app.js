@@ -46,14 +46,11 @@ Vue.component('CheckTodos',require('./components/operativo/checkTodos.vue'));
 Vue.component('Factura',require('./components/operativo/Factura.vue'));
 //Llegada
 Vue.component('Llegada',require('./components/operativo/Llegada.vue'));
-<<<<<<< HEAD
 //REPORTE BOLETO
 Vue.component('reporteboletos', require('./components/operativo/Reporte/Boletos.vue'));
-=======
 //VuelosSemanales
 Vue.component('vuelossemana',require('./components/operativo/VuelosSemanales.vue'));
 
->>>>>>> 28ad3fdfc421e624ce02087e5468051a5fdde75b
 // Empleado
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
 

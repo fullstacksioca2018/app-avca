@@ -12,6 +12,7 @@
 		Route::post('/BoletoVendido', 'Operativo\TaquillaController@BoletoVendido')->name('operativo.BoletoVendido');
 		Route::get('/vuelos', 'Operativo\TaquillaController@DetalleVuelo');		
 		Route::get('/prueba','Operativo\TaquillaController@DetalleVuelo');
+		Route::post('/pagar','Operativo\FacturacionController@pagar');
 	});
 	//Check
     Route::group(['prefix'=>'check',/* 'middleware' => 'auth' */],function(){
@@ -27,7 +28,6 @@
 	Route::group(['prefix'=>'factura',/* 'middleware' => 'auth' */],function(){
 		Route::get('/','Operativo\FacturacionController@factura');
 		Route::get('/facturas','Operativo\FacturacionController@facturas');
-		Route::post('/pagar','Operativo\FacturacionController@pagar');
 		Route::post('/cancelar','Operativo\FacturacionController@cancelar');
 	});
 	//llegada de aviones
