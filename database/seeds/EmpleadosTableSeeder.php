@@ -523,7 +523,101 @@ class EmpleadosTableSeeder extends Seeder
 
         ]);
 
-        factory(\App\Models\rrhh\Empleado::class, 50)->create();
+
+            //empleados sucursal cumana oficina
+            factory(\App\Models\rrhh\Empleado::class, 10)->create([
+                'estado'=> 'Sucre',
+                'ciudad' => 'Cumaná',
+                'direccion' => 'El Centro',
+                'sucursal_id' => 19,
+                'condicion_laboral' => 'Fijo',
+                'tipo_horario' => 'Fijo',
+                'cargo_id'=> 21,
+                'area_id' => 1
+                    
+                    ]);
+                 
+
+        //empleados sucursal cumana diurno
+            factory(\App\Models\rrhh\Empleado::class, 10)->create([
+                'estado'=> 'Sucre',
+                'ciudad' => 'Cumaná',
+                'direccion' => 'El Centro',
+                'sucursal_id' => 19,
+                'condicion_laboral' => 'Fijo',
+                'tipo_horario' => 'Fijo',
+                'cargo_id'=> 22,
+                'grupo_id'=> 2,
+                'area_id' => 2,
+                'nivel_academico' => 'tsu',
+                'profesion' => 'Administración de Aerolíneas'
+                    ]);
+        
+
+        //empleados sucursal cumana nocturno
+            factory(\App\Models\rrhh\Empleado::class, 10)->create([
+                'estado'=> 'Sucre',
+                'ciudad' => 'Cumaná',
+                'direccion' => 'El Centro',
+                'sucursal_id' => 19,
+                'condicion_laboral' => 'Fijo',
+                'tipo_horario' => 'Fijo',
+                'cargo_id'=> 15,
+                'grupo_id'=> 3,
+                'area_id' => 3,
+                'nivel_academico' => 'tsu',
+                'profesion' => 'Mantenimiento'
+                    
+                     ]);
+        
+
+
+
+        
+                        //Pilotos
+         factory(\App\Models\rrhh\Empleado::class, 10)->create([
+                'nivel_academico' => 'profesional',
+                'profesion' => 'piloto',
+                'cargo_id'=> 8
+                    ])->each(function($a){
+            factory(\App\Models\operativo\Tripulante::class)->create([
+                'personal_id'=>$a->empleado_id
+                    ]);
+        });
+
+                    //Copilotos
+         factory(\App\Models\rrhh\Empleado::class, 10)->create([
+                'nivel_academico' => 'profesional',
+                'profesion' => 'copiloto',
+                'cargo_id'=> 9
+                    ])->each(function($a){
+            factory(\App\Models\operativo\Tripulante::class)->create([
+                'personal_id'=>$a->empleado_id
+                    ]);
+        });
+
+                    //Sobrecargos
+         factory(\App\Models\rrhh\Empleado::class, 30)->create([
+                'nivel_academico' => 'profesional',
+                'profesion' => 'Comunicación Social',
+                'cargo_id'=> 10
+                    ])->each(function($a){
+            factory(\App\Models\operativo\Tripulante::class)->create([
+                'personal_id'=>$a->empleado_id
+                    ]);
+        });
+
+                    //Jefes de Cabina
+         factory(\App\Models\rrhh\Empleado::class, 10)->create([
+                'nivel_academico' => 'profesional',
+                'profesion' => 'Administración Aeronáutica',
+                'cargo_id'=> 14
+                    ])->each(function($a){
+            factory(\App\Models\operativo\Tripulante::class)->create([
+                'personal_id'=>$a->empleado_id
+                    ]);
+        });
+            
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

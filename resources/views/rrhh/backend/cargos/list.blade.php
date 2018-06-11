@@ -31,9 +31,9 @@
                 <a href="{{ route('cargo.edit', $cargo->cargo_id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Editar perfil del cargo">
                   <i class="fa fa-edit"></i>
                 </a>
-                <a href="{{ route('cargo.vacante', $cargo->cargo_id) }}" class="btn btn-success btn-sm ml-2" data-toggle="tooltip" data-placement="top" title="Activar cargo como vacante">
+                {{--<a href="{{ route('cargo.vacante', $cargo->cargo_id) }}" class="btn btn-success btn-sm ml-2" data-toggle="tooltip" data-placement="top" title="Activar cargo como vacante">
                   <i class="fa fa-check-circle"></i>
-                </a>
+                </a>--}}
               </td>
             </tr>
           @endforeach

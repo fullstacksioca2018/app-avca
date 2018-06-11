@@ -85,7 +85,7 @@ class UsersTableSeeder extends Seeder
         
 
 
-        //de aqui RRHH
+        //de aqui RRHH usuario 8
         DB::table('users')->insert([
             'name' => 'Gerente',
             'modulo'            => 'rrhh',
@@ -205,6 +205,30 @@ class UsersTableSeeder extends Seeder
             'special'   => 'all-access'
         ]);
 
+            //roles RRHH
+        Role::create([
+            'name'      => 'Gerente de sucursal',
+            'slug'      => 'gerente.sucursal',
+            'special'   => 'all-access'
+        ]);
+        Role::create([
+            'name'      => 'Analista Nomina',
+            'slug'      => 'analista.nomina',
+            'special'   => 'all-access'
+        ]);
+         Role::create([
+            'name'      => 'Analista Personal',
+            'slug'      => 'analista.area',
+            'special'   => 'all-access'
+        ]);
+          Role::create([
+            'name'      => 'Empleado',
+            'slug'      => 'empleado',
+            'special'   => 'all-access'
+        ]);
+
+
+
             DB::table('role_user')->insert([
                 'user_id' => 1,
                 'role_id' => 1 
@@ -233,5 +257,26 @@ class UsersTableSeeder extends Seeder
                 'user_id' => 6,
                 'role_id' => 6 
             ]);
+
+
+            //roles_user RRHH
+        
+        DB::table('role_user')->insert([
+                'user_id' => 7,
+                'role_id' => 7 
+            ]);
+        DB::table('role_user')->insert([
+                'user_id' => 9,
+                'role_id' => 9
+            ]);
+        DB::table('role_user')->insert([
+                'user_id' => 16,
+                'role_id' => 8 
+            ]);
+        DB::table('role_user')->insert([
+                'user_id' => 13,
+                'role_id' => 10
+            ]);
+
     }
 }

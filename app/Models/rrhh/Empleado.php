@@ -20,6 +20,11 @@ class Empleado extends Model
         return $this->belongsToMany('App\Models\rrhh\Voucher', 'vouchers', 'voucher_id', 'empleado_id');
     }
 
+    public function area()
+    {
+        return $this->hasOne('App\Models\rrhh\Area', 'area_id');
+    }
+
     public function obtenerProfesion()
     {        
         $profesion = Profesion::where('profesion_id', $this->profesion)->first();        

@@ -23,7 +23,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'	=> '1',
                     'utilidades'		=> '1',
                     'prestaciones' 		=> '1',
-                    'islr' 				=> '1'
+                    'islr' 				=> '1',  
+                    'estatus'           => 1
                 ],
 
                 [
@@ -34,17 +35,19 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '1',
-                    'islr'               => '1'
+                    'islr'               => '1',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '105',
-                    'descripcion'       => 'Prima pr hijos',
+                    'descripcion'       => 'Prima por hijos',
                     'porcentaje'        => null,
                     'valor_fijo'        => 200000,                    
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '1',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '107',
@@ -54,7 +57,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 0
                 ],
                 [
                     'tipo_concepto'     => '109',
@@ -64,7 +68,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '1',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 0
                 ],
                 [
                     'tipo_concepto'     => '111',
@@ -74,7 +79,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '113',
@@ -84,7 +90,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '115',
@@ -94,7 +101,19 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
+                ],
+                [
+                    'tipo_concepto'     => '116',
+                'descripcion'  => 'Horas Vuelo Jefe Cabina',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => 30,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '117',
@@ -104,7 +123,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '1',
-                    'islr'               => '1'
+                    'islr'               => '1',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '119',
@@ -114,7 +134,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '1',
-                    'islr'               => '1'
+                    'islr'               => '1',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '121',
@@ -124,7 +145,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '1',
-                    'islr'               => '1'
+                    'islr'               => '1',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '123',
@@ -134,7 +156,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '1',
-                    'islr'               => '1'
+                    'islr'               => '1',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '125',
@@ -144,7 +167,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '1',
-                    'islr'               => '1'
+                    'islr'               => '1',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '127',
@@ -154,7 +178,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 0
                 ],
                 [
                     'tipo_concepto'     => '129',
@@ -164,7 +189,63 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '1',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
+                ],
+                [
+                    'tipo_concepto'     => '131',
+                    'descripcion'       => 'Horas Extras Diurnas',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0',
+                    'estatus'           => 1
+                ],
+                [
+                    'tipo_concepto'     => '133',
+                    'descripcion'   => 'Horas Extras Diurnas Feriado',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0',
+                    'estatus'           => 1
+                ],
+                [
+                    'tipo_concepto'     => '135',
+                    'descripcion'       => 'Horas Extras Nocturnas',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0',
+                    'estatus'           => 1
+                ],
+                [
+                    'tipo_concepto'     => '137',
+                  'descripcion'  => 'Horas Extras Nocturnas Feriado',
+                    'porcentaje'        => null,
+                    'valor_fijo'        => null,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0',
+                    'estatus'           => 1
+                ],
+                [
+                    'tipo_concepto'     => '139',
+                  'descripcion'  => 'Cesta ticket',
+                    'porcentaje'        => null,
+                     'valor_fijo'       => 61,                    
+                    'bono_vacacional'   => '0',
+                    'utilidades'        => '0',
+                    'prestaciones'      => '0',
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '502',
@@ -174,7 +255,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '504',
@@ -184,7 +266,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '506',
@@ -194,7 +277,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '508',
@@ -204,7 +288,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '1',
                     'utilidades'        => '1',
                     'prestaciones'      => '1',
-                    'islr'               => '1'
+                    'islr'               => '1',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '510',
@@ -214,7 +299,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '512',
@@ -224,18 +310,10 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
-                [
-                    'tipo_concepto'     => '520',
-                    'descripcion'       => 'Horas Extras Diurnas',
-                    'porcentaje'        => null,
-                    'valor_fijo'        => null,                    
-                    'bono_vacacional'   => '0',
-                    'utilidades'        => '0',
-                    'prestaciones'      => '0',
-                    'islr'               => '0'
-                ],
+                
                 [
                     'tipo_concepto'     => '521',
                     'descripcion'       => 'Horas Faltantes Diurnas',
@@ -244,18 +322,10 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
-                [
-                    'tipo_concepto'     => '522',
-                    'descripcion'       => 'Horas Extras Nocturnas',
-                    'porcentaje'        => null,
-                    'valor_fijo'        => null,                    
-                    'bono_vacacional'   => '0',
-                    'utilidades'        => '0',
-                    'prestaciones'      => '0',
-                    'islr'               => '0'
-                ],
+                
                 [
                     'tipo_concepto'     => '523',
                     'descripcion'      => 'Horas Faltantes Nocturnas',
@@ -264,17 +334,8 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
-                ],
-                [
-                    'tipo_concepto'     => '524',
-                    'descripcion'   => 'Horas Extras Diurnas Feriado',
-                    'porcentaje'        => null,
-                    'valor_fijo'        => null,                    
-                    'bono_vacacional'   => '0',
-                    'utilidades'        => '0',
-                    'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
                 [
                     'tipo_concepto'     => '525',
@@ -284,18 +345,10 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
-                [
-                    'tipo_concepto'     => '526',
-                  'descripcion'  => 'Horas Extras Nocturnas Feriado',
-                    'porcentaje'        => null,
-                    'valor_fijo'        => null,                    
-                    'bono_vacacional'   => '0',
-                    'utilidades'        => '0',
-                    'prestaciones'      => '0',
-                    'islr'               => '0'
-                ],
+                
                 [
                     'tipo_concepto'     => '527',
                 'descripcion'  => 'Horas Faltantes Nocturnas Feriado',
@@ -304,48 +357,10 @@ class ConceptosTableSeeder extends Seeder
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0'
+                    'islr'               => '0',
+                    'estatus'           => 1
                 ],
-                [
-                    'tipo_concepto'     => '528',
-                'descripcion'  => 'Horas Vuelo Piloto',
-                    'porcentaje'        => null,
-                    'valor_fijo'        => 100,                    
-                    'bono_vacacional'   => '0',
-                    'utilidades'        => '0',
-                    'prestaciones'      => '0',
-                    'islr'               => '0'
-                ],
-                [
-                    'tipo_concepto'     => '529',
-                'descripcion'  => 'Horas Vuelo Copiloto',
-                    'porcentaje'        => null,
-                    'valor_fijo'        => 40,                    
-                    'bono_vacacional'   => '0',
-                    'utilidades'        => '0',
-                    'prestaciones'      => '0',
-                    'islr'               => '0'
-                ],
-                [
-                    'tipo_concepto'     => '530',
-                'descripcion'  => 'Horas Vuelo Jefe Cabina',
-                    'porcentaje'        => null,
-                    'valor_fijo'        => 30,                    
-                    'bono_vacacional'   => '0',
-                    'utilidades'        => '0',
-                    'prestaciones'      => '0',
-                    'islr'               => '0'
-                ],
-                [
-                    'tipo_concepto'     => '531',
-                'descripcion'  => 'Horas Vuelo Sobrecargo',
-                    'porcentaje'        => null,
-                    'valor_fijo'        => 10,                    
-                    'bono_vacacional'   => '0',
-                    'utilidades'        => '0',
-                    'prestaciones'      => '0',
-                    'islr'               => '0'
-                ],
+                
             ]);
         }
     }

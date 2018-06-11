@@ -10,7 +10,91 @@ class AsistenciasTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+
+            // empleados horarios oficina
+for ($e=17; $e <27 ; $e++) { 
+        
+        for ($i=1; $i <30 ; $i++) { 
+                
+        DB::table('asistencias')->insert([
+            
+            
+                                    'fecha' => '2018-05-'.$i,
+                                'h_entrada' => '8:00:00',
+                                 'h_salida' => '20:00:00',
+                              'dia_feriado' => 0,
+                         'h_extras_diurnas' => 0,
+                      'h_faltantes_diurnas' => 0,
+                       'h_extras_nocturnas' => 0,
+                    'h_faltantes_nocturnas' => 0,
+                 'h_extras_diurnas_feriado' => 0, 
+              'h_faltantes_diurnas_feriado' => 0,
+               'h_extras_nocturnas_feriado' => 0, 
+            'h_faltantes_nocturnas_feriado' => 0,
+            'empleado_id' => $e,
+
+            'created_at' => '2018-05-'.($i < 10 ? "0${i}" : $i)." 00:00:00",
+            'updated_at' => '2018-05-'.($i < 10 ? "0${i}" : $i)." 00:00:00",
+
+        ]);  } }
+
+            //Empleados horario diurno
+        for ($e=27; $e <37 ; $e++) { 
+        
+        for ($i=1; $i <30 ; $i++) { 
+                
+        DB::table('asistencias')->insert([
+            
+            
+                                    'fecha' => '2018-05-'.$i,
+                                'h_entrada' => '8:00:00',
+                                 'h_salida' => '20:00:00',
+                              'dia_feriado' => 0,
+                         'h_extras_diurnas' => 5,
+                      'h_faltantes_diurnas' => 1,
+                       'h_extras_nocturnas' => 0,
+                    'h_faltantes_nocturnas' => 0,
+                 'h_extras_diurnas_feriado' => 3, 
+              'h_faltantes_diurnas_feriado' => 1,
+               'h_extras_nocturnas_feriado' => 0, 
+            'h_faltantes_nocturnas_feriado' => 0,
+            'empleado_id' => $e,
+
+            'created_at' => '2018-05-'.($i < 10 ? "0${i}" : $i)." 00:00:00",
+            'updated_at' => '2018-05-'.($i < 10 ? "0${i}" : $i)." 00:00:00",
+
+        ]);  } }
+
+
+            //Empleados horario Nocturno
+        for ($e=37; $e <47 ; $e++) { 
+        
+        for ($i=1; $i <30 ; $i++) { 
+                
+        DB::table('asistencias')->insert([
+            
+            
+                                    'fecha' => '2018-05-'.$i,
+                                'h_entrada' => '8:00:00',
+                                 'h_salida' => '20:00:00',
+                              'dia_feriado' => 0,
+                         'h_extras_diurnas' => 0,
+                      'h_faltantes_diurnas' => 0,
+                       'h_extras_nocturnas' => 6,
+                    'h_faltantes_nocturnas' => 1,
+                 'h_extras_diurnas_feriado' => 0, 
+              'h_faltantes_diurnas_feriado' => 0,
+               'h_extras_nocturnas_feriado' => 4, 
+            'h_faltantes_nocturnas_feriado' => 1,
+            'empleado_id' => $e,
+
+            'created_at' => '2018-05-'.($i < 10 ? "0${i}" : $i)." 00:00:00",
+            'updated_at' => '2018-05-'.($i < 10 ? "0${i}" : $i)." 00:00:00",
+
+        ]);  } }
+
+
         DB::table('asistencias')->insert([
             
             [

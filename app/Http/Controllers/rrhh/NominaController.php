@@ -18,7 +18,6 @@ class NominaController extends Controller
 {
     public function empleados()
     {
-        // Filtro los empleados por area
         $empleados = Empleado::where([
             ['estatus', 'activo'],            
         ])->paginate();
@@ -105,6 +104,11 @@ class NominaController extends Controller
                                 $monto = $hora_vuelo_sobrecargo;
                                 $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
                                 break;
+                            case 116:
+                                $hora_vuelo_jefe_cabina = $concepto_nomina->valor_fijo;
+                                $monto = $hora_vuelo_jefe_cabina;
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
                             case 117:
                                 $prima_hogar = $concepto_nomina->valor_fijo;
                                 $monto = $prima_hogar;
@@ -140,6 +144,43 @@ class NominaController extends Controller
                                 $monto = $media_hora_resposo_comida;
                                 $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
                                 break;
+                            case 131:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_extra_diurna = $hora_diurna * 1.5;
+                                $calculo_horas = $this->calculoHoras($empleado);
+                                $monto = $calculo_horas['horas_extras_diurnas'] * $hora_extra_diurna;
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+                            case 133:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_diurna_feriado = $hora_diurna * 1.5;
+                                $hora_extra_diurna_feriado = $hora_diurna_feriado * 1.5;
+                                $calculo_horas = $this->calculoHoras($empleado);
+                                $monto = $calculo_horas['horas_extras_diurnas_feriado'] * $hora_extra_diurna_feriado;
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+                            case 135:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_nocturna = $hora_diurna * 1.3;
+                                $hora_extra_nocturna = $hora_nocturna * 1.5;
+                                $calculo_horas = $this->calculoHoras($empleado);
+                                $monto = $calculo_horas['horas_extras_nocturnas'] * $hora_extra_nocturna;
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+                            case 137:
+                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
+                                $hora_diurna = ($sueldo_normal / 30) / 8;
+                                $hora_diurna_feriado = $hora_diurna * 1.5;
+                                $hora_nocturna_feriado = $hora_diurna_feriado * 1.3;
+                                $hora_extra_nocturna_feriado = $hora_nocturna_feriado * 1.5;
+                                $calculo_horas = $this->calculoHoras($empleado);
+                                $monto = $calculo_horas['horas_extras_nocturnas_feriado'] * $hora_extra_nocturna_feriado;
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+
                             case 502:
                                 $aporte_seguro_social_obligatorio = ($concepto_nomina->porcentaje/100) * $sueldo_basico;
                                 $monto = $aporte_seguro_social_obligatorio;
@@ -170,14 +211,7 @@ class NominaController extends Controller
                                 $monto = $descuento_hora_ausencia;
                                 $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
                                 break;
-                            case 520:
-                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
-                                $hora_diurna = ($sueldo_normal / 30) / 8;
-                                $hora_extra_diurna = $hora_diurna * 1.5;
-                                $calculo_horas = $this->calculoHoras($empleado);                                 
-                                $monto = $calculo_horas['horas_extras_diurnas'] * $hora_extra_diurna;
-                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
-                                break;
+
                             case 521:
                                 $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
                                 $hora_diurna = ($sueldo_normal / 30) / 8;                                  
@@ -185,15 +219,7 @@ class NominaController extends Controller
                                 $monto = $calculo_horas['horas_faltantes_diurnas'] * $hora_diurna;                                
                                 $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
                                 break;
-                            case 522:
-                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
-                                $hora_diurna = ($sueldo_normal / 30) / 8;
-                                $hora_nocturna = $hora_diurna * 1.3;
-                                $hora_extra_nocturna = $hora_nocturna * 1.5;                                
-                                $calculo_horas = $this->calculoHoras($empleado);
-                                $monto = $calculo_horas['horas_extras_nocturnas'] * $hora_extra_nocturna;      
-                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
-                                break;
+
                             case 523:
                                 $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
                                 $hora_diurna = ($sueldo_normal / 30) / 8;
@@ -202,15 +228,7 @@ class NominaController extends Controller
                                 $monto = $calculo_horas['horas_faltantes_nocturnas'] * $hora_nocturna;   
                                 $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
                                 break;
-                            case 524:
-                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
-                                $hora_diurna = ($sueldo_normal / 30) / 8;
-                                $hora_diurna_feriado = $hora_diurna * 1.5;
-                                $hora_extra_diurna_feriado = $hora_diurna_feriado * 1.5;                                
-                                $calculo_horas = $this->calculoHoras($empleado);
-                                $monto = $calculo_horas['horas_extras_diurnas_feriado'] * $hora_extra_diurna_feriado;    
-                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
-                                break;
+
                             case 525:
                                 $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
                                 $hora_diurna = ($sueldo_normal / 30) / 8;
@@ -219,26 +237,8 @@ class NominaController extends Controller
                                 $monto = $calculo_horas['horas_faltantes_diurnas_feriado'] * $hora_diurna_feriado;                 
                                 $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
                                 break;
-                            case 526:
-                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
-                                $hora_diurna = ($sueldo_normal / 30) / 8;
-                                $hora_diurna_feriado = $hora_diurna * 1.5;
-                                $hora_nocturna_feriado = $hora_diurna_feriado * 1.3;
-                                $hora_extra_nocturna_feriado = $hora_nocturna_feriado * 1.5;
-                                $calculo_horas = $this->calculoHoras($empleado);
-                                $monto = $calculo_horas['horas_extras_nocturnas_feriado'] * $hora_extra_nocturna_feriado;  
-                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
-                                break;
+
                             case 527:
-                                $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
-                                $hora_diurna = ($sueldo_normal / 30) / 8;
-                                $hora_diurna_feriado = $hora_diurna * 1.5;
-                                $hora_nocturna_feriado = $hora_diurna_feriado * 1.3;
-                                $calculo_horas = $this->calculoHoras($empleado);
-                                $monto = $calculo_horas['horas_faltantes_nocturnas_feriado'] * $hora_nocturna_feriado;          
-                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
-                                break;
-                            case 528:
                                 $sueldo_normal = $this->calculoSueldoNormal($sueldo_basico, $prima_antiguedad);
                                 $hora_diurna = ($sueldo_normal / 30) / 8;
                                 $hora_diurna_feriado = $hora_diurna * 1.5;

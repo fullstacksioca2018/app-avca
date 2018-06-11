@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\rrhh;
 
 use App\Models\rrhh\Area;
+use App\Models\rrhh\Event;
 use Carbon\Carbon;
 use App\Models\rrhh\Cargo;
 use App\Models\rrhh\Voucher;
@@ -213,8 +214,12 @@ class EmpleadoController extends Controller
 
     public function obtenerEmpleado(Request $request)
     {
-        $empleado = Empleado::where('cedula', $request->search)->first();
-        return view('rrhh.backend.perfil.ficha', compact('empleado'));
+        $empleados = Empleado::where([
+            ['estatus', 'activo'],
+        ])->paginate();
+        return view('rrhh.backend.perfil.ficha', compact('empleados'));
+        //$empleado = Empleado::where('cedula', $request->search)->first();
+        //return view('rrhh.backend.perfil.ficha', compact('empleado'));
         //return response()->json($empleado);
     }
 
@@ -333,5 +338,54 @@ class EmpleadoController extends Controller
             return response()->json(['message' => 'error']);
         }
 
+    }
+
+    // Calendario feriado
+    public function CalendarioFeriado(Sucursal $sucursal)
+    {
+        $events = Event::all()->toArray();
+
+        return view('rrhh.backend.gerente_sucursal.calendario-feriado', compact('events', 'sucursal'));
+    }
+
+    public function guardarEventoCalendario(Request $request)
+    {
+        //dd($request->all());
+        $event = new Event();
+        if ($request->isMethod('post')) {
+            //dd($event);
+            if ($request->post('title') && $request->post('start') && $request->post('end') && $request->post('color')) {
+                //return $request->all();
+                $event->title   = $request->title;
+                $event->color   = $request->color;
+                $event->start   = $request->start;
+                $event->end     = $request->end;
+
+                if ($event->save()) {
+                    return redirect()->back();
+                }
+            }
+        }
+    }
+
+    public function editarEventoCalendario(Request $request)
+    {
+        if ($request->post('delete') && $request->post('id')) {
+            $id = $request->post('id');
+            $event = Event::findOrFail($id);
+            if ($event->delete()) {
+                return redirect()->back();
+            }
+        } elseif ($request->post('title') && $request->post('color') && $request->post('id')) {
+            $id = $request->post('id');
+            $event = Event::findOrFail($id);
+
+            $event->title   = $request->title;
+            $event->color   = $request->color;
+
+            if ($event->save()) {
+                return redirect()->back();
+            }
+        }
     }
 }

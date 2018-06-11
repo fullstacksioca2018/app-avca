@@ -18,7 +18,7 @@
         <li class="nav-item">
           <a href="{{ route('empleados.sucursal.asistentes', auth()->user()->empleado->sucursal_id) }}" class="{{ request()->routeIs('empleados.sucursal.asistentes') ? 'nav-link active' : 'nav-link' }}">
             <i class="fa fa-clock-o nav-icon"></i>
-            <p>Asistencia</p>
+            <p>Asistencia de empleados</p>
           </a>
         </li>
         {{--Calendario feriado--}}

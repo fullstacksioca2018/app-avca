@@ -25,7 +25,7 @@
                 name="asignaciones[]" 
                 :id="slugify(concepto.descripcion)"
                 :value="concepto.concepto_id"                 
-                :checked="concepto.estatus !== null"
+                :checked="concepto.estatus == 1"
               >
               {{ concepto.tipo_concepto }} {{ concepto.descripcion }}
             </label>            
@@ -82,6 +82,7 @@
       procesarNomina() {
         let frmNomina = document.getElementById('frmNomina');
         let formData = new FormData(frmNomina);
+        let loader = this.$loading.show();
         axios.post('/rrhh/backend/nomina/procesar-nomina', formData)
           .then(response => {
             console.log(response.data);
@@ -93,6 +94,7 @@
               title: 'Nómina generada exitosamente',
               showConfirmButton: true,
             });
+            loader.hide();
           })
           .catch(error => {
             console.log(error);

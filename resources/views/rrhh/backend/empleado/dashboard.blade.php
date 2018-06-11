@@ -61,7 +61,7 @@
                             </li>
                             @endif
 
-                            @if(auth()->user()->isRole('analista.area'))
+                            @if(auth()->user()->isRole('analista.area') || auth()->user()->isRole('gerente'))
                             <li class="nav-item">
                                 @if (isset($section) ? $section : $section = 0) @endif
                                 <a class="{{ $section == 0 ? 'nav-link active' : 'nav-link' }}" href="{{ route('dashboard.empleado', ['empleado' => $empleado->empleado_id, 'section' => 0]) }}">
@@ -106,7 +106,7 @@
                                     @include('rrhh.backend.empleado.datos.datos-personales', ['empleado' => $empleado])
                                 </div>
                             </div>
-                        @elseif ($section == 0 && auth()->user()->isRole('analista.area'))
+                        @elseif ($section == 0 && (auth()->user()->isRole('analista.area') || auth()->user()->isRole('gerente')))
                             <div class="row">
                                 <div class="col-md-8 offset-md-2">
                                     <datos-personales :empleado="{{ json_encode($empleado) }}" ruta=""></datos-personales>
@@ -119,7 +119,7 @@
                             <div class="row">
                                 @include('rrhh.backend.empleado.datos.voucher-pago', ['empleado' => $empleado])
                             </div>
-                        @elseif($section == 1 && auth()->user()->isRole('analista.area'))
+                        @elseif($section == 1 && (auth()->user()->isRole('analista.area') || auth()->user()->isRole('gerente')))
                             <div class="row">
                                 <div class="col-md-8 offset-md-2">
                                     <ingresos-deducciones :empleado="{{ json_encode($empleado) }}"></ingresos-deducciones>
@@ -132,7 +132,7 @@
                             <div class="row">
                                 @include('rrhh.backend.empleado.datos.carga-familiar', ['empleado' => $empleado])
                             </div>
-                        @elseif($section == 2 && auth()->user()->isRole('analista.area'))
+                        @elseif($section == 2 && (auth()->user()->isRole('analista.area') || auth()->user()->isRole('gerente')))
                             <div class="row">
                                 <carga-familiar :empleado="{{ json_encode($empleado) }}"></carga-familiar>
                             </div>
@@ -141,7 +141,7 @@
                             <div class="row">
                                 @include('rrhh.backend.empleado.datos.constancia-trabajo', ['empleado' => $empleado])
                             </div>
-                        @elseif($section == 3  && auth()->user()->isRole('analista.area'))
+                        @elseif($section == 3  && (auth()->user()->isRole('analista.area') || auth()->user()->isRole('gerente')))
                             <expediente-laboral :empleado="{{ json_encode($empleado) }}" ruta=""></expediente-laboral>
                         @endif
                     </div>

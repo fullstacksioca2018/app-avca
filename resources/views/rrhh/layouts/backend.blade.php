@@ -53,9 +53,9 @@
     <!-- Right navbar links | Notifications | User info -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
-      @include('rrhh.layouts.partials.messages')
+      {{--@include('rrhh.layouts.partials.messages')--}}
       <!-- Notifications Dropdown Menu -->
-      @include ('rrhh.layouts.partials.notifications')
+      {{--@include ('rrhh.layouts.partials.notifications')--}}
       <!-- Profile Dropdown Menu -->
       @include('rrhh.layouts.partials.profile')
     </ul>

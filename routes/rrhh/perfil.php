@@ -2,7 +2,8 @@
 
 Route::group(['prefix' => 'perfil'], function () {
     Route::get('perfil-empleado', 'rrhh\EmpleadoController@index')->name('empleado.profile');
-    Route::post('datos-empleado', 'rrhh\EmpleadoController@obtenerEmpleado')->name('empleado.info');
+    Route::get('empleados', 'rrhh\EmpleadoController@obtenerEmpleado')->name('perfil.empleados');
+    //Route::post('datos-empleado', 'rrhh\EmpleadoController@obtenerEmpleado')->name('empleado.info');
     Route::get('obtener-sucursal', 'rrhh\EmpleadoController@obtenerSucursal');
     Route::get('obtener-departamento', 'rrhh\EmpleadoController@obtenerDepartamento');
     Route::get('obtener-cargo', 'rrhh\EmpleadoController@obtenerCargo');

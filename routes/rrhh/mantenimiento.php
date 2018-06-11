@@ -5,6 +5,7 @@ Route::group(['prefix' => 'mantenimiento', 'namespace' => 'rrhh'], function () {
     Route::post('registrar-sucursal', 'SucursalController@registrarSucursal')->name('sucursal.store');
     Route::get('obtener-sucursal/{sucursal}', 'SucursalController@obtenerSucursal')->name('sucursal.edit');
     Route::post('actualizar-sucursal', 'SucursalController@actualizarSucursal');
+    Route::put('cambiar-estatus-sucursal/{sucursal}', 'SucursalController@cambiarEstatusSucursal');
 
     // Parametros de nominas
     Route::get('parametros-nominas', 'ParametrosController@listadoParametros')->name('parametros.list');

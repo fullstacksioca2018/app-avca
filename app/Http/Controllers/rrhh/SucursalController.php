@@ -10,7 +10,7 @@ class SucursalController extends Controller
 {
     public function listadoSucursales()
     {
-        $sucursales = Sucursal::where('estatus', 'activa')->orderBy('sucursal_id', 'DESC')->get();
+        $sucursales = Sucursal::orderBy('sucursal_id', 'DESC')->get();
         return view('rrhh.backend.mantenimiento.sucursal.list', compact('sucursales'));
     }
 
@@ -57,5 +57,13 @@ class SucursalController extends Controller
             return response()->json(['message' => 'error']);            
         }
         
+    }
+
+    public function cambiarEstatusSucursal(Sucursal $sucursal)
+    {
+        $sucursal->estatus = $sucursal->estatus == 'activa' ? 'inactiva' : 'activa';
+        $sucursal->save();
+
+        return response()->json();
     }
 }

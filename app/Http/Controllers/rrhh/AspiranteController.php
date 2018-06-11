@@ -4,6 +4,7 @@ namespace App\Http\Controllers\rrhh;
 
 use App\Models\rrhh\Area;
 use App\Models\rrhh\Cargo;
+use App\Models\rrhh\Empleado;
 use App\Models\rrhh\Vacante;
 use Illuminate\Http\Request;
 use App\Models\rrhh\Sucursal;
@@ -19,13 +20,16 @@ class AspiranteController extends Controller
 {
     public function obtenerAreasVacantes()
     {
+        $area_id = auth()->user()->empleado->area_id;
+        $area = Area::findOrFail($area_id);
+
         $vacantes = db::table('vacantes')
             ->join('cargos', 'vacantes.cargo_id', '=', 'cargos.cargo_id')
             ->join('sucursales', 'vacantes.sucursal_id','=','sucursales.sucursal_id')
             ->join('areas', 'cargos.area_id','=','areas.area_id')
 
             ->select('cargos.titulo','sucursales.nombre','vacantes.*','areas.nombre as nombre_a')
-            ->where('areas.slug','=','tripulacion')->get();
+            ->where('areas.slug','=',$area->slug)->get();
 
         return view('rrhh.backend.captacion.seleccion.areas-list', compact('vacantes'));
     }

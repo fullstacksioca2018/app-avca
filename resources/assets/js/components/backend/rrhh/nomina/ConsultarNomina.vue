@@ -52,14 +52,14 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>{{ montos.sueldo_base }}</td>
-                    <td>{{ montos.prima_hijos }}</td>
-                    <td>{{ montos.prima_antiguedad }}</td>
-                    <td>{{ montos.prima_hogar }}</td>
-                    <td>{{ montos.diurnas }}</td>
-                    <td>{{ montos.nocturnas }}</td>
-                    <td>{{ montos.diurnas_feriados }}</td>
-                    <td>{{ montos.nocturnas_feriados }}</td>
+                    <td>{{ montos.sueldo_base.toFixed(2) }}</td>
+                    <td>{{ montos.prima_hijos.toFixed(2) }}</td>
+                    <td>{{ montos.prima_antiguedad.toFixed(2) }}</td>
+                    <td>{{ montos.prima_hogar.toFixed(2) }}</td>
+                    <td>{{ montos.diurnas.toFixed(2) }}</td>
+                    <td>{{ montos.nocturnas.toFixed(2) }}</td>
+                    <td>{{ montos.diurnas_feriados.toFixed(2) }}</td>
+                    <td>{{ montos.nocturnas_feriados.toFixed(2) }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -124,7 +124,7 @@
                         monto += voucher.monto;
                     }
                 });
-                return monto;
+                return monto.toFixed(2);
             }
         },
         computed: {

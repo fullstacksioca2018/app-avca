@@ -32,6 +32,9 @@
                                 <button class="btn btn-info" data-toggle="modal" data-target="#actualizarSucursalModal">
                                     <i class="fa fa-cog" @click.prevent="obtenerSucursal(sucursal.sucursal_id)"></i>
                                 </button>
+                                <button class="btn btn-warning ml-2" @click.prevent="cambiarEstatusSucursal(sucursal.sucursal_id)">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
                             </td>                            
                         </tr>                        
                     </tbody>
@@ -50,10 +53,10 @@
         components: {ActualizarModal},
         data() {
             return {
-                sucursal: ''
+                sucursal: '',
             }
         },
-        methods: {            
+        methods: {
             obtenerSucursal(sucursal) {
                 axios.get('/rrhh/backend/mantenimiento/obtener-sucursal/'+sucursal)
                 .then(response => {
@@ -63,6 +66,24 @@
                 .catch(error => {
                     console.log(error)
                 })
+            },
+            cambiarEstatusSucursal(sucursal) {
+                axios.put('/rrhh/backend/mantenimiento/cambiar-estatus-sucursal/'+sucursal)
+                    .then(response => {
+                        console.log(response.data);
+                        this.$swal({
+                            type: 'success',
+                            title: 'Sucursal desabilitada.',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        setTimeout(() => {
+                            window.location.reload(true);
+                        }, 3000);
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             }
         },
     }
