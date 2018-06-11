@@ -174,7 +174,7 @@ puertas de acceso de la aeronave hasta su apertura.</li>',
                 'titulo'                => 'Copiloto ',
                 'perfil'                => '<h2>COPILOTO</h2>
 
-<h4>FUNCIÓN GENERAL DEL CARGO:</h4> <p>Cumplir con la programación de vuelo efectuada por la Dirección de Operaciones Aéreas, llevando a cabo las operaciones </p><p>aéreas de manera efectiva, eficaz, eficiente y segura, a través de parámetros de estandarización y entrenamiento.</p>
+<h4>FUNCIÓN GENERAL DEL CARGO:</h4> <p>.</p>
 
 <h4>EDUCACIÓN:</h4>
 <p>Requisitos de acuerdo al MRPT (Manual de Requisitos y Procedimientos Para Tripulantes) </p>
@@ -204,11 +204,33 @@ EMBRAER 145 / EMBRAER 170 / ATR 42-72 / Y-12E</p>
                 'updated_at'            => date('Y-m-d H:i:s')
             ],
             [
-                'titulo'                => 'Auxiliar de servicio abordo',
-                'perfil'                => '',
+                'titulo'                => 'Sobrecargo',
+                'perfil'                => '<h2>SOBRECARGO</H2>
+                <h4>FUNCIÓN GENERAL DEL CARGO:</h4> <p>Cumplir con la programación de vuelo efectuada por la Dirección de Operaciones Aéreas, llevando a cabo las operaciones </p><p>aéreas de manera efectiva, eficaz, eficiente y segura, a través de parámetros de estandarización y entrenamiento.</p>
+
+<h4>EDUCACIÓN:</h4>
+<p>Formación e instrucción en escuela debidamente aprobada por el INAC, cumpliendo con el mínimo de horas y entrenamientos</p><p> exigidos en los Reglamentos Aeronáuticos.</p>
+<p>Mínimo cinco (5) horas de observación en cada uno de los equipos y obtener un puntaje mínimo del 85% en el curso de transición.</p><p>
+Licencia de la Aeronáutica Civil.</p>
+
+<h4>EXPERIENCIA:</h4>
+<p>No se requiere para el cargo, es necesario cumplir con los requisitos de educación.</p>',
+                'funciones'             =>'<h4>FUNCIONES ESPECÍFICAS:<h4>
+<li>Revisar el equipo de emergencia, elaborando la lista de chequeo y reportar las novedades encontradas.</li>
+<li>Recibir y verificar el servicio a bordo.</li>
+<li>Alistar cabina de pilotos llevando algodón con alcohol y servilletas.</li>
+<li>Organizar el Galley según lo estandarizado.</li>
+<li>Revisar el aseo y estado general del avión y reportar cualquier anomalía.</li>
+<li>Informar que el avión está en condiciones de presentación adecuada para ser abordado.</li>
+<li>Establecer comunicación constante entre cabina de mando y pasajeros.</li>
+<li>Recibir a los pasajeros, retirando el pasabordo, verificando la ruta.</li>
+<li>Impartir instrucciones especiales para el abordaje (sobre peso en escaleras y porta equipajes).</li>
+<li>Verificar que el número de pasajeros abordados coincida con la planilla y el dato suministrado por el despachador.</li>
+<li>Impedir el abordaje de equipajes voluminosos y pesados que no se puedan guardar en los porta equipajes.</li>
+<li>Recibir, ubicar, revisar documentación y prestar atención durante todo el vuelo a las personas recomendadas, enfermos, embarazadas.</li>                ',
                 'funciones'             =>'',
                 'tabulador_salarial_id' => 13,
-                'area_id'               => 3,
+                'area_id'               => 6,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ],
@@ -287,9 +309,23 @@ requisitos adicionales:</p>
                 'updated_at'            => date('Y-m-d H:i:s')
             ],
             [
-                'titulo'                => 'Estadistica centro control de operaciones',
-                'perfil'                => '',
-                'funciones'             =>'',
+                'titulo'                => 'Jefe de Cabina',
+                'perfil'                => '<h2>JEFE DE CABINA</h2>
+
+<h4>FUNCIÓN GENERAL DEL CARGO:</h4>
+<p> Es el responsable del servicio y la seguridad a bordo ante el comandante.</p><p>También es el encargado de distribuir las diferentes funciones en cabina, así como de distribuir la situación de los diferentes miembros de la tripulación en las diferentes fases del vuelo.</p>
+
+<h4>EDUCACIÓN:</h4>
+<p> Técnico Superior Universitario preferiblemente en Turismo.</p>
+<p>  Licencias de tripulante de cabina así como de instructor de tripulantes de cabina expedidas por el INAC.</p>
+
+<h4>EXPERIENCIA:</h4>
+<p> 5 años, desempeñándose como Jefe de Tripulantes de Cabina (indispensable).</p>',
+                'funciones'             =>'<h4>FUNCIONES ESPECÍFICAS:</h4>
+<li>Revisar que la programación mensual de vuelos cumple con los extremos legales en cuanto al número mínimo</p><p>y máximo de horas de vuelo que debe realizar cada tripulante, sus periodos de descanso obligatorio,</p><p> vacaciones y la asignación balanceada de los vuelos entre los tripulantes de cabina de acuerdo a su habilitación para trabajar en cada aeronave de la flota, sus solicitudes y necesidades personales (p. ej. permisos, reposos) y su desempeño (p. ej., suspensiones).</li>
+<li>Verificar la asistencia y puntualidad de los tripulantes de cabina en los vuelos para ellos programados, y supervisa y evalúa su desempeño,</p><p> en particular lo relacionado con la notificación a Servicios al Pasajero del aeropuerto de la identificación de las personas que vuelan,</p><p> su cortesía hacia los pasajeros durante el vuelo y el acatamiento de la disciplina impuesta por el capitán de la aeronave,</p><p> proponiendo a la Dirección de Operaciones y a Capital  Humano sistemas y acciones tanto de control disciplinario como de incentivo y</p><p> reconocimiento al personal de cabina.</li>
+<li>Revisar que las anomalías reportadas por los jefes y tripulantes en sus revisiones de cabina antes del inicio del embarque de los pasajeros </p><p>en los vuelos (especialmente en materia de seguridad y emergencias), así como en los suministros del “galley” para brindar los refrigerios a bordo,</p><p> hayan sido tramitados, verificando que han recibido respuesta adecuada.</li>
+<li>Coordinar junto con el Departamento de Instrucción de la Dirección de Operaciones la programación de las actividades de entrenamiento y</p><p> re-entrenamiento de todos los tripulantes de cabina, así como la evaluación del aprendizaje en la práctica de un vuelo y con una aeronave específica.</li>',
                 'tabulador_salarial_id' => 1,
                 'area_id'               => 3,
                 'created_at'            => date('Y-m-d H:i:s'),

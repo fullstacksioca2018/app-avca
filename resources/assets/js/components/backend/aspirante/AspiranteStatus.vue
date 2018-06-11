@@ -10,12 +10,12 @@
       <li class="nav-item">
         <a href="#" :class="status === 'convocados' ? 'nav-link active' : 'nav-link'" @click.prevent="aspirantesPorEstatus('convocados')">Convocados</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a href="#" :class="status === 'entrevistados' ? 'nav-link active' : 'nav-link'" @click.prevent="aspirantesPorEstatus('entrevistados')">Entrevistados</a>
       </li>
       <li class="nav-item">
         <a href="#" :class="status === 'seleccionados' ? 'nav-link active' : 'nav-link'" @click.prevent="aspirantesPorEstatus('seleccionados')">Seleccionados</a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>

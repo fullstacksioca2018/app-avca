@@ -21,11 +21,16 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartamentosTableSeeder::class);
         $this->call(VacantesTableSeeder::class);
         $this->call(AspirantesTableSeeder::class);
-        //$this->call(ProfesionesTableSeeder::class);
+        $this->call(GruposTableSeeder::class);
+        $this->call(ProfesionesTableSeeder::class);
         $this->call(ConceptosTableSeeder::class);
         $this->call(NominasTableSeeder::class);
+        $this->call(EventsTableSeeder::class);
         $this->call(EmpleadosTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(ConceptoEmpleadoTableSeeder::class);
+        $this->call(AsistenciasTableSeeder::class);
+        $this->call(VariablesTableSeeder::class);
         //$this->call(Empleado2Seeder::class);
         $this->call(AeronaveSeeder::class);
         //$this->call(RutasSeeder::class);
@@ -45,7 +50,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SegmentoSeeder::class);
 
         //SEEDER MODULO REPORTE
-        $this->call(DwSucursales::class);
+        /* $this->call(DwSucursales::class);
         $this->call(DwPasajeros::class);
         $this->call(DwRutas::class);
         $this->call(DwVuelos::class);
@@ -53,7 +58,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DwEmpleados::class);
         $this->call(DwIngresosSeeder::class);
         $this->call(DwAsistenciasSeeder::class);
-        $this->call(DwTemporadas::class);
+        $this->call(DwTemporadas::class); */
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

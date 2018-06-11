@@ -19,11 +19,11 @@
             <p>Captación <i class="right fa fa-angle-down"></i></p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
+            {{--<li class="nav-item">
               <a href="#" class="nav-link">
                 <p style="padding-left: 1.5rem;">Reclutamiento Interno</p>
               </a>
-            </li>
+            </li>--}}
             @if (request()->is('rrhh/backend/vacante/*'))
             <li class="nav-item has-treeview menu-open">
             @else
@@ -58,7 +58,7 @@
           </ul>
         </li>        
         <li class="nav-item">
-          <a href="{{ route('empleado.profile') }}" class="{{ request()->routeIs('empleado.profile') ? 'nav-link active' : 'nav-link' }}">
+          <a href="{{ route('perfil.empleados') }}" class="{{ request()->routeIs('perfil.empleados') ? 'nav-link active' : 'nav-link' }}">
             <i class="fa fa-user nav-icon"></i>
             <p>Datos del empleado</p>
           </a>
@@ -112,11 +112,11 @@
                 <p style="padding-left: 1.5rem;">Parámetros de nóminas</p>
               </a>
             </li>
-            <li class="nav-item">
+            {{--<li class="nav-item">
               <a href="#" class="nav-link">
                 <p style="padding-left: 1.5rem;">Dependencias</p>
               </a>
-            </li>
+            </li>--}}
             <li class="nav-item">
               <a href="{{ route('sucursal.list') }}" class="{{ request()->routeIs('sucursal.list') ? 'nav-link active' : 'nav-link' }}">
                 <p style="padding-left: 1.5rem;">Sucursales</p>
@@ -131,7 +131,19 @@
               Reportes y estadísticas
             </p>
           </a>
+        </li>--}}
+
+        {{--  Opcion para el gerente de la sucursal  --}}
+        <li class="nav-item">
+          <a href="{{ route('asistencia.register') }}" class="{{ request()->routeIs('asistencia.register') ? 'nav-link active' : 'nav-link' }}">
+            <i class="nav-icon fa fa-clock-o"></i>
+            <p>
+              Asistencia
+            </p>
+          </a>
         </li>
+
+
       </ul>
     </li>
   </ul>

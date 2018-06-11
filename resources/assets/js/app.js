@@ -21,7 +21,9 @@ Vue.component('aspirante-form', require('./components/frontend/AspiranteForm'));
 Vue.component('vacante-filter', require('./components/backend/vacante/VacanteFilter'));
 Vue.component('aspirante-table', require('./components/backend/aspirante/AspiranteTable'));
 Vue.component('aspirante-status', require('./components/backend/aspirante/AspiranteStatus'));
+Vue.component('aspirante-status-gerente', require('./components/backend/aspirante/AspiranteStatusGerente'));
 Vue.component('contratacion', require('./components/backend/rrhh/contratacion/Contratacion'));
+Vue.component('aspirante-table-gerente', require('./components/backend/aspirante/AspiranteTableGerente'));
 //RUTAS
 Vue.component('Rutas', require('./components/operativo/AdministracionRutas.vue'));
 //VUELOS
@@ -50,10 +52,15 @@ Vue.component('CheckTodos',require('./components/operativo/checkTodos.vue'));
 Vue.component('Factura',require('./components/operativo/Factura.vue'));
 // Empleado
 Vue.component('ficha-empleado', require('./components/backend/rrhh/empleado/FichaEmpleado'));
+Vue.component('voucher', require('./components/backend/rrhh/empleado/datos/Voucher'));
+
+// Analista de sucursal
+Vue.component('ficha-analista', require('./components/backend/rrhh/analista/FichaEmpleado'));
 
 // Nomina del empleado
 Vue.component('generar-nomina', require('./components/backend/rrhh/nomina/GenerarNomina'));
 Vue.component('consultar-nomina', require('./components/backend/rrhh/nomina/ConsultarNomina'));
+Vue.component('nominas-generadas', require('./components/backend/rrhh/nomina/NominasGeneradas'));
 
 // Sucursal
 Vue.component('listado-sucursales', require('./components/backend/rrhh/sucursal/ListadoSucursal'));
@@ -61,11 +68,25 @@ Vue.component('listado-sucursales', require('./components/backend/rrhh/sucursal/
 // Parametros de nomina
 Vue.component('parametros-nomina', require('./components/backend/rrhh/parametros/ParametrosNomina'));
 
+// Asistencia del empleado
+Vue.component('empleado', require('./components/backend/rrhh/asistencia/Empleado'));
+
 Vue.component('panel', require('./components/reportes/panel.vue'));
 Vue.component('pronostico', require('./components/reportes/pronostico.vue'));
 Vue.component('dashboard', require('./components/reportes/Dashboard.vue'));
 Vue.component('breadcrumbpersonal', require('./components/reportes/breadcrumbPersonal.vue'));
 
+// Datos del empleado
+Vue.component('DatosPersonales', require('./components/backend/rrhh/empleado/datos/DatosPersonales'));
+Vue.component('IngresosDeducciones', require('./components/backend/rrhh/empleado/datos/IngresosDeducciones'));
+Vue.component('CargaFamiliar', require('./components/backend/rrhh/empleado/datos/CargaFamiliar'));
+Vue.component('ExpedienteLaboral', require('./components/backend/rrhh/empleado/datos/ExpedienteLaboral'));
+Vue.component('AsignarGrupo', require('./components/backend/rrhh/empleado/datos/AsignarGrupo'));
+
+// Componente Reloj
+Vue.component('reloj', require('./components/backend/rrhh/Reloj'));
+
+// Sweetalert
 import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2);
 

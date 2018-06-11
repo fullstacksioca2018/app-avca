@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="card">
-      <div class="card-header bg-info-gradient">Lisado de aspirantes</div>
+      <div class="card-header bg-info-gradient">Listado de aspirantes</div>
       <div class="card-body">
         <table class="table table-striped table-hover">
           <thead>
             <tr>
               <th>Fecha</th>
-              <th>Nombre y Apellido (<b>{{ estatusAnterior }}</b>)</th>
+              <th>Nombre y Apellido</th>
               <th v-if="estatusAnterior === 'registrados'">Curriculum</th>
               <th v-if="estatusAnterior === 'verificados'">Requisitos</th>
               <th v-if="estatusAnterior === 'convocados'">Entrevista</th>
@@ -18,11 +18,11 @@
           </thead>
           <tbody>
             <tr v-for="aspirante in aspirants" :key="aspirante.id">
-              <td>{{ aspirante.created_at }}</td>
+              <td>{{ fechaFormateada(aspirante.created_at) }}</td>
               <td>{{ aspirante.nombre }} {{ aspirante.apellido }}</td>
 
               <td v-if="estatusAnterior === 'registrados'">
-                <a :href="aspirante.curriculum" class="btn btn-outline-info">
+                <a :href="`/storage/aspirantes/${aspirante.curriculum}`" class="btn btn-outline-info">
                   <i class="fa fa-file-pdf-o"></i> Ver curriculum
                 </a>
               </td>
@@ -42,19 +42,6 @@
               <!--Aspirante entrevista modal-->
               <td v-if="estatusAnterior === 'entrevistados'">
                 <aspirante-entrevistado-modal :aspirante="aspirante" vacante="vacante" />
-              </td>
-
-              <!-- Aspirante seleccionado -->
-              <td v-if="estatusAnterior === 'seleccionados'">
-                <span>
-                  <i class="fa fa-phone-square text-success"></i>
-                  <b>{{ aspirante.telefono_movil }}</b>
-                </span>
-              </td>
-              <td v-if="estatusAnterior === 'seleccionados'">
-                <a href="#" class="text-info" @click.prevent="cambiarEstatus(aspirante.aspirante_id)">
-                  <i class="fa fa-check-square-o fa-2x"></i>
-                </a>
               </td>
 
               <!-- Solo estatus registrados -->
@@ -143,7 +130,7 @@
         else {
           return 'Contactar';
         }
-      }
+      },
     },
     methods: {
       cambiarEstatus(aspirante_id) {
@@ -201,7 +188,10 @@
       obtenerAspirante(aspirante) {
         EventBus.$emit('email-verificado', aspirante, this.vacante);
         EventBus.$emit('aspirante-seleccionado', aspirante, this.vacante);
-      }    
+      },
+      fechaFormateada(fecha) {
+        return moment(fecha).format("DD/MM/YYYY");
+      }
     },
   }
 </script>

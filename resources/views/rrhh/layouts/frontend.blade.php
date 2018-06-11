@@ -73,7 +73,7 @@
             <li class="nav-item active">
               <a class="nav-link" href="#selection">
                 <i class="fas fa-users"></i>
-                Captación <span class="sr-only">(Captación)</span></a>
+                Información <span class="sr-only">(Captación)</span></a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="#contact">

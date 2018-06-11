@@ -29,7 +29,7 @@ class CreateEmpleadosTable extends Migration
             $table->string('telefono_fijo', 15);
             $table->string('telefono_movil', 15);
             $table->string('email', 60)->unique();
-            $table->enum('tipo_discapacidad', ['trastorno del habla y lenguaje', 'visual', 'motriz', 'auditiva'])->nullable();
+            $table->string('tipo_discapacidad', 50)->nullable();
             $table->integer('sucursal_id')->unsigned();
             $table->integer('departamento_id')->unsigned();
             $table->integer('cargo_id')->unsigned();
@@ -40,7 +40,9 @@ class CreateEmpleadosTable extends Migration
             $table->enum('tipo_horario', ['fijo', 'rotativo']);
             $table->date('fecha_ingreso');
             $table->string('banco', 100);
-            $table->bigInteger('cuenta_bancaria')->unique();
+            $table->string('cuenta_bancaria')->unique();
+            $table->string('licencia')->nullable();
+            $table->enum('estatus', ['activo', 'inactivo'])->default('activo');
             $table->timestamps();
 
             $table->foreign('cargo_id')->references('cargo_id')->on('cargos')
