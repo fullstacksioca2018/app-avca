@@ -2,10 +2,9 @@
 	<div class="container">
 		<div class="list-container">
 			<div v-for="(item, key) in graficas">
-		          <strong >{{ item.titulo }}</strong>
+		          <strong >Reporte: {{ item.titulo }}</strong>
 		        <div v-if="item.grafica=='Torta'">
 					<div class="Chart">
-				      <h1 style="text-align:center;">{{ item.titulo }}</h1>
 			      		<pie-example :chart-data="item.datos"></pie-example>
 				    </div>
 				</div>

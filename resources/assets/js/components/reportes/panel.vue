@@ -325,10 +325,10 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 				tiposC:['Consulta','Búsqueda Avanzada'],
 				filtrosPjr:null,
 				P:[
-					'Bebe','Niños','Adolecente','Adulto','Discapacitado'
+					'Bebe','Niños','Adolecente','Adulto'
 				],
 				V:[
-					'Abiertos','Ejecutados','Demorados','Cancelados'
+					'Abierto','Ejecutado','Demorado','Cancelado'
 				],
 				filtrosV:null,
 				year:["2016","2017","2018"
@@ -439,6 +439,9 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 					if(this.form.filtros.length==0){
 						if(this.form.consulta=='Personal'){
 							this.form.filtros.push("Sucursal");
+						}
+						if(this.form.consulta=='Servicios'){
+							this.form.filtros.push("Origen");
 						}
 					}
 					this.form.periodo="Mes anterior";
@@ -706,6 +709,14 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 		     	}
 		     	if(this.form.parametros.length==0&&(this.form.consulta!='Ingresos'||(this.form.consulta=='Ingresos'&&this.form.tipo=='Búsqueda Avanzada'))){
 		     		Vue.toasted.show("Debe seleccionar los parametros para la consulta", {
+                        theme: "primary", 
+	                    position: "bottom-right",  
+	                    duration : 2000
+                    });
+                    return false;
+		     	}
+		     	if(this.form.tipo=='Búsqueda Avanzada'&&this.form.filtros.length==0){
+		     		Vue.toasted.show("Debe seleccionar un filtro de busqueda", {
                         theme: "primary", 
 	                    position: "bottom-right",  
 	                    duration : 2000

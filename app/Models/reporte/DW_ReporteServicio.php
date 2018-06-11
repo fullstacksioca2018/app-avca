@@ -28,7 +28,7 @@ class DW_ReporteServicio extends Model
         $year2=$actual2->year;
         $day=$actual2->day;
         switch ($filtroV){
-            case 'Abiertos':
+            case 'Abierto':
                 if($periodo->desde==$periodo->hasta){
                     $fechaincio=$actual2->toDateString();
                     if($actual2->day<15){ 
@@ -48,7 +48,7 @@ class DW_ReporteServicio extends Model
                     ->whereDate('DwVuelos.salida','>=',$periodo->hasta)
                     ->count();
                 break;
-            case 'Cancelados':
+            case 'Cancelado':
                 if($periodo->desde==$periodo->hasta){
                     if($actual2->day<15){ 
                         $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -69,7 +69,7 @@ class DW_ReporteServicio extends Model
                     ->whereDate('DwVuelos.fecha_cambio_estado','<=',$periodo->hasta)
                     ->count();
             break;
-            case 'Demorados':
+            case 'Demorado':
                 if($periodo->desde==$periodo->hasta){
                     if($actual2->day<15){ 
                         $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -89,7 +89,7 @@ class DW_ReporteServicio extends Model
                     ->whereDate('DwVuelos.fecha_cambio_estado','<=',$periodo->hasta)
                     ->count();
             break;
-            case 'Ejecutados':
+            case 'Ejecutado':
                 if($periodo->desde==$periodo->hasta){
                     if($actual2->day<15){ 
                         $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -132,7 +132,7 @@ class DW_ReporteServicio extends Model
         $year2=$actual2->year;
         $day=$actual2->day;
         switch ($filtroV){
-            case 'Abiertos':
+            case 'Abierto':
                 if($periodo->desde==$periodo->hasta){
                     $fechaincio=$actual2->toDateString();
                     if($actual2->day<15){ 
@@ -153,7 +153,7 @@ class DW_ReporteServicio extends Model
                     ->whereDate('DwVuelos.salida','>=',$periodo->hasta)
                     ->count();
                 break;
-            case 'Cancelados':
+            case 'Cancelado':
                 if($periodo->desde==$periodo->hasta){
                     if($actual2->day<15){ 
                         $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -174,7 +174,7 @@ class DW_ReporteServicio extends Model
                     ->whereDate('DwVuelos.fecha_cambio_estado','<=',$periodo->hasta)
                     ->count();
             break;
-            case 'Demorados':
+            case 'Demorado':
                 if($periodo->desde==$periodo->hasta){
                     if($actual2->day<15){ 
                         $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -191,7 +191,7 @@ class DW_ReporteServicio extends Model
                     ->whereDate('DwVuelos.fecha_cambio_estado','<=',$periodo->hasta)
                     ->count();
             break;
-            case 'Ejecutados':
+            case 'Ejecutado':
                 if($periodo->desde==$periodo->hasta){
                     if($actual2->day<15){ 
                         $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -264,7 +264,7 @@ class DW_ReporteServicio extends Model
             $year2=$actual2->year;
             $day=$actual2->day;
             switch ($filtroV){
-                case 'Abiertos':
+                case 'Abierto':
                     if($periodo->desde==$periodo->hasta){
                         $fechaincio=$actual2->toDateString();
                         if($actual2->day<15){ 
@@ -284,7 +284,7 @@ class DW_ReporteServicio extends Model
                         ->whereDate('DwVuelos.salida','>=',$periodo->hasta)
                         ->count();
                     break;
-                case 'Cancelados':
+                case 'Cancelado':
                     if($periodo->desde==$periodo->hasta){
                         if($actual2->day<15){ 
                             $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -304,7 +304,7 @@ class DW_ReporteServicio extends Model
                         ->whereDate('DwVuelos.fecha_cambio_estado','<=',$periodo->hasta)
                         ->count();
                 break;
-                case 'Demorados':
+                case 'Demorado':
                     if($periodo->desde==$periodo->hasta){
                         if($actual2->day<15){ 
                             $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -320,7 +320,7 @@ class DW_ReporteServicio extends Model
                         ->whereDate('DwVuelos.fecha_cambio_estado','<=',$periodo->hasta)
                         ->count();
                 break;
-                case 'Ejecutados':
+                case 'Ejecutado':
                     if($periodo->desde==$periodo->hasta){
                         if($actual2->day<15){ 
                             $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -344,7 +344,7 @@ class DW_ReporteServicio extends Model
             $year2=$actual2->year;
             $day=$actual2->day;
             switch ($filtroV){
-                case 'Abiertos':
+                case 'Abierto':
                     if($periodo->desde==$periodo->hasta){
                         $fechaincio=$actual2->toDateString();
                         if($actual2->day<15){ 
@@ -365,7 +365,7 @@ class DW_ReporteServicio extends Model
                         ->whereDate('DwVuelos.salida','>=',$periodo->hasta)
                         ->count();
                     break;
-                case 'Cancelados':
+                case 'Cancelado':
                     if($periodo->desde==$periodo->hasta){
                         if($actual2->day<15){ 
                             $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -386,7 +386,7 @@ class DW_ReporteServicio extends Model
                         ->whereDate('DwVuelos.fecha_cambio_estado','<=',$periodo->hasta)
                         ->count();
                 break;
-                case 'Demorados':
+                case 'Demorado':
                     if($periodo->desde==$periodo->hasta){
                         if($actual2->day<15){ 
                             $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -403,7 +403,7 @@ class DW_ReporteServicio extends Model
                         ->whereDate('DwVuelos.fecha_cambio_estado','<=',$periodo->hasta)
                         ->count();
                 break;
-                case 'Ejecutados':
+                case 'Ejecutado':
                     if($periodo->desde==$periodo->hasta){
                         if($actual2->day<15){ 
                             $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -764,7 +764,7 @@ class DW_ReporteServicio extends Model
             $year2=$actual2->year;
             $day=$actual2->day;
             switch ($filtroV){
-            case 'Abiertos':
+            case 'Abierto':
                 if($periodo->desde==$periodo->hasta){
                     $fechaincio=$actual2->toDateString();
                     if($actual2->day<15){ 
@@ -783,7 +783,7 @@ class DW_ReporteServicio extends Model
                     ->whereDate('DwVuelos.salida','>=',$periodo->hasta)
                     ->count();
                 break;
-            case 'Cancelados':
+            case 'Cancelado':
                 if($periodo->desde==$periodo->hasta){
                     if($actual2->day<15){ 
                         $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -802,7 +802,7 @@ class DW_ReporteServicio extends Model
                     ->whereDate('DwVuelos.fecha_cambio_estado','<=',$periodo->hasta)
                     ->count();
             break;
-            case 'Demorados':
+            case 'Demorado':
                 if($periodo->desde==$periodo->hasta){
                     if($actual2->day<15){ 
                         $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -817,7 +817,7 @@ class DW_ReporteServicio extends Model
                     ->whereDate('DwVuelos.fecha_cambio_estado','<=',$periodo->hasta)
                     ->count();
             break;
-            case 'Ejecutados':
+            case 'Ejecutado':
                 if($periodo->desde==$periodo->hasta){
                     if($actual2->day<15){ 
                         $fechaincio=$year2.'-'.$mes2.'-'.'1 12:00:00';
@@ -904,5 +904,1530 @@ class DW_ReporteServicio extends Model
                     ->count();
             break;
         }
+    }
+
+                ///BUSQUEDA(////////)////BUSQUEDA////////////////////
+                ///BUSQUEDA(////////)BUSQUEDA////////////////////
+                ///BUSQUEDA(////////)/////////////BUSQUEDA//////////
+                ///BUSQUEDA(////////)BUSQUEDA////////////////////
+                ///BUSQUEDA(////////)BUSQUEDA/////BUSQUEDA/////
+                ///BUSQUEDA(////////)//////BUSQUEDA//////BUSQUEDA
+    ///VUELOS DESTINO CON FILTROS/////        
+    public function scopeAltoVuelosDestinoFiltro($query,$periodo,$Row,$filtro){
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'desc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeBajaVuelosDestinoFiltro($query,$periodo,$Row,$filtro){
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMayorVuelosDestinoFiltro($query,$periodo,$Row,$Monto,$filtro){
+        $having= 'count(*) > '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMenorVuelosDestinoFiltro($query,$periodo,$Row,$Monto,$filtro){
+        $having= 'count(*) < '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+
+    ///VUELOS DESTINOS SIN FILTROS/////        
+    public function scopeAltoVuelosDestino($query,$periodo,$Row){
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'desc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeBajaVuelosDestino($query,$periodo,$Row){
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMayorVuelosDestino($query,$periodo,$Row,$Monto){
+        $having= 'count(*) > '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMenorVuelosDestino($query,$periodo,$Row,$Monto){
+        $having= 'count(*) < '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+
+    ///PASAJEROS DESTINOS CON FILTROS/////        
+    public function scopeAltoPasajerosDestinoFiltro($query,$periodo,$Row,$filtroP){
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+            break;
+        }
+    }
+    public function scopeBajaPasajerosDestinoFiltro($query,$periodo,$Row,$filtroP){
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+        }
+    }
+    public function scopeMayorPasajerosDestinoFiltro($query,$periodo,$Row,$Monto,$filtroP){
+        $having= 'count(*) > '.$Monto;
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+        }
+    }
+    public function scopeMenorPasajerosDestinoFiltro($query,$periodo,$Row,$Monto,$filtroP){
+        $having= 'count(*) < '.$Monto;
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+        }
+    }
+
+    ///PASAJEROS DESTINOS SIN FILTROS/////        
+    public function scopeAltoPasajerosDestino($query,$periodo,$Row){
+        return DB::table('DwPasajeros')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'desc')
+            ->limit($Row)
+            ->get();
+    }
+
+    public function scopeBajaPasajerosDestino($query,$periodo,$Row){
+        return DB::table('DwPasajeros')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMayorPasajerosDestino($query,$periodo,$Row,$Monto){
+        $having= 'count(*) > '.$Monto;
+        return DB::table('DwPasajeros')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMenorPasajerosDestino($query,$periodo,$Row,$Monto){
+        $having= 'count(*) < '.$Monto;
+        return DB::table('DwPasajeros')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.destino_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+
+
+
+
+
+    ///VUELOS ORIGEN CON FILTRO
+    public function scopeAltoVuelosOrigenFiltro($query,$periodo,$Row,$filtro){
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'desc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeBajaVuelosOrigenFiltro($query,$periodo,$Row,$filtro){
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMayorVuelosOrigenFiltro($query,$periodo,$Row,$Monto,$filtro){
+        $having= 'count(*) > '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMenorVuelosOrigenFiltro($query,$periodo,$Row,$Monto,$filtro){
+        $having= 'count(*) < '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+
+    ///VUELOS ORIGEN SIN FILTROS/////        
+    public function scopeAltoVuelosOrigen($query,$periodo,$Row){
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'desc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeBajaVuelosOrigen($query,$periodo,$Row){
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMayorVuelosOrigen($query,$periodo,$Row,$Monto){
+        $having= 'count(*) > '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMenorVuelosOrigen($query,$periodo,$Row,$Monto){
+        $having= 'count(*) < '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+
+    ///PASAJEROS ORIGEN CON FILTROS/////        
+    public function scopeAltoPasajerosOrigenFiltro($query,$periodo,$Row,$filtroP){
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+            break;
+        }
+    }
+    public function scopeBajaPasajerosOrigenFiltro($query,$periodo,$Row,$filtroP){
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+        }
+    }
+    public function scopeMayorPasajerosOrigenFiltro($query,$periodo,$Row,$Monto,$filtroP){
+        $having= 'count(*) > '.$Monto;
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+        }
+    }
+    public function scopeMenorPasajerosOrigenFiltro($query,$periodo,$Row,$Monto,$filtroP){
+        $having= 'count(*) < '.$Monto;
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwSucursales.nombre')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+        }
+    }
+
+    ///PASAJEROS ORIGEN SIN FILTROS/////        
+    public function scopeAltoPasajerosOrigen($query,$periodo,$Row){
+        return DB::table('DwPasajeros')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'desc')
+            ->limit($Row)
+            ->get();
+    }
+
+    public function scopeBajaPasajerosOrigen($query,$periodo,$Row){
+        return DB::table('DwPasajeros')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMayorPasajerosOrigen($query,$periodo,$Row,$Monto){
+        $having= 'count(*) > '.$Monto;
+        return DB::table('DwPasajeros')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMenorPasajerosOrigen($query,$periodo,$Row,$Monto){
+        $having= 'count(*) < '.$Monto;
+        return DB::table('DwPasajeros')
+            ->select('DwSucursales.nombre', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwSucursales.nombre')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+
+
+
+
+
+
+
+     ///VUELOS RUTA CON FILTRO
+    public function scopeAltoVuelosRutaFiltro($query,$periodo,$Row,$filtro){
+        return DB::table('DwVuelos')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwRutas.ruta_id')
+            ->orderBy('total', 'desc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeBajaVuelosRutaFiltro($query,$periodo,$Row,$filtro){
+        return DB::table('DwVuelos')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwRutas.ruta_id')
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMayorVuelosRutaFiltro($query,$periodo,$Row,$Monto,$filtro){
+        $having= 'count(*) > '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwRutas.ruta_id')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMenorVuelosRutaFiltro($query,$periodo,$Row,$Monto,$filtro){
+        $having= 'count(*) < '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->where('DwVuelos.estado',$filtro)
+            ->groupBy('DwRutas.ruta_id')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+
+    ///VUELOS RUTA SIN FILTROS/////        
+    public function scopeAltoVuelosRuta($query,$periodo,$Row){
+        return DB::table('DwVuelos')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwRutas.ruta_id')
+            ->orderBy('total', 'desc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeBajaVuelosRuta($query,$periodo,$Row){
+        return DB::table('DwVuelos')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwRutas.ruta_id')
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMayorVuelosRuta($query,$periodo,$Row,$Monto){
+        $having= 'count(*) > '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwRutas.ruta_id')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMenorVuelosRuta($query,$periodo,$Row,$Monto){
+        $having= 'count(*) < '.$Monto;
+        return DB::table('DwVuelos')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwRutas.ruta_id')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+
+    ///PASAJEROS RUTA CON FILTROS/////        
+    public function scopeAltoPasajerosRutaFiltro($query,$periodo,$Row,$filtroP){
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->orderBy('total', 'desc')
+                    ->limit($Row)
+                    ->get();
+            break;
+        }
+    }
+    public function scopeBajaPasajerosRutaFiltro($query,$periodo,$Row,$filtroP){
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+            break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+        }
+    }
+    public function scopeMayorPasajerosRutaFiltro($query,$periodo,$Row,$Monto,$filtroP){
+        $having= 'count(*) > '.$Monto;
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+        }
+    }
+    public function scopeMenorPasajerosRutaFiltro($query,$periodo,$Row,$Monto,$filtroP){
+        $having= 'count(*) < '.$Monto;
+        switch ($filtroP){
+            case 'Bebe':
+                $fechaLimite=$periodo->hasta->copy();
+                $fechaLimite->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimite)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$periodo->hasta)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Niños':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(12);
+                $fechaLimiteH->subYears(2);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adolecente':
+                $fechaLimiteD=$periodo->hasta->copy();
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteD->subYears(18);
+                $fechaLimiteH->subYears(12);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','>=',$fechaLimiteD)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+            case 'Adulto':
+                $fechaLimiteH=$periodo->hasta->copy();
+                $fechaLimiteH->subYears(18);
+                return DB::table('DwPasajeros')
+                    ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+                    ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+                    ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+                    ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+                    ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+                    ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+                    ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+                    ->whereDate('DwPasajeros.fecha_nacimiento','<=',$fechaLimiteH)
+                    ->groupBy('DwRutas.ruta_id')
+                    ->havingRaw($having)
+                    ->orderBy('total', 'asc')
+                    ->limit($Row)
+                    ->get();
+                break;
+        }
+    }
+
+    ///PASAJEROS RUTA SIN FILTROS/////        
+    public function scopeAltoPasajerosRuta($query,$periodo,$Row){
+        return DB::table('DwPasajeros')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwRutas.ruta_id')
+            ->orderBy('total', 'desc')
+            ->limit($Row)
+            ->get();
+    }
+
+    public function scopeBajaPasajerosRuta($query,$periodo,$Row){
+        return DB::table('DwPasajeros')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwRutas.ruta_id')
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMayorPasajerosRuta($query,$periodo,$Row,$Monto){
+        $having= 'count(*) > '.$Monto;
+        return DB::table('DwPasajeros')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwRutas.ruta_id')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
+    }
+    public function scopeMenorPasajerosRuta($query,$periodo,$Row,$Monto){
+        $having= 'count(*) < '.$Monto;
+        return DB::table('DwPasajeros')
+            ->select('DwRutas.ruta_id as ruta_id', DB::raw('count(*) as `total`'))
+            ->join('DwBoletos', 'DwBoletos.pasajero_id', '=', 'DwPasajeros.pasajero_id')
+            ->join('DwVuelos', 'DwVuelos.vuelo_id', '=', 'DwBoletos.vuelo_id')
+            ->join('DwRutas', 'DwRutas.ruta_id', '=', 'DwVuelos.ruta_id')
+            ->join('DwSucursales', 'DwSucursales.sucursal_id', '=', 'DwRutas.origen_id')
+            ->whereDate('DwVuelos.salida','>=',$periodo->desde)
+            ->whereDate('DwVuelos.salida','<=',$periodo->hasta)
+            ->groupBy('DwRutas.ruta_id')
+            ->havingRaw($having)
+            ->orderBy('total', 'asc')
+            ->limit($Row)
+            ->get();
     }
 }
