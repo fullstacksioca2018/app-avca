@@ -29,6 +29,7 @@ Vue.component('Rutas', require('./components/operativo/AdministracionRutas.vue')
 //VUELOS
 Vue.component('Vuelos', require('./components/operativo/PlanificarVuelos.vue'));
 Vue.component('VuelosAbiertos', require('./components/operativo/VuelosAbiertos.vue'));
+Vue.component('VuelosChequeo', require('./components/operativo/VuelosChequeo.vue'));
 Vue.component('VuelosCerrados', require('./components/operativo/VuelosCerrados.vue'));
 Vue.component('VuelosRetrasados', require('./components/operativo/VuelosRetrasados.vue'));
 Vue.component('VuelosEjecutados', require('./components/operativo/VuelosEjecutados.vue'));

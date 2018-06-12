@@ -125,6 +125,10 @@ class CheckController extends Controller
                 $obj->origen=$vuelo->segmentos[0]->ruta->origen->sigla;
                 $obj->destino=$vuelo->segmentos[0]->ruta->destino->sigla;
                 $obj->boletos=Boleto::where('vuelo_id','=',$vuelo->id)->get();
+                foreach($obj->boletos as $boleto){
+                    $boleto->maleta;
+                }
+                
                 array_push($datos_vuelos,$obj);
             }
             return $datos_vuelos;

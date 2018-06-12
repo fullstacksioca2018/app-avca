@@ -101,6 +101,43 @@ class PlanificarVueloController extends Controller
        
     }
 
+    public function vuelos_manifiesto(){           
+      
+     
+        $obj = array();
+        //$sucursales= Sucursal::orderBy('nombre','ASC')->get();
+        $vuelos= Vuelo::where('estado','=','Chequeando')->get();
+        foreach($vuelos as $vuelo){
+            $objAux = new stdClass();  
+            $segmentos = $vuelo->segmentos;
+           foreach($segmentos as $segmento){
+               // $objAux2 = new stdClass();  
+                $segmento->ruta;
+               $segmento->aeronave;
+                //array_push($objAux,$objAux2);
+            } 
+            
+        
+             foreach($vuelo->tripulantes as $tripulante){
+           
+                $tripulante->empleado;
+                //$tripulante->empleado2->experiencia = 
+                $tripulante->empleado->experiencia = $tripulante->HorasExperiencia($tripulante->id);
+                
+            }
+           // $vuelo->boletos;
+            //$vuelo->tripulantes;  
+            $vuelo->boletos;
+          $objAux->vuelo = $vuelo;   
+          array_push($obj,$objAux);
+         
+         
+        }
+        return $obj;
+
+       
+    }
+
     public function rutas(){
         $obj = array();
         //$sucursales= Sucursal::orderBy('nombre','ASC')->get();

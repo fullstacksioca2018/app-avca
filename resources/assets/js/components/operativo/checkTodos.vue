@@ -58,23 +58,29 @@
     <div v-if="modalInfo.content != ''">
      <b-form @submit.prevent="imprimir()"> 
             <!--  <pre>{{modalInfo.content}}</pre>    -->
-       <div class="row">
-         <div class="col-sm-6">
-           <h4> -- Chequeados --</h4>
-       <div v-for="boleto in modalInfo.content.boletos">
-         <div v-if="boleto.boleto_estado=='Chequeado'">
-           {{boleto.documento}} __ {{boleto.primerNombre}} {{boleto.apellido}}   
+       <div id="boletos" class="row">
+         <div class="col-sm-12">
+          <!--  <h4> -- Chequeados --</h4> -->
+       <table class="table table-hover table-striped" > <!--  -->
+       <thead>
+         <th> Nombre </th>
+         <th> Cedula  </th>
+         <th> Boleto </th>
+         <th> Asiento </th>
+       </thead>
+       <tbody>
+         <tr v-for="boleto in modalInfo.content.boletos"> 
+          
+           <td v-show="boleto.boleto_estado=='Chequeado'"> {{boleto.primerNombre}} {{boleto.apellido}} </td>
+           <td v-show="boleto.boleto_estado=='Chequeado'" > {{boleto.documento}} </td>
+           <td v-show="boleto.boleto_estado=='Chequeado'"> {{boleto.boleto_estado}} </td>
+           <td v-show="boleto.boleto_estado=='Chequeado'"> {{boleto.asiento}} </td>
+         </tr>
+         <br />
+       </tbody>
+     </table>
+      
          </div>
-       </div> <!-- fin v-for boletos -->
-         </div>
-       <div class="col-sm-6">
-         <h4> -- Por Chequear --</h4>
-       <div v-for="boleto in modalInfo.content.boletos">
-         <div v-if="boleto.boleto_estado=='Pagado'">
-           {{boleto.documento}} __ {{boleto.primerNombre}} {{boleto.apellido}}    
-         </div>
-       </div> <!-- fin v-for boletos -->    
-       </div>
        </div>
           
          
@@ -137,18 +143,11 @@ export default {
     doc.setFontSize ( 20 );
     doc.text(this.modalInfo.title,25,20);
     doc.setFontSize(14);
-    doc.text("Lista de Pasajeros Chequeados:",15,30);
+    doc.text("Lista de Pasajeros:",15,30);
     doc.setFontSize ( 8 );
     doc.text("_______________________________________________________________________________________________________",15,34);
-    doc.setFontSize(10);
-    for(var i=0; i<this.modalInfo.content.boletos.length;i++)
-    {
-      if(this.modalInfo.content.boletos[i].boleto_estado!="Chequeando"){
-        doc.text(this.modalInfo.content.boletos[i].primerNombre,15,40+(i*5));
-        doc.text(this.modalInfo.content.boletos[i].apellido,25+this.modalInfo.content.boletos[i].primerNombre.length,40+(i*5));
-        doc.text(this.modalInfo.content.boletos[i].documento,35+this.modalInfo.content.boletos[i].primerNombre.length+this.modalInfo.content.boletos[i].documento.length,40+(i*5));       
-      }
-    }
+    doc.setFontSize(5);
+    doc.fromHTML($("#boletos").html(),15,36);
     doc.save(pdfName + '.pdf');
     },
 

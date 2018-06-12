@@ -3,6 +3,7 @@
 
         Route::get('/','Operativo\PlanificarVueloController@vuelo');
         Route::get('/vuelos','Operativo\PlanificarVueloController@vuelos');
+        Route::get('/vuelos/manifiesto','Operativo\PlanificarVueloController@vuelos_manifiesto');
         Route::get('/rutas','Operativo\PlanificarVueloController@rutas');
         Route::get('/pilotos','Operativo\PlanificarVueloController@pilotos');
         Route::post('/disponibilidad','Operativo\PlanificarVueloController@disponibilidad');

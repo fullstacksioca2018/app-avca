@@ -52,9 +52,9 @@
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
         <b-input-group>
        
-        <b-button size="sm" @click.stop="ejecutar(row.item, row.index, $event.target)" class="mr-1" variant="primary">
+       <!--  <b-button size="sm" @click.stop="ejecutar(row.item, row.index, $event.target)" class="mr-1" variant="primary">
           Ejecutar
-        </b-button>
+        </b-button> -->
          <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1" variant="secundary">
           Ver
         </b-button>

@@ -187,10 +187,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- To the right -->
-<<<<<<< HEAD
-    
-=======
->>>>>>> f00c90bb31e28e2037e078b4b9fdc9476119cab1
     <!-- Default to the left -->
     <strong>Copyright &copy; 2018 <a href="{{ route('dashboard') }}">AVCA Reporte y Estadisticas</a>.</strong> Todos los derechos reservados.
   </footer>
