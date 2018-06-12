@@ -30,23 +30,15 @@
              :filter="filter"
              @filtered="onFiltered"
     >
-   
+     <template slot="boletos" slot-scope="row">{{ row.value.length }}</template>
       <template slot="actions" slot-scope="row">
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
         <b-input-group>
-          <div v-if="row.item.estatus != 'Chequeado'">
-          <b-button size="sm" class="btn btn-warning btn-sm" @click.stop="chekear(row)" variant="success">
-            Check-In
+          
+          <b-button size="sm" class="btn btn-warning btn-sm" @click.stop="info(row.item,row.item, row.index, $event.target)" variant="success">
+            Visualizar
           </b-button>
-          </div>
-          <div v-else>
-          <b-button size="sm" disabled="disabled" variant="primary">
-            Chequeado
-          </b-button>
-           <b-button size="sm"  variant="secundary" @click.stop="imprimir(row)">
-            Imprimir
-          </b-button>
-        </div>
+        
         </b-input-group>
       </template>
       <template slot="row-details" slot-scope="row">
@@ -60,15 +52,53 @@
     <b-col class="col-md-12 ">
       <b-pagination  align="center" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
     </b-col>
+  
+  <!-- Modal Actualizar -->
+    <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>
+    <div v-if="modalInfo.content != ''">
+     <b-form @submit.prevent="imprimir()"> 
+            <!--  <pre>{{modalInfo.content}}</pre>    -->
+       <div class="row">
+         <div class="col-sm-6">
+           <h4> -- Chequeados --</h4>
+       <div v-for="boleto in modalInfo.content.boletos">
+         <div v-if="boleto.boleto_estado=='Chequeado'">
+           {{boleto.documento}} __ {{boleto.primerNombre}} {{boleto.apellido}}   
+         </div>
+       </div> <!-- fin v-for boletos -->
+         </div>
+       <div class="col-sm-6">
+         <h4> -- Por Chequear --</h4>
+       <div v-for="boleto in modalInfo.content.boletos">
+         <div v-if="boleto.boleto_estado=='Pagado'">
+           {{boleto.documento}} __ {{boleto.primerNombre}} {{boleto.apellido}}    
+         </div>
+       </div> <!-- fin v-for boletos -->    
+       </div>
+       </div>
+          
+         
+
+         <div class="row"><p></p></div>  
+      <div class="text-center">
+        <b-button type="submit" variant="primary" >Generar Lista de Chequeo</b-button>
+      </div>
+     </b-form>
+     </div>
+   <!--  </div> -->
+     
+    </b-modal> 
+  
   </b-container>
 </template>
 
 <script>
 
 import axios  from 'axios';
+import moment from 'moment';
 import {EventBus} from './event-bus.js';
 import jsPDF from 'jsPDF';
-
+moment.locale('es');
 
 export default {
   created: function(){
@@ -85,9 +115,9 @@ export default {
       fields: [
       
         { key: 'n_vuelo',    label: 'Vuelo',  sortable: true },
-        { key: 'cedula', label: 'Cedula ', sortable: true},
-        { key: 'pasajero', label: 'Nombre Pasajero ', sortable: true},
-        { key: 'localizador',   label: 'Localizador de Boleto', sortable: true },
+        { key: 'origen', label: 'Origen ', sortable: true},
+        { key: 'destino', label: 'Destino ', sortable: true},
+        { key: 'boletos',   label: 'Boletos Vendidos', sortable: true },
         { key: 'actions',   label: ' - ', 'class' : 'text-center' }
       ],
       currentPage: 1,
@@ -100,14 +130,30 @@ export default {
   },
   methods: {
     
-    imprimir(row){
-       let pdfName = 'test'; 
+    imprimir(){
+       let pdfName = 'Manifiesto'+this.modalInfo.content.n_vuelo; 
     var doc = new jsPDF();
-    doc.text("Hello World", 10, 10);
+    //doc.text("Vuelo: ",20, 10);
+    doc.setFontSize ( 20 );
+    doc.text(this.modalInfo.title,25,20);
+    doc.setFontSize(14);
+    doc.text("Lista de Pasajeros Chequeados:",15,30);
+    doc.setFontSize ( 8 );
+    doc.text("_______________________________________________________________________________________________________",15,34);
+    doc.setFontSize(10);
+    for(var i=0; i<this.modalInfo.content.boletos.length;i++)
+    {
+      if(this.modalInfo.content.boletos[i].boleto_estado!="Chequeando"){
+        doc.text(this.modalInfo.content.boletos[i].primerNombre,15,40+(i*5));
+        doc.text(this.modalInfo.content.boletos[i].apellido,25+this.modalInfo.content.boletos[i].primerNombre.length,40+(i*5));
+        doc.text(this.modalInfo.content.boletos[i].documento,35+this.modalInfo.content.boletos[i].primerNombre.length+this.modalInfo.content.boletos[i].documento.length,40+(i*5));       
+      }
+    }
     doc.save(pdfName + '.pdf');
     },
 
     info (item, index, button) {
+      this.modalInfo.title = "Vuelo: "+item.n_vuelo+" || "+item.fecha+" || ["+item.origen+"-"+item.destino+"]";
       this.modalInfo.content = item;      
       this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
@@ -135,60 +181,19 @@ export default {
     formatodatos(){
       this.items = [];
       for (var i= 0; i < this.data.length; i++){
+        var elementos=this.data[i].fecha_salida.split(' ');
         this.items.push({
           id: this.data[i].id,
-          n_vuelo: this.data[i].codvuelos,
-          pasajero:this.data[i].pasajero,
-          nombreCompleto:this.data[i].nombre_pasajero,
-          cedula:this.data[i].documento,
-          origen:{
-             nombre:this.data[i].origen,
-             sigla:this.data[i].sigla_destino,
-             aeropuerto:this.data[i].aeropuerto_origen
-            },
-          destino:{
-             nombre:this.data[i].destino,
-             sigla:this.data[i].sigla_destino,
-             aeropuerto:this.data[i].aeropuerto_destino
-            },
-          estatus:this.data[i].estatus,
-          localizador:this.data[i].localizador
+          n_vuelo: this.data[i].n_vuelo,
+          fecha: moment(elementos[0]).format('DD-MM-YYYY'),
+          hora: elementos[1],
+          origen:this.data[i].origen,
+          destino:this.data[i].destino,
+          boletos:this.data[i].boletos
         });
       }
      
     },
-    chekear(row){
-     this.$dialog.confirm('Esta opcion no puede ser revertida')
-	    .then(function () {
-              axios({
-                  method: 'post',
-                  url: '/check/check/chekear',
-                  data: {
-                    id: row.item.id,               
-                  }
-                }).then((response)=>{
-                
-                Vue.toasted.show(response.data, {
-                  theme: "primary", 
-                  position: "bottom-right",
-                    duration : 2000
-                });
-                 EventBus.$emit('actualizartabla',true);
-               // this.Cargadatos(this);
-
-                }).catch((err)=>{
-                  Vue.toasted.show("Boleto Check-In incorrecto"+err, {
-                    theme: "primary",  
-                  position: "bottom-right",
-                    duration : 2000
-                });
-                });
-                //fin axios
-        })
-	      .catch(function () {
-		    console.log('Cancelar esta Operacion')
-	       });
-    } 
   }
 } 
 </script>

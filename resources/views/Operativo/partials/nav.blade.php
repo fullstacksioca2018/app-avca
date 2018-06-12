@@ -42,12 +42,6 @@
                   <p>Facturacion</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="{{ URL::to('/llegada') }}" class="nav-link">
-                <i class="fa fa-map-marker nav-icon"></i>
-                <p>Llegada de Vuelos</p>
-              </a>
-            </li>
           </ul>
         </li>
       @endrole
@@ -57,13 +51,19 @@
         <li class="nav-item has-treeview">
           <a href="{{ URL::to('/vuelos') }}" class="nav-link">
             <i class="fa fa-plane nav-icon"></i>
-            <p>Administracion de Vuelo <i class="right fa fa-angle-left"></i></p>
+            <p>Admin. de Vuelos <i class="right fa fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{ URL::to('/vuelos') }}" class="nav-link">
                 <i class="fa fa-circle-o nav-icon"></i>
                 <p> Planificar Vuelos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ URL::to('/llegada') }}" class="nav-link">
+                <i class="fa fa-map-marker nav-icon"></i>
+                <p>Llegada de Vuelos</p>
               </a>
             </li>
           </ul>
@@ -107,17 +107,11 @@
           </ul>
         </li>
        <!--  FINAL DE Mantenimiento  -->
-<<<<<<< HEAD
        <!-- INICIO DE REPORTES Y ESTADISTICAS  -->      
 
 
         <li class="nav-item has-treeview">
           <a  class="nav-link">
-=======
-       <!-- INICIO DE REPORTES Y ESTADISTICAS  -->
-        <li class="nav-item">
-          <a href="{{ URL::to('/reporte/operativo') }}" class="nav-link">
->>>>>>> master
             <i class="nav-icon fa fa-bar-chart"></i>
             <p>Reportes y estadísticas<i class="right fa fa-angle-left"></i></p>
           </a>
