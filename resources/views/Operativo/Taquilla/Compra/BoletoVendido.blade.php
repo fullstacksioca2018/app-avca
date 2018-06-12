@@ -14,10 +14,17 @@
                   <div class="table-detalles">
                     <img src="{{ asset('online/img/logo.png') }}" height="40" class="d-inline-block align-right" alt="AVCA">
                   </div>Detalles del Vuelo 
+<<<<<<< HEAD
                  <!--  <input type="hidden" id="datos_vuelo" value="{{ json_encode($datos_vuelo) }}"> -->
                   <input type="hidden" id="factura" value="{{$factura->id }}">
 <!--                   <input type="hidden" id="tipo" value="{{ $tipo }}">
  -->                </th>
+=======
+             <!--      <input type="hidden" id="datos_vuelo" value="{{ json_encode($datos_vuelo) }}"> -->
+                  <input type="hidden" id="factura" value="{{$factura->id }}">
+               <!--    <input type="hidden" id="tipo" value="{{ $tipo }}"> -->
+                </th>
+>>>>>>> master
               </thead>
               @foreach ($datos_vuelo as $dato_vuelo)
                 @php 
@@ -98,7 +105,12 @@ $(document).ready(function () {
    //tipo=$("#tipo").val();
    
    $.ajax({  
+<<<<<<< HEAD
+		url:'taquilla/pagar',
+         //taquilla/factura/pagar
+=======
 		url:'/factura/pagar',
+>>>>>>> master
 		data:{"id":factura},
 		type:'post',
 	//	dataType: 'json',

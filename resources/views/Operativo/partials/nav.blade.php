@@ -6,12 +6,18 @@
       <a href="#" class="nav-link active">
         <i class="nav-icon fa fa-dashboard"></i>
         <p>
+        @role('gerente.sucursales')
           Gerencia de Sucursales
+       @endrole
+      @role('operador.taquilla')
+          Operador de Taquilla
+      @endrole
           <!-- <i class="right fa fa-angle-left"> --></i>
         </p>
       </a>
       <ul class="nav nav-treeview">
         <!-- INICIO DE TAQUILLA -->
+        @role('operador.taquilla')
         <li class="nav-item has-treeview">
           <a href="{{ URL::to('/taquilla') }}" class="nav-link">
             <i class="fa fa-users nav-icon"></i>
@@ -36,26 +42,28 @@
                   <p>Facturacion</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="{{ URL::to('/llegada') }}" class="nav-link">
-                <i class="fa fa-map-marker nav-icon"></i>
-                <p>Llegada de Vuelos</p>
-              </a>
-            </li>
           </ul>
         </li>
+      @endrole
         <!-- HASTA AQUI TAQUILLA -->
         <!--   INICIO DE VUELOS -->
+        @role('gerente.sucursales')
         <li class="nav-item has-treeview">
           <a href="{{ URL::to('/vuelos') }}" class="nav-link">
             <i class="fa fa-plane nav-icon"></i>
-            <p>Administracion de Vuelo <i class="right fa fa-angle-left"></i></p>
+            <p>Admin. de Vuelos <i class="right fa fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{ URL::to('/vuelos') }}" class="nav-link">
                 <i class="fa fa-circle-o nav-icon"></i>
                 <p> Planificar Vuelos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ URL::to('/llegada') }}" class="nav-link">
+                <i class="fa fa-map-marker nav-icon"></i>
+                <p>Llegada de Vuelos</p>
               </a>
             </li>
           </ul>
@@ -128,6 +136,7 @@
             </li> -->
           </ul>
         </li>
+       @endrole
         <!-- FINAL DE REPORTES Y ESTADISTICAS  -->
       </ul>
     </li>

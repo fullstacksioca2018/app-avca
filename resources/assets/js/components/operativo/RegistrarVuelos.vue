@@ -10,6 +10,7 @@
                         placeholder="Seleccione el Origen" 
                         label="nombre" 
                         track-by="nombre"
+                        required
             ></multiselect>
             <br/>
             <div class="row">
@@ -22,7 +23,6 @@
                                 type="date"
                                 class="col-md-6"
                                 v-model="fecha"
-                                
                                 required>
                             </b-form-input>
                         </b-form-group>
@@ -241,7 +241,11 @@ export default {
     watch: {
         'sobrecargoC' (newVal, oldVal) {
             if (newVal.length === 4) {
-                alert('solo 3 sobrecargos')
+               Vue.toasted.show("Escoge solo 3", {
+                    theme: "primary", 
+	                position: "bottom-right",
+	                duration : 2000
+                }); 
                 this.form.sobrecargo.splice(3,1)
             } 
         }

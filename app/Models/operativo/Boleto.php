@@ -46,7 +46,8 @@ class Boleto extends Model
         return DB::table('boletos')->select('id')->where('localizador',$localizador);
 
     }
-   
+
+  
     public function maleta()
     {
     	return $this->hasOne('App\Models\operativo\Maleta');

@@ -137,9 +137,6 @@ class TaquillaController extends Controller
         }
         return $vuelos;
      
-      
-
-       
     }
 
     public function DetalleVuelo2(Request $datos){

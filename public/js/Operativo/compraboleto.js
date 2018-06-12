@@ -1,5 +1,21 @@
 function BuscarCedula(i){
-        $.ajax({  
+    var bandera=false; 
+    for(var j=0;j<i;j++)
+     {
+        
+        if( $("#Buscarci"+i).val() == $("#documento"+j).val())
+         {
+            bandera=true;
+         }
+     }   
+     if(bandera){
+        Vue.toasted.show("Cedula ya seleccionada", {
+            theme: "primary",
+            position: "bottom-right",
+            duration: 2000  
+        });
+     }else{ 
+     $.ajax({  
             url:'taquilla/BuscarCedula',
             data:{'cedula':$("#Buscarci"+i).val()},
             type:'get',
@@ -26,6 +42,9 @@ function BuscarCedula(i){
                         $("#documento"+i).val(response[0].documento);
                         $("#fecha_nacimiento"+i).val(response[0].fecha_nacimiento);
                         $("#genero"+i).val(response[0].genero);
+                    if(i=0){
+                        $("#cc-name").val(response[0].primerNombre+" "+response[0].apellido);
+                    }  
                     }//fin else 
             }
          }).fail( function( jqXHR, textStatus, errorThrown ) {
@@ -34,7 +53,8 @@ function BuscarCedula(i){
                 position: "bottom-right",
                 duration: 2000 
             });
-        }); //fin ajax 
+        }); //fin ajax
+    } 
 }//fin function
 
 function cambiartarjeta()

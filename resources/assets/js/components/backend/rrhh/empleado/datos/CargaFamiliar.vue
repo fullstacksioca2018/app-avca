@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="col-12">
     <h1 class="text-center">Actualizar Carga Familiar</h1>
 
     <div class="float-right">

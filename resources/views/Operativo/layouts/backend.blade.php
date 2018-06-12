@@ -27,6 +27,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       padding: 10px;
       text-align: center;
     }
+    .info{
+      width: 100%;
+    }
     .user-menu .user-header {
       background-color: #3c8dbc;
     }
@@ -74,7 +77,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -88,76 +90,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </li>
     </ul>
 
-    
+
     <!-- Right navbar links | Notifications | User info -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-      
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/adminlte/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fa fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/adminlte/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fa fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="/adminlte/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fa fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="fa fa-clock-o mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-     
       <!-- Profile Dropdown Menu -->
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link" data-toggle="dropdown">
           <i class="fa fa-user-circle"></i>
-          <span class="position">Gerente </span>{{ auth()->user()->name }}
+          <span class="position"></span>{{ auth()->user()->name }}
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <div class="dropdown-item user-header text-white">
             <i class="fa fa-user fa-2x"></i>
             <p>
-              {{ auth()->user()->name }} - Gerente
+              {{ auth()->user()->name }} -
               <small class="d-block">Pequeña descripción de algo...</small>
             </p>
           </div>
@@ -178,10 +124,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-              class="fa fa-th-large"></i></a>
-      </li>
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -191,20 +133,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Sidebar -->
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
-         <!--  <img id="logofavi" src="{{ asset('img/favicon.png') }}" alt="AVCA Icono"> -->
+          <img id="logofavi" src="{{ asset('img/favicon.png') }}" alt="AVCA Icono">
         <div class="info">
-          <img id="logoletra" src="{{ asset('img/logo.png') }}" alt="AVCA Icono">
+          <img id="logoletra" src="{{ asset('img/letras.png') }}" alt="AVCA Icono">
         </div>
       </div>
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+      <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
         <div class="image text-white">
           <i class="fa fa-user-circle"></i>
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ auth()->user()->name }}</a>
         </div>
-      </div>
+      </div> -->
 
       <!-- Sidebar Menu -->
       @include('Operativo.partials.nav')
@@ -216,16 +158,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" id="app">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-          
-          </div><!-- /.col -->
-         
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
+    
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -254,29 +187,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- To the right -->
+<<<<<<< HEAD
     
+=======
+>>>>>>> f00c90bb31e28e2037e078b4b9fdc9476119cab1
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2018 <a href="{{ route('ruta') }}">AVCA ADMINISTRATIVO</a>.</strong> Todos los derechos reservados.
+    <strong>Copyright &copy; 2018 <a href="{{ route('dashboard') }}">AVCA Reporte y Estadisticas</a>.</strong> Todos los derechos reservados.
   </footer>
 </div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
- <script src="/adminlte/plugins/jquery/jquery.min.js"></script> 
+<!-- Vue App -->
+<script src="{{ asset('js/app.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/adminlte/js/adminlte.min.js"></script>
-<!-- Vue App -->
-<script src="{{ asset('js/app.js') }}"></script>
 <!--Sweetalert-->
-
-<!-- build -->
-<!-- <script src="/js/app.js"></script> -->
-
 <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+
+<script src="{{ asset('js/reportar/main.js') }}"></script>
+
 @stack('scripts')
 </body>
 </html>

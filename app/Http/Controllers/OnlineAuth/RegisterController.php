@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\OnlineAuth;
-
 use App\Online;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
+
 
 class RegisterController extends Controller
 {

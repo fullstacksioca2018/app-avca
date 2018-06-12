@@ -14,7 +14,9 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
+Route::get('/403', function () {
+    abort(403);
+});
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
@@ -58,6 +60,13 @@ Route::group(['prefix' => 'cliente'], function() {
 
 });
 
+/*Rutas destinos*/
+Route::group(['prefix' => 'destino'], function() {
+    
+    Route::get('/cumana', 'Online\DestinoController@cumana')->name('destino.cumana'); 
+
+});
+
 /* AUTH ONLINE*/
 Route::group(['prefix' => 'online'], function () {
   Route::get('/login', 'OnlineAuth\LoginController@showLoginForm')->name('online.login');
@@ -72,12 +81,25 @@ Route::group(['prefix' => 'online'], function () {
   Route::get('/password/reset', 'OnlineAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'OnlineAuth\ResetPasswordController@showResetForm');
 });
+require 'AdministradorOnline.php';
 
 
 
 require 'Operativo\PlanificarRuta.php';
 require 'Operativo\PlanificarTaquilla.php';
 require 'Operativo\PlanificarVuelo.php';
+
+
+
+
+
+require 'Reporte\api.php';
+require 'Reporte\vistas.php';
+Route::get('listar-cargos', 'Reportes\ApiControllerDW@listCargos')->name('cargo.list.DW');
+
+//Rutas de login social
+Route::get('auth/{provider}', 'OnlineAuth\SocialAuthController@redirectToProvider')->name('social.auth');
+Route::get('auth/{provider}/callback', 'OnlineAuth\SocialAuthController@handleProviderCallback');
 require 'Operativo\PlanificarAeronave.php';
 require 'Operativo\PlanificarSucursal.php';
 require 'Operativo\ReporteBoletos.php';
@@ -86,4 +108,10 @@ Route::get('/reportes', function () {
     return view('reportes.PanelConsulta');
 });
 
-Route::get('listar-cargos', 'Reportes\ApiControllerDW@listCargos')->name('cargo.list.DW');
+
+Route::get('reporte/operativo', function () {
+        return view('Operativo.reportes.reporte');
+    })->name('reportes.operativo');
+    Route::get('reporte/rrhh', function () {
+        return view('rrhh.backend.reportes.reporte');
+    })->name('reportes.rrhh');

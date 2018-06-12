@@ -12,26 +12,34 @@ class SegmentoSeeder extends Seeder
     public function run()
     {
     	
-        // factory(App\Models\operativo\Segmento::class,20)->create();
-        $ruta_id = DB::table('rutas')->select('id')->find(20);
-        for ($i=0;$i>20;$i++){
+       /* factory(App\Models\operativo\Segmento::class,20)->create();
+        $ruta_id = DB::table('rutas')->orderBy('id')->get();
+        for ($i=0;$i<20;$i++){
         DB::table('segmentos')->insert([
-            'aeronave_id' => mt_rand(1,20),
-            'ruta_id' => $ruta_id[$i],
-            'vuelo_id' => mt_rand(1,20),
-        ]);}
+            'aeronave_id' => rand(1,5),
+            'ruta_id' => $ruta_id[$i]->id,
+            'vuelo_id' => ($i+1),
+        ]);}*/
 
-         /* DB::table('segmentos')->insert([
+       
+
+          DB::table('segmentos')->insert([
             'aeronave_id' => '2',
-            'ruta_id' => '22',
-            'vuelo_id' => '22',
+            'ruta_id' => '21',
+            'vuelo_id' => '1',
         ]);
 
          DB::table('segmentos')->insert([
             'aeronave_id' => '2',
+            'ruta_id' => '22',
+            'vuelo_id' => '2',
+        ]);
+
+        DB::table('segmentos')->insert([
+            'aeronave_id' => '2',
             'ruta_id' => '23',
-            'vuelo_id' => '23',
-        ]); */
+            'vuelo_id' => '3',
+        ]);
 
     }
 }

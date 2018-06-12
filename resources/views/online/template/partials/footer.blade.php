@@ -3,10 +3,10 @@
   ============================-->
   <footer  id="footer">
     <div class="footer-top">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6 footer-info">
+          <div class="col-md-5 footer-info">
             <h3>AVCA</h3>
             <p>Viajar para disfrutar, conocer, crear, expandir nuestra mente y nuestro corazón. Sin duda alguna, viajar es de las mejores experiencias que podemos tener en la vida. AVCA te ofrece la oportunidad de evocar esa hermosa sensación que han dejado tus travesías anteriores planificando tu próximo viaje. 
             </p>

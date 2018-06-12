@@ -113,7 +113,25 @@ class CheckController extends Controller
                 return $obj;
             } //fin buscar cheks
 
-            public function todos(){
+           public function todos(){ //va a buscar todos los vuelos abiertos.
+            $vuelos=Vuelo::where('estado','=','chequeando')->get();
+            $datos_vuelos=array();
+            foreach($vuelos as $vuelo){
+                $obj=new stdClass();
+                $obj->id=$vuelo->id;
+                $obj->n_vuelo=$vuelo->n_vuelo;
+                $obj->fecha_salida=$vuelo->fecha_salida;
+                $obj->n_boletos=$vuelo->n_boletos;
+                $obj->origen=$vuelo->segmentos[0]->ruta->origen->sigla;
+                $obj->destino=$vuelo->segmentos[0]->ruta->destino->sigla;
+                $obj->boletos=Boleto::where('vuelo_id','=',$vuelo->id)->get();
+                array_push($datos_vuelos,$obj);
+            }
+            return $datos_vuelos;
+    
+           }
+           
+            /* public function todos(){
                 $obj=array();
                 $boleto=Boleto::orderBy('id')->get();
                    
@@ -144,7 +162,8 @@ class CheckController extends Controller
                     }//fin foreach buscar todos los boletos
         
                     return $obj;
-                } //fin buscar cheks
+            } //fin buscar cheks */
+        
         public function checkearBoleto(Request $datos)
         {
         

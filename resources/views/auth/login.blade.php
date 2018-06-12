@@ -62,7 +62,7 @@
                     <div class="col-8">
                         <div class="checkbox icheck">
                             <label>
-                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Recuerdame') }}
+                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Recuérdame') }}
                             </label>
                         </div>
                     </div>

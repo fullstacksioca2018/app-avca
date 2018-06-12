@@ -20,7 +20,6 @@ use Mike42\Escpos\Printer;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike42\Escpos\EscposImage;
 
-
 use stdClass;
 
 class FacturacionController extends Controller

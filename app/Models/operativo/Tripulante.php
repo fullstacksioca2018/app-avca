@@ -15,7 +15,7 @@ class Tripulante extends Model
     ];
     
    public function empleado(){
-        return $this->hasOne('App\Models\Operativo\Empleado2','id','personal_id');
+        return $this->hasOne('App\Models\rrhh\Empleado','empleado_id','personal_id');
     } 
 
     public function vuelos(){
@@ -35,15 +35,17 @@ class Tripulante extends Model
     }
 
     public function scopeDisponibilidad($query,$rango,$antes,$despues){
-        return DB::select("SELECT tripulantes.id, empleados2.nombre, empleados2.apellido, tripulantes.licencia
+        return DB::select("SELECT tripulantes.id, empleados.nombre, empleados.apellido, tripulantes.licencia
             FROM tripulantes 
-            JOIN empleados2 ON tripulantes.personal_id=empleados2.id
-            WHERE tripulantes.rango='$rango' AND tripulantes.id NOT IN(SELECT   tripulante_vuelo.tripulante_id FROM tripulante_vuelo JOIN vuelos ON tripulante_vuelo.vuelo_id=vuelos.id WHERE vuelos.fecha_salida>'$antes' AND vuelos.fecha_salida<'$despues')
+            JOIN empleados ON tripulantes.personal_id=empleados.empleado_id
+            JOIN cargos ON empleados.cargo_id=cargos.cargo_id
+            WHERE cargos.titulo='$rango' AND tripulantes.id NOT IN(SELECT   tripulante_vuelo.tripulante_id FROM tripulante_vuelo JOIN vuelos ON tripulante_vuelo.vuelo_id=vuelos.id WHERE vuelos.fecha_salida>'$antes' AND vuelos.fecha_salida<'$despues')
             UNION
-            SELECT tripulantes.id, empleados2.nombre, empleados2.apellido,  tripulantes.licencia
+            SELECT tripulantes.id, empleados.nombre, empleados.apellido,  tripulantes.licencia
                 FROM tripulantes 
-                JOIN empleados2 ON tripulantes.personal_id=empleados2.id 
-                WHERE tripulantes.rango='$rango' AND tripulantes.id NOT IN(SELECT tripulante_vuelo.tripulante_id FROM tripulante_vuelo)");
+                JOIN empleados ON tripulantes.personal_id=empleados.empleado_id
+                JOIN cargos ON empleados.cargo_id=cargos.cargo_id 
+                WHERE cargos.titulo='$rango' AND tripulantes.id NOT IN(SELECT tripulante_vuelo.tripulante_id FROM tripulante_vuelo)");
         }
 
 

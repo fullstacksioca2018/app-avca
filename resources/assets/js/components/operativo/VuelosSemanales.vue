@@ -5,74 +5,122 @@
               <div class="container pasajero box wow fadeInLeft">
                
                 <div class="card" v-if="Lunes.length>0">
-                     <strong>Lunes</strong>
-                <div v-for="item in Lunes"> 
+                 <div>
+                     <b-btn v-b-toggle.collapse1 variant="secundary">Lunes</b-btn>
+                     <b-collapse id="collapse1" class="mt-2">
+                     <b-card>
+                       <div v-for="item in Lunes"> 
                     
-                    <div class="card-header"> {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
-                    <div class="card-body"> {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
-                    <div class="card-footer"> Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
-                 
-                </div>
+                            <div > {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
+                            <div > {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
+                            <div > Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
+                            <hr>
+                        </div>
+                     </b-card>
+                     </b-collapse>
+                 </div>
                 </div>
                 
                 <div class="card" v-if="Martes.length>0">
-                     <strong>Martes</strong>
-                <div v-for="item in Martes"> 
-                
-                    <div class="card-header"> {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
-                    <div class="card-body"> {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
-                    <div class="card-footer"> Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
-                
-                </div>
+                      <div>
+                     <b-btn v-b-toggle.collapse2 variant="secundary">Martes</b-btn>
+                     <b-collapse id="collapse2" class="mt-2">
+                     <b-card>
+                       <div v-for="item in Martes"> 
+                    
+                            <div > {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
+                            <div > {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
+                            <div > Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
+                 <hr>
+                        </div>
+                     </b-card>
+                     </b-collapse>
+                 </div>
                 </div>
                 
                 <div class="card" v-if="Miercoles.length>0">
-                     <strong>Miercoles</strong>
-                <div v-for="item in Miercoles"> 
-            
-                    <div class="card-header"> {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
-                    <div class="card-body"> {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
-                    <div class="card-footer"> Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
-                 
-                </div>
+                      <div>
+                     <b-btn v-b-toggle.collapse3 variant="secundary">Miercoles</b-btn>
+                     <b-collapse id="collapse3" class="mt-2">
+                     <b-card>
+                       <div v-for="item in Miercoles"> 
+                    
+                            <div > {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
+                            <div > {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
+                            <div > Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
+                                             <hr>
+                        </div>
+                     </b-card>
+                     </b-collapse>
+                 </div>
                 </div>
 
                 <div class="card" v-if="Jueves.length>0" >
-                     <strong>Jueves</strong>
-                <div  v-for="item in Jueves"> 
-             
-                    <div class="card-header"> {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
-                    <div class="card-body"> {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
-                    <div class="card-footer"> Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
-                
-                </div>
+                    <div>
+                     <b-btn v-b-toggle.collapse4 variant="secundary">Jueves</b-btn>
+                     <b-collapse id="collapse4" class="mt-2">
+                     <b-card>
+                       <div v-for="item in Jueves"> 
+                    
+                            <div > {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
+                            <div > {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
+                            <div > Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
+                                             <hr>
+                        </div>
+                     </b-card>
+                     </b-collapse>
+                 </div>
                 </div>
 
                 <div class="card" v-if="Viernes.length>0">
-                     <strong>Viernes</strong>
-                <div v-for="item in Viernes"> 
-                    <div class="card-header"> {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
-                    <div class="card-body"> {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
-                    <div class="card-footer"> Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
-                </div>
+                    <div>
+                     <b-btn v-b-toggle.collapse5 variant="secundary">Viernes</b-btn>
+                     <b-collapse id="collapse5" class="mt-2">
+                     <b-card>
+                       <div v-for="item in Viernes"> 
+                    
+                            <div > {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
+                            <div > {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
+                            <div > Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
+                                             <hr>
+                        </div>
+                     </b-card>
+                     </b-collapse>
+                 </div>
                 </div>
 
                 <div class="card" v-if="Sabado.length>0">
-                     <strong>Sabado</strong>
-                <div v-for="item in Sabado"> 
-                    <div class="card-header"> {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
-                    <div class="card-body"> {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
+                     <div>
+                     <b-btn v-b-toggle.collapse6 variant="secundary">Sabado</b-btn>
+                     <b-collapse id="collapse6" class="mt-2">
+                     <b-card>
+                       <div v-for="item in Sabado"> 
+                    
+                            <div > {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
+                            <div > {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
+                            <div > Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
+                             <hr>                
+                        </div>
+                     </b-card>
+                     </b-collapse>
                  </div>
-                </div>
                 </div>
 
                 <div class="card" v-if="Domingo.length>0">
-                     <strong>Domingo</strong>
-                <div v-for="item in Domingo"> 
-                    <div class="card-header"> {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
-                    <div class="card-body"> {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
-                    <div class="card-footer"> Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
-                </div>
+                     <div>
+                     <b-btn v-b-toggle.collapse7 variant="secundary">Domingo</b-btn>
+                     <b-collapse id="collapse7" class="mt-2">
+                     <b-card>
+                       <div v-for="item in Domingo"> 
+                    
+                            <div > {{item.n_vuelo}} | {{item.Fecha}} - {{item.Hora}}</div>
+                            <div > {{item.Ruta.Origen.sigla}} - {{item.Ruta.Destino.sigla}}</div>
+                            <div > Disponibilidad {{item.boletos - (item.vendidos + item.reservados)}}</div>
+                            <hr>                 
+                        </div>
+                     </b-card>
+                     </b-collapse>
+                 </div>
                 </div>
 
               </div>         

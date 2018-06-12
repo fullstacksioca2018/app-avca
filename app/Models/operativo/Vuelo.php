@@ -21,7 +21,7 @@ class Vuelo extends Model
 
     public function boletos()
     {
-    	return $this->hasMany('App\Models\operativo\Boleto');
+    	return $this->hasMany('App\Models\operativo\Boleto','id','vuelo_id');
     }
 
     public function segmentos()

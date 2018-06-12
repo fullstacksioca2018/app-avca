@@ -19,15 +19,39 @@ export default {
   },
   methods:{
     renderN(){
+      console.log(this.datosN)
       this.construir();
-      this.renderChart({
-        labels: this.datosN.labels,
-        datasets: this.datasets
-      }, {responsive: true, maintainAspectRatio: false,
-        tooltips: {
-            bodyFontSize: 18
-          }
-      })
+      if(this.datosN.tipo&&this.datosN.tipo=='Personal'){
+        this.renderChart({
+          labels: this.datosN.labels,
+          datasets: this.datasets
+        }, {responsive: true, maintainAspectRatio: false,
+          tooltips: {
+              bodyFontSize: 18,
+              callbacks: {
+                  label: function(tooltipItem, data) {
+                        var label = data.datasets[tooltipItem.datasetIndex].label || '';
+                        if (label) {
+                            label += ': ';
+                        }
+                        label += Math.round(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index] * 100) / 100;
+                        label += '%';
+                        return label;
+                      }
+              }
+            }
+        })
+      }
+      else{
+        this.renderChart({
+          labels: this.datosN.labels,
+          datasets: this.datasets
+        }, {responsive: true, maintainAspectRatio: false,
+          tooltips: {
+              bodyFontSize: 18
+            }
+        })
+      }
     },
     construir(){
       this.datasets=[];
