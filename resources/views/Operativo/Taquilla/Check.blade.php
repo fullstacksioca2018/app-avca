@@ -16,6 +16,9 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script src="/js/jspdf.plugin.autotable.js"></script>
+@endpush
 
 @stop
 

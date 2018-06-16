@@ -11,7 +11,7 @@
 		Route::get('/taquilla/BuscarCedula','Operativo\TaquillaController@BuscarCedula');
 		Route::post('/BoletoVendido', 'Operativo\TaquillaController@BoletoVendido')->name('operativo.BoletoVendido');
 		Route::get('/vuelos', 'Operativo\TaquillaController@DetalleVuelo');		
-		Route::get('/prueba','Operativo\TaquillaController@DetalleVuelo');
+		//Route::get('/prueba','Operativo\TaquillaController@DetalleVuelo');
 	});
 	//Check
 Route::group(['prefix'=>'check',/* 'middleware' => 'auth' */],function(){

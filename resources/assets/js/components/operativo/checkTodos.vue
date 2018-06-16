@@ -103,7 +103,8 @@
 import axios  from 'axios';
 import moment from 'moment';
 import {EventBus} from './event-bus.js';
-import jsPDF from 'jsPDF';
+//import jsPDF from 'jsPDF';
+//import autotable from 'jspdf-autotable';
 moment.locale('es');
 
 export default {
@@ -137,8 +138,10 @@ export default {
   methods: {
     
     imprimir(){
+    var jsPDF = require('jspdf');
+     require('jspdf-autotable');
        let pdfName = 'Manifiesto'+this.modalInfo.content.n_vuelo; 
-    var doc = new jsPDF();
+    /* var doc = new jsPDF();
     //doc.text("Vuelo: ",20, 10);
     doc.setFontSize ( 20 );
     doc.text(this.modalInfo.title,25,20);
@@ -147,8 +150,24 @@ export default {
     doc.setFontSize ( 8 );
     doc.text("_______________________________________________________________________________________________________",15,34);
     doc.setFontSize(5);
-    doc.fromHTML($("#boletos").html(),15,36);
-    doc.save(pdfName + '.pdf');
+    doc.fromHTML($("#boletos").html(),15,36,16,16);
+    doc.save(pdfName + '.pdf'); 
+ */
+      var pdf = new jsPDF();
+      pdf.text(20,20,"Mostrando una Tabla con JsPDF y el Plugin AutoTable");
+      
+      var columns = ["Id", "Nombre", "Email", "Pais"];
+      var data = [
+      [1, "Hola", "hola@gmail.com", "Mexico"],
+      [2, "Hello", "hello@gmail.com", "Estados Unidos"],
+      [3, "Otro", "otro@gmail.com", "Otro"]
+      ];
+      
+        pdf.autoTable(columns,data,
+        { margin:{ top: 25 }}
+        );
+      
+      pdf.save(pdfName+'.pdf');
     },
 
     info (item, index, button) {

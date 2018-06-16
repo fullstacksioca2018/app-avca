@@ -15,9 +15,9 @@
                 <div class="form-group ">
                   <div class="col-form-label text-center">
                     <div class="btn-group align-items-center" role="group" aria-label="Basic example">
-                      <a href="#" id="btsoloida" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">solo ida</a>
-                      <a href="#" id="btidayvuelta" class="btn btn-primary btn-lg" role="button" aria-pressed="true">ida y vuelta</a>
-                      <a href="#" id="btmultidestino" class="btn btn-primary btn-lg" role="button" aria-pressed="true">multi-destino</a>
+                      <a href="#" id="btsoloida" class="btn btn-primary btn-md active" role="button" aria-pressed="true">solo ida</a>
+                      <a href="#" id="btidayvuelta" class="btn btn-primary btn-md" role="button" aria-pressed="true">ida y vuelta</a>
+                      <a href="#" id="btmultidestino" class="btn btn-primary btn-md" role="button" aria-pressed="true">multi-destino</a>
                     </div>
                   </div>
                 </div>
