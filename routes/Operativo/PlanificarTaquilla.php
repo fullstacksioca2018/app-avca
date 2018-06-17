@@ -11,7 +11,7 @@
 		Route::get('/taquilla/BuscarCedula','Operativo\TaquillaController@BuscarCedula');
 		Route::post('/BoletoVendido', 'Operativo\TaquillaController@BoletoVendido')->name('operativo.BoletoVendido');
 		Route::get('/vuelos', 'Operativo\TaquillaController@DetalleVuelo');		
-		Route::get('/prueba','Operativo\TaquillaController@DetalleVuelo');
+		//Route::get('/prueba','Operativo\TaquillaController@DetalleVuelo');
 	});
 	//Check
 Route::group(['prefix'=>'check',/* 'middleware' => 'auth' */],function(){
@@ -19,6 +19,7 @@ Route::group(['prefix'=>'check',/* 'middleware' => 'auth' */],function(){
 	Route::get('/check','Operativo\CheckController@checks');
 	Route::get('/chequeados','Operativo\CheckController@chequeados');
 	Route::get('/todos','Operativo\CheckController@todos');
+	Route::get('/todos2','Operativo\CheckController@todos2');
 	Route::post('/check/chekear','Operativo\CheckController@checkearBoleto');
 	Route::post('/maletas','Operativo\CheckController@addMaletas');
 	Route::post('/asientosAsignados','Operativo\CheckController@asignados');

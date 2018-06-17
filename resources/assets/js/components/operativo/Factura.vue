@@ -292,7 +292,7 @@ export default {
                 this.compra.tipo='';
                 this.compra.tarjeta='';
                 EventBus.$emit('actualizartabla',true);
-                  this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+                this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
                }).catch((err) =>{
                  console.log(err);
                 Vue.toasted.show("Error al cargar los datos"+err, {

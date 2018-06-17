@@ -162,7 +162,7 @@
 <script>
 
 import axios  from 'axios';
-import jsPDF from 'jsPDF';
+//import jsPDF from 'jsPDF';
 
 import {EventBus} from './event-bus.js'
 
@@ -220,11 +220,27 @@ export default {
   },
   methods: {
     imprimir(){
-        let pdfName = 'Manifiesto'+this.modalInfo.content.n_vuelo; 
+        var jsPDF = require('jspdf');
+        require('jspdf-autotable');
+        let pdfName = 'Manifiesto'+this.modalInfo.content.N_Vuelo; 
         var doc = new jsPDF();
+         var columns_tripulantes = ["#", "Nombre", "Experiencia", "Licencia"];
+          var data_tripulantess = [];     
+        doc.setFontSize ( 20 );
+        doc.text(this.modalInfo.title,25,20);
+        doc.setFontSize(14);
+        doc.text("Lista de Pasajeros:",15,30);
+        doc.setFontSize ( 8 );
         doc.setFontSize(5);
-        doc.fromHTML($("#imprimir").html(),15,15);
-        doc.save(pdfName + '.pdf');
+        for(var i=0;i<this.modalInfo.content.tripulantes.length;i++){
+      // var sumarexperiencia = this.sumar(this.modalInfo.content.tripulantes[i].empleado.experiencia); 
+       var sumarexperiencia = 0;
+      data_tripulantess.push([this.modalInfo.content.tripulantes[i].rango,this.modalInfo.content.tripulantes[i].empleado.nombre+" "+this.modalInfo.content.tripulantes[i].empleado.apellido,sumarexperiencia,this.modalInfo.content.tripulantes[i].licencia]);
+    }
+    doc.autoTable(columns_tripulantes,data_tripulantess,
+        { margin:{ top: 35 }}
+        );
+    doc.save(pdfName + '.pdf'); 
     },
     cancelar(item, index, button){
        this.$dialog.confirm('Esta opcion no puede ser revertida')

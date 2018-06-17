@@ -90,8 +90,17 @@ class FacturacionController extends Controller
         $tarjeta->numero_tarjeta = $data['referencia'];
         $tarjeta->fecha_vencimiento = $data['tipo']." ".$data['tarjeta'];
         $tarjeta->save();
-       }
         $boletos=Boleto::where('factura_id','=',$data['id'])->get();
+        foreach($boletos as $boleto){
+            $bole=Boleto::find($boleto->id);
+            $vuelo=Vuelo::find($bole->vuelo_id);
+            $bole->boleto_estado="Pagado";
+            $vuelo->boletos_reservados=$vuelo->boletos_reservados-1;
+            $vuelo->boletos_vendidos=$vuelo->boletos_vendidos+1;
+            $bole->save();
+            $vuelo->save();
+        }
+       }
         
        
        

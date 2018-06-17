@@ -56,7 +56,7 @@
   <!-- Modal Actualizar -->
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>
     <div v-if="modalInfo.content != ''">
-     <b-form @submit.prevent="imprimir()"> 
+     <b-form @submit.prevent="imprimir(modalInfo)"> 
             <!--  <pre>{{modalInfo.content}}</pre>    -->
        <div id="boletos" class="row">
          <div class="col-sm-12">
@@ -72,7 +72,7 @@
          <tr v-for="boleto in modalInfo.content.boletos"> 
           
            <td v-show="boleto.boleto_estado=='Chequeado'"> {{boleto.primerNombre}} {{boleto.apellido}} </td>
-           <td v-show="boleto.boleto_estado=='Chequeado'" > {{boleto.documento}} </td>
+           <td v-show="boleto.boleto_estado=='Chequeado'" > {{boleto.tipo_documento}}-{{boleto.documento}} </td>
            <td v-show="boleto.boleto_estado=='Chequeado'"> {{boleto.boleto_estado}} </td>
            <td v-show="boleto.boleto_estado=='Chequeado'"> {{boleto.asiento}} </td>
          </tr>
@@ -103,7 +103,7 @@
 import axios  from 'axios';
 import moment from 'moment';
 import {EventBus} from './event-bus.js';
-import jsPDF from 'jsPDF';
+//import jsPDF from 'jsPDF';
 moment.locale('es');
 
 export default {
@@ -137,20 +137,33 @@ export default {
   methods: {
     
     imprimir(){
-       let pdfName = 'Manifiesto'+this.modalInfo.content.n_vuelo; 
+    var jsPDF = require('jspdf');
+    require('jspdf-autotable');
+    let pdfName = 'Manifiesto'+this.modalInfo.content.n_vuelo; 
     var doc = new jsPDF();
     //doc.text("Vuelo: ",20, 10);
-    doc.setFontSize ( 20 );
+     doc.setFontSize ( 20 );
     doc.text(this.modalInfo.title,25,20);
     doc.setFontSize(14);
     doc.text("Lista de Pasajeros:",15,30);
     doc.setFontSize ( 8 );
-    doc.text("_______________________________________________________________________________________________________",15,34);
     doc.setFontSize(5);
-    doc.fromHTML($("#boletos").html(),15,36);
-    doc.save(pdfName + '.pdf');
+   // doc.fromHTML($("#boletos").html(),15,36);
+  
+    var columns = ["Cedula", "Nombre", "Boleto", "Asiento"];
+    var data = [];
+    for(var i=0;i<this.modalInfo.content.boletos.length;i++){
+      if(this.modalInfo.content.boletos[i].boleto_estado=='Chequeado'){
+      data.push([this.modalInfo.content.boletos[i].documento,this.modalInfo.content.boletos[i].primerNombre+" "+this.modalInfo.content.boletos[i].apellido,this.modalInfo.content.boletos[i].boleto_estado,this.modalInfo.content.boletos[i].asiento]);
+      }
+    }
+  
+    doc.autoTable(columns,data,
+        { margin:{ top: 35 }}
+        );
+    doc.save(pdfName + '.pdf'); 
     },
-
+    
     info (item, index, button) {
       this.modalInfo.title = "Vuelo: "+item.n_vuelo+" || "+item.fecha+" || ["+item.origen+"-"+item.destino+"]";
       this.modalInfo.content = item;      
