@@ -39,7 +39,11 @@ class CheckController extends Controller
 
 
        
+<<<<<<< HEAD
     } 
+=======
+    } */
+>>>>>>> 7b3f0fbb3d2abf69c143fcbb5d5d3e4649f6eac4
     
     public function check(){
          

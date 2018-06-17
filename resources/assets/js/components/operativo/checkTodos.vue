@@ -104,6 +104,10 @@ import axios  from 'axios';
 import moment from 'moment';
 import {EventBus} from './event-bus.js';
 //import jsPDF from 'jsPDF';
+<<<<<<< HEAD
+=======
+//import autotable from 'jspdf-autotable';
+>>>>>>> 7b3f0fbb3d2abf69c143fcbb5d5d3e4649f6eac4
 moment.locale('es');
 
 export default {

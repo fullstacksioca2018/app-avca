@@ -1,4 +1,4 @@
-<template> 
+ <template> 
     <div>
         <div class="col-md-12 order-md-12 mb-12 box wow bounceInUp" >
             <!-- <h3 class="mb-7 ml-7">Datos de Vuelos</h3> -->
@@ -6,7 +6,7 @@
                
                 <div class="card" v-if="Lunes.length>0">
                  <div>
-                     <b-btn v-b-toggle.collapse1 variant="secundary">Lunes</b-btn>
+                     <b-btn v-b-toggle.collapse1 variant="primary">Lunes</b-btn>
                      <b-collapse id="collapse1" class="mt-2">
                      <b-card>
                        <div v-for="item in Lunes"> 
@@ -23,7 +23,7 @@
                 
                 <div class="card" v-if="Martes.length>0">
                       <div>
-                     <b-btn v-b-toggle.collapse2 variant="secundary">Martes</b-btn>
+                     <b-btn v-b-toggle.collapse2 variant="primary">Martes</b-btn>
                      <b-collapse id="collapse2" class="mt-2">
                      <b-card>
                        <div v-for="item in Martes"> 
@@ -40,7 +40,7 @@
                 
                 <div class="card" v-if="Miercoles.length>0">
                       <div>
-                     <b-btn v-b-toggle.collapse3 variant="secundary">Miercoles</b-btn>
+                     <b-btn v-b-toggle.collapse3 variant="primary">Miercoles</b-btn>
                      <b-collapse id="collapse3" class="mt-2">
                      <b-card>
                        <div v-for="item in Miercoles"> 
@@ -57,7 +57,7 @@
 
                 <div class="card" v-if="Jueves.length>0" >
                     <div>
-                     <b-btn v-b-toggle.collapse4 variant="secundary">Jueves</b-btn>
+                     <b-btn v-b-toggle.collapse4 variant="primary">Jueves</b-btn>
                      <b-collapse id="collapse4" class="mt-2">
                      <b-card>
                        <div v-for="item in Jueves"> 
@@ -74,7 +74,7 @@
 
                 <div class="card" v-if="Viernes.length>0">
                     <div>
-                     <b-btn v-b-toggle.collapse5 variant="secundary">Viernes</b-btn>
+                     <b-btn v-b-toggle.collapse5 variant="primary">Viernes</b-btn>
                      <b-collapse id="collapse5" class="mt-2">
                      <b-card>
                        <div v-for="item in Viernes"> 
@@ -91,7 +91,7 @@
 
                 <div class="card" v-if="Sabado.length>0">
                      <div>
-                     <b-btn v-b-toggle.collapse6 variant="secundary">Sabado</b-btn>
+                     <b-btn v-b-toggle.collapse6 variant="primary">Sabado</b-btn>
                      <b-collapse id="collapse6" class="mt-2">
                      <b-card>
                        <div v-for="item in Sabado"> 
@@ -108,7 +108,7 @@
 
                 <div class="card" v-if="Domingo.length>0">
                      <div>
-                     <b-btn v-b-toggle.collapse7 variant="secundary">Domingo</b-btn>
+                     <b-btn v-b-toggle.collapse7 variant="primary">Domingo</b-btn>
                      <b-collapse id="collapse7" class="mt-2">
                      <b-card>
                        <div v-for="item in Domingo"> 
@@ -139,6 +139,7 @@ export default {
   },
   data () {
     return {
+     items:'',
      Lunes:'',
      Martes:'',
      Miercoles:'',
@@ -157,7 +158,7 @@ export default {
         ctx.formatodatos();
         ctx.totalRows=ctx.items.length;
       }).catch((err)=>{
-        console.log("err");
+        console.log("err al cargador datos");
         console.log(err);
       });
     },
