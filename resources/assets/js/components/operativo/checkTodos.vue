@@ -142,49 +142,38 @@ export default {
       let pdfName = 'Manifiesto'+this.modalInfo.content.n_vuelo; 
       var doc = new jsPDF();
       //doc.text("Vuelo: ",20, 10);
-     /*  doc.setFontSize ( 20 );
+       doc.setFontSize ( 20 );
       doc.text(this.modalInfo.title,25,20);
       doc.setFontSize(14);
-      doc.text("Lista de Pasajeros:",15,30);
+      doc.text("Lista de Pasajeros Chequeados:",15,30);
       doc.setFontSize ( 8 );
-      doc.setFontSize(5); */
-    // doc.fromHTML($("#boletos").html(),15,36);
+      doc.setFontSize(5); 
     
       var columns = ["Cedula", "Nombre", "Boleto", "Asiento"];
       var data = [];
+      var data2 = [];
      
       for(var i=0;i<this.modalInfo.content.boletos.length;i++){
-       /*  if(this.modalInfo.content.boletos[i].boleto_estado=='Chequeado'){ */
+         if(this.modalInfo.content.boletos[i].boleto_estado=='Chequeado'){ 
         data.push([this.modalInfo.content.boletos[i].documento,this.modalInfo.content.boletos[i].primerNombre+" "+this.modalInfo.content.boletos[i].apellido,this.modalInfo.content.boletos[i].boleto_estado,this.modalInfo.content.boletos[i].asiento]);
-       // }
+        }
       }
-      var data1 = data;
-      var data2 = data1;
-    
+      for(var i=0;i<this.modalInfo.content.boletos.length;i++){
+         if(this.modalInfo.content.boletos[i].boleto_estado=='Pagado'){ 
+        data2.push([this.modalInfo.content.boletos[i].documento,this.modalInfo.content.boletos[i].primerNombre+" "+this.modalInfo.content.boletos[i].apellido,this.modalInfo.content.boletos[i].boleto_estado]);
+        }
+      }
 
-    doc.setFontSize(22);
-    doc.text("Multiple tables", 14, 20);
-    doc.setFontSize(12);
-
-    doc.autoTable(columns, data1);
+    doc.autoTable(columns, data, {startY: 35});
     var first = doc.autoTable.previous;
-
+    doc.setFontSize(14);
+    doc.text("Lista de Pasajeros Chequeados:",15,first.finalY+15);
     doc.autoTable(columns, data2, {
         startY: first.finalY + 20,
         showHeader: 'firstPage',
        
     });
-     first = doc.autoTable.previous;
-    doc.autoTable(columns, data2, {
-        startY: first.finalY + 20,
-        showHeader: 'firstPage',
-       
-    });
-    
-    
-
-   
-
+     
       doc.save(pdfName + '.pdf'); 
     },
     

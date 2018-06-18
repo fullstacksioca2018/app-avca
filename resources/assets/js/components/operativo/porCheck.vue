@@ -228,7 +228,16 @@ export default {
     },
     addMaletas(){
                this.form.id=this.modalInfo.content.id;
-               axios({
+                var jsPDF = require('jspdf');
+               var ctx = this;
+               var doc = new jsPDF();
+                var img='/img/boordingpass.png';
+               doc.addImage(img,'PNG',15,15,180,80);
+                doc.setFontSize(10);
+                doc.text("Gerson Vasquez",20,50); //Nombre
+                doc.text("Cumana",20,65);
+                doc.save('boordin.pdf');
+               /* axios({
                 method: 'post',
                 url: '/check/maletas',
                 data: this.form,
@@ -236,13 +245,15 @@ export default {
                 Vue.toasted.show(response.data, {
                     theme: "primary", 
 	                position: "bottom-right",
-	                duration : 2000
+	                duration : 2000                
                 });
                 EventBus.$emit('actualizartabla',true);
                 this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+                
+                
                }).catch((err) =>{
 
-               });
+               }); */
            },
     sobrepeso(){
       var precioS=0

@@ -88,7 +88,7 @@
     <div id="imprimir" v-if="modalInfo.content != ''">
     <b-form @submit.prevent="imprimir()">
       
-     <!-- <h3 align="center">{{modalInfo.title}} </h3> <br> -->
+      <!--  <pre> {{modalInfo.content}} </pre>   -->
      <div class="card-header">
       
          <h5 align="center">
@@ -109,7 +109,10 @@
        </thead>
        <tbody>
          <tr v-for="tripulante in modalInfo.content.tripulantes"> 
-           <td> {{tripulante.rango}} </td>
+           <td v-if="tripulante.empleado.cargo_id=='8'"> Piloto </td>
+           <td v-if="tripulante.empleado.cargo_id=='9'"> Copiloto </td>
+           <td v-if="tripulante.empleado.cargo_id=='10'"> Sobrecargo </td>
+           <td v-if="tripulante.empleado.cargo_id=='14'"> Jefe de Cabina </td>
            <td> {{tripulante.empleado.nombre + " " + tripulante.empleado.apellido}} </td>
            <td> {{sumar(tripulante.empleado.experiencia)}} </td>
            <td> {{tripulante.licencia}} </td>
@@ -137,7 +140,7 @@
          <br />
        </tbody>
      </table>
-      <div slot="modal-footer" class="w-100">
+      <div id="datos_ruta" slot="modal-footer" class="w-100">
             <div v-for="segmento in modalInfo.content.segmentos">
               <div class="row">
               <div class="form-gruop">&nbsp;&nbsp;<strong>Ruta:</strong> {{segmento.ruta.sigla}} <strong>||</strong> Modelo de Aeronave: {{segmento.aeronave.modelo}} <strong>||</strong> Matricula: {{segmento.aeronave.matricula}} <strong>||</strong> Ultimo Mantenimiento: {{segmento.aeronave.ultimo_mantenimiento}} <hr size="5" style="color: #0056b2;" />
@@ -229,17 +232,37 @@ export default {
         doc.setFontSize ( 20 );
         doc.text(this.modalInfo.title,25,20);
         doc.setFontSize(14);
-        doc.text("Lista de Pasajeros:",15,30);
+        doc.text("Lista de Tripulantes:",15,30);
         doc.setFontSize ( 8 );
         doc.setFontSize(5);
         for(var i=0;i<this.modalInfo.content.tripulantes.length;i++){
-      // var sumarexperiencia = this.sumar(this.modalInfo.content.tripulantes[i].empleado.experiencia); 
-       var sumarexperiencia = 0;
-      data_tripulantess.push([this.modalInfo.content.tripulantes[i].rango,this.modalInfo.content.tripulantes[i].empleado.nombre+" "+this.modalInfo.content.tripulantes[i].empleado.apellido,sumarexperiencia,this.modalInfo.content.tripulantes[i].licencia]);
+       var sumarexperiencia = this.sumar(this.modalInfo.content.tripulantes[i].empleado.experiencia); 
+       var cargo='';
+       if(this.modalInfo.content.tripulantes[i].empleado.cargo_id=='8'){cargo='Piloto'}
+       if(this.modalInfo.content.tripulantes[i].empleado.cargo_id=='9'){cargo='Copiloto'}
+       if(this.modalInfo.content.tripulantes[i].empleado.cargo_id=='10'){cargo='Sobrecargo'}
+       if(this.modalInfo.content.tripulantes[i].empleado.cargo_id=='14'){cargo='Jefe de Cabina'}
+      data_tripulantess.push([cargo,this.modalInfo.content.tripulantes[i].empleado.nombre+" "+this.modalInfo.content.tripulantes[i].empleado.apellido,sumarexperiencia,this.modalInfo.content.tripulantes[i].licencia]);
     }
-    doc.autoTable(columns_tripulantes,data_tripulantess,
-        { margin:{ top: 35 }}
-        );
+    doc.autoTable(columns_tripulantes, data_tripulantess, {startY: 35});
+    var first = doc.autoTable.previous;
+    var columns = ["Cedula", "Nombre", "Boleto", "Asiento"];
+    var data2= [];   
+        for(var i=0;i<this.modalInfo.content.boletos.length;i++){
+         if(this.modalInfo.content.boletos[i].boleto_estado=='Chequeado'){ 
+        data2.push([this.modalInfo.content.boletos[i].documento,this.modalInfo.content.boletos[i].primerNombre+" "+this.modalInfo.content.boletos[i].apellido,this.modalInfo.content.boletos[i].boleto_estado,this.modalInfo.content.boletos[i].asiento]);
+        }
+      }  
+    doc.setFontSize(14);
+    doc.text("Lista de Pasajeros A bordo:",15,first.finalY+15);
+    doc.autoTable(columns, data2, {
+        startY: first.finalY + 20,
+        showHeader: 'firstPage',
+       
+    });
+    var first2 = doc.autoTable.previous;
+
+    doc.fromHTML($('#datos_ruta').html(),5,first2.finalY+15);
     doc.save(pdfName + '.pdf'); 
     },
     cancelar(item, index, button){
