@@ -221,7 +221,8 @@ export default {
             },
           estatus:this.data[i].estatus,
           localizador:this.data[i].localizador,
-          tarifa:this.data[i].tarifa_vuelo
+          tarifa:this.data[i].tarifa_vuelo,
+          contador:i
         });
       }
      
@@ -234,8 +235,30 @@ export default {
                 var img='/img/boordingpass.png';
                doc.addImage(img,'PNG',15,15,180,80);
                 doc.setFontSize(10);
-                doc.text("Gerson Vasquez",20,50); //Nombre
-                doc.text("Cumana",20,65);
+                doc.text(this.modalInfo.content.nombreCompleto,20,50); //Nombre
+                doc.text(this.modalInfo.content.origen.nombre,20,60); //origen
+                doc.text(this.modalInfo.content.destino.nombre,20,72); //Destino
+                doc.text(this.modalInfo.content.n_vuelo,70,60); //numero de vuelo
+                doc.text("20-06-2018",90,60); //fecha de vuelo
+                doc.text("10:00",120,60); //hora del vuelo de vuelo
+                doc.text(this.form.puesto,72,83); //asiento
+                doc.text(this.modalInfo.content.tarifa,94,83); //precio
+                doc.text(this.modalInfo.content.contador,23,83); //numero de boleto (que sera el contador cuando se agrega)
+                doc.text("9:00",40,83); //embargue (hora de salida -1)
+                doc.text("0103",120,83); //equipaje id de boleto + id de maletas
+                //__________la parte que se desprende
+                doc.text(this.modalInfo.content.cedula,150,38); //cedula del pasajero
+                doc.text("0103",183,38); //equipaje id de boleto + id de maletas
+                doc.text(this.modalInfo.content.nombreCompleto,150,50); //nombre y apellido
+                doc.text(this.modalInfo.content.origen.nombre,150,60); //origen
+                doc.text(this.modalInfo.content.destino.nombre,177,60); //destino
+                doc.text(this.modalInfo.content.n_vuelo,145,72); //numero de vuelo
+                doc.text("20-06-2018",161,72); //fecha
+                doc.text("10:00",181,72); //hora
+                doc.text(this.modalInfo.content.contador,155,83); //numero de boleto
+                doc.text("9:00",167,85); //embargue (hora de salida -1)
+                doc.text(this.form.puesto,182,83); //asiento
+        
                 doc.save('boordin.pdf');
                /* axios({
                 method: 'post',
