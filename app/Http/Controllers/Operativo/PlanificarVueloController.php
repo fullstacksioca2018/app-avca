@@ -16,7 +16,7 @@ use stdClass;
 class PlanificarVueloController extends Controller
 {
 
-   /*  public function __construct(){
+     public function __construct(){
         Carbon::setLocale('es');
         date_default_timezone_set('America/Caracas');
         $vuelos= new Vuelo();
@@ -35,7 +35,7 @@ class PlanificarVueloController extends Controller
 
 
        
-    } */
+    } 
 
     public function ejecutar(Request $datos){
         $fecha = $datos['Fecha'] . " " . $datos['Hora'];

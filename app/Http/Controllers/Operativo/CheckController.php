@@ -20,7 +20,7 @@ use stdClass;
 
 class CheckController extends Controller
 {
-     /* public function __construct(){
+     public function __construct(){
         Carbon::setLocale('es');
         date_default_timezone_set('America/Caracas');
         $vuelos= new Vuelo();
@@ -39,7 +39,7 @@ class CheckController extends Controller
 
 
        
-    }  */
+    }  
     
     public function check(){
          
@@ -141,10 +141,8 @@ class CheckController extends Controller
 
            public function todos2(){ //va a buscar todos los vuelos abiertos.
             $fecha=Carbon::now()->format('Y-m-d');
-            //dd($fecha);
           $vuelos=Vuelo::where('estado','=','chequeando')->whereDate('fecha_salida','=',$fecha)->get();
-           // $vuelos=Vuelo::whereDate('fecha_salida','=',$fecha)->get();
-         //    dd($vuelos);
+           
             $datos_vuelos=array();
             $boletos=array();
             foreach($vuelos as $vuelo){
@@ -166,38 +164,6 @@ class CheckController extends Controller
     
            }
            
-            /* public function todos(){
-                $obj=array();
-                $boleto=Boleto::orderBy('id')->get();
-                   
-                    foreach($boleto as $boletos){                
-                        $objAUX= new stdClass();
-                        $objAUX->id=$boletos->id;
-                        $objAUX->codvuelos =$boletos->vuelo->n_vuelo;
-                        $objAUX->pasajero=$boletos->primerNombre." ".$boletos->apellido;
-                       //$objAUX->nombre_pasajero=$boletos->primerNombre;
-                        $objAUX->documento=$boletos->documento;
-                        //$objAUX->tipo_boleto=$boletos->tipo_boleto;
-                        //$objAUX->genero=$boletos->genero;
-                        //$objAUX->tipo_documento=$boletos->tipo_documento;
-                        //$objAUX->fecha_nacimiento=$boletos->fecha_nacimiento;
-                        //$objAUX->apellido_pasajero=$boletos->apellido;
-                        //$objAUX->fecha_salida=$boletos->vuelo->fecha_salida;
-                        $objAUX->origen=$boletos->vuelo->segmentos[0]->ruta->origen->nombre;
-                        $objAUX->sigla_origen=$boletos->vuelo->segmentos[0]->ruta->origen->sigla;
-                        $objAUX->aeropuerto_origen=$boletos->vuelo->segmentos[0]->ruta->origen->aeropuerto; 
-                        $objAUX->destino=$boletos->vuelo->segmentos[0]->ruta->destino->nombre;
-                        $objAUX->sigla_destino=$boletos->vuelo->segmentos[0]->ruta->destino->sigla;
-                        $objAUX->aeropuerto_destino=$boletos->vuelo->segmentos[0]->ruta->destino->aeropuerto;
-                       // $objAUX->duracion=$boletos->vuelo->segmentos[0]->ruta->duracion;
-                        $objAUX->tarifa_vuelo=$boletos->vuelo->segmentos[0]->ruta->tarifa_vuelo;
-                        $objAUX->estatus=$boletos->boleto_estado;
-                        $objAUX->localizador=$boletos->localizador;
-                        array_push($obj,$objAUX);
-                    }//fin foreach buscar todos los boletos
-        
-                    return $obj;
-            } //fin buscar cheks */
         
         public function checkearBoleto(Request $datos)
         {
@@ -221,7 +187,17 @@ class CheckController extends Controller
            $boleto->asiento=$datos['puesto'];
            $boleto->boleto_estado="Chequeado";
            $boleto->save();
-           return "Boleto Chequeado Correctamente";
+           $vuelo=Vuelo::find($boleto->vuelo_id);
+           $vuelo->segmentos[0]->ruta->origen->nombre;
+           $vuelo->segmentos[0]->ruta->destino->nombre;
+           $obj= new stdClass();
+           $obj->vuelo=$vuelo;
+           $obj->boleto=$boleto;
+           $obj->maleta=$maleta;
+           $obj->contador=$datos['contador'];
+           
+           return response()->JSON($obj);
+           //return "Boleto Chequeado Correctamente";
         }
 
         public function asignados(Request $vuelos)

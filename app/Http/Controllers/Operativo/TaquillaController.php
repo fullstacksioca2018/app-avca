@@ -23,7 +23,7 @@ use stdClass;
 
 class TaquillaController extends Controller
 {
-	/* public function __construct(){
+	 public function __construct(){
         Carbon::setLocale('es');
         date_default_timezone_set('America/Caracas');
         $vuelos= new Vuelo();
@@ -40,7 +40,7 @@ class TaquillaController extends Controller
         $vuelos->BoletosAgotados();
         $vuelos->BoletosDisponible();
        
-    } */
+    } 
     
     public function imprimir(Request $datos){
        $factura=json_decode($datos->get('factura'));
