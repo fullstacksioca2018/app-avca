@@ -7,7 +7,7 @@
             <label for="nombre">Nómina</label>
             <select name="nombre" id="nombre" class="form-control" v-model="chkNomina" required>
               <option value="" selected="selected">Seleccione</option>
-              <option :value="nomina.nomina_id" v-for="nomina in nominas" :key="nomina.id">{{ nomina.nombre }}</option>
+              <option value="1">Regular</option>              
             </select>
           </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\rrhh;
 use Carbon\Carbon;
 use App\Models\rrhh\Cargo;
 use App\Models\rrhh\Nomina;
+use App\Models\rrhh\Variables;
 use App\Models\rrhh\Voucher;
 use Illuminate\Http\Request;
 use App\Models\rrhh\Empleado;
@@ -178,6 +179,13 @@ class NominaController extends Controller
                                 $hora_extra_nocturna_feriado = $hora_nocturna_feriado * 1.5;
                                 $calculo_horas = $this->calculoHoras($empleado);
                                 $monto = $calculo_horas['horas_extras_nocturnas_feriado'] * $hora_extra_nocturna_feriado;
+                                $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
+                                break;
+
+                            case 139:
+                                $unidad_tributaria = $this->cestaTicket();
+                                $cesta_ticket = $concepto_nomina->valor_fijo * ($unidad_tributaria->monto_fijo/1000) * $unidad_tributaria->base_calculo;
+                                $monto = $cesta_ticket;
                                 $this->registrarVoucher($empleado, $concepto_nomina, $nomina, $monto);
                                 break;
 
@@ -375,5 +383,11 @@ class NominaController extends Controller
         }
 
         return collect($conceptos_nomina)->toJson();
+    }
+
+    // Obtener el valor de la cesta ticket de la tabla variables
+    public function cestaTicket()
+    {
+        return Variables::where('nombre', 'Unidad Tributaria')->first();
     }
 }

@@ -47,6 +47,7 @@ class AspirantesTableSeeder extends Seeder
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
         ]);
+            //verificado
             DB::table('aspirantes')->insert([
                 'cedula' => 3871882,
                 'nacionalidad' => 'v',
@@ -58,11 +59,13 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_movil' => '04148406031',
                 'telefono_fijo' => '02935144880',
                 'curriculum' => 'curriculum',
+                'estatus' => 'verificados',
                 'vacante_id' => 1,
                 'cargo_id' => 25,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
+                //convocado
             DB::table('aspirantes')->insert([
                 'cedula' => 4188779,
                 'nacionalidad' => 'v',
@@ -74,11 +77,49 @@ class AspirantesTableSeeder extends Seeder
                 'telefono_movil' => '04149944141',
                 'telefono_fijo' => '02935144880',
                 'curriculum' => 'curriculum',
+                'estatus' => 'convocados',
                 'vacante_id' => 1,
                 'cargo_id' => 25,
                 'created_at'            => date('Y-m-d H:i:s'),
                 'updated_at'            => date('Y-m-d H:i:s')
             ]);
+                //entrevistados
+            DB::table('aspirantes')->insert([
+                'cedula' => 6142736,
+                'nacionalidad' => 'v',
+                'fecha_nacimiento' => '1954-11-30',
+                'sexo' => 'f',
+                'apellido' => 'Rojas',
+                'nombre' => 'Hectalisis',
+                'email' => 'hectalisisrojas@hotmail.com',
+                'telefono_movil' => '04168841157',
+                'telefono_fijo' => '02945111580',
+                'curriculum' => 'curriculum',
+                'estatus' => 'entrevistados',
+                'vacante_id' => 1,
+                'cargo_id' => 25,
+                'created_at'            => date('Y-m-d H:i:s'),
+                'updated_at'            => date('Y-m-d H:i:s')
+            ]);
+                    //seleccionados
+                 DB::table('aspirantes')->insert([
+                'cedula' => 5879747,
+                'nacionalidad' => 'v',
+                'fecha_nacimiento' => '1992-05-11',
+                'sexo' => 'f',
+                'apellido' => 'Rojas',
+                'nombre' => 'Emil',
+                'email' => 'emilrojas@hotmail.com',
+                'telefono_movil' => '04163818704',
+                'telefono_fijo' => '02945111580',
+                'curriculum' => 'curriculum',
+                'estatus' => 'seleccionados',
+                'vacante_id' => 1,
+                'cargo_id' => 25,
+                'created_at'            => date('Y-m-d H:i:s'),
+                'updated_at'            => date('Y-m-d H:i:s')
+            ]);
+
             
             DB::table('aspirantes')->insert([
                 'cedula' => 163313688,

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="card">
-      <div class="card-header bg-info-gradient">Lisado de aspirantes</div>
+      <div class="card-header bg-info-gradient">Listado de aspirantes</div>
       <div class="card-body">
         <table class="table table-striped table-hover">
           <thead>

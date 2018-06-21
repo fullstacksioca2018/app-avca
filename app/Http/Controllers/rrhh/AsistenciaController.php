@@ -47,8 +47,7 @@ class AsistenciaController extends Controller
         // Obtenermos la asistencia del empleado que esta ingresando en el dia
         $asistencia = $this->obtenerAsistencia($empleado_id, $fecha[0]);
 
-
-        if (count($asistencia) === 0) {
+        if ($asistencia == '') {            
             $this->registrarAsistencia($fecha, $fecha_feriada, $empleado_id);
 
             return response()->json([$empleado, $asistencia], 200);
@@ -188,7 +187,7 @@ class AsistenciaController extends Controller
      * Obtenemos el registro de asistencia del empleado
      */
     public function obtenerAsistencia($empleado_id, $fecha_actual)
-    {        
+    {                
         $asistencia = Asistencia::where([
             ['fecha', $fecha_actual],
             ['empleado_id', $empleado_id]

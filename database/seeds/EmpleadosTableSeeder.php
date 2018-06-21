@@ -39,7 +39,7 @@ class EmpleadosTableSeeder extends Seeder
                 'tipo_discapacidad' => 'visual',
                 'sucursal_id' => 1,
                 'departamento_id' => 1,
-                'cargo_id' => 31,
+                'cargo_id' => 1,
                 'area_id' => 1,
                 'nivel_academico' => 'Profesional',
                 'profesion' => 2,
@@ -403,7 +403,7 @@ class EmpleadosTableSeeder extends Seeder
 
                             // area oficina, empleado 13
             [
-                'cedula' => 18699111,
+                'cedula' => 16818498,
                 'nombre' => 'Isabel',
                 'apellido' =>'lopez',
                 'nacionalidad' => 'v',

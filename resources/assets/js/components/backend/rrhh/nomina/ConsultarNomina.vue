@@ -23,9 +23,7 @@
                         <select name="tipo_nomina" id="tipo_nomina" class="form-control" required v-model="tipoNomina"
                                 @change="obtenerVouchers">
                             <option value="" selected="selected">Seleccione</option>
-                            <option :value="nomina.nomina_id" :key="nomina.id" v-for="nomina in nominas">{{
-                                nomina.nombre | uppercase }}
-                            </option>
+                            <option value="1">Regular</option>                            
                         </select>
                     </div>
                 </div>
@@ -67,15 +65,15 @@
             <ul class="nav nav-pills nav-justified justify-content-center mt-5">
                 <li class="nav-item">
                     <span class="text-info">Aporte SSO</span> <br>
-                    {{ aportesPorConcepto(16) }}
+                    {{ aportesPorConcepto(22) }}
                 </li>
                 <li class="nav-item">
                     <span class="text-info">Aporte del seguro de paro forzoso</span> <br>
-                    {{ aportesPorConcepto(17) }}
+                    {{ aportesPorConcepto(23) }}
                 </li>
                 <li class="nav-item">
                     <span class="text-info">Aporte FAOV</span> <br>
-                    {{ aportesPorConcepto(18) }}
+                    {{ aportesPorConcepto(24) }}
                 </li>
             </ul>
         </div>
@@ -151,16 +149,16 @@
                     if (voucher.concepto_id == 9) {
                         prima_hogar += voucher.monto;
                     }
-                    if (voucher.concepto_id == 22) {
+                    if (voucher.concepto_id == 17) {
                         diurnas += voucher.monto;
                     }
-                    if (voucher.concepto_id == 24) {
+                    if (voucher.concepto_id == 19) {
                         nocturnas += voucher.monto;
                     }
-                    if (voucher.concepto_id == 26) {
+                    if (voucher.concepto_id == 18) {
                         diurnas_feriados += voucher.monto;
                     }
-                    if (voucher.concepto_id == 28) {
+                    if (voucher.concepto_id == 20) {
                         nocturnas_feriados += voucher.monto;
                     }
                 });
