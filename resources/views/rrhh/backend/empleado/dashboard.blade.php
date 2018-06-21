@@ -80,7 +80,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="{{ $section == 3 ? 'nav-link active' : 'nav-link' }}" href="{{ route('dashboard.empleado', ['empleado' => $empleado->empleado_id, 'section' => 3]) }}">
-                                    <i class="fa fa-file-text"></i> Expediente laboral
+                                    <i class="fa fa-file-text"></i> Documentos
                                 </a>
                             </li>
                             @elseif(auth()->user()->isRole('gerente.sucursal'))
@@ -91,7 +91,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="{{ $section == 1 ? 'nav-link active' : 'nav-link' }}" href="{{ route('dashboard.empleado', ['empleado' => $empleado->empleado_id, 'section' => 1]) }}">
-                                    <i class="fa fa-file-text"></i> Expediente laboral
+                                    <i class="fa fa-file-text"></i> Documentos
                                 </a>
                             </li>
                             @endif

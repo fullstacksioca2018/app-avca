@@ -13,7 +13,7 @@
           <label for="nombre">Seleccione Nómina</label>
           <select name="nombre" id="nombre" class="form-control" v-model="nomina" required @change="conceptosPorMes">
             <option value="" selected="selected">Seleccione</option>
-            <option :value="nomina.nomina_id" v-for="nomina in nominas" :key="nomina.id">{{ nomina.nombre }}</option>
+            <option value="1">Regular</option>            
           </select>          
         </div>
       </div>

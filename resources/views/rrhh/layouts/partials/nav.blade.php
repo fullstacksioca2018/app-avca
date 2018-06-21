@@ -19,11 +19,6 @@
             <p>Captación <i class="right fa fa-angle-down"></i></p>
           </a>
           <ul class="nav nav-treeview">
-            {{--<li class="nav-item">
-              <a href="#" class="nav-link">
-                <p style="padding-left: 1.5rem;">Reclutamiento Interno</p>
-              </a>
-            </li>--}}
             @if (request()->is('rrhh/backend/vacante/*'))
             <li class="nav-item has-treeview menu-open">
             @else
@@ -78,12 +73,7 @@
               <a href="{{ route('nomina.consult') }}" class="{{ request()->routeIs('nomina.consult') ? 'nav-link active' : 'nav-link' }}">
                 <p style="padding-left: 1.5rem;">Consultar</p>
               </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('nomina.generate') }}" class="{{ request()->routeIs('nomina.generate') ? 'nav-link active' : 'nav-link' }}">
-                <p style="padding-left: 1.5rem;">Generar</p>
-              </a>
-            </li>
+            </li>            
           </ul>
         </li>
         {{--Modulo de mantenimiento--}}
@@ -112,38 +102,13 @@
                 <p style="padding-left: 1.5rem;">Parámetros de nóminas</p>
               </a>
             </li>
-            {{--<li class="nav-item">
-              <a href="#" class="nav-link">
-                <p style="padding-left: 1.5rem;">Dependencias</p>
-              </a>
-            </li>--}}
             <li class="nav-item">
               <a href="{{ route('sucursal.list') }}" class="{{ request()->routeIs('sucursal.list') ? 'nav-link active' : 'nav-link' }}">
                 <p style="padding-left: 1.5rem;">Sucursales</p>
               </a>
             </li>
           </ul>
-        </li>
-        {{--<li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fa fa-bar-chart"></i>
-            <p>
-              Reportes y estadísticas
-            </p>
-          </a>
-        </li>--}}
-
-        {{--  Opcion para el gerente de la sucursal  --}}
-        <li class="nav-item">
-          <a href="{{ route('asistencia.register') }}" class="{{ request()->routeIs('asistencia.register') ? 'nav-link active' : 'nav-link' }}">
-            <i class="nav-icon fa fa-clock-o"></i>
-            <p>
-              Asistencia
-            </p>
-          </a>
-        </li>
-
-
+        </li>        
       </ul>
     </li>
   </ul>

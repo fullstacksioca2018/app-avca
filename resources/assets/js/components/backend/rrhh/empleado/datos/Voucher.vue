@@ -124,7 +124,7 @@
                     porcentaje: '',
                     asignaciones: '',
                     deducciones: 'Total a pagar',
-                    total: asignaciones - deducciones
+                    total: asignaciones.toFixed(2) - deducciones.toFixed(2)
                 })
             }
         },

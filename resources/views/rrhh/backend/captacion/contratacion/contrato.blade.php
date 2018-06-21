@@ -13,7 +13,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Inicio</a></li>
-          <li class="breadcrumb-item active">Empleados</li>
+          <li class="breadcrumb-item active">Contrato del Empleado</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -24,7 +24,7 @@
   
   <div class="col-12">
     <div class="card">
-        <div class="card-header bg-info-gradient">Listado de empleados</div>
+        <div class="card-header bg-info-gradient">Contrato laboral</div>
         <div class="card-body">
             <table class="table table-striped table-hover" id="listadoEmpleados">
                 <thead>

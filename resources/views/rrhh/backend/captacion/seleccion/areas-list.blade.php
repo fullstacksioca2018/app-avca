@@ -19,7 +19,7 @@
 @section('content')
   <div class="col-12">
     <div class="card">
-      <div class="card-header bg-info-gradient">Listado de áreas vacantes</div>
+      <div class="card-header bg-info-gradient">Listado de vacantes</div>
       <div class="card-body">
         <table class="table table-striped">
           <thead>

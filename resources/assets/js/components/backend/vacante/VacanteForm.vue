@@ -7,7 +7,7 @@
     </div>-->
     <div class="card">
       <div class="card-header bg-info-gradient">
-        <h3 class="card-title">Registrar una vacante</h3>
+        <h3 class="card-title">Publicar una vacante</h3>
       </div>
       <div class="card-body">
         <form @submit.prevent="publicarVacante" id="vacanteForm" class="form-horizontal">
@@ -17,7 +17,7 @@
                 <label for="sucursal">Sucursal</label>
                 <select name="sucursal" id="sucursal" class="form-control">
                   <option value="" selected="selected">Seleccione</option>
-                  <option :value="sucursal.sucursal_id" v-for="sucursal in sucursales">{{ sucursal.nombre | capitalize }}</option>
+                  <option :value="sucursal.sucursal_id" v-for="sucursal in sucursales" :key="sucursal.id">{{ sucursal.nombre | capitalize }}</option>
                 </select>
               </div>
             </div>
@@ -26,7 +26,7 @@
                 <label for="area">Áreas</label>
                 <select name="area" id="area" class="form-control" @change="obtenerCargos" v-model="area">
                   <option value="" selected="selected">Seleccione</option>
-                  <option :value="area.area_id" v-for="area in areas">{{ area.nombre | capitalize }}</option>
+                  <option :value="area.area_id" v-for="area in areas" :key="area.id">{{ area.nombre | capitalize }}</option>
                 </select>
               </div>
             </div>
@@ -35,12 +35,12 @@
                 <label for="cargo">Cargo</label>
                 <select name="cargo" id="cargo" class="form-control">
                   <option value="" selected="selected">Seleccione</option>
-                  <option :value="cargo.cargo_id" v-for="cargo in cargos">{{ cargo.titulo | capitalize }}</option>
+                  <option :value="cargo.cargo_id" v-for="cargo in cargos" :key="cargo.id">{{ cargo.titulo | capitalize }}</option>
                 </select>
               </div>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group text-center">
             <input type="submit" value="Publicar" class="btn btn-info">
           </div>
         </form>

@@ -227,7 +227,7 @@ class ConceptosTableSeeder extends Seeder
                 ],
                 [
                     'tipo_concepto'     => '137',
-                  'descripcion'  => 'Horas Extras Nocturnas Feriado',
+                    'descripcion'       => 'Horas Extras Nocturnas Feriado',
                     'porcentaje'        => null,
                     'valor_fijo'        => null,                    
                     'bono_vacacional'   => '0',
@@ -238,13 +238,13 @@ class ConceptosTableSeeder extends Seeder
                 ],
                 [
                     'tipo_concepto'     => '139',
-                  'descripcion'  => 'Cesta ticket',
+                    'descripcion'       => 'Cesta ticket',
                     'porcentaje'        => null,
-                     'valor_fijo'       => 61,                    
+                    'valor_fijo'        => 30,                    
                     'bono_vacacional'   => '0',
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
-                    'islr'               => '0',
+                    'islr'              => '0',
                     'estatus'           => 1
                 ],
                 [
@@ -289,7 +289,7 @@ class ConceptosTableSeeder extends Seeder
                     'utilidades'        => '1',
                     'prestaciones'      => '1',
                     'islr'               => '1',
-                    'estatus'           => 1
+                    'estatus'           => 0
                 ],
                 [
                     'tipo_concepto'     => '510',
@@ -323,7 +323,7 @@ class ConceptosTableSeeder extends Seeder
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
                     'islr'               => '0',
-                    'estatus'           => 1
+                    'estatus'           => 0
                 ],
                 
                 [
@@ -335,7 +335,7 @@ class ConceptosTableSeeder extends Seeder
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
                     'islr'               => '0',
-                    'estatus'           => 1
+                    'estatus'           => 0
                 ],
                 [
                     'tipo_concepto'     => '525',
@@ -346,7 +346,7 @@ class ConceptosTableSeeder extends Seeder
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
                     'islr'               => '0',
-                    'estatus'           => 1
+                    'estatus'           => 0
                 ],
                 
                 [
@@ -358,7 +358,7 @@ class ConceptosTableSeeder extends Seeder
                     'utilidades'        => '0',
                     'prestaciones'      => '0',
                     'islr'               => '0',
-                    'estatus'           => 1
+                    'estatus'           => 0
                 ],
                 
             ]);
