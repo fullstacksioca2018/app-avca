@@ -178,9 +178,8 @@
                 <div class="row">
                   <h4 class="mb-3">PASAJERO  {{ ($i+1) }}</h4>&nbsp;&nbsp;&nbsp; <!-- ADULTOS -- LOS NIÑOS Y BEBES EN ASIENTO SE CUENTAN COMO ADULTOS Y PAGAN -->
                       <div class="form-group">
-                     <input type="text" id="Buscarci{{$i}}" name="Buscarci" placeholder="Cedula..."> 
-                          <button type="button" class="btn btn-primary" id="btnbuscar{{$i}}" onClick="BuscarCedula({{$i}})")>
-                        <i class="fa fa-search"></i></button>
+                     <input type="text" class=" " id="Buscarci{{$i}}" name="Buscarci" placeholder="Cedula..."> 
+                          <button type="button" class="btn btn-primary btn-sm" id="btnbuscar{{$i}}" onClick="BuscarCedula({{$i}})")><i class="fa fa-search"></i></button>
                     </div>
                   
                   </div>
@@ -324,7 +323,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
             </div>
-            <input type="number" class="form-control" form="myForm" name="numero_tarjeta" id="cc-number"  autocomplete="off" >
+            <input type="number" class="form-control" form="myForm" name="numero_tarjeta" id="cc-number"  autocomplete="off" minlength="4" maxlength="8" >
             <div class="invalid-feedback">Requiere el numero de referencia</div>
           </div> <!-- input-group.// -->
         </div> <!-- form-group.// -->

@@ -5,19 +5,22 @@
     <b-tab title="Nuevo Vuelo">
        <RegistrarVuelos></RegistrarVuelos>
     </b-tab>
-    <b-tab title="Vuelos Abiertos" active>
+    <b-tab title="Abiertos" active>
      <VuelosAbiertos> </VuelosAbiertos>
     </b-tab>
-     <b-tab title="Vuelos Cancelados">
+    <b-tab title="En Chequeo">
+     <VuelosChequeo> </VuelosChequeo>
+    </b-tab>
+     <b-tab title="Cancelados">
       <VuelosCancelados> </VuelosCancelados>
     </b-tab>
-    <b-tab title="Vuelos Ejecutados">
+    <b-tab title="Ejecutados">
       <VuelosEjecutados> </VuelosEjecutados>
     </b-tab>
-    <b-tab title="Vuelos Retrasados">
+    <b-tab title="Retrasados">
       <VuelosRetrasados> </VuelosRetrasados>
     </b-tab>   
-    <b-tab title="Vuelos Cerrados">
+    <b-tab title="Cerrados">
       <VuelosCerrados> </VuelosCerrados>
     </b-tab>
   </b-tabs>

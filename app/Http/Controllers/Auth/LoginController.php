@@ -55,7 +55,7 @@ class LoginController extends Controller
         $auxURL;
         switch (Auth::user()->modulo) {
             case 'rrhh':
-                $auxURL='/rrhh/backend/empleado/panel';
+                $auxURL='   ';
                 $this->redirectTo='/rrhh/backend/empleado/panel';
                 break;
             case 'online':

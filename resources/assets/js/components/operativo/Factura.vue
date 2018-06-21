@@ -61,7 +61,7 @@
     <b-modal ref="myModalRef" id="modalInfo" @hide="resetModal" :title="modalInfo.title"  hide-footer>
     <div v-if="modalInfo.content != ''">
      <b-form @submit.prevent="actualizar()"> 
-         <!--  <pre>{{modalInfo.content}}</pre> -->
+           <!-- <pre>{{modalInfo.content}}</pre> --> 
        
        <div class="row col-sm-12">
          <div class="col-sm-5">
@@ -194,7 +194,6 @@ export default {
     },
 
     cambiarestado(){
-      //alert("ha cambiado el estado del select a"+this.compra.tipo)
        if(this.compra.tipo=="Débito")
       {
         this.tarjetas=['Visa','Mastercard','American Express'];
@@ -293,7 +292,7 @@ export default {
                 this.compra.tipo='';
                 this.compra.tarjeta='';
                 EventBus.$emit('actualizartabla',true);
-                  this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+                this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
                }).catch((err) =>{
                  console.log(err);
                 Vue.toasted.show("Error al cargar los datos"+err, {

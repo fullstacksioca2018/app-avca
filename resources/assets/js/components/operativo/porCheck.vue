@@ -103,12 +103,12 @@
    <div id='search-results' class="col-sm-6">
          <label for="asiento" >Seleccione el Asiento:   </label>
           
-         <multiselect v-model="form.puesto" :options="puestos" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione filtro" :preselect-first="false" selectLabel="Seleccionar" deselectLabel="Eliminar" required></multiselect>
+         <multiselect v-model="form.puesto" :options="puestos" :multiple="false" :close-on-select="true" :clear-on-select="false" :hide-selected="true" :preserve-search="true" placeholder="Seleccione Asiento" :preselect-first="false" selectLabel="Seleccionar" deselectLabel="Eliminar" required></multiselect>
 
     </div> 
     <div class="row"><p></p><p></p></div><!--  espacio -->
       <div class="text-center">
-        <b-button type="submit" variant="primary" >Actualizar</b-button>
+        <b-button type="submit" variant="primary" >Chequear</b-button>
       </div>
       
     </b-form>
@@ -122,7 +122,9 @@
 <script>
 
 import axios  from 'axios';
-import multiselect from 'vue-multiselect'
+import moment from 'moment';
+import jsPDF from 'jspdf';
+import multiselect from 'vue-multiselect';
 import {EventBus} from './event-bus.js'
 
 export default {
@@ -156,7 +158,7 @@ export default {
       pageOptions: [ 5, 10, 15 ],
       filter: null,
       modalInfo: { title: '', content: '' },
-      form: {equipaje: '0', peso:'0', puesto:'', id:'',sobrepeso:'0'},
+      form: {equipaje: '0', peso:'0', puesto:'', id:'',sobrepeso:'0', contador:''},
       puestos: [] 
     }
   },
@@ -208,7 +210,7 @@ export default {
           n_vuelo: this.data[i].codvuelos,
           pasajero:this.data[i].pasajero,
           nombreCompleto:this.data[i].nombre_pasajero,
-          cedula:this.data[i].documento,
+          cedula:this.data[i].tipo_documento+"-"+this.data[i].documento,
           origen:{
              nombre:this.data[i].origen,
              sigla:this.data[i].sigla_destino,
@@ -221,28 +223,66 @@ export default {
             },
           estatus:this.data[i].estatus,
           localizador:this.data[i].localizador,
-          tarifa:this.data[i].tarifa_vuelo
+          tarifa:this.data[i].tarifa_vuelo,
+          contador:i
         });
       }
      
     },
     addMaletas(){
                this.form.id=this.modalInfo.content.id;
-               axios({
+               this.form.contador=this.modalInfo.content.contador;
+               
+                axios({
                 method: 'post',
                 url: '/check/maletas',
                 data: this.form,
                }).then((response)=>{
-                Vue.toasted.show(response.data, {
+                //aqui imprime el pdf
+                var doc = new jsPDF();
+                var img='/img/boordingpass.png';
+                doc.addImage(img,'PNG',15,15,180,80);
+                doc.setFontSize(10);
+                doc.text(response.data.boleto.primerNombre+" "+response.data.boleto.apellido,20,50); //Nombre
+                doc.text(response.data.vuelo.segmentos[0].ruta.origen.ciudad,20,60); //origen
+                doc.text(response.data.vuelo.segmentos[0].ruta.destino.ciudad,20,72); //Destino
+                doc.text(response.data.vuelo.n_vuelo,70,60); //numero de vuelo
+                var element = response.data.vuelo.fecha_salida.split(' ');
+                var fecha = moment(element[0]).format('DD-MM-YYYY');
+                doc.text(fecha,90,60); //fecha de vuelo
+                doc.text(element[1],120,60); //hora del vuelo de vuelo
+                doc.text(response.data.boleto.asiento,72,83); //asiento
+                doc.text(response.data.vuelo.segmentos[0].ruta.tarifa_vuelo+'BsS',94,83); //precio
+                doc.text(String(response.data.contador+1),23,83); //numero de boleto (que sera el contador cuando se agrega)
+                var embargue = element[1].split(':');
+                doc.text(embargue[0]-1+":"+embargue[1]+":"+embargue[2],40,83); //embargue (hora de salida -1)
+                doc.text(String(response.data.boleto.id+response.data.maleta.id),120,83); //equipaje id de boleto + id de maletas
+                //__________la parte que se desprende
+                doc.setFontSize(8);               
+                doc.text(String(response.data.boleto.documento),150,38); //cedula del pasajero
+                doc.text(String(response.data.boleto.id+response.data.maleta.id),183,38); //equipaje id de boleto + id de maletas
+                doc.text(response.data.boleto.primerNombre+" "+response.data.boleto.apellido,150,50); //nombre y apellido
+                doc.text(response.data.vuelo.segmentos[0].ruta.origen.sigla,150,60); //origen
+                doc.text(response.data.vuelo.segmentos[0].ruta.destino.sigla,177,60); //destino
+                doc.text(response.data.vuelo.n_vuelo,145,72); //numero de vuelo
+                doc.text(fecha,161,72); //fecha
+                doc.text(element[1],181,72); //hora
+                doc.text(String(response.data.contador+1),155,83); //numero de boleto
+                doc.text(embargue[0]-1+":"+embargue[1]+":"+embargue[2],167,85); //embargue (hora de salida -1)
+                doc.text(response.data.boleto.asiento,182,83); //asiento
+                doc.save('boordin.pdf');
+                Vue.toasted.show(response.data.boleto.primerNombre+" "+response.data.boleto.apellido+" Chequeado(a) Correctamente", {
                     theme: "primary", 
 	                position: "bottom-right",
-	                duration : 2000
+	                duration : 2000                
                 });
                 EventBus.$emit('actualizartabla',true);
                 this.$root.$emit('bv::hide::modal', 'modalInfo', '#app');
+                
+                
                }).catch((err) =>{
 
-               });
+               }); 
            },
     sobrepeso(){
       var precioS=0

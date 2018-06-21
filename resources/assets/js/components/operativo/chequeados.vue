@@ -128,7 +128,7 @@ export default {
           n_vuelo: this.data[i].codvuelos,
           pasajero:this.data[i].pasajero,
           nombreCompleto:this.data[i].nombre_pasajero,
-          cedula:this.data[i].documento,
+          cedula:this.data[i].tipo_documento+"-"+this.data[i].documento,
           origen:{
              nombre:this.data[i].origen,
              sigla:this.data[i].sigla_destino,

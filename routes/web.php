@@ -102,6 +102,7 @@ Route::get('auth/{provider}', 'OnlineAuth\SocialAuthController@redirectToProvide
 Route::get('auth/{provider}/callback', 'OnlineAuth\SocialAuthController@handleProviderCallback');
 require 'Operativo\PlanificarAeronave.php';
 require 'Operativo\PlanificarSucursal.php';
+require 'Operativo\ReporteBoletos.php';
 
 
 Route::get('reporte/operativo', function () {

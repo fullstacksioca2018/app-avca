@@ -46,11 +46,23 @@ class Boleto extends Model
         return DB::table('boletos')->select('id')->where('localizador',$localizador);
 
     }
-   
+
+  
     public function maleta()
     {
     	return $this->hasOne('App\Models\operativo\Maleta');
 
-	}
+    }
+    
+    /* public function scopeCheck()
+    {
+       $fecha=Carbon::now();
+       return DB::select("SELECT b.* 
+                    FROM boletos as b
+                         vuelos as v
+                    WHERE v.fecha='".$fecha."' AND b.boleto_estado='Pagado'");
+       return BD::table('boletos')
+                  ->join()
+    } */
 
 }
