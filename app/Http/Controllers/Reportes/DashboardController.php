@@ -10,10 +10,6 @@ use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
-    // public function vuelosEstado($estado){
-    // 	return json_decode(DW_Vuelo::VuelosEstado($estado));
-    // }
-
     public function vuelosEstadoQuincena($estado){
     	$actual2=Carbon::now();
 		$mes2=DATE("m",strtotime($actual2->toDateTimeString()));
@@ -58,9 +54,7 @@ class DashboardController extends Controller
 				}
 				$fechafin=$actual2->toDateTimeString();
             break;
-
 		}
-		// dd(date("n"));
 		if($estado!="demorado"){
     		return json_decode(DW_Vuelo::VuelosEstadoFecha($estado,$fechaincio,$fechafin));
 		}
