@@ -98,12 +98,7 @@ $(document).ready(function () {
    //tipo=$("#tipo").val();
    
    $.ajax({  
-<<<<<<< HEAD
-		url:'taquilla/pagar',
-         //taquilla/factura/pagar
-=======
 		url:'/factura/pagar',
->>>>>>> master
 		data:{"id":factura},
 		type:'post',
 	//	dataType: 'json',

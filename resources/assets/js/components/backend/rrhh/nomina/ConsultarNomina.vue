@@ -146,7 +146,7 @@
                     if (voucher.concepto_id == 3) {
                         prima_hijos += voucher.monto;
                     }
-                    if (voucher.concepto_id == 9) {
+                    if (voucher.concepto_id == 10) {
                         prima_hogar += voucher.monto;
                     }
                     if (voucher.concepto_id == 17) {

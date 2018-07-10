@@ -4,7 +4,7 @@
   <div v-show="GraficaP==null">
     <div class="card">
       <div class="card-header text-center">
-          <strong>Vuelos <p class="font-weight-light" style="    display: initial;">Del 1 Junio al 15 de Junio</p></strong>
+          <strong>Vuelos <p class="font-weight-light" style="    display: initial;">Del 15 Junio al 30 de Junio</p></strong>
       </div>
     </div>
     <div class="container-fluid">
@@ -83,7 +83,7 @@
           <chart-card :datos="datosGLine" tipo="Line">
             <template slot="header">
               <h4 class="card-title">Ingresos</h4>
-              <p class="card-category">Del 15 de mayo hasta hoy</p>
+              <p class="card-category">Del 15 de Junio hasta hoy</p>
             </template>
             <template slot="footer">
               <div class="row">
@@ -159,7 +159,7 @@
         },
         grafica1:[
           {
-            titulo:"Vuelos Ejecutados Del 15 al 31 de Mayo",
+            titulo:"Vuelos Ejecutados Del 15 al 30 de Junio",
             grafica:"Bar",
             datos:{
               labels:["15 Mayo","16 Mayo","17 Mayo"],
@@ -171,14 +171,14 @@
         consulta1:{
           consulta:"Servicios",
           parametros:['Vuelos'],
-          filtrosV:['Ejecutados'],
+          filtrosV:['Ejecutado'],
           periodo:"Personalizado",
-          desde:"2018-05-15",
-          hasta:"2018-05-31"
+          desde:"2018-06-15",
+          hasta:"2018-06-30"
         },
         grafica2:[
           {
-            titulo:"Vuelos Abiertos Del 15 al 31 de Mayo",
+            titulo:"Vuelos Abiertos Del 15 al 30 de Junio",
             grafica:"Bar",
             datos:{
               labels:["18 Mayo","19 Mayo","20 Mayo","21 Mayo","22 Mayo","23 Mayo","24 Mayo","25 Mayo","26 Mayo","27 Mayo","28 Mayo","29 Mayo","30 Mayo","31 Mayo"],
@@ -190,14 +190,14 @@
         consulta2:{
           consulta:"Servicios",
           parametros:['Vuelos'],
-          filtrosV:['Abiertos'],
+          filtrosV:['Abierto'],
           periodo:"Personalizado",
-          desde:"2018-05-15",
-          hasta:"2018-05-31"
+          desde:"2018-06-15",
+          hasta:"2018-06-30"
         },
         grafica3:[
           {
-            titulo:"Vuelos Demorados Del 15 al 31 de Mayo",
+            titulo:"Vuelos Demorados Del 15 al 30 de Junio",
             grafica:"Bar",
             datos:{
               labels:["15 Mayo","16 Mayo","17 Mayo"],
@@ -209,14 +209,14 @@
         consulta3:{
           consulta:"Servicios",
           parametros:['Vuelos'],
-          filtrosV:['Demorados'],
+          filtrosV:['Demorado'],
           periodo:"Personalizado",
-          desde:"2018-05-15",
-          hasta:"2018-05-31"
+          desde:"2018-06-15",
+          hasta:"2018-06-30"
         },
         grafica4:[
           {
-            titulo:"Vuelos Cancelados Del 15 al 31 de Mayo",
+            titulo:"Vuelos Cancelados Del 15 al 30 de Junio",
             grafica:"Bar",
             datos:{
               labels:["15 Mayo","16 Mayo","17 Mayo","18 Mayo","19 Mayo","20 Mayo","21 Mayo","22 Mayo","23 Mayo","24 Mayo","25 Mayo","26 Mayo","27 Mayo","28 Mayo","29 Mayo","30 Mayo","31 Mayo"],
@@ -228,14 +228,14 @@
         consulta4:{
           consulta:"Servicios",
           parametros:['Vuelos'],
-          filtrosV:['Cancelados'],
+          filtrosV:['Cancelado'],
           periodo:"Personalizado",
-          desde:"2018-05-15",
-          hasta:"2018-05-31"
+          desde:"2018-06-15",
+          hasta:"2018-06-30"
         },
         grafica5:[
         {
-          titulo:"Ingresos Del 15 al 31 de Mayo",
+          titulo:"Ingresos Del 15 al 21 de Junio",
           grafica:"Line",
           datos:{
             data:[[35200,32200,34800]],
@@ -246,8 +246,8 @@
         consulta5:{
           consulta:"Ingresos",
           periodo:"Personalizado",
-          desde:"2018-05-15",
-          hasta:"2018-05-17"
+          desde:"2018-06-15",
+          hasta:"2018-06-21"
         },
         grafica6:[
         {
@@ -314,6 +314,7 @@
                 switch (estado) {
                   case "abierto":
                     this.abiertos=response.data
+                    console.log(this.abiertos)
                     break;
                   case "cancelado":
                     this.cancelados=response.data
@@ -337,9 +338,9 @@
         ingresos(){
         let loader = this.$loading.show();
           var myDate = new Date();
-          var auxI="2018-05-15";
+          var auxI="2018-06-15";
           var auxF="2018-06-"+myDate.getDate();
-          var titulo="Ingresos Del 15 de Mayo al "+myDate.getDate()+" al 1 Junio";
+          var titulo="Ingresos Del 15 al "+myDate.getDate()+" de Junio";
           this.grafica5[0].titulo=titulo
           axios({
                 method: 'get',

@@ -71,7 +71,6 @@ class PronosticoIngresosController extends Controller
 	    	$labelsAux="Avca";
             array_push($label,$labelsAux);
             $dataAux=$this->ConsultaPronosticoIngresos();
-            array_push($label, $labelsAux);
             array_push($stack, $cont);
 			array_push($data, $dataAux);
 	    }

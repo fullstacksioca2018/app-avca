@@ -22,17 +22,35 @@ class PlanificarRutaController extends Controller
     $vuelos= new Vuelo();
     //busco todos los destinos programados de la fecha actual en adelante
     $actual = Carbon::now();
+    
+
     $actual2=Carbon::now();
     $actual2->subHours(2); //agg 1hra para buscar y actualizar los vuelos que ya estan cerrados
     $vuelos->VuelosRetrasados($actual2->toDateTimeString());
+
+
     $actual2=Carbon::now();
-    $actual2->subHours(6); 
-    
+    $actual2->addHours(2); 
+    $vuelos->VuelosChequeando($actual2->toDateTimeString()); 
+
+    $actual2=Carbon::now();
+    $actual2->subHours(6);         
     $vuelos->VuelosCerrados($actual2->toDateTimeString());
+
+    if($vuelos->estado == 'abierto'){
+        $vuelos->BoletosAgotados();
+        $vuelos->BoletosDisponible();
+    }
+       
+
+   /*    */
+
     // Disponibilidad de Boletos
-    $vuelos->BoletosAgotados();
-    $vuelos->BoletosDisponible();
-  }
+  /*   */
+    //$actual2=Carbon::now(); 
+    //$actual2->subHours(2); 
+   // $vuelos->VuelosChequeando($actual2->toDateTimeString());       
+}
 
     //Mostrar Ruta
     public function ruta(){

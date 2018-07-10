@@ -109,7 +109,10 @@
        </thead>
        <tbody>
          <tr v-for="tripulante in modalInfo.content.tripulantes"> 
-           <td> {{tripulante.rango}} </td>
+           <td v-if="tripulante.empleado.cargo_id=='8'"> Piloto </td>
+           <td v-if="tripulante.empleado.cargo_id=='9'"> Copiloto </td>
+           <td v-if="tripulante.empleado.cargo_id=='10'"> Sobrecargo </td>
+           <td v-if="tripulante.empleado.cargo_id=='14'"> Jefe de Cabina </td>
            <td> {{tripulante.empleado.nombre + " " + tripulante.empleado.apellido}} </td>
            <td> {{sumar(tripulante.empleado.experiencia)}} </td>
            <td> {{tripulante.licencia}} </td>

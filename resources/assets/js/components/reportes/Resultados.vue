@@ -33,7 +33,7 @@
 	<modalDiagnoticar :datos="diagnostico"></modalDiagnoticar>
 	<div class="row" style="margin-left:20px">
 		<div v-if="tipoC=='Ingresos'">
-			<button class="btn btn-primary" @click="pronosticar()">Pronosticar</button>
+		<!-- 	<button class="btn btn-primary" @click="pronosticar()">Pronosticar</button> -->
 		</div>
 		<div v-else>
 			<!-- <button class="btn btn-primary" @click="cargar()">Diagnosticar</button> -->

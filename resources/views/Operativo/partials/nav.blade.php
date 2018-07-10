@@ -117,13 +117,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ URL::to('/operativo/reportes/boletos') }}" class="nav-link">
-                <i class="fa fa-ticket"></i>
-                <p>Boletos</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ URL::to('/reportes/') }}" class="nav-link">
+              <a href="{{ URL::to('/reporte/operativo') }}" class="nav-link">
                 <i class="fa fa-area-chart"></i>
                 <p>Estadísticas</p>
               </a>

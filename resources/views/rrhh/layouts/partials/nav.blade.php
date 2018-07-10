@@ -108,7 +108,6 @@
               </a>
             </li>
           </ul>
-<<<<<<< HEAD
         </li>
         <li class="nav-item">
           <a href="{{ route('reportes.rrhh') }}" class="{{ request()->routeIs('reportes.rrhh') ? 'nav-link active' : 'nav-link' }}">
@@ -120,19 +119,16 @@
         </li>
 
         {{--  Opcion para el gerente de la sucursal  --}}
-        <li class="nav-item">
+      <!--  <li class="nav-item">
           <a href="{{ route('asistencia.register') }}" class="{{ request()->routeIs('asistencia.register') ? 'nav-link active' : 'nav-link' }}">
             <i class="nav-icon fa fa-clock-o"></i>
             <p>
               Asistencia
             </p>
           </a>
-        </li>
+        </li>-->
 
 
-=======
-        </li>        
->>>>>>> RRHHIntegrado
       </ul>
     </li>
   </ul>

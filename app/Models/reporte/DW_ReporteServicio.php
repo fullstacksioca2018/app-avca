@@ -759,6 +759,7 @@ class DW_ReporteServicio extends Model
     }
 
     public function scopeVuelosEstado($query, $periodo, $filtroV){
+
             $actual2=Carbon::now();
             $mes2=$actual2->month;
             $year2=$actual2->year;

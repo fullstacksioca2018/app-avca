@@ -20,26 +20,41 @@ use stdClass;
 
 class CheckController extends Controller
 {
-     public function __construct(){
+    public function __construct(){
         Carbon::setLocale('es');
         date_default_timezone_set('America/Caracas');
         $vuelos= new Vuelo();
         //busco todos los destinos programados de la fecha actual en adelante
         $actual = Carbon::now();
+        
+
         $actual2=Carbon::now();
         $actual2->subHours(2); //agg 1hra para buscar y actualizar los vuelos que ya estan cerrados
         $vuelos->VuelosRetrasados($actual2->toDateTimeString());
+
+
         $actual2=Carbon::now();
-        $actual2->subHours(6); 
-        
+        $actual2->addHours(2); 
+        $vuelos->VuelosChequeando($actual2->toDateTimeString()); 
+
+        $actual2=Carbon::now();
+        $actual2->subHours(6);         
         $vuelos->VuelosCerrados($actual2->toDateTimeString());
+
+        if($vuelos->estado == 'abierto'){
+            $vuelos->BoletosAgotados();
+            $vuelos->BoletosDisponible();
+        }
+           
+
+       /*    */
+
         // Disponibilidad de Boletos
-        $vuelos->BoletosAgotados();
-        $vuelos->BoletosDisponible();
-
-
-       
-    }  
+      /*   */
+        //$actual2=Carbon::now(); 
+        //$actual2->subHours(2); 
+       // $vuelos->VuelosChequeando($actual2->toDateTimeString());       
+    }
     
     public function check(){
          
@@ -126,6 +141,7 @@ class CheckController extends Controller
                 $obj->n_vuelo=$vuelo->n_vuelo;
                 $obj->fecha_salida=$vuelo->fecha_salida;
                 $obj->n_boletos=$vuelo->n_boletos;
+                //dd($obj);
                 $obj->origen=$vuelo->segmentos[0]->ruta->origen->sigla;
                 $obj->destino=$vuelo->segmentos[0]->ruta->destino->sigla;
                 $obj->boletos=Boleto::where('vuelo_id','=',$vuelo->id)->get();

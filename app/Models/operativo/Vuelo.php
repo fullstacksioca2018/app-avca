@@ -9,9 +9,9 @@ class Vuelo extends Model
     protected $table = "vuelos";
     protected $fillable = [
 
-		'id',
-		'estado',
-		'fecha_salida',
+    'id',
+    'estado',
+    'fecha_salida',
         'n_vuelo',
         'boletos_vendidos',
         'boletos_reservados'
@@ -21,7 +21,7 @@ class Vuelo extends Model
 
     public function boletos()
     {
-    	return $this->hasMany('App\Models\operativo\Boleto');
+      return $this->hasMany('App\Models\operativo\Boleto');
     }
 
     public function segmentos()
@@ -31,7 +31,7 @@ class Vuelo extends Model
     }
 
     public function tripulantes(){
-    	return $this->belongsToMany('App\Models\operativo\Tripulante');
+      return $this->belongsToMany('App\Models\operativo\Tripulante');
     }
 
     public function scopeVuelosRetrasados($query, $fecha){ //fecha=a la fecha actual+1hra
@@ -39,6 +39,14 @@ class Vuelo extends Model
         $vuelos=$query->where([['vuelos.fecha_salida','<',$fecha],['vuelos.estado','!=','retrasado'],['vuelos.estado','!=','ejecutado'],['vuelos.estado','!=','cancelado']])->get();
         foreach ($vuelos as $vuelo) {
             $vuelo->estado="retrasado";
+            $vuelo->save();
+        }
+    }
+    public function scopeVuelosChequeando($query, $fecha){ //fecha=a la fecha actual+1hra
+
+        $vuelos=$query->where([['vuelos.fecha_salida','<',$fecha],['vuelos.estado','!=','retrasado'],['vuelos.estado','!=','ejecutado'],['vuelos.estado','!=','cancelado']])->get();
+        foreach ($vuelos as $vuelo) {
+            $vuelo->estado="chequeando";
             $vuelo->save();
         }
     }

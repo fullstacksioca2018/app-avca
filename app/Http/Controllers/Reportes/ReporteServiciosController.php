@@ -262,7 +262,7 @@ class ReporteServiciosController extends Controller
                                             for($fv=0;$fv<(count($consulta->filtrosV));$fv++){
                                                 $info=$this->busquedaVuelosDestinoFiltro($periodos[0],$consulta->busqueda,$consulta->busquedaMonto,$consulta->busquedaRow,$consulta->filtrosV[$fv]); 
                                                 // return $periodos;
-                                               return response()->JSON($info);
+                                             //  return response()->JSON($info);
                                                 array_push($previos, $info);
                                             }
                                         }
@@ -615,10 +615,11 @@ class ReporteServiciosController extends Controller
                                     array_push($label, $auxlabel);
                                     array_push($stack, $cont);
                                     $info=$this->consultaVuelos($periodos[0],$consulta->filtrosV[$fv]);
-                                   // return response()->JSON($info);
+                                   //return response()->JSON($info);
                                     $dataAux=array();
                                     array_push($dataAux, $info);
                                     array_push($data, $dataAux);
+                                    array_push($stack, $cont);
                                 }
                             }
                         }

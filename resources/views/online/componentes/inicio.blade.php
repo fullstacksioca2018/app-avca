@@ -6,13 +6,13 @@
   ============================-->
 
 
-@if(Auth::guest())
+{{--  @if(Auth::guest())
               
-     {{-- Nada para poner --}}
+      Nada para poner 
 
   @else
            
-  @if(Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id) == null)
+   @if(Auth::guard('online')->user()->cliente(Auth::guard('online')->user()->id) == null)
 
       <script>
         Push.create("Notificación",{
@@ -29,11 +29,11 @@
 
    @else
               
-    {{-- Nada para poner --}}
+     Nada para poner 
+
 
   @endif
-
-@endif
+@endif  --}}
 
 
 

@@ -1035,4 +1035,8 @@ import { ScaleLoader } from 'vue-spinner/dist/vue-spinner.min.js'
 	  opacity: 0;
 	}
 
+	.custom-control-label{
+		position: initial !important;
+	}
+
 </style>

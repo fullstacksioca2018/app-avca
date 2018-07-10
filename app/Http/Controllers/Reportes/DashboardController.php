@@ -35,7 +35,7 @@ class DashboardController extends Controller
 					$fechafin=$year2.'-'.$mes2.'-'.'15 12:00:00';
 				}
 				else{
-					$fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+					$fechafin=$year2.'-'.$mes2.'-'.'30 12:00:00';
 				}
             	break;
             case 'cancelado':
@@ -45,7 +45,7 @@ class DashboardController extends Controller
 				}
 				else{
 					$fechaincio=$year2.'-'.$mes2.'-'.'15 12:00:00';
-					$fechafin=$year2.'-'.$mes2.'-'.'31 12:00:00';
+					$fechafin=$year2.'-'.$mes2.'-'.'30 12:00:00';
 				}
             	break;
             break;

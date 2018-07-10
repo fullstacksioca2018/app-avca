@@ -138,7 +138,6 @@ class UserController extends Controller
             /*Mover imagenes a una carpeta*/
             $file->move($path, $avatar);
             /* Fin de Manipulación de imagen */
-
             $user->avatar = $avatar;
 
             $cliente->save();
@@ -146,7 +145,7 @@ class UserController extends Controller
 
         }else{
 
-            $cliente = Cliente::find($request->user_id);
+            $cliente = Cliente::Where('user_id',$request->user_id)->first();
             $user = Online::find($request->user_id);
             $user->name  = $request->username;
             $user->email = $request->email;
@@ -166,6 +165,7 @@ class UserController extends Controller
             /*Mover imagenes a una carpeta*/
             $file->move($path, $avatar);
             /* Fin de Manipulación de imagen */
+            
             $user->avatar = $avatar;
             
             $cliente->nombre = $request->nombre;
