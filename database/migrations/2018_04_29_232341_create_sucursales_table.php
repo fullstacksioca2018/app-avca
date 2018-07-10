@@ -20,9 +20,12 @@ class CreateSucursalesTable extends Migration
             $table->string('nombre', 255)->nullable();
 
 
-            
+
             $table->enum('estatus', ['activa', 'inactiva'])->nullable();
             $table->string('sigla',20)->nullable();
+            $table->string('aeropuerto',100)->nullable();
+            $table->string('direccion',100)->nullable();
+            $table->string('estado',100)->nullable();
 
             $table->timestamps();
         });

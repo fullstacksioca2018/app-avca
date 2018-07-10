@@ -25,7 +25,7 @@ class CreateEmpleadosTable extends Migration
             $table->enum('sexo', ['f', 'm']);
             $table->string('estado');
             $table->string('ciudad');
-            $table->string('direccion');
+          /*  $table->string('direccion');*/
             $table->string('telefono_fijo', 15);
             $table->string('telefono_movil', 15);
             $table->string('email', 60)->unique();
