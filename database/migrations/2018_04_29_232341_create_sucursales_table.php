@@ -23,8 +23,6 @@ class CreateSucursalesTable extends Migration
             $table->string('aeropuerto',100)->nullable();
             $table->string('direccion',100)->nullable();
             $table->string('estado',100)->nullable();
-            $table->string('pais',100)->nullable();
-            $table->string('ciudad', 255)->nullable();
 
             $table->timestamps();
         });
