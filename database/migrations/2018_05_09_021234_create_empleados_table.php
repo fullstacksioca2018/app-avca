@@ -19,15 +19,6 @@ class CreateEmpleadosTable extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->enum('nacionalidad', ['v','e']);
-            $table->date('fecha_nacimiento');
-            $table->enum('estado_civil', ['solter@', 'casad@', 'divorciad@', 'viud@', 'concubin@']);
-            $table->string('foto')->nullable();
-            $table->enum('sexo', ['f', 'm']);
-            $table->string('estado');
-            $table->string('ciudad');
-            $table->string('direccion');
-            $table->string('telefono_fijo', 15);
-            $table->string('telefono_movil', 15);
             $table->string('email', 60)->unique();
             $table->string('tipo_discapacidad', 50)->nullable();
             $table->integer('sucursal_id')->unsigned();
